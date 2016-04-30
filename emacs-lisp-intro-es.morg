@@ -1,0 +1,281 @@
+@title     Una introducción a la programación en Emacs Lisp
+@subtitle  Revisada la tercera edición
+@author    Robert J. Chassell
+@traductor David Arroyo Menéndez
+@define    edition-number="3.10"
+
+Esto es una @e{Introducción a la Programación en Emacs Lisp}, para
+personas que no son programadoras.
+
+Traducido desde la edición @v{edition-number}.
+
+Copyright © 2015 Libremanuals.
+
+Publicado por: Libremanuals, @l{http://www.libremanuals.net/}
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; there being
+no Invariant Section, with the Front-Cover Texts being “A GNU Manual”,
+and with the Back-Cover Texts as in (a) below.  A copy of the license is
+included in the section entitled “GNU Free Documentation License”.
+
+(a) The FSF's Back-Cover Text is: “You have the freedom to copy and
+modify this GNU manual.  Buying copies from the FSF supports it in
+developing GNU and promoting software freedom.”
+
+* Prefacio
+
+  La mayoría del entorno integrado GNU Emacs está escrito en el lenguaje
+  de programación llamado Emacs Lisp. El código escrito en este lenguaje
+  de programación es el software –el conjunto de instrucciones– que
+  cuenta al ordenador qué hacer cuando tu le das comandos. Emacs está
+  diseñado de forma que se puede escribir nuevo código en Emacs Lisp y
+  fácilmente instalarlo como una extensión al editor.
+
+  (GNU Emacs es algunas veces llamado un “editor extensible”, pero hace
+  mucho más que proporcionar capacidad de edición. Es mejor referirse a
+  Emacs como un “entorno de computación extensible”. Sin embargo, esta
+  frase es un poco pretenciosa. Es más fácil referirse a Emacs
+  simplemente como un editor. De hecho, cada cosa que se hace en Emacs
+  –encontrar la fecha Maya y fases de la luna, simplificar polinomios,
+  depurar código, administrar ficheros, leer cartas, escribir libros–
+  todas estas actividades son maneras de editar tal y como se entiende
+  en el mundo.)
+
+** ¿Por qué estudiar Emacs Lisp?
+
+   Aunque Emacs Lisp normalmente se asocia solo con Emacs, es un
+   lenguaje de programación completo. Se puede usar Emacs Lisp como
+   harías con cualquier otro lenguaje de programación.
+
+   Quizás se quiere comprender la programación; quizás se quiere
+   extender Emacs; o quizás se quiere llegar a ser un programador. Esta
+   introducción a Emacs Lisp está diseñada para ayudar a empezar: para
+   guiarse en el aprendizaje de los fundamentos de programación, y de
+   manera más importante, para enseñar como uno mismo puede ir más allá.
+
+** Leyendo este texto
+
+   A través de este libro, se verá un pequeño ejemplo de programas que
+   se pueden ejecutar dentro de Emacs. Si se lee este documento en Info
+   dentro de GNU Emacs, se pueden ejecutar los programas como ellos
+   aparecen. (Esto es fácil de hacer y se explica cuando los ejemplos se
+   presentan). Alternativamente, se puede leer esta introducción como un
+   libro impreso mientras se está sentando con un ordenador ejecutando
+   Emacs. (Esto es lo que me gusta hacer; me gustan los libros
+   impresos.) Si no se está ejecutando Emacs, todavía se puede leer este
+   libro, pero en este caso, lo mejor es tratarlo como una novela, o
+   como una guía para un país no visitado todavía: interesante, pero no
+   es lo mismo allí.
+
+   Mucha de esta introducción se dedica a paseos guiados de código
+   usado en GNU Emacs. Estos paseos están diseñados para dos
+   propósitos: primero, familiarizarse con código real que funciona
+   (código que se usa cada día); y, segundo,
+   familiarizarse con la manera con la que Emacs funciona. Es interesante
+   ver cómo un entorno en funcionamiento se implementa. También,
+   espero que se escoja el hábito de navegar a través del código
+   fuente. Se puede aprender comparando código de otros con el propio
+   para ganar ideas. Tener GNU Emacs es como tener una cueva del dragón
+   de los tesoros.
+
+   Además de aprender acerca de Emacs como un editor y Emacs Lisp como
+   un lenguaje de programación, las guías de ejemplos guiados darán una
+   oportunidad para familiarizarse con Emacs como un entorno de
+   programación Lisp. GNU Emacs soporta programación y provee
+   herramientas que llegarán a ser confortables usando cosas como
+   @k{M-.} (la clave que invoca el comando @${find-tag}). También se
+   aprenderás acerca de búffers y otros objetos que son parte del
+   entorno. Aprendiendo acerca estas funcionalidades de Emacs es como
+   aprender nuevas rutas alrededor de tu hogar.
+
+   @ignore
+   In addition, I have written several programs as extended examples.
+   Although these are examples, the programs are real.  I use them.
+   Other people use them.  You may use them.  Beyond the fragments of
+   programs used for illustrations, there is very little in here that is
+   `just for teaching purposes'; what you see is used.  This is a great
+   advantage of Emacs Lisp: it is easy to learn to use it for work.
+   @end ignore
+
+   Finalmente, son convenientes algunas habilidades usando Emacs
+   para aprender aspectos de programación que no se conocen. Con
+   frecuencia se puede usar Emacs para ayudar a comprender qué puzzles
+   encontrar o como hacer alguna cosa nueva. Esta auto-confianza no es
+   solo un placer, también es una ventaja.
+
+** Para quien está esto escrito
+
+   Este texto está escrito como una introducción elemental para
+   personas que no son programadoras. Quien ya programa, puede no
+   estar satisfecho con este libro. La razón es que puede tener que
+   llegar a ser experto leyendo manuales de referencia y ese no es el
+   camino para el que este texto está organizado.
+
+   Un programador experto que revisó este texto me dijo a mí:
+
+   @quote
+   Yo prefiero aprender desde manuales de referencia. Yo “escarbo”
+   cada párrafo, y “vienen por aire” entre párrafos.
+
+   Cuando llego al fin de un párrafo, asumo que este asunto está
+   hecho, finalizado, que conozco cada cosa que necesito (con la
+   posible excepción del caso en el que el siguiente párrafo empieza
+   hablando acerca de eso en más detalle). Yo espero que un manual
+   de referencia bien escrito no tendrá un montón de redundancia, y
+   tendrá excelentes punteros a (un) lugar donde la información que
+   quiero.
+   @end quotation
+
+   ¡Esta introducción no está escrita para esta persona!
+
+   Primeramente, intento decir cada cosa al menos tres veces: primero,
+   introducirlo; segundo, mostrarlo en contexto; y tercero, mostrarlo
+   en un contexto diferente, o revisarlo.
+
+   Segundo, yo no siempre pongo toda la información acerca de un
+   asunto en un lugar, ni mucho menos en un párrafo. Desde mi punto de
+   vista, se necesita una carga bastante fuerte en el lector. En vez
+   de eso intento explicar solo lo que se necesita saber en el
+   momento. (Algunas veces incluyo una pequeña información extra así
+   no se sorprenderá más tarde cuando la información adicional se
+   presente formalmente.)
+
+   Cuando uno lee este texto, no espera aprender todo la primera
+   vez. Frecuentemente, solo necesita hacer un `reconocimiento' con
+   alguno de los elementos mencionados. Mi esperanza es que haber
+   estructurado el texto y dar suficientes indicios que dejarán alerta
+   de lo que es importante y concentrarse en ellos.
+
+   Es necesario “sumergirse” de algunos párrafos; no hay otro modo de
+   leerlos. Pero yo he intentado guardar el número de tales párrafos.
+   Este libro pretende ser como una colina que se acerca, en vez de
+   una montaña.
+
+   Esta introducción de @e{Programación en Emacs Lisp} viene
+   acompañado de un documento complementario.
+   @el{https://www.gnu.org/software/emacs/manual/elisp.html, El Manual
+   de Referencia de GNU Emacs}. El manual de referencia tiene más
+   detalles que esta introducción. En el manual de referencia, toda la
+   información sobre un asunto está concentrado en un lugar. Se debe
+   cambiar si se es como el programador citado arriba. Y, de acuerdo,
+   después de que se ha leido esta @e{Introducción}, se encontrará el
+   @e{Manual de Referencia} útil cuando se escriben propios programas.
+
+** Historia de Lisp
+
+   Lisp fué desarrollado primero en los 50 en el Instituto Tecnológico
+   de Massachusetts para investigar en inteligencia artificial. El
+   gran poder del lenguaje Lisp lo hace superior para otros propósitos
+   también, tal como escribir comandos de edición y entornos
+   integrados.
+
+   GNU Emacs Lisp está fuertemente inspirado en Maclisp, que está
+   escrito en el MIT en los sesenta. Está en cierto modo inspirado en
+   Common Lisp, que llega a ser un estándar en los 80. Sin embargo,
+   Emacs Lisp es mucho más simple que Common Lisp. (La distribución
+   estándar de Emacs contiene un fichero de extensiones opctional,
+   @f{cl.el}, que añade muchas funcionalidades a Emacs Lisp.)
+
+***  Una nota para principiantes
+
+     Aunque no se conozca GNU Emacs, se puede leer este documento de
+     manera útil. Sin embargo, es mejor aprender Emacs, al menos
+     aprender a moverse alrededor de la pantalla del ordenador. Uno
+     puede enseñarse a sí mismo cómo usar Emacs con el tutorial
+     on-line. Para usarlo, se debe escribir @k{C-h t}. (Esto significa
+     que se presione la tecla @k{CTRL} y la @k{h} al mismo tiempo, y
+     después se presiona @k{t}
+
+     También, con frecuencia, me refiero a uno de los comandos de Emacs
+     estándar listando las teclas que se presionan para invocar el
+     comando y entonces dar el nombre del comando entre paréntesis,
+     como este: @k{M-C-\} (@${indent-region}). (Si lo deseas, se pueden
+     cambiar las teclas que son escritas para invocar el comando; esto
+     se llama @:{rebinding}. @t{Mapas de teclado}.)  La abreviación
+     @k{M-C-\} significa que se escribe la tecla @k{META}, @k{CTRL}, y
+     @k{\} todo al mismo tiempo. (En muchos teclados modernos la tecla
+     @k{META} es etiquetada con @k{ALT}.)  Algunas veces una
+     combinación como esta es llamada keychord, puesto que es similar
+     al camino de tocar un acorde en un piano. Si tu teclado no tiene
+     una tecla @k{META}, la tecla con prefijo @k{ESC} es usada en lugar
+     de la otra. En este caso @k{M-C-\} significa que se presiona
+     @k{ESC} y entonces escribe @k{CTRL} y la tecla @k{\} al mismo
+     tiempo. Pero normalmente @k{M-C-\} significa presionar la tecla
+     @k{CTRL} alrededor con la tecla que está etiquetada @k{ALT} y, al
+     mismo tiempo, se presiona la tecla @k{\}.
+
+     Además de escribir una sola tecla, se puede prefijar lo que se
+     escribe con @k{C-u}, que es llamado el `argumento universal'. El
+     atajo @k{C-u} pasa a ser un argumento para el comando
+     subsiguiente. De este modo, para indentar una región de texto
+     plano a 6 espacios, se marca la región, y entonces se escribe
+     @k{C-u 6 M-C-\}. (Si no se especifica un número, Emacs pasa el
+     número 4 al comando o de otra manera ejecuta el comando de manera
+     diferente). Vease @l{morg:emacs#Argumentos Numéricos, Argumentos
+     Numericos} El Manual de GNU Emacs.
+
+     Si se está leyendo esto en Info usando GNU Emacs, se puede leer a
+     través de este documento completo solo presionando la barra de
+     espacio, @k{SPC}. (Para aprender acerca de Info, escribe @k{C-h
+     i} y luego selecciona Info.)
+
+     Una nota en terminología: cuando yo uso la palabra Lisp sola, con
+     frecuencia me estoy refiriendo a los dialectos de Lisp en
+     general, pero cuando yo hablo de Emacs Lisp, yo estoy
+     refiriéndome a GNU Emacs Lisp en particular.
+
+*** Se agradece
+
+    Gracias a todos quienes me ayudaron con este libro. Especialmente
+    agradecido a @e{Jim Blandy}, @e{Noah Friedman}, @e{Jim Kingdon},
+    @e{Roland McGrath}, @e{Frank Ritter}, @e{Randy Smith}, @e{Richard
+    M.  Stallman}, y @e{Melissa Weisshaus}. Gracias también a
+    @e{Philip Johnson} y @e{David Stampe} por su ánimo paciente. Mis
+    errores son míos.
+
+    @right
+      Robert J. Chassell @l{mailto:bob@@gnu.org}
+    @end right
+
+* Procesamiento de listas
+
+  Para las personas nuevas, Lisp es un lenguaje de programación
+  extraño. En código Lisp hay paréntesis en cada lugar. Algunas
+  personas incluso reclaman que el nombre signfica 'Lots of Isolated
+  Silly Parentheses' ('Montones de Paréntesis Aislados
+  Estúpidos'). Pero la advertencia es sin garantías. Lisp es para
+  procesamiento de listas, y el lenguaje de programación maneja
+  @e{listas} (y listas de listas) poniéndolas entre paréntesis. Los
+  paréntesis marcan los límites de la lista. Algunas veces una lista
+  es precedida por un apóstrofe simple o una marca de cita, @'{'}@n{1}
+  Las listas son las bases de Lisp.
+
+** Listas Lisp
+
+   En Lisp, una lista como esta: @c{'(rosa violeta margarita
+   mantequilla)}. Esta lista es precedida por un apóstrofe
+   simple. Podría estar bien escrita como sigue, que mira más como el
+   tipo de lista con la que se está familiarizado:
+
+   @src elips
+     '(rosa
+       violeta
+       margarita
+       mantequilla)
+   @end src
+
+   Los elementos de esta lista son los nombres de las 4 flores
+   diferentes, separadas por espacios en blanco y alrededor de
+   paréntesis, como flores en un campo con un muro de piedras
+   alrededor de ellas.
+
+*** Números, listas dentro de listas
+
+* Footnotes
+
+@t{fn:1} Los apóstrofes simples o las marcas de citas son una
+abreviación para la función @c{quote}; tu no necesitas pensar acerca
+de funciones ahora; las funciones son definidaas en @l{Creando
+errores, Generar un mensaje de error}.
