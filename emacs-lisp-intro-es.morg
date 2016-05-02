@@ -91,12 +91,12 @@ developing GNU and promoting software freedom.”
    aprender nuevas rutas alrededor de tu hogar.
 
    @ignore
-   In addition, I have written several programs as extended examples.
-   Although these are examples, the programs are real.  I use them.
-   Other people use them.  You may use them.  Beyond the fragments of
-   programs used for illustrations, there is very little in here that is
-   `just for teaching purposes'; what you see is used.  This is a great
-   advantage of Emacs Lisp: it is easy to learn to use it for work.
+     In addition, I have written several programs as extended examples.
+     Although these are examples, the programs are real.  I use them.
+     Other people use them.  You may use them.  Beyond the fragments of
+     programs used for illustrations, there is very little in here that is
+     `just for teaching purposes'; what you see is used.  This is a great
+     advantage of Emacs Lisp: it is easy to learn to use it for work.
    @end ignore
 
    Finalmente, son convenientes algunas habilidades usando Emacs
@@ -116,17 +116,17 @@ developing GNU and promoting software freedom.”
    Un programador experto que revisó este texto me dijo a mí:
 
    @quote
-   Yo prefiero aprender desde manuales de referencia. Yo “escarbo”
-   cada párrafo, y “vienen por aire” entre párrafos.
+     Yo prefiero aprender desde manuales de referencia. Yo “escarbo”
+     cada párrafo, y “vienen por aire” entre párrafos.
 
-   Cuando llego al fin de un párrafo, asumo que este asunto está
-   hecho, finalizado, que conozco cada cosa que necesito (con la
-   posible excepción del caso en el que el siguiente párrafo empieza
-   hablando acerca de eso en más detalle). Yo espero que un manual
-   de referencia bien escrito no tendrá un montón de redundancia, y
-   tendrá excelentes punteros a (un) lugar donde la información que
-   quiero.
-   @end quotation
+     Cuando llego al fin de un párrafo, asumo que este asunto está
+     hecho, finalizado, que conozco cada cosa que necesito (con la
+     posible excepción del caso en el que el siguiente párrafo empieza
+     hablando acerca de eso en más detalle). Yo espero que un manual
+     de referencia bien escrito no tendrá un montón de redundancia, y
+     tendrá excelentes punteros a (un) lugar donde la información que
+     quiero.
+   @end quote
 
    ¡Esta introducción no está escrita para esta persona!
 
@@ -213,7 +213,7 @@ developing GNU and promoting software freedom.”
      plano a 6 espacios, se marca la región, y entonces se escribe
      @k{C-u 6 M-C-\}. (Si no se especifica un número, Emacs pasa el
      número 4 al comando o de otra manera ejecuta el comando de manera
-     diferente). Vease @l{morg:emacs#Argumentos Numéricos, Argumentos
+     diferente). Vease @l{info:emacs#Argumentos Numéricos, Argumentos
      Numericos} El Manual de GNU Emacs.
 
      Si se está leyendo esto en Info usando GNU Emacs, se puede leer a
@@ -272,6 +272,467 @@ developing GNU and promoting software freedom.”
    alrededor de ellas.
 
 *** Números, listas dentro de listas
+
+    Las listas pueden también tener números dentro, como en esta
+    lista: @c{(+ 2 2)}. Esta lista tiene un signo más, @'{+}, seguido
+    por dos @'{2}, cada uno separado por espacios en blanco.
+
+    En Lisp, datos y programas están representados por el mismo
+    camino; que son ambas listas de palabras, números, u otras listas,
+    separadas por espacios en blanco y alrededor de paréntesis. (Desde
+    que un programa mira como datos, un programa puede fácilmente
+    servir como datos para otros; esta es una funcionalidad muy
+    poderosa de Lisp.) (Incidentalmente, estas dos marcas de
+    paréntesis @e{no} son listas Lisp, porque contienen @'{;} y @'{.}
+    como marcas puntuación.)
+
+    @need 1200
+    Aquí está otra lista, esta vez con una lista dentro:
+
+    @smallexample
+      '(esta lista tiene (una lista dentro de ella))
+    @end smallexample
+
+    Los componentes de esta lista son las palabras @'{esta},
+    @'{lista}, @'{tiene}, y la lista @'{(una lista dentro de
+    ella)}. La lista interior es hecha de las palabras @'{una},
+    @'{lista}, @'{dentro}, @'{de}, @'{ella}.
+
+*** Átomos Lisp
+
+    En Lisp, hemos estado llamando a las palabras @:{átomos}. Este
+    término viene desde el significado de la palabra átomo, que
+    significa indivisible. Tan lejos como Lisp es concebido, las
+    palabras que hemos estado usando en las listas no pueden ser
+    divididas dentro de pequeñas partes y todavía significan la misma
+    cosa como parte de un programa; como con números y caracteres de
+    símbolos simples como @'{+}. Por otro lado, no como un antiguo
+    átomo, una lista puede ser dividida en pequeñas partes. Ver @l{Car
+    cdr y cons, seccion @'c{car} en @e{Funciones Fundamentales}}.
+
+    En una lista, los átomos son separados de otros por espacios en
+    blanco. Ellos pueden estar a la derecha y cerca de un paréntesis.
+
+    Técnicamente hablando, una lista en Lisp consiste de paréntesis
+    alrededor de átomos separados por espacios en blanco o alrededor
+    de otras lista o alrededor de ambos átomos u otras listas. Una
+    lista puede tener solo un átomo en ella o no tener nada en ella
+    para todo.  Una lista con nada dentro se ve como esto: @c{()}, y
+    está llamado la @:{lista vacía}. No como cualquier otra cosa, un
+    lista vacía es considerad ambos un átomo y una lista al mismo
+    tiempo.
+
+
+    La representación impresa de ambos átomos y listas se llaman
+    @:{expresiones simbólicas} o, más concisamente,
+    @:{s-expresiones}. La palabra @:{expresión} por sí mismo puede
+    referir o bien la representación impresa, o para el átomo o la
+    lista como ella es manejada internamente en el ordenador. Con
+    frecuencia, la personas usan el término @:{expresión}
+    indiscriminadamente. (También, en muchos textos, la palabra
+    @:{forma} se usa como un sinónimo para la expresión.)
+
+    Incidentalmente, los átomos que hacen que nuestro universo fuese
+    nombrado así cuando ellos fueron pensados para ser indivisibles;
+    pero han sido encontrados átomos físicos que no son
+    indivisibles. Las partes pueden dividir un átomo o puede
+    fisionarse en 2 partes de igual tamaño. Los átomos físicos fueron
+    nombrados prematuramente, antes de que su verdadera naturaleza
+    fuese encontrada. En Lisp, ciertos tipos de átomos, como un array,
+    pueden ser separados en partes; pero el mecanismo de hacer esto es
+    diferente de el mecanismo para dividir una lista. Tan lejos como
+    las operaciones de las listas son concebidas, los átomos de una
+    lista son indivisibles.
+
+    Como en Inglés, los significado de las letras de componentes de un
+    átomo Lisp son diferentes desde el significado de las letras que
+    crean una palabra. Por ejemplo, la palabra Suramericana @'{ai}, es
+    completamente diferente de las dos palabras @'{a}, e @'{i}.
+
+    Hay muchos tipos de átomos naturales, pero solo unos pocos en
+    Lisp: por ejemplo, @:{números}, tales como 37, 511, o 1729, y
+    @:{símbolos}, tales como @'{+}, @'{foo}, o @'{forward-line}. Las
+    palabras que hemos listado en los ejemplos de debajo son todos
+    símbolos. Cada día de conversación Lisp, la palabra “átomo” no se
+    usa con frecuencia, porque los programadores normalmente intentan
+    ser más específicos acerca de que tipo de átomo están tratando. La
+    programación Lisp es sobre todo de símbolos (y algunas veces
+    números) con listas. (De ese modo, tres palabras rodeadas de
+    paréntesis son una apropiada lista en Lisp, desde que ello
+    consiste en átomo, que en este caso son símbolos, separados por
+    espacios en blanco y cerrados por paréntesis, sin cualquier
+    puntuación no Lisp.)
+
+    Texto entre comillas –incluso frases de párrafos– son también un
+    átomo. Aquí hay un ejemplo:
+
+    @smallexample
+      '(esta lista incluye "texto entre comillas.")
+    @end smallexample
+
+    En Lisp, todo el texto citado incluyendo la marca de puntuación y
+    los espacios en blanco son un átomo simple. Este tipo de átomo es
+    llamado @:{string} (por 'cadena de caracteres') y es el tipo de
+    cosa que es usada para mensajes que un ordenador puede imprimir
+    para que un humano lea. Las cadenas son un tipo diferente de átomo
+    en vez de números, o símbolo y son usados de manera diferente.
+
+*** Espacios en blanco en listas
+
+    La cantidad de espacios en blanco en una lista no importa. Desde
+    el punto de vista del lenguaje Lisp,
+
+    @smallexample
+      '(esta lista
+         parece esto)
+    @end smallexample
+
+    es exactamente lo mismo que esto:
+
+    @smallexample
+      '(esta lista parece esto)
+    @end smallexample
+
+    Ambos ejemplos muestran que Lisp es la misma lista, la lista hecha
+    de los símbolos @'{esta}, @'{lista}, @'{parece}, y @'{esto} en
+    este orden.
+
+    Espacios en blanco extra y nuevas líneas son diseñadas
+    para crear una lista más legible por humanos. Cuando Lisp lee la
+    expresión, asimila los espacios en blanco extra (pero necesita tener
+    al menos un espacio entre átomos en orden para contarlos aparte.)
+
+    Aunque parezca raro, los ejemplos que hemos visto cubren casi todo
+    lo que Lisp tiene. Cualquier otra lista en Lisp ve más o menos
+    como uno de estos ejemplos, excepto que la lista puede ser más
+    larga y más compleja. En resumen, una lista está entre paréntesis,
+    una cadena está entre comillas, un símbolo parece como una
+    palabra, y un número parece un número. (Para ciertas situaciones,
+    corchetes, puntos y otros caracteres especiales pueden ser usados;
+    sin embargo; iremos bastante lejos sin ellos.)
+
+*** GNU Emacs te ayuda a escribir listas
+
+    Cuando se escribe una expresión Lisp en GNU Emacs usando bien el
+    modo de Interacción Lisp o el modo Emacs Lisp, están disponibles
+    varios comandos para formatear la expresión Lisp, de modo que sea
+    fácil de leer. Por ejemplo, presionando la tecla @k{TAB}
+    automáticamente se indenta la línea del cursor que está en la
+    cantidad correcta. Un comando para indentar apropiadamente el
+    código en una región está asociado a @k{M-C-\}. La indentación
+    está diseñada de manera que se pueden qué elementos de una lista
+    pertenencen a qué lista – los elementos de una sublista están más
+    indentados que los elementos de una lista cerrada.
+
+    Además, cuando se escribe un paréntesis de cierre, Emacs
+    momentáneamente salta el cursor atrás para hacer el matching
+    (emparejamientos) con el paréntesis de apertura, para ver cuál
+    es. Esto es muy útil, ya que cada lista que se escribe en Lisp
+    debe tener sus parén emparejados con sus paréntesis de
+    apertura. (Ver @l{info:emacs#ModosMayores, El Manual de GNU
+    Emacs}, para más información acerca de modos de Emacs.)
+
+** Ejecutar un programa
+
+   Una lista en Lisp –cualquier lista– es un programa listo para ser
+   ejecutado. Si lo ejecutas (lo que la jerga Lisp llama @:{evaluar}),
+   el ordenador hará una de las tres cosas: nada excepto devolverte la
+   lista misma; enviar un mensaje de error; o, tratar el primer
+   símbolo en la lista como un comando para hacer alguna
+   cosa. (¡Normalmente, es el último de estas tres cosas de lo que
+   realmente se quiere!).
+
+   El apóstrofe, @c{'}, que se pone enfrente de algún ejemplo de
+   listas en secciones precedentes se llama @:{quote}; (comilla);
+   cuando precede una lista, Lisp no tiene que hacer nada con la
+   lista, otra que la toma como está escrita. Pero si no hay una cita
+   precediendo la lista, el primer ítem de la lista es especial: es un
+   comando para que el ordenador obedezca. (En Lisp, estos comandos
+   son llamados @e{funciones}.) La lista @c{(+ 2 2)} muestra debajo
+   que no tuvo un quote en frente, así Lisp comprende que @c{+} es una
+   instrucción para hacer alguna cosa con el resto de la lista: añadir
+   los números que siguen.
+
+   Si está leyendo esto dentro de GNU Emacs en Info, aquí está como
+   puedes evaluar una lista: posiciona tu cursor de manera inmediata
+   después de la siguiente lista y escribe @k{C-x C-e}:
+
+   @smallexample
+     (+ 2 2)
+   @end smallexample
+
+   Verás que el número @c{4} aparece en el área echo. (La jerga que se
+   usa es “evaluar la lista.” El área echo es la línea arriba de la
+   pantalla que muestra o hace “echo” del texto.) Ahora intenta la
+   misma cosa con una lista entre comillas: posiciona el cursor
+   correcto después de la siguiente lista y escribe @k{C-x C-e}:
+
+   @smallexample
+     '(esto es una lista comilla)
+   @end smallexample
+
+   Tu verás @c{(esto es una lista citada)} aparece en el área echo.
+
+   En ambos casos, lo que estás haciendo es dar un comando al programa
+   dentro de GNU Emacs llamado @:{intérprete Lisp} – dando al
+   intérprete un comando para evaluar la expresión. El nombre del
+   intérprete Lisp viene de la palabra para la tarea hecha por un
+   humano que viene con el significado de una expresión – quien lo
+   “interpreta”.
+
+   También se puede evaluar un átomo que no es parte de una lista –
+   uno que no está rodeado por paréntesis; de nuevo, el intérprete
+   Lisp traduce desde la expresión humanamente legible al lenguaje del
+   ordenador. Pero antes de discutir esto (ver @l{Variables}),
+   nosotros discutiremos lo que el intérprete de Lisp hace cuando tu
+   creas el error.
+
+** @t{Generar un mensaje de error}
+
+   No se preocupe si genera un mensaje de error de manera accidental,
+   se dará un comando para que el intérprete de Lisp lo genere. Esto
+   es una actividad sin daño; y en efecto, con frecuencia se intenta
+   generar mensajes de error de manera intencional. Una vez se
+   comprende la jerga, los mensajes de error pueden ser
+   informativos. En vez de ser llamados mensajes de “error”, deberían
+   ser llamados mensajes de “ayuda”. Esto son como signos para un
+   viajero en un país extraño; descifrarlos puede ser duro, pero una
+   vez comprendidos, pueden encontrar el camino.
+
+   El mensaje de error está generado por un depurador de GNU
+   Emacs. Se 'introduce el depurador'. Se obtiene el depurador
+   escribiendo @k{q}.
+
+   Lo que se hace es evaluar una lista que no está citada y no tiene
+   un comando con significado como su primer elemento. Aquí hay una
+   lista casi exacta a la usada, pero sin la cita simple en vez de
+   eso. Posicione el cursor derecho después y escribe @k{C-x C-e}:
+
+   @smallexample
+     (esto es una lista sin cita)
+   @end smallexample
+
+   @ignore
+     What you see depends on which version of Emacs you are running.  GNU
+     Emacs version 22 provides more information than version 20 and before.
+     First, the more recent result of generating an error; then the
+     earlier, version 20 result.
+
+     In GNU Emacs version 22, a @f{*Backtrace*} window will open up and
+     you will see the following in it:
+   @end ignore
+
+   Una ventana @f{*Backtrace*} se abrirá y se verá lo siguiente:
+
+   @smallexample
+     –––- Buffer: *Backtrace* –––-
+     Debugger entered--Lisp error: (void-function this)
+       (this is an unquoted list)
+       eval((this is an unquoted list))
+       eval-last-sexp-1(nil)
+       eval-last-sexp(nil)
+       call-interactively(eval-last-sexp)
+     –––- Buffer: *Backtrace* –––-
+   @end smallexample
+
+   Su cursor estará en esta ventana (puede tener que esperar unos
+   pocos segundos antes de llegar a ser visible). Para salir del
+   depurador y de su ventana, escribe:
+
+   @smallexample
+     q
+   @end smallexample
+
+   Por favor, escriba @k{q} bien ahora, así llegará a ser confidente
+   de que se pueda bajar el depurador. Entonces, escribe @k{C-x C-e}
+   de nuevo y se reintroduce.
+
+   Basado en lo que ya se sabe, se puede leer este mensaje de error.
+
+   Si se lee el búffer @f{*Backtrace*} desde arriba; cuenta lo que
+   Emacs hace. Cuando se escribe @k{C-x C-e}, se hizo una llamada
+   interactiva el comando @c{eval-last-sexp}. @c{eval} es una
+   abreviación para 'evaluar' y @c{sexp} es una abreviación para la
+   'expresión simbólica'. El comando significa 'evalúa la última
+   expresión simbólica', que es la expresión ahora antes de tu cursor.
+
+   En cada línea de abajo se cuenta lo que evaluó el siguiente
+   intérprete. La acción más reciente está alta. El búffer es llamado
+   @f{*Backtrace*} porque te permite habilitar la traza de Emacs hacia
+   atrás.
+
+   Arriba del búffer @f{*Backtrace*}, se verá la línea:
+
+   @smallexample
+     El depurador introdujo el error Lisp: (void-function this)
+   @end smallexample
+
+   El intérprete Lisp intentó evaluar el primer átomo de la lista, la
+   palabra @'{this}. Esta acción que generaba el mensaje de error
+   @'{void-function this}.
+
+   El mensaje contiene las palabras @'{void-function} y @'{this}.
+
+   La palabra @'{function} fué mencionada antes. Es una palabra muy
+   importante. Para nuestros propósitos, se puede definir eso diciendo
+   que una @:{función} (@e{function}) es un conjunto de instrucciones
+   para el ordenador que cuenta al ordenador hacer alguna cosa.
+
+   Ahora se puede empezar a comprender el mensaje de error:
+   @'{void-function this}. La función (que es, la palabra @'{this}) no
+   tiene una definición de cualquier conjunto de instrucciones del
+   ordenador para llevarlo.
+
+   La palabra ligeramente extraña, @'{void-function}, está diseñada
+   para cubrir el camino en que Emacs Lisp está implementado, que es
+   cuando un símbolo no tiene una definición de función adjunta a eso,
+   el lugar que contendría las instrucciones es 'vacío'.
+
+   Por otro lado, desde que fuimos capaces de añadir 2 más 2 de manera
+   exitosa, evaluando @c{(+ 2 2)}, se puede inferir que el símbolo
+   @c{+} debe tener un conjunto de instrucciones para que el ordenador
+   obedezca y estas instrucciones deben añadir los números que siguen
+   el @c{+}.
+
+   Es posible prevenir que Emacs entre en el depurador en casos como
+   este. No se explicará cómo hacer esto aquí, pero se mencionará que
+   el resultado se parece, porque se puede encontrar una situación
+   similar si hay un error en algún código Emacs que se está
+   usando. En tales casos, se verá una línea del mensaje de error; que
+   aparecerá en el área echo y parecerá así:
+
+   @smallexample
+     La definición de la función de símbolos está
+     vacío:@: this
+   @end smallexample
+
+
+   @ignore
+     (Also, your terminal may beep at you–some do, some don't; and others
+     blink.  This is just a device to get your attention.)
+   @end ignore
+
+   El mensaje aparece tan pronto se escribe una tecla, incluso para
+   mover el cursor.
+
+   Conocemos el significado de la palabra @'{Símbolo}. Se refiere al
+   primer átomo de la lista, la palabra @'{este}. La palabra
+   @'{función} se refiere a las instrucciones que cuentan al ordenador
+   que hacer. (Técnicamente, el símbolo cuenta al ordenador donde
+   encontrar las instrucciones, pero esto es una complicación que
+   podemos ignorar por el momento.)
+
+   El mensaje de error puede ser comprendido: @'{La definición del
+   símbolo está vacío: este}. El símbolo (que es, la palabra @'{este})
+   le faltan instrucciones para que el ordenador funcione.
+
+** Nombres de símbolos y definiciones de funciones
+
+   Se puede articular otra característica de Lisp basada en lo que se
+   discutió hace tiempo –una característica importante: un símbolo,
+   como @c{+}, no es en sí mismo el conjunto de instrucciones que el
+   ordenador transmite. En vez de eso, el símbolo está usado, quizás
+   temporalmente, como un camino de localizar la definición o conjunto
+   de instrucciones. Lo que se ve es el nombre a través del que las
+   instrucciones se pueden encontrar. Los nombres de personas trabajan
+   por el mismo camino. Puede ser llamado @'{Bob}; sin embargo, no soy
+   @'{B}, @'{o}, @'{b} pero soy, o fuí, la consciencia consistente
+   asociada con una forma de línea particular. El nombre no soy yo,
+   pero puedo ser usado para referirme a mí.
+
+   En Lisp, un conjunto de instrucciones puede adjuntarse a varios
+   nombres. Por ejemplo, las instrucciones de ordenador para añadir
+   números pueden ser enlazados al símbolo @c{más} tan bien como el
+   símbolo @c{+} (y son en algunos dialectos de Lisp). Entre humanos,
+   puede referirse a @'{Robert} tan bien como @'{Bob} y en otras
+   palabras también.
+
+   Por otro lado, un símbolo puede tener solo una función adjunta en
+   un momento. De otro modo, el ordenador estaría confundido acerca de
+   qué definición usar. Si este fuera el caso, solo una persona en el
+   mundo podría llamarse @'{Bob}. Sin embargo, la definición de
+   función para la que el nombre se refiere puede ser cambiada de
+   manera legible. (Ver @l{Instalar, Instalar una Definición de
+   Función}.)
+
+   Puesto que Emacs Lisp es grande, es costumbre nombrar símbolos de
+   un modo que identifique la parte de Emacs de la función que
+   pertenece. De este modo, todos los nombres de funciones que tratan
+   con Texinfo empiezan con @'{texinfo-} y estas funciones que tratan
+   con la lectura de correo empiezan con @'{rmail-}.
+
+
+** El intérprete Lisp
+
+   Basado en lo que se ha visto, ahora se puede empezar a entender lo
+   que el intéprete Lisp hace cuando ejecutamos un comando para
+   evaluar una lista. Primero, examina si hay un símbolo quote (cita)
+   antes de la lista; si el intérprete da la lista. Por otro lado, si
+   no hay cita, el intéprete mira si el primer elemento en la lista
+   tiene una definición de función. De otro modo, el intérprete
+   imprime un mensaje de error.
+
+   Así es como Lisp trabaja. Simple. Hay complicaciones añadidas que
+   tendremos en un minuto, pero estas son fundamentales. De acuerdo,
+   para escribir programas Lisp, se necesita conocer como escribir
+   definiciones de función y adjuntarlas a nombres, y como hacer esto
+   sin confundirnos a nosotros mismos o al ordenador.
+
+*** Complicaciones
+
+    Ahora, una primera complicación. Además de las listas, el
+    intérprete Lisp puede evaluar un símbolo sin el símbolo cita
+    (quote) y no tiene paréntesis alrededor. El intérprete Lisp
+    intentará determinar el valor del símbolo como una
+    @:{variable}. Esta situación está descrita en la sección acerca de
+    variable. (Ver @l{Variables}.)
+
+    La segunda complicación ocurre debido a que algunas funciones son
+    inusuales y no funcionan de la manera usual. Estas que no son
+    llamadas @:{formas especiales}. Son usadas para trabajos
+    especiales, como definir una función, y no son muchas de ellas. En
+    los siguientes próximos capítulos, se introducirán varias de las
+    formas especiales más importantes.
+
+    La tercera y final complicación es la siguiente: si la función que
+    el intérprete Lisp está buscando no es una forma especial, y si
+    eso es parte de una lista, el intérprete Lisp quiere ver si la
+    lista tiene una lista dentro. Si hay una lista dentro, el
+    intérprete Lisp primero mira qué hacer con la lista dentro, y
+    entonces trabaja en la lista de fuera. Si todavía hay otra lista
+    embebida dentro de la propia lista, eso funciona en esta primero,
+    y así. Eso siempre funciona en la lista más interior. El
+    intérprete funciona más interior primero, para evaluar el
+    resultado de esta lista. El resultado puede ser usado por la
+    expresión entre paréntesis.
+
+    De otra manera, el intérprete trabaja de izquierda a derecha, desde
+    una expresión a la siguiente.
+
+*** Compilación de bytes
+
+    Otro aspecto de interpretación: el intérprete Lisp es capaz de
+    interpretar dos tipos de entidad: código humanemente legible, en
+    el que focalizarse exclusivamente, y especialmente código
+    procesado, llamado @:{byte compilado}, que no es humanamente
+    legible. El código máquina compilado se ejecuta más rápido que el
+    código humanamente legible.
+
+    Tu puedes transformar código legible por humanos dentro de código
+    compilado ejecutando un de los comandos compilados tales como
+    @c{byte-compile-file}. El código compilado es normamelte
+    almacenado en un fichero que finaliza con una extensión @f{.elc}
+    en vez de una extensión @f{.el}. Verás ambos tipos de ficheros en
+    el directorio @f{emacs/lisp}; los ficheros para leer estos son con
+    extensiones @f{.el}.
+
+    Como una cuestión práctica, para la mayoría de las cosas tu
+    podrías personalizar o extender Emacs, no necesitas compilar byte;
+    y no discutirás el asunto aquí. Ver @l{info:emacs#Compilación de
+    Byte, seccion 'Compilación de Byte' en @e{El Manual de Referencia
+    de GNU Emacs}, para una completa descripción de compilación byte.
+
+*** Evaluación
 
 * Footnotes
 
