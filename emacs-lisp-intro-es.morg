@@ -289,9 +289,9 @@ developing GNU and promoting software freedom.”
     @need 1200
     Aquí está otra lista, esta vez con una lista dentro:
 
-    @smallexample
+    @example
       '(esta lista tiene (una lista dentro de ella))
-    @end smallexample
+    @end example
 
     Los componentes de esta lista son las palabras @'{esta},
     @'{lista}, @'{tiene}, y la lista @'{(una lista dentro de
@@ -366,9 +366,9 @@ developing GNU and promoting software freedom.”
     Texto entre comillas –incluso frases de párrafos– son también un
     átomo. Aquí hay un ejemplo:
 
-    @smallexample
+    @example
       '(esta lista incluye "texto entre comillas.")
-    @end smallexample
+    @end example
 
     En Lisp, todo el texto citado incluyendo la marca de puntuación y
     los espacios en blanco son un átomo simple. Este tipo de átomo es
@@ -382,16 +382,16 @@ developing GNU and promoting software freedom.”
     La cantidad de espacios en blanco en una lista no importa. Desde
     el punto de vista del lenguaje Lisp,
 
-    @smallexample
+    @example
       '(esta lista
          parece esto)
-    @end smallexample
+    @end example
 
     es exactamente lo mismo que esto:
 
-    @smallexample
+    @example
       '(esta lista parece esto)
-    @end smallexample
+    @end example
 
     Ambos ejemplos muestran que Lisp es la misma lista, la lista hecha
     de los símbolos @'{esta}, @'{lista}, @'{parece}, y @'{esto} en
@@ -457,9 +457,9 @@ developing GNU and promoting software freedom.”
    puedes evaluar una lista: posiciona tu cursor de manera inmediata
    después de la siguiente lista y escribe @k{C-x C-e}:
 
-   @smallexample
+   @example
      (+ 2 2)
-   @end smallexample
+   @end example
 
    Verás que el número @c{4} aparece en el área echo. (La jerga que se
    usa es “evaluar la lista.” El área echo es la línea arriba de la
@@ -467,9 +467,9 @@ developing GNU and promoting software freedom.”
    misma cosa con una lista entre comillas: posiciona el cursor
    correcto después de la siguiente lista y escribe @k{C-x C-e}:
 
-   @smallexample
+   @example
      '(esto es una lista comilla)
-   @end smallexample
+   @end example
 
    Tu verás @c{(esto es una lista citada)} aparece en el área echo.
 
@@ -508,9 +508,9 @@ developing GNU and promoting software freedom.”
    lista casi exacta a la usada, pero sin la cita simple en vez de
    eso. Posicione el cursor derecho después y escribe @k{C-x C-e}:
 
-   @smallexample
+   @example
      (esto es una lista sin cita)
-   @end smallexample
+   @end example
 
    @ignore
      What you see depends on which version of Emacs you are running.  GNU
@@ -524,7 +524,7 @@ developing GNU and promoting software freedom.”
 
    Una ventana @f{*Backtrace*} se abrirá y se verá lo siguiente:
 
-   @smallexample
+   @example
      –––- Buffer: *Backtrace* –––-
      Debugger entered--Lisp error: (void-function this)
        (this is an unquoted list)
@@ -533,15 +533,15 @@ developing GNU and promoting software freedom.”
        eval-last-sexp(nil)
        call-interactively(eval-last-sexp)
      –––- Buffer: *Backtrace* –––-
-   @end smallexample
+   @end example
 
    Su cursor estará en esta ventana (puede tener que esperar unos
    pocos segundos antes de llegar a ser visible). Para salir del
    depurador y de su ventana, escribe:
 
-   @smallexample
+   @example
      q
-   @end smallexample
+   @end example
 
    Por favor, escriba @k{q} bien ahora, así llegará a ser confidente
    de que se pueda bajar el depurador. Entonces, escribe @k{C-x C-e}
@@ -563,9 +563,9 @@ developing GNU and promoting software freedom.”
 
    Arriba del búffer @f{*Backtrace*}, se verá la línea:
 
-   @smallexample
+   @example
      El depurador introdujo el error Lisp: (void-function this)
-   @end smallexample
+   @end example
 
    El intérprete Lisp intentó evaluar el primer átomo de la lista, la
    palabra @'{this}. Esta acción que generaba el mensaje de error
@@ -601,10 +601,10 @@ developing GNU and promoting software freedom.”
    usando. En tales casos, se verá una línea del mensaje de error; que
    aparecerá en el área echo y parecerá así:
 
-   @smallexample
+   @example
      La definición de la función de símbolos está
      vacío:@: this
-   @end smallexample
+   @end example
 
 
    @ignore
@@ -660,7 +660,6 @@ developing GNU and promoting software freedom.”
    pertenece. De este modo, todos los nombres de funciones que tratan
    con Texinfo empiezan con @'{texinfo-} y estas funciones que tratan
    con la lectura de correo empiezan con @'{rmail-}.
-
 
 ** El intérprete Lisp
 
@@ -734,9 +733,833 @@ developing GNU and promoting software freedom.”
 
 *** Evaluación
 
+    Cuando el intérprete Lisp funciona en una expresión, el término
+    para la actividad es llamada @:{evaluación}. Decimos que el
+    intérprete 'evalúa la expresión'. Yo he usado este término varias
+    veces antes. La palabra viene desde su uso en el lenguaje de cada
+    día, 'para cierto valor o cantidad de; para estimar' de acuerdo a
+    @e{Webster's New Collegiate Dictionary}.
+
+*** Cómo el intérprete actúa
+
+    Después de evaluar una expresión, el intérprete Lisp normalmente
+    @:{devuelve} el valor que el ordenador produce trayendo las
+    instrucciones encontradas en la definición de la función, o quizás
+    dará esta función y producirá un mensaje de error. (El intérprete
+    puede también quedarse colgado, así hablar, a una función
+    diferente o puede intentar repetir continuamente que está haciendo
+    para siempre y siempre en lo que está llamado como un 'bucle
+    infinito'. Estas acciones son menos comunes; y pueden
+    ignorarse). Más frecuentemente, el intérprete devuelve un valor.
+
+    Al mismo tiempo el intérprete devuelve un valor, puede hacer
+    cualquier cosa más también, tal como mover un cursor o copiar un
+    fichero; este otro tipo de acción es llamada @:{efecto lateral}.
+    Acciones que los humanos pensamos que son importantes tales como
+    imprimir resultados son, con frecuencia, “efectos laterales” al
+    intérprete Lisp. La jerga puede sonar peculiar, pero cambiar que
+    es fácil aprender a usar efectos laterales.
+
+    En resumen, evaluando una expresión simbólica normalmente
+    causa que el intérprete devuelva un valor y quizás trajo un efecto
+    lateral; o al menos produce un error.
+
+*** Evaluando listas propias
+
+    Si la evaluación se aplica a una lista que está dentro de una
+    lista de fuera, se puede usar el valor devuelto por la primera
+    evaluación como información cuando la lista de fuera está
+    evaluada. Esto explica por qué las expresiones propias son
+    evaluadas primero: los valores devueltos son usados por las
+    expresiones de fuera.
+
+    Nosotros podemos investigar este proceso evaluando otro ejemplo
+    adicional. Deja tu cursor después de la siguiente expresión y
+    escribe @k{C-x C-e}:
+
+    @example
+      (+ 2 (+ 3 3))
+    @end example
+
+    El número 8 aparecerá en el área echo.
+
+    Lo que ocurre es que el intérprete Lisp primero evalúa la
+    expresión propia, @c{(+ 3 3)}, para que el valor 6 se devuelva;
+    entonces evalúa la expresión de fuera como si fuera escrita
+    @c{(+ 2 6)}, que devuelve el valor 8. Puesto que no hay más
+    expresiones cerradas para evaluar el intérprete imprime este valor
+    en el área echo.
+
+    Ahora es fácil comprender el nombre de los comandos invocados por
+    atajos @k{C-x C-e}: el nombre es @c{eval-last-sexp}. Las letras
+    @c{sexp} son una abreviación para la 'expresión simbólica', y
+    @c{eval} es una abreviación para 'evaluar'. El comando significa
+    'evaluar la última expresión simbólica'.
+
+    Como un experimento, tu puedes intentar evaluar la expresión
+    poniendo el cursor al principio de la siguiente línea
+    inmediatamente siguiendo la expresión, o dentro de la expresión.
+
+    Aquí hay otra copia de la expresión:
+
+    @example
+      (+ 2 (+ 3 3))
+    @end example
+
+    Si se posiciona el cursor al principio de la línea en blanco que
+    inmediatamente sigue la expresión y escribes @k{C-x C-e}, todavía
+    se obtendrá el valor 8 impreso en el área echo. Ahora intenta
+    poner el cursor dentro de la expresión. Si se pone bien después
+    del siguiente al último paréntesis (así aparece para situarse
+    arriba del último paréntesis), ¡se obtendrá un 6 impreso en el
+    área echo!  Esto es porque el comando evalúa la expresión @c{(+ 3
+    3)}.
+
+    Ahora se pone el cursor inmediatamente después de un
+    número. Escribe @k{C-x C-e} y se tendrá el número en sí. En Lisp,
+    si evalúas un número, tu tienes el número en sí–esto es cómo los
+    números difiere desde los símbolos. Si evalúas una lista empezando
+    con un símbolo como @c{+}, tendrás un valor devuelto que es el
+    resultado del ordenador trayendo las instrucciones en la
+    definición de función adjunta a este nombre. Si un símbolo por sí
+    mismo es evaluado, alguna cosa diferente ocurre, como veremos en
+    la siguiente sección.
+
+** @t{Variables}
+
+   En Emacs Lisp, un símbolo puede tener un valor adjunto como puede
+   tener una definición de función adjunta. Las dos son diferentes. La
+   definición de función es un conjunto de instrucciones que un
+   ordenador obedece. Un valor, por otro lado, es alguna cosa como un
+   número o un nombre, que puede variar (que es porque tal símbolo es
+   llamado variable). El valor de un símbolo puede ser una expresión
+   en Lisp, tal como un símbolo, número, lista, o cadena. Un símbolo
+   que tiene un valor es con frecuencia llamado una @:{variable}.
+
+   Un símbolo puede tener ambos una definición de función y un valor
+   adjunto al mismo tiempo. O puede tener solo uno u otro. Los dos
+   están separados. Esto es algo similar al camino, el nombre
+   Cambridge puede referirse a la ciudad en Massachusetts y tener
+   alguna información adjunta al nombre tan bien, tal como “gran
+   centro de programación”.
+
+   @ignore
+     (Incidentally, in Emacs Lisp, a symbol can have two
+     other things attached to it, too: a property list and a documentation
+     string; these are discussed later.)
+   @end ignore
+
+   Otro camino para pensar acerca de esto es imaginar un símbolo como
+   ser una caja de cajones. La definición de función es poner en el
+   cajón que maneja el valor que puede ser cambiado sin afectar los
+   contenidos del cajón que maneja la definición de función, y
+   viceversa.
+
+** @c{fill-column}, un ejemplo de variable
+
+   La variable @c{fill-column} ilustra un símbolo con un valor
+   adjunto: en cada buffer de GNU Emacs, este símbolo establece algún
+   valor, normalmente 72 o 70, pero algunas veces algún otro
+   valor. Para encontrar el valor de este símbolo, evalúalo por sí
+   mismo. Si está leyendo esto en Info dentro de GNU Emacs, tu puedes
+   hacer esto poniendo el cursor después del símbolo y escribiendo
+   @k{C-x C-e}:
+
+   @example
+     fill-column
+   @end example
+
+   Después de que yo escribiera @k{C-x C-e}, Emacs imprimió el número
+   72 en mi área echo. Este es el valor por el que @c{fill-column} es
+   escogido para mi, porque yo lo escribo. Puede ser diferente para ti
+   en tu búffer Info. Sepa que el valor devuelto como una variable es
+   impreso exactamente por el mismo camino que el valor devuelto por
+   una función trayendo sus instrucciones. Puesto que el punto de
+   vista del intérprete Lisp, es un valor devuelto. El tipo de
+   expresión viene de ceder a la cuestión una vez el valor se conoce.
+
+   Un símbolo puede tener cualquier valor adjunto a ello o, usar la
+   jerga, se puede @:{bind} (asociar) la variable a un valor: a un
+   número, tal como 72; a una cadena, @c{\"tal como esta\"}; a una
+   lista, tal como @c{(abeto pino roble)}; podemos incluso asociar una
+   variable a una definición de función.
+
+   Un símbolo puede ser emparejado por un valor en varios caminos. Ver
+   @l{Configurando el valor de una variable}, para información acerca
+   de un camino para hacer esto.
+
+*** Mensaje de error para un símbolo sin una función
+
+    Cuando se evalúa @c{fill-column} para encontrar el valor de una
+    variable, no se ponen paréntesis alrededor de la palabra. Esto es
+    porque no pretendemos usarlos como un nombre de función.
+
+    Si @c{fill-column} fuese el primer o único elemento de una lista,
+    el intérprete de Lisp intentaría encontrar la definición de
+    función adjunta. Pero @c{fill-column} no tiene definición de
+    función. Prueba evaluando esto:
+
+    @example
+      (fill-column)
+    @end example
+
+    Se creará un buffer @f{*Backtrace*} que dice:
+
+    @example
+      –––- Buffer: *Backtrace* –––-
+      Debugger entered--Lisp error: (void-function fill-column)
+        (fill-column)
+        eval((fill-column))
+        eval-last-sexp-1(nil)
+        eval-last-sexp(nil)
+        call-interactively(eval-last-sexp)
+      –––- Buffer: *Backtrace* –––-
+    @end example
+
+    (Recuerda, para salir del depurador y crear la ventana del
+    depurador para ir fuera, escribe @k{q} en el buffer
+    @f{*Backtrace*}.)
+
+    @ignore
+      In GNU Emacs 20 and before, you will produce an error message that says:
+
+      @example
+        La definición de símbolos de función:@: fill-column
+      @end example
+
+      (The message will go away as soon as you move the cursor or type
+      another key.)
+    @end ignore
+
+*** Mensaje de error para un símbolo sin un valor
+
+    Si se intenta evaluar un símbolo que no tiene un valor asociado,
+    recibirá un mensaje de error. Se puede ver esto experimentando con
+    nuestra suma 2 más 2. En la siguiente expresión, pon el cursor
+    correcto después de @c{+}, antes del primer número 2, escribe
+    @k{C-x C-e}:
+
+    @example
+      (+ 2 2)
+    @end example
+
+    En GNU Emacs 22, se creará un buffer @f{*Backtrace*} que dice:
+
+    @example
+      –––- Buffer: *Backtrace* –––-
+      Debugger entered--Lisp error: (void-variable +)
+        eval(+)
+        eval-last-sexp-1(nil)
+        eval-last-sexp(nil)
+        call-interactively(eval-last-sexp)
+      –––- Buffer: *Backtrace* –––-
+    @end example
+
+    (De nuevo, se puede salir del depurador escribiendo @k{q} en el
+    búffer @f{*Backtrace*}.)
+
+    Esta traza es diferente desde los muy primeros mensajes de error
+    que vimos, que dijimos, @'{El depurador introdujo--errores Lisp:
+    (esta función está vacía)}. En este caso, la función no tiene una
+    valor como una variable; mientras en el otro mensaje de error, la
+    función (la palabra 'this') no tuvo una definición.
+
+    En este experimento con el @c{+}, lo que se hizo fué causar que el
+    intérprete Lisp evalúe el @c{+} y busque el valor de la variable
+    en vez de la definición de la función. Nosotros hicimos esto
+    dejando el cursor correcto después del símbolo en vez de después
+    de los paréntesis que cierran la lista como hicimos antes. Como
+    consecuencia, el intérprete Lisp evaluó la s-expresión precedente,
+    que en este caso fué el @c{+} en sí.
+
+    Desde que @c{+} no tiene un valor asociado, solo la definición de
+    función, el mensaje de error reportado que el valor del
+    símbolo como una variable estaba vacío.
+
+    @ignore
+      In GNU Emacs version 20 and before, your error message will say:
+
+      @example
+        El valor de símbolo como variable está
+        vacío:@: +
+      @end example
+
+      @noindent
+      The meaning is the same as in GNU Emacs 22.
+    @end ignore
+
+** Argumentos
+
+   Para ver cómo la información pasa a funciones, se permite mirar de
+   nuevo a nuestro viejo standby, la adición de dos más dos. En Lisp,
+   esto es escrito como sigue:
+
+   @example
+     (+ 2 2)
+   @end example
+
+   Si se evalúa esta expresión, el número 4 aparecerá en tu área
+   echo. Lo que el intérprete de Lisp hace es añadir los número que
+   sigue el @c{+}.
+
+   Los números añadidos por @c{+} son llamados @:{argumentos} de la
+   función @c{+}. Estos números son la información que es dada para o
+   @:{pasada} a la función.
+
+   La palabra 'argumento' viene del ámbito de las matemáticas y no se
+   refiere a una disputa entre 2 personas, sino que se refiere a la
+   información presentada a la función, en este caso, al @c{+}. En
+   Lisp, los argumentos a una función son los átomos o listas que
+   siguen la función. Los valores devueltos por la evaluación de estos
+   átomos o listas son pasados a la función. Funciones diferentes
+   requieren diferentes números de argumentos; algunas funciones no
+   requieren ninguno más.@n{2}
+
+*** Tipos de argumentos de datos
+
+    Los tipos de datos que deberían ser pasados a una función dependen
+    de que tipo de información usan. Los argumentos a una función
+    tales como @c{+} deben tener valores que son números, puesto que
+    @c{+} añade números. Otras funciones usan diferentes tipos de
+    datos para sus argumentos.
+
+    Por ejemplo, la función @c{concat} enlaza o une dos o más cadenas
+    de texto para producir una cadena. Los argumentos son cadenas. La
+    concatenación de los dos caracteres de cadenas @c{abc}, @c{def}
+    producen la cadena simple @c{abcdef}. Esto puede ser visto
+    evaluando lo siguiente:
+
+    @example
+      (concat "abc" "def")
+    @end example
+
+    El valor producido para evaluar esta expresión es @c{"abcdef"}.
+
+    Una función tal como @c{substring} usa como argumento tanto una
+    cadena como números. La función devuelve una parte de la cadena,
+    una subcadena del primer argumento. Esta función toma tres
+    argumentos. Su primer argumento es la cadena de caracteres, el
+    segundo y tercer argumento son números que indican el principio y
+    el fin de la subcadena. Los números son un contaje del número de
+    caracteres (incluyendo espacios y puntuaciones) desde el principio
+    de la cadena.
+
+    Por ejemplo, si evalúa lo siguiente:
+
+    @example
+      (substring "El rápido zorro marrón saltó." 10 15)
+    @end example
+
+    se verá @c{"zorro"} en el área echo. Los argumentos son la cadena
+    y los dos números.
+
+    Nótese que la cadena pasada a @c{substring} es un átomo simple
+    incluso aunque sea hecho de varias palabras separadas por
+    espacios. Lisp cuenta cada cosa entre dos marcas de citas como
+    parte de la cadena, incluyendo los espacios. Se puede pensar la
+    función @c{substring} como una forma de 'despedazar átomos' ya que
+    toma un átomo indivisible y extrae una parte. Sin embargo,
+    @c{substring} es solo capaz de extraer una subcadena desde un
+    argumento que es una cadena, no otro tipo de átomo tal como un
+    número o símbolo.
+
+*** Un argumento como el valor de una variable o lista
+
+    Un argumento puede ser un símbolo que devuelva un valor cuando es
+    evaluado. Por ejemplo, cuando el símbolo @c{fill-column} por sí
+    mismo es evaluado, devuelve un número. Este número puede ser usado
+    en una adición.
+
+    Posicionar el cursor después la siguiente expresión y escribe
+    @k{C-x C-e}:
+
+    @example
+      (+ 2 fill-column)
+    @end example
+
+    El valor será un número dos más que tu tienes evaluando
+    @c{fill-column} solo. Para mí, este es 74, porque mi valor de
+    @c{fill-column} es 72.
+
+    Como se ha visto, un argumento puede ser un símbolo que devuelve
+    un valor cuando se evalúa. Además, un argumento puede ser una
+    lista que devuelve un valor cuando es evaluada. Por ejemplo, en la
+    siguiente expresión, los argumentos para la función @c{concat} son
+    las cadenas @c{"Los"} y @c{" zorros rojos."} y la lista
+    @c{(number-to-string (+ 2 fill-column))}.
+
+    @example
+      (concat "Los " (number-to-string (+ 2 fill-column)) " zorros rojos.")
+    @end example
+
+    Si se evalúa esta expresión –y si, como con mi Emacs,
+    @c{fill-column} se evalúa a 72– aparecerá @c{"Los 74 zorros
+    rojos."} en el área echo. (Nótese que se debe poner espacio
+    después de la palabra @'{Los} y antes de la palabra @'{zorros} y
+    así es como aparecerá en la cadena final. La función
+    @c{number-to-string} convierte los enteros que la función de
+    adición devuelve en una cadena. @c{number-to-string} también se
+    conoce como @c{int-to-string}.)
+
+*** Número de variables de argumentos
+
+    Algunas funciones, tales como @c{concat}, @c{+}, o @c{*}, toman
+    cualquier número de argumentos. (El @c{*} es el símbolo para
+    multiplicar.) Esto puede ser visto evaluando cada uno de las
+    siguientes expresiones en el camino usual. Que verás en el área
+    echo que está impresa en este texto después de @'{@result{}}, que
+    puedes leer como 'evaluar a'.
+
+    En el primer conjunto, las funciones no tienen argumentos:
+
+    @example
+      (+)       ⇒ 0
+
+      (*)       ⇒ 1
+    @end example
+
+    En este conjunto, las funciones tienen un argumento cada una:
+
+    @example
+      (+ 3)     ⇒ 3
+
+      (* 3)     ⇒ 3
+    @end example
+
+    En este conjunto, las funciones tienen tres argumentos cada una:
+
+    @example
+      (+ 3 4 5) ⇒ 12
+
+      (* 3 4 5) ⇒ 60
+    @end example
+
+*** Usando el tipo incorrecto de objeto como un argumento
+
+    Cuando a una función se le pasa un argumento del tipo incorrecto,
+    el interpréte Lisp produce un mensaje de error. Por ejemplo, la
+    función @c{+} espera los valores de sus argumentos para ser
+    números. Como un experimento nosotros podemos pasar el símbolo
+    citado @c{hola} en vez de un número. Posicionar el cursor después
+    la siguiente expresión y escribir @k{C-x C-e}:
+
+    @example
+      (+ 2 'hola)
+    @end example
+
+    Cuando se hace esto se generará un mensaje de error. Lo qué ha
+    ocurrido es que @c{+} ha intentado añadir el 2 para el valor
+    devuelto por @c{'hola}, pero el valor devuelto por @c{'hola} es el
+    símbolo @c{hola}, no un número. Solo los números pueden ser
+    añadidos. Así @c{+} podría no encarrilar su adición.
+
+    Se creará e introducirá un búffer @f{*Backtrace*} que dice:
+
+    @example
+      –––- Buffer: *Backtrace* –––-
+      Debugger entered--Lisp error:
+               (wrong-type-argument number-or-marker-p hello)
+        +(2 hello)
+        eval((+ 2 (quote hello)))
+        eval-last-sexp-1(nil)
+        eval-last-sexp(nil)
+        call-interactively(eval-last-sexp)
+      –––- Buffer: *Backtrace* –––-
+    @end example
+
+    Como es normal, el mensaje de error intenta ser útil y tiene
+    sentido después de que se aprenda cómo leerlo.@n{3}
+
+    La primera parte del mensaje de error es honesto; dice @'{wrong
+    type argument} (mal tipo de argumento). Lo siguiente viene con la
+    misteriosa palabra de jerga @'{number-or-marker-p}. Esta palabra
+    está intentando contar qué tipo de argumento @c{+} se espera.
+
+    El símbolo @c{number-or-marker-p} dice que el intérprete Lisp está
+    intentando determinar si la información presentada (el valor del
+    argumento) es un número o una marca (un objeto especial
+    representando una posición de buffer). Lo que hace es testear para
+    ver si el @c{+} está siendo números dados para añadir. También
+    chequea para ver si el argumento es algo llamado un marcador, que
+    es una funcionalidad específica de Emacs Lisp. (En Emacs, las
+    localizaciones en un búffer son grabadas como marcadores. Cuando
+    la marca está asignado con el atajo @k{C-@@} o @k{C-SPC}, su
+    posición se guarda como un marcador. La marca puede ser
+    considerada un número –el número de caracteres la localización
+    está desde el principio del búffer.)  En Emacs Lisp, @c{+} puede
+    ser usado para añadir el valor numérico de posiciones de marca
+    como números.
+
+    La @'{p} de @c{number-or-marker-p} es el cuerpo de una práctica
+    iniciada en los primeros días de la programación Lisp. La @'{p} es
+    para 'predicado'. En la jerga usada por los primeros
+    investigadores de Lisp, un predicado se refiere a una función para
+    determinar si alguna propiedad es verdadera o falsa. Así la @'{p}
+    nos cuenta que @c{number-or-marker-p} es el nombre de una función
+    que determina que el argumento dado es un número o una
+    marca. Otros símbolos Lisp que finalizan en @'{p} incluyen
+    @c{zerop}, una función que chequea si sus argumentos tienen el
+    valor de cero, y @c{listp}, una función que prueba si sus
+    argumentos son una lista.
+
+    Finalmente, la última parte del mensaje de error es el símbolo
+    @c{hello}. Esto es el valor del argumento que pasaba a @c{+}. Si
+    la adición había sido pasada al tipo correcto de objeto, el valor
+    pasado habría sido un número, tal como 37, en vez de un símbolo
+    como @c{hello}. Pero entonces tu no habrías obtenido el mensaje de
+    error.
+
+    @ignore
+      In GNU Emacs version 20 and before, the echo area displays an error
+      message that says:
+
+      @example
+        Mal tipo de argumento:@: number-or-marker-p, hello
+      @end example
+
+      This says, in different words, the same as the top line of the
+      @f{*Backtrace*} buffer.
+    @end ignore
+
+*** La función @c{message}
+
+    Como @c{+}, la función @c{message} toma un número variable de
+    argumentos. Es usado para enviar mensajes para el usuario y es así
+    tan útil que nosotros lo describiremos aquí.
+
+    Un mensaje está impreso en el área echo. Por ejemplo, se puede
+    imprimir un mensaje en tu área echo evaluando la siguiente lista:
+
+    @example
+      (message "¡Este mensaje aparece en el área echo!")
+    @end example
+
+    La cadena entera entre comillas dobles es un argumento simple y
+    está impreso @i{en todo}. (Nótese que en este ejemplo, el mensaje
+    en sí aparecerá en el área echo con comillas comillas dobles; que
+    es porque tu ves el valor devuelto por la función @c{message}. En
+    la mayoría de los usos de @c{message} en programas que se escribe,
+    el texto será impreso en el área echo como un efecto lateral, sin
+    las comillas. Ver @l{@c{multiply-by-seven} en detalle}, para un
+    ejemplo de esto.)
+
+    Sin embargo, si hay un @'{%s} en la cadena citada de caracteres,
+    la función @c{message} no imprime el @'{%s} como tal, pero mira al
+    argumento que sigue la cadena. Eso evalúa el segundo argumento e
+    imprime el valor en la posición en la cadena donde el @'{%s} está.
+
+    Puede ver esto posicionando el cursor después de la siguiente
+    expresión y escribiendo @k{C-x C-e}:
+
+    @example
+      (message "El nombre de este búffer es: %s." (buffer-name))
+    @end example
+
+    En Info, @c{"El nombre de este búffer es: *info*."} aparecerá en
+    el área echo. La función @c{buffer-name} devuelve el nombre del
+    búffer como una cadena, que la función @c{message} inserta en
+    lugar de @c{%s}.
+
+    Para imprimir un valor como un entero, usa @'{%d} en la misma
+    forma que @'{%s}. Por ejemplo, para imprimir un mensaje en el área
+    echo que sitúa el valor de @c{fill-column}, evalúa lo siguiente:
+
+    @example
+      (message "El valor de fill-column es %d." fill-column)
+    @end example
+
+    En mi sistema, cuando evalúo esta lista, @c{"El valor de
+    fill-column es 72"} aparece en mi área echo@n{4}
+
+    Si hay más de una @'{%s} en la cadena citada, el valor del primer
+    argumento siguiente la cadena citada es impresa en la posición del
+    primer @'{%s} y el valor del segundo argunmento es impreso en la
+    posición del segundo @'{%s}, y así.
+
+    Por ejemplo, si se evalúa lo siguiente,
+
+    @example
+      (message "¡Hay %d %s en la oficina!"
+               (- fill-column 14) "elefantes rosas")
+    @end example
+
+    un mensaje característico aparecerá en el área echo. En mi sistema
+    dice @c{"¡Hay 58 elefantes rosas en la oficina!"}
+
+    La expresión @c{(- fill-column 14)} está evaluado y el número
+    resultante está insertado en lugar del @'{%d}; y la cadena entre
+    dobles comillas, @c{"elefantes rosas"}, está tratado como un
+    argumento simple e insertado en lugar del @'{%s}. (Esto es decir,
+    una cadena entre comillas dobles se evalúa así mismo, como un
+    número.)
+
+    Finalmente, aquí está un ejemplo algo complejo que no solo ilustra
+    la computación de un número, pero también muestra como se puede
+    usar una expresión que genere el texto que es sustituido por
+    @'{%s}:
+
+    @example
+      (message "Se vieron %d %s"
+               (- fill-column 36)
+               (concat (substring
+                        "Los rápidos zorros marrones saltaron." 12 19)
+                        "rojos trotando."))
+    @end example
+
+    En este ejemplo, @c{message} tiene tres argumentos: la cadena,
+    @c{"Él vió %d %s"}, después la expresión, que empieza con la
+    función @c{concat}. El valor resultante desde la evaluación de
+    @c{(- fill-column 32)} está insertado en lugar de @'{%d}; y el
+    valor devuelto por la expresión empieza con @c{concat} está
+    insertado en lugar del @'{%s}.
+
+    Cuando se rellena la columna es 70 y se evalúa la expresión, el
+    mensaje @c{"Se vieron 38 zorros rojos trotando."} aparece en tu
+    área echo.
+
+** @t{Configurando el valor de una variable}
+
+   Hay varios caminos por el que una variable puede dar un valor. Uno
+   de los caminos es usar la función @c{set} o la función
+   @c{setq}. Otro camino es usar @c{let} (@l{let}). (La jerga para
+   este proceso es @:{bind} una variable para un valor.)
+
+   Las siguientes secciones no solo describen cómo @c{set} y @c{setq}
+   funcionan pero también ilustran como los argumentos pasan.
+
+*** Usando @c{set}
+
+    Para asignar el valor del símbolo @c{flores} a la lista @c{'(rosa
+    violeta margarita mantequilla)}, evalúa la siguiente expresión
+    posicionando el cursor después de la expresión y escribiendo @k{C-x
+    C-e}.
+
+    @example
+      (set 'flores '(rosa violeta margarita mantequilla))
+    @end example
+
+    La lista @c{(rosa violeta margarita mantequilla)} aparecerá en el
+    área echo. Esto es lo que está @e{devuelto} por la función
+    @c{set}. Como efecto lateral, el símbolo @c{flores} está asociado a
+    la lista; esto es, el símbolo @c{flores}, que puede ser visto como
+    una variable, que es dada por la lista como su valor. (Este
+    proceso, ilustra un efecto lateral al intérprete Lisp: asignando el
+    valor, que puede ser el efecto primario en el que los humanos
+    estamos interesados. Esto es porque cada función Lisp debe devolver
+    un valor si no se obtiene un error, pero solo tendrá un efecto
+    colateral si está diseñado para tener uno.)
+
+    Después de evaluar la expresión @c{set}, se puede evaluar el
+    símbolo @c{flores} y devolverá el valor asignado. Aquí está el
+    símbolo. Emplaza tu cursor después y escribe @k{C-x C-e}.
+
+    @example
+      flores
+    @end example
+
+    Cuando se evalúa @c{flores}, la lista @c{(rosa violeta margarita
+    mantequilla)} aparece en el área echo.
+
+    Incidentalmente, si se evalúa @c{'flores}, la variable con una
+    comilla en frente, se ve en el área echo y es el símbolo en sí:
+    @c{flores}.  Aquí está el símbolo citado, así se puede probar esto:
+
+    @example
+      'flores
+    @end example
+
+    Nótese también, que cuando se usa @c{set}, se necesitan citar ambos
+    argumentos a @c{set}, a menos que se quiera evaluar. Puesto que
+    nosotros no queremos argumentos evaluados, ni la variable
+    @c{flores}, ni la lista @c{(rosa violeta margarita mantequilla)},
+    se citan. (Cuando se usa @c{set} sin citar su primer argumento, el
+    primer argumento se evalúa antes que cualquier cosa se haga. Si se
+    hizo esto y @c{flores} no tenía un valor ya, se tendría un mensaje
+    de error que el @'{Valor de símbolo como variable esté vacío}; por
+    otro lado, si @c{flores} no devolvió un valor después de que fuera
+    evaluado, el @c{set} intentaría establecer un valor después de que
+    fuera devuelto. Hay situaciones donde esto es lo correcto para la
+    función a hacer, pero tales situaciones son raras.)
+
+*** Usando @c{setq}
+
+    Como materia práctica, casi siempre se cita el primer argumento a
+    @c{set}. La combinación de @c{set} y un argumento citado primero
+    es común que tiene su propio nombre: la forma especial
+    @c{setq}. Esta forma especial es solo como @c{set} excepto que el
+    primer argumento se cita automáticamente, así no se necesita
+    escribir la marca de cita por uno mismo. También, como una
+    conveniencia añadida, @c{setq} permite asignar varias variables
+    diferentes a diferentes valores, todo en una expresión.
+
+    Para asignar el valor de la variable @c{carnívoros} a la lista
+    @c{'(leon tigre leopardo)} usando @c{setq}, la siguiente expresión
+    que se usa es:
+
+    @example
+      (setq carnivoros '(leon tigre leopardo))
+    @end example
+
+    Esto es exactamente lo mismo que usar @c{set} excepto que el
+    primer argumento se cita automáticamente por @c{setq}. (El @'{q}
+    en @c{setq} significa @c{quote}.)
+
+    Con @c{set}, la expresión que se vería es:
+
+    @example
+      (set 'carnivoros '(leon tigre leopardo))
+    @end example
+
+    También, @c{setq} puede ser usado para asignar diferentes valores
+    a diferentes variables. El primer argumento está asociado al valor
+    del segundo argumento, el tercer argumento se asocia al valor del
+    cuarto argumento, y así. Por ejemplo, se podría usar lo siguiente
+    para asignar una lista de árboles al símbolo @c{arboles} y una
+    lista herbívoros al símbolo @c{herbivoros}:
+
+    @example
+      (setq arboles '(pino abeto roble arce)
+            herbivoros '(gacela antilope cebra))
+    @end example
+
+    (La expresión podría también haber estado en una línea, pero
+    podría no haberse ajustado en una página; y los humanos encuentran
+    que es fácil leer listas formateadas.)
+
+    Aunque yo he estado usando el término 'assign', hay otro camino de
+    pensar acerca de los trabajos de @c{set} y @c{setq}; y que es
+    decir que @c{set} y @c{setq} creen el símbolo @e{point} a la
+    lista. Este camino posterior de pensamiento es muy común y en los
+    capítulos siguientes volveremos al menos a un símbolo que tiene un
+    valor, específicamente una lista, adjunta; o, expresa otros
+    caminos, el símbolo asigna a “apuntar” a la lista.
+
+*** Contando
+
+    Aquí hay un ejemplo que muestra cómo usar @c{setq} en un
+    contador. Se podría usar esto para contar cuantas veces una parte
+    de un programa se repite por sí mismo. Primero asigna una variable
+    a cero; entonces añade uno al número cada vez que el programa se
+    repite así mismo. Para hacer esto, se necesita una variable que
+    sirve como un contador, y dos expresiones: una expresión @c{setq}
+    que asigna la variable contador a cero; y una segunda expresión
+    @c{setq} que incrementa el contador cada vez que eso es evaluado.
+
+    @example
+      (setq counter 0)                ; Se inicializa.
+
+      (setq counter (+ counter 1))    ; Se incrementa.
+
+      counter                         ; Contador.
+    @end example
+
+    (El siguiente texto el @'{;} son comentarios. Ver @l{Cambiar una
+    definición de función}.)
+
+    Si evalúas la primera de estas expresiones, el inicializador,
+    @c{(setq counter 0)}, y entonces evalúa la tercera expresión,
+    @c{counter}, el número @c{0} aparecerá en el área echo. Si
+    entonces se evalúa la segunda expresión, el incrementador,
+    @c{(setq counter (+ counter 1))}, el contador obtendrá el valor
+    1. Así si evalúas de nuevo @c{counter}, el número
+    @c{1} aparecerá en el área echo. Cada vez que se evalúa la
+    segunda expresión, el valor del contador será incrementado.
+
+    Cuando se evalúa el incrementador, @c{(setq counter (+ counter
+    1))}, el intérprete Lisp primero evalúa la lista interna; esta es
+    la adición. En orden para evaluar esta lista, debe evaluar la
+    variable @c{counter} y el número @c{1}. Cuando evalúa la variable
+    @c{counter}, recibe su valor actual. Esto pasa su valor y el
+    número @c{1} para el @c{+} que los añade juntos. La suma es
+    devuelta como el valor de la list propia pasada al @c{setq} que
+    asigna la variable @c{counter} a este nuevo valor. De este modo,
+    el valor de la variable @c{counter}, se cambia.
+
+*** Resumen
+
+    Aprender Lisp es como escalar una montaña en la que la primera
+    parte es la empinada. Ahora has escalado la parte más difícil; y
+    lo que queda es más fácil.
+
+    En resumen,
+
+    - Los programas Lisp son hechos de expresiones, que son listas o
+      átomos simples.
+
+    - La listas son hechas de cero o más átomos o listas internas,
+      separadas por espacios en blanco y rodeados de paréntesis. Una
+      lista puede estar vacía.
+
+    - Los átomos son símbolos multi-carácter, como
+      @c{forward-paragraph}, los símbolos de caracteres como @c{+},
+      cadenas de caracteres entre marcas de comillas dobles, o
+      números.
+
+    - Un número se evalúa a sí mismo.
+
+    - Una cadena entre comillas dobles también se evalúa a sí mismo.
+
+    - Cuando se evalúa un símbolo a sí mismo, su valor se devuelve.
+
+    - Cuando se evalúa una lista, el intérprete mira el primer símbolo
+      en la lista y en la definición de la función asociada a este
+      símbolo. Así se traen las instrucciones en la definición
+      función.
+
+    - Una marca de cita (quote) simple, @c{'}, cuenta al intérprete
+      Lisp que devolvería la siguiente expresión como se escribe, y se
+      evalúa como si la cita no estuviera.
+
+    - Los argumentos son la información pasada a una función. Los
+      argumentos a una función son computados evaluando el resto de
+      los elementos de la lista de la que la función es el primer
+      elemento.
+
+    - Una función siempre devuelve un valor cuando se evalúa (a menos
+      que obtenga un error); además, puede también traer alguna acción
+      llamada un “efecto colateral”. En muchos casos, un propósito de
+      la función primaria es crear un efecto colateral.
+
+*** Ejercicios de mensajes de error
+
+    Unos pocos ejercicios simples:
+
+    - Genera un mensaje de error evaluando un símbolo apropiado que no
+      está entre paréntesis.
+
+    - Genera un mensaje de error evaluando un símbolo apropiado que
+      está entre paréntesis.
+
+    - Crea un contador que incremente por dos en vez de uno.
+
+    - Escribe una expresión que imprima un mensaje en el área cuando
+      es evaluada.
+
+* Practicando evaluación
+
 * Footnotes
 
-@t{fn:1} Los apóstrofes simples o las marcas de citas son una
-abreviación para la función @c{quote}; tu no necesitas pensar acerca
-de funciones ahora; las funciones son definidaas en @l{Creando
-errores, Generar un mensaje de error}.
+  :: @t{fn:1} :: Los apóstrofes simples o las marcas de citas son una
+     abreviación para la función @c{quote}; tu no necesitas pensar
+     acerca de funciones ahora; las funciones son definidaas en
+     @l{Creando errores, Generar un mensaje de error}.
+
+  :: @t{fn:2} :: Es curioso trazar la ruta por la que la palabra
+     'argumento' viene para tener dos significados diferentes, uno en
+     matemáticas y el otro en el inglés de cada día. De acuerdo al
+     @e{Oxford English Dictionary}, la palabra deriva del Latín para
+     @'{clarificar}, de este modo significa, por un hilo de
+     derivación, viene a significar 'asertir de una manera contra otro
+     que puede crear un contador de aserciones', que lidera el
+     significado de la palabra como una disputa. (Nótese aquí que la
+     palabra Inglés tiene dos definiciones diferentes adjuntas al
+     mismo tiempo. En contraste, en Emacs Lisp, un símbolo no puede
+     tener dos definiciones de funciones diferentes al mismo tiempo.)
+
+  :: @t{fn:3} :: @c{(quote hola)} es una expresión de la abreviación
+     @c{'hola}.
+
+  :: @t{fn:4} :: Actualmente, puede usar @c{%s} para imprimir un
+     número. Eso es no específico. @c{%d} imprime solo la parte de un
+     número a la izquierda de un punto decimal, y no cualquier cosa
+     que no es un número.
