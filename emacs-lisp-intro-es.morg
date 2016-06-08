@@ -11946,10 +11946,10 @@ and promoting software freedom.”
     La función @c{directory-files-and-attributes} devuelve una lista de
     listas. Cada una de las listas con la lista principal consiste de 13
     elementos. El primer elemento es una cadena que contiene el nombre del
-    fichero -- que, en GNU/Linux, puede ser un ‘directorio fichero’, que
-    dice, un fichero con los atributos especiales de un directorio. El
-    segundo elemento de la lista es @c{t} para un directorio, es una cadena
-    para el enlace simbólico (la cadena es el nombre enlazado), o @c{nil}.
+    fichero––que, en GNU/Linux, puede ser un ‘directorio fichero’, que dice,
+    un fichero con los atributos especiales de un directorio. El segundo
+    elemento de la lista es @c{t} para un directorio, es una cadena para el
+    enlace simbólico (la cadena es el nombre enlazado), o @c{nil}.
 
     Por ejemplo, el primer fichero @'{.el} en el directorio es
     @f{abbrev.el}. Su nombre es
@@ -12238,7 +12238,7 @@ and promoting software freedom.”
       (4 3 2 1)
     @end smallexample
 
-    Note que la función @c{nreverse} es “destructiva” --- que es, cambiar la
+    Note que la función @c{nreverse} es “destructiva”––que es, cambiar la
     lista a la que se aplica; esto contrasta con las funciones @c{car} y
     @c{cdr}, que no son destructivas. En este caso, no se quiere que el
     original @c{defuns-per-range-list}, de manera que no hay materia que se
@@ -12544,7 +12544,7 @@ and promoting software freedom.”
   libro tal como este. Eso es posible descubrir otras funciones, como
   @c{search-forward} o @c{insert-rectangle}, adivinando una parte de sus
   nombres y entonces usando @c{apropos}. Incluso aunque su base metafórica es
-  clara --- ‘apply’ su primer argumento al resto––dudo que un novicio vendría
+  clara––‘apply’ su primer argumento al resto––dudo que un novicio vendría
   con esta palabra particular usando @c{apropos} u otra ayuda. De acuerdo,
   podría ser incorrecto; después de todo, la función fué primero llamada por
   alguien quien lo había inventado.
@@ -12909,7 +12909,7 @@ and promoting software freedom.”
 
 * Tu fichero @f{.emacs}
 
-  “No te tiene que gustar Emacs para lo que te gusta” --- esto que parece una
+  “No te tiene que gustar Emacs para lo que te gusta”––esto que parece una
   frase paradójica es el secreto de GNU Emacs. En realidad, Emacs es una
   herramienta genérica. La mayoría de la gente que usa Emacs, lo personaliza
   para ajustarlo a sus necesidades.
@@ -12928,8 +12928,8 @@ and promoting software freedom.”
   permiten compartir funcionalidades, tal como el modo C es ahora
   proporcionado por el modo CC, la ‘Colección C’.)
 
-  Pero cuando se conoce quien está yendo a usar Emacs––tu, tu mismo ---
-  entonces eso tiene sentido para personalizar Emacs.
+  Pero cuando se conoce quien está yendo a usar Emacs––tu, tu mismo––entonces
+  eso tiene sentido para personalizar Emacs.
 
   Por ejemplo, yo raramente quiero el modo Fundamental cuando edito un
   fichero de otro modo no distinguido; yo quiero el modo Texto. Esto es por
@@ -13157,7 +13157,7 @@ and promoting software freedom.”
    Emacs), para una corta descripción de fichero de inicialización.
 
    Este capítulo cubre algo del mismo suelo, pero es un paseo entre extractos
-   desde un completo, largamente usado fichero @f{.emacs} --- por mí.
+   desde un completo, largamente usado fichero @f{.emacs}––por mí.
 
    La primera parte del fichero consiste en comentario: me recuerdo a mí
    mismo. Por ahora, yo recuerdo estas cosas, pero cuando empecé, no.
@@ -13207,7 +13207,7 @@ and promoting software freedom.”
 
    De acuerdo, no se necesitan incluir comentarios y ficheros como estos
    @f{.emacs}. Yo los incluí en el mío porque se olvida el Modo ayuda o las
-   convenciones para comentarios --- pero era capaz de recordar ver aquí
+   convenciones para comentarios––pero era capaz de recordar ver aquí
    recordármelo a mí mismo.
 
 ** Modo texto y auto relleno
@@ -14053,7 +14053,7 @@ and promoting software freedom.”
    cuenta el porcentaje bajo el alto de la ventana.) @'{%-} inserta
    suficientes guiones para rellenar la línea.
 
-   Recuerda, “No tiene que gustarte Emacs para que le gustes” --- Emacs puede
+   Recuerda, “No tiene que gustarte Emacs para que le gustes”––Emacs puede
    tener diferentes colores, diferentes comandos, y diferentes teclas que un
    Emacs por defecto.
 
@@ -16398,7 +16398,7 @@ and promoting software freedom.”
    privativos han logrado que muchos autores restrinjan sus manuales desde
    entonces. Muchas veces se ha oido que un usuario de GNU hábil me cuente
    que un manual que está escribiendo, con el que él espera ayudar al
-   proyecto GNU --- y entonces tenía mis esperanzas frustradas, como se ha
+   proyecto GNU––y entonces tenía mis esperanzas frustradas, como se ha
    procedió a explicar que él tenía que haber firmado un contrato con una
    editorial que restringiría eso, así que no puede usarlo.
 
@@ -17020,10 +17020,10 @@ and promoting software freedom.”
 
   - @N{10} -: Se pueden escribir funciones recursivas para ser frugal o
     basura mental o recursos de ordenador; como eso ocurre, los métodos que
-    la gente encuentra fáciles––son frugales de ‘recursos mentales’ ---
-    algunas veces usan recursos de ordenador considerables. Emacs fué
-    diseñado para ejecutarse en máquinas que ahora se consideran limitadas y
-    sus configuraciones por defecto son conservadoras. Se puede querer
+    la gente encuentra fáciles––son frugales de ‘recursos mentales’––algunas
+    veces usan recursos de ordenador considerables. Emacs fué diseñado para
+    ejecutarse en máquinas que ahora se consideran limitadas y sus
+    configuraciones por defecto son conservadoras. Se puede querer
     incrementar los valores de @c{max-specdl-size} y
     @c{max-lisp-eval-depth}. En mi fichero @f{.emacs}, yo los asigno a 15 o
     30 veces su valor por defecto.
@@ -17048,9 +17048,13 @@ and promoting software freedom.”
 
   - @N{14} -: Cuando se empiezan las instancias de Emacs que no cargan mi
     fichero @f{.emacs} o cualquier fichero, también se puede deshabilitar la
-    ocultación: @smallexample emacs -q --no-site-file -eval
-    '(blink-cursor-mode nil)' @exdent O ahora, usando un conjunto más
-    sofisticado de opciones, emacs -Q - D @end smallexample
+    ocultación:
+
+    @smallexample
+      emacs -q --no-site-file -eval
+      '(blink-cursor-mode nil)' @exdent O ahora, usando un conjunto más
+      sofisticado de opciones, emacs -Q - D
+    @end smallexample
 
   - @N{15} -: también se ejecutan gestores de ventanas más modernos, tales
     como Enlightenment, Gnome, o KDE; en estos casos, con frecuencia se
