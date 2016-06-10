@@ -219,7 +219,7 @@ promoting software freedom.”
 
    My thanks to all who helped me with this book.  My especial thanks to Jim
    Blandy, Noah Friedman, Jim Kingdon, Roland McGrath, Frank Ritter, Randy
-   Smith, Richard M.  Stallman, and Melissa Weisshaus.  My thanks also go to
+   Smith, Richard M. Stallman, and Melissa Weisshaus.  My thanks also go to
    both Philip Johnson and David Stampe for their patient encouragement.  My
    mistakes are my own.
 
@@ -246,12 +246,12 @@ promoting software freedom.”
    as follows, which looks more like the kind of list you are likely to be
    familiar with:
 
-   @smallexample
+   @src elisp
      '(rose
        violet
        daisy
        buttercup)
-   @end smallexample
+   @end src
 
    The elements of this list are the names of the four different flowers,
    separated from each other by whitespace and surrounded by parentheses,
@@ -272,9 +272,9 @@ promoting software freedom.”
 
    Here is another list, this time with a list inside of it:
 
-   @smallexample
+   @src elisp
      '(this list has (a list inside of it))
-   @end smallexample
+   @end src
 
    The components of this list are the words @'{this}, @'{list}, @'{has}, and
    the list @'{(a list inside of it)}.  The interior list is made up of the
@@ -339,9 +339,9 @@ promoting software freedom.”
     also an atom.  Here is an example: @cindex Text between double quotation
     marks
 
-    @smallexample
+    @src elisp
       '(this list includes "text between quotation marks.")
-    @end smallexample
+    @end src
 
     In Lisp, all of the quoted text including the punctuation mark and the
     blank spaces is a single atom.  This kind of atom is called a @:{string}
@@ -354,16 +354,16 @@ promoting software freedom.”
     The amount of whitespace in a list does not matter.  From the point of
     view of the Lisp language,
 
-    @smallexample
+    @src elisp
       '(this list
          looks like this)
-    @end smallexample
+    @end src
 
     is exactly the same as this:
 
-    @smallexample
+    @src elisp
       '(this list looks like this)
-    @end smallexample
+    @end src
 
     Both examples show what to Lisp is the same list, the list made up of the
     symbols @'{this}, @'{list}, @'{looks}, @'{like}, and @'{this} in that
@@ -424,9 +424,9 @@ promoting software freedom.”
    evaluate such a list: place your cursor immediately after the right hand
    parenthesis of the following list and then type @k{C-x C-e}:
 
-   @smallexample
+   @src elisp
      (+ 2 2)
-   @end smallexample
+   @end src
 
    You will see the number @c{4} appear in the echo area.  (In the jargon,
    what you have just done is “evaluate the list.”  The echo area is the line
@@ -434,9 +434,9 @@ promoting software freedom.”
    same thing with a quoted list: place the cursor right after the following
    list and type @k{C-x C-e}:
 
-   @smallexample
+   @src elisp
      '(this is a quoted list)
-   @end smallexample
+   @end src
 
    You will see @c{(this is a quoted list)} appear in the echo area.
 
@@ -471,9 +471,9 @@ promoting software freedom.”
    the same as the one we just used, but without the single-quote in front of
    it.  Position the cursor right after it and type @k{C-x C-e}:
 
-   @smallexample
+   @src elisp
      (this is an unquoted list)
-   @end smallexample
+   @end src
 
    @ignore
      What you see depends on which version of Emacs you are running.  GNU
@@ -716,9 +716,9 @@ promoting software freedom.”
     We can investigate this process by evaluating another addition example.
     Place your cursor after the following expression and type @k{C-x C-e}:
 
-    @smallexample
+    @src elisp
       (+ 2 (+ 3 3))
-    @end smallexample
+    @end src
 
     The number 8 will appear in the echo area.
 
@@ -740,9 +740,9 @@ promoting software freedom.”
 
     Here is another copy of the expression:
 
-    @smallexample
+    @src elisp
       (+ 2 (+ 3 3))
-    @end smallexample
+    @end src
 
     If you place the cursor at the beginning of the blank line that
     immediately follows the expression and type @k{C-x C-e}, you will still
@@ -796,9 +796,9 @@ promoting software freedom.”
    GNU Emacs, you can do this by putting the cursor after the symbol and
    typing @k{C-x C-e}:
 
-   @smallexample
+   @src elisp
      fill-column
-   @end smallexample
+   @end src
 
    After I typed @k{C-x C-e}, Emacs printed the number 72 in my echo area.
    This is the value for which @c{fill-column} is set for me as I write this.
@@ -827,9 +827,9 @@ promoting software freedom.”
     interpreter would attempt to find the function definition attached to it.
     But @c{fill-column} has no function definition.  Try evaluating this:
 
-    @smallexample
+    @src elisp
       (fill-column)
-    @end smallexample
+    @end src
 
     You will create a @f{*Backtrace*} buffer that says:
 
@@ -865,9 +865,9 @@ promoting software freedom.”
     with our 2 plus 2 addition.  In the following expression, put your cursor
     right after the @c{+}, before the first number 2, type @k{C-x C-e}:
 
-    @smallexample
+    @src elisp
       (+ 2 2)
-    @end smallexample
+    @end src
 
     In GNU Emacs 22, you will create a @f{*Backtrace*} buffer that says:
 
@@ -917,9 +917,9 @@ promoting software freedom.”
    standby, the addition of two plus two.  In Lisp, this is written as
    follows:
 
-   @smallexample
+   @src elisp
      (+ 2 2)
-   @end smallexample
+   @end src
 
    If you evaluate this expression, the number 4 will appear in your echo
    area.  What the Lisp interpreter does is add the numbers that follow the
@@ -949,9 +949,9 @@ promoting software freedom.”
     Concatenating the two character strings @c{abc}, @c{def} produces the
     single string @c{abcdef}.  This can be seen by evaluating the following:
 
-    @smallexample
+    @src elisp
       (concat "abc" "def")
-    @end smallexample
+    @end src
 
     The value produced by evaluating this expression is @c{"abcdef"}.
 
@@ -965,9 +965,9 @@ promoting software freedom.”
 
     For example, if you evaluate the following:
 
-    @smallexample
+    @src elisp
       (substring "The quick brown fox jumped." 16 19)
-    @end smallexample
+    @end src
 
     you will see @c{"fox"} appear in the echo area.  The arguments are the
     string and the two numbers.
@@ -989,9 +989,9 @@ promoting software freedom.”
 
     Position the cursor after the following expression and type @k{C-x C-e}:
 
-    @smallexample
+    @src elisp
       (+ 2 fill-column)
-    @end smallexample
+    @end src
 
     The value will be a number two more than what you get by evaluating
     @c{fill-column} alone.  For me, this is 74, because my value of
@@ -1003,9 +1003,9 @@ promoting software freedom.”
     the arguments to the function @c{concat} are the strings @c{"The "} and
     @c{" red foxes."} and the list @c{(number-to-string (+ 2 fill-column))}.
 
-    @smallexample
+    @src elisp
       (concat "The " (number-to-string (+ 2 fill-column)) " red foxes.")
-    @end smallexample
+    @end src
 
     If you evaluate this expression––and if, as with my Emacs,
     @c{fill-column} evaluates to 72––@c{"The 74 red foxes."} will appear in
@@ -1055,9 +1055,9 @@ promoting software freedom.”
     can pass it the quoted symbol @c{hello} instead of a number.  Position
     the cursor after the following expression and type @k{C-x C-e}:
 
-    @smallexample
+    @src elisp
       (+ 2 'hello)
-    @end smallexample
+    @end src
 
     When you do this you will generate an error message.  What has happened
     is that @c{+} has tried to add the 2 to the value returned by @c{'hello},
@@ -1138,9 +1138,9 @@ promoting software freedom.”
     A message is printed in the echo area.  For example, you can print a
     message in your echo area by evaluating the following list:
 
-    @smallexample
+    @src elisp
       (message "This message appears in the echo area!")
-    @end smallexample
+    @end src
 
     The whole string between double quotation marks is a single argument and
     is printed @i{in toto}.  (Note that in this example, the message itself
@@ -1159,9 +1159,9 @@ promoting software freedom.”
     You can see this by positioning the cursor after the following expression
     and typing @k{C-x C-e}:
 
-    @smallexample
+    @src elisp
       (message "The name of this buffer is: %s." (buffer-name))
-    @end smallexample
+    @end src
 
     In Info, @c{"The name of this buffer is: *info*."} will appear in the
     echo area.  The function @c{buffer-name} returns the name of the buffer
@@ -1171,9 +1171,9 @@ promoting software freedom.”
     For example, to print a message in the echo area that states the value of
     the @c{fill-column}, evaluate the following:
 
-    @smallexample
+    @src elisp
       (message "The value of fill-column is %d." fill-column)
-    @end smallexample
+    @end src
 
     On my system, when I evaluate this list, @c{"The value of fill-column is
     72."} appears in my echo area@n{4}.
@@ -1185,10 +1185,10 @@ promoting software freedom.”
 
     For example, if you evaluate the following,
 
-    @smallexample
+    @src elisp
       (message "There are %d %s in the office!"
                (- fill-column 14) "pink elephants")
-    @end smallexample
+    @end src
 
     a rather whimsical message will appear in your echo area.  On my system
     it says, @c{"There are 58 pink elephants in the office!"}.
@@ -1203,14 +1203,14 @@ promoting software freedom.”
     computation of a number, but also shows how you can use an expression
     within an expression to generate the text that is substituted for @'{%s}:
 
-    @smallexample
+    @src elisp
       (message "He saw %d %s"
                (- fill-column 32)
                (concat "red "
                        (substring
                         "The quick brown foxes jumped." 16 21)
                        " leaping."))
-    @end smallexample
+    @end src
 
     In this example, @c{message} has three arguments: the string, @c{"He saw
     %d %s"}, the expression, @c{(- fill-column 32)}, and the expression
@@ -1238,9 +1238,9 @@ promoting software freedom.”
     daisy buttercup)}, evaluate the following expression by positioning the
     cursor after the expression and typing @k{C-x C-e}.
 
-    @smallexample
+    @src elisp
       (set 'flowers '(rose violet daisy buttercup))
-    @end smallexample
+    @end src
 
     The list @c{(rose violet daisy buttercup)} will appear in the echo area.
     This is what is @e{returned} by the @c{set} function.  As a side effect,
@@ -1256,9 +1256,9 @@ promoting software freedom.”
     @c{flowers} and it will return the value you just set.  Here is the
     symbol.  Place your cursor after it and type @k{C-x C-e}.
 
-    @smallexample
+    @src elisp
       flowers
-    @end smallexample
+    @end src
 
     When you evaluate @c{flowers}, the list @c{(rose violet daisy buttercup)}
     appears in the echo area.
@@ -1267,9 +1267,9 @@ promoting software freedom.”
     front of it, what you will see in the echo area is the symbol itself,
     @c{flowers}.  Here is the quoted symbol, so you can try this:
 
-    @smallexample
+    @src elisp
       'flowers
-    @end smallexample
+    @end src
 
     Note also, that when you use @c{set}, you need to quote both arguments to
     @c{set}, unless you want them evaluated.  Since we do not want either
@@ -1296,9 +1296,9 @@ promoting software freedom.”
     To set the value of the variable @c{carnivores} to the list @c{'(lion
     tiger leopard)} using @c{setq}, the following expression is used:
 
-    @smallexample
+    @src elisp
       (setq carnivores '(lion tiger leopard))
-    @end smallexample
+    @end src
 
     This is exactly the same as using @c{set} except the first argument is
     automatically quoted by @c{setq}.  (The @'{q} in @c{setq} means
@@ -1306,9 +1306,9 @@ promoting software freedom.”
 
     With @c{set}, the expression would look like this:
 
-    @smallexample
+    @src elisp
       (set 'carnivores '(lion tiger leopard))
-    @end smallexample
+    @end src
 
     Also, @c{setq} can be used to assign different values to different
     variables.  The first argument is bound to the value of the second
@@ -1317,10 +1317,10 @@ promoting software freedom.”
     a list of trees to the symbol @c{trees} and a list of herbivores to the
     symbol @c{herbivores}:
 
-    @smallexample
+    @src elisp
       (setq trees '(pine fir oak maple)
             herbivores '(gazelle antelope zebra))
-    @end smallexample
+    @end src
 
     (The expression could just as well have been on one line, but it might
     not have fit on a page; and humans find it easier to read nicely
@@ -1345,13 +1345,13 @@ promoting software freedom.”
     that sets the counter variable to zero; and a second @c{setq} expression
     that increments the counter each time it is evaluated.
 
-    @smallexample
+    @src elisp
       (setq counter 0)                ; @e{Let's call this the initializer.}
 
       (setq counter (+ counter 1))    ; @e{This is the incrementer.}
 
       counter                         ; @e{This is the counter.}
-    @end smallexample
+    @end src
 
     (The text following the @'{;} are comments.  See Section @l{Change a
     Function Definition}.)
@@ -1491,11 +1491,11 @@ promoting software freedom.”
    of the following expressions by positioning the cursor after it and typing
    @k{C-x C-e}.
 
-   @smallexample
+   @src elisp
      (buffer-name)
 
      (buffer-file-name)
-   @end smallexample
+   @end src
 
    When I do this in Info, the value returned by evaluating @c{(buffer-name)}
    is @f{"*info*"}, and the value returned by evaluating
@@ -1605,9 +1605,9 @@ promoting software freedom.”
 
    Here is an expression containing the function:
 
-   @smallexample
+   @src elisp
      (current-buffer)
-   @end smallexample
+   @end src
 
    If you evaluate this expression in Info in Emacs in the usual way,
    @f{#<buffer *info*>} will appear in the echo area.  The special format
@@ -1625,9 +1625,9 @@ promoting software freedom.”
 
    You can see this by evaluating the expression:
 
-   @smallexample
+   @src elisp
      (other-buffer)
-   @end smallexample
+   @end src
 
    You should see @f{#<buffer *scratch*>} appear in the echo area, or the
    name of whatever other buffer you switched back from most
@@ -1652,9 +1652,9 @@ promoting software freedom.”
    By writing @c{switch-to-buffer} in an expression, and giving it a buffer
    to switch to, we can switch buffers just the way @k{C-x b} does:
 
-   @smallexample
+   @src elisp
      (switch-to-buffer (other-buffer))
-   @end smallexample
+   @end src
 
    The symbol @c{switch-to-buffer} is the first element of the list, so the
    Lisp interpreter will treat it as a function and carry out the
@@ -1700,9 +1700,9 @@ promoting software freedom.”
    that is, the function returns a count of the number of characters in the
    buffer.
 
-   @smallexample
+   @src elisp
      (buffer-size)
-   @end smallexample
+   @end src
 
    You can evaluate this in the usual way, by positioning the cursor after
    the expression and typing @k{C-x C-e}.
@@ -1715,9 +1715,9 @@ promoting software freedom.”
    You can see the character count for point in this buffer by evaluating the
    following expression in the usual way:
 
-   @smallexample
+   @src elisp
      (point)
-   @end smallexample
+   @end src
 
    As I write this, the value of @c{point} is 65724.  The @c{point} function
    is frequently used in some of the examples later in this book.
@@ -1725,9 +1725,9 @@ promoting software freedom.”
    The value of point depends, of course, on its location within the buffer.
    If you evaluate point in this spot, the number will be larger:
 
-   @smallexample
+   @src elisp
      (point)
-   @end smallexample
+   @end src
 
    For me, the value of point in this location is 66043, which means that
    there are 319 characters (including spaces) between the two expressions.
@@ -1826,11 +1826,11 @@ promoting software freedom.”
    argument by 7.  (This example is not interactive.  See Section @l{Make a
    Function Interactive}, for that information.)
 
-   @smallexample
+   @src elisp
      (defun multiply-by-seven (number)
        "Multiply NUMBER by seven."
        (* 7 number))
-   @end smallexample
+   @end src
 
    This definition begins with a parenthesis and the symbol @c{defun},
    followed by the name of the function.
@@ -1902,9 +1902,9 @@ promoting software freedom.”
    shows how @c{multiply-by-seven} is used; but don't try to evaluate this
    yet!
 
-   @smallexample
+   @src elisp
      (multiply-by-seven 3)
-   @end smallexample
+   @end src
 
    The symbol @c{number}, specified in the function definition in the next
    section, is given or “bound to” the value 3 in the actual use of the
@@ -1933,11 +1933,11 @@ promoting software freedom.”
    name of the defined function.)  At the same time, this action installs the
    function definition.
 
-   @smallexample
+   @src elisp
      (defun multiply-by-seven (number)
        "Multiply NUMBER by seven."
        (* 7 number))
-   @end smallexample
+   @end src
 
    By evaluating this @c{defun}, you have just installed
    @c{multiply-by-seven} in Emacs.  The function is now just as much a part
@@ -1950,9 +1950,9 @@ promoting software freedom.”
    the following sample.  Place the cursor after the following expression and
    type @k{C-x C-e}.  The number 21 will appear in the echo area.
 
-   @smallexample
+   @src elisp
      (multiply-by-seven 3)
-   @end smallexample
+   @end src
 
    If you wish, you can read the documentation for the function by typing
    @k{C-h f} (@c{describe-function}) and then the name of the function,
@@ -1982,11 +1982,11 @@ promoting software freedom.”
     Lisp interpreter ignores, but that a human reader may find useful or
     enlightening.  The comment is that this is the “second version”.
 
-    @smallexample
+    @src elisp
       (defun multiply-by-seven (number)       ; @e{Second version.}
         "Multiply NUMBER by seven."
         (+ number number number number number number number))
-    @end smallexample
+    @end src
 
     The comment follows a semicolon, @'{;}.  In Lisp, everything on a line
     that follows a semicolon is a comment.  The end of the line is the end of
@@ -2026,12 +2026,12 @@ promoting software freedom.”
 
    Here is the code:
 
-   @smallexample
+   @src elisp
      (defun multiply-by-seven (number)       ; @e{Interactive version.}
        "Multiply NUMBER by seven."
        (interactive "p")
        (message "The result is %d" (* 7 number)))
-   @end smallexample
+   @end src
 
    You can install this code by placing your cursor after it and typing
    @k{C-x C-e}.  The name of the function will appear in your echo area.
@@ -2068,12 +2068,12 @@ promoting software freedom.”
     function @c{message} in the interactive version of @c{multiply-by-seven}.
     You will recall that the function definition looks like this:
 
-    @smallexample
+    @src elisp
       (defun multiply-by-seven (number)       ; @e{Interactive version.}
         "Multiply NUMBER by seven."
         (interactive "p")
         (message "The result is %d" (* 7 number)))
-    @end smallexample
+    @end src
 
     In this function, the expression, @c{(interactive "p")}, is a list of two
     elements.  The @c{"p"} tells Emacs to pass the prefix argument to the
@@ -2082,16 +2082,16 @@ promoting software freedom.”
     The argument will be a number.  This means that the symbol @c{number}
     will be bound to a number in the line:
 
-    @smallexample
+    @src elisp
       (message "The result is %d" (* 7 number))
-    @end smallexample
+    @end src
 
     For example, if your prefix argument is 5, the Lisp interpreter will
     evaluate the line as if it were:
 
-    @smallexample
+    @src elisp
       (message "The result is %d" (* 7 5))
-    @end smallexample
+    @end src
 
     (If you are reading this in GNU Emacs, you can evaluate this expression
     yourself.)  First, the interpreter will evaluate the inner list, which is
@@ -2134,9 +2134,9 @@ promoting software freedom.”
 
    Consider the function @c{zap-to-char}.  Its interactive expression is
 
-   @smallexample
+   @src elisp
      (interactive "p\ncZap to char: ")
-   @end smallexample
+   @end src
 
    The first part of the argument to @c{interactive} is @'{p}, with which you
    are already familiar.  This argument tells Emacs to interpret a ‘prefix’,
@@ -2321,12 +2321,12 @@ promoting software freedom.”
     variables @c{zebra} and @c{tiger}.  The body of the @c{let} expression is
     a list which calls the @c{message} function.
 
-    @smallexample
+    @src elisp
       (let ((zebra 'stripes)
             (tiger 'fierce))
         (message "One kind of animal has %s and another is %s."
                  zebra tiger))
-    @end smallexample
+    @end src
 
     Here, the varlist is @c{((zebra 'stripes) (tiger 'fierce))}.
 
@@ -2344,9 +2344,9 @@ promoting software freedom.”
     after the last parenthesis and typing @k{C-x C-e}.  When you do this, the
     following will appear in the echo area:
 
-    @smallexample
+    @src elisp
       "One kind of animal has stripes and another is fierce."
-    @end smallexample
+    @end src
 
     As we have seen before, the @c{message} function prints its first
     argument, except for @'{%s}.  In this example, the value of the variable
@@ -2359,7 +2359,7 @@ promoting software freedom.”
     initial values, they will automatically be bound to an initial value of
     @c{nil}, as in the following expression:
 
-    @smallexample
+    @src elisp
       (let ((birch 3)
             pine
             fir
@@ -2367,7 +2367,7 @@ promoting software freedom.”
         (message
          "Here are %d variables with %s, %s, and %s value."
          birch pine fir oak))
-    @end smallexample
+    @end src
 
     Here, the varlist is @c{((birch 3) pine fir (oak 'some))}.
 
@@ -2429,10 +2429,10 @@ promoting software freedom.”
    whether the number 5 is greater than the number 4.  Since it is, the
    message @'{5 is greater than 4!} will be printed.
 
-   @smallexample
+   @src elisp
      (if (> 5 4)                             ; @e{if-part}
          (message "5 is greater than 4!"))   ; @e{then-part}
-   @end smallexample
+   @end src
 
    (The function @c{>} tests whether its first argument is greater than its
    second argument and returns true if it is.)  @findex > (greater than)
@@ -2449,24 +2449,24 @@ promoting software freedom.”
    @c{characteristic} is @c{fierce}, then the message, @'{It's a tiger!} will
    be printed; otherwise, @c{nil} will be returned.
 
-   @smallexample
+   @src elisp
      (defun type-of-animal (characteristic)
        "Print message in echo area depending on CHARACTERISTIC.
      If the CHARACTERISTIC is the symbol ‘fierce’,
      then warn of a tiger."
        (if (equal characteristic 'fierce)
            (message "It's a tiger!")))
-   @end smallexample
+   @end src
 
    If you are reading this inside of GNU Emacs, you can evaluate the function
    definition in the usual way to install it in Emacs, and then you can
    evaluate the following two expressions to see the results:
 
-   @smallexample
+   @src elisp
      (type-of-animal 'fierce)
 
      (type-of-animal 'zebra)
-   @end smallexample
+   @end src
 
 @  Following sentences rewritten to prevent overfull hbox.
 
@@ -2518,16 +2518,16 @@ promoting software freedom.”
     In the @c{type-of-animal} function, the code for the @c{if} looks like
     this:
 
-    @smallexample
+    @src elisp
       (if (equal characteristic 'fierce)
           (message "It's a tiger!")))
-    @end smallexample
+    @end src
 
     Here, the true-or-false-test is the expression:
 
-    @smallexample
+    @src elisp
       (equal characteristic 'fierce)
-    @end smallexample
+    @end src
 
     In Lisp, @c{equal} is a function that determines whether its first
     argument is equal to its second argument.  The second argument is the
@@ -2570,11 +2570,11 @@ promoting software freedom.”
    For example, the following @c{if} expression prints the message @'{4 is
    not greater than 5!} when you evaluate it in the usual way:
 
-   @smallexample
+   @src elisp
      (if (> 4 5)                               ; @e{if-part}
          (message "4 falsely greater than 5!") ; @e{then-part}
        (message "4 is not greater than 5!"))   ; @e{else-part}
-   @end smallexample
+   @end src
 
    Note that the different levels of indentation make it easy to distinguish
    the then-part from the else-part.  (GNU Emacs has several commands that
@@ -2589,7 +2589,7 @@ promoting software freedom.”
    then evaluate the two subsequent expressions to pass different arguments
    to the function.
 
-   @smallexample
+   @src elisp
      (defun type-of-animal (characteristic)  ; @e{Second version.}
        "Print message in echo area depending on CHARACTERISTIC.
      If the CHARACTERISTIC is the symbol ‘fierce’,
@@ -2602,7 +2602,7 @@ promoting software freedom.”
      (type-of-animal 'fierce)
 
      (type-of-animal 'zebra)
-   @end smallexample
+   @end src
 
 @ Following sentence rewritten to prevent overfull hbox.
 
@@ -2658,7 +2658,7 @@ promoting software freedom.”
    else-part of the expression is evaluated and returned: @'{false} appears
    in the echo area.
 
-   @smallexample
+   @src elisp
      (if 4
          'true
        'false)
@@ -2666,22 +2666,22 @@ promoting software freedom.”
      (if nil
          'true
        'false)
-   @end smallexample
+   @end src
 
    Incidentally, if some other useful value is not available for a test that
    returns true, then the Lisp interpreter will return the symbol @c{t} for
    true.  For example, the expression @c{(> 5 4)} returns @c{t} when
    evaluated, as you can see by evaluating it in the usual way:
 
-   @smallexample
+   @src elisp
      (> 5 4)
-   @end smallexample
+   @end src
 
    On the other hand, this function returns @c{nil} if the test is false.
 
-   @smallexample
+   @src elisp
      (> 4 5)
-   @end smallexample
+   @end src
 
 ** @c{save-excursion}
 
@@ -2791,14 +2791,14 @@ promoting software freedom.”
    special forms.  Here they are described in brief, along with a few similar
    functions that have not been mentioned yet.
 
-   - eval-last-sexp -:
+   - eval-last-sexp ::
 
      Evaluate the last symbolic expression before the current location of
      point.  The value is printed in the echo area unless the function is
      invoked with an argument; in that case, the output is printed in the
      current buffer.  This command is normally bound to @k{C-x C-e}.
 
-   - defun -:
+   - defun ::
 
      Define function.  This special form has up to five parts: the name, a
      template for the arguments that will be passed to the function,
@@ -2835,7 +2835,7 @@ promoting software freedom.”
          (backward-prefix-chars))
      @end ignore
 
-   - interactive -:
+   - interactive ::
 
      Declare to the interpreter that the function can be used interactively.
      This special form may be followed by a string with one or more parts
@@ -2845,13 +2845,13 @@ promoting software freedom.”
 
      Common code characters are:
 
-       - b -: The name of an existing buffer.
+       - b :: The name of an existing buffer.
 
-       - f -: The name of an existing file.
+       - f :: The name of an existing file.
 
-       - p -: The numeric prefix argument.  (Note that this ‘p’ is lower case.)
+       - p :: The numeric prefix argument.  (Note that this ‘p’ is lower case.)
 
-       - r -:
+       - r ::
 
          Point and the mark, as two numeric arguments, smallest first.  This
          is the only code letter that specifies two successive arguments
@@ -2861,7 +2861,7 @@ promoting software freedom.”
      @'{interactive}} in @e{The GNU Emacs Lisp Reference Manual}, for a
      complete list of code characters.
 
-   - let -:
+   - let ::
 
      Declare that a list of variables is for use within the body of the
      @c{let} and give them an initial value, either @c{nil} or a specified
@@ -2880,7 +2880,7 @@ promoting software freedom.”
           foo bar))
      @end smallexample
 
-   - save-excursion -:
+   - save-excursion ::
 
      Record the values of point and mark and the current buffer before
      evaluating the body of this special form.  Restore the values of point
@@ -2895,7 +2895,7 @@ promoting software freedom.”
                      (goto-char (point-min)) (point))))
      @end smallexample
 
-   - if -:
+   - if ::
 
      Evaluate the first argument to the function; if it is true, evaluate the
      second argument; else evaluate the third argument, if there is one.
@@ -2912,10 +2912,10 @@ promoting software freedom.”
          (message "This is not version 22 Emacs"))
      @end smallexample
 
-   - <  -:
-     >  -:
-     <= -:
-     >= -:
+   - <  ::
+     >  ::
+     <= ::
+     >= ::
 
      The @c{<} function tests whether its first argument is smaller than its
      second argument.  A corresponding function, @c{>}, tests whether the
@@ -2925,13 +2925,13 @@ promoting software freedom.”
      second.  In all cases, both arguments must be numbers or markers
      (markers indicate positions in buffers).
 
-   - = -:
+   - = ::
 
      The @c{=} function tests whether two arguments, both numbers or markers,
      are equal.
 
-   - equal -:
-     eq    -:
+   - equal ::
+     eq    ::
 
      Test whether two objects are the same.  @c{equal} uses one meaning of
      the word ‘same’ and @c{eq} uses another: @c{equal} returns true if the
@@ -2939,10 +2939,10 @@ promoting software freedom.”
      the same book.  On the other hand, @c{eq}, returns true if both
      arguments are actually the same object.  @findex equal @findex eq
 
-   - string<      -:
-     string-lessp -:
-     string=      -:
-     string-equal -:
+   - string<      ::
+     string-lessp ::
+     string=      ::
+     string-equal ::
 
      The @c{string-lessp} function tests whether its first argument is
      smaller than the second argument.  A shorter, alternative name for the
@@ -2959,7 +2959,7 @@ promoting software freedom.”
      shorter, alternative name is @c{string=}.  There are no string test
      functions that correspond to @V{>}, @c{>=}, or @c{<=}.
 
-   - message -:
+   - message ::
 
      Print a message in the echo area. The first argument is a string that
      can contain @'{%s}, @'{%d}, or @'{%c} to print the value of arguments
@@ -2969,8 +2969,8 @@ promoting software freedom.”
      the character with that @eC{ascii} code.  (Various other %-sequences
      have not been mentioned.)
 
-   - setq -:
-     set  -:
+   - setq ::
+     set  ::
 
      The @c{setq} function sets the value of its first argument to the value
      of the second argument.  The first argument is automatically quoted by
@@ -2979,49 +2979,49 @@ promoting software freedom.”
      before setting the value returned by its first argument to the value
      returned by its second argument.
 
-   - buffer-name -:
+   - buffer-name ::
 
      Without an argument, return the name of the buffer, as a string.
 
-   - buffer-file-name -:
+   - buffer-file-name ::
 
      Without an argument, return the name of the file the buffer is visiting.
 
-   - current-buffer -:
+   - current-buffer ::
 
      Return the buffer in which Emacs is active; it may not be the buffer
      that is visible on the screen.
 
-   - other-buffer -:
+   - other-buffer ::
 
      Return the most recently selected buffer (other than the buffer passed
      to @c{other-buffer} as an argument and other than the current buffer).
 
-   - switch-to-buffer -:
+   - switch-to-buffer ::
 
      Select a buffer for Emacs to be active in and display it in the current
      window so users can look at it.  Usually bound to @k{C-x b}.
 
-   - set-buffer -:
+   - set-buffer ::
 
      Switch Emacs's attention to a buffer on which programs will run.  Don't
      alter what the window is showing.
 
-   - buffer-size -:
+   - buffer-size ::
 
      Return the number of characters in the current buffer.
 
-   - point -:
+   - point ::
 
      Return the value of the current position of the cursor, as an integer
      counting the number of characters from the beginning of the buffer.
 
-   - point-min -:
+   - point-min ::
 
      Return the minimum permissible value of point in the current buffer.
      This is 1, unless narrowing is in effect.
 
-   - point-max -:
+   - point-max ::
 
      Return the value of the maximum permissible value of point in the
      current buffer.  This is the end of the buffer, unless narrowing is in
@@ -3089,7 +3089,6 @@ promoting software freedom.”
    buffer, type @k{C-x b @k{RET}}.  (On some keyboards, the @k{META} key is
    labeled @k{ALT}.)
 
-   @c !!! 22.1.1 tags table location in this paragraph @cindex TAGS table,
    specifying @findex find-tag Depending on how the initial default values of
    your copy of Emacs are set, you may also need to specify the location of
    your ‘tags table’, which is a file called @f{TAGS}.  For example, if you
@@ -3708,54 +3707,54 @@ promoting software freedom.”
    Here is a brief summary of the various functions discussed in this
    chapter.
 
-   - describe-function -:
-     describe-variable -:
+   - describe-function ::
+     describe-variable ::
 
      Print the documentation for a function or variable.  Conventionally
      bound to @k{C-h f} and @k{C-h v}.
 
-   - find-tag -:
+   - find-tag ::
 
      Find the file containing the source for a function or variable and
      switch buffers to it, positioning point at the beginning of the item.
      Conventionally bound to @k{M-.} (that's a period following the @k{META}
      key).
 
-   - save-excursion -:
+   - save-excursion ::
 
      Save the location of point and mark and restore their values after the
      arguments to @c{save-excursion} have been evaluated.  Also, remember the
      current buffer and return to it.
 
-   - push-mark -:
+   - push-mark ::
 
      Set mark at a location and record the value of the previous mark on the
      mark ring.  The mark is a location in the buffer that will keep its
      relative position even if text is added to or removed from the buffer.
 
-   - goto-char -:
+   - goto-char ::
 
      Set point to the location specified by the value of the argument, which
      can be a number, a marker, or an expression that returns the number of a
      position, such as @c{(point-min)}.
 
-   - insert-buffer-substring -:
+   - insert-buffer-substring ::
 
      Copy a region of text from a buffer that is passed to the function as an
      argument and insert the region into the current buffer.
 
-   - mark-whole-buffer -:
+   - mark-whole-buffer ::
 
      Mark the whole buffer as a region.  Normally bound to @k{C-x h}.
 
-   - set-buffer -:
+   - set-buffer ::
 
      Switch the attention of Emacs to another buffer, but do not change the
      window being displayed.  Used when the program rather than a human is to
      work on a different buffer.
 
-   - get-buffer-create -:
-     get-buffer -:
+   - get-buffer-create ::
+     get-buffer ::
 
      Find a named buffer or create one if a buffer of that name does not
      exist.  The @c{get-buffer} function returns @c{nil} if the named buffer
@@ -4545,32 +4544,32 @@ promoting software freedom.”
 
    Here is a brief summary of some of the topics covered in this chapter.
 
-   - or -:
+   - or ::
 
      Evaluate each argument in sequence, and return the value of the first
      argument that is not @c{nil}; if none return a value that is not
      @c{nil}, return @c{nil}.  In brief, return the first true value of the
      arguments; return a true value if one @e{or} any of the others are true.
 
-   - and -:
+   - and ::
 
      Evaluate each argument in sequence, and if any are @c{nil}, return
      @c{nil}; if none are @c{nil}, return the value of the last argument.  In
      brief, return a true value only if all the arguments are true; return a
      true value if one @e{and} each of the others is true.
 
-   - &optional -:
+   - &optional ::
 
      A keyword used to indicate that an argument to a function definition is
      optional; this means that the function can be evaluated without the
      argument, if desired.
 
-   - prefix-numeric-value -:
+   - prefix-numeric-value ::
 
      Convert the ‘raw prefix argument’ produced by @c{(interactive "P")} to a
      numeric value.
 
-   - forward-line -:
+   - forward-line ::
 
      Move point forward to the beginning of the next line, or if the argument
      is greater than one, forward that many lines.  If it can't move as far
@@ -4578,11 +4577,11 @@ promoting software freedom.”
      can and then returns a count of the number of additional lines it was
      supposed to move but couldn't.
 
-   - erase-buffer -:
+   - erase-buffer ::
 
      Delete the entire contents of the current buffer.
 
-   - bufferp -:
+   - bufferp ::
 
      Return @c{t} if its argument is a buffer; otherwise return @c{nil}.
 
@@ -6551,9 +6550,12 @@ promoting software freedom.”
      Related Review}.)
 
      The expression determines whether the second argument to
-     @c{menu-bar-update-yank-menu} is true or not.  @ignore ;; If we're
-     supposed to be extending an existing string, and that ;; string really
-     is at the front of the menu, then update it in place.  @end ignore
+     @c{menu-bar-update-yank-menu} is true or not.
+
+     @ignore
+       ;; If we're supposed to be extending an existing string, and that
+       ;; string really is at the front of the menu, then update it in place.
+     @end ignore
 
      @c{menu-bar-update-yank-menu} is one of the functions that make it
      possible to use the ‘Select and Paste’ menu in the Edit item of a menu
@@ -6650,12 +6652,12 @@ promoting software freedom.”
             Sdelete_and_extract_region, 2, 2, 0,
             doc: /* Delete the text between START and END and return it.  */)
             (Lisp_Object start, Lisp_Object end)
-     @{
+     {
        validate_region (&start, &end);
        if (XINT (start) == XINT (end))
          return empty_unibyte_string;
        return del_range_1 (XINT (start), XINT (end), 1, 1);
-     @}
+     }
    @end smallexample
 
    Without going into the details of the macro writing process, let me point
@@ -6859,8 +6861,8 @@ promoting software freedom.”
 
    Here is a brief summary of some recently introduced functions.
 
-   - car -:
-     cdr -:
+   - car ::
+     cdr ::
 
      @c{car} returns the first element of a list; @c{cdr} returns the second
      and subsequent elements of a list.
@@ -6874,7 +6876,7 @@ promoting software freedom.”
             ⇒ (2 3 4 5 6 7)
      @end smallexample
 
-   - cons -:
+   - cons ::
 
      @c{cons} constructs a list by prepending its first argument to its
      second argument.
@@ -6886,12 +6888,12 @@ promoting software freedom.”
             ⇒ (1 2 3 4)
      @end smallexample
 
-   - funcall -:
+   - funcall ::
 
      @c{funcall} evaluates its first argument as a function.  It passes its
      remaining arguments to its first argument.
 
-   - nthcdr -:
+   - nthcdr ::
 
      Return the result of taking @eC{cdr} ‘n’ times on a list.  The @m(n^th)
      @c{cdr}.  The ‘rest of the rest’, as it were.
@@ -6903,8 +6905,8 @@ promoting software freedom.”
             ⇒ (4 5 6 7)
      @end smallexample
 
-   - setcar -:
-     setcdr -:
+   - setcar ::
+     setcdr ::
 
      @c{setcar} changes the first element of a list; @c{setcdr} changes the
      second and subsequent elements of a list.
@@ -6925,7 +6927,7 @@ promoting software freedom.”
             ⇒ (37 "foo" "bar")
      @end smallexample
 
-   - progn -:
+   - progn ::
 
      Evaluate each argument in sequence and then return the value of the
      last.
@@ -6937,12 +6939,12 @@ promoting software freedom.”
             ⇒ 4
      @end smallexample
 
-   - save-restriction -:
+   - save-restriction ::
 
      Record whatever narrowing is in effect in the current buffer, if any,
      and restore that narrowing after evaluating the arguments.
 
-   - search-forward -:
+   - search-forward ::
 
      Search for a string, and if the string is found, move point.  With a
      regular expression, use the similar @c{re-search-forward}.  (See Section
@@ -6961,9 +6963,9 @@ promoting software freedom.”
      4. Optionally, how many times to repeat the search; if negative, the
         search goes backwards.
 
-   - kill-region               -:
-     delete-and-extract-region -:
-     copy-region-as-kill       -:
+   - kill-region               ::
+     delete-and-extract-region ::
+     copy-region-as-kill       ::
 
 
      @c{kill-region} cuts the text between point and mark from the buffer and
@@ -7361,7 +7363,6 @@ promoting software freedom.”
              (or do-not-move
                  (setq kill-ring-yank-pointer ARGth-kill-element))
              (car ARGth-kill-element)))))
-
    @end ignore
 
 ** Exercises with @c{yank} and @c{nthcdr}
@@ -8389,12 +8390,12 @@ promoting software freedom.”
      evaluated first; then the other parts in sequence.  Here are the steps
      in detail:
 
-     - Step 1 Evaluate the innermost expression. -:
+     - Step 1 Evaluate the innermost expression. ::
 
        The innermost expression is @c{(1- number)} so Emacs decrements the
        value of @c{number} from 2 to 1.
 
-     - Step 2 Evaluate the @c{triangle-recursively} function. -:
+     - Step 2 Evaluate the @c{triangle-recursively} function. ::
 
 
        The Lisp interpreter creates an individual instance of
@@ -8407,12 +8408,12 @@ promoting software freedom.”
        argument of 1.  This means that this evaluation of
        @c{triangle-recursively} returns 1.
 
-     - Step 3 Evaluate the value of @c{number}. -:
+     - Step 3 Evaluate the value of @c{number}. ::
 
        The variable @c{number} is the second element of the list that starts
        with @c{+}; its value is 2.
 
-     - Step 4 Evaluate the @c{+} expression. -:
+     - Step 4 Evaluate the @c{+} expression. ::
 
        The @c{+} expression receives two arguments, the first from the
        evaluation of @c{number} (Step 3) and the second from the evaluation
@@ -8426,19 +8427,19 @@ promoting software freedom.”
 
      Suppose that @c{triangle-recursively} is called with an argument of 3.
 
-     - Step 1 Evaluate the do-again-test. -:
+     - Step 1 Evaluate the do-again-test. ::
 
        The @c{if} expression is evaluated first.  This is the do-again test
        and returns false, so the else-part of the @c{if} expression is
        evaluated.  (Note that in this example, the do-again-test causes the
        function to call itself when it tests false, not when it tests true.)
 
-     - Step 2 Evaluate the innermost expression of the else-part. -:
+     - Step 2 Evaluate the innermost expression of the else-part. ::
 
        The innermost expression of the else-part is evaluated, which
        decrements 3 to 2.  This is the next-step-expression.
 
-     - Step 3 Evaluate the @c{triangle-recursively} function. -:
+     - Step 3 Evaluate the @c{triangle-recursively} function. ::
 
        The number 2 is passed to the @c{triangle-recursively} function.
 
@@ -8447,7 +8448,7 @@ promoting software freedom.”
        the sequence of actions described earlier, it returns a value of 3.
        So that is what will happen here.
 
-     - Step 4 Evaluate the addition. -:
+     - Step 4 Evaluate the addition. ::
 
        3 will be passed as an argument to the addition and will be added to
        the number with which the function was called, which is 3.
@@ -9083,13 +9084,13 @@ promoting software freedom.”
 
      This regular expression can be deciphered as follows:
 
-     - [.?!] -:
+     - [.?!] ::
 
        The first part of the pattern is the three characters, a period, a
        question mark and an exclamation mark, within square brackets.  The
        pattern must begin with one or other of these characters.
 
-     - []\"')@}]* -:
+     - []\"')@}]* ::
 
        The second part of the pattern is the group of closing braces and
        quotation marks, which can appear zero or more times.  These may
@@ -9101,7 +9102,7 @@ promoting software freedom.”
        group surrounded by square brackets, @'{[]}) may be repeated zero or
        more times.
 
-     - \\($\\|   \\|  \\) -:
+     - \\($\\|   \\|  \\) ::
 
        The third part of the pattern is one or other of: either the end of a
        line, or two blank spaces, or a tab.  The double back-slashes are used
@@ -9112,7 +9113,7 @@ promoting software freedom.”
        indicate the end of a line and both the two spaces and the tab are
        each inserted as is to indicate what they are.
 
-     - [@k{RET}]* -:
+     - [@k{RET}]* ::
 
        Finally, the last part of the pattern indicates that the end of the
        line or the whitespace following the period, question mark or
@@ -9677,25 +9678,25 @@ promoting software freedom.”
     (i.e., a non-@c{nil}) value when they are evaluated; otherwise,
     @c{fill-prefix-regexp} is bound to @c{nil}.
 
-    - fill-prefix -:
+    - fill-prefix ::
 
       When this variable is evaluated, the value of the fill prefix, if any,
       is returned.  If there is no fill prefix, this variable returns
       @c{nil}.
 
-    - (not (equal fill-prefix "") -:
+    - (not (equal fill-prefix "") ::
 
       This expression checks whether an existing fill prefix is an empty
       string, that is, a string with no characters in it.  An empty string is
       not a useful fill prefix.
 
-    - (not paragraph-ignore-fill-prefix) -:
+    - (not paragraph-ignore-fill-prefix) ::
 
       This expression returns @c{nil} if the variable
       @c{paragraph-ignore-fill-prefix} has been turned on by being set to a
       true value such as @c{t}.
 
-    - (regexp-quote fill-prefix) -:
+    - (regexp-quote fill-prefix) ::
 
       This is the last argument to the @c{and} special form.  If all the
       arguments to the @c{and} are true, the value resulting from evaluating
@@ -10090,7 +10091,7 @@ promoting software freedom.”
 
    Here is a brief summary of some recently introduced functions.
 
-   - while -:
+   - while ::
 
      Repeatedly evaluate the body of the expression so long as the first
      element of the body tests true.  Then return @c{nil}.  (The expression
@@ -10113,7 +10114,7 @@ promoting software freedom.”
      function returns a string formatted from its arguments the way
      @c{message} formats its arguments; @c{\n} produces a new line.)
 
-   - re-search-forward -:
+   - re-search-forward ::
 
      Search for a pattern, and if the pattern is found, move point to rest
      just after it.
@@ -10131,7 +10132,7 @@ promoting software freedom.”
      4. Optionally, how many times to repeat the search; if negative, the
         search goes backwards.
 
-   - let* -:
+   - let* ::
 
      Bind some variables locally to particular values, and then evaluate the
      remaining arguments, returning the value of the last one.  While binding
@@ -10147,17 +10148,17 @@ promoting software freedom.”
             ⇒ `bar' is 21.
      @end smallexample
 
-   - match-beginning -:
+   - match-beginning ::
 
      Return the position of the start of the text found by the last regular
      expression search.
 
-   - looking-at -:
+   - looking-at ::
 
      Return @c{t} for true if the text after point matches the argument,
      which should be a regular expression.
 
-   - eobp -:
+   - eobp ::
 
      Return @c{t} for true if point is at the end of the accessible part of a
      buffer.  The end of the accessible part is the end of the buffer if the
@@ -12271,10 +12272,10 @@ promoting software freedom.”
 
   If you are reading this in Info, you can see how this works by switching to
   another buffer, such as the @f{*scratch*} buffer, placing point somewhere
-  in the buffer, typing @k{M-:}, typing the @c{insert-rectangle} expression
+  in the buffer, typing @k{M::}, typing the @c{insert-rectangle} expression
   into the minibuffer at the prompt, and then typing @k{RET}.  This causes
   Emacs to evaluate the expression in the minibuffer, but to use as the value
-  of point the position of point in the @f{*scratch*} buffer.  (@k{M-:} is
+  of point the position of point in the @f{*scratch*} buffer.  (@k{M::} is
   the keybinding for @c{eval-expression}. Also, @c{nil} does not appear in
   the @f{*scratch*} buffer since the expression is evaluated in the
   minibuffer.)
@@ -12614,7 +12615,7 @@ promoting software freedom.”
    - Switch to the @f{*scratch*} buffer and place the cursor where you want
      the graph to start.
 
-   - Type @k{M-:} (@c{eval-expression}).
+   - Type @k{M::} (@c{eval-expression}).
 
    - Yank the @c{graph-body-print} expression into the minibuffer with
      @k{C-y} (@c{yank)}.
@@ -13623,7 +13624,7 @@ promoting software freedom.”
        (keyboard-translate ?\C-? ?\C-h)
      @end smallexample
 
-   - Turn off a blinking cursor! -:
+   - Turn off a blinking cursor! ::
 
      @smallexample
        (if (fboundp 'blink-cursor-mode)
@@ -13632,7 +13633,7 @@ promoting software freedom.”
 
      or start GNU Emacs with the command @c{emacs -nbc}.
 
-   - When using ‘grep’@* -:
+   - When using ‘grep’@* ::
 
      - @'{-i} :: Ignore case distinctions@*
 
@@ -13656,7 +13657,7 @@ promoting software freedom.”
        @end smallexample
      @end ignore
 
-   - Find an existing buffer, even if it has a different name@* -:
+   - Find an existing buffer, even if it has a different name@* ::
 
      This avoids problems with symbolic links.
 
@@ -13664,7 +13665,7 @@ promoting software freedom.”
        (setq find-file-existing-other-name t)
      @end smallexample
 
-   - Set your language environment and default input method -:
+   - Set your language environment and default input method ::
 
      @smallexample
        (set-language-environment "latin-1")
@@ -13734,7 +13735,7 @@ promoting software freedom.”
    So I reset my mode line to look like this:
 
    @smallexample
-     -:-- foo.texi   rattlesnake:/home/bob/  Line 1  (Texinfo Fill) Top
+     ::-- foo.texi   rattlesnake:/home/bob/  Line 1  (Texinfo Fill) Top
    @end smallexample
 
    I am visiting a file called @f{foo.texi}, on my machine @f{rattlesnake} in
@@ -15353,7 +15354,7 @@ promoting software freedom.”
     3. Switch to the @f{*scratch*} buffer and place the cursor where you want
        the axis labels to start.
 
-    4. Type @k{M-:} (@c{eval-expression}).
+    4. Type @k{M::} (@c{eval-expression}).
 
     5. Yank the @c{graph-body-print} expression into the minibuffer with
        @k{C-y} (@c{yank)}.
@@ -15611,7 +15612,7 @@ promoting software freedom.”
     3. Switch to the @f{*scratch*} buffer and place the cursor where you want
        the axis labels to start.
 
-    4. Type @k{M-:} (@c{eval-expression}).
+    4. Type @k{M::} (@c{eval-expression}).
 
     5. Yank the test expression into the minibuffer with @k{C-y} (@c{yank)}.
 
@@ -15770,7 +15771,7 @@ promoting software freedom.”
     3. Switch to the @f{*scratch*} buffer and place the cursor where you want
        the axis labels to start.
 
-    4. Type @k{M-:} (@c{eval-expression}).
+    4. Type @k{M::} (@c{eval-expression}).
 
     5. Yank the test expression into the minibuffer with @k{C-y} (@c{yank)}.
 
@@ -16602,6 +16603,7 @@ promoting software freedom.”
     The largest group of functions contain 10--19 words and symbols each.
 
 * Appendix D Free Software and Free Manuals
+  @ @b{by Richard M. Stallman}
 
   The biggest deficiency in free operating systems is not in the software––it
   is the lack of good free manuals that we can include in these systems.
@@ -17173,11 +17175,11 @@ promoting software freedom.”
 
 * footnotes
 
-  - @N{1} -: The single apostrophe or quotation mark is an abbreviation for
+  - @N{1} :: The single apostrophe or quotation mark is an abbreviation for
     the function @c{quote}; you need not think about functions now; functions
     are defined in Section @l{Generate an Error Message}.
 
-  - @N{2} -: It is curious to track the path by which the word ‘argument’
+  - @N{2} :: It is curious to track the path by which the word ‘argument’
     came to have two different meanings, one in mathematics and the other in
     everyday English.  According to the @q{Oxford English Dictionary}, the
     word derives from the Latin for @'{to make clear, prove}; thus it came to
@@ -17190,24 +17192,24 @@ promoting software freedom.”
     contrast, in Emacs Lisp, a symbol cannot have two different function
     definitions at the same time.)
 
-  - @N{3} -: @c{(quote hello)} is an expansion of the abbreviation
+  - @N{3} :: @c{(quote hello)} is an expansion of the abbreviation
     @c{'hello}.
 
-  - @N{4} -: Actually, you can use @c{%s} to print a number.  It is
+  - @N{4} :: Actually, you can use @c{%s} to print a number.  It is
     non-specific.  @c{%d} prints only the part of a number left of a decimal
     point, and not anything that is not a number.
 
-  - @N{5} -: Actually, by default, if the buffer from which you just switched
+  - @N{5} :: Actually, by default, if the buffer from which you just switched
     is visible to you in another window, @c{other-buffer} will choose the
     most recent buffer that you cannot see; this is a subtlety that I often
     forget.
 
-  - @N{6} -: Or rather, to save typing, you probably only typed @k{RET} if
+  - @N{6} :: Or rather, to save typing, you probably only typed @k{RET} if
     the default buffer was @f{*scratch*}, or if it was different, then you
     typed just part of the name, such as @c{*sc}, pressed your @k{TAB} key to
     cause it to expand to the full name, and then typed @k{RET}.
 
-  - @N{7} -: Remember, this expression will move you to your most recent
+  - @N{7} :: Remember, this expression will move you to your most recent
     other buffer that you cannot see.  If you really want to go to your most
     recently selected buffer, even if you can still see it, you need to
     evaluate the following more complex expression:
@@ -17223,22 +17225,22 @@ promoting software freedom.”
     most likely use @k{C-x o} (@c{other-window}) to go to another visible
     buffer.
 
-  - @N{8} -: According to Jared Diamond in @q{Guns, Germs, and Steel}, “…
+  - @N{8} :: According to Jared Diamond in @q{Guns, Germs, and Steel}, “…
     zebras become impossibly dangerous as they grow older” but the claim here
     is that they do not become fierce like a tiger.  (1997, W. W. Norton and
     Co., ISBN 0-393-03894-2, page
     171)
 
-  - @N{9} -: Actually, you can @c{cons} an element to an atom to produce a
+  - @N{9} :: Actually, you can @c{cons} an element to an atom to produce a
     dotted pair.  Dotted pairs are not discussed here; see Section @l{Dotted
     Pair Notation, , Dotted Pair Notation} in @e{The GNU Emacs Lisp Reference
     Manual}.
 
-  - @N{10} -: More precisely, and requiring more expert knowledge to
+  - @N{10} :: More precisely, and requiring more expert knowledge to
     understand, the two integers are of type ‘Lisp_Object’, which can also be
     a C union instead of an integer type.
 
-  - @N{11} -: You can write recursive functions to be frugal or wasteful of
+  - @N{11} :: You can write recursive functions to be frugal or wasteful of
     mental or computer resources; as it happens, methods that people find
     easy––that are frugal of ‘mental resources’––sometimes use considerable
     computer resources.  Emacs was designed to run on machines that we now
@@ -17247,10 +17249,10 @@ promoting software freedom.”
     @c{max-lisp-eval-depth}.  In my @f{.emacs} file, I set them to 15 and 30
     times their default value.
 
-  - @N{12} -: The phrase @:{tail recursive} is used to describe such a
+  - @N{12} :: The phrase @:{tail recursive} is used to describe such a
     process, one that uses ‘constant space’.
 
-  - @N{13} -: The jargon is mildly confusing: @c{triangle-recursive-helper}
+  - @N{13} :: The jargon is mildly confusing: @c{triangle-recursive-helper}
     uses a process that is iterative in a procedure that is recursive.  The
     process is called iterative because the computer need only record the
     three values, @c{sum}, @c{counter}, and @c{number}; the procedure is
@@ -17259,13 +17261,13 @@ promoting software freedom.”
     recursive.  The word ‘recursive’ has different meanings in the two
     contexts.
 
-  - @N{14} -: You may also add @f{.el} to @f{~/.emacs} and call it a
+  - @N{14} :: You may also add @f{.el} to @f{~/.emacs} and call it a
     @f{~/.emacs.el} file.  In the past, you were forbidden to type the extra
     keystrokes that the name @f{~/.emacs.el} requires, but now you may.  The
     new format is consistent with the Emacs Lisp file naming conventions; the
     old format saves typing.
 
-  - @N{15} -: When I start instances of Emacs that do not load my @f{.emacs}
+  - @N{15} :: When I start instances of Emacs that do not load my @f{.emacs}
     file or any site file, I also turn off blinking:
 
     @smallexample
@@ -17278,6 +17280,6 @@ promoting software freedom.”
       emacs -Q -D
     @end smallexample
 
-  - @n{16} -: I also run more modern window managers, such as Enlightenment,
+  - @n{16} :: I also run more modern window managers, such as Enlightenment,
     Gnome, or KDE; in those cases, I often specify an image rather than a
     plain color.
