@@ -946,10 +946,10 @@ and promoting software freedom.”
 @    evaluating @c{(+ 2 2)}, we can infer that the symbol @c{+} must have a set
 @    of instructions for the computer to obey and those instructions must be to
 @    add the numbers that follow the @c{+}.
-   Por otro lado, ya que fuimos capaces de añadir 2 más 2 de manera
+   Por otro lado, ya que fuimos capaces de sumar 2 más 2 de manera
    exitosa, evaluando @c{(+ 2 2)}, se puede inferir que el símbolo @c{+} debe
-   tener un conjunto de instrucciones para que el ordenador obedezca y estas
-   instrucciones deben añadir los números que siguen el @c{+}.
+   tener un conjunto de instrucciones que el ordenador ejecuta y estas
+   instrucciones deben sumar los números despues del @c{+}.
 
 @    It is possible to prevent Emacs entering the debugger in cases like this.
 @    We do not explain how to do that here, but we will mention what the result
@@ -1027,11 +1027,11 @@ and promoting software freedom.”
 @    symbol @c{plus} as well as to the symbol @c{+} (and are in some dialects
 @    of Lisp).  Among humans, I can be referred to as @'{Robert} as well as
 @    @'{Bob} and by other words as well.
-   En Lisp, un conjunto de instrucciones puede adjuntarse a varios
-   nombres. Por ejemplo, las instrucciones de ordenador para añadir números
-   pueden ser enlazados al símbolo @c{más} tan bien como el símbolo @c{+} (y
-   son en algunos dialectos de Lisp). Entre humanos, puede referirse a
-   @'{Robert} tan bien como @'{Bob} y en otras palabras también.
+   En Lisp, un conjunto de instrucciones puede ligarse a varios nombres. Por
+   ejemplo, las instrucciones de ordenador para sumar números pueden ligarse
+   al símbolo @c{más} asi como a el símbolo @c{+} (y se encuentran en algunos
+   dialectos de Lisp). Entre humanos, puede referirse a @'{Robert} tan bien
+   como @'{Bob} y con otras palabras también.
 
 @    On the other hand, a symbol can have only one function definition attached
 @    to it at a time.  Otherwise, the computer would be confused as to which
@@ -1039,21 +1039,21 @@ and promoting software freedom.”
 @    the world could be named @'{Bob}.  However, the function definition to
 @    which the name refers can be changed readily.  (See Section @l{Install a
 @    Function Definition}.)
-   Por otro lado, un símbolo puede tener solo una función adjunta en un
-   momento. De otro modo, el ordenador estaría confundido acerca de qué
+   Por otra parte, un símbolo puede estar ligado solo con una función a la
+   vez. De lo contrario, el ordenador estaría confundido acerca de qué
    definición usar. Si este fuera el caso, solo una persona en el mundo
-   podría llamarse @'{Bob}. Sin embargo, la definición de función para la que
-   el nombre se refiere puede ser cambiada de manera legible. (Ver Sección
+   podría llamarse @'{Bob}. Sin embargo, la definición de función a la que el
+   nombre hace referencia puede cambiarse fácilmente. (Ver Sección
    @l{Instalar una Definición de Función}.)
 
 @    Since Emacs Lisp is large, it is customary to name symbols in a way that
 @    identifies the part of Emacs to which the function belongs.  Thus, all the
 @    names for functions that deal with Texinfo start with @'{texinfo-} and
 @    those for functions that deal with reading mail start with @'{rmail-}.
-   Puesto que Emacs Lisp es grande, es costumbre nombrar símbolos de un modo
-   que identifique la parte de Emacs de la función que pertenece. De este
-   modo, todos los nombres de funciones que tratan con Texinfo empiezan con
-   @'{texinfo-} y estas funciones que tratan con la lectura de correo
+   Ya que Emacs Lisp es extenso, se acostumbra nombrar los símbolos de manera
+   que pueda establecerse a que parte de Emacs pertenece la función. En
+   consecuencia, todos los nombres de funciones relacionadas con Texinfo
+   empiezan con @'{texinfo-} y aquellas relacionadas con la lectura de correo
    empiezan con @'{rmail-}.
 
 @ ** The Lisp Interpreter
@@ -1067,23 +1067,23 @@ and promoting software freedom.”
 @    whether it has a function definition.  If it does, the interpreter carries
 @    out the instructions in the function definition.  Otherwise, the
 @    interpreter prints an error message.
-   Basado en lo que se ha visto, ahora se puede empezar a entender lo que el
-   intéprete Lisp hace cuando ejecutamos un comando para evaluar una
-   lista. Primero, examina si hay un símbolo quote (cita) antes de la lista;
-   si el intérprete da la lista. Por otro lado, si no hay cita, el intéprete
-   mira si el primer elemento en la lista tiene una definición de función. De
-   otro modo, el intérprete imprime un mensaje de error.
+   Basado en lo que se ha visto, ahora podemos empezar a entender lo que hace
+   el intéprete de Lisp cuando mandamos a evaluar una lista. Primero, examina
+   si hay un símbolo cita antes de la lista; si lo hay, el intérprete nos da
+   la lista. Por otro lado, si no hay cita, el intéprete mira si el primer
+   elemento en la lista tiene una definición de función. Si no, el intérprete
+   imprime un mensaje de error.
 
 @    This is how Lisp works.  Simple.  There are added complications which we
 @    will get to in a minute, but these are the fundamentals.  Of course, to
 @    write Lisp programs, you need to know how to write function definitions
 @    and attach them to names, and how to do this without confusing either
 @    yourself or the computer.
-   Así es como Lisp trabaja. Simple. Hay complicaciones añadidas que
-   tendremos en un minuto, pero estas son fundamentales. De acuerdo, para
-   escribir programas Lisp, se necesita conocer como escribir definiciones de
-   función y adjuntarlas a nombres, y como hacer esto sin confundirnos a
-   nosotros mismos o al ordenador.
+   Así es como Lisp trabaja. Simple. Hay complicaciones añadidas que veremos
+   en un minuto, pero estos son los fundamentos. Claro está, para escribir
+   programas Lisp, se necesita conocer como escribir definiciones de función
+   y vincularlas a nombres, y como hacer esto sin confundirnos a nosotros
+   mismos o al ordenador.
 
 @    Now, for the first complication.  In addition to lists, the Lisp
 @    interpreter can evaluate a symbol that is not quoted and does not have
@@ -1091,22 +1091,21 @@ and promoting software freedom.”
 @    symbol's value as a @:{variable}.  This situation is described in the
 @    section on variables.  (See Section @l{Variables}.)
    Ahora, una primera complicación. Además de las listas, el intérprete Lisp
-   puede evaluar un símbolo sin el símbolo cita (quote) y no tiene paréntesis
-   alrededor. El intérprete Lisp intentará determinar el valor del símbolo
-   como una @:{variable}.  Esta situación está descrita en la sección acerca
-   de variable. (Ver @l{Variables}.)
+   puede evaluar un símbolo no citado que no tiene paréntesis en torno a el.
+   El intérprete Lisp intentará determinar el valor del símbolo como una
+   @:{variable}.  Esta situación es descrita en el apartado de las variables.
+   (Ver @l{Variables}.)
 
 @    The second complication occurs because some functions are unusual and do
-@    not work in the usual manner.  Those that don't are called @:{special
+@    not work in the usual manner.  Those that don't are called @:{special       ¤
 @    forms}.  They are used for special jobs, like defining a function, and
 @    there are not many of them.  In the next few chapters, you will be
 @    introduced to several of the more important special forms.
    La segunda complicación ocurre debido a que algunas funciones son
-   inusuales y no funcionan de la manera usual. Estas que no son llamadas
+   inusuales y no funcionan de la manera habitual. Estas son llamadas
    @:{formas especiales}. Son usadas para trabajos especiales, como definir
-   una función, y no son muchas de ellas. En los siguientes próximos
-   capítulos, se introducirán varias de las formas especiales más
-   importantes.
+   una función, y no son muchas de ellas. En los siguientes capítulos, se
+   presentaran varias de las formas especiales más importantes.
 
 @    The third and final complication is this: if the function that the Lisp
 @    interpreter is looking at is not a special form, and if it is part of a
@@ -1118,19 +1117,19 @@ and promoting software freedom.”
 @    first.  The interpreter works on the innermost list first, to evaluate the
 @    result of that list.  The result may be used by the enclosing expression.
    La tercera y final complicación es la siguiente: si la función que el
-   intérprete Lisp está buscando no es una forma especial, y si eso es parte
-   de una lista, el intérprete Lisp quiere ver si la lista tiene una lista
-   dentro. Si hay una lista dentro, el intérprete Lisp primero mira qué hacer
-   con la lista dentro, y entonces trabaja en la lista de fuera. Si todavía
-   hay otra lista embebida dentro de la propia lista, eso funciona en esta
-   primero, y así. Eso siempre funciona en la lista más interior. El
-   intérprete funciona más interior primero, para evaluar el resultado de
-   esta lista. El resultado puede ser usado por la expresión entre
-   paréntesis.
+   intérprete Lisp está buscando no es una forma especial, y si es parte de
+   una lista, el intérprete Lisp mira si la lista tiene una lista dentro de
+   ella. Si hay una lista dentro, el intérprete Lisp primero descubre qué
+   hacer con la lista interior, y luego trabaja en la lista exterior. Si aún
+   hay otra lista embebida dentro de la lista interna, trabaja en esta
+   primero, y así. Siempre se trabaja en la lista m@'as interna primero. El
+   interprete trabaja en la lista más interana primero, para evaluar el
+   resultado de esta lista. El resultado puede ser usado por la expresión
+   entre paréntesis.
 
 @    Otherwise, the interpreter works left to right, from one expression to the
 @    next.
-   De otra manera, el intérprete trabaja de izquierda a derecha, desde una
+   Por lo demas, el intérprete trabaja de izquierda a derecha, desde una
    expresión a la siguiente.
 
 @ *** Byte Compiling
@@ -1142,8 +1141,8 @@ and promoting software freedom.”
 @     code, which is not humanly readable.  Byte compiled code runs faster than
 @     humanly readable code.
     Otro aspecto de interpretación: el intérprete Lisp es capaz de
-    interpretar dos tipos de entidad: código humanemente legible, en el que
-    focalizarse exclusivamente, y especialmente código procesado, llamado
+    interpretar dos tipos de entidad: código humanamente legible, en el que
+    nos centraremos exclusivamente, y código especialmente procesado, llamado
     @:{byte compilado}, que no es humanamente legible. El código máquina
     compilado se ejecuta más rápido que el código humanamente legible.
 
@@ -1153,23 +1152,23 @@ and promoting software freedom.”
 @     extension rather than a @f{.el} extension.  You will see both kinds of
 @     file in the @f{emacs/lisp} directory; the files to read are those with
 @     @f{.el} extensions.
-    Tu puedes transformar código legible por humanos dentro de código
-    compilado ejecutando un de los comandos compilados tales como
-    @c{byte-compile-file}. El código compilado es normamelte almacenado en un
-    fichero que finaliza con una extensión @f{.elc} en vez de una extensión
-    @f{.el}. Verás ambos tipos de ficheros en el directorio @f{emacs/lisp};
-    los ficheros para leer estos son con extensiones @f{.el}.
+    Tu puedes transformar código legible por humanos en código compilado
+    ejecutando uno de los comandos de compilació como @c{byte-compile-file}.
+    El código compilado es normalmente almacenado en un fichero que finaliza
+    con una extensión @f{.elc} en vez de una extensión @f{.el}. Verás ambos
+    tipos de ficheros en el directorio @f{emacs/lisp}; los ficheros para leer
+    estos tinen extensiones @f{.el}.
 
 @     As a practical matter, for most things you might do to customize or
 @     extend Emacs, you do not need to byte compile; and I will not discuss the
 @     topic here.  See Section @l{info:emacs#Byte Compilation, Byte
 @     Compilation} in @e{The GNU Emacs Lisp Reference Manual}, for a full
 @     description of byte compilation.
-    Como una cuestión práctica, para la mayoría de las cosas tu podrías
-    personalizar o extender Emacs, no necesitas compilar byte; y no
-    discutirás el asunto aquí. Ver Seccion Compilación de Byte en El Manual
-    de Referencia de GNU Emacs, para una completa descripción de compilación
-    byte.
+    Como una cuestión práctica, para hacer la mayoría de las cosas como
+    personalizar o extender Emacs, no necesitas compilar codigo; y no
+    comentare el asunto aquí. Ver Seccion @l{info:emacs#Byte Compilation,
+    Código Compilado) en @e(El Manual de Referencia de GNU Emacs), para una
+    completa descripción de la compilacion de código.
 
 @ ** Evaluation
 ** Evaluación
@@ -1179,10 +1178,10 @@ and promoting software freedom.”
 @    the expression’.  I've used this term several times before.  The word
 @    comes from its use in everyday language, ‘to ascertain the value or amount
 @    of; to appraise’, according to @q{Webster's New Collegiate Dictionary}.
-   Cuando el intérprete Lisp funciona en una expresión, el término para la
+   Cuando el intérprete Lisp trabaja en una expresión, el término para la
    actividad es llamada @:{evaluación}. Decimos que el intérprete ‘evalúa la
-   expresión’. Yo he usado este término varias veces antes. La palabra viene
-   desde su uso en el lenguaje de cada día, ‘para cierto valor o cantidad de;
+   expresión’. Yo he usado este término varias veces antes. La palabra proviene
+   dee su uso en el lenguaje cotidiano, ‘para determinar el valor o la cantidad de;
    para estimar’ de acuerdo a @e{Webster's New Collegiate Dictionary}.
 
 @    After evaluating an expression, the Lisp interpreter will most likely
@@ -1194,52 +1193,53 @@ and promoting software freedom.”
 @    is called an ‘infinite loop’.  These actions are less common; and we can
 @    ignore them.)  Most frequently, the interpreter returns a value.
    Después de evaluar una expresión, el intérprete Lisp normalmente
-   @:{devuelve} el valor que el ordenador produce trayendo las instrucciones
-   encontradas en la definición de la función, o quizás dará esta función y
-   producirá un mensaje de error. (El intérprete puede también quedarse
-   colgado, así hablar, a una función diferente o puede intentar repetir
-   continuamente que está haciendo para siempre y siempre en lo que está
-   llamado como un ‘bucle infinito’. Estas acciones son menos comunes; y
+   @:{devuelve} el valor que el ordenador produce al llevar a cabo las
+   instrucciones encontradas en la definición de la función, o quizás dará
+   esta función y producirá un mensaje de error. (El intérprete puede también
+   quedarse colgado, por así decirlo, a una función diferente o puede intentar
+   repetir continuamente lo que está haciendo para siempre y siempre en lo que
+   se llama un ‘bucle infinito’. Estas acciones son menos comunes; y
    pueden ignorarse). Más frecuentemente, el intérprete devuelve un valor.
 
-@    At the same time the interpreter returns a value, it may do something else
+@    At the same time the interpreter returns a value, it may do something else      ¤
 @    as well, such as move a cursor or copy a file; this other kind of action
 @    is called a @:{side effect}.  Actions that we humans think are important,
 @    such as printing results, are often “side effects” to the Lisp
 @    interpreter.  The jargon can sound peculiar, but it turns out that it is
 @    fairly easy to learn to use side effects.
-   Al mismo tiempo el intérprete devuelve un valor, puede hacer cualquier
-   cosa más también, tal como mover un cursor o copiar un fichero; este otro
-   tipo de acción es llamada @:{efecto lateral}. Acciones que los humanos
-   pensamos que son importantes tales como imprimir resultados son, con
-   frecuencia, “efectos laterales” al intérprete Lisp. La jerga puede sonar
-   peculiar, pero cambiar que es fácil aprender a usar efectos laterales.
+   Al mismo tiempo que el intérprete devuelve un valor, puede también
+   realizar cualquier otra cosa, como mover un cursor o copiar un fichero;
+   este otro tipo de acción es llamado @:{efecto secundario}.  Acciones que
+   los humanos creen que son importantes tales como imprimir resultados, con
+   frecuencia son, “efectos laterales” del intérprete Lisp. La jerga puede
+   sonar peculiar, pero resulta que es bastante fácil aprender a utilizar los
+   efectos laterales.
 
 @    In summary, evaluating a symbolic expression most commonly causes the Lisp
 @    interpreter to return a value and perhaps carry out a side effect; or else
 @    produce an error.
-   En resumen, evaluando una expresión simbólica normalmente causa que el
-   intérprete devuelva un valor y quizás trajo un efecto lateral; o al menos
-   produce un error.
+   En resumen, evaluar una expresión simbólica normalmente causa que el
+   intérprete devuelva un valor y tal vez llevar a cabo un efecto secundario;
+   o al menos produce un error.
 
 @ *** Evaluating Inner Lists
-*** Evaluando listas propias
+*** Evaluación de listas internas
 
 @     If evaluation applies to a list that is inside another list, the outer
 @     list may use the value returned by the first evaluation as information
 @     when the outer list is evaluated.  This explains why inner expressions
 @     are evaluated first: the values they return are used by the outer
 @     expressions.
-    Si la evaluación se aplica a una lista que está dentro de una lista de
-    fuera, se puede usar el valor devuelto por la primera evaluación como
-    información cuando la lista de fuera está evaluada. Esto explica por qué
-    las expresiones propias son evaluadas primero: los valores devueltos son
-    usados por las expresiones de fuera.
+    Si la evaluación se aplica a una lista que está dentro de una lista, la
+    lista externa puede usar el valor devuelto por la primera evaluación como
+    información cuando la lista externa es evaluada. Esto explica por qué las
+    expresiones internas son evaluadas primero: los valores devueltos son
+    usados por las expresiones externas.
 
 @     We can investigate this process by evaluating another addition example.
 @     Place your cursor after the following expression and type @k{C-x C-e}:
     Nosotros podemos investigar este proceso evaluando otro ejemplo
-    adicional. Deja tu cursor después de la siguiente expresión y escribe
+    adicional. Coloca tu cursor después de la siguiente expresión y presiona
     @k{C-x C-e}:
 
     @example
@@ -1255,27 +1255,27 @@ and promoting software freedom.”
 @     returns the value 8.  Since there are no more enclosing expressions to
 @     evaluate, the interpreter prints that value in the echo area.
     Lo que ocurre es que el intérprete Lisp primero evalúa la expresión
-    propia, @c{(+ 3 3)}, para que el valor 6 se devuelva; entonces evalúa la
-    expresión de fuera como si fuera escrita @c{(+ 2 6)}, que devuelve el
-    valor 8. Puesto que no hay más expresiones cerradas para evaluar el
-    intérprete imprime este valor en el área echo.
+    interna, @c{(+ 3 3)}, para que el valor 6 se devuelva; a continuación
+    evalúa la expresión externa como si fuera escrita @c{(+ 2 6)}, que
+    devuelve el valor 8. Puesto que no hay más expresiones entre parentesis a
+    evaluar el intérprete imprime este valor en el área echo.
 
 @     Now it is easy to understand the name of the command invoked by the
 @     keystrokes @k{C-x C-e}: the name is @c{eval-last-sexp}.  The letters
 @     @c{sexp} are an abbreviation for ‘symbolic expression’, and @c{eval} is
 @     an abbreviation for ‘evaluate’.  The command means ‘evaluate last
 @     symbolic expression’.
-    Ahora es fácil comprender el nombre de los comandos invocados por atajos
+    Ahora es fácil comprender el nombre del comandos invocado por el atajo
     @k{C-x C-e}: el nombre es @c{eval-last-sexp}. Las letras @c{sexp} son una
-    abreviación para la ‘expresión simbólica’, y @c{eval} es una abreviación
+    abreviatura para ‘expresión simbólica’, y @c{eval} es una abreviatura
     para ‘evaluar’. El comando significa ‘evaluar la última expresión
     simbólica’.
 
 @     As an experiment, you can try evaluating the expression by putting the
 @     cursor at the beginning of the next line immediately following the
 @     expression, or inside the expression.
-    Como un experimento, tu puedes intentar evaluar la expresión poniendo el
-    cursor al principio de la siguiente línea inmediatamente siguiendo la
+    Como un experimento, puedes intentar evaluar la expresión poniendo el
+    cursor al principio de la siguiente línea inmediatamente después de la
     expresión, o dentro de la expresión.
 
 @     Here is another copy of the expression:
@@ -1292,13 +1292,13 @@ and promoting software freedom.”
 @     parenthesis (so it appears to sit on top of the last parenthesis), you
 @     will get a 6 printed in the echo area!  This is because the command
 @     evaluates the expression @c{(+ 3 3)}.
-    Si se posiciona el cursor al principio de la línea en blanco que
-    inmediatamente sigue la expresión y escribes @k{C-x C-e}, todavía se
-    obtendrá el valor 8 impreso en el área echo. Ahora intenta poner el
-    cursor dentro de la expresión. Si se pone bien después del siguiente al
-    último paréntesis (así aparece para situarse arriba del último
-    paréntesis), ¿se obtendrá un 6 impreso en el área echo!  Esto es porque
-    el comando evalúa la expresión @c{(+ 3 3)}.
+    Si se coloca el cursor al principio de la línea en blanco que sigue
+    inmediatamente a la expresión y presionas @k{C-x C-e}, aún se obtendrá el
+    valor 8 impreso en el área echo. Ahora coloca el cursor dentro de la
+    expresión. Si lo coloca justo después del penúltimo paréntesis (dara la
+    impresión de situarse sobre el último paréntesis), ¡obtendrá un 6 impreso
+    en el área echo! Esto es porque el comando evalúa la expresión @c{(+ 3
+    3)}.
 
 @     Now put the cursor immediately after a number.  Type @k{C-x C-e} and you
 @     will get the number itself.  In Lisp, if you evaluate a number, you get
@@ -1308,14 +1308,14 @@ and promoting software freedom.”
 @     in the function definition attached to that name.  If a symbol by itself
 @     is evaluated, something different happens, as we will see in the next
 @     section.
-    Ahora se pone el cursor inmediatamente después de un número.  Escribe
-    @k{C-x C-e} y se tendrá el número en sí. En Lisp, si evalúas un número,
-    tu tienes el número en sí––esto es cómo los números difiere desde los
-    símbolos. Si evalúas una lista empezando con un símbolo como @c{+},
-    tendrás un valor devuelto que es el resultado del ordenador trayendo las
-    instrucciones en la definición de función adjunta a este nombre. Si un
-    símbolo por sí mismo es evaluado, alguna cosa diferente ocurre, como
-    veremos en la siguiente sección.
+    Ahora coloque el cursor inmediatamente después de un número.  Presiona
+    @k{C-x C-e} y obtendra el número en sí. En Lisp, si evalúas un número,
+    obtienes el número en sí––así es cómo los números difieren de los
+    símbolos. Si se evalúa una lista que inicia con un símbolo como @c{+},
+    tendrás un valor devuelto que es el resultado del ordenador tras ejecutar
+    las instrucciones que aparecen en la definición de la función ligada a
+    ese nombre. Si un símbolo por sí mismo es evaluado, algo diferente
+    sucede, como veremos en la siguiente sección.
 
 @ ** Variables
 ** Variables
@@ -1327,25 +1327,28 @@ and promoting software freedom.”
 @    vary (which is why such a symbol is called a variable).  The value of a
 @    symbol can be any expression in Lisp, such as a symbol, number, list, or
 @    string.  A symbol that has a value is often called a @:{variable}.
-   En Emacs Lisp, un símbolo puede tener un valor adjunto como puede tener
-   una definición de función adjunta. Las dos son diferentes. La definición
-   de función es un conjunto de instrucciones que un ordenador obedece. Un
-   valor, por otro lado, es alguna cosa como un número o un nombre, que puede
-   variar (que es porque tal símbolo es llamado variable). El valor de un
-   símbolo puede ser una expresión en Lisp, tal como un símbolo, número,
-   lista, o cadena. Un símbolo que tiene un valor es con frecuencia llamado
-   una @:{variable}.
+
+
+   En Emacs Lisp, un símbolo puede estar ligado a un valor como a una
+   definición de función. Las dos son diferentes. La definición de función es
+   un conjunto de instrucciones que el ordenador obedece. Por otro lado, un
+   valor, es algo, como un número o un nombre, que puede variar (es por ello,
+   que tal símbolo es llamado variable). El valor de un símbolo puede ser
+   cualquier expresión en Lisp, por ejemplo un símbolo, número, lista, o
+   cadena. Un símbolo que tiene un valor es con frecuencia llamado una
+   @:{variable}.
 
 @    A symbol can have both a function definition and a value attached to it at
 @    the same time.  Or it can have just one or the other.  The two are
 @    separate.  This is somewhat similar to the way the name Cambridge can
 @    refer to the city in Massachusetts and have some information attached to
 @    the name as well, such as “great programming center”.
-   Un símbolo puede tener ambos una definición de función y un valor adjunto
-   al mismo tiempo. O puede tener solo uno u otro. Los dos están
-   separados. Esto es algo similar al camino, el nombre Cambridge puede
-   referirse a la ciudad en Massachusetts y tener alguna información adjunta
-   al nombre tan bien, tal como “gran centro de programación”.
+   Un símbolo puede tener ambos, una definición de función y un valor adjunto
+   al mismo tiempo. O puede tener solo uno u otro. Los dos son
+   independientes.  Esto es algo similar a la forma en que el nombre
+   Cambridge puede referirse a la ciudad en Massachusetts y tener alguna
+   información ligada al nombre, por ejemplo, un “gran centro de
+   programación”.
 
    @ignore
      (Incidentally, in Emacs Lisp, a symbol can have two
@@ -1358,10 +1361,11 @@ and promoting software freedom.”
 @    another, and so on.  What is put in the drawer holding the value can be
 @    changed without affecting the contents of the drawer holding the function
 @    definition, and vice-verse.
-   Otro camino para pensar acerca de esto es imaginar un símbolo como ser una
-   caja de cajones. La definición de función es poner en el cajón que maneja
-   el valor que puede ser cambiado sin afectar los contenidos del cajón que
-   maneja la definición de función, y viceversa.
+   Otra forma de pensar en esto es imaginar un símbolo como un mueble con
+   cajones. La definición de función se pone en un cajón, el valor en otro, y
+   asi sucesivamente. Lo que se pone en el cajón que contiene el valor puede
+   ser cambiado sin afectar los contenidos del cajón que almacena la
+   definición de función, y viceversa.
 
 @    The variable @c{fill-column} illustrates a symbol with a value attached to
 @    it: in every GNU Emacs buffer, this symbol is set to some value, usually
@@ -1370,11 +1374,11 @@ and promoting software freedom.”
 @    GNU Emacs, you can do this by putting the cursor after the symbol and
 @    typing @k{C-x C-e}:
    La variable @c{fill-column} ilustra un símbolo con un valor adjunto: en
-   cada buffer de GNU Emacs, este símbolo establece algún valor, normalmente
-   72 o 70, pero algunas veces algún otro valor. Para encontrar el valor de
-   este símbolo, evalúalo por sí mismo. Si está leyendo esto en Info dentro
-   de GNU Emacs, tu puedes hacer esto poniendo el cursor después del símbolo
-   y escribiendo @k{C-x C-e}:
+   cada buffer de GNU Emacs, este símbolo se establece a algún valor,
+   normalmente 72 o 70, pero algunas veces a algún otro valor. Para encontrar
+   el valor de este símbolo, evalúalo por sí mismo. Si está leyendo esto
+   dentro de GNU Emacs, puedes hacer esto poniendo el cursor después del
+   símbolo y pulsar @k{C-x C-e}:
 
    @example
      fill-column
@@ -1387,14 +1391,14 @@ and promoting software freedom.”
 @    returned by a function carrying out its instructions.  From the point of
 @    view of the Lisp interpreter, a value returned is a value returned.  What
 @    kind of expression it came from ceases to matter once the value is known.
-   Después de que yo escribiera @k{C-x C-e}, Emacs imprimió el número 72 en
-   mi área echo. Este es el valor por el que @c{fill-column} es escogido para
-   mi, porque yo lo escribo. Puede ser diferente para ti en tu búffer
-   Info. Sepa que el valor devuelto como una variable es impreso exactamente
-   por el mismo camino que el valor devuelto por una función trayendo sus
-   instrucciones. Puesto que el punto de vista del intérprete Lisp, es un
-   valor devuelto. El tipo de expresión viene de ceder a la cuestión una vez
-   el valor se conoce.
+   Después de presionar @k{C-x C-e}, Emacs imprimió el número 72 en mi área
+   echo. Este es el valor que he establecido para @c{fill-column} mientras
+   escribo esto. Puede ser diferente en tu búffer. Obsere que el valor
+   devuelto como una variable es impreso exactamente de la misma forma que el
+   valor devuelto por una función tras ejecutar sus instrucciones.  Desde el
+   punto de vista del intérprete Lisp, un valor devuelto es un valor
+   devuelto. Que tipo tipo de expresión sea, deja de importar una vez que el
+   valor se conoce.
 
 @    A symbol can have any value attached to it or, to use the jargon, we can
 @    @:{bind} the variable to a value: to a number, such as 72; to a string,
