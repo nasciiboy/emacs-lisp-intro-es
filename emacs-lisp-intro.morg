@@ -809,9 +809,8 @@ promoting software freedom.”
    @c{"such as this"}; to a list, such as @c{(spruce pine oak)}; we can even
    bind a variable to a function definition.
 
-   A symbol can be bound to a value in several ways.  See Section @l{set &
-   setq, , Setting the Value of a Variable}, for information about one way to
-   do this.
+   A symbol can be bound to a value in several ways.  See Section @l{Setting
+   the Value of a Variable}, for information about one way to do this.
 
 *** Error Message for a Symbol Without a Function
 
@@ -865,15 +864,16 @@ promoting software freedom.”
       (+ 2 2)
     @end src
 
-    In GNU Emacs 22, you will create a @f{*Backtrace*} buffer that says:
+    In GNU Emacs 24, you will create a @f{*Backtrace*} buffer that says:
 
     @example
       ---------- Buffer: *Backtrace* ----------
       Debugger entered--Lisp error: (void-variable +)
-        eval(+)
+        eval(+ nil)
         eval-last-sexp-1(nil)
         eval-last-sexp(nil)
-        call-interactively(eval-last-sexp)
+        call-interactively(eval-last-sexp nil nil)
+        command-execute(eval-last-sexp)
       ---------- Buffer: *Backtrace* ----------
     @end example
 
@@ -904,7 +904,7 @@ promoting software freedom.”
       Symbol's value as variable is void:@: +
       @end example
 
-      The meaning is the same as in GNU Emacs 22.
+      The meaning is the same as in GNU Emacs 24.
     @end ignore
 
 ** Arguments
@@ -1065,13 +1065,13 @@ promoting software freedom.”
 
     @example
       ---------- Buffer: *Backtrace* ----------
-      Debugger entered--Lisp error:
-               (wrong-type-argument number-or-marker-p hello)
+      Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hello)
         +(2 hello)
-        eval((+ 2 (quote hello)))
+        eval((+ 2 (quote hello)) nil)
         eval-last-sexp-1(nil)
         eval-last-sexp(nil)
-        call-interactively(eval-last-sexp)
+        call-interactively(eval-last-sexp nil nil)
+        command-execute(eval-last-sexp)
       ---------- Buffer: *Backtrace* ----------
     @end example
 
@@ -1090,11 +1090,10 @@ promoting software freedom.”
     given numbers to add.  It also tests to see whether the argument is
     something called a marker, which is a specific feature of Emacs Lisp.
     (In Emacs, locations in a buffer are recorded as markers.  When the mark
-    is set with the @k{C-@@} or @k{C-@k{SPC}} command, its position is kept
-    as a marker.  The mark can be considered a number––the number of
-    characters the location is from the beginning of the buffer.)  In Emacs
-    Lisp, @c{+} can be used to add the numeric value of marker positions as
-    numbers.
+    is set with the @k{C-@@} or @k{C-SPC} command, its position is kept as a
+    marker.  The mark can be considered a number––the number of characters
+    the location is from the beginning of the buffer.)  In Emacs Lisp, @c{+}
+    can be used to add the numeric value of marker positions as numbers.
 
     The @'{p} of @c{number-or-marker-p} is the embodiment of a practice
     started in the early days of Lisp programming.  The @'{p} stands for
@@ -1215,7 +1214,7 @@ promoting software freedom.”
     and the value returned by the expression beginning with @c{concat} is
     inserted in place of the @'{%s}.
 
-    When your fill column is 70 and you evaluate the expression, the message
+    When your @c(fill-column) is 70 and you evaluate the expression, the message
     @c{"He saw 38 red foxes leaping."} appears in your echo area.
 
 ** Setting the Value of a Variable
@@ -1342,11 +1341,11 @@ promoting software freedom.”
     that increments the counter each time it is evaluated.
 
     @src elisp
-      (setq counter 0)                ; @e{Let's call this the initializer.}
+      (setq counter 0)                ; Let's call this the initializer.
 
-      (setq counter (+ counter 1))    ; @e{This is the incrementer.}
+      (setq counter (+ counter 1))    ; This is the incrementer.
 
-      counter                         ; @e{This is the counter.}
+      counter                         ; This is the counter.
     @end src
 
     (The text following the @'{;} are comments.  See Section @l{Change a

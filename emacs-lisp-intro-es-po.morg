@@ -403,7 +403,7 @@ and promoting software freedom.”
 @    list is preceded by a single apostrophe.  It could just as well be written
 @    as follows, which looks more like the kind of list you are likely to be
 @    familiar with:
-   En Lisp, una lista como esta: @c{'(rosa violeta margarita botóndeoro)}.
+   En Lisp, una lista como esta: @c{'(rosa violeta margarita tulipan)}.
    Esta lista es precedida por una comilla. Bien, podría estar escrita de la
    siguiende manera, que se parece mas al tipo de lista con la que se está
    familiarizado:
@@ -418,7 +418,7 @@ and promoting software freedom.”
      '(rosa
        violeta
        margarita
-       botóndeoro)
+       tulipan)
    @end src
 
 @    The elements of this list are the names of the four different flowers,
@@ -1157,7 +1157,7 @@ and promoting software freedom.”
     El código compilado es normalmente almacenado en un fichero que finaliza
     con una extensión @f{.elc} en vez de una extensión @f{.el}. Verás ambos
     tipos de ficheros en el directorio @f{emacs/lisp}; los ficheros para leer
-    estos tinen extensiones @f{.el}.
+    estos tinen la extensión @f{.el}.
 
 @     As a practical matter, for most things you might do to customize or
 @     extend Emacs, you do not need to byte compile; and I will not discuss the
@@ -1211,9 +1211,9 @@ and promoting software freedom.”
    realizar cualquier otra cosa, como mover un cursor o copiar un fichero;
    este otro tipo de acción es llamado @:{efecto secundario}.  Acciones que
    los humanos creen que son importantes tales como imprimir resultados, con
-   frecuencia son, “efectos laterales” del intérprete Lisp. La jerga puede
+   frecuencia son, “efectos secundarios” del intérprete Lisp. La jerga puede
    sonar peculiar, pero resulta que es bastante fácil aprender a utilizar los
-   efectos laterales.
+   efectos secundarios.
 
 @    In summary, evaluating a symbolic expression most commonly causes the Lisp
 @    interpreter to return a value and perhaps carry out a side effect; or else
@@ -1331,7 +1331,7 @@ and promoting software freedom.”
 
    En Emacs Lisp, un símbolo puede estar ligado a un valor como a una
    definición de función. Las dos son diferentes. La definición de función es
-   un conjunto de instrucciones que el ordenador obedece. Por otro lado, un
+   un conjunto de instrucciones que el ordenador ejecuta. Por otro lado, un
    valor, es algo, como un número o un nombre, que puede variar (es por ello,
    que tal símbolo es llamado variable). El valor de un símbolo puede ser
    cualquier expresión en Lisp, por ejemplo un símbolo, número, lista, o
@@ -1393,7 +1393,7 @@ and promoting software freedom.”
 @    kind of expression it came from ceases to matter once the value is known.
    Después de presionar @k{C-x C-e}, Emacs imprimió el número 72 en mi área
    echo. Este es el valor que he establecido para @c{fill-column} mientras
-   escribo esto. Puede ser diferente en tu búffer. Obsere que el valor
+   escribo esto. Puede ser diferente en tu búffer. Observe que el valor
    devuelto como una variable es impreso exactamente de la misma forma que el
    valor devuelto por una función tras ejecutar sus instrucciones.  Desde el
    punto de vista del intérprete Lisp, un valor devuelto es un valor
@@ -1404,35 +1404,34 @@ and promoting software freedom.”
 @    @:{bind} the variable to a value: to a number, such as 72; to a string,
 @    @c{"such as this"}; to a list, such as @c{(spruce pine oak)}; we can even
 @    bind a variable to a function definition.
-   Un símbolo puede tener cualquier valor adjunto a ello o, usar la jerga, se
-   puede @:{bind} (asociar) la variable a un valor: a un número, tal como 72;
-   a una cadena, @c{\"tal como esta\"}; a una lista, tal como @c{(abeto pino
+   Un símbolo puede tener cualquier valor ligado a él o, siendo tecnicos, se
+   puede @:{bind} (enlazar) la variable a un valor: a un número, por ejemplo
+   72; a una cadena, @c{\"como esta\"}; a una lista, como @c{(abeto pino
    roble)}; podemos incluso asociar una variable a una definición de función.
 
-@    A symbol can be bound to a value in several ways.  See Section @l{set &
-@    setq, , Setting the Value of a Variable}, for information about one way to
-@    do this.
-   Un símbolo puede ser emparejado por un valor en varios caminos. Ver @l{set
-   y setq, , Configurando el valor de una variable}, para información acerca
-   de un camino para hacer esto.
+@    A symbol can be bound to a value in several ways.  See Section @l{Setting
+@    the Value of a Variable}, for information about one way to do this.
+   Un símbolo puede vincularse a un valor de varias maneras. Ver Sección
+   @l{Configurando el valor de una variable}, para obtener información sobre
+   una manera de hacer esto.
 
 @ *** Error Message for a Symbol Without a Function
-*** Mensaje de error para un símbolo sin una función
+*** Mensaje de error de un símbolo sin una función
 
 @     When we evaluated @c{fill-column} to find its value as a variable, we did
 @     not place parentheses around the word.  This is because we did not intend
 @     to use it as a function name.
-    Cuando se evalúa @c{fill-column} para encontrar el valor de una variable,
-    no se ponen paréntesis alrededor de la palabra. Esto es porque no
-    pretendemos usarlos como un nombre de función.
+    Cuando evaluamos @c{fill-column} para encontrar su valor como una
+    variable, no se ponen paréntesis alrededor de la palabra. Esto se debe a
+    que no pretendemos usarlo como un nombre de función.
 
 @     If @c{fill-column} were the first or only element of a list, the Lisp
 @     interpreter would attempt to find the function definition attached to it.
 @     But @c{fill-column} has no function definition.  Try evaluating this:
     Si @c{fill-column} fuese el primer o único elemento de una lista, el
-    intérprete de Lisp intentaría encontrar la definición de función
-    adjunta. Pero @c{fill-column} no tiene definición de función. Prueba
-    evaluando esto:
+    intérprete Lisp intentaría encontrar la definición de función adjunta.
+    Pero @c{fill-column} no tiene una definición de función. Trata de evaluar
+    esto:
 
 @     @src elisp
 @       (fill-column)
@@ -1457,55 +1456,42 @@ and promoting software freedom.”
 
 @     (Remember, to quit the debugger and make the debugger window go away,
 @     type @k{q} in the @f{*Backtrace*} buffer.)
-    (Recuerda, para salir del depurador y crear la ventana del depurador para
-    ir fuera, escribe @k{q} en el @f{*Backtrace*} buffer.)
-
-    @ignore
-      In GNU Emacs 20 and before, you will produce an error message that says:
-
-      @example
-        La definición de símbolos de función:@: fill-column
-      @end example
-
-      (The message will go away as soon as you move the cursor or type
-      another key.)
-    @end ignore
+    (Recuerda, para salir del depurador y hacer que la ventana del depurador
+    desaparezca, presiona @k{q} en el buffer @f{*Backtrace*}.)
 
 @ *** Error Message for a Symbol Without a Value
-*** Mensaje de error para un símbolo sin un valor
+*** Mensaje de error de un símbolo sin un valor
 
 @     If you attempt to evaluate a symbol that does not have a value bound to
 @     it, you will receive an error message.  You can see this by experimenting
 @     with our 2 plus 2 addition.  In the following expression, put your cursor
 @     right after the @c{+}, before the first number 2, type @k{C-x C-e}:
-    Si se intenta evaluar un símbolo que no tiene un valor asociado, recibirá
-    un mensaje de error. Se puede ver esto experimentando con nuestra suma 2
-    más 2. En la siguiente expresión, pon el cursor correcto después de
-    @c{+}, antes del primer número 2, escribe @k{C-x C-e}:
+    Si intenta evaluar un símbolo que no tiene un valor asociado, recibirá un
+    mensaje de error. Esto se puede ver experimentando con nuestra suma 2
+    más 2. En la siguiente expresión, pon el cursor justo después del
+    @c{+}, antes del primer número 2, presiona @k{C-x C-e}:
 
-@     @src elisp
-@       (+ 2 2)
-@     @end src
-    @example
+    @src elisp
       (+ 2 2)
-    @end example
+    @end src
 
 @     In GNU Emacs 22, you will create a @f{*Backtrace*} buffer that says:
-    En GNU Emacs 22, se creará un buffer @f{*Backtrace*} que dice:
+    En GNU Emacs 24, se creará un buffer @f{*Backtrace*} que dice:
 
     @example
       ---------- Buffer: *Backtrace* ----------
       Debugger entered--Lisp error: (void-variable +)
-        eval(+)
+        eval(+ nil)
         eval-last-sexp-1(nil)
         eval-last-sexp(nil)
-        call-interactively(eval-last-sexp)
+        call-interactively(eval-last-sexp nil nil)
+        command-execute(eval-last-sexp)
       ---------- Buffer: *Backtrace* ----------
     @end example
 
 @     (Again, you can quit the debugger by typing @k{q} in the @f{*Backtrace*}
 @     buffer.)
-    (De nuevo, se puede salir del depurador escribiendo @k{q} en el búffer
+    (De nuevo, se puede salir del depurador pulsando @k{q} en el búffer
     @f{*Backtrace*}.)
 
 @     This backtrace is different from the very first error message we saw,
@@ -1513,11 +1499,11 @@ and promoting software freedom.”
 @     this case, the function does not have a value as a variable; while in the
 @     other error message, the function (the word ‘this’) did not have a
 @     definition.
-    Esta traza es diferente desde los muy primeros mensajes de error que
-    vimos, que dijimos, @'{El depurador introdujo--errores Lisp: (esta
-    función está vacía)}. En este caso, la función no tiene una valor como
-    una variable; mientras en el otro mensaje de error, la función (la
-    palabra ‘this’) no tuvo una definición.
+    Esta traza inversa es diferente del primer mensaje de error que vimos,
+    que decia, @'{Debugger entered--Lisp error: (void-function esto)}. En
+    este caso, la función no tiene una valor como una variable; mientras en
+    el otro mensaje de error, la función (la palabra ‘esto’) no tuvo una
+    definición.
 
 @     In this experiment with the @c{+}, what we did was cause the Lisp
 @     interpreter to evaluate the @c{+} and look for the value of the variable
@@ -1525,30 +1511,19 @@ and promoting software freedom.”
 @     right after the symbol rather than after the parenthesis of the enclosing
 @     list as we did before.  As a consequence, the Lisp interpreter evaluated
 @     the preceding s-expression, which in this case was @c{+} by itself.
-    En este experimento con el @c{+}, lo que se hizo fué causar que el
-    intérprete Lisp evalúe el @c{+} y busque el valor de la variable en vez
-    de la definición de la función. Nosotros hicimos esto dejando el cursor
-    correcto después del símbolo en vez de después de los paréntesis que
+    En este experimento con el @c{+}, lo que hicimos fué hacer que el
+    intérprete Lisp evalúe el @c{+} y busque el valor de la variable en lugar
+    de la definición de la función. Hicimos esto colocando el cursor justo
+    después del símbolo en lugar de ponerlo al final de los parentesis que
     cierran la lista como hicimos antes. Como consecuencia, el intérprete
-    Lisp evaluó la s-expresión precedente, que en este caso fué el @c{+} en
-    sí.
+    Lisp evaluó la s-expresión anterior, que en este caso fué el @c{+} en sí.
 
 @     Since @c{+} does not have a value bound to it, just the function
 @     definition, the error message reported that the symbol's value as a
 @     variable was void.
-    Desde que @c{+} no tiene un valor asociado, solo la definición de
-    función, el mensaje de error reportado que el valor del símbolo como una
-    variable estaba vacío.
-
-    @ignore
-      In GNU Emacs version 20 and before, your error message will say:
-
-      @example
-        El valor de símbolo como variable está vacío:@: +
-      @end example
-
-      The meaning is the same as in GNU Emacs 22.
-    @end ignore
+    Ya que @c{+} no tiene un valor asociado, solo la definición de función,
+    el mensaje de error informa que el valor del símbolo como una variable
+    estaba vacío.
 
 @ ** Arguments
 ** Argumentos
@@ -1556,29 +1531,25 @@ and promoting software freedom.”
 @    To see how information is passed to functions, let's look again at our old
 @    standby, the addition of two plus two.  In Lisp, this is written as
 @    follows:
-   Para ver cómo la información pasa a funciones, se permite mirar de nuevo a
-   nuestro viejo standby, la adición de dos más dos. En Lisp, esto es escrito
+   Para ver cómo la información se pasa a las funciones, veamos de nuevo
+   nuestro viejo recurso, la suma de dos más dos. En Lisp, esto se escribe
    como sigue:
 
-@    @src elisp
-@      (+ 2 2)
-@    @end src
-   @example
+   @src elisp
      (+ 2 2)
-   @end example
+   @end src
 
 @    If you evaluate this expression, the number 4 will appear in your echo
 @    area.  What the Lisp interpreter does is add the numbers that follow the
 @    @c{+}.
    Si se evalúa esta expresión, el número 4 aparecerá en tu área echo. Lo que
-   el intérprete de Lisp hace es añadir los número que sigue el @c{+}.
+   el intérprete de Lisp hace es sumar los números despues del @c{+}.
 
 @    The numbers added by @c{+} are called the @:{arguments} of the function
 @    @c{+}.  These numbers are the information that is given to or @:{passed}
 @    to the function.
-   Los números añadidos por @c{+} son llamados @:{argumentos} de la función
-   @c{+}. Estos números son la información que es dada para o @:{pasada} a la
-   función.
+   Los números sumados por @c{+} son llamados @:{argumentos} de la función
+   @c{+}. Estos números son la información que se da o @:{pasa} a la función.
 
 @    The word ‘argument’ comes from the way it is used in mathematics and does
 @    not refer to a disputation between two people; instead it refers to the
@@ -1587,45 +1558,42 @@ and promoting software freedom.”
 @    function.  The values returned by the evaluation of these atoms or lists
 @    are passed to the function.  Different functions require different numbers
 @    of arguments; some functions require none at all.@n{2}
-   La palabra ‘argumento’ viene del ámbito de las matemáticas y no se refiere
-   a una disputa entre 2 personas, sino que se refiere a la información
-   presentada a la función, en este caso, al @c{+}. En Lisp, los argumentos a
-   una función son los átomos o listas que siguen la función. Los valores
-   devueltos por la evaluación de estos átomos o listas son pasados a la
-   función. Funciones diferentes requieren diferentes números de argumentos;
-   algunas funciones no requieren ninguno más.@n{2}
+   La palabra ‘argumento’ proviene de la forma en que se utiliza en las
+   matemáticas y no se refiere a una disputa entre 2 personas, En su lugar,
+   se refiere a la información entregada a la función, en este caso, al
+   @c{+}. En Lisp, los argumentos de una función son los átomos o listas que
+   siguen a la función. Los valores devueltos por la evaluación de estos
+   átomos o listas son pasados a la función. Funciones diferentes requieren
+   diferentes números de argumentos; algunas funciones no requieren ninguno
+   en absoluto.@n{2}
 
 @ *** Arguments' Data Types
-*** Tipos de argumentos de datos
+*** Tipos de dato de los argumentos
 
 @     The type of data that should be passed to a function depends on what kind
 @     of information it uses.  The arguments to a function such as @c{+} must
 @     have values that are numbers, since @c{+} adds numbers.  Other functions
 @     use different kinds of data for their arguments.
-    Los tipos de datos que deberían ser pasados a una función dependen de que
-    tipo de información usan. Los argumentos a una función tales como @c{+}
-    deben tener valores que son números, puesto que @c{+} añade
-    números. Otras funciones usan diferentes tipos de datos para sus
-    argumentos.
+    El tipo de dato que debe ser pasado a una función dependen de que tipo de
+    información se utiliza. Los argumentos de una función como @c{+} deben
+    tener valores númericos, ya que @c{+} suma números. Otras funciones
+    utilizan diferentes tipos de datos para sus argumentos.
 
 @     For example, the @c{concat} function links together or unites two or more
 @     strings of text to produce a string.  The arguments are strings.
 @     Concatenating the two character strings @c{abc}, @c{def} produces the
 @     single string @c{abcdef}.  This can be seen by evaluating the following:
-    Por ejemplo, la función @c{concat} enlaza o une dos o más cadenas de
-    texto para producir una cadena. Los argumentos son cadenas. La
-    concatenación de los dos caracteres de cadenas @c{abc}, @c{def} producen
-    la cadena simple @c{abcdef}. Esto puede ser visto evaluando lo siguiente:
+    Por ejemplo, la función @c{concat} concatena o une dos o más cadenas de
+    texto para producir una cadena. Los argumentos son cadenas. Concatenar
+    las cadenas de caracteres @c{abc}, @c{def} produce una cadena @c{abcdef}.
+    Esto puede ser visto evaluando lo siguiente:
 
-@     @src elisp
-@       (concat "abc" "def")
-@     @end src
-    @example
+    @src elisp
       (concat "abc" "def")
-    @end example
+    @end src
 
 @     The value produced by evaluating this expression is @c{"abcdef"}.
-    El valor producido para evaluar esta expresión es @c{"abcdef"}.
+    El valor producido por la evaluación de esta expresión es @c{"abcdef"}.
 
 @     A function such as @c{substring} uses both a string and numbers as
 @     arguments.  The function returns a part of the string, a substring of the
@@ -1634,13 +1602,13 @@ and promoting software freedom.”
 @     that indicate the beginning and end of the substring.  The numbers are a
 @     count of the number of characters (including spaces and punctuation) from
 @     the beginning of the string.
-    Una función tal como @c{substring} usa como argumento tanto una cadena
-    como números. La función devuelve una parte de la cadena, una subcadena
-    del primer argumento. Esta función toma tres argumentos. Su primer
-    argumento es la cadena de caracteres, el segundo y tercer argumento son
-    números que indican el principio y el fin de la subcadena. Los números
-    son un contaje del número de caracteres (incluyendo espacios y
-    puntuaciones) desde el principio de la cadena.
+    Una función como @c{substring} utiliza ambos una cadena y numeros como
+    argumentos. La función devuelve una parte de la cadena, una subcadena del
+    primer argumento. Esta función toma tres argumentos. Su primer argumento
+    es la cadena de caracteres, el segundo y tercer argumento son números que
+    indican el principio y el fin de la subcadena. Los números son un conteo
+    del número de caracteres (incluyendo espacios y puntuaciones) desde el
+    principio de la cadena.
 
 @     For example, if you evaluate the following:
     Por ejemplo, si evalúa lo siguiente:
@@ -1648,14 +1616,14 @@ and promoting software freedom.”
 @     @src elisp
 @       (substring "The quick brown fox jumped." 16 19)
 @     @end src
-    @example
-      (substring "El rápido zorro marrón saltó." 12 17)
-    @end example
+    @src elisp
+      (substring "El rápido zorro marrón saltó." 10 15)
+    @end elisp
 
 @     you will see @c{"fox"} appear in the echo area.  The arguments are the
 @     string and the two numbers.
-    se verá @c{"zorro"} en el área echo. Los argumentos son la cadena y los
-    dos números.
+    Verá @c{"zorro"} aparecer en el área echo. Los argumentos son la cadena y
+    los dos números.
 
 @     Note that the string passed to @c{substring} is a single atom even though
 @     it is made up of several words separated by spaces.  Lisp counts
@@ -1665,14 +1633,14 @@ and promoting software freedom.”
 @     extracts a part.  However, @c{substring} is only able to extract a
 @     substring from an argument that is a string, not from another type of
 @     atom such as a number or symbol.
-    Nótese que la cadena pasada a @c{substring} es un átomo simple incluso
-    aunque sea hecho de varias palabras separadas por espacios. Lisp cuenta
-    cada cosa entre dos marcas de citas como parte de la cadena, incluyendo
-    los espacios. Se puede pensar la función @c{substring} como una forma de
-    ‘despedazar átomos’ ya que toma un átomo indivisible y extrae una
-    parte. Sin embargo, @c{substring} es solo capaz de extraer una subcadena
-    desde un argumento que es una cadena, no otro tipo de átomo tal como un
-    número o símbolo.
+    Tenga en cuenta que la cadena pasada a @c{substring} es un solo átomo a
+    pesar de estar compuesto de varias palabras separadas por espacios. Lisp
+    considera que cualquier cosa entre dos marcas de cita es parte de la
+    cadena, incluyendo los espacios. Se puede pensar en la función
+    @c{substring} como una tipo de ‘acelerador de particulas’ ya que toma un
+    átomo de otro modo indivisible y extrae una parte. Sin embargo,
+    @c{substring} solo es capaz de extraer una subcadena de un argumento que
+    es una cadena, no de otro tipo de átomo por ejemplo un número o símbolo.
 
 @ *** An Argument as the Value of a Variable or List
 *** Un argumento como el valor de una variable o lista
@@ -1680,44 +1648,42 @@ and promoting software freedom.”
 @     An argument can be a symbol that returns a value when it is evaluated.
 @     For example, when the symbol @c{fill-column} by itself is evaluated, it
 @     returns a number.  This number can be used in an addition.
-    Un argumento puede ser un símbolo que devuelva un valor cuando es
-    evaluado. Por ejemplo, cuando el símbolo @c{fill-column} por sí mismo es
-    evaluado, devuelve un número. Este número puede ser usado en una adición.
+    Un argumento puede ser un símbolo que devuelve un valor al ser evaluado.
+    Por ejemplo, evaluar el símbolo @c{fill-column} en si, devuelve un
+    número. Este número se puede utilizar en una suma.
 
 @     Position the cursor after the following expression and type @k{C-x C-e}:
-    Posicionar el cursor después la siguiente expresión y escribe @k{C-x
+    Coloca el cursor después de la siguiente expresión y presiona @k{C-x
     C-e}:
 
-@     @src elisp
-@       (+ 2 fill-column)
-@     @end src
-    @example
+    @src elisp
       (+ 2 fill-column)
-    @end example
+    @end src
 
 @     The value will be a number two more than what you get by evaluating
 @     @c{fill-column} alone.  For me, this is 74, because my value of
 @     @c{fill-column} is 72.
-    El valor será un número dos más que tu tienes evaluando @c{fill-column}
-    solo. Para mí, este es 74, porque mi valor de @c{fill-column} es 72.
+    El valor será dos mas el número que se obtiene al evaluar solamente
+    @c{fill-column}. En mí caso, es 74, porque mi valor de @c{fill-column}
+    es 72.
 
 @     As we have just seen, an argument can be a symbol that returns a value
 @     when evaluated.  In addition, an argument can be a list that returns a
 @     value when it is evaluated.  For example, in the following expression,
 @     the arguments to the function @c{concat} are the strings @c{"The "} and
 @     @c{" red foxes."} and the list @c{(number-to-string (+ 2 fill-column))}.
-    Como se ha visto, un argumento puede ser un símbolo que devuelve un valor
+    Como acabamos de ver, un argumento puede ser un símbolo que devuelve un valor
     cuando se evalúa. Además, un argumento puede ser una lista que devuelve
-    un valor cuando es evaluada. Por ejemplo, en la siguiente expresión, los
-    argumentos para la función @c{concat} son las cadenas @c{"Los"} y @c{"
+    un valor cuando se evalúa. Por ejemplo, en la siguiente expresión, los
+    argumentos de la función @c{concat} son las cadenas @c{"Los"} y @c{"
     zorros rojos."} y la lista @c{(number-to-string (+ 2 fill-column))}.
 
 @     @src elisp
 @       (concat "The " (number-to-string (+ 2 fill-column)) " red foxes.")
 @     @end src
-    @example
+    @src elisp
       (concat "Los " (number-to-string (+ 2 fill-column)) " zorros rojos.")
-    @end example
+    @end src
 
 @     If you evaluate this expression––and if, as with my Emacs,
 @     @c{fill-column} evaluates to 72––@c{"The 74 red foxes."} will appear in
@@ -1727,26 +1693,26 @@ and promoting software freedom.”
 @     function returns to a string.  @c{number-to-string} is also known as
 @     @c{int-to-string}.)
     Si se evalúa esta expresión––y si, como con mi Emacs, @c{fill-column} se
-    evalúa a 72--- aparecerá @c{"Los 74 zorros rojos."} en el área
-    echo. (Nótese que se debe poner espacio después de la palabra @'{Los} y
-    antes de la palabra @'{rojos} y así es como aparecerá en la cadena
-    final. La función @c{number-to-string} convierte los enteros que la
-    función de adición devuelve una cadena. @c{number-to-string} también se
-    conoce como @c{int-to-string}.)
+    evalúa a 72––aparecerá @c{"Los 74 zorros rojos."} en el área echo.
+    (Tenga en cuenta que deben poner espacios después de la palabra @'{Los} y
+    antes de la palabra @'{rojos} que aparecerán en la cadena final. La
+    función @c{number-to-string} convierte el entero que devuelve la función
+    suma a una cadena. @c{number-to-string} también se conoce como
+    @c{int-to-string}.)
 
 @ *** Variable Number of Arguments
-*** Número de variables de argumentos
+*** Número variable de argumentos
 
 @     Some functions, such as @c{concat}, @c{+} or @c{*}, take any number of
 @     arguments.  (The @c{*} is the symbol for multiplication.)  This can be
 @     seen by evaluating each of the following expressions in the usual way.
 @     What you will see in the echo area is printed in this text after @'{⇒},
 @     which you may read as ‘evaluates to’.
-    Algunas funciones, tales como @c{concat}, @c{+}, o @c{*}, toman cualquier
-    número de argumentos. (El @c{*} es el símbolo para multiplicar.) Esto
-    puede ser visto evaluando cada uno de las siguientes expresiones en el
-    camino usual. Que verás en el área echo que está impresa en este texto
-    después de @'{⇒}, que puedes leer como ‘evaluar a’.
+    Algunas funciones, como @c{concat}, @c{+}, o @c{*}, toman cualquier
+    número de argumentos. (El @c{*} es el símbolo para la multiplicacion.)
+    Esto puede verse evaluando cada una de las siguientes expresiones de la
+    forma habitual. Lo que verás en el área echo se imprime en este texto
+    después de @'{⇒}, que se puede leer como ‘evaluar a’.
 
 @     In the first set, the functions have no arguments:
     En el primer conjunto, las funciones no tienen argumentos:
@@ -1785,58 +1751,57 @@ and promoting software freedom.”
 @     the cursor after the following expression and type @k{C-x C-e}:
     Cuando a una función se le pasa un argumento del tipo incorrecto, el
     interpréte Lisp produce un mensaje de error. Por ejemplo, la función
-    @c{+} espera los valores de sus argumentos para ser números. Como un
-    experimento nosotros podemos pasar el símbolo citado @c{hola} en vez de
-    un número. Posicionar el cursor después la siguiente expresión y escribir
+    @c{+} espera que los valores de sus argumentos sean números. Como un
+    experimento podemos pasar el símbolo citado @c{hola} en lugar de un
+    número. Coloca el cursor después de la siguiente expresión y presiona
     @k{C-x C-e}:
 
 @     @src elisp
 @       (+ 2 'hello)
 @     @end src
-    @example
+    @src elisp
       (+ 2 'hola)
-    @end example
+    @end src
 
 @     When you do this you will generate an error message.  What has happened
 @     is that @c{+} has tried to add the 2 to the value returned by @c{'hello},
 @     but the value returned by @c{'hello} is the symbol @c{hello}, not a
 @     number.  Only numbers can be added.  So @c{+} could not carry out its
 @     addition.
-    Cuando se hace esto se generará un mensaje de error. Lo qué ha ocurrido
-    es que @c{+} ha intentado añadir el 2 para el valor devuelto por
-    @c{'hola}, pero el valor devuelto por @c{'hola} es el símbolo @c{hola},
-    no un número. Solo los números pueden ser añadidos. Así @c{+} podría no
-    encarrilar su adición.
+    Al hacer esto se generará un mensaje de error. Lo qué ha ocurrido es que
+    @c{+} ha intentado sumar el 2 al valor devuelto por @c{'hola}, pero el
+    valor devuelto por @c{'hola} es el símbolo @c{hola}, no un número. Solo
+    los números se pueden sumar. Por tanto @c{+} no pudo llevar a cabo su
+    suma.
 
 @     You will create and enter a @f{*Backtrace*} buffer that says:
-    Se creará e introducirá un búffer @f{*Backtrace*} que dice:
+    Se creará e ingresara a un búffer @f{*Backtrace*} que dice:
 
     @example
       ---------- Buffer: *Backtrace* ----------
-      Debugger entered--Lisp error:
-               (wrong-type-argument number-or-marker-p hello)
-        +(2 hello)
-        eval((+ 2 (quote hello)))
+      Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
+        +(2 hola)
+        eval((+ 2 (quote hola)) nil)
         eval-last-sexp-1(nil)
         eval-last-sexp(nil)
-        call-interactively(eval-last-sexp)
+        call-interactively(eval-last-sexp nil nil)
+        command-execute(eval-last-sexp)
       ---------- Buffer: *Backtrace* ----------
     @end example
 
 @     As usual, the error message tries to be helpful and makes sense after you
 @     learn how to read it.@n{3}
-    Como es normal, el mensaje de error intenta ser útil y tiene sentido
-    después de que se aprenda cómo leerlo.@footnote{@c{(quote hola)} es una
-    expresión de la abreviación @c{'hola}.}
+    Como de costumbre, el mensaje de error intenta ser útil y tiene sentido
+    después de aprender cómo leerlo.@n{3}
 
 @     The first part of the error message is straightforward; it says @'{wrong
 @     type argument}.  Next comes the mysterious jargon word
 @     @'{number-or-marker-p}.  This word is trying to tell you what kind of
 @     argument the @c{+} expected.
-    La primera parte del mensaje de error es honesto; dice @'{wrong type
-    argument} (mal tipo de argumento). Lo siguiente viene con la misteriosa
-    palabra de jerga @'{number-or-marker-p}. Esta palabra está intentando
-    contar qué tipo de argumento @c{+} se espera.
+    La primera parte del mensaje de error es sencilla; dice @'{wrong type
+    argument} (tipo de argumento incorrecto). A continueción viene la
+    misteriosa palabra tecnica @'{number-or-marker-p}. Esta palabra está
+    intentando decirte qué tipo de argumento espera @c{+}.
 
 @     The symbol @c{number-or-marker-p} says that the Lisp interpreter is
 @     trying to determine whether the information presented it (the value of
@@ -1852,17 +1817,16 @@ and promoting software freedom.”
 @     numbers.
     El símbolo @c{number-or-marker-p} dice que el intérprete Lisp está
     intentando determinar si la información presentada (el valor del
-    argumento) es un número o una marca (un objeto especial representando una
-    posición de buffer). Lo que hace es testear para ver si el @c{+} está
-    siendo números dados para añadir. También chequea para ver si el
-    argumento es algo llamado un marcador, que es una funcionalidad
-    específica de Emacs Lisp. (En Emacs, las localizaciones en un búffer son
-    grabadas como marcadores. Cuando la marca está asignado con el atajo
-    @k{C-@@} o @k{C-@k{SPC}}, su posición se guarda como un marcador. La
-    marca puede ser considerada un número––el número de caracteres la
-    localización está desde el principio del búffer.)  En Emacs Lisp, @c{+}
-    puede ser usado para añadir el valor numérico de posiciones de marca como
-    números.
+    argumento) es un número o una marca (un objeto especial que representa
+    una posición de buffer). Lo que hace es probar si se le estan dando
+    numeros a sumar a @c{+}. También chequea si el argumento es algo llamado
+    marcador, que es una caracteristica específica de Emacs Lisp. (En Emacs,
+    las ubicaciones en un búffer se registran como marcadores. Cuando se
+    establece la marca con el comando @k{C-@@} o @k{C-SPC}, su posición se
+    guarda como un marcador. La marca puede ser considerada como un
+    número––el número de caracteres es la ubicacion desde el comienzo del
+    búffer.)  En Emacs Lisp, @c{+} se puede utilizar para sumar el valor
+    numérico de los marcadores como números.
 
 @     The @'{p} of @c{number-or-marker-p} is the embodiment of a practice
 @     started in the early days of Lisp programming.  The @'{p} stands for
@@ -1874,15 +1838,15 @@ and promoting software freedom.”
 @     in @'{p} include @c{zerop}, a function that tests whether its argument
 @     has the value of zero, and @c{listp}, a function that tests whether its
 @     argument is a list.
-    La @'{p} de @c{number-or-marker-p} es el cuerpo de una práctica iniciada
-    en los primeros días de la programación Lisp. La @'{p} es para
+    La @'{p} en @c{number-or-marker-p} es la encarnación de una práctica
+    iniciada en los primeros días de la programación Lisp. La @'{p} significa
     ‘predicado’. En la jerga usada por los primeros investigadores de Lisp,
     un predicado se refiere a una función para determinar si alguna propiedad
-    es verdadera o falsa. Así la @'{p} nos cuenta que @c{number-or-marker-p}
-    es el nombre de una función que determina que el argumento dado es un
+    es verdadera o falsa. Entonces la @'{p} nos dice que @c{number-or-marker-p}
+    es el nombre de una función que determina si el argumento dado es un
     número o una marca. Otros símbolos Lisp que finalizan en @'{p} incluyen
-    @c{zerop}, una función que chequea si sus argumentos tienen el valor de
-    cero, y @c{listp}, una función que prueba si sus argumentos son una
+    @c{zerop}, una función que comprueba si su argumento tienen el valor de
+    cero, y @c{listp}, una función que comprueba si su argumento es una
     lista.
 
 @     Finally, the last part of the error message is the symbol @c{hello}.
@@ -1890,26 +1854,11 @@ and promoting software freedom.”
 @     addition had been passed the correct type of object, the value passed
 @     would have been a number, such as 37, rather than a symbol like
 @     @c{hello}.  But then you would not have got the error message.
-    Finalmente, la última parte del mensaje de error es el símbolo
-    @c{hello}. Esto es el valor del argumento que pasaba a @c{+}. Si la
-    adición había sido pasada al tipo correcto de objeto, el valor pasado
-    habría sido un número, tal como 37, en vez de un símbolo como
-    @c{hello}. Pero entonces tu no habrías obtenido el mensaje de error.
-
-    @ignore
-      In GNU Emacs version 20 and before, the echo area displays an error
-      message that says:
-
-@       @example
-@         Wrong type argument:@: number-or-marker-p, hello
-@       @end example
-      @example
-        Mal tipo de argumento:@: number-or-marker-p, hello
-      @end example
-
-      This says, in different words, the same as the top line of the
-      @f{*Backtrace*} buffer.
-    @end ignore
+    Finalmente, la última parte del mensaje de error es el símbolo @c{hola}.
+    Este es el valor del argumento dado a @c{+}. Si a la suma se le hubiese
+    pasado el tipo correcto de objeto, el valor habría sido un número, como
+    37, en lugar de un símbolo como @c{hola}. Pero entonces no habrías
+    obtenido el mensaje de error.
 
 @ *** The @c{message} Function
 *** La función @c{message}
@@ -1917,21 +1866,21 @@ and promoting software freedom.”
 @     Like @c{+}, the @c{message} function takes a variable number of
 @     arguments.  It is used to send messages to the user and is so useful that
 @     we will describe it here.
-    Como @c{+}, la función @c{message} toma un número variable de
-    argumentos. Es usado para enviar mensajes para el usuario y es así tan
-    útil que nosotros lo describiremos aquí.
+    Al igual que @c{+}, la función @c{message} toma un número variable de
+    argumentos. Se utiliza para enviar mensajes al usuario y es tan útil que
+    vamos a describirla.
 
 @     A message is printed in the echo area.  For example, you can print a
 @     message in your echo area by evaluating the following list:
-    Un mensaje está impreso en el área echo. Por ejemplo, se puede imprimir
-    un mensaje en tu área echo evaluando la siguiente lista:
+    Se imprime un mensaje en el área echo. Por ejemplo, puede imprimir un
+    mensaje en su área echo evaluando la siguiente lista:
 
 @     @src elisp
 @       (message "This message appears in the echo area!")
 @     @end src
-    @example
-      (message "¿Este mensaje aparece en el área echo!")
-    @end example
+    @src elisp
+      (message "¡Este mensaje aparece en el área echo!")
+    @end elisp
 
 @     The whole string between double quotation marks is a single argument and
 @     is printed @i{in toto}.  (Note that in this example, the message itself
@@ -1941,35 +1890,34 @@ and promoting software freedom.”
 @     echo area as a side-effect, without the quotes.  See Section @l{An
 @     Interactive @c{multiply-by-seven}, An Overview, @c(multiply-by-seven) in
 @     detail}, for an example of this.)
-    La cadena entera entre comillas dobles es un argumento simple y está
-    impreso @i{en todo}. (Nótese que en este ejemplo, el mensaje en sí
-    aparecerá en el área echo con comillas comillas dobles; que es porque tu
-    ves el valor devuelto por la función @c{message}. En la mayoría de los
-    usos de @c{message} en programas que se escribe, el texto será impreso en
-    el área echo como un efecto lateral, sin las comillas. Ver
-    @l{multiply-by-seven en detalle, , @c{multiply-by-seven} en detalle},
-    para un ejemplo de esto.)
+    Toda la cadena entre comillas dobles es un unico argumento y se imprime
+    @i{en su totalidad}. (Note que en este ejemplo, el mensaje en sí aparece
+    en el área echo entre comillas dobles; esto se debe a que ves el valor
+    devuelto por la función @c{message}. En la mayoría de programas que
+    escribiras, el texto será impreso en el área echo como un efecto
+    secundario de @c{message}, sin las comillas. Ver Sección @l{Un
+    @c{multiply-by-seven} interactivo} en detalle, para un ejemplo de esto.)
 
 @     However, if there is a @'{%s} in the quoted string of characters, the
 @     @c{message} function does not print the @'{%s} as such, but looks to the
 @     argument that follows the string.  It evaluates the second argument and
 @     prints the value at the location in the string where the @'{%s} is.
-    Sin embargo, si hay un @'{%s} en la cadena citada de caracteres, la
-    función @c{message} no imprime el @'{%s} como tal, pero mira al argumento
-    que sigue la cadena. Eso evalúa el segundo argumento e imprime el valor
-    en la posición en la cadena donde el @'{%s} está.
+    Sin embargo, si hay un @'{%s} en la cadena de caracteres citada, la
+    función @c{message} no imprime el @'{%s} como tal, pero mira el siguente
+    argumento a continuacion de la cadena. Se evalúa el segundo argumento e
+    imprime el valor en la ubicación de la cadena donde está el @'{%s}.
 
 @     You can see this by positioning the cursor after the following expression
 @     and typing @k{C-x C-e}:
-    Puede ver esto posicionando el cursor después de la siguiente expresión y
-    escribiendo @k{C-x C-e}:
+    Puede ver esto colocando el cursor después de la siguiente expresión y
+    presionar @k{C-x C-e}:
 
 @     @src elisp
 @       (message "The name of this buffer is: %s." (buffer-name))
 @     @end src
-    @example
+    @src elisp
       (message "El nombre de este búffer es: %s." (buffer-name))
-    @end example
+    @end src
 
 @     In Info, @c{"The name of this buffer is: *info*."} will appear in the
 @     echo area.  The function @c{buffer-name} returns the name of the buffer
@@ -1981,30 +1929,30 @@ and promoting software freedom.”
 @     To print a value as an integer, use @'{%d} in the same way as @'{%s}.
 @     For example, to print a message in the echo area that states the value of
 @     the @c{fill-column}, evaluate the following:
-    Para imprimir un valor como un entero, usa @'{%d} en el mismo camino que
-    @'{%s}. Por ejemplo, para imprimir un mensaje en el área echo que sitúa
-    el valor de @c{fill-column}, evalúa lo siguiente:
+    Para imprimir un valor como un entero, utiliza @'{%d} de la misma forma
+    que @'{%s}. Por ejemplo, para imprimir un mensaje en el área echo que
+    indique el valor de @c{fill-column}, evalúa lo siguiente:
 
 @     @src elisp
 @       (message "The value of fill-column is %d." fill-column)
 @     @end src
-    @example
+    @src elisp
       (message "El valor de fill-column es %d." fill-column)
-    @end example
+    @end src
 
 @     On my system, when I evaluate this list, @c{"The value of fill-column is
 @     72."} appears in my echo area@n{4}.
     En mi sistema, cuando evalúo esta lista, @c{"El valor de fill-column es
-    72"} aparece en mi área echo@n{3}
+    72"} aparece en mi área echo@n{4}.
 
 @     If there is more than one @'{%s} in the quoted string, the value of the
 @     first argument following the quoted string is printed at the location of
 @     the first @'{%s} and the value of the second argument is printed at the
 @     location of the second @'{%s}, and so on.
-    Si hay más de una @'{%s} en la cadena citada, el valor del primer
-    argumento siguiente la cadena citada es impresa en la posición del primer
-    @'{%s} y el valor del segundo argunmento es impreso en la posición del
-    segundo @'{%s}, y así.
+    Si hay más de un @'{%s} en la cadena citada, el valor del primer
+    argumento después de la cadena citada se imprime en la posición del
+    primer @'{%s} y el valor del segundo argumento se imprime en la posición
+    del segundo @'{%s}, y así sucesivamente.
 
 @     For example, if you evaluate the following,
     Por ejemplo, si se evalúa lo siguiente,
@@ -2013,33 +1961,33 @@ and promoting software freedom.”
 @       (message "There are %d %s in the office!"
 @                (- fill-column 14) "pink elephants")
 @     @end src
-    @example
-      (message "¿Hay %d %s en la oficina!"
+    @src elisp
+      (message "¡Hay %d %s en la oficina!"
                (- fill-column 14) "elefantes rosas")
-    @end example
+    @end src
 
 @     a rather whimsical message will appear in your echo area.  On my system
 @     it says, @c{"There are 58 pink elephants in the office!"}.
-    un mensaje característico aparecerá en el área echo. En mi sistema dice
-    @c{"¿Hay 58 elefantes rosas en la oficina!"}
+    Un mensaje un poco caprichoso aparecerán en el área echo. En mi sistema
+    dice @c{"¿Hay 58 elefantes rosas en la oficina!"}
 
 @     The expression @c{(- fill-column 14)} is evaluated and the resulting
 @     number is inserted in place of the @'{%d}; and the string in double
 @     quotes, @c{"pink elephants"}, is treated as a single argument and
 @     inserted in place of the @'{%s}.  (That is to say, a string between
 @     double quotes evaluates to itself, like a number.)
-    La expresión @c{(- fill-column 14)} está evaluado y el número resultante
-    está insertado en lugar del @'{%d}; y la cadena entre dobles comillas,
-    @c{"elefantes rosas"}, está tratado como un argumento simple e insertado
-    en lugar del @'{%s}. (Esto es decir, una cadena entre comillas dobles se
-    evalúa así mismo, como un número.)
+    Se evalúa la expresión @c{(- fill-column 14)} y el número resultante
+    se inserta en lugar del @'{%d}; y la cadena entre comillas dobles,
+    @c{"elefantes rosas"}, se trata como un solo argumento y se inserta
+    en lugar del @'{%s}. (Es decir, una cadena entre comillas dobles se
+    evalúa así misma, como un número.)
 
 @     Finally, here is a somewhat complex example that not only illustrates the
 @     computation of a number, but also shows how you can use an expression
 @     within an expression to generate the text that is substituted for @'{%s}:
-    Finalmente, aquí está un ejemplo algo complejo que no solo ilustra la
-    computación de un número, pero también muestra como se puede usar una
-    expresión que genere el texto que es sustituido por @'{%s}:
+    Por último, aquí está un ejemplo algo complejo que no solo ilustra el
+    cálculo de un número, también muestra como se puede usar una expresión
+    dentro de una expresión para generar el texto que sustituira el @'{%s}:
 
 @     @src elisp
 @       (message "He saw %d %s"
@@ -2049,13 +1997,14 @@ and promoting software freedom.”
 @                         "The quick brown foxes jumped." 16 21)
 @                        " leaping."))
 @     @end src
-    @example
+    @src elisp
       (message "Él vió %d %s"
                (- fill-column 36)
-               (concat (substring
-                        "Los rápidos zorros marrones saltaron." 12 21)
-                        "rojos trotando."))
-    @end example
+               (concat "rojos "
+                       (substring
+                        "Los rápidos zorros marrones saltaron." 12 18)
+                       " saltando."))
+    @end src
 
 @     In this example, @c{message} has three arguments: the string, @c{"He saw
 @     %d %s"}, the expression, @c{(- fill-column 32)}, and the expression
@@ -2064,15 +2013,15 @@ and promoting software freedom.”
 @     and the value returned by the expression beginning with @c{concat} is
 @     inserted in place of the @'{%s}.
     En este ejemplo, @c{message} tiene tres argumentos: la cadena, @c{"Él vió
-    %d %s"}, después la expresión, que empieza con la función @c{concat}. El
-    valor resultante desde la evaluación de @c{(- fill-column 32)} está
-    insertado en lugar de @'{%d}; y el valor devuelto por la expresión
-    empieza con @c{concat} está insertado en lugar del @'{%s}.
+    %d %s"}, la expresión, @c{(- fill-column 32)}, y la expresion a partir de
+    la función @c{concat}. El valor resultante de la evaluación de @c{(-
+    fill-column 32)} se inserta en lugar del @'{%d}; y el valor devuelto por
+    la expresión que inicia con @c{concat} se inserta en lugar del @'{%s}.
 
-@     When your fill column is 70 and you evaluate the expression, the message
+@     When your @c(fill-column) is 70 and you evaluate the expression, the message
 @     @c{"He saw 38 red foxes leaping."} appears in your echo area.
-    Cuando se rellena la columna es 70 y se evalúa la expresión, el mensaje
-    @c{"Se vieron 38 zorros rojos trotando."} aparece en tu área echo.
+    Cuando @c(fill-column) es 70 y se evalúa la expresión, aparecera el
+    mensaje @c{"Él vió 38 rojos zorros saltando."} en tu área echo.
 
 @ ** Setting the Value of a Variable
 ** Configurando el valor de una variable
@@ -2081,32 +2030,32 @@ and promoting software freedom.”
 @    the ways is to use either the function @c{set} or the function @c{setq}.
 @    Another way is to use @c{let} (see Section @l{@c{let}}).  (The jargon for
 @    this process is to @:{bind} a variable to a value.)
-   Hay varios caminos por el que una variable puede dar un valor. Uno de los
-   caminos es usar la función @c{set} o la función @c{setq}.  Otro camino es
-   usar @c{let} (@l{let}). (La jerga para este proceso es @:{bind} una
-   variable para un valor.)
+   Hay varias formas de asignar un valor a una variable. Una de ellas es
+   utilizar la función @c{set} o la función @c{setq}.  Otra forma es utilizar
+   @c{let} (vease Seccion @lc{let}). (La jerga para este proceso es @:{bind}
+   (ligar) una variable a un valor.)
 
 @    The following sections not only describe how @c{set} and @c{setq} work but
 @    also illustrate how arguments are passed.
-   Las siguientes secciones no solo describen cómo @c{set} y @c{setq}
-   funcionan pero también ilustran como los argumentos pasan.
+   Las siguientes secciones no solo describen cómo operan @c{set} y @c{setq},
+   también ilustran como se pasan los argumentos.
 
 @ *** Using @c{set}
-*** Usando set
+*** Usando @c{set}
 
 @     To set the value of the symbol @c{flowers} to the list @c{'(rose violet
 @     daisy buttercup)}, evaluate the following expression by positioning the
 @     cursor after the expression and typing @k{C-x C-e}.
-    Para asignar el valor del símbolo @c{flores} a la lista @c{'(rosa violeta
-    margarita botóndeoro)}, evalúa la siguiente expresión posicionando el
-    cursor después de la expresión y escribiendo @k{C-x C-e}.
+    Para establecer el valor del símbolo @c{flores} a la lista @c{'(rosa
+    violeta margarita tulipan)}, evalúa la siguiente expresión colocando
+    el cursor después de la expresión y presiona @k{C-x C-e}.
 
 @     @src elisp
 @       (set 'flowers '(rose violet daisy buttercup))
 @     @end src
-    @example
-      (set 'flores '(rosa violeta margarita botóndeoro))
-    @end example
+    @src elisp
+      (set 'flores '(rosa violeta margarita tulipan))
+    @end src
 
 @     The list @c{(rose violet daisy buttercup)} will appear in the echo area.
 @     This is what is @e{returned} by the @c{set} function.  As a side effect,
@@ -2117,48 +2066,48 @@ and promoting software freedom.”
 @     humans are interested in.  This is because every Lisp function must
 @     return a value if it does not get an error, but it will only have a side
 @     effect if it is designed to have one.)
-    La lista @c{(rosa violeta margarita botóndeoro)} aparecerá en el área
-    echo. Esto es lo que está @e{devuelto} por la función @c{set}. Como
-    efecto lateral, el símbolo @c{flores} está asociado a la lista; esto es,
-    el símbolo @c{flores}, que puede ser visto como una variable, que es dada
-    por la lista como su valor. (Este proceso, ilustra un efecto lateral al
-    intérprete Lisp: asignando el valor, que puede ser el efecto primario en
-    el que los humanos estamos interesados. Esto es porque cada función Lisp
-    debe devolver un valor si no se obtiene un error, pero solo tendrá un
-    efecto colateral si está diseñado para tener uno.)
+    La lista @c{(rosa violeta margarita tulipan)} aparecerá en el área
+    echo. Esto es @e{devuelto} por la función @c{set}. Como efecto
+    secundario, el símbolo @c{flores} esta ligado a la lista; es decir, el
+    símbolo @c{flores}, puede verse como una variable, que entrega la lista
+    como su valor. (Por cierto, este proceso, ilustra como un efecto
+    secundario al intérprete Lisp, estableciendo el valor, puede ser el
+    principal efecto en el que los humanos estamos interesados. Esto se debe
+    a que cada función Lisp debe devolver un valor si no obtiene un error,
+    pero solo tendrá un efecto secundario si está diseñado para tener uno.)
 
 @     After evaluating the @c{set} expression, you can evaluate the symbol
 @     @c{flowers} and it will return the value you just set.  Here is the
 @     symbol.  Place your cursor after it and type @k{C-x C-e}.
     Después de evaluar la expresión @c{set}, se puede evaluar el símbolo
-    @c{flores} y devolverá el valor asignado. Aquí está el símbolo. Emplaza
-    tu cursor después y escribe @k{C-x C-e}.
+    @c{flores} y ha de devolver el valor que acaba de establecer. Aquí está
+    el símbolo. Coloca el cursor al final de este y presiona @k{C-x C-e}.
 
 @     @src elisp
 @       flowers
 @     @end src
-    @example
+    @src elisp
       flores
-    @end example
+    @end src
 
 @     When you evaluate @c{flowers}, the list @c{(rose violet daisy buttercup)}
 @     appears in the echo area.
-    Cuando se evalúa @c{flores}, la lista @c{(rosa violeta margarita
-    botóndeoro)} aparece en el área echo.
+    Al evalúar @c{flores}, aparece la lista @c{(rosa violeta margarita
+    tulipan)} en el área echo.
 
 @     Incidentally, if you evaluate @c{'flowers}, the variable with a quote in
 @     front of it, what you will see in the echo area is the symbol itself,
 @     @c{flowers}.  Here is the quoted symbol, so you can try this:
-    Incidentalmente, si se evalúa @c{'flores}, la variable con una comilla en
-    frente, se ve en el área echo y es el símbolo en sí: @c{flores}.  Aquí
-    está el símbolo citado, así se puede probar esto:
+    Por cierto, si se evalúa @c{'flores}, la variable con una cita frente a
+    ella, lo que verá en el área echo es el símbolo en sí mismo: @c{flores}.
+    Aquí está el símbolo citado, para que pueda probar esto:
 
 @     @src elisp
 @       'flowers
 @     @end src
-    @example
+    @src elisp
       'flores
-    @end example
+    @end src
 
 @     Note also, that when you use @c{set}, you need to quote both arguments to
 @     @c{set}, unless you want them evaluated.  Since we do not want either
@@ -2171,17 +2120,17 @@ and promoting software freedom.”
 @     did return a value after it was evaluated, the @c{set} would attempt to
 @     set the value that was returned.  There are situations where this is the
 @     right thing for the function to do; but such situations are rare.)
-    Nótese también, que cuando se usa @c{set}, se necesitan citar ambos
-    argumentos a @c{set}, a menos que se quiera evaluar. Puesto que nosotros
-    no queremos argumentos evaluados, ni la variable @c{flores}, ni la lista
-    @c{(rosa violeta margarita botóndeoro)}, se citan. (Cuando se usa @c{set}
-    sin citar su primer argumento, el primer argumento se evalúa antes que
-    cualquier cosa se haga. Si se hizo esto y @c{flores} no tenía un valor
-    ya, se tendría un mensaje de error que el @'{Valor de símbolo como
-    variable esté vacío}; por otro lado, si @c{flores} no devolvió un valor
-    después de que fuera evaluado, el @c{set} intentaría establecer un valor
-    después de que fuera devuelto. Hay situaciones donde esto es lo correcto
-    para la función a hacer, pero tales situaciones son raras.)
+    También tenga en cuenta, que cuando se utiliza @c{set}, es necesario
+    citar ambos argumentos de @c{set}, a menos que los quiera evaluar.
+    Puesto que no queremos evaluar, ni la variable @c{flores}, ni la lista
+    @c{(rosa violeta margarita tulipan)}, ambos se citan. (Cuando se utiliza
+    @c{set} sin citar su primer argumento, el primer argumento se evalúa
+    antes de realizar cualquier otra cosa. Si hizo esto y @c{flores} no tenía
+    ya un valor, otendria un mensaje de error con el @'{Valor de símbolo como
+    variable vacío}; por otro lado, si @c{flores} regreso un valor después de
+    ser evaluado, @c{set} intentaría establecer el valor que fue devuelto.
+    Hay situaciones donde esto es justo lo que la función a de hacer, pero
+    estas situaciones son poco frecuentes.)
 
 @ *** Using @c{setq}
 *** Usando @c{setq}
@@ -2193,31 +2142,32 @@ and promoting software freedom.”
 @     automatically, so you don't need to type the quote mark yourself.  Also,
 @     as an added convenience, @c{setq} permits you to set several different
 @     variables to different values, all in one expression.
-    Como materia práctica, casi siempre se cita el primer argumento a
-    @c{set}. La combinación de @c{set} y un argumento citado primero es común
-    que tiene su propio nombre: la forma especial @c{setq}. Esta forma
-    especial es solo como @c{set} excepto que el primer argumento se cita
-    automáticamente, así no se necesita escribir la marca de cita por uno
-    mismo. También, como una conveniencia añadida, @c{setq} permite asignar
-    varias variables diferentes a diferentes valores, todo en una expresión.
+    Como una cuestión práctica, casi siempre se cita el primer argumento de
+    @c{set}. La combinación de @c{set} y un primer argumento citado es tan
+    común que tiene nombre propio: la forma especial @c{setq}. Esta forma
+    especial es igual a @c{set} excepto que el primer argumento es citado
+    automáticamente, por lo que no necesita escribir la marca de cita.
+    También, para mayor comodidad, @c{setq} permite asignar varias variables
+    diferentes a diferentes valores, todo en una expresión.
 
 @     To set the value of the variable @c{carnivores} to the list @c{'(lion
 @     tiger leopard)} using @c{setq}, the following expression is used:
-    Para asignar el valor de la variable @c{carnívoros} a la lista @c{'(leon
-    tigre leopardo)} usando @c{setq}, la siguiente expresión que se usa es:
+    Para establecer el valor de la variable @c{carnívoros} a la lista
+    @c{'(leon tigre leopardo)} usando @c{setq}, se utiliza la siguiente
+    expresión:
 
 @     @src elisp
 @       (setq carnivores '(lion tiger leopard))
 @     @end src
-    @example
+    @src elisp
       (setq carnivoros '(leon tigre leopardo))
-    @end example
+    @end src
 
 @     This is exactly the same as using @c{set} except the first argument is
 @     automatically quoted by @c{setq}.  (The @'{q} in @c{setq} means
 @     @c{quote}.)
-    Esto es exactamente lo mismo que usar @c{set} excepto que el primer
-    argumento se cita automáticamente por @c{setq}. (El @'{q} en @c{setq}
+    Esto es exactamente igual que usar @c{set} excepto que el primer
+    argumento se cita automáticamente por @c{setq}. (La @'{q} en @c{setq}
     significa @c{quote}.)
 
 @     With @c{set}, the expression would look like this:
@@ -2226,9 +2176,9 @@ and promoting software freedom.”
 @     @src elisp
 @       (set 'carnivores '(lion tiger leopard))
 @     @end src
-    @example
+    @src elisp
       (set 'carnivoros '(leon tigre leopardo))
-    @end example
+    @end src
 
 @     Also, @c{setq} can be used to assign different values to different
 @     variables.  The first argument is bound to the value of the second
@@ -2236,28 +2186,28 @@ and promoting software freedom.”
 @     argument, and so on.  For example, you could use the following to assign
 @     a list of trees to the symbol @c{trees} and a list of herbivores to the
 @     symbol @c{herbivores}:
-    También, @c{setq} puede ser usado para asignar diferentes valores a
-    diferentes variables. El primer argumento está asociado al valor del
-    segundo argumento, el tercer argumento se asocia al valor del cuarto
-    argumento, y así. Por ejemplo, se podría usar lo siguiente para asignar
-    una lista de árboles al símbolo @c{arboles} y una lista herbívoros al
+    Además, @c{setq} se puede utilizar para asignar diferentes valores a
+    diferentes variables. El primer argumento se une a al valor del segundo
+    argumento, el tercer argumento se une a al valor del cuarto argumento, y
+    así sucesivamente. Por ejemplo, podría utilizar lo siguiente para asignar
+    una lista de árboles al símbolo @c{arboles} y una lista de herbívoros al
     símbolo @c{herbivoros}:
 
 @     @src elisp
 @       (setq trees '(pine fir oak maple)
 @             herbivores '(gazelle antelope zebra))
 @     @end src
-    @example
+    @src elisp
       (setq arboles '(pino abeto roble arce)
             herbivoros '(gacela antilope cebra))
-    @end example
+    @end src
 
 @     (The expression could just as well have been on one line, but it might
 @     not have fit on a page; and humans find it easier to read nicely
 @     formatted lists.)
-    (La expresión podría también haber estado en una línea, pero podría no
-    haberse ajustado en una página; y los humanos encuentran que es fácil
-    leer listas formateadas.)
+    (La expresión podría también haber estado en una sola línea, pero podría
+    no caber en una página; y a los humanos les resulta más fácil leer listas
+    con un formato agradable.)
 
 @     Although I have been using the term ‘assign’, there is another way of
 @     thinking about the workings of @c{set} and @c{setq}; and that is to say
@@ -2267,13 +2217,14 @@ and promoting software freedom.”
 @     name.  The name is chosen because the symbol has a value, specifically a
 @     list, attached to it; or, expressed another way, the symbol is set to
 @     “point” to the list.
-    Aunque yo he estado usando el término ‘assign’, hay otro camino de pensar
-    acerca de los trabajos de @c{set} y @c{setq}; y que es decir que @c{set}
-    y @c{setq} creen el símbolo @e{point} a la lista. Este camino posterior
-    de pensamiento es muy común y en los capítulos siguientes volveremos al
-    menos a un símbolo que tiene un valor, específicamente una lista,
-    adjunta; o, expresa otros caminos, el símbolo asigna a “apuntar” a la
-    lista.
+    Aunque he estado usando el término ‘asignar’, hay otra forma de pensar
+    respecto a el funcionamiento de @c{set} y @c{setq}; y consiste en decir
+    que @c{set} y @c{setq} crean un símbolo que @e{apunta} a la lista. Esta
+    ultima forma de pensar es muy común y en los proximos capítulos
+    deberiamos encontrar al menos un símbolo con un ‘puntero’ como parte de
+    su nombre. El nombre es elegido porque el símbolo tiene un valor,
+    específicamente una lista, unida a el; o, expresado de otra manera, el
+    símbolo se ajusta para “apuntar” a la lista.
 
 @ *** Counting
 *** Contando
@@ -2285,14 +2236,13 @@ and promoting software freedom.”
 @     serves as a counter, and two expressions: an initial @c{setq} expression
 @     that sets the counter variable to zero; and a second @c{setq} expression
 @     that increments the counter each time it is evaluated.
-    Aquí hay un ejemplo que muestra cómo usar @c{setq} en un contador. Se
-    podría usar esto para contar cuantas veces una parte de un programa se
-    repite por sí mismo. Primero asigna una variable a cero; entonces añade
-    uno al número cada vez que el programa se repite así mismo. Para hacer
-    esto, se necesita una variable que sirve como un contador, y dos
-    expresiones: una expresión @c{setq} que asigna la variable contador a
-    cero; y una segunda expresión @c{setq} que incrementa el contador cada
-    vez que eso es evaluado.
+    He aquí un ejemplo que muestra cómo utilizar @c{setq} en un contador. Es
+    posible usar esto para contar cuantas veces una parte de un programa se
+    repite. En primer lugar establesca una variable a cero; a continuación
+    suma uno al número cada vez que el programa se repita. Para ello, se
+    necesita una variable que sirva como un contador, y dos expresiones: una
+    expresión @c{setq} inicial que asigna la variable contador a cero; y una
+    segunda expresión @c{setq} que incrementa el contador cada vez se evalua.
 
 @     @src elisp
 @       (setq counter 0)                ; @e{Let's call this the initializer.}
@@ -2301,17 +2251,17 @@ and promoting software freedom.”
 @
 @       counter                         ; @e{This is the counter.}
 @     @end src
-    @example
-      (setq counter 0)                ; @r{Se inicializa.}
+    @src elisp
+      (setq contador 0)                ; Llamemos a esto el inicializador.
 
-      (setq counter (+ counter 1))    ; @r{Se incrementa.}
+      (setq contador (+ contador 1))   ; Este es el incremento.
 
-      counter                         ; @r{Contador.}
-    @end example
+      contador                         ; Este es el contador.
+    @end src
 
 @     (The text following the @'{;} are comments.  See Section @l{Change a
 @     Function Definition}.)
-    (El siguiente texto el @'{;} son comentarios. Ver Véase Sección
+    (El texto que sigue al @'{;} son los comentarios. Véase Sección
     @l{Cambiar una definición de función}.)
 
 @     If you evaluate the first of these expressions, the initializer, @c{(setq
@@ -2322,10 +2272,10 @@ and promoting software freedom.”
 @     number @c{1} will appear in the echo area.  Each time you evaluate the
 @     second expression, the value of the counter will be incremented.
     Si evalúas la primera de estas expresiones, el inicializador, @c{(setq
-    counter 0)}, y entonces evalúa la tercera expresión, @c{counter}, el
-    número @c{0} aparecerá en el área echo. Si entonces se evalúa la segunda
-    expresión, el incrementador, @c{(setq counter (+ counter 1))}, el
-    contador obtendrá el valor 1. Así si evalúas de nuevo @c{counter}, el
+    contador 0)}, y luego evalúas la tercera expresión, @c{contador}, el
+    número @c{0} aparecerá en el área echo. Si a continuación se evalúa la
+    segunda expresión, el incremento, @c{(setq contador (+ contador 1))}, el
+    contador tendrá el valor 1. Así que si evalúas de nuevo @c{contador}, el
     número @c{1} aparecerá en el área echo. Cada vez que se evalúa la segunda
     expresión, el valor del contador será incrementado.
 
@@ -2338,14 +2288,14 @@ and promoting software freedom.”
 @     returned as the value of the inner list and passed to the @c{setq} which
 @     sets the variable @c{counter} to this new value.  Thus, the value of the
 @     variable, @c{counter}, is changed.
-    Cuando se evalúa el incrementador, @c{(setq counter (+ counter 1))}, el
-    intérprete Lisp primero evalúa la lista interna; esta es la adición. En
-    orden para evaluar esta lista, debe evaluar la variable @c{counter} y el
-    número @c{1}. Cuando evalúa la variable @c{counter}, recibe su valor
-    actual. Esto pasa su valor y el número @c{1} para el @c{+} que los añade
-    juntos. La suma es devuelta como el valor de la list propia pasada al
-    @c{setq} que asigna la variable @c{counter} a este nuevo valor. De este
-    modo, el valor de la variable @c{counter}, se cambia.
+    Al evalúar el incremento, @c{(setq contador (+ contador 1))}, el
+    intérprete Lisp evalúa en primer lugar la lista interna; esto es la
+    suma. Con el fín de evaluar esta lista, se debe evaluar la variable
+    @c{contador} y el número @c{1}. Cuando evalúa la variable @c{contador},
+    se recibe su valor actual. Se pasa este valor y el número @c{1} a @c{+}
+    que los suma. La suma se devuelve como el valor de la list interior y
+    pasa a @c{setq} que establece la variable @c{contador} a este nuevo
+    valor. Por lo tanto, el valor de la variable @c{contador}, cambia.
 
 @ ** Summary
 ** Resumen
@@ -2353,93 +2303,94 @@ and promoting software freedom.”
 @    Learning Lisp is like climbing a hill in which the first part is the
 @    steepest.  You have now climbed the most difficult part; what remains
 @    becomes easier as you progress onwards.
-   Aprender Lisp es como escalar una montaña en la que la primera parte es la
-   empinada. Ahora has escalado la parte más difícil; y lo que queda es más
-   fácil.
+   Aprender Lisp es como subir una colina en la que la primera parte es la
+   mas empinada. Ahora has subido la parte más difícil; lo que queda se
+   vuelve más fácil a medida que avanzas hacia adelante.
 
 @    In summary,
    En resumen,
 
 @    - Lisp programs are made up of expressions, which are lists or single
 @      atoms.
-   - Los programas Lisp son hechos de expresiones, que son listas o átomos
-     simples.
+   - Los programas Lisp se componen de expresiones, que son listas o átomos
+     individuales.
 
 @    - Lists are made up of zero or more atoms or inner lists, separated by
 @      whitespace and surrounded by parentheses.  A list can be empty.
-   - La listas son hechas de cero o más átomos o listas internas, separadas
-     por espacios en blanco y rodeados de paréntesis. Una lista puede estar
+   - La listas se componen de cero o más átomos o listas internas, separadas
+     por espacios en blanco y rodeadas por paréntesis. Una lista puede estar
      vacía.
 
 @    - Atoms are multi-character symbols, like @c{forward-paragraph}, single
 @      character symbols like @c{+}, strings of characters between double
 @      quotation marks, or numbers.
-   - Los átomos son símbolos multi-carácter, como @c{forward-paragraph}, los
-     símbolos de caracteres como @c{+}, cadenas de caracteres entre marcas de
-     comillas dobles, o números.
+   - Los átomos son símbolos de varios caracteres, como
+     @c{forward-paragraph}, símbolos de un solo caracter como @c{+}, cadenas
+     de caracteres entre comillas dobles, o números.
 
 @    - A number evaluates to itself.
    - Un número se evalúa a sí mismo.
 
 @    - A string between double quotes also evaluates to itself.
-   - Una cadena entre comillas dobles también se evalúa a sí mismo.
+   - Una cadena entre comillas dobles también se evalúa a sí misma.
 
 @    - When you evaluate a symbol by itself, its value is returned.
-   - Cuando se evalúa un símbolo a sí mismo, su valor se devuelve.
+   - Cuando se evalúa un símbolo a sí mismo, se devuelve su valor.
 
 @    - When you evaluate a list, the Lisp interpreter looks at the first symbol
 @      in the list and then at the function definition bound to that symbol.
 @      Then the instructions in the function definition are carried out.
-   - Cuando se evalúa una lista, el intérprete mira el primer símbolo en la
-     lista y en la definición de la función asociada a este símbolo. Así se
-     traen las instrucciones en la definición función.
+   - Cuando se evalúa una lista, el intérprete Lisp mira el primer símbolo en
+     la lista y luego la definición de función asociada a ese símbolo. A
+     continuación, las instrucciones en la definición de función se llevan a
+     cabo.
 
 @    - A single quotation mark, @c{'}, tells the Lisp interpreter that it
 @      should return the following expression as written, and not evaluate it
 @      as it would if the quote were not there.
-   - Una marca de cita (quote) simple, @c{'}, cuenta al intérprete Lisp que
-     devolvería la siguiente expresión como se escribe, y se evalúa como si
-     la cita no estuviera.
+   - Una marca de cita, @c{'}, le indica al intérprete Lisp que devuelva la
+     siguiente expresión como esta escrita, y no la evalúa como lo haria si
+     la cita no estuviera alli.
 
 @    - Arguments are the information passed to a function.  The arguments to a
 @      function are computed by evaluating the rest of the elements of the list
 @      of which the function is the first element.
-   - Los argumentos son la información pasada a una función. Los argumentos a
-     una función son computados evaluando el resto de los elementos de la
-     lista de la que la función es el primer elemento.
+   - Los argumentos son la información que se pasa a una función. Los
+     argumentos de una función se calculan evaluando el resto de los
+     elementos de la lista de los que la función es el primer elemento.
 
 @    - A function always returns a value when it is evaluated (unless it gets
 @      an error); in addition, it may also carry out some action called a “side
 @      effect”.  In many cases, a function's primary purpose is to create a
 @      side effect.
    - Una función siempre devuelve un valor cuando se evalúa (a menos que
-     obtenga un error); además, puede también traer alguna acción llamada un
-     “efecto colateral”. En muchos casos, un propósito de la función primaria
-     es crear un efecto colateral.
+     obtenga un error); además, también se puede llevar a cabo algun tipo de
+     acción llamado “efecto secundario”. En muchos casos, el propósito
+     principal de una función es crear un efecto secundario.
 
 @ ** Exercises
 ** Ejercicios
 
 @    A few simple exercises:
-   Unos pocos ejercicios simples:
+   Unos ejercicios sencillos:
 
 @    - Generate an error message by evaluating an appropriate symbol that is
 @      not within parentheses.
-   - Genera un mensaje de error evaluando un símbolo apropiado que no está
+   - Generar un mensaje de error evaluando un símbolo apropiado que no está
      entre paréntesis.
 
 @    - Generate an error message by evaluating an appropriate symbol that is
 @      between parentheses.
-   - Genera un mensaje de error evaluando un símbolo apropiado que está entre
-     paréntesis.
+   - Generar un mensaje de error evaluando un símbolo apropiado que está
+     entre paréntesis.
 
 @    - Create a counter that increments by two rather than one.
-   - Crea un contador que incremente por dos en vez de uno.
+   - Crear un contador que se incrementa en dos en lugar de uno.
 
 @    - Write an expression that prints a message in the echo area when
 @      evaluated.
-   - Escribe una expresión que imprima un mensaje en el área cuando es
-     evaluada.
+   - Escribe una expresión que imprima un mensaje en el área eco cuando se
+     evalua.
 
 @ * Practicing Evaluation
 * Practicando evaluación
@@ -3142,7 +3093,7 @@ and promoting software freedom.”
    @example
      (defun @V{function-name} (@V{arguments}…)
        "@V{documentacion-opcional}…"
-       (interactive @V{argument-passing-info})     ; @r{opcional}
+       (interactive @V{argument-passing-info})     ; @e{opcional}
        @V{body}…)
    @end example
 
@@ -3433,7 +3384,7 @@ and promoting software freedom.”
 @         (+ number number number number number number number))
 @     @end src
     @example
-      (defun multiply-by-seven (number)       ; @r{Segunda versión.}
+      (defun multiply-by-seven (number)       ; @e{Segunda versión.}
         "Multiplicar NUMERO por siete."
         (+ number number number number number number number))
     @end example
@@ -3513,7 +3464,7 @@ and promoting software freedom.”
 @        (message "The result is %d" (* 7 number)))
 @    @end src
    @example
-     (defun multiply-by-seven (number)       ; @r{Versión Interactiva.}
+     (defun multiply-by-seven (number)       ; @e{Versión Interactiva.}
        "Multiplicar NUMERO por siete."
        (interactive "p")
        (message "El resultado es %d" (* 7 number)))
@@ -3589,7 +3540,7 @@ and promoting software freedom.”
 @         (message "The result is %d" (* 7 number)))
 @     @end src
     @example
-      (defun multiply-by-seven (number)       ; @r{Versión Interactiva.}
+      (defun multiply-by-seven (number)       ; @e{Versión Interactiva.}
         "Multiplicar NUMERO por siete."
         (interactive "p")
         (message "El resultado es %d" (* 7 number)))
@@ -4247,8 +4198,8 @@ and promoting software freedom.”
 @          (message "5 is greater than 4!"))   ; @e{then-part}
 @    @end src
    @example
-     (if (> 5 4)                             ; @r{parte-si}
-         (message "¿5 es mayor que 4!"))   ; @r{parte-entonces}
+     (if (> 5 4)                             ; @e{parte-si}
+         (message "¿5 es mayor que 4!"))   ; @e{parte-entonces}
    @end example
 
 @    (The function @c{>} tests whether its first argument is greater than its
@@ -4497,9 +4448,9 @@ and promoting software freedom.”
 @        (message "4 is not greater than 5!"))   ; @e{else-part}
 @    @end src
    @example
-     (if (> 4 5)                               ; @r{parte-si}
-         (message "¿4 no es más grande que 5!") ; @r{parte-entonces}
-       (message "¿4 no es más grande que 5!"))   ; @r{parte-resto}
+     (if (> 4 5)                               ; @e{parte-si}
+         (message "¿4 no es más grande que 5!") ; @e{parte-entonces}
+       (message "¿4 no es más grande que 5!"))   ; @e{parte-resto}
    @end example
 
 @    Note that the different levels of indentation make it easy to distinguish
@@ -4542,7 +4493,7 @@ and promoting software freedom.”
 @      (type-of-animal 'zebra)
 @    @end src
    @example
-     (defun tipo-de-animal (caracteristica)  ; @r{Segunda versión.}
+     (defun tipo-de-animal (caracteristica)  ; @e{Segunda versión.}
        "Imprime el mensaje en el área echo dependiendo de CARACTERISTICA.
      Si la CARACTERISTICA es el símbolo `fiera',
      entonces avisa de un tigre; sino di que no es una fiera."
@@ -6404,7 +6355,7 @@ and promoting software freedom.”
 @     @end example
     @example
       (let (@V{bind-}@c{oldbuf}@V{-to-value-of-}@c{current-buffer})
-        (save-excursion                       ; @r{Guarda la traza del búffer.}
+        (save-excursion                       ; @e{Guarda la traza del búffer.}
           @V{change-buffer}
           @V{insert-substring-from-}@c{oldbuf}@V{-into-buffer})
 
@@ -6928,8 +6879,8 @@ and promoting software freedom.”
 @           (setq buffer (get-buffer buffer)))  ; @e{then-part}
 @     @end example
     @example
-      (if (not (bufferp buffer))              ; @r{if-part}
-          (setq buffer (get-buffer buffer)))  ; @r{then-part}
+      (if (not (bufferp buffer))              ; @e{if-part}
+          (setq buffer (get-buffer buffer)))  ; @e{then-part}
     @end example
 
 @     Here, the true-or-false-test of the @c{if} expression is @c{(not (bufferp
@@ -7491,7 +7442,7 @@ and promoting software freedom.”
 @     @end example
     @example
       (if (> (buffer-size) 10000)
-          ;; @r{¿Evitar sobrecarga para grandes tamaños de búffer!}
+          ;; @e{¿Evitar sobrecarga para grandes tamaños de búffer!}
                                 (* (prefix-numeric-value arg)
                                    (/ size 10))
         (/
@@ -7853,7 +7804,7 @@ and promoting software freedom.”
           (goto-char
            (if arg
                (if (> (buffer-size) 10000)
-                   ;; @r{¿Evita overflow para tamaños de búffer grandes!}
+                   ;; @e{¿Evita overflow para tamaños de búffer grandes!}
                    (* (prefix-numeric-value arg)
                       (/ (buffer-size) 10))
                  (/ (+ 10 (* (buffer-size)
@@ -8513,7 +8464,7 @@ and promoting software freedom.”
 @    the @eC{car} of the list @c{(rose violet daisy buttercup)} is @c{rose}.
    El @Cc{car} de una lista es, bastante simple, el primer ítem en la
    lista. De este modo, el @Cc{car} de la lista @c{(rosa violeta margarita
-   botóndeoro)} es @c{rosa}.
+   tulipan)} es @c{rosa}.
 
 @    If you are reading this in Info in GNU Emacs, you can see this by
 @    evaluating the following:
@@ -8524,7 +8475,7 @@ and promoting software freedom.”
 @      (car '(rose violet daisy buttercup))
 @    @end example
    @example
-     (car '(rosa violeta margarita botóndeoro))
+     (car '(rosa violeta margarita tulipan))
    @end example
 
 @    After evaluating the expression, @c{rose} will appear in the echo area.
@@ -8552,8 +8503,8 @@ and promoting software freedom.”
    El @Cc{cdr} de una lista es el resto de la lista, que es, la función
    @c{cdr} que devuelve la parte de la lista que sigue el primer ítem. De
    este modo, mientras el @Cc{car} de la lista @c{'(rosa violeta margarita
-   botóndeoro)} es @c{rosa}, el resto de la lista, el valor devuelto por la
-   función @c{cdr}, es @c{(violeta margarita botóndeoro)}.
+   tulipan)} es @c{rosa}, el resto de la lista, el valor devuelto por la
+   función @c{cdr}, es @c{(violeta margarita tulipan)}.
 
 @    You can see this by evaluating the following in the usual way:
    Se puede ver esto evaluando lo siguiente del modo usual:
@@ -8562,12 +8513,12 @@ and promoting software freedom.”
 @      (cdr '(rose violet daisy buttercup))
 @    @end example
    @example
-     (cdr '(rosa violeta margarita botóndeoro))
+     (cdr '(rosa violeta margarita tulipan))
    @end example
 
 @    When you evaluate this, @c{(violet daisy buttercup)} will appear in the
 @    echo area.
-   Cuando se evalúa esto, @c{(violeta margarita botóndeoro)} aparecerá en el
+   Cuando se evalúa esto, @c{(violeta margarita tulipan)} aparecerá en el
    área echo.
 
 @    Like @c{car}, @c{cdr} does not remove any elements from the list––it just
@@ -8767,17 +8718,17 @@ and promoting software freedom.”
 @           ⇒ (rose violet daisy buttercup)
 @    @end example
    @example
-     (cons 'botóndeoro ())
-          ⇒ (botóndeoro)
+     (cons 'tulipan ())
+          ⇒ (tulipan)
 
-     (cons 'margarita '(botóndeoro))
-          ⇒ (margarita botóndeoro)
+     (cons 'margarita '(tulipan))
+          ⇒ (margarita tulipan)
 
-     (cons 'violeta '(margarita botóndeoro))
-          ⇒ (violeta margarita botóndeoro)
+     (cons 'violeta '(margarita tulipan))
+          ⇒ (violeta margarita tulipan)
 
-     (cons 'rosa '(violeta margarita botóndeoro))
-          ⇒ (rosa violeta margarita botóndeoro)
+     (cons 'rosa '(violeta margarita tulipan))
+          ⇒ (rosa violeta margarita tulipan)
    @end example
 
 @    In the first example, the empty list is shown as @c{()} and a list made up
@@ -8787,9 +8738,9 @@ and promoting software freedom.”
 @    element of a list because there is nothing in an empty list.  Generally
 @    speaking, an empty list is invisible.
    En el primer ejemplo, la lista vacía se muestra como @c{()} y después se
-   construye una lista de @c{botóndeoro} seguida por la lista vacía. Como se
+   construye una lista de @c{tulipan} seguida por la lista vacía. Como se
    puede ver, la lista vacía no se muestra en la lista que fué
-   construida. Todo lo que se ve es @c{(botóndeoro)}. La lista vacía no
+   construida. Todo lo que se ve es @c{(tulipan)}. La lista vacía no
    cuenta como un elemento de una lista porque no hay nada en una lista
    vacía. Generalmente hablando, una lista vacía es invisible.
 
@@ -8797,10 +8748,10 @@ and promoting software freedom.”
 @    element list by putting @c{daisy} in front of @c{buttercup}; and the third
 @    example constructs a three element list by putting @c{violet} in front of
 @    @c{daisy} and @c{buttercup}.
-   El segundo ejemplo, @c{(cons 'margarita '(botóndeoro))} construye una
+   El segundo ejemplo, @c{(cons 'margarita '(tulipan))} construye una
    nueva lista de dos elemento poniendo @c{margarita} en frente de
-   @c{botóndeoro}; y el tercer ejemplo construye una lista de tres elementos
-   poniendo @c{violeta} en frente de @c{margarita} y @c{botóndeoro}.
+   @c{tulipan}; y el tercer ejemplo construye una lista de tres elementos
+   poniendo @c{violeta} en frente de @c{margarita} y @c{tulipan}.
 
 @ *** Find the Length of a List: @c{length}
 *** Encuentra el tamaño de una lista: @c{length}
@@ -8821,13 +8772,13 @@ and promoting software freedom.”
 @            ⇒ 3
 @     @end example
     @example
-      (length '(botóndeoro))
+      (length '(tulipan))
            ⇒ 1
 
-      (length '(margarita botóndeoro))
+      (length '(margarita tulipan))
            ⇒ 2
 
-      (length (cons 'violeta '(margarita botóndeoro)))
+      (length (cons 'violeta '(margarita tulipan)))
            ⇒ 3
     @end example
 
@@ -9052,23 +9003,23 @@ and promoting software freedom.”
 @           ⇒ nil
 @    @end example
    @example
-     ;; @r{Deja la lista como estaba.}
+     ;; @e{Deja la lista como estaba.}
      (nthcdr 0 '(pine fir oak maple))
           ⇒ (pino roble abeto arce)
 
-     ;; @r{Devuelve una copia sin el primer elemento.}
+     ;; @e{Devuelve una copia sin el primer elemento.}
      (nthcdr 1 '(pine fir oak maple))
           ⇒ (fir oak maple)
 
-     ;; @r{Devuelve una copia de la lista sin tres elementos.}
+     ;; @e{Devuelve una copia de la lista sin tres elementos.}
      (nthcdr 3 '(pine fir oak maple))
           ⇒ (maple)
 
-     ;; @r{Devuelve la lista faltando los cuatro elementos.}
+     ;; @e{Devuelve la lista faltando los cuatro elementos.}
      (nthcdr 4 '(pine fir oak maple))
           ⇒ nil
 
-     ;; @r{Devuelve una copia sin los elementos.}
+     ;; @e{Devuelve una copia sin los elementos.}
      (nthcdr 5 '(pine fir oak maple))
           ⇒ nil
    @end example
@@ -10703,9 +10654,9 @@ and promoting software freedom.”
 @     @end example
     @example
         (if (eq last-command 'kill-region)
-            ;; @r{parte then}
+            ;; @e{parte then}
             (kill-append  (filter-buffer-substring beg end) (< end beg))
-          ;; @r{parte else}
+          ;; @e{parte else}
           (kill-new  (filter-buffer-substring beg end)))
     @end example
 
@@ -10822,9 +10773,9 @@ and promoting software freedom.”
 @          (concat cur string))                  ; @e{else-part}
 @      @end example
      @example
-       (if before-p                            ; @r{if-part}
-           (concat string cur)                 ; @r{then-part}
-         (concat cur string))                  ; @r{else-part}
+       (if before-p                            ; @e{if-part}
+           (concat string cur)                 ; @e{then-part}
+         (concat cur string))                  ; @e{else-part}
      @end example
 
 @      If the region being killed is before the region that was killed in the
@@ -11083,13 +11034,13 @@ and promoting software freedom.”
 @      @end example
      @example
          (if (and replace kill-ring)
-             ;; @r{entonces}
+             ;; @e{entonces}
              (setcar kill-ring string)
-           ;; @r{resto}
+           ;; @e{resto}
          (push string kill-ring)
            (setq kill-ring (cons string kill-ring))
            (if (> (length kill-ring) kill-ring-max)
-               ;; @r{avoid overly long kill ring}
+               ;; @e{avoid overly long kill ring}
                (setcdr (nthcdr (1- kill-ring-max) kill-ring) nil)))
          (setq kill-ring-yank-pointer kill-ring)
          (if interprogram-cut-function
@@ -11210,7 +11161,7 @@ and promoting software freedom.”
 @      Now, we can add a new element on to this list by evaluating the
 @      following expression:
      Ahora, se puede añadir un nuevo elemento en esta lista evaluando la
-     siguiente expresión: @findex push, @r{ejemplo}
+     siguiente expresión: @findex push, @e{ejemplo}
 
 @      @example
 @        (push "a third clause" example-list)
@@ -12214,13 +12165,13 @@ and promoting software freedom.”
 @   is located; and that address (the one that tells where @'{violet} is
 @   located) is kept along with an address that tells where the address for the
 @   atom @'{buttercup} is located.
-  Por ejemplo, la lista @c{(rosa violeta botóndeoro)} tiene tres elementos,
-  @'{rosa}, @'{violeta}, y @'{botóndeoro}. En el ordenador, la dirección
+  Por ejemplo, la lista @c{(rosa violeta tulipan)} tiene tres elementos,
+  @'{rosa}, @'{violeta}, y @'{tulipan}. En el ordenador, la dirección
   electrónica de @'{rosa} se graba en un segmento de memoria del ordenador a
   través de la dirección que da la dirección electrónica de donde el átomo
   @'{violeta} está localizado; y esta dirección (la que cuenta donde
   @'{violeta} está se localiza) se guarda con una dirección que cuenta donde
-  la dirección para el átomo @'{botóndeoro} se localiza.
+  la dirección para el átomo @'{tulipan} se localiza.
 
 @   This sounds more complicated than it is and is easier seen in a diagram:
   Esto parece más complicado de lo que es y es más fácil visto en un
@@ -12238,7 +12189,7 @@ and promoting software freedom.”
        |___|___|--> |___|___|--> |___|___|--> nil
          |            |            |
          |            |            |
-         ---> rosa    ---> violeta ---> botóndeoro
+         ---> rosa    ---> violeta ---> tulipan
   @end diagram
 
 @   In the diagram, each box represents a word of computer memory that holds a
@@ -12271,7 +12222,7 @@ and promoting software freedom.”
 @     (setq bouquet '(rose violet buttercup))
 @   @end example
   @example
-    (setq ramo '(rosa violeta botóndeoro))
+    (setq ramo '(rosa violeta tulipan))
   @end example
 
 @   creates a situation like this:
@@ -12293,7 +12244,7 @@ and promoting software freedom.”
           --> |___|___|--> |___|___|--> |___|___|--> nil
                 |            |            |
                 |            |            |
-                 --> rosa     --> violeta   --> botóndeoro
+                 --> rosa     --> violeta   --> tulipan
   @end diagram
 
 @   In this example, the symbol @c{bouquet} holds the address of the first pair
@@ -12320,7 +12271,7 @@ and promoting software freedom.”
      |
      |    --------------       ----------------       --------------------
      |   | car   | cdr  |     | car     | cdr  |     | car         | cdr  |
-      -->| rosa  |   o------->| violeta |   o------->| botóndeoro  | nil  |
+      -->| rosa  |   o------->| violeta |   o------->| tulipan  | nil  |
          |       |      |     |         |      |     |             |      |
           --------------       ----------------       --------------------
   @end diagram
@@ -12339,7 +12290,7 @@ and promoting software freedom.”
   palabra impresa @'{ramo}, una segunda de la que es la dirección de una
   definición de función adjunta al símbolo, si cualquiera, un tercero del que
   es la dirección del primer par de cajas-de-direccion para la lista @c{(rosa
-  violeta botóndeoro)}, y así. Aquí se está mostrando que la tercera caja de
+  violeta tulipan)}, y así. Aquí se está mostrando que la tercera caja de
   dirección del símbolo apunta al primer par de cajas-de-direccion para la
   lista.)
 
@@ -12380,17 +12331,17 @@ and promoting software freedom.”
            |___|___|----> |___|___|--> |___|___|--> nil
              |              |            |
              |              |            |
-              --> rosa       --> violeta  --> botóndeoro
+              --> rosa       --> violeta  --> tulipan
   @end diagram
 
 @   The value of @c{flowers} is @c{(violet buttercup)}, which is to say, the
 @   symbol @c{flowers} holds the address of the pair of address-boxes, the
 @   first of which holds the address of @c{violet}, and the second of which
 @   holds the address of @c{buttercup}.
-  El valor de @c{flores} es @c{(violeta botóndeoro)}, esto es decir que el
+  El valor de @c{flores} es @c{(violeta tulipan)}, esto es decir que el
   símbolo @c{flores} maneja la dirección del par address-boxes el primero que
   maneja la dirección de @c{violeta}, y el segundo que maneja la dirección de
-  @c{botóndeoro}.
+  @c{tulipan}.
 
 @   A pair of address-boxes is called a @:{cons cell} or @:{dotted pair}.  See
 @   Section @l{info:elisp#Cons Cell Type, Cons Cell and List Types} in @e{The
@@ -12437,7 +12388,7 @@ and promoting software freedom.”
            |___|___|----> |___|___|----> |___|___|---->|___|___|--> nil
              |              |              |             |
              |              |              |             |
-              --> lila      --> rosa       --> violeta    --> botóndeoro
+              --> lila      --> rosa       --> violeta    --> tulipan
   @end diagram
 
 @   However, this does not change the value of the symbol @c{flowers}, as you
@@ -12460,7 +12411,7 @@ and promoting software freedom.”
 @   @c{violet}.  Also, this does not alter any of the pre-existing cons cells;
 @   they are all still there.
   Hasta que se resetea, @c{flores} todavía tiene el valor de @c{(violeta
-  botóndeoro)}; que es, eso tiene la dirección de la celula cons cuya primera
+  tulipan)}; que es, eso tiene la dirección de la celula cons cuya primera
   dirección es @c{violeta}. También, esto no altera cualquier célula
   prexistente cons; ellas está todavía allí.
 
@@ -12562,7 +12513,7 @@ and promoting software freedom.”
              |    simbolo          |
              +---------------------+
              |    direcciones al   |            [mapeo a]
-             |   valor de variable |            (rosa violeta botóndeoro)
+             |   valor de variable |            (rosa violeta tulipan)
              |                     |
              +---------------------+
              |    direcciones a la |
@@ -12579,7 +12530,7 @@ and promoting software freedom.”
 @    to this list and set this new list to @c{more-flowers}.  Set the @eC{car}
 @    of @c{flowers} to a fish.  What does the @c{more-flowers} list now
 @    contain?
-   Asignar @c{flores} a @c{violeta} y @c{botóndeoro}. Asigna dos flores más
+   Asignar @c{flores} a @c{violeta} y @c{tulipan}. Asigna dos flores más
    en esta lista y asigna esta nueva lista a @c{mas-flores}. Asigna el
    @Cc{car} de @c{flores} a un pez. ¿Qué lista contiene ahora @c{mas-flores}?
 
@@ -13306,9 +13257,9 @@ and promoting software freedom.”
 @     @end example
     @example
       @V{asignar-contador-al-valor-inicial}
-      (while (< contador numero-deseado)         ; @r{true-or-false-test}
+      (while (< contador numero-deseado)         ; @e{true-or-false-test}
         @V{body}…
-        (setq contador (1+ contador)))              ; @r{incremento}
+        (setq contador (1+ contador)))              ; @e{incremento}
     @end example
 
 @     Note that you need to set the initial value of @c{count}; usually it is
@@ -13578,9 +13529,9 @@ and promoting software freedom.”
 @          (setq row-number (1+ row-number)))    ; @e{incrementer}
 @      @end example
      @example
-       (while (<= row-number number-of-rows)   ; @r{true-or-false-test}
+       (while (<= row-number number-of-rows)   ; @e{true-or-false-test}
          (setq total (+ total row-number))
-         (setq row-number (1+ row-number)))    ; @r{incremento}
+         (setq row-number (1+ row-number)))    ; @e{incremento}
      @end example
 
 @      Along with the @c{let} expression varlist, this very nearly completes
@@ -13631,7 +13582,7 @@ and promoting software freedom.”
          (let (@V{varlist})
            (while (@V{true-or-false-test})
              @V{body-of-while}… )
-           … ))                    ; @r{Necesita la expresión final aquí.}
+           … ))                    ; @e{Necesita la expresión final aquí.}
      @end example
 
 @      The result of evaluating the @c{let} is what is going to be returned by
@@ -13692,8 +13643,8 @@ and promoting software freedom.”
 @            total))
 @      @end example
      @example
-       (defun triangle (number-of-rows)    ; @r{Versión con}
-                                           ; @r{ contador de incremento.}
+       (defun triangle (number-of-rows)    ; @e{Versión con}
+                                           ; @e{ contador de incremento.}
          "Añade el número de asteriscos en un triángulo.
        La primera fila tiene un asterisco, la segunda fila dos asteriscos,
        la tercera fila tres asteriscos, y así.
@@ -13765,9 +13716,9 @@ and promoting software freedom.”
 @         (setq counter (1- counter)))          ; @e{decrementer}
 @     @end example
     @example
-      (while (> counter 0)                    ; @r{test-verdadero-o-falso}
+      (while (> counter 0)                    ; @e{test-verdadero-o-falso}
         @V{body}…
-        (setq counter (1- counter)))          ; @r{decremento}
+        (setq counter (1- counter)))          ; @e{decremento}
     @end example
 
 @ **** Example with decrementing counter
@@ -13937,7 +13888,7 @@ and promoting software freedom.”
 @            total))
 @      @end example
      @example
-       ;;; @r{Primero la versión substractiva.}
+       ;;; @e{Primero la versión substractiva.}
        (defun triangle (number-of-rows)
          "Añade el número de asteriscos en un triángulo."
          (let ((total 0)
@@ -13985,7 +13936,7 @@ and promoting software freedom.”
 @            total))
 @      @end example
      @example
-       (defun triangle (number)                ; @r{Segunda versión.}
+       (defun triangle (number)                ; @e{Segunda versión.}
          "Devuelve la suma de números 1 a través de NUMBER inclusive."
          (let ((total 0))
            (while (> number 0)
@@ -14498,10 +14449,10 @@ and promoting software freedom.”
       (defun print-elements-recursively (list)
         "Imprime cada elemento de la LISTA de la línea en
         sí. Usa recursión."
-        (when list                            ; @r{do-again-test}
-              (print (car list))              ; @r{body}
-              (print-elements-recursively     ; @r{recursive call}
-               (cdr list))))                  ; @r{next-step-expression}
+        (when list                            ; @e{do-again-test}
+              (print (car list))              ; @e{body}
+              (print-elements-recursively     ; @e{recursive call}
+               (cdr list))))                  ; @e{next-step-expression}
 
       (print-elements-recursively animales)
     @end example
@@ -14622,11 +14573,11 @@ and promoting software freedom.”
       (defun triangle-recursively (number)
         "Return the sum of the numbers 1 through NUMBER inclusive.
       Uses recursion."
-        (if (= number 1)                    ; @r{do-again-test}
-            1                               ; @r{then-part}
-          (+ number                         ; @r{else-part}
-             (triangle-recursively          ; @r{recursive call}
-              (1- number)))))               ; @r{next-step-expression}
+        (if (= number 1)                    ; @e{do-again-test}
+            1                               ; @e{then-part}
+          (+ number                         ; @e{else-part}
+             (triangle-recursively          ; @e{recursive call}
+              (1- number)))))               ; @e{next-step-expression}
 
       (triangle-recursively 7)
     @end example
@@ -15103,10 +15054,10 @@ and promoting software freedom.”
        (defun print-elements-recursively (list)
          "Imprime cada elemento de la LISTA de la línea en
          sí. Usa recursión."
-         (when list                            ; @r{do-again-test}
-               (print (car list))              ; @r{body}
-               (print-elements-recursively     ; @r{recursive call}
-                (cdr list))))                  ; @r{next-step-expression}
+         (when list                            ; @e{do-again-test}
+               (print (car list))              ; @e{body}
+               (print-elements-recursively     ; @e{recursive call}
+                (cdr list))))                  ; @e{next-step-expression}
 
        (print-elements-recursively animales)
      @end example
@@ -15316,11 +15267,11 @@ and promoting software freedom.”
       (defun triangle-recursively (number)
         "Devuelve la suma de los números 1 a través de NUMBER inclusive
       Usa recursión."
-        (if (= number 1)                    ; @r{do-again-test}
-            1                               ; @r{then-part}
-          (+ number                         ; @r{else-part}
-             (triangle-recursively          ; @r{recursive call}
-              (1- number)))))               ; @r{next-step-expression}
+        (if (= number 1)                    ; @e{do-again-test}
+            1                               ; @e{then-part}
+          (+ number                         ; @e{else-part}
+             (triangle-recursively          ; @e{recursive call}
+              (1- number)))))               ; @e{next-step-expression}
     @end example
 
 @     What happens when we call this function with a argument of 7?
@@ -15473,9 +15424,9 @@ and promoting software freedom.”
       que usan recursión."
         (if (> counter number)
             sum
-          (triangle-recursive-helper (+ sum counter)  ; @r{suma}
-                                     (1+ counter)     ; @r{contador}
-                                     number)))        ; @r{número}
+          (triangle-recursive-helper (+ sum counter)  ; @e{suma}
+                                     (1+ counter)     ; @e{contador}
+                                     number)))        ; @e{número}
     @end example
 
 @     Install both function definitions by evaluating them, then call
@@ -15537,9 +15488,9 @@ and promoting software freedom.”
 @     @end example
     @example
           (triangle-recursive-helper
-           (+ sum counter)  ; @r{sum más counter} ⇒ @r{sum}
-           (1+ counter)     ; @r{incrementa counter} ⇒ @r{counter}
-           number)          ; @r{number parece lo mismo}
+           (+ sum counter)  ; @e{sum más counter} ⇒ @e{sum}
+           (1+ counter)     ; @e{incrementa counter} ⇒ @e{counter}
+           number)          ; @e{number parece lo mismo}
     @end example
 
 @     which will first compute:
@@ -15554,9 +15505,9 @@ and promoting software freedom.”
 @       (triangle-recursive-helper 0 1 1)
 @     @end example
     @example
-      (triangle-recursive-helper (+ 0 0)  ; @r{sum}
-                                 (1+ 0)   ; @r{counter}
-                                 1)       ; @r{number}
+      (triangle-recursive-helper (+ 0 0)  ; @e{sum}
+                                 (1+ 0)   ; @e{counter}
+                                 1)       ; @e{number}
       que es:
 
       (triangle-recursive-helper 0 1 1)
@@ -15584,9 +15535,9 @@ and promoting software freedom.”
 @     @end example
     @example
           (triangle-recursive-helper
-           (+ sum counter)  ; @r{suma más contador} ⇒ @r{sum}
-           (1+ counter)     ; @r{incrementar contador} ⇒ @r{contador}
-           number)          ; @r{número empieza lo mismo}
+           (+ sum counter)  ; @e{suma más contador} ⇒ @e{sum}
+           (1+ counter)     ; @e{incrementar contador} ⇒ @e{contador}
+           number)          ; @e{número empieza lo mismo}
 
       que es:
 
@@ -15618,7 +15569,7 @@ and promoting software freedom.”
 @       (triangle-recursive-helper 3    3       2)
 @     @end example
     @example
-                                @r{suma contador número}
+                                @e{suma contador número}
       (triangle-recursive-helper 0    1       2)
 
       (triangle-recursive-helper 1    2       2)
@@ -16325,12 +16276,12 @@ and promoting software freedom.”
 @         (setq arg (1- arg))))     ; @c{while} @e{loop decrementer}
 @     @end example
     @example
-      (while (> arg 0)            ; @r{true-or-false-test}
+      (while (> arg 0)            ; @e{true-or-false-test}
         (let @V{varlist}
           (if (@V{true-or-false-test})
               @V{then-part}
             @V{else-part}
-        (setq arg (1- arg))))     ; @c{while} @r{loop decrementer}
+        (setq arg (1- arg))))     ; @c{while} @e{loop decrementer}
     @end example
 
 @     The @c{while} loop is of the decrementing kind.  (See Section @l{Loop
@@ -16428,9 +16379,9 @@ and promoting software freedom.”
 @         (goto-char par-end)))                        ; @e{else-part}
 @     @end example
     @example
-      (if (re-search-forward sentence-end par-end t) ; @r{if-part}
-          (skip-chars-backward " \t\n")              ; @r{then-part}
-        (goto-char par-end)))                        ; @r{else-part}
+      (if (re-search-forward sentence-end par-end t) ; @e{if-part}
+          (skip-chars-backward " \t\n")              ; @e{then-part}
+        (goto-char par-end)))                        ; @e{else-part}
     @end example
 
 @     The @c{if} tests whether its first argument is true and if so, evaluates
@@ -16747,9 +16698,9 @@ and promoting software freedom.”
        (or arg (setq arg 1))
        (let*
            @V{varlist}
-         (while (and (< arg 0) (not (bobp)))     ; @r{backward-moving-code}
+         (while (and (< arg 0) (not (bobp)))     ; @e{backward-moving-code}
            …
-         (while (and (> arg 0) (not (eobp)))     ; @r{forward-moving-code}
+         (while (and (> arg 0) (not (eobp)))     ; @e{forward-moving-code}
            …
    @end example
 
@@ -17097,17 +17048,17 @@ and promoting software freedom.”
 @               (goto-char start))))
 @     @end example
     @example
-      ;; @r{yendo hacia adelante y no al fin del búffer}
+      ;; @e{yendo hacia adelante y no al fin del búffer}
       (while (and (> arg 0) (not (eobp)))
 
-        ;; @r{entre párrafos}
+        ;; @e{entre párrafos}
         ;; Mueve hacia adelante a través de líneas de
         ;; separación...
         (while (and (not (eobp))
                     (progn (move-to-left-margin) (not (eobp)))
                     (looking-at parsep))
           (forward-line 1))
-        ;;  @r{Esto decremento el bucle}
+        ;;  @e{Esto decremento el bucle}
         (unless (eobp) (setq arg (1- arg)))
         ;; ... y una línea más
         (forward-line 1)
@@ -18065,7 +18016,7 @@ and promoting software freedom.”
 @                    "The region has %d words." count))))))
 @    @end example
   @example
-     ;;; @r{¿La Primera versión; tiene errores!}
+     ;;; @e{¿La Primera versión; tiene errores!}
      (defun count-words-region (beginning end)
        "Imprime el número de palabras en la región.
      Las palabras están definidas al menos una palabra
@@ -18075,17 +18026,17 @@ and promoting software freedom.”
        (interactive "r")
        (message "Contando palaras en la región ... ")
 
-     ;;; @r{1. Configurar condiciones apropiadas.}
+     ;;; @e{1. Configurar condiciones apropiadas.}
        (save-excursion
          (goto-char beginning)
          (let ((count 0))
 
-     ;;; @r{2. Ejecutar el} @r{bucle} while.
+     ;;; @e{2. Ejecutar el} @e{bucle} while.
            (while (< (point) end)
              (re-search-forward "\\w+\\W*")
              (setq count (1+ count)))
 
-     ;;; @r{3. Enviar un mensaje al usuario.}
+     ;;; @e{3. Enviar un mensaje al usuario.}
            (cond ((zerop count)
                   (message
                    "La región no tiene palabras."))
@@ -18170,7 +18121,7 @@ and promoting software freedom.”
       instalarlo.
 
       @example
-        ;; @r{¿La Primera versión; tiene errores!}  (defun
+        ;; @e{¿La Primera versión; tiene errores!}  (defun
         @v{COUNT-WORDS} (beginning end)
         "Imprime el número de palabras en la región.  Las palabras son
         definidas como al menos un caracter de palabra constituida seguida por
@@ -18180,17 +18131,17 @@ and promoting software freedom.”
           (interactive "r")
           (message "Contando palabras en la región ... ")
 
-        ;;; @r{1. Configurar condiciones apropiadas.}
+        ;;; @e{1. Configurar condiciones apropiadas.}
           (save-excursion
             (goto-char beginning)
             (let ((count 0))
 
-        ;;; @r{2. Ejecutar el} @r{bucle} while.
+        ;;; @e{2. Ejecutar el} @e{bucle} while.
               (while (< (point) end)
                 (re-search-forward "\\w+\\W*")
                 (setq count (1+ count)))
 
-        ;;; @r{3. Envía un mensaje al usuario.}
+        ;;; @e{3. Envía un mensaje al usuario.}
               (cond ((zerop count)
                      (message "La región no tiene palabras."))
                     ((= 1 count) (message "The región tiene 1 palabra."))
@@ -18479,23 +18430,23 @@ and promoting software freedom.”
 @                     "The region has %d words." count))))))
 @     @end example
     @example
-      ;;; @r{Versión final:} @c{while}
+      ;;; @e{Versión final:} @c{while}
       (defun @v{COUNT-WORDS} (beginning end)
         "Imprime número de palabras en la región."
         (interactive "r")
         (message "Contando palabras en la región ... ")
 
-      ;;; @r{1. Configura condiciones apropiadas.}
+      ;;; @e{1. Configura condiciones apropiadas.}
         (save-excursion
           (let ((count 0))
             (goto-char beginning)
 
-      ;;; @r{2. Ejecuta el} @r{bucle} while
+      ;;; @e{2. Ejecuta el} @e{bucle} while
             (while (and (< (point) end)
                         (re-search-forward "\\w+\\W*" end t))
               (setq count (1+ count)))
 
-      ;;; @r{3. Enviar un mensaje al usuario.}
+      ;;; @e{3. Enviar un mensaje al usuario.}
             (cond ((zerop count)
                    (message
                     "La región no tiene palabras."))
@@ -18575,19 +18526,19 @@ and promoting software freedom.”
 @          @V{message providing word count}))
 @    @end example
    @example
-     ;; @r{Versión Recursiva; usa la búsqueda de la expresión regular}
+     ;; @e{Versión Recursiva; usa la búsqueda de la expresión regular}
      (defun @v{COUNT-WORDS} (beginning end)
        "@V{documentation}…"
        (@V{interactive-expression}…)
 
-     ;;; @r{1. Configura condiciones apropiadas.}
+     ;;; @e{1. Configura condiciones apropiadas.}
        (@V{explanatory message})
        (@V{set-up functions}…
 
-     ;;; @r{2. Contar las palabras.}
+     ;;; @e{2. Contar las palabras.}
          @V{recursive call}
 
-     ;;; @r{3. Envía un mensaje al usuario.}
+     ;;; @e{3. Envía un mensaje al usuario.}
          @V{message providing word count}))
    @end example
 
@@ -18646,15 +18597,15 @@ and promoting software freedom.”
        "Imprime el número de palabras en la región."
        (interactive "r")
 
-     ;;; @r{1. Configura condiciones apropiadas.}
+     ;;; @e{1. Configura condiciones apropiadas.}
        (message "Contando palabras en la región ... ")
        (save-excursion
          (goto-char beginning)
 
-     ;;; @r{2. Contar las palabras.}
+     ;;; @e{2. Contar las palabras.}
          (let ((count (recursive-count-words end)))
 
-     ;;; @r{3. Enviar un mensaje al usuario.}
+     ;;; @e{3. Enviar un mensaje al usuario.}
            (cond ((zerop count)
                   (message
                    "La región no tiene palabras."))
@@ -18819,9 +18770,9 @@ and promoting software freedom.”
 @    @end example
    @example
      (if @V{do-again-test-and-next-step-combined}
-         ;; @r{then}
+         ;; @e{then}
          @V{recursive-call-returning-count}
-       ;; @r{else}
+       ;; @e{else}
        @V{return-zero})
    @end example
 
@@ -18914,14 +18865,14 @@ and promoting software freedom.”
      (defun recursive-count-words (region-end)
        "@V{documentation}…"
 
-     ;;; @r{1. do-again-test}
+     ;;; @e{1. do-again-test}
        (if (and (< (point) region-end)
                 (re-search-forward "\\w+\\W*" region-end t))
 
-     ;;; @r{2. then-part: la llamada recursiva}
+     ;;; @e{2. then-part: la llamada recursiva}
            (1+ (recursive-count-words region-end))
 
-     ;;; @r{3. else-part}
+     ;;; @e{3. else-part}
          0))
    @end example
 
@@ -19009,14 +18960,14 @@ and promoting software freedom.”
      (defun recursive-count-words (region-end)
        "Número de palabras entre punto y REGION-END."
 
-     ;;; @r{1. do-again-test}
+     ;;; @e{1. do-again-test}
        (if (and (< (point) region-end)
                 (re-search-forward "\\w+\\W*" region-end t))
 
-     ;;; @r{2. then-part: la llamada recursiva}
+     ;;; @e{2. then-part: la llamada recursiva}
            (1+ (recursive-count-words region-end))
 
-     ;;; @r{3. else-part}
+     ;;; @e{3. else-part}
          0))
    @end example
 
@@ -19047,7 +18998,7 @@ and promoting software freedom.”
 @                    "The region has %d words." count))))))
 @    @end example
    @example
-     ;;; @r{Versión Recursiva}
+     ;;; @e{Versión Recursiva}
      (defun @v{COUNT-WORDS} (beginning end)
        "Imprime el número de palabras en la región.
 
@@ -19611,7 +19562,7 @@ and promoting software freedom.”
 @             "The definition has %d words or symbols." count)))))
 @    @end example
    @example
-     ;;; @r{Versión Interactiva.}
+     ;;; @e{Versión Interactiva.}
      (defun count-words-defun ()
        "Número de palabras y símbolos en una definición
        de función."
@@ -20194,25 +20145,25 @@ and promoting software freedom.”
 @          lengths-list))
 @    @end example
    @example
-     ;;; @r{Usar bucle @c{while}.}
+     ;;; @e{Usar bucle @c{while}.}
      (defun lengths-list-many-files (list-of-files)
        "Devuelve la lista de tamaños de funciones en LIST-OF-FILES."
        (let (lengths-list)
 
-     ;;; @r{true-or-false-test}
+     ;;; @e{true-or-false-test}
          (while list-of-files
            (setq lengths-list
                  (append
                   lengths-list
 
-     ;;; @r{Genera una lista de tamaños.}
+     ;;; @e{Genera una lista de tamaños.}
                   (lengths-list-file
                    (expand-file-name (car list-of-files)))))
 
-     ;;; @r{Crea una lista ordenada de ficheros.}
+     ;;; @e{Crea una lista ordenada de ficheros.}
            (setq list-of-files (cdr list-of-files)))
 
-     ;;; @r{Devuelve la lista final de valores de tamaños.}
+     ;;; @e{Devuelve la lista final de valores de tamaños.}
          lengths-list))
    @end example
 
@@ -20338,7 +20289,7 @@ and promoting software freedom.”
    @example
      (defun recursive-lengths-list-many-files (list-of-files)
        "Devuelve la lista de tamaños de cada defun en LIST-OF-FILES."
-       (if list-of-files                     ; @r{do-again-test}
+       (if list-of-files                     ; @e{do-again-test}
            (append
             (lengths-list-file
              (expand-file-name (car list-of-files)))
@@ -21112,7 +21063,7 @@ and promoting software freedom.”
 @          (while @V{length-element-smaller-than-top-of-range}
 @            (setq number-within-range (1+ number-within-range))
 @            (setq sorted-lengths (cdr sorted-lengths)))
-        ;; @r{Contar el número de elementos con el actual rango.}
+        ;; @e{Contar el número de elementos con el actual rango.}
         (while @V{length-element-smaller-than-top-of-range}
           (setq number-within-range (1+ number-within-range))
           (setq sorted-lengths (cdr sorted-lengths)))
@@ -21120,7 +21071,7 @@ and promoting software freedom.”
 @          ;; @e{Move to next range.}
 @          (setq top-of-ranges (cdr top-of-ranges)))
 @      @end example
-        ;; @r{Mover al siguiente rango.}
+        ;; @e{Mover al siguiente rango.}
         (setq top-of-ranges (cdr top-of-ranges)))
     @end example
 
@@ -21241,40 +21192,40 @@ and promoting software freedom.”
               (number-within-range 0)
               defuns-per-range-list)
 
-          ;; @r{Bucle Exterior.}
+          ;; @e{Bucle Exterior.}
           (while top-of-ranges
 
-            ;; @r{Bucle Interno.}
+            ;; @e{Bucle Interno.}
             (while (and
-                    ;; @r{Necesita el número para el test numérico.}
+                    ;; @e{Necesita el número para el test numérico.}
                     (car sorted-lengths)
                     (< (car sorted-lengths) top-of-range))
 
-              ;; @r{Contar número de definiciones con el rango actual.}
+              ;; @e{Contar número de definiciones con el rango actual.}
               (setq number-within-range (1+ number-within-range))
               (setq sorted-lengths (cdr sorted-lengths)))
 
-            ;; @r{Sal del bucle interno pero permanece con el bucle externo.}
+            ;; @e{Sal del bucle interno pero permanece con el bucle externo.}
 
             (setq defuns-per-range-list
                   (cons number-within-range defuns-per-range-list))
-            (setq number-within-range 0)      ; @r{Resetear el contaje a cero.}
+            (setq number-within-range 0)      ; @e{Resetear el contaje a cero.}
 
-            ;; @r{Mover al siguiente rango.}
+            ;; @e{Mover al siguiente rango.}
             (setq top-of-ranges (cdr top-of-ranges))
-            ;; @r{Especifica el siguiente mejor rango de valores.}
+            ;; @e{Especifica el siguiente mejor rango de valores.}
             (setq top-of-range (car top-of-ranges)))
 
-          ;; @r{Salir del bucle externo y contar el número de defuns más
+          ;; @e{Salir del bucle externo y contar el número de defuns más
           ;; largas que}
-          ;; @r{el valor más largo del valor top-of-range.}
+          ;; @e{el valor más largo del valor top-of-range.}
           (setq defuns-per-range-list
                 (cons
                  (length sorted-lengths)
                  defuns-per-range-list))
 
-          ;; @r{Devuelve una lista del número de definiciones con cada rango,}
-          ;; @r{ del más pequeño al más largo.}
+          ;; @e{Devuelve una lista del número de definiciones con cada rango,}
+          ;; @e{ del más pequeño al más largo.}
           (nreverse defuns-per-range-list)))
     @end example
 
@@ -21372,7 +21323,7 @@ and promoting software freedom.”
 @        (defuns-per-range sorted-lengths top-of-ranges)
 @      @end example
     @example
-      ;; @r{(La lista ordenada que usará después.)}
+      ;; @e{(La lista ordenada que usará después.)}
       (setq top-of-ranges
        '(110 120 130 140 150
          160 170 180 190 200))
@@ -21820,25 +21771,25 @@ and promoting software freedom.”
 @         insert-list))
 @   @end example
   @example
-    ;;; @r{Primera versión.}
+    ;;; @e{Primera versión.}
     (defun column-of-graph (max-graph-height actual-height)
       "Devuelve la lista de cadenas que una columna de un grafo."
       (let ((insert-list nil)
             (number-of-top-blanks
              (- max-graph-height actual-height)))
 
-        ;; @r{Llenar asteriscos.}
+        ;; @e{Llenar asteriscos.}
         (while (> actual-height 0)
           (setq insert-list (cons "*" insert-list))
           (setq actual-height (1- actual-height)))
 
-        ;; @r{Rellena espacios en blanco.}
+        ;; @e{Rellena espacios en blanco.}
         (while (> number-of-top-blanks 0)
           (setq insert-list (cons " " insert-list))
           (setq number-of-top-blanks
                 (1- number-of-top-blanks)))
 
-        ;; @r{Devuelve la lista completa.}
+        ;; @e{Devuelve la lista completa.}
         insert-list))
   @end example
 
@@ -21948,7 +21899,7 @@ and promoting software freedom.”
 @         insert-list))
 @   @end example
   @example
-    ;;; @r{Segunda versión.}
+    ;;; @e{Segunda versión.}
     (defun column-of-graph (max-graph-height actual-height)
       "Devuelve cadenas MAX-GRAPH-HEIGHT; ACTUAL-HEIGHT son
       símbolos de grafos.
@@ -21961,18 +21912,18 @@ and promoting software freedom.”
             (number-of-top-blanks
              (- max-graph-height actual-height)))
 
-        ;; @r{Rellenar en @c{graph-symbols}.}
+        ;; @e{Rellenar en @c{graph-symbols}.}
         (while (> actual-height 0)
           (setq insert-list (cons graph-symbol insert-list))
           (setq actual-height (1- actual-height)))
 
-        ;; @r{Rellenar en @c{graph-blanks}.}
+        ;; @e{Rellenar en @c{graph-blanks}.}
         (while (> number-of-top-blanks 0)
           (setq insert-list (cons graph-blank insert-list))
           (setq number-of-top-blanks
                 (1- number-of-top-blanks)))
 
-        ;; @r{Devuelve la lista completa.}
+        ;; @e{Devuelve la lista completa.}
         insert-list))
   @end example
 
@@ -22150,10 +22101,10 @@ and promoting software freedom.”
             (column-of-graph height (car numbers-list)))
            (goto-char from-position)
            (forward-char symbol-width)
-           ;; @r{Dibuja la columna del grafo por columna.}
+           ;; @e{Dibuja la columna del grafo por columna.}
            (sit-for 0)
            (setq numbers-list (cdr numbers-list)))
-         ;; @r{Emplaza el punto para etiquetas de ejes X.}
+         ;; @e{Emplaza el punto para etiquetas de ejes X.}
          (forward-line height)
          (insert "\n")
      ))
@@ -22322,7 +22273,7 @@ and promoting software freedom.”
               (column-of-graph height (car numbers-list)))
              (goto-char from-position)
              (forward-char symbol-width)
-             (sit-for 0)     ; @r{Dibuja un gráfico columna por columna.}
+             (sit-for 0)     ; @e{Dibuja un gráfico columna por columna.}
              (recursive-graph-body-print-internal
               (cdr numbers-list) height symbol-width)))
    @end example
@@ -24489,7 +24440,7 @@ and promoting software freedom.”
        (let ((total 0))
          (while (> number 0)
            (setq total (+ total number))
-           (setq number (1= number)))      ; @r{Error aquí.}
+           (setq number (1= number)))      ; @e{Error aquí.}
          total))
    @end example
 
@@ -24796,8 +24747,8 @@ and promoting software freedom.”
        (let ((total 0))
          (while (> number 0)
            (setq total (+ total number))
-           (debug)                         ; @r{Empieza el depurador.}
-           (setq number (1= number)))      ; @r{Error aquí.}
+           (debug)                         ; @e{Empieza el depurador.}
+           (setq number (1= number)))      ; @e{Error aquí.}
          total))
    @end example
 
@@ -24851,7 +24802,7 @@ and promoting software freedom.”
            1
          (+ number
             (triangle-recursively-bugged
-             (1= number)))))               ; @r{Error aquí.}
+             (1= number)))))               ; @e{Error aquí.}
    @end example
 
 @    Normally, you would install this definition by positioning your cursor
@@ -24969,7 +24920,7 @@ and promoting software freedom.”
 @      =>        ★(1= number)))))               ; @e{Error here.}
 @    @end example
    @example
-     =>        ★(1= number)))))               ; @r{Error aquí.}
+     =>        ★(1= number)))))               ; @e{Error aquí.}
    @end example
 
 @    When you press @k{SPC} once again, you will produce an error message that
@@ -25717,8 +25668,8 @@ and promoting software freedom.”
 @        ;; No else-part
 @    @end example
     @example
-      (if (zerop (length kill-ring))          ; @r{parte-si}
-          (error "Anillo de la muerte vacío"))       ; @r{parte-entonces}
+      (if (zerop (length kill-ring))          ; @e{parte-si}
+          (error "Anillo de la muerte vacío"))       ; @e{parte-entonces}
         ;; No hay parte-resto
     @end example
 
@@ -25887,7 +25838,7 @@ and promoting software freedom.”
 @    @end example
     @example
       (mod 12 4)
-        ⇒ 0  ;; @r{porque no hay resto}
+        ⇒ 0  ;; @e{porque no hay resto}
       (mod 13 4)
         ⇒ 1
     @end example
@@ -25943,8 +25894,8 @@ and promoting software freedom.”
 @                "first some text"))
 @    @end example
     @example
-      ;; kill-ring-yank-pointer @r{and} kill-ring @r{tener un tamaño de cuatro}
-      ;; @r{and} (mod (- 0 4) 4) ⇒ 0
+      ;; kill-ring-yank-pointer @e{and} kill-ring @e{tener un tamaño de cuatro}
+      ;; @e{and} (mod (- 0 4) 4) ⇒ 0
       (nthcdr (mod (- 0 4) 4)
               '("cuarta línea de texto"
                 "tercera línea"
@@ -26429,7 +26380,7 @@ and promoting software freedom.”
 @            (symbol-width (length graph-blank)))
 @    @end example
     @example
-      (let ((height (apply 'max numbers-list)) ; @r{Primera versión.}
+      (let ((height (apply 'max numbers-list)) ; @e{Primera versión.}
             (symbol-width (length graph-blank)))
     @end example
 
@@ -26664,7 +26615,7 @@ and promoting software freedom.”
      @example
        (if (zerop (% height Y-axis-label-spacing))
            height
-         ;; @r{else}
+         ;; @e{else}
          (* (1+ (/ height Y-axis-label-spacing))
             Y-axis-label-spacing))
      @end example
@@ -26709,7 +26660,7 @@ and promoting software freedom.”
               (height-of-top-line
                (if (zerop (% height Y-axis-label-spacing))
                    height
-                 ;; @r{else}
+                 ;; @e{else}
                  (* (1+ (/ height Y-axis-label-spacing))
                     Y-axis-label-spacing)))
               (symbol-width (length graph-blank))))
@@ -26922,18 +26873,18 @@ and promoting software freedom.”
          (let (Y-axis)
            (while (> height 1)
              (if (zerop (% height Y-axis-label-spacing))
-                 ;; @r{Insertar etiqueta.}
+                 ;; @e{Insertar etiqueta.}
                  (setq Y-axis
                        (cons
                         (Y-axis-element height width-of-label)
                         Y-axis))
-               ;; @r{Else, insertar blancos.}
+               ;; @e{Else, insertar blancos.}
                (setq Y-axis
                      (cons
                       (make-string width-of-label ? )
                       Y-axis)))
              (setq height (1- height)))
-           ;; @r{Insertar la línea base.}
+           ;; @e{Insertar la línea base.}
            (setq Y-axis
                  (cons (Y-axis-element 1 width-of-label) Y-axis))
            (nreverse Y-axis)))
@@ -26988,9 +26939,9 @@ and promoting software freedom.”
          (let ((start (point)))
            (insert-rectangle
             (Y-axis-column height full-Y-label-width))
-           ;; @r{Posiciona el punto listo para inserta el grafo.}
+           ;; @e{Posiciona el punto listo para inserta el grafo.}
            (goto-char start)
-           ;; @r{Mueve el punto hacia adelante por valor de} full-Y-label-width
+           ;; @e{Mueve el punto hacia adelante por valor de} full-Y-label-width
            (forward-char full-Y-label-width)))
      @end example
 
@@ -27222,11 +27173,11 @@ and promoting software freedom.”
        …
        (concat
         (make-string
-         ;; @r{Crea una cadena de blancos.}
+         ;; @e{Crea una cadena de blancos.}
          (-  (* symbol-width X-axis-label-spacing)
              (length X-axis-tic-symbol))
          ? )
-        ;; @r{Concatena blancos con símbolos.}
+        ;; @e{Concatena blancos con símbolos.}
         X-axis-tic-symbol)
        …
      @end example
@@ -27305,16 +27256,16 @@ and promoting software freedom.”
          (number-of-X-tics X-axis-leading-spaces X-axis-tic-element)
          "Imprime ticks para el eje X."
            (insert X-axis-leading-spaces)
-           (insert X-axis-tic-symbol)  ; @r{En la primera columna.}
-           ;; @r{Inserta el segundo tic en el lugar adecuado.}
+           (insert X-axis-tic-symbol)  ; @e{En la primera columna.}
+           ;; @e{Inserta el segundo tic en el lugar adecuado.}
            (insert (concat
                     (make-string
                      (-  (* symbol-width X-axis-label-spacing)
-                         ;; @r{Inserta el espacio en blanco al segundo símbolo tic.}
+                         ;; @e{Inserta el espacio en blanco al segundo símbolo tic.}
                          (* 2 (length X-axis-tic-symbol)))
                      ? )
                     X-axis-tic-symbol))
-           ;; @r{Inserta los ticks que permanecen.}
+           ;; @e{Inserta los ticks que permanecen.}
            (while (> number-of-X-tics 1)
              (insert X-axis-tic-element)
              (setq number-of-X-tics (1- number-of-X-tics))))
@@ -27380,11 +27331,11 @@ and promoting software freedom.”
            (insert "1")
            (insert (concat
                     (make-string
-                     ;; @r{Inserta espacios en blanco al siguiente número.}
+                     ;; @e{Inserta espacios en blanco al siguiente número.}
                      (-  (* symbol-width X-axis-label-spacing) 2)
                      ? )
                     (number-to-string number)))
-           ;; @r{Insertar números.}
+           ;; @e{Insertar números.}
            (setq number (+ number X-axis-label-spacing))
            (while (> number-of-X-tics 1)
              (insert (X-axis-element number))
@@ -27441,17 +27392,17 @@ and promoting software freedom.”
          "Imprime el eje X etique al tamaño de NUMBERS-LIST."
          (let* ((leading-spaces
                  (make-string full-Y-label-width ? ))
-              ;; symbol-width @r{se provee por} graph-body-print
+              ;; symbol-width @e{se provee por} graph-body-print
               (tic-width (* symbol-width X-axis-label-spacing))
               (X-length (length numbers-list))
               (X-tic
                (concat
                 (make-string
-                 ;; @r{Crea una cadena de espacios en blanco.}
+                 ;; @e{Crea una cadena de espacios en blanco.}
                  (-  (* symbol-width X-axis-label-spacing)
                      (length X-axis-tic-symbol))
                  ? )
-                ;; @r{Concatena espacio en blanco con símbolos
+                ;; @e{Concatena espacio en blanco con símbolos
                 tic.}
                 X-axis-tic-symbol))
               (tic-number
@@ -27609,7 +27560,7 @@ and promoting software freedom.”
 @          (nreverse Y-axis)))
 @    @end example
    @example
-     ;;; @r{Versión Final.}
+     ;;; @e{Versión Final.}
      (defun Y-axis-column
        (height width-of-label &optional vertical-step)
        "Construye una lista de etiquetas para el eje Y.
@@ -27624,20 +27575,20 @@ and promoting software freedom.”
              (number-per-line (or vertical-step 1)))
          (while (> height 1)
            (if (zerop (% height Y-axis-label-spacing))
-               ;; @r{Inserta etiqueta.}
+               ;; @e{Inserta etiqueta.}
                (setq Y-axis
                      (cons
                       (Y-axis-element
                        (* height number-per-line)
                        width-of-label)
                       Y-axis))
-             ;; @r{Else, inserta espacios en blanco.}
+             ;; @e{Else, inserta espacios en blanco.}
              (setq Y-axis
                    (cons
                     (make-string width-of-label ? )
                     Y-axis)))
            (setq height (1- height)))
-         ;; @r{Inserta línea base.}
+         ;; @e{Inserta línea base.}
          (setq Y-axis (cons (Y-axis-element
                              (or vertical-step 1)
                              width-of-label)
@@ -27674,7 +27625,7 @@ and promoting software freedom.”
 @          (insert "\n")))
 @    @end example
    @example
-     ;;; @r{Versión Final.}
+     ;;; @e{Versión Final.}
      (defun graph-body-print (numbers-list height symbol-width)
        "Imprime una gráfica de barras del NUMBERS-LIST.
      El numbers-list consiste en los valores del eje Y.
@@ -27687,10 +27638,10 @@ and promoting software freedom.”
             (column-of-graph height (car numbers-list)))
            (goto-char from-position)
            (forward-char symbol-width)
-           ;; @r{Dibuja el grafo columna por columna.}
+           ;; @e{Dibuja el grafo columna por columna.}
            (sit-for 0)
            (setq numbers-list (cdr numbers-list)))
-         ;; @r{Posiciona el punto para las etiquetas del eje X.}
+         ;; @e{Posiciona el punto para las etiquetas del eje X.}
          (forward-line height)
          (insert "\n")))
    @end example
@@ -27734,7 +27685,7 @@ and promoting software freedom.”
 @          (print-X-axis numbers-list)))
 @    @end example
    @example
-     ;;; @r{Versión Final.}
+     ;;; @e{Versión Final.}
      (defun print-graph
        (numbers-list &optional vertical-step)
        "El gráfico de barras etiquetadas del NUMBERS-LIST.
@@ -27744,13 +27695,13 @@ and promoting software freedom.”
      eje Y incrementa cada línea. Por ejemplo, un paso de 5
      significa que cada fila es de cinco unidades.
        (let* ((symbol-width (length graph-blank))
-              ;; @c{height} @r{en ambos es el número más largo}
-              ;; @r{y el número con la mayoría de los digitos.}
+              ;; @c{height} @e{en ambos es el número más largo}
+              ;; @e{y el número con la mayoría de los digitos.}
               (height (apply 'max numbers-list))
               (height-of-top-line
                (if (zerop (% height Y-axis-label-spacing))
                    height
-                 ;; @r{else}
+                 ;; @e{else}
                  (* (1+ (/ height Y-axis-label-spacing))
                     Y-axis-label-spacing)))
               (vertical-step (or vertical-step 1))
@@ -28315,13 +28266,13 @@ and promoting software freedom.”
          (let ((number X-axis-label-spacing)
                (horizontal-step (or horizontal-step 1)))
            (insert X-axis-leading-spaces)
-           ;; @r{Elimina espacios extra de guía.}
+           ;; @e{Elimina espacios extra de guía.}
            (delete-char
             (- (1-
                 (length (number-to-string horizontal-step)))))
            (insert (concat
                     (make-string
-                     ;; @r{Inserta espacio en blanco.}
+                     ;; @e{Inserta espacio en blanco.}
                      (-  (* symbol-width
                             X-axis-label-spacing)
                          (1-
@@ -28331,7 +28282,7 @@ and promoting software freedom.”
                      ? )
                     (number-to-string
                      (* number horizontal-step))))
-           ;; @r{Insertar los números que permanecen.}
+           ;; @e{Insertar los números que permanecen.}
            (setq number (+ number X-axis-label-spacing))
            (while (> number-of-X-tics 1)
              (insert (X-axis-element
@@ -29120,34 +29071,35 @@ and promoting software freedom.”
 @     word has two different definitions attached to it at the same time.  By
 @     contrast, in Emacs Lisp, a symbol cannot have two different function
 @     definitions at the same time.)
-  - @N{2} :: Es curioso trazar la ruta por la que la palabra
-    ‘argumento’ viene para tener dos significados diferentes, uno en
-    matemáticas y el otro en el inglés de cada día. De acuerdo al
-    @e{Oxford English Dictionary}, la palabra deriva del Latín para
-    @'{clarificar}, de este modo significa, por un hilo de derivación,
-    viene a significar ‘asertir de una manera contra otro que puede
-    crear un contador de aserciones’, que lidera el significado de la
-    palabra como una disputa. (Nótese aquí que la palabra Inglés tiene
-    dos definiciones diferentes adjuntas al mismo tiempo. En
-    contraste, en Emacs Lisp, un símbolo no puede tener dos
-    definiciones de funciones diferentes al mismo tiempo.)
+  - @N{2} :: Es curioso trazar la ruta por la cual la palabra ‘argumento’
+    llego a tener dos significados distintos, uno en matemáticas y otro en el
+    inglés cotidiano. De acuerdo al @e{Oxford English Dictionary}, la palabra
+    deriva del Latín para @'{dejar claro, probar}; por lo tanto, paso a
+    significar, por un hilo de derivación, ‘la evidencia ofrecida como
+    prueba’, es decir ‘la informacion que se ofrece’, que conduce a su
+    significado en Lisp. Pero en el otro hilo de derivación, paso a
+    significar ‘para afirmar de una manera lo que otros pueden afirmar en
+    contra’, lo que llevó a la disputa del significado de la palabra. (Nóte
+    aquí que la palabra Inglésa tiene dos definiciones distintas al mismo
+    tiempo. En contraste, en Emacs Lisp, un símbolo no puede tener dos
+    definiciones de funcion diferentes al mismo tiempo.)
 
 @   - @N{3} :: @c{(quote hello)} is an expansion of the abbreviation
 @     @c{'hello}.
+  - @N{3} :: @c{(quote hola)} es una expansión de la abreviatura @c{'hola}.
 
 @   - @N{4} :: Actually, you can use @c{%s} to print a number.  It is
 @     non-specific.  @c{%d} prints only the part of a number left of a decimal
 @     point, and not anything that is not a number.
-  - @N{3} :: Actualmente, puede usar @c{%s} para imprimir un
-    número. Eso es no específico. @c{%d} imprime solo la parte de un
-    número a la izquierda de un punto decimal, y no cualquier cosa que
-    no es un número.
+  - @N{4} :: En realidad, puede utilizar @c{%s} para imprimir un número. Es
+    no específico. @c{%d} imprime solo la parte de un número a la izquierda
+    del punto decimal, excluyendo cualquier cosa que no sea un número.
 
 @   - @N{5} :: Actually, by default, if the buffer from which you just switched
 @     is visible to you in another window, @c{other-buffer} will choose the
 @     most recent buffer that you cannot see; this is a subtlety that I often
 @     forget.
-  - @N{4} :: Actualmente, por defecto, si el búffer desde el que tu has
+  - @N{5} :: Actualmente, por defecto, si el búffer desde el que tu has
     cambiado es visible para tí en otra ventana, @c{other-buffer} elegirá el
     búffer más reciente que no puedes ver; esto es algo pequeño que he
     olvidado.
@@ -29156,7 +29108,7 @@ and promoting software freedom.”
 @     the default buffer was @f{*scratch*}, or if it was different, then you
 @     typed just part of the name, such as @c{*sc}, pressed your @k{TAB} key to
 @     cause it to expand to the full name, and then typed @k{RET}.
-  - @N{5} :: O incluso, para cambiar, solo se necesita pulsar @k{RET} si el
+  - @N{6} :: O incluso, para cambiar, solo se necesita pulsar @k{RET} si el
     buffer por defecto era @f{*scratch*}, o si era diferente, entonces se
     puede escribir solo parte del nombre, tal como @c{*sc}, luego presiona la
     tecla @k{TAB} para causar expandir al nombre completo, y entonces escribe
@@ -29166,7 +29118,7 @@ and promoting software freedom.”
 @     other buffer that you cannot see.  If you really want to go to your most
 @     recently selected buffer, even if you can still see it, you need to
 @     evaluate the following more complex expression:
-  - @N{6} :: Recuerda, esta expresión te permite cambiar a tus búffers más
+  - @N{7} :: Recuerda, esta expresión te permite cambiar a tus búffers más
     recientes y otros buffers que no puedes ver. Si realmente quieres ir a
     tus búffers seleccionados más recientemente, se necesita evaluar la
     siguiente expresión más compleja:
@@ -29195,7 +29147,7 @@ and promoting software freedom.”
 @     is that they do not become fierce like a tiger.  (1997, W. W. Norton and
 @     Co., ISBN 0-393-03894-2, page
 @     171)
-  - @N{7} :: De acuerdo a Jared Diamond en @e{Guns, Germs, y Steel}, “… las
+  - @N{8} :: De acuerdo a Jared Diamond en @e{Guns, Germs, y Steel}, “… las
     cebras llegan a ser muy peligrosas a medida que crecen” pero el clamor
     aquí son que ellos no llegan a ser fieros como un tigre. (1997,
     W. W. Norton and Co., ISBN 0-393-03894-2, page 171)
@@ -29204,7 +29156,7 @@ and promoting software freedom.”
 @     dotted pair.  Dotted pairs are not discussed here; see Section @l{Dotted
 @     Pair Notation, , Dotted Pair Notation} in @e{The GNU Emacs Lisp Reference
 @     Manual}.
-  - @N{8} :: Actualmente, se puede @c{cons} un elemento para un átomo para
+  - @N{9} :: Actualmente, se puede @c{cons} un elemento para un átomo para
     producir a para punteado. Los pares punteados no se discuten aquí; ver
     Seccion "Notación de Para Punteado" en @e(El Manual de Referencia de GNU
     Emacs Lisp).
@@ -29212,7 +29164,7 @@ and promoting software freedom.”
 @   - @N{10} :: More precisely, and requiring more expert knowledge to
 @     understand, the two integers are of type ‘Lisp_Object’, which can also be
 @     a C union instead of an integer type.
-  - @N{9} :: Más precisamente, y requiriendo conocimiento más experto para
+  - @N{10} :: Más precisamente, y requiriendo conocimiento más experto para
     comprender, los dos enteros son del tipo ‘Lisp_Object’, que puede también
     ser una unión C en vez de un tipo de entero.
 
@@ -29224,7 +29176,7 @@ and promoting software freedom.”
 @     to increase the values of @c{max-specpdl-size} and
 @     @c{max-lisp-eval-depth}.  In my @f{.emacs} file, I set them to 15 and 30
 @     times their default value.
-  - @N{10} :: Se pueden escribir funciones recursivas para ser frugal o
+  - @N{11} :: Se pueden escribir funciones recursivas para ser frugal o
     basura mental o recursos de ordenador; como eso ocurre, los métodos que
     la gente encuentra fáciles––son frugales de ‘recursos mentales’––algunas
     veces usan recursos de ordenador considerables. Emacs fué diseñado para
@@ -29236,7 +29188,7 @@ and promoting software freedom.”
 
 @   - @N{12} :: The phrase @:{tail recursive} is used to describe such a
 @     process, one that uses ‘constant space’.
-  - @N{11} :: La frase @:{cola recursiva} es usado para describir tal
+  - @N{12} :: La frase @:{cola recursiva} es usado para describir tal
     proceso, uno que usa ‘espacio constante’.
 
 @   - @N{13} :: The jargon is mildly confusing: @c{triangle-recursive-helper}
@@ -29247,7 +29199,7 @@ and promoting software freedom.”
 @     the process and the procedure used by @c{triangle-recursively} are called
 @     recursive.  The word ‘recursive’ has different meanings in the two
 @     contexts.
-  - @N{12} :: La jerga es medianamente confusa: @c{triangle-recursive-helper}
+  - @N{13} :: La jerga es medianamente confusa: @c{triangle-recursive-helper}
     usa un proceso que es iterativo en un procedimiento que es recursivo. El
     proceso se llama iterativo porque el ordenador necesita solo grabar los
     tres valores, @c{suma}, @c{contador}, y @c{número}: el procedimiento es
@@ -29261,7 +29213,7 @@ and promoting software freedom.”
 @     keystrokes that the name @f{~/.emacs.el} requires, but now you may.  The
 @     new format is consistent with the Emacs Lisp file naming conventions; the
 @     old format saves typing.
-  - @N{13} :: Tu puedes también añadir @f{.el} para @f{~/.emacs} y llama a un
+  - @N{14} :: Tu puedes también añadir @f{.el} para @f{~/.emacs} y llama a un
     fichero @f{~/.emacs}. En el pasado, fué prohibido escribir los atajos de
     teclado extra que el nombre @f{~/.emacs.el} requiere, pero ahora
     puedes. El nuevo formato es consistente con las conveniciones de nombre
@@ -29269,7 +29221,7 @@ and promoting software freedom.”
 
 @   - @N{15} :: When I start instances of Emacs that do not load my @f{.emacs}
 @     file or any site file, I also turn off blinking:
-  - @N{14} :: Cuando se empiezan las instancias de Emacs que no cargan mi
+  - @N{15} :: Cuando se empiezan las instancias de Emacs que no cargan mi
     fichero @f{.emacs} o cualquier fichero, también se puede deshabilitar la
     ocultación:
 
@@ -29290,6 +29242,6 @@ and promoting software freedom.”
 
 @   - @n{16} :: I also run more modern window managers, such as Enlightenment,
 @     Gnome, or KDE; in those cases, I often specify an image rather than a
-  - @N{15} :: también se ejecutan gestores de ventanas más modernos, tales
+  - @N{16} :: también se ejecutan gestores de ventanas más modernos, tales
     como Enlightenment, Gnome, o KDE; en estos casos, con frecuencia se
     especifica una imagen en vez de un color plano.
