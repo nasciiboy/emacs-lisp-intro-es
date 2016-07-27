@@ -1525,19 +1525,18 @@ promoting software freedom.”
    however, it is important to keep the distinction in mind, since the
    computer is not as smart as a person.
 
-   @cindex Buffer, history of word The word ‘buffer’, by the way, comes from
-   the meaning of the word as a cushion that deadens the force of a
-   collision.  In early computers, a buffer cushioned the interaction between
-   files and the computer's central processing unit.  The drums or tapes that
-   held a file and the central processing unit were pieces of equipment that
-   were very different from each other, working at their own speeds, in
-   spurts.  The buffer made it possible for them to work together
-   effectively.  Eventually, the buffer grew from being an intermediary, a
-   temporary holding place, to being the place where work is done.  This
-   transformation is rather like that of a small seaport that grew into a
-   great city: once it was merely the place where cargo was warehoused
-   temporarily before being loaded onto ships; then it became a business and
-   cultural center in its own right.
+   The word ‘buffer’, by the way, comes from the meaning of the word as a
+   cushion that deadens the force of a collision.  In early computers, a
+   buffer cushioned the interaction between files and the computer's central
+   processing unit.  The drums or tapes that held a file and the central
+   processing unit were pieces of equipment that were very different from
+   each other, working at their own speeds, in spurts.  The buffer made it
+   possible for them to work together effectively.  Eventually, the buffer
+   grew from being an intermediary, a temporary holding place, to being the
+   place where work is done.  This transformation is rather like that of a
+   small seaport that grew into a great city: once it was merely the place
+   where cargo was warehoused temporarily before being loaded onto ships;
+   then it became a business and cultural center in its own right.
 
    Not all buffers are associated with files.  For example, a @f{*scratch*}
    buffer does not visit any file.  Similarly, a @f{*Help*} buffer is not
@@ -17209,9 +17208,9 @@ promoting software freedom.”
     recently selected buffer, even if you can still see it, you need to
     evaluate the following more complex expression:
 
-    @example
+    @src elisp
       (switch-to-buffer (other-buffer (current-buffer) t))
-    @end example
+    @end src
 
     In this case, the first argument to @c{other-buffer} tells it which
     buffer to skip––the current one––and the second argument tells

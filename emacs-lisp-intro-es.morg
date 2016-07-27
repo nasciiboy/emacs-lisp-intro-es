@@ -1414,324 +1414,323 @@ and promoting software freedom.”
 * Practicando evaluación
 
   Antes de aprender como escribir una definición de función en Emacs Lisp, es
-  útil gastar un poco de tiempo evaluando varias expresiones que ya han sido
-  escritas. Estas expresiones serán listas con las funciones como su primer
-  (y con frecuencia único) elemento. Desde alguna de las funciones asociadas
-  con búffers son ambas simples e interesantes, nosotros empezaremos con
-  estas. En esta sección, evaluaremos unas pocas de estas. En otra sección,
-  estudiaremos el código de varios otros funciones relacionadas con búffers,
-  para ver cómo fueron escritas.
+  útil gastar un poco de tiempo evaluando diversas expresiones que ya han
+  sido escritas. Estas expresiones serán listas con funciones como su primer
+  (y con frecuencia único) elemento. Dado que algunas de las funciones
+  asociadas con búffers son a la vez simples e interesantes, vamos a iniciar
+  con estas. En esta sección, vamos a evaluar algunas de este tipo. En otra
+  sección, estudiaremos el código de varias otras funciones relacionadas con
+  búffers, para ver la forma cómo fueron escritas.
 
-  @i{Siempre y cuando se de un comando de edición} a Emacs Lisp, tal como el
-  comando para mover el cursor o el scroll de la pantalla, @i{se está
-  evaluando una expresión,} el primer elemento del que es una función. @i{Así
-  es cómo Emacs funciona}.
+  @i{Siempre que proporciona un comando de edición} a Emacs Lisp, como el
+  comando para mover el cursor o para desplazarse por la pantalla, @i{se está
+  evaluando una expresión,} de la cual el primer elemento es una función.
+  @i{Así es cómo funciona Emacs}.
 
-  Cuando se escriben teclas, se causa que el intérprete Lisp evalúe una
-  expresión que devuelve resultados. Incluso escribiendo texto plano se
-  evalúa la función Emacs Lisp, en este caso, uno usa
-  @c{self-insert-command}, simplemente inserta el caracter que se escribió.
-  Las funciones que se evalúan escribiendo atajos de teclado se llaman
-  funciones @:{interactive}, o @:{comandos}; como crear una función
-  interactive será ilustrada en el capítulo sobre cómo escribir definiciones
-  de funciones. Ver @l{Crear una Función Interactive}.
+  Al presionar las teclas, se provoca una evaluacion de parte del intérprete
+  Lisp que devuelve resultados. Incluso escribir texto plano implica evalúar
+  una función Emacs Lisp, en este caso, se utiliza @c{self-insert-command},
+  que simplemente inserta el caracter escrito.  Las funciones que se evalúan
+  presionando atajos de teclado se llaman funciones @:{interactive}, o
+  @:{comandos}; como crear una función interactive será ilustrado en el
+  capítulo sobre cómo escribir definiciones de funciones. Ver @l{Crear una
+  Función Interactive}.
 
-  Además de escribir comandos de teclado, se ha visto un segundo camino para
-  evaluar una expresión: posicionar el cursor después de una lista y
-  escribiendo @k{C-x C-e}. Esto es lo que se hará en el resto de esta
-  sección. Hay otros caminos de evaluar una expresión también; que serán
-  descritos como vienen.
+  Además de presionar comandos de teclado, hemos visto una segunda manera de
+  evaluar una expresión: colocar el cursor después de una lista y presionar
+  @k{C-x C-e}. Esto es lo que se hará en el resto de esta sección. Hay otras
+  maneras de evaluar una expresión; que serán descritas cuando llegemos a
+  ellas.
 
-  Siendo usadas para evaluación práctica, las funciones mostradas en las
-  siguientes pocas secciones son importantes en su propio derecho. Un estudio
-  de estas funciones hace clara la distinción entre búffers y ficheros, cómo
-  cambiar a un búffer, y como determinar una localización con ella.
+  Ademas de utilizarce para prácticar la evaluación, las funciones mostradas
+  en las siguientes secciones son importantes por derecho propio. Un estudio
+  de estas funciones deja claro la distinción entre búffers y ficheros, cómo
+  cambiar a un búffer, y como determinar una ubicación dentro de ella.
 
 ** Nombres de búffer
 
-   Las dos funciones, @c{buffer-name} y @c{buffer-file-name}, muestra la
+   Las dos funciones, @c{buffer-name} y @c{buffer-file-name}, muestran la
    diferencia entre un fichero y un búffer. Cuando se evalúa la siguiente
-   expresión, @c{(buffer-file-name)}, el nombre del fichero para el que el
-   búffer se refiere aparece en el área echo. Normalmente, el nombre devuelto
-   por @c{(buffer-name)} es lo mismo que el nombre del fichero para el que se
-   refiere, y el nombre devuelto por @c{(buffer-file-name)} es la ruta
-   completa del fichero.
+   expresión, @c{(buffer-name)}, el nombre del buffer aparece en el area eco.
+   Al evaluar @c{(buffer-file-name)}, el nombre del fichero al que se
+   relaciona el búffer aparece en el área echo. Por lo general, el nombre
+   devuelto por @c{(buffer-name)} es el mismo que el nombre del fichero al
+   que hace referencia, y el nombre devuelto por @c{(buffer-file-name)} es la
+   ruta completa del fichero.
 
-   Un fichero y un búffer son dos entidades diferentes. Un fichero es
+   Un fichero y un búffer son dos entidades diferentes. Un fichero es la
    información grabada de manera permanente en el ordenador (a menos que se
-   borre). Un búffer, por otro lado, es información dentro de Emacs que
-   desaparecerá al final de la sesión de la edición (o cuando se mate el
-   búffer). Normalmente, un búffer contiene información que se ha copiado
-   desde un fichero; nosotros decimos que el búffer está @:{visitando} este
-   fichero. Esta copia es la que se trabaja y modifica. Los cambios al búffer
-   no cambian el fichero, hasta ser guardados. Cuando se guarda el búffer, el
-   búffer está copiado al fichero y está de este modo salvado de manera
-   permanente.
+   elimine). Un búffer, por otro lado, es la información dentro de Emacs que
+   desaparecerá al final de la sesión de edición (o cuando matas el
+   búffer). Por lo general, un búffer contiene información que se ha copiado
+   desde un fichero; decimos que el búffer está @:{visitando} este fichero.
+   Esta copia es la que se trabaja y modifica. Los cambios al búffer no
+   cambian el fichero, hasta ser guardados. Al guardar el búffer, el búffer
+   se copia en el fichero y por lo tanto se guarda de forma permanente.
 
-   Si está leyendo esto en Info dentro de GNU Emacs, se puede evaluar cada
-   una de las siguientes expresiones posicionando el cursor después de eso y
-   escribiendo @k{C-x C-e}.
+   Si está leyendo esto dentro de GNU Emacs dentro de Info, puede evaluar
+   cada una de las siguientes expresiones colocando el cursor después de
+   estas y pulsando @k{C-x C-e}.
 
-   @example
+   @src elisp
      (buffer-name)
 
      (buffer-file-name)
-   @end example
+   @src elisp
 
    Cuando hago esto en Info, el valor devuelto para la evaluación de
-   @c{(buffer-name)} es @f{"*info"}, y el valor devuelto por evaluar
+   @c{(buffer-name)} es @f{"*info*"}, y el valor devuelto por evaluar
    @c{(buffer-file-name)} es @f{nil}.
 
-   Por otro lado, mientras se está escribiendo este documento, el valor
-   devuelto por la evaluación de @c{(buffer-name)} es
-   @f{"introduction.texinfo"}, y el valor devuelto por la evaluación
-   @c{(buffer-file-name)} es @f{"/gnu/work/intro/introduction.texinfo"}.
-
-   La forma es el nombre del búffer y lo posterior es el nombre del
-   fichero. En Info, el nombre búffer es @f{"*info*"}. Info no apunta a
-   cualquier fichero, así el resultado de evaluar @c{(buffer-file-name)}] es
-   @f{nil}. El símbolo @c{nil} es desde la palabra latina para ‘nada’; en
-   este caso, significa que el búffer no está asociado con cualquier
-   fichero. (En Lisp, @c{nil} también se usa con el significado de ‘falso’ y
-   es sinómino de la lista vacía, @c{()}.)
-
-   Cuando estoy escribiendo, el nombre de mi búffer es
-   @f{"introduction.texinfo"}. El nombre del fichero al que se apunta es
+   Por otro lado, mientras escribo este documento, el valor devuelto por la
+   evaluación de @c{(buffer-name)} es @f{"introduction.texinfo"}, y el valor
+   devuelto por la evaluación de @c{(buffer-file-name)} es
    @f{"/gnu/work/intro/introduction.texinfo"}.
 
-   (En las expresiones, los paréntesis hacen que el intérprete Lisp trate a
+   El primero es el nombre del búffer y el segundo es el nombre del
+   fichero. En Info, el nombre del búffer es @f{"*info*"}. Info no apunta a
+   ningún fichero, por lo que el resultado de evaluar @c{(buffer-file-name)}]
+   es @f{nil}. El símbolo @c{nil} proviene del latin, significa ‘nada’; en
+   este caso, significa que el búffer no está asociado con ningun fichero.
+   (En Lisp, @c{nil} también se utiliza con el significado de ‘falso’ y es
+   sinómino para lista vacía, @c{()}.)
+
+   Al escribir esto, el nombre de mi búffer es @f{"introduction.texinfo"}. El
+   nombre del fichero al que apunta es @f{"/gnu/work/intro/introduction.texinfo"}.
+
+   (En las expresiones, los paréntesis le indican al intérprete Lisp tratar a
    @c{buffer-name} y @c{buffer-file-name} como funciones; sin los paréntesis,
-   el intérprete intentaría evaluar los símbolos como variables. Ver
-   @l{Variables}.)
+   el intérprete intentaría evaluar los símbolos como variables. Véase la
+   Sección @l{Variables}.)
 
-   A pesar de la distinción entre ficheros y búffers, con frecuencia se
-   encuentra que hay personas que se refieren a un fichero cuando quieren un
-   búffer y al revés. En realidad, la mayoría de las personas dicen, “Yo
-   estoy editando un fichero,” en vez de decir, “Estoy editando un búffer que
-   pronto se guardará en un fichero.”  Es casi siempre claro desde el
-   contexto que las personas quieren decir. Al tratar con programas de
-   ordenador, sin embargo, es importante tener la distinción en mente, ya que
-   el ordenador no es una persona inteligente.
+   A pesar de la distinción entre ficheros y búffers, con frecuencia
+   encontrara personas referirse a un fichero cuando quieren un búffer y
+   vice-versa. De hecho, la mayoría de la gente dice, “Estoy editando un
+   fichero,” en lugar de decir, “Estoy editando un búffer que pronto voy a
+   guardar en un fichero.” Esto casi siempre queda claro a partir del
+   contexto de lo que la gente dice. No obstante, Al tratar con programas de
+   ordenador, es importante mantener la distinción en mente, ya que el
+   ordenador no tan inteligente como una persona.
 
-   La palabra ‘búffer’, por el camino, viene desde el significado de la
-   palabra como una cuña que mata la fuerza de una colisión. En los primeros
-   ordenadores, un búffer acuñaba la interacción entre ficheros y la unidad
-   de procesamiento central. Los tambores o cintas que manejan un fichero y
-   la unidad de procesamiento central fueron piezas de equipamiento que
-   fueron muy diferentes a cualquier otra, trabajando a sus propias
-   velocidades. El búffer se hizo posible para ellos a trabajar juntos de
-   manera efectiva. Finalmente, el búffer creció siendo uno intermedio, un
-   lugar tomado temporalmente, para ser el lugar donde el trabajo está
-   hecho. Esta transformación es como un pequeño puerto de mar que crece
-   dentro de una gran ciudad: una vez fué el lugar donde la carga era
-   depositada temporalmente antes de ser cargada dentro de los barcos;
-   entonces eso llega a ser un negocio y centro cultural en su propio
-   derecho.
+   Por cierto, la palabra ‘búffer’, viene del significado de la palabra como
+   un cojín que amortigua la fuerza de una colisión. En los primeros
+   ordenadores, un búffer amortiguaba la interacción entre los ficheros y la
+   unidad central de procesamiento de la computadora. Los tambores o cintas
+   que contenian un fichero y la unidad de procesamiento eran piezas de
+   equipamiento muy diferentes entre si, trabajando a sus propias
+   velocidades, por rachas. El búffer hizo posible que ambos trabajaran
+   juntos de manera efectiva. Con el tiempo, el búffer pasó de ser un
+   intermediario, a un lugar de almacenamiento temporalmente, donde se
+   realiza el trabajo. Esta transformación se parace bastante a la de un
+   pequeño puerto que se convierte en una gran ciudad: una vez fué el lugar
+   donde la carga era depositada temporalmente antes de ser cargada en los
+   barcos; despues se convirtio en un centro comercial y cultural por derecho
+   propio.
 
-   No todos los búffers están asociados con ficheros. Por ejemplo, un búffer
-   no visita cualquier fichero. De manera similar, un búffer @f{*Help*} no
-   está asociado con cualquier fichero.
+   No todos los búffers están asociados con ficheros. Por ejemplo, el búffer
+   @f(*scratch*) no visita ningun fichero. Del mismo modo, un búffer
+   @f{*Help*} no está asociado a ningun fichero.
 
-   Antaño, cuando se perdía un fichero @f{~/.emacs} y se empezaba una sesión
-   Emacs escribiendo el comando @c{emacs} solo, sin nombrar ficheros Emacs
-   iniciaba con el búffer @f{*scratch*} visible. En estos días, se ve una
-   página de inicio. Se puede seguir uno de los comandos sugeridos en dicha
-   pantalla, visitar un fichero, o presionar la barra espaciadora para lograr
-   el búffer @f{*scratch*}.
+   En los viejos tiempos, cuando se carecia de un fichero @f{~/.emacs} y se
+   iniciava una sesión Emacs escribiendo unicamente el comando @c{emacs}, sin
+   nombrar ningun fichero, Emacs iniciaba con el búffer @f{*scratch*}
+   visible. Hoy en día, vera una pantalla de vienvenida. Puede seguir uno de
+   los comandos sugeridos en dicha pantalla, visitar un fichero, o presionar
+   la barra espaciadora para llegar al búffer @f{*scratch*}.
 
-   Si se cambia al búffer @f{*scratch*}, se escribe la posición del
-   @c{(buffer-name)} del cursor después, y entonces escribe @k{C-x C-e} para
-   evaluar la expresión. El nombre @c{*scratch*} será devuelto y aparecerá en
-   el área echo. @c{*scratch*} es el nombre del búffer. Cuando se escribe
-   @c{(buffer-file-name)} en el búffer @f{*scratch*} y evalúa que, @c{nil}
-   aparecerá en el área echo, solo se hace cuando se evalúa
-   @c{(buffer-file-name)} en Info.
+   Si cambia al búffer @f{*scratch*}, escriba @c{(buffer-name)}, coloque el
+   cursor al final de la expresión, y presione @k{C-x C-e} para evaluar la
+   expresión. El nombre @c{*scratch*} será devuelto y aparecerá en el área
+   echo. @c{*scratch*} es el nombre del búffer. Al escribir y evaluar
+   @c{(buffer-file-name)} en el búffer @f{*scratch*}, aparecerá @c{nil} en el
+   área echo, igual que cuando evalúa @c{(buffer-file-name)} en Info.
 
-   Incidentalmente, si se está en el búffer @f{*scratch*} y se quiere el
-   valor devuelto por una expresión para aparecer en el búffer en sí del área
-   echo, se escribe @k{C-u C-x C-e} en vez de @k{C-x C-e}. Esto causa que el
-   valor devuelto aparezca después de la expresión. El búffer se verá así:
+   Por cierto, si se encuentra en el búffer @f{*scratch*} y quiere que el
+   valor devuelto por una expresión aparesca en el búffer en sí y no en el
+   área echo, presione @k{C-u C-x C-e} en lugar de @k{C-x C-e}. Esto causa
+   que el valor devuelto aparezca después de la expresión. El búffer se verá
+   así:
 
    @example
      (buffer-name)"*scratch*"
    @end example
 
-   No se puede hacer esto en Info desde que Info es de solo lectura y no se
-   permitirá que se cambien los contenidos en el búffer. Pero puedes hacer
-   esto en cualquier búffer que se puede editar; y cuando se escribe código
-   de documentación (tal como este libro), esta funcionalidad es muy útil.
+   No se puede hacer esto en Info ya que Info es de solo lectura y no se
+   permitirá cambiar el contenido del búffer. Pero puedes hacer esto en
+   cualquier búffer que se pueda editar; y cuando se escribe código o
+   documentación (como este libro), esta función es muy útil.
 
-** Obteniendo búffers
+** Obtención de Búffers
 
-   La función @c{buffer-name} devuelve el @e{name} del búffer; para obtener
-   el búffer @e{en sí}, una función diferente es necesaria: la función
-   @c{current-buffer}. Si usa esta función en el código, que tiene en el
-   búffer en sí.
+   La función @c{buffer-name} devuelve el @e{nombre} del búffer; para obtener
+   el búffer @e{en sí}, se necesita una función diferente: la función
+   @c{current-buffer}. Si utiliza esta función en el código, lo que se
+   obtiene es el búffer en sí.
 
-   Un nombre y el objeto o entidad para el que el nombre se refiere son cosas
-   diferentes. Tu no eres tu nombre, Tu eres una persona que otras personas
-   se refieren por tu nombre. Si preguntas para hablar por Jorge y alguien
-   escribe una carta con las letras @'{J}, @'{o}, @'{r}, @'{g}, y @'{e}
-   escrito, tu podrías estar distraido, pero no estarías satisfecho. No
-   quieres hablar al nombre, pero sí a la persona a la que el nombre se
-   refiere. Un búffer es similar: el nombre del búffer scratch es
-   @f{*scratch*}, pero el nombre no es el búffer. Para tener un búffer por sí
-   mismo, se necesita usar una función tal como @c{current-buffer}.
+   Un nombre y el objeto o entidad a la que se refiere el nombre son
+   diferentes entre si. Tu no eres tu nombre, eres una persona a la que se
+   refieren los demas por tu nombre. Si pides hablar con Jorge y alguien te
+   entrega una tarjeta con las letras @'{J}, @'{o}, @'{r}, @'{g}, y @'{e}
+   estritas, podrias divertirte, pero no estarías satisfecho. No quieres
+   hablar con el nombre, sino con la persona a la que se refiere el
+   nombre. Un búffer es similar: el nombre del búffer scratch es
+   @f{*scratch*}, pero el nombre no es el búffer. Para obtener un búffer en
+   sí, es necesario utilizar una función como @c{current-buffer}.
 
    Sin embargo, hay una ligera complicación: si evalúas @c{current-buffer} en
-   una expresión por sí mismo, como haremos aquí, lo que ves es una
+   una expresión por sí sola, como haremos aquí, lo que se ve es una
    representación impresa del nombre del búffer sin los contenidos del
-   búffer. Emacs funciona en este camino por dos razones: el búffer puede
-   contener miles de líneas––eso es demasiado largo para ser convenientemente
-   mostrado; y, otro búffer puede tener los mismos contenidos pero un nombre
-   diferente, y es importante distinguirlo.
+   búffer. Emacs funciona de esta forma por dos razones: el búffer puede
+   contener miles de líneas––demasiado largo para ser mostrado
+   convenientemente; y, otro búffer puede tener el mismo contenido pero un
+   nombre diferente, y es importante distinguir entre ellos.
 
    Aquí hay una expresión conteniendo la función:
 
-   @example
+   @src elisp
      (current-buffer)
-   @end example
+   @src
 
-   Si se evalúa esta expresión de Info en Emacs en el camino normal,
-   @f{#<buffer *info*>} aparecerá en el área echo. El formato especial indica
-   que el búffer por sí mismo está siendo devuelto, en vez de solo su nombre.
+   Si evalúa esta expresión en Info de la manera habitual, aparecerá
+   @f{#<buffer *info*>} en el área echo. El formato especial indica que el
+   búffer en sí está siendo devuelto, en lugar de solo su nombre.
 
-   Incidentalmente, mientras se escribe un número o símbolo en un programa,
-   no se puede hacer esto con la representación impresa del búffer: el único
-   camino para tener un búffer por sí mismo es con una función tal como
+   Por cierto, si bien puedes escribir un número o símbolo en un programa, no
+   se puede hacer esto con la representación impresa del búffer: la única
+   manera de optener un búffer en sí mismo es con una función tal como
    @c{current-buffer}.
 
-   Un función relacionada es @c{other-buffer}. Esto devuelve los buffers
-   seleccionados más recientemente que los únicos en los que tu estás
-   actualmente, no una representación impresa de su nombre. Si tu
-   recientemente has cambiado fuera de @f{*scratch*} búffer, @c{other-buffer}
-   devolverá este búffer.
+   Un función relacionada es @c{other-buffer}. Esta devuelve el último buffer
+   seleccionado distinto al que te encuentras actualmente, no una
+   representación impresa de su nombre. Si recientemente has ido y vuelto del
+   búffer @f{*scratch*}, @c{other-buffer} devolverá este búffer.
 
    Se puede ver esto evaluando la expresión:
 
-   @example
+   @src elisp
      (other-buffer)
-   @end example
+   @end src
 
    Verás que @f{#<buffer *scratch*>} aparece en el área echo, o el nombre de
-   cualquier otro búffer que se cambió recientemente@n{4}
+   cualquier otro búffer cambiado anteriormente a partir del más reciente{5}
 
 ** Cambiando búffers
 
-   La función @c{other-buffer} actualmente proporciona un búffer cuando es
-   usada como un argumento a una función que uno requiere. Podemos ver esto
-   usando @c{other-buffer} y @c{switch-to-buffer} para cambiar al búffer
+   La función @c{other-buffer} realmente proporciona un búffer cuando se
+   utiliza como argumento de una función que requiera uno. Podemos ver esto
+   usando @c{other-buffer} y @c{switch-to-buffer} para cambiar a un búffer
    diferente.
 
    Pero primero, una breve introducción a la función @c{switch-to-buffer}.
-   Cuando se cambia atrás y adelante desde Info al búffer para evaluar
-   @c{(buffer-name)}, normalmente se escribe @k{C-x b} y se visualiza
-   @f{*scratch*}@n{5} cuando se ve en el minibuffer el nombre del búffer al
-   que se quiere cambiar. El atajo, @k{C-x b}, causa que el intérprete Lisp
-   evalúe la función interactiva @c{switch-to-buffer}. Como nosotros dijimos
-   antes, así es como Emacs funciona: diferentes atajos de teclado llaman o
-   ejecutan diferentes funciones. Por ejemplo, @k{C-f} llama
-   @c{forward-char}, @k{M-e} llama a @c{forward-sentence} y así
+   Cuando cambia de ida y vuelta de Info al búffer @f{*scratch*} para evaluar
+   @c{(buffer-name)}, normalmente se presiona @k{C-x b} y luego se pasa
+   @f{*scratch*}@n{6} en el minibuffer cuando se le solicita el nombre del
+   buffer al que quiere cambiar. El atajo, @k{C-x b}, hace que el intérprete
+   Lisp evalúe la función interactiva @c{switch-to-buffer}. Como hemos dicho
+   anteriormente, así es como funciona Emacs: diferentes atajos de teclado
+   llaman o ejecutan diferentes funciones. Por ejemplo, @k{C-f} llama a
+   @c{forward-char}, @k{M-e} llama a @c{forward-sentence}, etcétera.
 
-   Escribiendo @c{switch-to-buffer} en una expresión, y dándole un búffer
-   para cambiar, se puede cambiar a búffers solo como @k{C-x b} hace.
+   Al escribir @c{switch-to-buffer} en una expresión, y darle un búffer al
+   que cambiar, podemos cambiar de búffer tal y como hace @k{C-x b}.
 
-   @example
+   @src elisp
      (switch-to-buffer (other-buffer))
-   @end example
+   @end src
 
-   El símbolo @c{switch-to-buffer} es el primer elemento de la lista, así el
-   intérprete Lisp tratará eso como una función y trae las instrucciones
-   adjuntas a eso. Pero antes de hacer esto, el intérprete notará este
-   @c{other-buffer} está dentro de paréntesis y trabaja en este símbolo
-   primero. @c{other-buffer} es el primero (y en este caso, el único)
-   elemento de esta lista, así el intérprete Lisp llama o ejecuta la
-   función. Eso devuelve otro búffer. Después, el intérprete ejecuta
-   @c{switch-to-buffer}, pasando, como un argumento, el otro búffer, que es
-   al que Emacs cambia. Si está leyendo esto en Info, prueba esto ahora.
-   Evalúa la expresión. (Para volver, escribe @k{C-x b
-   @k{RET}}.)@n{6}
+   El símbolo @c{switch-to-buffer} es el primer elemento de la lista, por lo
+   que el intérprete Lisp lo tratará como una función y llevara a cabo las
+   instrucciones adjuntas al mismo. Pero antes de hacer esto, el intérprete
+   observara que @c{other-buffer} está dentro de paréntesis y trabajara en
+   este símbolo primero. @c{other-buffer} es el primer (y en este caso, el
+   único) elemento de esta lista, por lo que el intérprete llama o ejecuta la
+   función. Esto devuelve un búffer distinto al actual. A continuación, el
+   intérprete ejecuta @c{switch-to-buffer}, pasando, como argumento, el
+   búffer devuelto, que es al que Emacs cambia. Si estás leyendo esto en
+   Info, prueba esto ahora. Evalúa la expresión. (Para regresar, presiona @k{C-x b
+   RET}.)@n{7}
 
-   En los ejemplos de programación en secciones posteriores de este
-   documento, se ve la función @c{set-buffer} con más con frecuencia que
-   @c{switch-to-buffer}. Esto es porque a diferencia de los programas de
-   ordenador: los humanos tienen ojos y esperan ver el búffer en el que ellos
-   están trabajando en sus terminales de ordenador. Esto es tan obvio, que
-   casi no hace falta decirlo. Sin embargo, los programas no tienen
-   ojos. Cuando un programa de ordenador trabaja en un búffer, el búffer no
-   necesita ser visible en la pantalla.
+   En los ejemplos de las secciones siguentes, veras con más frecuencia la
+   función @c{set-buffer} que @c{switch-to-buffer}. Esto es debido a la
+   diferencia entre programas de ordenador y seres humanos: los humanos
+   tienen ojos y esperan ver el búffer en el que están trabajando en la
+   terminal de su ordenador. Esto es tan evidente, que se sobreentiende. Sin
+   embargo, los programas no tienen ojos. Cuando un programa de ordenador
+   trabaja en un búffer, el búffer no necesita ser visible en la pantalla.
 
-   @c{switch-to-buffer} está diseñado para humanos y hace dos cosas
-   diferentes: cambia el búffer para el que la atención de Emacs está
-   dirigida; y cambia el búffer mostrada en la ventana al nuevo
-   búffer. @c{set-buffer}, por otro lado, hace solo una cosa: eso cambia la
-   atención del programa del ordenador a un búffer. El búffer en la pantalla
-   permanece sin cambios (de acuerdo, normalmente no ocurre nada hasta que el
-   comando finaliza ejecutándose).
+   @c{switch-to-buffer} está diseñado para los seres humanos y hace dos cosas
+   diferentes: cambia el búffer a el que Emacs dirige la atención; y cambia
+   el búffer mostrado en la ventana al nuevo búffer. @c{set-buffer}, por otro
+   lado, solo hace una cosa: cambia la atención del programa del ordenador a
+   un búffer diferente. El búffer en la pantalla permanece sin cambios (por
+   supuesto, normalmente no pasa nada hasta que el comando termina de
+   ejecutarse).
 
-   También, nosotros hemos introducido otro término de jerga, la palabra
-   @:{llamada}. Cuando tu evalúas una lista en el que el primer símbolo es
-   una función, tu estás llamando a esta función. El uso del término viene
-   desde la noción de la función como una entidad que puede hacer alguna cosa
-   para tí si tu la ‘llamas’ --- es decir, es una entidad que puede arreglar
-   un problema si le llamas a él o a ella.
+   Además, acabamos introduciendo otro termino tecnico, la palabra
+   @:{llamada}. Cuando se evalúa una lista en la que el primer símbolo es una
+   función, estás llamando a esa función. El uso del término viene de la
+   noción de la función como una entidad que puede algo hacer por ti cuando
+   la ‘llamas’––al igual que un fontanero es una entidad que puede arreglar
+   una fuga si lo llamas.
 
-** Tamaño de búffer y la localización del punto
+** Tamaño del búffer y la ubicación del punto
 
-   Finalmente, permítame en varias funciones simples, @c{buffer-size},
-   @c{point}, @c{point-min}, y @c{point-max}. Estas dan información acerca
-   del tamaño de un búffer y la localización del punto con eso.
+   Por último, vamos a ver varias funciones bastante simples,
+   @c{buffer-size}, @c{point}, @c{point-min}, y @c{point-max}. Estas entregan
+   información sobre el tamaño de un búffer y la ubicación del punto dentro
+   de este.
 
-   La función @c{buffer-size} te cuenta el tamaño del búffer actual; que es,
-   la función un contaje del número de caracteres en el buffer.
+   La función @c{buffer-size} te dice el tamaño del búffer actual; es decir,
+   la función devuelve un conteo del número de caracteres en el buffer.
 
-   @example
+   @src elisp
      (buffer-size)
-   @end example
+   @end src
 
-   Se puede evaluar esto en el camino usual, posicionando el cursor después
-   de la expresión y escribiendo @k{C-x C-e}.
+   Puedes evaluar esto de la forma habitual, coloca el cursor después de la
+   expresión y presiona @k{C-x C-e}.
 
-   En Emacs, la posición actual del cursor es llamada @:{punto}. La expresión
-   @c{(point)} devuelve un número que cuenta donde está localizado como un
-   contaje del número de caracteres desde el principio del búffer al punto.
+   En Emacs, la posición actual del cursor se denomina @:{punto}. La
+   expresión @c{(point)} devuelve un número que informa donde esta situado el
+   cursor como un conteo del número de caracteres desde el principio del
+   búffer hasta el punto.
 
-   Se puede ver el contaje de caracteres apuntar en este búffer evaluando la
-   siguiente expresión en el camino normal:
+   Puedes ver el conteo de caracteres del punto para este búffer evaluando la
+   siguiente expresión de la forma habitual:
 
-   @example
+   @src elisp
      (point)
-   @end example
+   @end src
 
    Mientras escribo esto, el valor de @c{point} es 65724. La función
-   @c{point} está frecuentemente usada en alguno de los ejemplos posteriores
-   en este libro.
+   @c{point} se utiliza con frecuencia en algunos de los ejemplos mas
+   adelante en este libro.
 
-   El valor del punto depende, de acuerdo, a la posición que tiene en el
-   búffer. Si se evalúa punto en este lugar, el número será largo:
+   El valor del punto depende, por supuesto, de su ubicacion dentro del
+   búffer. Si evaluas el punto en este lugar, el número será mayor:
 
-   @example
+   @src elisp
      (point)
-   @end example
+   @end src
 
    Para mí, el valor del punto en esta posición es 66043, lo que significa
-   que hay 319 caracteres (incluyendo espacios) entre las dos
-   expresiones. (Sin duda, se verán diferentes números, puesto que se ha
-   editado esto desde que se evaluó (point).)
+   que hay 319 caracteres (incluyendo espacios) entre las dos expresiones.
+   (Sin duda, verá números diferentes, puesto que habré editado esto desde el
+   primer punto evaluado.)
 
-   La función @c{point-min} es similar a @c{point}, pero eso devuelve del
-   valor mínimo permisible del punto en el búffer actual. Este es el número 1
-   a menos que @:{narrowing} esté en efecto. (Narrowing, @e{Encogiendo} es un
-   mecanismo donde uno se puede encoger a uno mismo, o un programa, a
-   operaciones en solo un parte de un búffer. @l{Encogiendo y extendiendo}.)
-   Así, la función @c{point-max} devuelve el valor del valor máximo
-   permisible del punto en el búffer actual.
+   La función @c{point-min} es similar a @c{point}, pero devuelve el valor
+   mínimo permisible del punto en el búffer actual. Este es el numero 1 a
+   menos que @:{narrowing} esté en vigor. (Narrowing, @e{Encogiendo} es un
+   mecanismo mediarte el cual puedes restringirte a ti mismo, o un programa,
+   a operar solo en un parte de un búffer. Ver Sección @l{Encogiendo y
+   extendiendo}.)  Del mismo modo, la función @c{point-max} devuelve el valor
+   máximo permisible del punto en el búffer actual.
 
 ** Ejercicio
 
-   Encuentra un fichero con que tu estás trabajando y mueve hasta la
-   mitad. Encuentra el nombre de búffer, el nombre del fichero, tamaño, y su
-   posición en el fichero.
+   Busca un fichero en el que trabarjar y avanza hasta la mitad. Encuentra el
+   nombre de búffer, el nombre del fichero, su tamaño, y la posición en el
+   fichero.
 
 * Cómo escribir definiciones de funciones
 
@@ -2083,9 +2082,9 @@ and promoting software freedom.”
       (message "El resultado es %d" (* 7 5))
     @end example
 
-    (Si está leyendo esto en GNU Emacs, se puede evaluar esta expresión por
-    sí misma.) Primera, el intérprete evaluará la lista interna, que es @c{(*
-    7 5)}. Esto devuelve un valor de 35. Lo siguiente, evaluará la lista
+    (Si está leyendo esto en GNU Emacs, puedes evaluar esta expresión por ti
+    mismo.) Primera, el intérprete evaluará la lista interna, que es @c{(* 7
+    5)}. Esto devuelve un valor de 35. Lo siguiente, evaluará la lista
     externa, pasando los valores de la segunda y subsiguientes elementos de
     la lista a la función @c{message}.
 
@@ -2329,7 +2328,7 @@ and promoting software freedom.”
     Las dos variables son @c{cebra} y @c{tigre}. Cada variable es el primer
     elemento de una lista de dos elementos y cada valor es el segundo
     elemento de su lista de dos elementos. En la varlist, Emacs asocia la
-    variable @c{cebra} al valor @c{rayas}@n{7}, y asocia la variable
+    variable @c{cebra} al valor @c{rayas}@n{8}, y asocia la variable
     @c{tigre} al valor @c{fiero}. En este ejemplo, ambos valores son símbolos
     precedidos por una comilla. Los valores podrían ser precedidos por una
     comilla. Los valores podrían también haber sido otra lista o cadena. El
@@ -5041,7 +5040,7 @@ and promoting software freedom.”
 
    Como @c{car} y @c{cdr}, @c{cons} es no destructivo.
 
-   @c{cons} debe tener una lista para adjuntar a@n{8} No se puede empezar
+   @c{cons} debe tener una lista para adjuntar a@n{9} No se puede empezar
    desde absolutamente nada. Si se está construyendo una lista, se necesita
    proveer al menos una lista vacía al principio. Aquí hay una serie de
    expresiones @c{cons} que construyen una lista de flores. Si está leyendo
@@ -6792,7 +6791,7 @@ and promoting software freedom.”
 
    Tan lejos como el lenguaje C es concebido, @c{start} y @c{end} son dos
    enteros que marcan el principio y el fin de la región para ser
-   borrada@n{9}.
+   borrada@n{10}.
 
    En las primeras versiones de Emacs, estos dos números fueron 32 bits de
    longitud, pero el código está lentamente siendo generalizado para manejar
@@ -16985,31 +16984,32 @@ and promoting software freedom.”
     no específico. @c{%d} imprime solo la parte de un número a la izquierda
     del punto decimal, excluyendo cualquier cosa que no sea un número.
 
-  - @N{5} :: Actualmente, por defecto, si el búffer desde el que tu has
-    cambiado es visible para tí en otra ventana, @c{other-buffer} elegirá el
-    búffer más reciente que no puedes ver; esto es algo pequeño que he
-    olvidado.
+  - @N{5} :: En realidad, por defecto, si el búffer desde el que has
+    cambiado es visible por tí en otra ventana, @c{other-buffer} elegirá el
+    búffer más reciente que no puedas ver; esta es una sutileza que a menudo
+    olvido.
 
-  - @N{6} :: O incluso, para cambiar, solo se necesita pulsar @k{RET} si el
-    buffer por defecto era @f{*scratch*}, o si era diferente, entonces se
-    puede escribir solo parte del nombre, tal como @c{*sc}, luego presiona la
-    tecla @k{TAB} para causar expandir al nombre completo, y entonces escribe
-    la tecla @k{RET}
+  - @N{6} -: O mejor, para evitar escribir, probablemente solo necesite
+    pulsar @k{RET} si @f{*scratch*} es el buffer por defecto, de ser
+    diferente, solo escriba parte del nombre, por ejemplo @c{*sc}, luego
+    presione la tecla @k{TAB} para hacer que se expanda el nombre completo, y
+    finalmente pulsa @k{RET}.
 
-  - @N{7} :: Recuerda, esta expresión te permite cambiar a tus búffers más
-    recientes y otros buffers que no puedes ver. Si realmente quieres ir a
-    tus búffers seleccionados más recientemente, se necesita evaluar la
-    siguiente expresión más compleja:
+  - @N{7} -: Recuerda, esta expresión te desplaza al buffer diferente más
+    reciente que no puedas ver. Si realmente quieres ir al ultimo búffer
+    seleccionado, incluso si es visible, es necesario evaluar la siguiente
+    expresión más compleja:
 
-    @example
-      (switch-to-buffer (other-buffer (current-buffer)))
-    @end example
+    @src elisp
+      (switch-to-buffer (other-buffer (current-buffer) t))
+    @end src
 
-    En este caso, el primer argumento a @c{other-buffer} cuenta de que búffer
-    salir––el actual––y el segundo argumento cuenta al @c{other-buffer} es OK
-    para cambiar a un búffer visible. En uso regular, @c{switch-to-buffer}
-    toma a una ventana invisible desde usarías @k{C-x o} (@c{other-window})
-    para ir a otro búffer visible}.
+    En este caso, el primer argumento de @c{other-buffer} le dice a que
+    búffer saltar––el actual––y el segundo argumento le indica a
+    @c{other-buffer} que esta BIEN cambiar a un búffer visible. La utilidad
+    de @c{switch-to-buffer} es llevarte a una ventana invisible ya que
+    probablemente usarias @k{C-x o} (@c{other-window}) para ir a otro búffer
+    visible.
 
   - @N{8} :: De acuerdo a Jared Diamond en @e{Guns, Germs, y Steel}, “… las
     cebras llegan a ser muy peligrosas a medida que crecen” pero el clamor
