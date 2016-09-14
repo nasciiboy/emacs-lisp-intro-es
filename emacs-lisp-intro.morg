@@ -3036,15 +3036,6 @@ promoting software freedom.”
    ‘return’ or ‘enter’.  Emacs will take you directly to the function
    definition.
 
-   @ignore
-     Not In version 22
-
-     If you move point over the file name and press
-     the @k{RET} key, which in this case means @c{help-follow} rather
-     than ‘return’ or ‘enter’, Emacs will take you directly to the function
-     definition.
-   @end ignore
-
    More generally, if you want to see a function in its original source file,
    you can use the @c{find-tag} function to jump to it.  @c{find-tag} works
    with a wide variety of languages, not just Lisp, and C, and it works with
@@ -3059,14 +3050,14 @@ promoting software freedom.”
    function whose source code you want to see, such as @c{mark-whole-buffer},
    and then type @k{RET}.  Emacs will switch buffers and display the source
    code for the function on your screen.  To switch back to your current
-   buffer, type @k{C-x b @k{RET}}.  (On some keyboards, the @k{META} key is
+   buffer, type @k{C-x b RET}.  (On some keyboards, the @k{META} key is
    labeled @k{ALT}.)
 
-   specifying @findex find-tag Depending on how the initial default values of
-   your copy of Emacs are set, you may also need to specify the location of
-   your ‘tags table’, which is a file called @f{TAGS}.  For example, if you
-   are interested in Emacs sources, the tags table you will most likely want,
-   if it has already been created for you, will be in a subdirectory of the
+   Depending on how the initial default values of your copy of Emacs are set,
+   you may also need to specify the location of your ‘tags table’, which is a
+   file called @f{TAGS}.  For example, if you are interested in Emacs
+   sources, the tags table you will most likely want, if it has already been
+   created for you, will be in a subdirectory of the
    @f{/usr/local/share/emacs/} directory; thus you would use the @c{M-x
    visit-tags-table} command and specify a pathname such as
    @f{/usr/local/share/emacs/22.1.1/lisp/TAGS}.  If the tags table has not
@@ -3197,7 +3188,7 @@ promoting software freedom.”
 
    (The prompt for @c{describe-function} will offer you the symbol under or
    preceding the cursor, so you can save typing by positioning the cursor
-   right over or after the function and then typing @k{C-h f @k{RET}}.)
+   right over or after the function and then typing @k{C-h f RET}.)
 
    The @c{end-of-buffer} function definition is written in the same way as
    the @c{beginning-of-buffer} definition except that the body of the
@@ -3233,10 +3224,10 @@ promoting software freedom.”
    template for a function definition.  The template looks like this:
 
    @src elisp
-     (defun @V{name-of-function} (@V{argument-list})
-       "@V{documentation}…"
-       (@V{interactive-expression}…)
-       @V{body}…)
+     (defun name-of-function (argument-list)
+       "documentation…"
+       (interactive-expression…)
+       body…)
    @end src
 
    Here is how the function works: the name of the function is
@@ -3285,8 +3276,8 @@ promoting software freedom.”
     about narrowing.)  After this mark has been set, the previous mark, the
     one set at point, is no longer set, but Emacs remembers its position,
     just as all other recent marks are always remembered.  This means that
-    you can, if you wish, go back to that position by typing @k{C-u
-    C-@k{SPC}} twice.
+    you can, if you wish, go back to that position by typing @k{C-u C-SPC}
+    twice.
 
     In GNU Emacs 22, the @c{(point-max)} is slightly more complicated.  The
     line reads
@@ -3365,9 +3356,9 @@ promoting software freedom.”
 
    @src elisp
      (defun append-to-buffer (buffer start end)
-       "@V{documentation}…"
+       "documentation…"
        (interactive …)
-       @V{body}…)
+       body…)
    @end src
 
    The first line of the function includes its name and three arguments.  The
@@ -3445,40 +3436,13 @@ promoting software freedom.”
 
 *** The Body of @c{append-to-buffer}
 
-    @ignore
-      in GNU Emacs 22   in    /usr/local/src/emacs/lisp/simple.el
-
-      (defun append-to-buffer (buffer start end)
-        "Append to specified buffer the text of the region.
-      It is inserted into that buffer before its point.
-
-      When calling from a program, give three arguments:
-      BUFFER (or buffer name), START and END.
-      START and END specify the portion of the current buffer to be copied."
-        (interactive
-         (list (read-buffer "Append to buffer: " (other-buffer (current-buffer) t))
-               (region-beginning) (region-end)))
-        (let ((oldbuf (current-buffer)))
-          (save-excursion
-            (let* ((append-to (get-buffer-create buffer))
-                   (windows (get-buffer-window-list append-to t t))
-                   point)
-              (set-buffer append-to)
-              (setq point (point))
-              (barf-if-buffer-read-only)
-              (insert-buffer-substring oldbuf start end)
-              (dolist (window windows)
-                (when (= (window-point window) point)
-                  (set-window-point window (point))))))))
-    @end ignore
-
     The body of the @c{append-to-buffer} function begins with @c{let}.
 
-    As we have seen before (see Section @l{let, , @c{let}}), the purpose of a
-    @c{let} expression is to create and give initial values to one or more
-    variables that will only be used within the body of the @c{let}.  This
-    means that such a variable will not be confused with any variable of the
-    same name outside the @c{let} expression.
+    As we have seen before (see Section @lc{let}), the purpose of a @c{let}
+    expression is to create and give initial values to one or more variables
+    that will only be used within the body of the @c{let}.  This means that
+    such a variable will not be confused with any variable of the same name
+    outside the @c{let} expression.
 
     We can see how the @c{let} expression fits into the function as a whole
     by showing a template for @c{append-to-buffer} with the @c{let}
@@ -3486,10 +3450,10 @@ promoting software freedom.”
 
     @src elisp
       (defun append-to-buffer (buffer start end)
-        "@V{documentation}…"
+        "documentation…"
         (interactive …)
-        (let ((@V{variable} @V{value}))
-              @V{body}…)
+        (let ((variable value))
+              body…)
     @end src
 
     The @c{let} expression has three elements:
@@ -3497,7 +3461,7 @@ promoting software freedom.”
     1. The symbol @c{let};
 
     2. A varlist containing, in this case, a single two-element list,
-       @c{(@V{variable} @V{value})};
+       @c{(variable value)};
 
     3. The body of the @c{let} expression.
 
@@ -3574,10 +3538,10 @@ promoting software freedom.”
 
     @src elisp
       (save-excursion
-        @V{first-expression-in-body}
-        @V{second-expression-in-body}
+        first-expression-in-body
+        second-expression-in-body
          …
-        @V{last-expression-in-body})
+        last-expression-in-body)
     @end src
 
     In this function, the body of the @c{save-excursion} contains only one
@@ -3610,23 +3574,6 @@ promoting software freedom.”
     except for that @c{append-to} is used later in the varlist as an argument
     to @c{get-buffer-window-list}.
 
-    @ignore
-      in GNU Emacs 22
-
-        (let ((oldbuf (current-buffer)))
-          (save-excursion
-            (let* ((append-to (get-buffer-create buffer))
-                   (windows (get-buffer-window-list append-to t t))
-                   point)
-              (set-buffer append-to)
-              (setq point (point))
-              (barf-if-buffer-read-only)
-              (insert-buffer-substring oldbuf start end)
-              (dolist (window windows)
-                (when (= (window-point window) point)
-                  (set-window-point window (point))))))))
-    @end ignore
-
     The @c{append-to-buffer} function definition inserts text from the buffer
     in which you are currently to a named buffer.  It happens that
     @c{insert-buffer-substring} copies text from another buffer to the
@@ -3654,13 +3601,13 @@ promoting software freedom.”
     Written in skeletal form, the workings of the body look like this:
 
     @src elisp
-      (let (@V{bind-}@c{oldbuf}@V{-to-value-of-}@c{current-buffer})
-        (save-excursion                       ; @e{Keep track of buffer.}
-          @V{change-buffer}
-          @V{insert-substring-from-}@c{oldbuf}@V{-into-buffer})
+      (let (bind-oldbuf-to-value-of-current-buffer)
+        (save-excursion                       ; Keep track of buffer.
+          change-buffer
+          insert-substring-from-oldbuf-into-buffer)
 
-        @V{change-back-to-original-buffer-when-finished}
-      @V{let-the-local-meaning-of-}@c{oldbuf}@V{-disappear-when-finished}
+        change-back-to-original-buffer-when-finished
+      let-the-local-meaning-of-oldbuf-disappear-when-finished
     @end src
 
     In summary, @c{append-to-buffer} works as follows: it saves the value of

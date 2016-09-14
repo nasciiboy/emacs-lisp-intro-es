@@ -3041,121 +3041,115 @@ and promoting software freedom.”
   funciones descritas aquí están todas relacionadas a búffers. Mas tarde,
   estudiaremos otras funciones.
 
-** Encontrando más información
+** Encontrar Más información
 
-   En este paseo, se describe cada nueva función como viene, algunas veces en
-   detalle y algunas veces brevemente. Si está interesado, se puede obtener
-   la documentación completa de cualquier función Emacs Lisp en cualquier
-   momento escribiendo @k{C-h f} y entonces el nombre de la función (y
-   entonces @k{RET}. De manera similar, se puede obtener la documentación
-   completa para una variable escribiendo @k{C-h v}, después el nombre de la
-   variable (y entonces @k{RET}).
+   En este recorrido, describire cada nueva función, algunas veces en detalle
+   y algunas veces brevemente. Si estás interesado, puedes obtener la
+   documentación completa de cualquier función de Emacs Lisp en cualquier
+   momento presiona @k{C-h f} y luego escribe el nombre de la función (y
+   luego @k{RET}). Del mismo modo, se puede obtener la documentación completa
+   de una variable con @k{C-h v}, luego el nombre de la variable (y despues
+   @k{RET}).
 
-   También, en @c{describe-function}, se encontrará la localización de la
+   Ademas, @c{describe-function} te dira la ubicacion de la definición de la
+   función.
+
+   Coloca el punto dentro del nombre del fichero que contiene la función y
+   presiona la tecla @k{RET}. En este caso, @k{RET} significa @c{push-button}
+   en lugar de ‘return’ o ‘enter’. Emacs te llevara directamente a la
    definición de la función.
 
-   Poner el punto dentro del nombre del fichero que contiene la función y
-   presiona la tecla @k{RET}. En este caso, @k{RET} significa @c{push-button}
-   en vez de ‘return’ o ‘enter’. Emacs tomará directamente a la definición de
-   la función.
-
-   @ignore
-     Not In version 22
-
-     If you move point over the file name and press
-     the @k{RET} key, which in this case means @c{help-follow} rather
-     than ‘return’ or ‘enter’, Emacs will take you directly to the function
-     definition.
-   @end ignore
-
    De manera más general, si quieres ver una función en su fichero fuente
-   original, se puede usar la función @c{find-tag} para saltar dentro.
-   @c{find-tag} funciona con una amplia variedad de lenguajes, no solo Lisp,
-   y C, y funciona con texto de no programación también. Por ejemplo,
-   @c{find-tag} saltará a los varios nodos en el fichero fuente Texinfo de
+   original, puedes utilizar la función @c{find-tag} para saltar a la misma.
+   @c{find-tag} trabaja con una amplia variedad de lenguajes, no solo Lisp, y
+   C, y tambien funciona con texto que no codigo de programacion. Por
+   ejemplo, @c{find-tag} saltará a los distintos nodos del codigo fuente de
    este documento. La función @c{find-tag} depende de ‘tablas de etiquetas’
-   que graba las localizaciones de las funciones, variables, y otros ítems
-   para los que @c{find-tag} salta.
+   que registran las ubicaciones de las funciones, variables, y otros
+   elementos a los que @c{find-tag} salta.
 
-   Para usar el comando @c{find-tag}, escribe @k{M-.} (por ej., presionando
-   la tecla @k{META}, o al menos escribe la tecla @k{ESC} y entonces escribe
-   la tecla punto), entonces, en la pantalla, se escribe el nombre de la
-   función cuyo código fuente se quiere ver, tal como @c{mark-whole-buffer},
-   y luego escribe @k{RET}. Emacs cambiará el búffer y mostrará el código
-   fuente para la función en la pantalla. Para volver al búffer actual,
-   escribe @k{C-x b @k{RET}}. (En algunos teclados, la tecla @k{META} es
-   etiquetada con @k{ALT}.)
+   Para usar el comando @c{find-tag}, presiona @k{M-.} (es decir, presiona la
+   tecla punto mientras presionas la tecla @k(META), o presiona @k{ESC} y
+   luego la tecla punto), a continuacion, en es prompt, escribe el nombre de
+   la función para ver su código fuente, por ejemplo @c{mark-whole-buffer}, y
+   luego pulsa @k{RET}. Emacs cambiará de búffer y mostrará el código fuente
+   de la función en la pantalla. Para regresar a tu búffer actual, presiona
+   @k{C-x b RET}. (En algunos teclados, la tecla @k{META} se etiqueta como
+   @k{ALT}.)
 
-   Dependiendo de cómo los valores iniciales por defecto de tu copia de Emacs
-   son asignados se puede también necesitar especificar la posición de tu
-   ‘tabla de tags’, que es un fichero llamado @f{TAGS}. Por ejemplo, si se
-   está interesado en fuentes de Emacs, la tabla de tags que se desea, si ya
-   ha sido creada para tí, estará en un subdirectorio del directorio
+   Dependiendo de la configuracion de los valores iniciales por defecto de tu
+   copia de Emacs, puede ser necesario especificar la posición de tu ‘tabla
+   de tags’, que es un fichero llamado @f{TAGS}. Por ejemplo, si estás
+   interesado en el codigo fuente de Emacs, la tabla de tags, si ya ha sido
+   creada, estará en un subdirectorio del directorio
    @f{/usr/local/share/emacs}; de este modo se usaría el comando @c{M-x
-   visit-tags-table} y especifica una ruta tal como
-   @f{/usr/local/share/emacs/22.1.1/lisp/TAGS}. Si la tabla tags no ha sido
-   creada, tendrás que crearla por tí mismo. Será un fichero tal como
-   @f{/usr/local/src/emacs/src/TAGS}.
+   visit-tags-table} y se especifica una ruta como
+   @f{/usr/local/share/emacs/24.1.1/lisp/TAGS}. Si la tabla de etiquetas no
+   ha sido creada, tendrás que crearla por tí mismo. Estara en un fichero
+   como @f{/usr/local/src/emacs/src/TAGS}.
 
-   Para crear un fichero @f{TAGS} en un directorio específico, cambia a este
-   directorio en Emacs usando un comando @k{M-x cd}, o lista el directorio
-   como @c{etags *.el} como el comando para ejecutar:
+   Para crear un fichero @f{TAGS} en un directorio específico, cambia a ese
+   directorio en Emacs mediante el comando @k{M-x cd}, o lista el directorio
+   con @k{C-x d} (@c(dired)). A continuacion ejecuta el comando de
+   compilacion, con @c{etags *.el} como comando a ejecutar:
 
    @example
      M-x compile RET etags *.el RET
    @end example
 
-   Para más información, ver @l{etags, , Crea tu propio fichero @f{TAGS}}.
+   Para más información, ver @l{Crea tu propio fichero @f{TAGS}}.
 
-   Después de llegar a estar más familiarizado con Emacs Lisp, se encontrará
-   frecuentemente usar @c{find-tag} para navegar tu camino alrededor del
-   código fuente; y se crearán tus propias tablas @f{TAGS}.
+   Después de te familiarices con Emacs Lisp, te encontrarás con frecuencia
+   utilizando @c{find-tag} como metodo de navegar atraves del código fuente;
+   y crearás tus propias tablas @f{TAGS}.
 
-   Incidentalmente, los ficheros que contienen código Lisp son
-   convencionalmente llamadas @:{librerías}. La metáfora se deriva que una
-   librería, tal como la librería de leyes o una librería de ingeniería, en
-   vez de una librería general. Cada librería, o fichero, contiene funciones
-   que se relacionan a un asunto particular o actividad, tal como
-   @f{abbrev.el} para manejar abreviaciones y otros atajos, y @f{help.el}
-   para la ayuda on-line. (Algunas veces varias librerías proporcionan código
-   para una actividad simple, como varios @f{rmail…} ficheros proveen código
-   para leer correos electrónicos.) En @e{El Manual de GNU Emacs}, tu verás
-   varias frases tales como “El comando @k{C-h p} te permite buscar el
-   estándar de las librerías Emacs Lisp por las palabras claves.
+   Por cierto, los ficheros que contienen código Lisp son llamados
+   convencionalmente @:{librerías}. La metáfora se deriva que una librería
+   especializada, tal como una librería de leyes o una librería de
+   ingeniería, en lugar de una librería general. Cada librería, o fichero,
+   contiene funciones que se relacionan con un tema o actividad determinado,
+   por ejemplo @f{abbrev.el} para el manejo de abreviaturas y otros atajos, y
+   @f{help.el} para ayuda on-line. (Algunas veces varias librerías
+   proporcionan código para una sola actividad, como los distintos ficheros
+   @f{rmail…}  que proporcionan para leer correo electrónico.) En @e{El
+   Manual de GNU Emacs}, verás varias frases como “El comando @k{C-h p} te
+   permite buscar las librerias estándar de Emacs Lisp por la palabra clave
+   del tema.
 
 ** Una definición simplificada de @c{beginning-of-buffer}
 
-   El comando @c{beginning-of-buffer} es una buena función para empezar ya
-   puedes tener cierta familiaridad con eso y es fácil de comprender. Usado
-   como un comando interactivo, @c{beginning-of-buffer} mueve el cursor al
-   principio del búffer, dejando la marca en la posición previa. Eso es
-   generalmente asignados a @k{M-<}.
+   El comando @c{beginning-of-buffer} es una buena función para empezar, ya
+   que es probable que estes familiarizado con ella y es fácil de
+   entender. Usado como un comando interactivo, @c{beginning-of-buffer} mueve
+   el cursor al inicio del búffer, dejando la marca en la posición
+   anterior. Esta generalmente unido a @k{M-<}.
 
-   En esta sección, se discutirá una versión ordenada de la función que
-   muestra como eso es lo usado más frecuentemente. Esta función ordenada
-   trabaja como se escribe, pero no contiene el código para una función
+   En esta sección, vamos a hablar de une versión reducida de la función que
+   muestra como se utiliza con mayor frecuencia. Esta función reducida
+   funciona como esta escrita, pero no contiene código para una opcion
    compleja. En otra sección, describiremos la función entera. (Véase Sección
-   @l{beginning-of-buffer, Definición Completa de @c{beginnning-of-buffer}}.)
+   @l(Definición completa de @c{beginning-of-buffer}).
 
-   Antes de mirar en el código, permítenos considerar que la definición de
-   función tiene que contener: eso debe incluir una expresión que crea la
-   función interactiva así puede ser llamado escribiendo @k{M-x
-   beginning-of-buffer} o escribiendo unos atajos tales como @k{M-<}; debe
-   incluir código para dejar una marca en la posición original en el búffer;
-   y debe incluir código el cursor al principio del búffer.
+   Antes de mirar el código, vamos a considerar lo que la definición de
+   función tiene que contener: debe incluir una expresión que haga la función
+   interactiva por lo que se puede llamar escribiendo @k{M-x
+   beginning-of-buffer} o pulsando uno atajos como @k{M-<}; debe incluir
+   código para dejar una marca en la posición original del búffer; y debe
+   incluir código para mover el cursor al inicio del búffer.
 
-   Aquí está el texto completo la versión ordenada de la función:
+   Aquí está el texto completo la versión reducida de la función:
 
-   @example
+   @src elisp
      (defun simplified-beginning-of-buffer ()
-       "Mover punto al principio del bufer; dejar marca en la posición previa."
+       "Mover el punto al inicio del buffer;
+     dejar marca en la posicion anterior."
        (interactive)
        (push-mark)
        (goto-char (point-min)))
-   @end example
+   @end src
 
-   Como todas las definiciones de función, esta definición tiene cinco partes
-   siguiendo la forma especial @c{defun}:
+   Al igual que todas las definiciones de función, esta definición tiene
+   cinco partes siguiendo la forma especial @c{defun}:
 
    1. El nombre: en este ejemplo, @c{simplified-beginning-of-buffer}.
 
@@ -3163,210 +3157,209 @@ and promoting software freedom.”
 
    3. La cadena de documentación.
 
-   4. La expresión interactive.
-
+   4. La expresión interactiva.
 
    5. El cuerpo.
 
 
    En esta definición de función, la lista de argumentos está vacía; esto
-   significa que esta función no requiere argumentos. (Cuando se busca la
-   definición para la función completa, se verá que puede pasarse un
-   argumento opcional.)
+   significa que esta función no requiere ningun argumento. (Cuando nos
+   fijamos en la definición de la función completa, veremos que se puede
+   pasar un argumento opcional.)
 
-   La expresión interactiva cuenta a Emacs que la función se pretende ser
-   usada interactivamente. En este ejemplo, @c{interactive} no tiene un
-   argumento porque @c{simplified-beginning-of-buffer} no se requiere.
+   La expresión interactiva le informa a Emacs que se pretende utilizar la
+   función de forma interactiva. En este ejemplo, @c{interactive} no tiene un
+   argumento porque @c{simplified-beginning-of-buffer} no requiere uno.
 
    El cuerpo de la función consiste de dos líneas:
 
-   @example
+   @src elisp
      (push-mark)
      (goto-char (point-min))
-   @end example
+   @end src
 
-   La primera de estas líneas es la expresión, @c{(push-mark)}. Cuando esta
-   expresión es evaluado por el intérprete Lisp, eso asigna una marca en la
-   posición actual del cursor, siempre y cuando esto pueda ser. La posición
-   de esta marca está guardada en el anillo de marcas.
+   La primera de estas líneas es la expresión, @c{(push-mark)}. Cuando el
+   interprete Lisp evalua esta expresión, se establece una marca en la
+   posición actual del cursor, donde sea que este. La posición de esta marca
+   se guarda en el anillo de marcas.
 
-   La siguiente línea es @c{(goto-char (point-min))}. Esta expresión salta el
-   cursor al punto mínimo en el búffer, esto es, para el comienzo del búffer
-   (o al principio de la porción accesible del búffer si eso está
-   encogido. Véase Sección @l{Encogiendo y extendiendo}.)
+   La siguiente línea es @c{(goto-char (point-min))}. Esta expresión hace
+   saltar el cursor hasta el punto mínimo en el búffer, es decir, al inicio
+   del búffer (o al inicio de la porción accesible del búffer si narrowed
+   esta activo. Véase Sección @l{Encogiendo y extendiendo}.)
 
-   El comando @c{push-mark} estable una marca en el lugar donde el cursor fué
-   localizado antes que fuera movido al principio del búffer por la expresión
-   @c{(goto-char (point-min))}. Consiguientemente, puedes, si lo deseas,
-   volver donde estabas originalmente escribiendo @k{C-x C-x}.
+   El comando @c{push-mark} establece una marca en el sitio donde se
+   encontraba el cursor antes de transladarse al inicio del búffer por la
+   expresión @c{(goto-char (point-min))}. En consecuencia, puedes, si
+   quieres, volver a donde estabas originalmente presionando @k{C-x C-x}.
 
-   ¿Esto es todo lo que hay para la definición de función!
+   ¡Esto es todo lo que hay en la definición de función!
 
-   Cuando se lee código como este y vuelve a una función no familiar, tal
-   como @c{goto-char}, se puede encontrar que se hace usando el comando
-   @c{describe-function}. Para usar este comando, escribe @k{C-h f} y
-   entonces escribe en el nombre de la función y presiona @k{RET}. El comando
-   @c{describe-function} imprimirá la documentaci@'n de la cadena de la
-   función en una ventana @f{*Help*}. Por ejemplo, la documentación para
-   @c{goto-char} es:
+   Cuando leas código como este y te encuentres con una función desconocida,
+   como @c{goto-char}, puedes averiguar que es lo que hace mediante el
+   comando @c{describe-function}. Para usar este comando, presiona @k{C-h f}
+   y luego escribe el nombre de la función y presiona @k{RET}. El comando
+   @c{describe-function} imprimirá la cadena de documentacion de la función
+   en una ventana @f{*Help*}. Por ejemplo, la documentación de @c{goto-char}
+   es:
 
    @example
-     Asignar punto a POSITION, un número o marca
-     Empezando el buffer es la posición (point-min), y el final es
-     (point-max).
+     Establece el punto a POSICION, un numero o marcador.
+     El inicio del buffer es la posicion (point-min), el final es (point-max).
    @end example
 
-   La función es un argumento es la posición deseada.
+   El argumento de la función es la posición deseada.
 
-   (La consola para @c{describe-function} te ofrecerá el símbolo abajo o
-   precediendo al cursor, así se puede guardar escribiendo al posicionar el
-   cursor a la derecha o después de la función y entonces escribir @k{C-h f
-   @k{RET}}.)
+   (En el caso de @c{describe-function} el prompt te facilita el símbolo
+   debajo o anterior al cursor, lo que te puede evitar escribir el nombre de
+   la funcion al colocar el cursor a la justo sobre o después de la función y
+   luego presionar @k{C-h f RET}.)
 
-   La definición de función @c{end-of-buffer} está escrito en el mismo modo
+   La definición de la función @c{end-of-buffer} se escribe de la misma forma
    que la definición @c{beginnig-of-buffer} excepto que el cuerpo de la
-   función contenga la expresión @c{(goto-char (point-max))} en lugar de
+   función contiene la expresión @c{(goto-char (point-max))} en lugar de
    @c{(goto-char (point-min))}
 
 ** La definición de @c{mark-whole-buffer}
 
-   La función @c{mark-whole-buffer} no es tan difícil de comprender que la
-   función @c{simplified-beginning-of-buffer}. En este caso, sin embargo, se
-   verá la función completa, no una versión ordenada.
+   La función @c{mark-whole-buffer} no es mas difícil de entender que la
+   función @c{simplified-beginning-of-buffer}. En este caso, sin embargo,
+   vamos a ver la función completa, no una versión reducida.
 
-   La función @c{mark-whole-buffer} no está comúnmente usada como la función
-   @c{beginning-of-buffer}, pero eso no es útil: eso marca un búffer completo
-   como una región poniendo el punto al principio y una marca al fin del
-   búffer. Eso está generalmente asociado a @k{C-x h}.
+   La función @c{mark-whole-buffer} no se utiliza tan comúnmente como la
+   función @c{beginning-of-buffer}, pero no es menos útil: marca un búffer
+   completo como una región colocando el punto al inicio y una marca al fin
+   del búffer. Generalmente se une a @k{C-x h}.
 
-   En GNU Emacs 22, el código para la función completa se parece a:
+   En GNU Emacs 22, el código de la función completa se ve asi:
 
-   @example
+   @src elisp
      (defun mark-whole-buffer ()
-       "Pon el punto al principio y marca el fin del búffer.
-     Probablemante no deberías usar esta función en
-       programas Lisp; normalmente un error para una función Lisp usa
-       cualquier subrrutina que usa o asigna la marca."
+       "Coloca el punto al inicio y marca el fin del buffer.
+     Probablemente no deberias utilizar esta funcion en programas Lisp;
+     Por lo general es un error para una funcion Lisp utilizar cualquier subrutino
+     que utiliza o establece la marca."
        (interactive)
        (push-mark (point))
        (push-mark (point-max) nil t)
        (goto-char (point-min)))
-   @end example
+   @end src
 
-   Como todas las otras funciones, la función @c{mark-whole-buffer} se ajusta
-   dentro de la plantilla para una definición. La plantilla se parece a esta:
+   Al igual que todas las demas funciones, la función @c{mark-whole-buffer}
+   se ajusta dentro de la plantilla de una definición de funcion. La
+   plantilla luce asi:
 
-   @example
-     (defun @V{name-of-function} (@V{argument-list})
-       "@V{documentation}…"
-       (@V{interactive-expression}…)
-       @V{body}…)
-   @end example
+   @src elisp
+     (defun nombre-de-funcion (lista-de-argumentos)
+       "documentacion…"
+       (expresion-interactiva…)
+       cuerpo…)
+   @end src
 
-   Aquí está cómo la función trabaja: el nombre de la función es
-   @c{mark-whole-buffer}; eso es seguida por un argumento de lista vacía,
+   Aquí el cómo funciona la función: el nombre de la función es
+   @c{mark-whole-buffer}; es seguido por una lista de argumentos vacía,
    @'{()}, que significa que la función no requiere argumentos. La
-   documentación viene la siguiente.
+   documentación viene a continuacion.
 
-   La siguiente línea es una expresión @c{(interactive)} que cuenta a Emacs
-   que la función será usada interactivamente. Estos detalles son similares a
-   la función @c{simplified-beginning-of-buffer} descrita en la sección
-   previa
+   La siguiente línea es una expresión @c{(interactive)} que indica a Emacs
+   que la función se utilizara de forma interactiva. Estos detalles son
+   similares a la función @c{simplified-beginning-of-buffer} descrita en la
+   sección anterior
 
 *** Cuerpo de @c{mark-whole-buffer}
 
     El cuerpo de la función @c{mark-whole-buffer} consiste en tres líneas de
     código:
 
-    @example
+    @src elisp
       (push-mark (point))
       (push-mark (point-max) nil t)
       (goto-char (point-min))
-    @end example
+    @end src
 
-    El primero de estas líneas es la expresión, @c{(push-mark (point))}.
+    La primera de estas líneas es la expresión, @c{(push-mark (point))}.
 
     Esta línea hace exactamente el mismo trabajo que la primera línea del
-    cuerpo de la función @c{simplified-beginning-of-buffer}, que está escrita
-    @c{(push-mark)}. En ambos casos, el intérprete Lisp asigna una marca en
-    la posición actual del cursor.
+    cuerpo de la función @c{simplified-beginning-of-buffer}, en la que solo
+    se escribe @c[(push-mark)]. En ambos casos, el intérprete Lisp coloca una
+    marca en la posición actual del cursor.
 
-    No sé por qué en la expresión @c{mark-whole-buffer} está escrito
-    @c{(push-mark (point))} y en la expresión @c{beginning-of-buffer} está
-    escrito @c{(push-mark)}. Quizás quien escribió el código no sabía que los
-    argumentos para @c{push-mark} son opcionales y que si @c{push-mark} no se
-    pasa como argumento, la función automáticamente asigna la marca en la
-    localización del punto por defecto. O quizás la expresión fué escrita así
-    como para parelizar la estructura de la siguiente línea. En cualquier
-    caso, la línea causa que Emacs determine la posición del punto y asigne
-    una marca allí.
+    No sé por qué en la expresión @c{mark-whole-buffer} se escribe
+    @c{(push-mark (point))} y en la expresión @c{beginning-of-buffer} se
+    escribe @c{(push-mark)}. Quizás quien escribió el código no conocia que
+    los argumentos de @c{push-mark} son opcionales y que si no se pasa un
+    argumento a @c{push-mark}, la función establece automáticamente la marca
+    en la posicion del punto por defecto. O quizás la expresión fué escrita
+    paralelamente a la estructura de la siguiente línea. En cualquier caso,
+    la línea proboca que Emacs determine la posición del punto y coloque una
+    marca allí.
 
-    En las primeras versiones de GNU Emacs, la siguiente línea de
-    @c{mark-whole-buffer} fué @c{(push-mark (point-max))}. Esta expresión
-    asigna una marca en el punto en el búffer que tiene el número más
-    alto. Esto será el fin del búffer (o, si el búffer es encogida, el fin de
-    la porción accesible del búffer. Véase Sección @l{Encogiendo y
-    extendiendo, , Encogiendo y extendiendo}, para más acerca de
-    encoger). Después esta marca ha sido asignada, la marca previa, uno
-    asigna un punto, pero no se asigna largo, pero Emacs recuerda su
-    posición, solo como todas las otras marcas recientes son siempre
-    recordadas. Esto significa que se puede, si lo deseas, vuelve a esta
-    posición escribiendo @k{C-u C-@k{SPC}} dos veces.
+    En versiones anteriores de GNU Emacs, la siguiente línea de
+    @c{mark-whole-buffer} era @c{(push-mark (point-max))}. Esta expresión
+    establece una marca en el punto del búffer que tiene el número más
+    alto. Este será el final del búffer (o, si el búffer tiene actio
+    narrowing, el final de la porción accesible del búffer. Véase Sección
+    @l{Encogiendo y extendiendo}, para más informacon sobre
+    norrowing). Después de colocar esta marca, la marca anterior, la
+    establecida en el punto, ya no esta configurada, pero Emacs recuerda su
+    posición, al igual que recuerda todas las demas marcas recientes. Esto
+    significa que se puedes, si lo deseas, volver a esta posición presionando
+    @k{C-u C-SPC} dos veces.
 
-    En GNU Emacs 22, el @c{(point-max)} es ligeramente más complicado. La
-    línea lee
+    En GNU Emacs 22, @c{(point-max)} es ligeramente más complicado. La
+    línea es
 
-    @example
+    @src elisp
       (push-mark (point-max) nil t)
-    @end example
+    @end src
 
-    La expresión funciona cerca de lo mismo que antes. Eso asigna una marca
-    en el lugar numerado más alto que se puede en el búffer. Sin embargo, en
+    La expresión funciona casi igual que antes. Se establece una marca en la
+    posicion con la numeracion mas alta posible en el búffer. Sin embargo, en
     esta versión, @c{push-mark} tiene dos argumentos adicionales. El segundo
-    argumento para @c{push-mark} es @c{nil}. Esto cuenta la función que
-    @e{mostraría} un mensaje que dice ‘Marca asignada’ cuando eso empuja la
-    marca. El tercer argumento es @c{t}. Esto cuenta @c{push-mark} para
-    activar la marca cuando el modo Transient Mark está activado. Transient
-    Mark mode ilumina la región de marca activa. Con frecuencia desactivada
+    argumento de @c{push-mark} es @c{nil}. Esto indica a la función que debe
+    @e{mostrar} un mensaje que dice ‘Mark set’ cuando se coloca la marca. El
+    tercer argumento es @c{t}. Esto indica a @c{push-mark} que active la
+    marca cuando el modo Transient Mark está activo. Transient Mark mode
+    resalta la región activa. Con frecuencia esta desactivado.
 
     Finalmente, la última línea de la función es @c{(goto-char
-    (point-min))}. Esto es escrito exactamente el mismo camino camino como
-    está escrito @c{beginning-of-buffer}. La expresión mueve el cursor al
-    mínimo punto en el búffer, que es, al principio del búfferr (o para el
-    principio de la porción accesible del búffer). Como un resultado de esto,
-    punto está emplazado al principio del búffer y la marca está asignada al
-    fin del búffer. El búffer completo es, más allá, la región.
+    (point-min))}. Esta escrito exactamente de la misma forma como está
+    escrito @c{beginning-of-buffer}. La expresión mueve el cursor al punto
+    mínimo en el búffer, es decir, al inicio del búfferr (o al inicio de la
+    porción accesible del búffer). Como resultado de esto, punto se coloca al
+    inicio del búffer y la marca se encuentra al final del búffer. Por tanto,
+    todo el búffer es la región.
 
 ** La definición de @c{append-to-buffer}
 
    El comando @c{append-to-buffer} es más complejo que el comando
-   @c{mark-whole-buffer}. Lo que hace es copiar la región (que es, la parte
-   del búffer entre punto y marca) desde el buffer actual a un búffer
+   @c{mark-whole-buffer}. Lo que hace es copiar la región (es decir, la parte
+   del búffer entre el punto y la marca) del buffer actual a un búffer
    específico.
 
-   El comando @c{append-to-buffer} usa la función @c{insert-buffer-substring}
-   para copiar la región. @c{insert-buffer-substring} es descrita por su
-   nombre: eso toma una cadena de caracteres desde parte de un búffer, una
-   “subcadena”, y las inserta dentro de otro búffer.
+   El comando @c{append-to-buffer} utiliza la función
+   @c{insert-buffer-substring} para copiar la región.
+   @c{insert-buffer-substring} se describe por su nombre: toma una cadena de
+   caracteres de una parte de un búffer, una “subcadena”, y la inserta en
+   otro búffer.
 
-   La mayoría de @c{append-to-buffer} se refiere con la configuración de las
-   condiciones para @c{insert-buffer-substring} para trabajar: el código debe
-   especificar ambos el búffer para el que el texto irá, la ventana viene y
-   va, y la región que será copiada.
+   La mayor parte de @c{append-to-buffer} corresponde a establecer la
+   condiciones para que @c{insert-buffer-substring} funcione: el código debe
+   especificar tanto el búffer al que ira el texto, la ventana fuente y
+   destino, y la región que será copiada.
 
    Aquí está el texto completo de la función:
 
-
-   @example
+   @src elisp
      (defun append-to-buffer (buffer start end)
-       "Introduce al búffer específico el texto de la
-       región. Esto es insertado de este búffer antes de su punto.
+       "Agregar a un buffer especifico el texto de la region.
+     Este se inserta en ese buffer antes de su punto.
 
-     Cuando se llama desde un programa, se dan tres argumentos:
-     BUFFER (o nombre del búffer), START y END.
-     START y END especifica la porción del búffer actual para ser copiado."
+     Cuando se llama desde un programa, se pasan tres argumentes:
+     BUFFER (o nombre del buffer), START y END.
+     START y END especifican la porcion del buffer actual a copiar."
        (interactive
-        (list (read-buffer "Append to buffer: " (other-buffer
+        (list (read-buffer "Agregar al buffer: " (other-buffer
                                                  (current-buffer) t))
               (region-beginning) (region-end)))
        (let ((oldbuf (current-buffer)))
@@ -3381,398 +3374,354 @@ and promoting software freedom.”
              (dolist (window windows)
                (when (= (window-point window) point)
                  (set-window-point window (point))))))))
-   @end example
+   @end src
 
-   La función puede ser comprendida buscando como series de plantillas
-   rellenas
+   Se puede entender la función si se mira como una serie de plantillas
+   rellenas.
 
-   La plantilla de fuera es para la definición de la función. En esta
-   función, se ve como esto (con varios slots rellenos):
+   La plantilla exterior es para la definición de función. Esta función, se
+   ve como esto (con varios espacios ocupados):
 
-   @example
+   @src elisp
      (defun append-to-buffer (buffer start end)
-       "@V{documentacion}…"
+       "documentacion…"
        (interactive …)
-       @V{cuerpo}…)
-   @end example
+       cuerpo…)
+   @end src
 
-   La primera línea de la función incluye su nombre y los tres
-   argumentos. Los argumentos son el @c{búffer} que el texto será copiado, y
-   el @c{start} y @c{end} de la región en el buffer actual que será copiado.
+   La primer línea de la función incluye su nombre y tres argumentos. Los
+   argumentos son el @c{búffer} al cual copiar el texto, @c{start} y @c{end}
+   que son el inicio y el fin de la región del buffer actual desde donde se
+   va a copiar.
 
-   La siguiente parte de la función es la documentación, que es claro y
-   completo. Como es convencional, los tres argumentos son escritos en
-   mayúsculas así se notificarán fácilmente. Incluso mejor, son descritas en
-   el mismo orden como en la lista de argumentos.
+   La siguiente parte de la función es la documentación, que es clara y
+   completa. Como es convencional, los tres argumentos estan escritos en
+   mayúsculas para que los noces con facilidad. Aun mejor, se describen en el
+   mismo orden que en la lista de argumentos.
 
-   Nótese que la documentación distingue entre un búffer y su nombre. (La
-   función puede manejar otro.)
+   Observe que la documentación distingue entre un búffer y su nombre. (La
+   función puede manejar cualquiera.)
 
 *** La expresión interactiva @c{append-to-buffer}
 
-    Desde que la función @c{append-to-buffer} será usada interactivamente, la
-    función debe tener una expresión @c{interactive}. (Para una revisión de
-    @c{interactive}, ver @l{Crear una Función Interactiva}.) La expresión se
-    lee de la siguiente manera:
+    Ya que la función @c{append-to-buffer} se puede utilizar de forma
+    interactiva, la función debe tener una expresión @c{interactive}. (Para
+    una analisis de @c{interactive}, ve la seccion @l{Crear una función
+    interactiva}.)  La expresión se lee de la siguiente manera:
 
-    @example
+    @src elisp
       (interactive
        (list (read-buffer
-              "Agrega al buffer: "
+              "Agregar al buffer: "
               (other-buffer (current-buffer) t))
              (region-beginning)
              (region-end)))
-    @end example
+    @end src
 
-    Esta expresión no es una con letras separadas por partes, como se
-    describe antes. En vez de eso, empieza una lista con estas partes:
+    Esta expresión no tiene letras para representar partes, como se describio
+    anteriormente. En su lugar, inicia una lista con estas partes:
 
-    La primera parte de la lista es una expresión para leer el nombre de un
-    búffer y lo devuelve como una cadena. Esto es @c{read-buffer}. La función
-    requiere una consola como su primer argumento, @'{"Asocia al buffer:
-    "}. Su segundo argumento cuenta el comando que valora para proporciona si
-    no especifica cualquier cosa.
+    La primer parte de la lista es una expresión para leer el nombre de un
+    búffer y devolverlo como una cadena. Es decir @c(read-buffer). La función
+    requiere una prompt como primer argumento, @'{"Agregar al buffer: "}. El
+    segundo argumento le indica al comando que valor proporcionar si no se
+    especifica nada.
 
-    En este caso este segundo argumento es una expresión conteniendo la
-    función @c{other-buffer}, una excepción, y una @'{t}, para verdad.
+    En este caso este segundo argumento es una expresión que contiene la
+    función @c{other-buffer}, una excepción, y una @'{t}, para representar
+    verdadero.
 
-    El primer argumento para @c{other-buffer}, la excepción, es todavía otra
-    función, @c{other-buffer}. Esto es no yendo a ser devuelto. El segundo
-    argumento es el símbolo para verdad, @c{t}. Esto cuenta @c{other-buffer}
-    que puede mostrar búffers visibles (excepto en este caso, eso no mostrará
-    el búffer actual, que tiene sentido).
+    El primer argumento de @c{other-buffer}, la excepción, es otra función,
+    @c{current-buffer}. Esto no va a ser devuelto. El segundo argumento es el
+    símbolo de verdadero, @c{t}. Que le dice a @c{other-buffer} que puede
+    mostrar búffers visibles (excepto en este caso, no se mostrará el búffer
+    actual, lo cual tiene sentido).
 
-    La expresión se ve como:
+    La expresión se ve asi:
 
-    @example
+    @src elisp
       (other-buffer (current-buffer) t)
-    @end example
+    @end src
 
     El segundo y tercer argumento de la expresión @c{list} son
     @c{(region-beginning)} y @c{(region-end)}. Estas dos funciones
-    especifican el principio el y el final del texto que se adjunta.
+    especifican el inicio y el final del texto que se añade
 
-    Originalmente, el comando usaba las letras @'{B} y @'{r}. La expresión
-    completa @c{interactive} es así:
+    Originalmente, el comando utilizaba las letras @'{B} y @'{r}. Toda la
+    expresión @c{interactive} se veia así:
 
-    @example
-      (interactive "BAsociar al buffer:@: \nr")
-    @end example
+    @src elisp
+      (interactive "BAppend to buffer:@: \nr")
+    @end src
 
-    Pero cuando esto fué hecho, el valor por defecto del búffer cambió a ser
-    invisible. Esto no se quería.
+    Pero cuando se hacia esto, el valor por defecto del búffer de cambió era
+    invisible. Esto no era lo buscado.
 
-    (La consola estaba separada del segundo argumento con una nueva línea,
-    @'{\n}. Estaba seguido por un @'{r} que contaba a Emacs emparejar los dos
-    argumentos que siguen el símbolo @c{buffer} en la lista de argumentos de
-    la función (que es, @c{start} y @c{end}) para los valores de punto y
-    marca. Este argumento trabajó bien.)
+    (El prompt se separo del segundo argumento con una línea nueva,
+    @'{\n}. Seguido por un @'{r} que le indica a Emacs unir los dos
+    argumentos que siguen al símbolo @c{buffer} en la lista de argumentos de
+    la función (es decir, @c{start} y @c{end}) a los valores del punto y
+    marca. Este argumento funcionaba bien.)
 
 *** El cuerpo de @c{append-to-buffer}
 
-    @ignore
-      in GNU Emacs 22   in    /usr/local/src/emacs/lisp/simple.el
+    El cuerpo de la función @c{append-to-buffer} inicia con @c{let}.
 
-      (defun append-to-buffer (buffer start end)
-        "Append to specified buffer the text of the region.
-      It is inserted into that buffer before its point.
-
-      When calling from a program, give three arguments:
-      BUFFER (or buffer name), START and END.
-      START and END specify the portion of the current buffer to be copied."
-        (interactive
-         (list (read-buffer "Append to buffer: " (other-buffer (current-buffer) t))
-               (region-beginning) (region-end)))
-        (let ((oldbuf (current-buffer)))
-          (save-excursion
-            (let* ((append-to (get-buffer-create buffer))
-                   (windows (get-buffer-window-list append-to t t))
-                   point)
-              (set-buffer append-to)
-              (setq point (point))
-              (barf-if-buffer-read-only)
-              (insert-buffer-substring oldbuf start end)
-              (dolist (window windows)
-                (when (= (window-point window) point)
-                  (set-window-point window (point))))))))
-    @end ignore
-
-    El cuerpo de la función @c{append-to-buffer} empieza con @c{let}.
-
-    Como se ha visto antes (@pxref{let, , @c{let}}), el propósito de una
+    Como hemos visto antes (ver Seccion @lc{let}), el propósito de una
     expresión @c{let} es crear y dar valores iniciales a una o más variable
-    que solo serán usada con el cuerpo del @c{let}. Esto significa que tal
-    variable no será confuso con cualquier variable del mismo nombre fuera de
-    la expresión @c{let}.
+    que solo serán utilizadas dentro del cuerpo del @c{let}. Esto significa
+    que esa variable no se debe confundir con cualquier variable del mismo
+    nombre fuera de la expresión @c{let}.
 
-    Podemos ver como la expresión @c{let} se ajusta dentro de la función como
-    un todo mostrando una plantilla para @c{append-to-buffer} con la
-    expresión @c{let} en línea:
+    Podemos ver como la expresión @c{let} encaja en la función como un todo
+    mostrando una plantilla de @c{append-to-buffer} con la expresión @c{let}
+    en resumen:
 
-    @example
+    @src elisp
       (defun append-to-buffer (buffer start end)
-        "@V{documentacion}…"
+        "documentacion…"
         (interactive …)
-        (let ((@V{variable} @V{valor}))
-              @V{cuerpo}…)
-    @end example
+        (let ((variable valor))
+              cuerpo…)
+    @end src
 
     La expresión @c{let} tiene tres elementos:
 
     1. El símbolo @c{let};
 
-    2. Una varlist conteniendo, en este caso, una lista simple de dos
-       elementos, @c{(@V{variable} @V{value})};
-
+    2. Una varlist que contiene, en este caso, una unica lista de dos
+       elementos, @c{(variable valor)};
 
     3. El cuerpo de la expresión @c{let}.
 
 
-    En la función @c{append-to-buffer}, la varlist se parece a esto:
+    En la función @c{append-to-buffer}, la varlist es la siguiente:
 
-    @example
+    @src elisp
       (oldbuf (current-buffer))
-    @end example
+    @end src
 
-    En esta parte de la expresión @c{let}, una variable, @c{oldbuf} es
-    emparejada al valor devuelto por la expresión @c{(current-buffer)}. La
-    variable, @c{oldbuf}, es usada para guardar la traza del búffer en el que
-    tu estás trabajando y desde el que se copiará.
+    En esta parte de la expresión @c{let}, la unica variable, @c{oldbuf} se
+    une al valor devuelto por la expresión @c{(current-buffer)}. La variable,
+    @c{oldbuf}, se utiliza para guardar un registro del búffer en el que
+    estás trabajando y desde donde se copiara.
 
-    El elemento o elementos de una varlist son rodeados por un conjunto de
-    paréntesis así el intérprete Lisp puede distinguir la varlist desde el
-    cuerpo del @c{let}. Como consecuencia, la lista de dos elementos con la
-    varlist está rodeados por un circunscrito conjunto de paréntesis. Las
-    líneas se ven así:
+    El elemento o elementos de una varlist esta rodeado por un conjunto de
+    paréntesis por lo que el intérprete Lisp puede distinguir la varlist del
+    cuerpo del @c{let}. Como consecuencia, la lista de dos elementos dentro
+    de la varlist está rodeada por un conjunto circunscrito de paréntesis.
+    La línea tiene este aspecto:
 
-    @example
+    @src elisp
       (let ((oldbuf (current-buffer)))
         … )
-    @end example
+    @end src
 
     Los dos paréntesis antes de @c{oldbuf} podrían sorprenderte si no fuera
-    porque los primeros paréntesis antes de @c{oldbuf} marcan el límite de la
-    varlist y el segundo paréntesis marca el principio de la lista de dos
-    elementos, @c{(oldbuf (current-buffer))}.
+    porque el primer paréntesis marca el límite de la varlist y el segundo
+    paréntesis marca el inicio de la lista de dos elementos, @c{(oldbuf
+    (current-buffer))}.
 
 *** @c{save-excursion} en @c{append-to-buffer}
 
-    El cuerpo de la expresión @c{let} en @c{append-to-buffer} consiste de una
-    expresión @c{save-excursion}.
+    El cuerpo de la expresión @c{let} dentro de @c{append-to-buffer} consiste
+    de una expresión @c{save-excursion}.
 
-    La función @c{save-excursion} guarda las localizaciones de punto y la
-    marca, y las restaura a estas posiciones después de las expresiones en el
-    cuerpo de la ejecución completa @c{save-excursion}. Además,
-    @c{save-excursion} completa la ejecución. Además, @c{save-excursion}
-    guarda la traza del búffer original, y lo restaura. Esto es cómo
-    @c{save-excursion} que se usa en @c{append-to-buffer}.
+    La función @c{save-excursion} guarda las posiciones de punto y marca, y
+    restaura estas posiciones después de que las expresiones en el cuerpo de
+    @c{save-excursion} completan su ejecución. Además, @c{save-excursion} no
+    pierde de vista el búffer original, y lo restaura. Asi es como se utizia
+    @c{save-excursion} en @c{append-to-buffer}.
 
-    Incidentalmente, no se valora nada aquí que una función Lisp es
-    normalmente formateada así que cada cosa que es encerrada en conjunto
-    multilínea que es indentada más a la derecha que el primer símbolo. En
-    esta definición de función, el @c{let} es indentado más que @c{defun}, y
-    el @c{save-excursion} es indentado más que el @c{let}, como esto:
+    Por cierto, vale la pena señalar que una función Lisp normalmente se
+    formatea de modo que todo lo que se encierre en un conjunto de multiples
+    lineas se indente más a la derecha que el primer símbolo. En esta
+    definición de función, @c{let} se indenta más que @c{defun}, y
+    @c{save-excursion} se indenta más que @c{let}, asi:
 
-    @example
+    @src elisp
       (defun …
         …
         …
         (let…
           (save-excursion
             …
-    @end example
+    @end src
 
-    Esta convención formatea que sea fácil de ver que las líneas en el cuerpo
-    de @c{save-excursion}, solo como @c{save-excurion} por sí mismo están
-    encerradas por los paréntesis asociados con el @c{let}:
+    Esta convención de formato hace que sea fácil de ver que líneas en el
+    cuerpo de @c{save-excursion} son encerradas por los parentesis asociados
+    con @c{save-excurion}, de igual forma el mismo @c(save-excursion) esta
+    encerrado por los paréntesis asociados con @c{let}:
 
-    @example
+    @src elisp
       (let ((oldbuf (current-buffer)))
         (save-excursion
           …
           (set-buffer …)
           (insert-buffer-substring oldbuf start end)
           …))
-    @end example
+    @end src
 
-    El uso de la función @c{save-excursion} puede ser vista como un proceso
-    de rellenar slots de una plantilla:
+    El uso de la función @c{save-excursion} puede ser visto como el proceso
+    de llenar espacios de una plantilla:
 
-    @example
+    @src elisp
       (save-excursion
-        @V{primera-expresion-en-cuerpo}
-        @V{segunda-expresion-en-cuerpo}
+        primer-expresion-en-el-cuerpo
+        segunda-expresion-en-el-cuerpo
          …
-        @V{ultima-expresion-en-cuerpo})
-    @end example
+        ultima-expresion-en-el-cuerpo)
+    @end src
 
     En esta función, el cuerpo de @c{save-excursion} contiene solo una
-    expresión, la expresión @c{let*}. Se conoce una función @c{let}. La
-    función @c{let*} es diferente. Eso tiene un @'{*} en su nombre. Eso
-    permite a Emacs asignar cada variable de su varlist en secuencia, una
+    expresión, la expresión @c{let*}. Ya conoces la función @c{let}. La
+    función @c{let*} es diferente. Posee un @'{*} en su nombre. Esto le
+    permite a Emacs colocar cada variable de su varlist en secuencia, una
     después de otra.
 
-    Su funcionalidad crítica es que las variable después en la varlist puedan
-    hacer uso de los valores para los que Emacs asigna variables pronto en la
-    varlist. Véase Sección @l{La expresión @c{let*}}.
+    Su caracteristica fundamental es que las siguientes variables en la
+    varlist puedan hacer uso de los valores establecidos por Emacs
+    anteriomente en la varlist. Véase Sección @l{La expresión @c{let*}}.
 
-    Se obviarán funciones como @c{let*} y se focalizará en dos: la función
-    @c{set-buffer} y la función @c{insert-buffer-substring}.
+    Vamos a omitir funciones como @c{let*} y nos centraremos en dos: la
+    función @c{set-buffer} y la función @c{insert-buffer-substring}.
 
-    En antaño, la expresión @c{set-buffer} era simple:
+    En los viejos tiempos, la expresión @c{set-buffer} era simplemente:
 
-    @example
+    @src elisp
       (set-buffer (get-buffer-create buffer))
-    @end example
+    @end src
 
-    pero ahora eso es
+    pero ahora es
 
-    @example
+    @src elisp
       (set-buffer append-to)
-    @end example
+    @end src
 
-    @c{append-to} se asigna a @c{(get-buffer-create-buffer)} pronto en la
-    expresión @c{let*}. Esta asociación extra no sería necesaria excepto para
-    este @c{append-to} es usado después en la varlist como un argumento para
+    @c{append-to} esta unido al @c{(get-buffer-create-buffer)} anterior en la
+    expresión @c{let*}. Esta union extra no sería necesaria excepto que
+    @c{append-to} se utiliza despues en la varlist como un argumento para
     @c{get-buffer-window-list}.
 
-    @ignore
-      in GNU Emacs 22
-
-        (let ((oldbuf (current-buffer)))
-          (save-excursion
-            (let* ((append-to (get-buffer-create buffer))
-                   (windows (get-buffer-window-list append-to t t))
-                   point)
-              (set-buffer append-to)
-              (setq point (point))
-              (barf-if-buffer-read-only)
-              (insert-buffer-substring oldbuf start end)
-              (dolist (window windows)
-                (when (= (window-point window) point)
-                  (set-window-point window (point))))))))
-    @end ignore
-
     La definición de la función @c{append-to-buffer} inserta texto desde el
-    búffer en el que estás actualmente a un buffer nombrado. Eso sucede que
+    búffer en el que estás actualmente al buffer que se indique. Sucede que
     @c{insert-buffer-substring} copia texto desde otro búffer al búffer
-    actual, solo el inverso––que es porque la definición @c{append-to-buffer}
-    empieza con un @c{let} que asocia el símbolo local @c{oldbuf} al valor
-    devuelto por @c{current-buffer}.
+    actual, todo lo contrario––es por ello que la definición
+    @c{append-to-buffer} inicia con un @c{let} que une el símbolo local
+    @c{oldbuf} al valor devuelto por @c{current-buffer}.
 
-    La expresión @c{insert-buffer-substring} se ve como esto:
+    La expresión @c{insert-buffer-substring} es la siguiente:
 
-    @example
+    @src elisp
       (insert-buffer-substring oldbuf start end)
-    @end example
+    @end src
 
-    La función @c{insert-buffer-substring} copia una cadena @e{from} al
+    La función @c{insert-buffer-substring} copia una cadena @e{desde} el
     búffer especificado como su primer argumento e inserta la cadena dentro
-    del búffer presente. En este caso, el argumento para
-    @c{insert-buffer-substring} es el valor de la variable creada y asociada
-    por el @c{let}, llama al valor de @c{oldbuf}, que fué el búffer actual
-    cuando tu diste el comando @c{append-to-buffer}.
+    del búffer actual. En este caso, el argumento de
+    @c{insert-buffer-substring} es el valor de la variable creada y vinculada
+    por el @c{let}, es decir, el valor de @c{oldbuf}, que era el búffer
+    actual cuando diste el comando @c{append-to-buffer}.
 
     Después de que @c{insert-buffer-substring} ha hecho su trabajo,
     @c{save-excursion} restaurará la acción al búffer original y
     @c{append-to-buffer} habrá hecho su trabajo.
 
-    Escrito en forma esquelética, los trabajos del cuerpo se ven como esto:
+    Escrito en forma de esquema, los funcionamientos del cuerpo se ven asi:
 
-    @example
-      (let (@V{bind-}@c{oldbuf}@V{-to-value-of-}@c{current-buffer})
-        (save-excursion                       ; @e{Guarda la traza del búffer.}
-          @V{change-buffer}
-          @V{insert-substring-from-}@c{oldbuf}@V{-into-buffer})
+    @src elisp
+      (let (unir-oldbuf-al-valor-del-buffer-actual)
+        (save-excursion                       ; guarda un registro del buffer.
+          cambio-de-buffer
+          ensertar-substring-desde-oldbuf-a-buffer)
 
-        @V{change-back-to-original-buffer-when-finished}
-      @V{let-the-local-meaning-of-}@c{oldbuf}@V{-disappear-when-finished}
-    @end example
+        regresar-al-buffer-original-al-terminar
+      dejar-que-el-siginificado-local-de-oldbuf-desaparacesca-al-terminar
+    @end src
 
     En resumen, @c{append-to-buffer} funciona como sigue: se guarda el valor
     del búffer actual en la variable llamada @c{oldbuf}. Se obtiene el nuevo
-    búffer (creando uno si necesita ser) y cambia la atención de Emacs a
-    eso. Usando el valor de @c{oldbuf}, inserta la región del texto desde el
-    viejo búffer dentro del nuevo búffer; y entonces usando
-    @c{save-excursion}, trae atrás a tu búffer original.
+    búffer (creando uno si es necesario) y cambia la atención de Emacs a
+    este. Usando el valor de @c{oldbuf}, inserta la región del texto desde el
+    búffer antiguo dentro del nuevo búffer; y luego se usando
+    @c{save-excursion}, regresas a tu búffer original.
 
-    Buscando @c{append-to-buffer}, se ha explorado una función limpia
-    compleja. Eso muestra como usar @c{let} y @c{save-excursion}, y como
-    cambiar y volver desde otro buffer. Muchas definiciones de función usan
-    @c{let}, @c{save-excursion}, y @c{set-buffer} de este modo.
+    Al observar @c{append-to-buffer}, se ha explorado una función bastante
+    compleja. Muestra como usar @c{let} y @c{save-excursion}, y como cambiar
+    y volver desde otro buffer. Muchas definiciones de función usan @c{let},
+    @c{save-excursion}, y @c{set-buffer} de esta manera.
 
 ** Repaso
 
-   Aquí está un breve resumen de varias funciones discutidas en este
+   Aquí está un breve resumen de las diferentes funciones descritas en este
    capítulo.
 
    - describe-function ::
    - describe-variable ::
 
-     Imprime la documentación para una función o variable. Convencionalmente
-     asociada a @k{C-h f} y @k{C-h v}.
+     Imprime la documentación de una función o variable. Convencionalmente
+     unidas a @k{C-h f} y @k{C-h v}.
 
    - find-tag ::
 
-     Encuentra el fichero que contiene la fuente para una función o variable
-     y cambia buffer a él, posicionando el punto al principio del
-     ítem. Convencionalmente emparejado a @k{M-.} (esto es un período
-     seguiendo la tecla @k{META}).
+     Encuentra el fichero que contiene la codigo de una función o variable y
+     cambia a dicho buffer, colocando el punto al inicio del elemento.
+     Convencionalmente unido a @k{M-.} (esto es un punto luego de la tecla
+     @k{META}).
 
    - save-excursion ::
 
-     Guarda la localización de punto y marca y restaura sus valores después
-     de los argumentos para @c{save-excursion} y han sido evaluados. También,
-     recuerda el buffer actual y devuélvelo.
+     Guarda la posicion de punto y marca y restaura sus valores tras evaluar
+     los argumentos de @c{save-excursion}. Ademas, recuerda el buffer actual
+     y regresa a el.
 
    - push-mark ::
 
-     Asigna la marca en una localización y graba el valor de la marca previa
-     en el anillo de la marca. La marca es una localización en el búffer que
-     guarda su posición relativa incluso si el texto es añadido o borrado
-     desde el búffer.
+     Asigna la marca a una posicion y guarda el valor de la marca previa en
+     el anillo de marcas. La marca es una ubicacion en el búffer que
+     mantendra su posición relativa, incluso si se añade o borra texto del
+     búffer.
 
    - goto-char ::
 
-     Asigna punto a la localización especificada por el valor del argumento,
-     que puede ser un número, una marca, o una expresión que devuelve el
-     número de una posición, tal como @c{(point-min)}.
+     Establece el punto a la ubicacion especificada por el valor del
+     argumento, que puede ser un número, una marca, o una expresión que
+     devuelve el número de una posición, como @c{(point-min)}.
 
    - insert-buffer-substring ::
 
-     Copia una región de texto desde un búffer que es pasado a la función
-     como un argumento e inserta la región dentro del búffer actual.
+     Copia una región de texto desde un búffer que se pasa a la función como
+     un argumento e inserta la región dentro del búffer actual.
 
    - mark-whole-buffer ::
 
-     Marca el búffer completo como una región. Normalmente asignado a @k{C-x
-     h}.
+     Marca el búffer completo como una región. Normalmente unido a @k{C-x h}.
 
    - set-buffer ::
 
-     Cambia la atención de Emacs a otro búffer, pero no cambies la ventana
-     siendo mostrada. Usado cuando el programa en vez de un humano trabaja en
-     un búffer diferente.
+     Cambia la atención de Emacs a otro búffer, pero no se muestra el cambio
+     en la ventana. Se utiliza cuando un programa y no humano trabaja en un
+     búffer distinto.
 
    - get-buffer-create ::
      get-buffer        ::
 
-     Encuentra un búffer nombrado o crea uno si un búffer de este nombre no
+     Busca el búffer nombrado o crea uno si el búffer con ese nombre no
      existe. La función @c{get-buffer} devuelve @c{nil} si el nombre del
      búffer no existe.
 
 ** Ejercicios
 
-   - Escribe tu propia definición de función @c{simplified-end-of-buffer};
-     entonces testea para ver si funciona.
+   - Escribe tu propia definición de la función @c{simplified-end-of-buffer};
+     luego pruebala para ver si funciona.
 
-   - Usa @c{if} y @c{get-buffer} para escribir una función que imprime un
-     mensaje contando si un buffer existe.
+   - Utiliza @c{if} y @c{get-buffer} para escribir una función que imprima un
+     mensaje que te diga si un buffer existe.
 
-   - Usando @c{find-tag}, encuentra la fuente para la función
+   - Utilizando @c{find-tag}, busca el codigo para la función
      @c{copy-to-buffer}
 
-* Unas pocas funciones más complejas
+* Algunas Funciones Más Complejas
 
 
   En este capítulo, se construye lo que se aprendió en los capítulos previos
@@ -4458,7 +4407,7 @@ and promoting software freedom.”
       este comando usa el principio y tamaño
       de la parte accesible del búffer.
 
-      ¿No use este comando en programas Lisp!
+      ¡No use este comando en programas Lisp!
       \(goto-char (point-min)) es rápido
       y evita poseer la marca."
         (interactive "P")
@@ -4469,7 +4418,7 @@ and promoting software freedom.”
           (goto-char (if (and arg (not (consp arg)))
                          (+ (point-min)
                             (if (> size 10000)
-                                ;; ¿Evita sobrecarga para grandes tamaños de búffer!
+                                ;; ¡Evita sobrecarga para grandes tamaños de búffer!
                                 (* (prefix-numeric-value arg)
                                    (/ size 10))
                               (/ (+ 10 (* size (prefix-numeric-value arg)))
@@ -4486,7 +4435,7 @@ and promoting software freedom.”
         deja la marca a la posición previa.
         Con el arg N, pon el punto N/10 del camino
         desde el comienzo real.@end group
-        ¿No usar esto en programas Lisp!
+        ¡No usar esto en programas Lisp!
         \(goto-char (point-min)) es rápido
         y no asigna la marca."
           (interactive "P")
@@ -4494,7 +4443,7 @@ and promoting software freedom.”
           (goto-char
            (if arg
                (if (> (buffer-size) 10000)
-                   ;; @e{¿Evita overflow para tamaños de búffer grandes!}
+                   ;; @e{¡Evita overflow para tamaños de búffer grandes!}
                    (* (prefix-numeric-value arg)
                       (/ (buffer-size) 10))
                  (/ (+ 10 (* (buffer-size)
@@ -6849,7 +6798,7 @@ and promoting software freedom.”
    la función @c{describe-variable}, que es normalmente invocado escribiendo
    @k{C-h v}. Si se escribe @k{C-h v} y @c{kill-ring} (seguido por @k{RET}),
    se verá que hay en tu anillo de la muerte actual @e{kill ring} al ser
-   pulsado --- ¿esto puede ser bastante tranquilo! A la inversa, si no has
+   pulsado --- ¡esto puede ser bastante tranquilo! A la inversa, si no has
    estado haciendo nada esta sesión en Emacs, excepto leer este documento, se
    puede no tener nada dentro. También, se verá la documentación para
    @c{kill-ring}:
@@ -7052,7 +7001,7 @@ and promoting software freedom.”
 
    - Escribe una función interactiva que busca una cadena. Si la búsqueda
      encuentra la cadena, deja el punto después y muestra un mensaje que dice
-     “¿Encontrado!”. (No use @c{search-forward} como nombre de esta función;
+     “¡Encontrado!”. (No use @c{search-forward} como nombre de esta función;
      si se hace, se sobreescribirá la versión existente @c{search-forward}
      que viene con Emacs. Use un nombre tal como @c{test-search} en vez de
      eso.
@@ -7225,7 +7174,7 @@ and promoting software freedom.”
   dirección del siguiente cons en las serie; para tener el @Cc{car} de una
   lista, se obtiene la dirección del primer elemento de la lista; para
   @c{cons} un nuevo elemento en una lista, se añade una nueva célula cons al
-  frente de la lista. ¿Esto es todo lo que hay así! ¿La estructura subyacente
+  frente de la lista. ¡Esto es todo lo que hay así! ¡La estructura subyacente
   de Lisp es brillantemente simple!
 
   ¿Y qué hace la última dirección en una serie de células cons se refieren?
@@ -7895,7 +7844,7 @@ and promoting software freedom.”
      devolver el @c{defun} desde el @c{let} que no está embebido con
      cualquier lista que contiene, excepto para la @c{defun} como un
      todo. Sin embargo, si el @c{while} es el último elemento de la expresión
-     @c{let}, la función siempre devolverá @c{nil}. ¿Esto no es lo que
+     @c{let}, la función siempre devolverá @c{nil}. ¡Esto no es lo que
      quiero! En vez de eso, lo que queremos es el valor de la variable
      @c{total}. Eso devuelve simplemente emplazando el símbolo como el último
      elemento de la lista empezando con @c{let}. Eso se evalúa después de los
@@ -8048,7 +7997,7 @@ and promoting software freedom.”
 
      Se pueden poner estas expresiones juntas para crear una definición de
      función que funcione. Sin embargo, al examinarlas, encontraremos que una
-     de la variables locales ¿es innecesaria!
+     de la variables locales ¡es innecesaria!
 
      La definición de función se ve como esto:
 
@@ -8958,7 +8907,7 @@ and promoting software freedom.”
     @c{triangle-recursive-helper} invocan nuevas instancias.@n{12}
 
     Permítase ver que ocurre cuando tenemos un triángulo que tiene una
-    fila. (¿Este triángulo tendrá un asterisco dentro!)
+    fila. (¡Este triángulo tendrá un asterisco dentro!)
 
     @c{triangle-initialization} llamará su ayudante con los argumentos @c{0 0
     1}. Esta función ejecutará el test condicional si @c{(> counter number)}:
@@ -9005,7 +8954,7 @@ and promoting software freedom.”
       (triangle-recursive-helper 1 2 1)
     @end example
 
-    En este caso, el test @c{(> counter number)} ¿será cierto!  Así la
+    En este caso, el test @c{(> counter number)} ¡será cierto!  Así la
     instancia devolverá el valor de la suma, que será 1, como se espera.
 
     Ahora, permite pasar @c{triangle-initialization} un argumento de 2, para
@@ -9373,7 +9322,7 @@ and promoting software freedom.”
          @V{handle-forms-and-equivalent}
    @end example
 
-   ¿Esto parece bastante simple! La definición de la función consiste de
+   ¡Esto parece bastante simple! La definición de la función consiste de
    documentación una expresión @c{interactive}, una expresión @c{or}, una
    expresión @c{let}, y bucles @c{while}.
 
@@ -9701,7 +9650,7 @@ and promoting software freedom.”
    párrafos. Esto es una complicación añadida.
 
    En vez de imprimir toda la función @c{forward-paragraph}, nosotros solo
-   imprimiremos partes de la misma. ¿Lee sin preparación, la función puede
+   imprimiremos partes de la misma. ¡Lee sin preparación, la función puede
    estar para desanimar!
 
    En esquema, la función se parece a esto:
@@ -10093,7 +10042,7 @@ and promoting software freedom.”
     de la función. Esto da la documentación de función y el nombre de la
     librería conteniendo las fuentes de la función. Posiciona el punto a
     través del nombre de la librería y presionar la tecla RET; será tomado
-    directamente a las fuentes. (¿Asegúrate de instalar las fuentes! ¿Sin
+    directamente a las fuentes. (¡Asegúrate de instalar las fuentes! ¡Sin
     eso, estarás como una persona que intenta conducir un coche con los ojos
     cerrados!)
 
@@ -10241,7 +10190,7 @@ and promoting software freedom.”
      Toma cuatro argumentos, como @c{search-forward}:
 
      1. Una expresión regular que especifica el patrón para
-        buscarlo. (¿Recuerda por marcas de comillas alrededor de este
+        buscarlo. (¡Recuerda por marcas de comillas alrededor de este
         argumento!)
 
      2. Opcionalmente, el límite de la búsqueda.
@@ -10408,7 +10357,7 @@ and promoting software freedom.”
    Como materia práctica, se quiere que la expresión regular se busque para
    saltar a través de un espacio en blanco y puntúe entre palabras tan bien a
    través de las palabras en sí. Una expresión regexp que rechaza para saltar
-   a través de espacios en blanco entre palabras ¿nunca saltaría más de una
+   a través de espacios en blanco entre palabras ¡nunca saltaría más de una
    palabra!. Esto significa que el regexp incluiría el espacio en blanco y la
    puntuación sigue a una palabra cualquiera, como la palabra en sí. (Una
    palabra puede finalizar un búffer y no tiene cualquier espacio en blanco o
@@ -10465,7 +10414,7 @@ and promoting software freedom.”
    Todo esto lidera a la siguiente definición de función:
 
   @example
-     ;;; @e{¿La Primera versión; tiene errores!}
+     ;;; @e{¡La Primera versión; tiene errores!}
      (defun count-words-region (beginning end)
        "Imprime el número de palabras en la región.
      Las palabras están definidas al menos una palabra
@@ -10504,7 +10453,7 @@ and promoting software freedom.”
     El comando @c{@v{COUNT-WORDS}} descrito en la sección precedente tiene
     dos errores, o incluso, un error con dos manifestaciones. Primero, si se
     marca una región conteniendo solo espacio en blanco en el medio de algún
-    texto el comando ¿@c{@v{COUNT-WORDS}} cuenta que la región contiene una
+    texto el comando ¡@c{@v{COUNT-WORDS}} cuenta que la región contiene una
     palabra!. Segundo, si se marca una región conteniendo solo espacios en
     blanco al final del búffer o la porción accesible de un búffer encogido,
     el comando muestra un mensaje de error que se parece a esto:
@@ -10524,7 +10473,7 @@ and promoting software freedom.”
       instalarlo.
 
       @example
-        ;; @e{¿La Primera versión; tiene errores!}  (defun
+        ;; @e{¡La Primera versión; tiene errores!}  (defun
         @v{COUNT-WORDS} (beginning end)
         "Imprime el número de palabras en la región.  Las palabras son
         definidas como al menos un caracter de palabra constituida seguida por
@@ -10572,7 +10521,7 @@ and promoting software freedom.”
     punto justo @e{antes} de la palabra @'{uno}. De nuevo escribe el comando
     @k{C-c =} (o @k{M-x @v{COUNT-WORDS}}). Emacs cuenta que la región no
     tiene palabras, puesto que eso está compuesto solo por espacios en blanco
-    al principio de la línea. ¿Pero en vez de que Emacs cuente que la región
+    al principio de la línea. ¡Pero en vez de que Emacs cuente que la región
     tiene una palabra!
 
     Para el tercer test, copia la línea de ejemplo al fin del búffer
@@ -10689,7 +10638,7 @@ and promoting software freedom.”
     @c{@v{COUNT-WORDS}} muestra uno u otro de sus mensajes.
 
     Después de incorporar estos cambios finales, el @c{@v{COUNT-WORDS}}
-    funciona sin errores (¿o al menos, sin los errores que yo haya
+    funciona sin errores (¡o al menos, sin los errores que yo haya
     encontrado!. Aquí está lo que parece:
 
     @example
@@ -10733,7 +10682,7 @@ and promoting software freedom.”
 
    Si se escribe una función recursiva simple para hacer cualquier cosa se
    recibirá un mensaje para cada llamada recursiva. Si la región contiene 13
-   palabras, se recibirán trece mensajes, uno correcto después del otro. ¿No
+   palabras, se recibirán trece mensajes, uno correcto después del otro. ¡No
    queremos esto!. En vez de eso, se deben escribir dos funciones para hacer
    el trabajo, una (la función recursiva) será usada dentro de la otra. Una
    función configurará las condiciones y muestra el mensaje; la otra
@@ -10834,7 +10783,7 @@ and promoting software freedom.”
    La tercera parte de una función recursiva es la llamada recursiva.
 
    En algún lugar, también, se necesita una parte que hace el ‘trabajo’ de la
-   función, una parte que es el contaje. ¿Una parte vital!
+   función, una parte que es el contaje. ¡Una parte vital!
 
    Pero ya, tenemos un guión de la función recursiva de contaje:
 
@@ -11081,7 +11030,7 @@ and promoting software freedom.”
   - Quinto, escribe una función para imprimir los resultados como un grafo.
 
 
-  ¿Esto es un proyecto! Pero si tomamos cada paso lentamente, eso no será
+  ¡Esto es un proyecto! Pero si tomamos cada paso lentamente, eso no será
   difícil.
 
 ** ¿Qué contar?
@@ -11105,8 +11054,8 @@ and promoting software freedom.”
 
    Sin embargo, si se marca la definición @c{multiply-by-seven} con @k{C-M-h}
    (@c{mark-defun}), y entonces se llama a @c{@v{COUNT-WORDS}} dentro, se
-   encontrará que @c{@v{COUNT-WORDS}} ¿reclama la definición tiene once
-   palabras, no diez! ¿Alguna cosa está mal!
+   encontrará que @c{@v{COUNT-WORDS}} ¡reclama la definición tiene once
+   palabras, no diez! ¡Alguna cosa está mal!
 
    El problema es doble: @c{@v{COUNT-WORDS}} no cuenta el @'{*} como una
    palabra, y eso cuenta el símbolo simple, @c{multiply-by-seven},
@@ -11192,7 +11141,7 @@ and promoting software freedom.”
    Las mayúsculas @'{W} y @'{S} asocian caracteres que @e{no} son
    constituyente de palabra o símbolo. Desafortunadamente, esta expresión
    asocia cualquier caracter que sea o no una palabra constituyente no un
-   símbolo constituyente. ¿Esto asocia cualquier caracter!
+   símbolo constituyente. ¡Esto asocia cualquier caracter!
 
    Entonces se notificó que cada palabra o símbolo en mi región test fué
    seguida por algún espacio (espacio en blanco, tabulador, o nueva
@@ -11751,7 +11700,7 @@ and promoting software freedom.”
    determina si la función se llamaría, que hará si la @c{list-of-files}
    contiene los elementos que permanecen; la ‘next-step-expression’ resetea
    el @c{list-of-files} al @Cc{cdr} en sí, así finalmente la lista será
-   vacía; y la llamada recursiva llama en sí a la lista ordenada. ¿La función
+   vacía; y la llamada recursiva llama en sí a la lista ordenada. ¡La función
    completa está ordenada por esta descripción!
 
    @example
@@ -12462,7 +12411,7 @@ and promoting software freedom.”
   última línea insertada––es decir, esta función mueve el punto como un
   efecto lateral. Si se iba a repetir el comando, con el punto en esta
   posición, la siguiente inserción sería debajo y a la derecha de la
-  inserción previa. ¿Nosotros no queremos esto!. Si se está yendo a crear un
+  inserción previa. ¡Nosotros no queremos esto!. Si se está yendo a crear un
   gráfico de barras, las columnas necesitan estar debajo unas de otras.
 
   Así se descubre que cada ciclo del bucle @c{while} de column-inserting debe
@@ -13168,7 +13117,7 @@ and promoting software freedom.”
      ; 26 de Septiembre de 1985
    @end example
 
-   ¿Mira en esta fecha! Yo empecé este fichero hace mucho tiempo. Yo he
+   ¡Mira en esta fecha! Yo empecé este fichero hace mucho tiempo. Yo he
    estado añadiendo cosas desde siempre.
 
    @example
@@ -13223,7 +13172,7 @@ and promoting software freedom.”
      (add-hook 'text-mode-hook 'turn-on-auto-fill)
    @end example
 
-   ¿Aquí está la primera parte de este fichero @f{.emacs} que hace alguna
+   ¡Aquí está la primera parte de este fichero @f{.emacs} que hace alguna
    cosa bajo recuerdo de un humano olvidado!
 
    La primera de las dos líneas entre paréntesis cuentan a Emacs a cambiar al
@@ -13270,7 +13219,7 @@ and promoting software freedom.”
    En esta línea, el comando @c{add-hook} añade @c{turn-on-auto-fill} para la
    variable.
 
-   ¿@c{turn-on-auto-fill} es el nombre de un programa, que se adivina!,
+   ¡@c{turn-on-auto-fill} es el nombre de un programa, que se adivina!,
    cambia al modo Auto Fill.
 
    Cada vez que Emacs cambia al modo texto, Emacs ejecuta el comando ‘hooked’
@@ -14193,7 +14142,7 @@ and promoting software freedom.”
 
    Incidentalmente, se puede empezar el depurador manualmente para todas las
    versiones de Emacs; la ventaja es que el depurador se ejecuta incluso si
-   no se tiene un error en su código. Algunas veces, ¿su código estará libre
+   no se tiene un error en su código. Algunas veces, ¡su código estará libre
    de errores!
 
    Se puede introducir el depurador cuando se llama a la función llamando
@@ -14528,7 +14477,7 @@ and promoting software freedom.”
   Se puede ser capaz de adivinar que se hace por una función bien llamada tal
   como @c{indent-to}; o se puede buscar, también. Incidentalmente, la función
   @c{describe-function} en sí está en @f{help.el}; esta es una de estas
-  largas, pero descifrables funciones. ¿Se puede buscar @c{describe-function}
+  largas, pero descifrables funciones. ¡Se puede buscar @c{describe-function}
   usando el comando @k{C-h f}!
 
   En esta instancia, desde el código es Lisp, el búffer @f{*Help*} contiene
@@ -16264,7 +16213,7 @@ and promoting software freedom.”
 
 **** Otro error … más insidioso
 
-     ¿Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la
+     ¡Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la
      función @c{print-graph} …. Esta tiene una opción @c{vertical-step}, pero
      no una opción @c{horizontal-step}. La escala @c{top-of-range} va desde
      10 a 300 por decenas. Pero la función @c{print-graph} imprimirá solo uno
