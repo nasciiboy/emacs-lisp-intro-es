@@ -3808,9 +3808,9 @@ promoting software freedom.”
 
    @src elisp
      (defun insert-buffer (buffer)
-       "@V{documentation}…"
+       "documentation…"
        (interactive "*bInsert buffer:@: ")
-       @V{body}…)
+       body…)
    @end src
 
 *** The Interactive Expression in @c{insert-buffer}
@@ -3859,12 +3859,12 @@ promoting software freedom.”
 
     @src elisp
       (defun insert-buffer (buffer)
-        "@V{documentation}…"
+        "documentation…"
         (interactive "*bInsert buffer:@: ")
         (or …
             …
-        (let (@V{varlist})
-            @V{body-of-}@c{let}… )
+        (let (varlist)
+            body-of-let… )
     @end src
 
     To understand how the @c{or} expression ensures that the argument
@@ -3899,8 +3899,8 @@ promoting software freedom.”
     buffer (rather than its name), we can write the code like this:
 
     @src elisp
-      (if (not (bufferp buffer))              ; @e{if-part}
-          (setq buffer (get-buffer buffer)))  ; @e{then-part}
+      (if (not (bufferp buffer))              ; if-part
+          (setq buffer (get-buffer buffer)))  ; then-part
     @end src
 
     Here, the true-or-false-test of the @c{if} expression is @c{(not (bufferp
@@ -4030,8 +4030,8 @@ promoting software freedom.”
 
     @src elisp
       (save-excursion
-        (@V{inner-}@c{save-excursion}@V{-expression}
-           (@V{go-to-new-buffer-and-set-}@c{start}@V{-and-}@c{end})
+        (inner-save-excursion-expression
+           (go-to-new-buffer-and-set-start-and-end)
         (insert-buffer-substring buffer start end)
         (setq newmark (point)))
     @end src
@@ -4046,16 +4046,15 @@ promoting software freedom.”
     After the body of the outer @c{save-excursion} is evaluated, point and
     mark are relocated to their original places.
 
-    However, it is convenient to locate a mark at the end of the newly
-    inserted text and locate point at its beginning.  The @c{newmark}
-    variable records the end of the inserted text.  In the last line of the
-    @c{let} expression, the @c{(push-mark newmark)} expression function sets
-    a mark to this location.  (The previous location of the mark is still
-    accessible; it is recorded on the mark ring and you can go back to it
-    with @k{C-u C-@k{SPC}}.)  Meanwhile, point is located at the beginning of
-    the inserted text, which is where it was before you called the insert
-    function, the position of which was saved by the first
-    @c{save-excursion}.
+    However, it is convenient to locate a mark at the end of the newly inserted
+    text and locate point at its beginning.  The @c{newmark} variable records
+    the end of the inserted text.  In the last line of the @c{let} expression,
+    the @c{(push-mark newmark)} expression function sets a mark to this
+    location. (The previous location of the mark is still accessible; it is
+    recorded on the mark ring and you can go back to it with @k{C-u C-SPC}.)
+    Meanwhile, point is located at the beginning of the inserted text, which is
+    where it was before you called the insert function, the position of which
+    was saved by the first @c{save-excursion}.
 
     The whole @c{let} expression looks like this:
 
@@ -4152,31 +4151,30 @@ promoting software freedom.”
 
     @src elisp
       (defun beginning-of-buffer (&optional arg)
-        "@V{documentation}…"
+        "documentation…"
         (interactive "P")
-        (or (@V{is-the-argument-a-cons-cell} arg)
-            (and @V{are-both-transient-mark-mode-and-mark-active-true})
+        (or (is-the-argument-a-cons-cell arg)
+            (and are-both-transient-mark-mode-and-mark-active-true)
             (push-mark))
-        (let (@V{determine-size-and-set-it})
+        (let (determine-size-and-set-it)
         (goto-char
-          (@V{if-there-is-an-argument}
-              @V{figure-out-where-to-go}
-            @V{else-go-to}
+          (if-there-is-an-argument
+              figure-out-where-to-go
+            else-go-to
             (point-min))))
-         @V{do-nicety}
+         do-nicety
     @end src
 
-    The function is similar to the @c{simplified-beginning-of-buffer}
-    function except that the @c{interactive} expression has @c{"P"} as an
-    argument and the @c{goto-char} function is followed by an if-then-else
-    expression that figures out where to put the cursor if there is an
-    argument that is not a cons cell.
+    The function is similar to the @c{simplified-beginning-of-buffer} function
+    except that the @c{interactive} expression has @c{"P"} as an argument and
+    the @c{goto-char} function is followed by an @c(if-then-else) expression
+    that figures out where to put the cursor if there is an argument that is not
+    a cons cell.
 
-    (Since I do not explain a cons cell for many more chapters, please
-    consider ignoring the function @c{consp}.  See Section @l{List
-    Implementation, , How Lists are Implemented}, and Section
-    @l{info:elisp#Cons Cell Type, , Cons Cell and List Types} in @e{The GNU
-    Emacs Lisp Reference Manual}.)
+    (Since I do not explain a cons cell for many more chapters, please consider
+    ignoring the function @c{consp}.  See Section @l{How Lists are Implemented},
+    and Section @l{info:elisp#Cons Cell Type<>Cons Cell and List Types} in
+    @e{The GNU Emacs Lisp Reference Manual}.)
 
     The @c{"P"} in the @c{interactive} expression tells Emacs to pass a
     prefix argument, if there is one, to the function in raw form.  A prefix
@@ -4210,7 +4208,7 @@ promoting software freedom.”
 
     @src elisp
       (if (> (buffer-size) 10000)
-          ;; @e{Avoid overflow for large buffer sizes!}
+          ;; Avoid overflow for large buffer sizes!
                                 (* (prefix-numeric-value arg)
                                    (/ size 10))
         (/
@@ -4225,9 +4223,9 @@ promoting software freedom.”
     In skeletal form, the expression looks like this:
 
     @src elisp
-      (if (@V{buffer-is-large}
-          @V{divide-buffer-size-by-10-and-multiply-by-arg}
-        @V{else-use-alternate-calculation}
+      (if (buffer-is-large
+          divide-buffer-size-by-10-and-multiply-by-arg
+        else-use-alternate-calculation
     @end src
 
     The true-or-false-test of this inner @c{if} expression checks the size of
@@ -4290,8 +4288,8 @@ promoting software freedom.”
      by the value of the prefix argument––the multiplication looks like this:
 
      @src elisp
-       (* @V{numeric-value-of-prefix-arg}
-          @V{number-of-characters-in-one-tenth-of-the-accessible-buffer})
+       (* numeric-value-of-prefix-arg
+          number-of-characters-in-one-tenth-of-the-accessible-buffer)
      @end src
 
      If, for example, the prefix argument is @'{7}, the one-tenth value will
@@ -4316,8 +4314,6 @@ promoting software freedom.”
      desired line; the second method does a better job.
 
      The code looks like this:
-
-@     Keep this on one line.
 
      @src elisp
        (/ (+ 10 (* size (prefix-numeric-value arg))) 10))
@@ -4392,33 +4388,6 @@ promoting software freedom.”
         (if arg (forward-line 1)))
     @end src
 
-    @ignore
-      From before GNU Emacs 22
-      @src elisp
-        (defun beginning-of-buffer (&optional arg)
-          "Move point to the beginning of the buffer;
-        leave mark at previous position.
-        With arg N, put point N/10 of the way
-        from the true beginning.
-        Don't use this in Lisp programs!
-        \(goto-char (point-min)) is faster
-        and does not set the mark."
-          (interactive "P")
-          (push-mark)
-          (goto-char
-           (if arg
-               (if (> (buffer-size) 10000)
-                   ;; @e{Avoid overflow for large buffer sizes!}
-                   (* (prefix-numeric-value arg)
-                      (/ (buffer-size) 10))
-                 (/ (+ 10 (* (buffer-size)
-                             (prefix-numeric-value arg)))
-                    10))
-             (point-min)))
-          (if arg (forward-line 1)))
-      @end src
-    @end ignore
-
     Except for two small points, the previous discussion shows how this
     function works.  The first point deals with a detail in the documentation
     string, and the second point concerns the last line of the function.
@@ -4429,13 +4398,12 @@ promoting software freedom.”
       \\[universal-argument]
     @end example
 
-    A @'{\\} is used before the first square bracket of this expression.
-    This @'{\\} tells the Lisp interpreter to substitute whatever key is
-    currently bound to the @'{[…]}.  In the case of
-    @c{universal-argument}, that is usually @k{C-u}, but it might be
-    different.  (See Section @l{Documentation Tips, , Tips for Documentation
-    Strings} in @e{The GNU Emacs Lisp Reference Manual}, for more
-    information.)
+    A @'{\\} is used before the first square bracket of this expression.  This
+    @'{\\} tells the Lisp interpreter to substitute whatever key is currently
+    bound to the @'{[…]}.  In the case of @c{universal-argument}, that is
+    usually @k{C-u}, but it might be different.  (See Section
+    @l{info:elisp#Documentation Tips<>Tips for Documentation Strings} in @e{The
+    GNU Emacs Lisp Reference Manual}, for more information.)
 
     Finally, the last line of the @c{beginning-of-buffer} command says to
     move point to the beginning of the next line if the command is invoked
@@ -7211,9 +7179,9 @@ promoting software freedom.”
    As explained in the previous chapter (see Section @l{How Lists are
    Implemented}), the computer does not keep two different copies of the text
    being pointed to by both the @c{kill-ring} and the
-   @c{kill-ring-yank-pointer}.  The words “a different piece of text” and
-   “yet more text” are not duplicated.  Instead, the two Lisp variables point
-   to the same pieces of text.  Here is a diagram:
+   @c{kill-ring-yank-pointer}.  The words “a different piece of text” and “yet
+   more text” are not duplicated.  Instead, the two Lisp variables point to the
+   same pieces of text.  Here is a diagram:
 
    @diagram
      kill-ring     kill-ring-yank-pointer
