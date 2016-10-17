@@ -4532,7 +4532,7 @@ promoting software freedom.”
 
    @src elisp
      (save-restriction
-       @V{body}… )
+       body… )
    @end src
 
    The body of the @c{save-restriction} is one or more expressions that will
@@ -4548,7 +4548,7 @@ promoting software freedom.”
    @src elisp
      (save-excursion
        (save-restriction
-         @V{body}…))
+         body…))
    @end src
 
    In other circumstances, when not written together, the @c{save-excursion}
@@ -4561,62 +4561,8 @@ promoting software freedom.”
      (save-restriction
        (widen)
        (save-excursion
-       @V{body}…))
+       body…))
    @end src
-
-   @ignore
-     Emacs 22
-     /usr/local/src/emacs/lisp/simple.el
-
-     (defun what-line ()
-       "Print the current buffer line number and narrowed line number of point."
-       (interactive)
-       (let ((start (point-min))
-             (n (line-number-at-pos)))
-         (if (= start 1)
-             (message "Line %d" n)
-           (save-excursion
-             (save-restriction
-               (widen)
-               (message "line %d (narrowed line %d)"
-                        (+ n (line-number-at-pos start) -1) n))))))
-
-     (defun line-number-at-pos (&optional pos)
-       "Return (narrowed) buffer line number at position POS.
-     If POS is nil, use current buffer location.
-     Counting starts at (point-min), so the value refers
-     to the contents of the accessible portion of the buffer."
-       (let ((opoint (or pos (point))) start)
-         (save-excursion
-           (goto-char (point-min))
-           (setq start (point))
-           (goto-char opoint)
-           (forward-line 0)
-           (1+ (count-lines start (point))))))
-
-     (defun count-lines (start end)
-       "Return number of lines between START and END.
-     This is usually the number of newlines between them,
-     but can be one more if START is not equal to END
-     and the greater of them is not at the start of a line."
-       (save-excursion
-         (save-restriction
-           (narrow-to-region start end)
-           (goto-char (point-min))
-           (if (eq selective-display t)
-               (save-match-data
-                 (let ((done 0))
-                   (while (re-search-forward "[\n\C-m]" nil t 40)
-                     (setq done (+ 40 done)))
-                   (while (re-search-forward "[\n\C-m]" nil t 1)
-                     (setq done (+ 1 done)))
-                   (goto-char (point-max))
-                   (if (and (/= start end)
-                            (not (bolp)))
-                       (1+ done)
-                     done)))
-             (- (buffer-size) (forward-line (buffer-size)))))))
-   @end ignore
 
 ** @c{what-line}
 
@@ -4672,10 +4618,9 @@ promoting software freedom.”
    after the code in the body of the @c{save-excursion} uses the
    @c{beginning-of-line} function to move point.
 
-   (Note that the @c{(widen)} expression comes between the
-   @c{save-restriction} and @c{save-excursion} special forms.  When you write
-   the two @c{save- …} expressions in sequence, write @c{save-excursion}
-   outermost.)
+   (Note that the @c{(widen)} expression comes between the @c{save-restriction}
+   and @c{save-excursion} special forms.  When you write the two @c{save-…}
+   expressions in sequence, write @c{save-excursion} outermost.)
 
    The last two lines of the @c{what-line} function are functions to count
    the number of lines in the buffer and then print the number in the echo
@@ -4699,33 +4644,6 @@ promoting software freedom.”
      (1+ (count-lines 1 (point)))
    @end src
 
-   @ignore
-     GNU Emacs 22
-
-     (defun count-lines (start end)
-       "Return number of lines between START and END.
-     This is usually the number of newlines between them,
-     but can be one more if START is not equal to END
-     and the greater of them is not at the start of a line."
-       (save-excursion
-         (save-restriction
-           (narrow-to-region start end)
-           (goto-char (point-min))
-           (if (eq selective-display t)
-               (save-match-data
-                 (let ((done 0))
-                   (while (re-search-forward "[\n\C-m]" nil t 40)
-                     (setq done (+ 40 done)))
-                   (while (re-search-forward "[\n\C-m]" nil t 1)
-                     (setq done (+ 1 done)))
-                   (goto-char (point-max))
-                   (if (and (/= start end)
-                            (not (bolp)))
-                       (1+ done)
-                     done)))
-             (- (buffer-size) (forward-line (buffer-size)))))))
-   @end ignore
-
    What this does is count the lines from the first position of the buffer,
    indicated by the @c{1}, up to @c{(point)}, and then add one to that
    number.  (The @c{1+} function adds one to its argument.)  We add one to it
@@ -4746,13 +4664,11 @@ promoting software freedom.”
    @c{save-restriction}, @c{widen}, @c{goto-char}, @c{point-min},
    @c{message}, and @c{buffer-substring}.
 
-   @cindex Properties, mention of @c{buffer-substring-no-properties}
-   (@c{buffer-substring} is a previously unmentioned function you will have
-   to investigate yourself; or perhaps you will have to use
+   (@c{buffer-substring} is a previously unmentioned function you will have to
+   investigate yourself; or perhaps you will have to use
    @c{buffer-substring-no-properties} or @c{filter-buffer-substring} …, yet
    other functions.  Text properties are a feature otherwise not discussed
-   here.  See Section @l{Text Properties, , Text Properties, elisp, The GNU
-   Emacs Lisp Reference Manual}.)
+   here. See Section @l{info:elisp#Text Properties<>Text Properties}.)
 
    Additionally, do you really need @c{goto-char} or @c{point-min}?  Or can
    you write the function without them?

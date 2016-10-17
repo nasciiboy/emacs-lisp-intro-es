@@ -1720,12 +1720,12 @@ and promoting software freedom.”
    primer punto evaluado.)
 
    La función @c{point-min} es similar a @c{point}, pero devuelve el valor
-   mínimo permisible del punto en el búffer actual. Este es el numero 1 a
-   menos que @:{narrowing} esté en vigor. (Narrowing, @e{Encogiendo} es un
-   mecanismo mediarte el cual puedes restringirte a ti mismo, o un programa,
-   a operar solo en un parte de un búffer. Ver Sección @l{Encogiendo y
-   extendiendo}.)  Del mismo modo, la función @c{point-max} devuelve el valor
-   máximo permisible del punto en el búffer actual.
+   mínimo permisible del punto en el búffer actual. Este es el numero 1 a menos
+   que @:{narrowing} esté en vigor. (Narrowing, @e{Reduccion} es un mecanismo
+   mediarte el cual puedes restringirte a ti mismo, o un programa, a operar solo
+   en un parte de un búffer. Ver Sección @l{Reducir y Extender}.)  Del mismo
+   modo, la función @c{point-max} devuelve el valor máximo permisible del punto
+   en el búffer actual.
 
 ** Ejercicio
 
@@ -2652,15 +2652,6 @@ and promoting software freedom.”
    segundo ejemplo, @c{nil} indica falso; en consecuencia, se evalua y
    devuelve la else-part de la expresión: aparece @'{falso} en el área echo.
 
-   # @src elisp
-   #   (if 4
-   #       'true
-   #     'false)
-
-   #   (if nil
-   #       'true
-   #     'false)
-   # @end src
    @src elisp
      (if 4
          'verdadero
@@ -3186,7 +3177,7 @@ and promoting software freedom.”
    La siguiente línea es @c{(goto-char (point-min))}. Esta expresión hace
    saltar el cursor hasta el punto mínimo en el búffer, es decir, al inicio
    del búffer (o al inicio de la porción accesible del búffer si narrowed
-   esta activo. Véase Sección @l{Encogiendo y extendiendo}.)
+   esta activo. Véase Sección @l{Reducir y Extender}.)
 
    El comando @c{push-mark} establece una marca en el sitio donde se
    encontraba el cursor antes de transladarse al inicio del búffer por la
@@ -3299,7 +3290,7 @@ and promoting software freedom.”
     establece una marca en el punto del búffer que tiene el número más
     alto. Este será el final del búffer (o, si el búffer tiene actio
     narrowing, el final de la porción accesible del búffer. Véase Sección
-    @l{Encogiendo y extendiendo}, para más informacon sobre
+    @l{Reducir y Extender}, para más informacon sobre
     norrowing). Después de colocar esta marca, la marca anterior, la
     establecida en el punto, ya no esta configurada, pero Emacs recuerda su
     posición, al igual que recuerda todas las demas marcas recientes. Esto
@@ -4272,7 +4263,7 @@ and promoting software freedom.”
      En los viejos tiempos, se utilizo la función @c{buffer-size}. No solo se
      llamaba en repetidas ocaciones, se daba el tamaño completo del búffer, no
      la parte accesible. El calculo tiene mucho más sentido cuando se maneja
-     solo la parte accesible. (Véase Sección @l{Encogiendo y extendiendo}, para
+     solo la parte accesible. (Véase Sección @l{Reducir y Extender}, para
      más información concentra la atención en una parte ‘accesible’.)
 
      La linea se ve asi:
@@ -4502,285 +4493,196 @@ and promoting software freedom.”
    valor de @c{fill-column}, y te lo indique, en un mensaje. Sin embargo, si no
    pasas un argumento a la función, utiliza 56 como valor por defecto.
 
-* Encogiendo y extendiendo
+* Reducir y Extender
 
-  Encoger es una funcionalidad de Emacs que hace posible focalizar en una
-  parte específica de un búffer, y funcionar sin cambiar accidentalmente
-  otras partes. Encoger normalmente se deshabilita puesto que puede confundir
-  a novatos.
+  La Reduccion es una funcionalidad de Emacs que hace posible que puedas
+  focalizarte en una parte específica de un búffer, y trabajar sin el cambio
+  accidental a otras partes. La reduccion normalmente se deshabilita puesto que
+  puede confundir a los principiantes.
 
-  Con encoger, el resto del búffer se hace invisible, como si no
-  estuviera. Esto es una ventaja si, por ejemplo, se quiere reemplazar una
-  palabra en una parte del búffer pero no otro: se encoge la parte que se
-  quiere y el reemplazo se trae solo en esta sección, no en el resto del
-  búffer. Las búsquedas solo funcionarán con una región encogida, no fuera de
-  una, así si tu estás arreglando una parte de un documento, se puede guardar
-  en sí desde encontrar partes accidentalmente que no necesitas arreglar
-  encongiendo solo la región que quieres. (La tecla asociada a
-  @c{narrow-to-region} es @k{C-x n n}.)
+  Con la reduccion, el resto del búffer se hace invisible, como si no estuviera
+  alli. Esto es una ventaja si, por ejemplo, se quiere reemplazar una palabra en
+  una parte del búffer pero no en otra: limitas la parte que deseas y el
+  reemplazo se lleva a cabo solo en esa sección, no en el resto del búffer. Las
+  búsquedas solo funcionarán con la región reducida, no fuera de ella, de esta
+  forma si estás reparando una parte de un documento, puedes mantener fuera la
+  parte que no necesitas reparar solo reduciendo la region que deseas. (La tecla
+  asociada a @c{narrow-to-region} es @k{C-x n n}.)
 
-  Sin embargo, encoger hace que el resto del búffer sea invisible, esto puede
-  asustar a gente quien inadvertidamente invoca a encoger y pensar que se ha
-  borrado una parte de su fichero. Más allá, el comando @c{undo} (que es
-  normalmente emparejado a @k{C-x u}) no se deja encoger, así las personas
-  pueden llegar a estar bastante desesperadas si no conocen que ellas pueden
-  volver al resto de un búffer para visibilizarlo con el comando
-  @c{widen}. (El emparejamiento de la tecla para @c{widen} es @k{C-x n w}.)
+  Sin embargo, la reduccion hace invisible el resto del búffer, esto puede
+  asustar a quien invoca inadvertidamente la reduccion y piensa que ha eliminado
+  una parte de su fichero. Por otra parte, el comando @c{undo} (usualmente unido
+  a @k{C-x u}) no apaga (ni debe hacerlo) la reduccion, por lo que las personas
+  pueden llegar a desesperarse si no saben que pueden devolver el resto del
+  buffer visible cor el comando @c{widen} que es @k{C-x n w}.)
 
-  Encoger es tan útil al intérprete Lisp como para las personas. Con
-  frecuencia, una función Emacs Lisp está diseñada para trabajar en solo
-  parte de un búffer; o de manera conversa, una función Emacs Lisp necesita
-  trabajar en todo un búffer que ha sido encogido. La función @c{what-line},
-  por ejemplo, borra el encogimiento desde un búffer, si eso tiene cualquier
-  encogimiento y cuando eso ha finalizado su trabajo, restaura el
-  encogimiento que haya. Por otro lado, la función @c{count-lines}, que es
-  llamada por @c{what-line}, usa el encogimiento para restringirse a sí misma
-  solo a la porción del búffer en el que se está interesado y entonces
-  restaura la situación previa.
+  La Reduccion es igual de util para el intérprete Lisp como para un humano.
+  Con frecuencia, una función Emacs Lisp está diseñada para trabajar solo en
+  parte de un búffer; o por el contrario, una función Emacs Lisp necesita
+  trabajar en todo un búffer que ha sido reducido. La función @c{what-line}, por
+  ejemplo, ilimina la reduccion de un búffer, si este tiene alguna reduccion y
+  al terminar su trabajo, restaura la reduccion. Por otro lado, la función
+  @c{count-lines} utiliza la reduccion para restringirse a sí misma solo a la
+  porción del búffer en la que se está interesado y luego restaura la situación
+  anterior.
 
 ** La forma especial @c{save-restriction}
 
-   En Emacs Lisp, se puede usar la forma especial @c{save-restriction} para
-   guardar la traza siempre que el encogimiento esté en efecto. Cuando el
-   intérprete Lisp se encuentra con @c{save-restriction}, eso ejecuta el
-   código en el cuerpo de la expresión @c{save-restriction}, y entonces
-   deshace cualquier cambio para encoger lo que el código causó. Si, por
-   ejemplo, el búffer está encogido y el código que sigue al comando
-   @c{save-restriction} devuelve el búffer para su región encogida. En el
-   comando @c{what-line}, cualquier encogimiento del búffer que se puede
-   tener se deshace por el comando @c{widen} que inmediatamente sigue el
-   comando @c{save-restriction}. Cualquier encogimiento original es
-   restaurado solo antes de la compleción de la función.
+   En Emacs Lisp, se puede utilizar la forma especial @c{save-restriction} para
+   realizar un seguimiento de cualquier reduccion en efecto. Cuando el
+   intérprete Lisp se encuentra con @c{save-restriction}, se ejecuta el código
+   en el cuerpo de la expresión @c{save-restriction}, y luego deshace cualquier
+   cambio en la reduccion que el código proboco. Si, por ejemplo, el búffer es
+   reducido y el código que sigue al comando @c{save-restriction} se deshace de
+   la reduccion, @c{save-restriction} devuelve el búffer a su región reducida.
+   En el comando @c{what-line}, cualquier reduccion del búffer es deshecha por
+   el comando @c{widen} inmediatamente despues del comando @c{save-restriction}.
+   Se restaura cualquier reduccion original justo antes de finalizar la función.
 
    La plantilla para una expresión @c{save-restriction} es simple:
 
-   @example
+   @src elisp
      (save-restriction
-       @V{body}… )
-   @end example
+       cuerpo… )
+   @end src
 
-   El cuerpo del @c{save-restriction} es una o más expresiones que serán
-   evaluadas en secuencia por el intérprete Lisp.
+   El cuerpo de @c{save-restriction} es una o más expresiones que son evaluadas
+   de forma secuencial por el intérprete Lisp.
 
-   Finalmente, un punto a anotar: cuando se usa tanto @c{save-excursion} y
-   @c{save-restriction}, uno correcto después del otro, deberías usar
-   @c{save-excursion} fuera. Si se escribe en el orden inverso, se podría
-   fallar para grabar el encogimiento en el búffer para el que Emacs cambia
-   después de llamar a @c{save-excursion}. De este modo, cuando se escribe
-   junto a @c{save-excursion} y @c{save-restriction} sería escrito así:
+   Finalmente, un punto a tener en cuenta: cuando se utiliza @c{save-excursion}
+   y @c{save-restriction} a la vez, una detras de la otra, debes utilizar
+   @c{save-excursion} primero. Si lo escribes en el orden inverso, es posible
+   que no registre la reduccion en el búffer a la que emacs debe cambiar Emacs
+   despues de llamar a @c{save-excursion}. Por la tanto, cuando escribas a la
+   vez @c{save-excursion} y @c{save-restriction} debe ser así:
 
-   @example
+   @src elisp
      (save-excursion
        (save-restriction
-         @V{body}…))
-   @end example
+         cuerpo…))
+   @end src
 
-   En otras circunstancias, cuando no se escribe junto, las formas especiales
-   @c{save-excursion} y @c{save-restriction} deben ser escritas en el orden
-   apropiado para la función.
+   En otras circunstancias, cuando no se escriban a la vez, las formas
+   especiales @c{save-excursion} y @c{save-restriction} deben escribirse en el
+   orden adecuado para la función.
 
    Por ejemplo,
 
-   @example
+   @src elisp
      (save-restriction
        (widen)
        (save-excursion
-       @V{body}…))
-   @end example
-
-   @ignore
-     Emacs 22
-     /usr/local/src/emacs/lisp/simple.el
-
-     (defun what-line ()
-       "Print the current buffer line number and narrowed line number of point."
-       (interactive)
-       (let ((start (point-min))
-             (n (line-number-at-pos)))
-         (if (= start 1)
-             (message "Line %d" n)
-           (save-excursion
-             (save-restriction
-               (widen)
-               (message "line %d (narrowed line %d)"
-                        (+ n (line-number-at-pos start) -1) n))))))
-
-     (defun line-number-at-pos (&optional pos)
-       "Return (narrowed) buffer line number at position POS.
-     If POS is nil, use current buffer location.
-     Counting starts at (point-min), so the value refers
-     to the contents of the accessible portion of the buffer."
-       (let ((opoint (or pos (point))) start)
-         (save-excursion
-           (goto-char (point-min))
-           (setq start (point))
-           (goto-char opoint)
-           (forward-line 0)
-           (1+ (count-lines start (point))))))
-
-     (defun count-lines (start end)
-       "Return number of lines between START and END.
-     This is usually the number of newlines between them,
-     but can be one more if START is not equal to END
-     and the greater of them is not at the start of a line."
-       (save-excursion
-         (save-restriction
-           (narrow-to-region start end)
-           (goto-char (point-min))
-           (if (eq selective-display t)
-               (save-match-data
-                 (let ((done 0))
-                   (while (re-search-forward "[\n\C-m]" nil t 40)
-                     (setq done (+ 40 done)))
-                   (while (re-search-forward "[\n\C-m]" nil t 1)
-                     (setq done (+ 1 done)))
-                   (goto-char (point-max))
-                   (if (and (/= start end)
-                            (not (bolp)))
-                       (1+ done)
-                     done)))
-             (- (buffer-size) (forward-line (buffer-size)))))))
-   @end ignore
+       cuerpo…))
+   @end src
 
 ** @c{what-line}
 
-   El comando @c{what-line} cuenta el número de la línea en la que el cursor
-   se ha localizado. La función ilustra el uso de los comandos
-   @c{save-restriction} y @c{save-excursion}. Aquí está el texto original de
-   la función:
+   El comando @c{what-line} informa el número de la línea en la que el cursor
+   esta colocado. La función ilustra el uso de los comandos @c{save-restriction}
+   y @c{save-excursion}. Aquí está el texto original de la función:
 
-   @example
+   @src elisp
      (defun what-line ()
-       "Imprime el número de línea actual (en el búffer)
-       del punto."
+       "Print the current line number (in the buffer) of point."
        (interactive)
        (save-restriction
          (widen)
          (save-excursion
            (beginning-of-line)
-           (message "Línea %d"
+           (message "Line %d"
                     (1+ (count-lines 1 (point)))))))
-   @end example
+   @end src
 
-   (En versiones recientes de GNU Emacs, la función @c{what-line} se ha
-   expandido para contar el número de líneas en un búffer encogido tan bien
-   como el número de líneas en un búffer ampliado. La versión reciente es más
-   compleja que la versión que se muestra. Alguien sintiéndose venturoso,
-   podría querer mirarla después de entender como esta versión
-   funciona. Probablemente se necesitará usar @k{C-h f}
-   (@c{describe-function}). La versión nueva usa un condicional para
-   determinar si el búffer se ha encogido.
+   (En versiones recientes de GNU Emacs, la función @c{what-line} se ha ampliado
+   para informarte el numero de linea en un búffer reducido, asi como el número
+   de línea en un búffer amplio. La versión reciente es más compleja que la
+   versión que se muestra aqui. Si te sientes aventurero, puede que quieras
+   verla despues de averiguar como funciona esta version. Probablemente
+   necesites utilizar @k{C-h f} (@c{describe-function}). La nueva versión
+   utiliza un condicional para determinar si se ha reducido el búffer.
 
-   (También, eso usa @c{line-number-at-pos}, que otras expresiones simples,
-   tales como @c{(goto-char (point-min))}, mueve el punto al principio de la
-   línea actual con @c{(forward-line 0)} en vez de @c{beginning-of-line}.)
+   (También, utiliza @c{line-number-at-pos}, que entre otras expresiones
+   simples, como @c{(goto-char (point-min))}, mueve el punto al inicio de la
+   línea actual con @c{(forward-line 0)} en lugar de @c{beginning-of-line}.)
 
-   La función @c{what-line} como se muestra aquí tiene una línea de
-   documentación y es interactiva, como se esperaría. Las dos líneas
-   siguientes usan las funciones @c{save-restriction} y @c{widen}.
+   La función @c{what-line} que se muestra aqui tiene una línea de documentación
+   y es interactiva, como era de esperar. Las dos líneas siguientes utilizan las
+   funciones @c{save-restriction} y @c{widen}.
 
-   La forma especial @c{save-restriction} nota que encogiendo es en efecto,
-   si cualquiera, en el buffer actual y restaura que encogiendo después del
-   código en el cuerpo del @c{save-restriction} ha sido evaluada.
+   La forma especial @c{save-restriction} observa cualquier reduccion activa, en
+   el buffer actual y restaura la reduccion despues de evaluar el código de su
+   cuerpo.
 
-   La forma especial @c{save-restriction} es seguida por @c{widen}. Esta
-   función deshace cualquier distancia del actual búffer que puede haber
-   tenido cuando @c{what-line} se llame. (La distancia que había es la
-   distancia que @c{save-restriction} recuerda.) Esta ampliación se hace
-   posible para la línea contando comandos a contar desde el principio del
-   búffer. De otro modo, se habría limitado para contar con la región
-   accesible. Cualquier distancia original se restaura solo antes de la
-   compleción de la función por la forma especial @c{save-restriction}.
+   La forma especial @c{save-restriction} es seguida por @c{widen}. Esta función
+   deshace cualquier reduccion que pudo haber tenido el búffer actual cuando se
+   llama a @c{what-line}. (La reduccion que esta alli es la reduccion que
+   @c{save-restriction} recuerda.) Esta ampliación hace posible que los comandos
+   para el conteo de lineas cuenten desde el inicio del búffer. De lo contrario,
+   se habría limitado a contar dentro de la región accesible. Cualquier
+   reduccion original se restaura justo antes de completar la funcion por la
+   forma especial @c{save-restriction}.
 
-   La llamada a @c{widen} es seguida por @c{save-excursion}, que guarda la
-   posición del cursor (por ej., el punto) y de la marca, y la restaura
-   después el código en el cuerpo del @c{save-excursion} usa la función
-   @c{beginning-of-line} para mover el punto.
+   La llamada a @c{widen} va seguida por @c{save-excursion}, que guarda la
+   posición del cursor (es decir, el punto) y la marca, y los restaura después
+   despues de que el código en el cuerpo de @c{save-excursion} utiliza la
+   función @c{beginning-of-line} para mover el punto.
 
-   (Nótese que la expresión @c{(widen)} viene entre las formas especiales
-   @c{save-restriction} y @c{save-excursion}. Cuando se escribe las dos
-   expresiones @c{save- …} en secuencia, escribe @c{save-excursion}
-   finalmente.)
+   (Ten en cuenta que la expresión @c{(widen)} ocurre entre las formas
+   especiales @c{save-restriction} y @c{save-excursion}. Cuando escribas las dos
+   expresiones @c{save-…} consecutivamente, escribe @c{save-excursion} primero.)
 
-   Las últimas dos líneas de la función @c{what-line} son funciones para
-   contar el número de líneas en el búffer y entonces imprimir el número en
-   el área echo.
+   Las dos últimas líneas de la función @c{what-line} son funciones para contar
+   el número de líneas en el búffer y luego imprimirlo el número en el área
+   echo.
 
-   @example
+   @src elisp
      (message "Line %d"
               (1+ (count-lines 1 (point)))))))
-   @end example
+   @end src
 
-   La función @c{message} imprime un mensaje de una línea abajo de la
-   pantalla Emacs. El primer argumento está dentro de marcas de cita y está
-   impreso como una cadena de caracteres. Sin embargo, se puede contener una
-   expresión @'{%d} para imprimir un argumento siguiente. @'{%d} imprime el
-   argumento como un decimal, así el mensaje dirá alguna cosa tal como
-   @'{Línea 243}.
+   La función @c{message} imprime un mensaje de una línea en la parte inferior
+   de la pantalla de Emacs. El primer argumento va dentro de marcas de cita y se
+   imprime como una cadena de caracteres. Sin embargo, puede contener una
+   expresión @'{%d} para imprimir el siguiente argumento. @'{%d} imprime el
+   argumento como un decimal, por lo que el mensaje dirá algo como @'{Línea
+   243}.
 
-   El número que está impreso en lugar de @'{%d} está computada por la última
-   línea de la función:
+   El número que se imprime en lugar del @'{%d} se calcula por la última línea
+   de la función:
 
-   @example
+   @src elisp
      (1+ (count-lines 1 (point)))
-   @end example
+   @end src
 
-   @ignore
-     GNU Emacs 22
+   Lo que hace esto es contar las líneas desde la primer posición del búffer
+   indicada por el @c{1}, hasta @c{(point)}, y luego sumar uno a este número.
+   (La función @c{1+} suma uno a su argumento.) Se suma uno porque la línea 2
+   tiene solo una línea antes de ella, y @c{count-lines} cuenta solo las líneas
+   @e{antes} de la línea actual.
 
-     (defun count-lines (start end)
-       "Return number of lines between START and END.
-     This is usually the number of newlines between them,
-     but can be one more if START is not equal to END
-     and the greater of them is not at the start of a line."
-       (save-excursion
-         (save-restriction
-           (narrow-to-region start end)
-           (goto-char (point-min))
-           (if (eq selective-display t)
-               (save-match-data
-                 (let ((done 0))
-                   (while (re-search-forward "[\n\C-m]" nil t 40)
-                     (setq done (+ 40 done)))
-                   (while (re-search-forward "[\n\C-m]" nil t 1)
-                     (setq done (+ 1 done)))
-                   (goto-char (point-max))
-                   (if (and (/= start end)
-                            (not (bolp)))
-                       (1+ done)
-                     done)))
-             (- (buffer-size) (forward-line (buffer-size)))))))
-   @end ignore
+   Después que @c{count-lines} termina su trabajo, y se imprime el mensaje en el
+   área echo, la función @c{save-excursion} restaura el punto y marca a sus
+   posiciones originales; y @c{save-restriction} restaura la reduccion original,
+   si la hay.
 
-   Lo que esto hace es contar las líneas entre la primera posición del búffer
-   indicada por el @c{1}, y el @c{(point)}, y entonces se añade uno a este
-   número. (La función @c{1+} añade uno a su argumento.) Se añade a eso
-   porque la línea 2 tiene solo una línea antes, y @c{count-lines} cuenta
-   solo las líneas @e{antes} de la línea actual.
+** Ejercicio de Reduccion
 
-   Después de que @c{count-lines} ha hecho su trabajo, y el mensaje ha sido
-   impreso en el área echo, la función @c{save-excursion} restaura punto y
-   marca a sus posiciones originales; y @c{save-restriction} restaura la
-   contracción original, si la hay.
+   Escribe una función que muestre los primeros 60 caracteres del búffer actual,
+   incluso si has reducido el búffer despues mitad de modo que la primera línea
+   es inaccesible. Restaura el punto, marca y la reduccion. Para este ejercicio,
+   necesitas utilizar todo un popurri de funciones, incluyendo
+   @c{save-restriction}, @c{widen}, @c{goto-char}, @c{point-min}, @c{message}, y
+   @c{buffer-substring}.
 
-** Ejercicio de encoger
-
-   Escribe una función que mostrará los primeros 60 caracteres del búffer
-   actual, incluso si se ha encogido el búffer a su mitad así que la primera
-   línea es inaccesible. Restaura punto, marca y encogimiento. Para este
-   ejercicio, se necesita usa un popurri entero de funciones, incluyendo
-   @c{save-restriction}, @c{widen}, @c{goto-char}, @c{point-min},
-   @c{message}, y @c{buffer-substring}.
-
-   (@c{buffer-substring} es una función previamente no mencionada que tendrá
-   que investigarla cada cual por uno mismo; o quizás tendrá que usarse
-   @c{buffer-substring-no-properties} o @c{filter-buffer-substring} …, o
-   todavía otras funciones. Las propiedades de texto son una funcionalidad
-   que de otro modo no serían discutidas aquí.  Véase Sección "Propiedades de
-   Texto" en @e(El Manual de Referencia de Emacs Lisp).)
+   (@c{buffer-substring} es una función que no aun no se menciona, tendrás que
+   investigarla por tu cuenta; o quizás tengas que utilizar
+   @c{buffer-substring-no-properties} o @c{filter-buffer-substring} …, u otras
+   funciones. Las propiedades de texto son una funcionalidad que no sera
+   discutida aquí.  Véase Sección @l{info:elisp#Text Properties<>Propiedades de
+   Texto} en @e(El Manual de Referencia de Emacs Lisp).)
 
    Además, ¿realmente se necesita @c{goto-char} o @c{point-min}?  ¿O se puede
-   escribir la función sin ellos?
+   escribir la función sin ellas?
 
 * @c{car}, @c{cdr}, @c{cons}: Funciones fundamentales
 
