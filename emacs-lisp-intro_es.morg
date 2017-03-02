@@ -1,13 +1,15 @@
-@ -*- mode: org; -*-
+@ @ -*- mode: org; -*-
 ..title     > Una introducción a la programación en Emacs Lisp
 ..subtitle  > Revisada la tercera edición
 ..author    > Robert J. Chassell
 ..traductor > David Arroyo Menéndez
-..define    > edition-number="3.10"
-..define    > COUNT-WORDS="count-words-example"
+..style     > worg-data/worg.css
+..options   > pygments toc
+@ ..define    > edition-number="3.10"
+@ ..define    > COUNT-WORDS="count-words-example"
 
-Esto es una @e{Introducción a la Programación en Emacs Lisp},
-para personas que no son programadoras.
+Esto es una @e{Introducción a la Programación en Emacs Lisp}, para personas que
+no son programadoras.
 
 Traducido desde la edición @v{edition-number}.
 
@@ -140,7 +142,7 @@ and promoting software freedom.”
    abrumadora.
 
    Esta introducción de @e{Programación en Emacs Lisp} viene acompañada de un
-   documento complementario.  @l{El Manual de Referencia de GNU Emacs Lisp}.
+   documento complementario.  @q{El Manual de Referencia de GNU Emacs Lisp}.
    El manual de referencia tiene más detalles que esta introducción. En el
    manual de referencia, toda la información sobre un asunto está concentrada
    en un lugar. Se debe cambiar si es como el programador citado arriba. Y,
@@ -176,7 +178,7 @@ and promoting software freedom.”
    (@c{indent-region}). Esto significa invocar el comando @c{indent-region}
    presionando @k{M-C-\}. (Si lo desea, puede cambiar las teclas que son
    presionadas para invocar el comando; esto se llama @:{rebinding}. Véase
-   Sección @l{Mapas de teclado}.)  La abreviación @k{M-C-\} significa que se
+   Sección @l{#Mapas de teclado}.)  La abreviación @k{M-C-\} significa que se
    presiona la tecla @k{META}, @k{CTRL}, y @k{\} todo al mismo tiempo. (En
    muchos teclados modernos la tecla @k{META} es etiquetada con @k{ALT}.)
    Algunas veces una combinación como esta se llama @e{keychord}, puesto que
@@ -214,7 +216,7 @@ and promoting software freedom.”
    Weisshaus. Gracias también a Philip Johnson y David Stampe por su ánimo
    paciente. Mis errores son míos.
 
-   Robert J. Chassell @l{mailto:bob@gnu.org}
+   Robert J. Chassell @l{mailto:bob@@gnu.org}
 
 * Procesamiento de listas
 
@@ -278,7 +280,7 @@ and promoting software freedom.”
     pequeñas partes, sin perder su significado dentro del programa; lo mismo
     ocurre con números y símbolos de un caracterer como @'{+}. Por otro lado,
     a diferencia de un átomo, una lista puede ser dividida en pequeñas
-    partes. Ver @l(@c{car}, @c{cdr}, @c{cons}: Funciones fundamentales).
+    partes. Ver @l(#@c{car}, @c{cdr}, @c{cons}: Funciones fundamentales).
 
     En una lista, los átomos se separan unos de otros por espacios en blanco.
     Pueden ir pegados a un paréntesis.
@@ -442,7 +444,7 @@ and promoting software freedom.”
    También se puede evaluar un átomo que no es parte de una lista––uno que no
    está rodeado por paréntesis; de nuevo, el intérprete Lisp traduce desde la
    expresión humanamente legible al lenguaje del ordenador. Pero antes de
-   discutir esto (ver Seccion @l{Variables}), vamos a discutir lo que el
+   discutir esto (ver Seccion @l{#Variables}), vamos a discutir lo que el
    intérprete de Lisp hace cuando tu creas el error.
 
 ** Generar un mensaje de error
@@ -465,7 +467,7 @@ and promoting software freedom.”
    exactamente igual a la que acabamos de usar, pero sin la cita al inicio.
    Coloque el cursor a la derecha donde esta finaliza y presione @k{C-x C-e}:
 
-   @elisp
+   ..src > elisp
      (esto es una lista sin cita)
    < src..
 
@@ -491,9 +493,8 @@ and promoting software freedom.”
      q
    < example..
 
-   Por favor, ahora pulsa @kbd{q}, as@'{@dotless{i}} se comprueba que se
-   puede salir del depurador. A continuacion, presione "@kbd{C-x C-e} una vez
-   mas para re-entrar.
+   Por favor, ahora pulsa @kbd{q}, asi se comprueba que se puede salir del
+   depurador. A continuacion, presione @{C-x C-e} una vez mas para re-entrar.
 
    Sobre la base de lo que ya sabemos, casi podemos leer este mensaje de
    error.
@@ -588,7 +589,7 @@ and promoting software freedom.”
    definición usar. Si este fuera el caso, solo una persona en el mundo
    podría llamarse @'{Bob}. Sin embargo, la definición de función a la que el
    nombre hace referencia puede cambiarse fácilmente. (Ver Sección
-   @l{Instalar una Definición de Función}.)
+   @l{#Instalar una Definición de Función}.)
 
    Ya que Emacs Lisp es extenso, se acostumbra nombrar los símbolos de manera
    que pueda establecerse a que parte de Emacs pertenece la función. En
@@ -615,7 +616,7 @@ and promoting software freedom.”
    puede evaluar un símbolo no citado que no tiene paréntesis en torno a el.
    El intérprete Lisp intentará determinar el valor del símbolo como una
    @:{variable}.  Esta situación es descrita en el apartado de las variables.
-   (Ver @l{Variables}.)
+   (Ver @l{#Variables}.)
 
    La segunda complicación ocurre debido a que algunas funciones son
    inusuales y no funcionan de la manera habitual. Estas son llamadas
@@ -791,12 +792,12 @@ and promoting software freedom.”
    valor se conoce.
 
    Un símbolo puede tener cualquier valor ligado a él o, siendo tecnicos, se
-   puede @:{bind} (enlazar) la variable a un valor: a un número, por ejemplo
-   72; a una cadena, @c{\"como esta\"}; a una lista, como @c{(abeto pino
-   roble)}; podemos incluso asociar una variable a una definición de función.
+   puede @:{bind} (enlazar) la variable a un valor: a un número, por ejemplo 72;
+   a una cadena, @c{"como esta"}; a una lista, como @c{(abeto pino roble)};
+   podemos incluso asociar una variable a una definición de función.
 
    Un símbolo puede vincularse a un valor de varias maneras. Ver Sección
-   @l{Configurando el valor de una variable}, para obtener información sobre
+   @l{#Configurando el valor de una variable}, para obtener información sobre
    una manera de hacer esto.
 
 *** Mensaje de error de un símbolo sin una función
@@ -1099,7 +1100,7 @@ and promoting software freedom.”
     en el área echo entre comillas dobles; esto se debe a que ves el valor
     devuelto por la función @c{message}. En la mayoría de programas que
     escribiras, el texto será impreso en el área echo como un efecto
-    secundario de @c{message}, sin las comillas. Ver Sección @l{Un
+    secundario de @c{message}, sin las comillas. Ver Sección @l{#Un
     @c{multiply-by-seven} interactivo} en detalle, para un ejemplo de esto.)
 
     Sin embargo, si hay un @'{%s} en la cadena de caracteres citada, la
@@ -1176,7 +1177,7 @@ and promoting software freedom.”
 
    Hay varias formas de asignar un valor a una variable. Una de ellas es
    utilizar la función @c{set} o la función @c{setq}.  Otra forma es utilizar
-   @c{let} (vease Seccion @lc{let}). (La jerga para este proceso es @:{bind}
+   @c{let} (vease Seccion @l{#@c(let)}). (La jerga para este proceso es @:{bind}
    (ligar) una variable a un valor.)
 
    Las siguientes secciones no solo describen cómo operan @c{set} y @c{setq},
@@ -1305,7 +1306,7 @@ and promoting software freedom.”
     < src..
 
     (El texto que sigue al @'{;} son los comentarios. Véase Sección
-    @l{Cambiar una definición de función}.)
+    @l{#Cambiar una definición de función}.)
 
     Si evalúas la primera de estas expresiones, el inicializador, @c{(setq
     contador 0)}, y luego evalúas la tercera expresión, @c{contador}, el
@@ -1404,7 +1405,7 @@ and promoting software freedom.”
   que simplemente inserta el caracter escrito.  Las funciones que se evalúan
   presionando atajos de teclado se llaman funciones @:{interactive}, o
   @:{comandos}; como crear una función interactive será ilustrado en el
-  capítulo sobre cómo escribir definiciones de funciones. Ver @l{Crear una
+  capítulo sobre cómo escribir definiciones de funciones. Ver @l{#Crear una
   Función Interactiva}.
 
   Además de presionar comandos de teclado, hemos visto una segunda manera de
@@ -1447,7 +1448,7 @@ and promoting software freedom.”
      (buffer-name)
 
      (buffer-file-name)
-   ..src > elisp
+   < src..
 
    Cuando hago esto en Info, el valor devuelto para la evaluación de
    @c{(buffer-name)} es @f{"*info*"}, y el valor devuelto por evaluar
@@ -1472,7 +1473,7 @@ and promoting software freedom.”
    (En las expresiones, los paréntesis le indican al intérprete Lisp tratar a
    @c{buffer-name} y @c{buffer-file-name} como funciones; sin los paréntesis,
    el intérprete intentaría evaluar los símbolos como variables. Véase la
-   Sección @l{Variables}.)
+   Sección @l{#Variables}.)
 
    A pesar de la distinción entre ficheros y búffers, con frecuencia
    encontrara personas referirse a un fichero cuando quieren un búffer y
@@ -1693,7 +1694,7 @@ and promoting software freedom.”
    mínimo permisible del punto en el búffer actual. Este es el numero 1 a menos
    que @:{narrowing} esté en vigor. (Narrowing, @e{Reduccion} es un mecanismo
    mediarte el cual puedes restringirte a ti mismo, o un programa, a operar solo
-   en un parte de un búffer. Ver Sección @l{Reducir y Extender}.)  Del mismo
+   en un parte de un búffer. Ver Sección @l{#Reducir y Extender}.)  Del mismo
    modo, la función @c{point-max} devuelve el valor máximo permisible del punto
    en el búffer actual.
 
@@ -1781,7 +1782,7 @@ and promoting software freedom.”
    < src..
 
    A modo de ejemplo, aquí está el código de una función que multiplica su
-   argumento por 7. (Este ejemplo no es interactivo. Ver Sección @l{Crear una
+   argumento por 7. (Este ejemplo no es interactivo. Ver Sección @l{#Crear una
    Función Interactiva}, para esta información.)
 
    ..src > elisp
@@ -1821,7 +1822,7 @@ and promoting software freedom.”
    argumentos es privado para la definición de la función, se puede cambiar
    el valor de un símbolo dentro del cuerpo de una función sin cambiar su
    valor fuera de la función. El efecto es similar al producido por la
-   expresión @c{let}. (Ver sección @lc{let}.)
+   expresión @c{let}. (Ver sección @l{#@c(let)}.)
 
    La lista de argumentos es seguida por la cadena de documentación que
    describe la función. Esto es lo ves cuando presionas @k{C-h f} y escribes
@@ -1889,7 +1890,7 @@ and promoting software freedom.”
    @c{forward-word} o cualquier otra función de edición que utilices.
    (@c{multiplicar-por-siente} seguira instalado hasta que salgas de
    Emacs. Para volver a cargar el código automáticamente cada vez que Emacs
-   inicie, revisa la sección @l{Instalar Código Permanentemente}.)
+   inicie, revisa la sección @l{#Instalar Código Permanentemente}.)
 
    Puedes ver el efecto de instalar @c{multiplicar-por-siente} evaluando el
    siguiente ejemplo. Coloca el cursor después de la siguiente expresión y
@@ -1939,7 +1940,7 @@ and promoting software freedom.”
     es el fin del comentario. Para extender un comentario por dos o más
     líneas, inicia cada línea con un punto y coma.
 
-    Véa las Secciónes @l(Empieza por un fichero @f{.emacs}) y
+    Véa las Secciónes @l(#Empieza por un fichero @f{.emacs}) y
     @l{info:emacs#Comments<>Comentarios} en @e(El Manual de Referencia de GNU
     Emacs Lisp), para más informacion sobre los comentarios.
 
@@ -2002,7 +2003,7 @@ and promoting software freedom.”
    tres frases. (Si @c{multiply-by-seven} no estuviese ligado a una tecla, no
    podria ser usado como ejemplo de enlace a tecla.
 
-   (Véase Sección @l{Atajos de teclado}, para aprender como vincular un
+   (Véase Sección @l{#Atajos de teclado}, para aprender como vincular un
    comando a una tecla.)
 
    Un argumento prefijo se pasa a una función interactiva pulsando la tecla
@@ -2050,7 +2051,7 @@ and promoting software freedom.”
 
     Como hemos visto, @c{message} es una función Emacs Lisp especialmente
     diseñada para enviar un mensaje de una línea al usuario. (Véase Sección
-    @l{La función @c{message}}) En resumen, la función @c{message} imprime su
+    @l{#La función @c{message}}) En resumen, la función @c{message} imprime su
     primer argumento en el área echo tal cual, exceptuando las apariciones de
     @'{%d}, o @'{%s} (y varias otras secuencias de control que no hemos
     mencionado).  Cuando aparece una secuencia de control, la función observa
@@ -2120,7 +2121,7 @@ and promoting software freedom.”
    < src..
 
    (El espacio después del punto y coma en el prompt hace que se vea
-   mejor. Véase Sección @l{La Definición de @c{copy-to-buffer}}, para un
+   mejor. Véase Sección @l{#La Definición de @c{copy-to-buffer}}, para un
    ejemplo.)
 
    Cuando una función no toma argumentos, @c{interactive} no requiere
@@ -2131,7 +2132,7 @@ and promoting software freedom.”
    para tu aplicación, puedes pasar tus propios propios argumentos a
    @c{interactive} como una lista.
 
-   Ver @l{La Definición de @c{append-to-buffer}}, para un ejemplo. Ver
+   Ver @l{#La Definición de @c{append-to-buffer}}, para un ejemplo. Ver
    Sección @l{info:emacs#Using Interactive<>Usando @c{interactive}} en @e(El
    Manual de GNU Emacs Lisp), para una explicación más completa acerca de
    esta técnica.
@@ -2150,13 +2151,13 @@ and promoting software freedom.”
    - Si tienes código solo para tu uso, puedes poner el código de la
      definición de función en el fichero de inicialización @f{.emacs}. Cuando
      se inicia Emacs, el fichero @f{.emacs} se evalúa automática y se
-     instalan todas sus definiciones de función. Vér Sección @l{Tu Fichero
+     instalan todas sus definiciones de función. Vér Sección @l{#Tu Fichero
      @f{.emacs}}.
 
    - Como Alternativa, puedes poner las definiciones de función en uno o más
      ficheros y usar la función @c{load} para hacer que Emacs evalue y con
      ello instale cada una de las funciones en los ficheros. Véase Sección
-     @l{Cargando ficheros}.
+     @l{#Cargando ficheros}.
 
 
    - En Tercer lugar, si tienes código que todo tu sitio va a utilizar, es
@@ -2203,7 +2204,7 @@ and promoting software freedom.”
    la expresión @c{let}. Esto es como entender que siempre que tu anfitrion
    se refiera a ‘la casa’, significa su casa, no la tuya. (Los símbolos
    usados en las listas de argumentos funcionan de la misma manera. Véase
-   Sección @l{La Forma Especial @c{defun}}.)
+   Sección @l{#La Forma Especial @c{defun}}.)
 
    Las variable locales creadas por una expresión @c{let} conservan su valor
    @e{solo} dentro de la expresión @c{let} misma (y dentro de expresiones
@@ -2531,7 +2532,7 @@ and promoting software freedom.”
    Tenga en cuenta que los diferentes niveles de indentación hacen fácil
    distinguir la parte-entonces de la parte-de-otro-modo. (GNU Emacs tiene
    varios comandos que indentan automáticamente expresiones @c{if} de forma
-   apropiada. Véase Sección @l{GNU Emacs te ayuda a escribir listas}.)
+   apropiada. Véase Sección @l{#GNU Emacs te ayuda a escribir listas}.)
 
    Podemos ampliar la función @c{tipo-de-animal} para incluir una parte-else
    simplemente incorporando una parte adicional para la expresión @c{if}.
@@ -2694,7 +2695,7 @@ and promoting software freedom.”
    pierde de vista el buffer actual, y lo restaura, también. Esto significa
    que puedes escribir código que cambie el buffer y @c{save-excursion} debe
    volver al buffer original. Asi es como se utiliza @c{save-excursion} en
-   @c{append-to-buffer}. (Véase Sección @l{La Definición de
+   @c{append-to-buffer}. (Véase Sección @l{#La Definición de
    @c{append-to-buffer}}.)
 
 *** Plantilla para una Expresión @c{save-excursion}
@@ -3043,7 +3044,7 @@ and promoting software freedom.”
      M-x compile RET etags *.el RET
    < example..
 
-   Para más información, ver @l{Crea tu propio fichero @f{TAGS}}.
+   Para más información, ver @l{#Crea tu propio fichero @f{TAGS}}.
 
    Después de te familiarices con Emacs Lisp, te encontrarás con frecuencia
    utilizando @c{find-tag} como metodo de navegar atraves del código fuente;
@@ -3074,7 +3075,7 @@ and promoting software freedom.”
    muestra como se utiliza con mayor frecuencia. Esta función reducida
    funciona como esta escrita, pero no contiene código para una opcion
    compleja. En otra sección, describiremos la función entera. (Véase Sección
-   @l(Definición completa de @c{beginning-of-buffer}).
+   @l(#Definición completa de @c{beginning-of-buffer}).
 
    Antes de mirar el código, vamos a considerar lo que la definición de
    función tiene que contener: debe incluir una expresión que haga la función
@@ -3132,7 +3133,7 @@ and promoting software freedom.”
    La siguiente línea es @c{(goto-char (point-min))}. Esta expresión hace
    saltar el cursor hasta el punto mínimo en el búffer, es decir, al inicio
    del búffer (o al inicio de la porción accesible del búffer si narrowed
-   esta activo. Véase Sección @l{Reducir y Extender}.)
+   esta activo. Véase Sección @l{#Reducir y Extender}.)
 
    El comando @c{push-mark} establece una marca en el sitio donde se
    encontraba el cursor antes de transladarse al inicio del búffer por la
@@ -3245,7 +3246,7 @@ and promoting software freedom.”
     establece una marca en el punto del búffer que tiene el número más
     alto. Este será el final del búffer (o, si el búffer tiene actio
     narrowing, el final de la porción accesible del búffer. Véase Sección
-    @l{Reducir y Extender}, para más informacon sobre
+    @l{#Reducir y Extender}, para más informacon sobre
     norrowing). Después de colocar esta marca, la marca anterior, la
     establecida en el punto, ya no esta configurada, pero Emacs recuerda su
     posición, al igual que recuerda todas las demas marcas recientes. Esto
@@ -3352,7 +3353,7 @@ and promoting software freedom.”
 
     Ya que la función @c{append-to-buffer} se puede utilizar de forma
     interactiva, la función debe tener una expresión @c{interactive}. (Para
-    una analisis de @c{interactive}, ve la seccion @l{Crear una función
+    una analisis de @c{interactive}, ve la seccion @l{#Crear una función
     interactiva}.)  La expresión se lee de la siguiente manera:
 
     ..src > elisp
@@ -3413,7 +3414,7 @@ and promoting software freedom.”
 
     El cuerpo de la función @c{append-to-buffer} inicia con @c{let}.
 
-    Como hemos visto antes (ver Seccion @lc{let}), el propósito de una
+    Como hemos visto antes (ver Seccion @l{#@(let)}), el propósito de una
     expresión @c{let} es crear y dar valores iniciales a una o más variable
     que solo serán utilizadas dentro del cuerpo del @c{let}. Esto significa
     que esa variable no se debe confundir con cualquier variable del mismo
@@ -3527,7 +3528,7 @@ and promoting software freedom.”
 
     Su caracteristica fundamental es que las siguientes variables en la
     varlist puedan hacer uso de los valores establecidos por Emacs
-    anteriomente en la varlist. Véase Sección @l{La expresión @c{let*}}.
+    anteriomente en la varlist. Véase Sección @l{#La expresión @c{let*}}.
 
     Vamos a omitir funciones como @c{let*} y nos centraremos en dos: la
     función @c{set-buffer} y la función @c{insert-buffer-substring}.
@@ -3752,7 +3753,7 @@ and promoting software freedom.”
    Aquí examinamos en el código original. El código fue simplificado en 2003 y
    es mas dificil de comprender.
 
-   (Véase Sección @l{Nuevo Cuerpo para @c{insert-buffer}}, para ver una
+   (Véase Sección @l{#Nuevo Cuerpo para @c{insert-buffer}}, para ver una
    discusión del nuevo cuerpo.)
 
    Además, este código ilustra el uso de @c{interactive} con un búffer que
@@ -3808,7 +3809,7 @@ and promoting software freedom.”
 
      El siguiente argumento de la expresión interactiva inicia con una letra
      @'{b} minúscula. (Esta es diferente del código para @c{append-to-buffer},
-     que utiliza una @'{B} mayúscula. Véase Sección @l{La Definición de
+     que utiliza una @'{B} mayúscula. Véase Sección @l{#La Definición de
      @c{append-to-buffer}}.) La @'{b} minúscula le indica al intérprete Lisp que
      el argumento de @c{insert-buffer} debe ser un buffer existente o su
      nombre. (La opcion @'{B} mayúscula prevee la posibilidad que no exista el
@@ -3890,7 +3891,7 @@ and promoting software freedom.”
     vimos anteriormente, tal uso de @'{p} es una convención que indica que la
     función es un predicado, que es un término que significa que la función
     determinará si alguna propiedad es verdadera o falsa. Véase Sección
-    @l(Usando el tipo incorrecto de objeto como un argumento).)
+    @l(#Usando el tipo incorrecto de objeto como un argumento).)
 
     La función @c{not} precede la expresión @c{(bufferp buffer)}, así la prueba
     verdadero-o-falso es la siguente:
@@ -4078,7 +4079,7 @@ and promoting software freedom.”
 ** Definición completa de @c{beginning-of-buffer}
 
    La estructura básica de la función @c{beginning-of-buffer} ya ha sido
-   discutida. (Véase Sección @l{Una definición simplificada de
+   discutida. (Véase Sección @l{#Una definición simplificada de
    @c{beginning-of-buffer}}). Esta sección describe la parte compleja de la
    definición.
 
@@ -4142,7 +4143,7 @@ and promoting software freedom.”
     calcula donde poner el cursor si hay un argumento que no es un cons cell.
 
     (Puesto que no explico un cons cell en muchos capítulos, por favor,
-    considera ignorar la función @c{consp}. Ve la seccion @l{Cómo se implementan
+    considera ignorar la función @c{consp}. Ve la seccion @l{#Cómo se implementan
     las listas}, y la Seccion @l{info:elisp#Cons Cell Type<>"Cons Cell y Tipos
     de Listas"} en @e(El Manual de Referencia GNU Emacs Lisp)).
 
@@ -4218,7 +4219,7 @@ and promoting software freedom.”
      En los viejos tiempos, se utilizo la función @c{buffer-size}. No solo se
      llamaba en repetidas ocaciones, se daba el tamaño completo del búffer, no
      la parte accesible. El calculo tiene mucho más sentido cuando se maneja
-     solo la parte accesible. (Véase Sección @l{Reducir y Extender}, para
+     solo la parte accesible. (Véase Sección @l{#Reducir y Extender}, para
      más información concentra la atención en una parte ‘accesible’.)
 
      La linea se ve asi:
@@ -4647,7 +4648,7 @@ and promoting software freedom.”
 
   En el paseo a través de la función @c{copy-region-as-kill}, veremos @c{cons},
   asi como dos variantes de @c{cdr}, llamadas @c{setcdr} y @c{nthcdr}. (Véase
-  Sección @l{copy-region-as-kill}.)
+  Sección @l{#copy-region-as-kill}.)
 
   El nombre de la función @c{cons} no es irazonable: es una abreviatura de la
   palabra ‘construir’. Por otro lado, el origen de los nombres @c{car} y
@@ -4761,7 +4762,7 @@ and promoting software freedom.”
    “ciertos tipos de átomos, como un arreglo, pueden separarse en partes; pero
    el mecanismo de hacer esto es diferente del mecanismo de separar una
    lista. En lo referente a Lisp, los átomos de una lista son indivisibles.”
-   (Véase Sección @l{Átomos Lisp}.) Las funciones @c{car} y @c{cdr} se utilizan
+   (Véase Sección @l{#Átomos Lisp}.) Las funciones @c{car} y @c{cdr} se utilizan
    para dividir listas y se consideran fundamentales en Lisp. Ya que no se puede
    dividir o tener acceso a las partes de un arreglo, un arreglo se considera un
    átomo. Por otro lado, la otra función fundamental, @c{cons}, se puede armar o
@@ -5077,7 +5078,7 @@ and promoting software freedom.”
    elemento.
 
    (Para ver cómo cambiar el último elemento de una lista, mira directamente en
-   la Seccion @l{La función @c{kill-new}}, que utiliza las funciones @c{nthcdr}
+   la Seccion @l{#La función @c{kill-new}}, que utiliza las funciones @c{nthcdr}
    y @c{setcdr}.)
 
    Para ver cómo funciona esto, asigna el valor de la variable a una lista de
@@ -5125,114 +5126,114 @@ and promoting software freedom.”
 
 * Corte y Almacenamiento de Texto
 
-  Siempre y cuando se corte o pegue texto de un búffer con un comando ‘kill’
-  en GNU Emacs, se almacenará dentro de una lista que se puede traer con un
-  comando ‘yank’.
+  Siempre cortas o guardar texto de un búffer con un comando ‘kill’ en GNU
+  Emacs, se almacena en una lista y lo puedes traer de vuelta con un comando
+  ‘yank’.
 
-  (El uso de la palabra ‘kill’ @e{matar, cortar} en Emacs para procesos que
-  específicamente @e{no} destruyen los valores de las entidades es un
-  accidente histórico desafortunado. Una palabra mucho más apropiada debería
-  ser ‘clip’ @e{cortar} puesto que es lo que los comandos de corte hacen;
-  ellos cortan texto fuera de un búffer y lo ponen dentro del almacenamiento
-  desde el que puede traerse. Con frecuencia ha sido tentada de reemplazar
-  globalmente todas las ocurrencia de ‘kill’ @e{matar, cortar} en las fuentes
-  de Emacs con ‘clip’ @e{cortar} y todas las ocurrencias de ‘killed’
-  @e{cortado, muerto} con ‘clipped’ @e{cortado}.)
+  (El uso de la palabra ‘kill’ (destruir) en Emacs para procesos que
+  específicamente @e{no} destruyen los valores de las entidades es un accidente
+  histórico desafortunado. Una palabra mucho más apropiada seria ‘clip’ (cortar)
+  ya que eso es lo que hacen los comandos @c(kill); cortan el texto fuera de un
+  búffer y lo ponen en almacenamiento, donde puede traerse de vuelta. Con
+  frecuencia me he visto tentado a sustituir globalmente todas las apariciones
+  de ‘kill’ en el codigo de Emacs con ‘clip’ y todas las apariciones de ‘killed’
+  (destruido) con ‘clipped’ (cortado).)
 
-  Cuando el texto se corta de un búffer, es almacenado en una lista. Piezas
-  sucesivas de texto se almacenan en la lista sucesivamente, así la lista
+  Cuando el texto se corta de un búffer, se almacena en una lista. Piezas
+  sucesivas de texto se almacenan en la lista sucesivamente, por lo que la lista
   podría verse así:
 
-  ..example >
-    ("una pieza de texto" "pieza previa")
-  < example..
+  ..src > elisp
+    ("una pieza de texto" "pieza anterior")
+  < src..
 
-  La función @c{cons} puede usarse para crear una nueva lista desde una pieza
-  de texto (un ‘átomo’, para usar la jerga) y una lista existente, como esta:
+  La función @c{cons} se puede utilizar para crear una nueva lista a partir de
+  una pieza de texto (un ‘átomo’, para usar la jerga) y una lista existente,
+  asi:
 
-  ..example >
+  ..src > elisp
     (cons "otra pieza"
-          '("una pieza de texto" "pieza previa"))
-  < example..
+          '("una pieza de texto" "pieza anterior"))
+  < src..
 
-  Si se evalúa esta expresión, una lista de tres elementos aparecerá en el
-  área echo:
+  Si evaluas esta expresión, aparecera una lista de tres elementos en el área
+  echo:
 
-  ..example >
-    ("otra pieza" "una pieza de texto" "pieza previa")
-  < example..
+  ..src > elisp
+    ("otra pieza" "una pieza de texto" "pieza anterior")
+  < src..
 
-  Con las funciones @c{car} y @c{nthcdr}, se puede recuperar siempre la pieza
-  de texto que se quiere. Por ejemplo, en el siguiente código, @c{nthcdr 1 …}
-  devuelve la lista con el primer ítem eliminado; y el @c{car} devuelve el
-  primer elemento de este resto––el segundo elemento de la lista original:
+  Puedes recuperar cualquier pieza de texto que desees, con las funciones
+  @c{car} y @c{nthcdr}. Por ejemplo, en el siguiente código, @c(nthcdr 1 …)
+  devuelve la lista con el primer elemento eliminado; y @c{car} devuelve el
+  primer elemento de ese resto––el segundo elemento de la lista original:
 
-  ..example >
+  ..src > elisp
     (car (nthcdr 1 '("otra pieza"
                      "una pieza de texto"
-                     "pieza previa")))
+                     "pieza anterior")))
          ⇒ "una pieza de texto"
-  < example..
+  < src..
 
-  Las funciones actuales en Emacs son más complejas que esto, de acuerdo. El
-  código para cortar y recuperar texto tiene que ser escrito de modo que
-  Emacs pueda ver qué elemento en la lista se quiere––el primer, segundo,
-  tercer o cualquier otro. Además, cuando tiene el fin de la lista, Emacs
-  daría el primer elemento de la lista, en lugar de nada.
+  Por supuesto, las funciones reales en Emacs son más complejas que esto. El
+  código para el corte y recuperarcion de texto tiene que ser escrito de modo
+  que Emacs pueda determinar qué elemento en la lista se quiere––el primero,
+  segundo, tercero o cualquier otro. Además, cuando se llega al final de la
+  lista, Emacs deberia darte el primer elemento de la lista, en lugar de nada en
+  absoluto.
 
-  La lista que maneja las piezas de texto se llama @:{kill ring} (anillo de
-  la muerte). Este capítulo lidera una descripción del anillo de la muerte y
-  como eso se usa por la primera traza de cómo la función @c{zap-to-char}
-  funciona. Esta función usa (o ‘llama’) a una función que invoca a otra
-  función que manipula el anillo de la muerte. De este modo, antes de lograr
-  las montañas, se escalan las colinas.
+  La lista que contiene las piezas de texto se llama @:(kill ring) (anillo de la
+  muerte). En este capítulo se hace una descripción del anillo de la muerte y
+  como se utiliza para un primer rastreo como funciona la función
+  @c{zap-to-char}. Esta función utiliza (o ‘llama’) a una función que invoca a
+  otra función que manipula el anillo de la muerte. Por la tanto, antes de
+  llegar a las montañas, debemos escalar las colinas.
 
-  Un capítulo subsiguiente describe cómo el texto que se corta desde el
-  búffer se recupera. Véase Sección @l{Pegando, , Pegando Texto}.
+  En un capítulo posterior se describe cómo se recupera el texto que se corta de
+  un buffer. Ver  Sección @l{#Pegando texto}.
 
 ** @c{zap-to-char}
 
-   La función @c{zap-to-char} cambió poco entre GNU Emacs versión 19 y GNU
+   La función @c{zap-to-char} apenas ha variado entre GNU Emacs versión 19 y GNU
    Emacs versión 22. Sin embargo, @c{zap-to-char} llama a otra función,
-   @c{kill-region}, que se reescribió más.
+   @c{kill-region}, que disfruto de una rescritura importante.
 
-   La función @c{kill-region} en Emacs 19 es compleja, pero no usa código que
-   es importante en este momento. Se obviará.
+   La función @c{kill-region} en Emacs 19 es compleja, pero no utiliza código
+   que sea importante en este momento. Lo saltaremos.
 
    La función @c{kill-region} en Emacs 22 es más de fácil leer que la misma
-   función en Emacs 19 e introduce un concepto muy importante, que el error
-   maneja. Nosotros pasearemos a través de la función.
+   función en Emacs 19 e introduce un concepto muy importante, el manejo de
+   errores. Caminaremos a través de la función.
 
-   Pero primero, déjanos ver en la función interactive @c{zap-to-char}.
+   Pero primero, veamos la función interactiva @c{zap-to-char}.
 
-   La función @c{zap-to-char} elimina el texto en la región entre la
-   localización del curso (por ej. punto) para incluir la siguiente
-   ocurrencia de un caracter específico. El texto que @c{zap-to-char} borra
-   es puesto en el kill ring @e{anillo de la muerte}; y puede ser recuperado
-   desde el kill ring @e{anillo de la muerte} escribiendo @k{C-y}
-   (@c{yank}). Si el comando dado es un argumento, eso borra texto a través
-   de este número de ocurrencias. De este modo, si el cursor estuviera al
-   principio de esta frase y el carácter fuera @'{s}, @'{De este modo} sería
-   borrado. Si el argumento fueran dos, @'{De este modo, si el cursor} se
-   borrase, y incluiría la @'{s} en el @'{cursor}.
+   La función @c{zap-to-char} elimina el texto en la región entre la ubicacion
+   del cursor (es decir. del punto) hasta e incluyendo la siguiente ocurrencia
+   de un caracter específicado. El texto que @c{zap-to-char} elimina se pone en
+   el anillo de la muerte; y puede ser recuperarse escribiendo @k{C-y}
+   (@c{yank}). Si el comando recive un argumento, elimina el texto a través de
+   este número de ocurrencias. Por lo tanto, si el cursor estuviera al inicio de
+   esta frase y el carácter fuera @'{s}, se eliminaria @'{Por la tanto, }. Si el
+   argumento fueran dos, se eliminaria @'{Por lo tanto, si el curs}, hasta e
+   incluiendo la @'{s} en @'{cursor}.
 
-   Si el carácter específico no encuentra @c{zap-to-char} dirá “Búsqueda
-   fallida”, eso cuenta el carácter que se escribió, y no eliminó cualquier
+   Si no se encuentra el carácter específicado @c{zap-to-char} dirá “Búsqueda
+   fallida”, te indicaria el caracter que escribiste, y no eliminaria ningun
    texto.
 
-   En orden para determinar cuánto texto eliminar @c{zap-to-char} usa una
-   función de búsqueda. Las búsquedas son usadas extensivamente en el código
-   que manipula texto, y focalizará la atención en ellos tan bien como el
-   comando de borrado.
+   Para determinar la cantidad de texto a eliminar @c{zap-to-char} utiliza una
+   función de búsqueda. Las búsquedas se utilizan ampliamente en el código que
+   manipula el texto, y vamos a centrar la atención en ellos, asi como en el
+   comando de eliminacion.
 
-   Aquí está el texto completo de la versión 22 de la función:
+   Aquí está el texto completo de la función en la versión 22:
 
-   ..example >
+   ..src > elisp
      (defun zap-to-char (arg char)
-       "Corta e incluye ARG'th ocurrencia de CHAR
-     En caso de ser ignorada si `case-fold-search' es no nulo en el
-       búffer actual.
-     Para ir atrás si ARG es negativo; error si CHAR no se encuentra."
+       "Corta e incluye la aparicion de la enesima (ARG) ocurrencia del caracter CHAR.
+     Se ignora entre mayusculas y minusculas si ‘case-fold-search’ es no-nil en
+     el buffer actual.
+     Retrocede si ARG es negativo; error si no se encuentra CHAR."
        (interactive "p\ncZap to char: ")
        (if (char-table-p translation-table-for-input)
            (setq char (or (aref translation-table-for-input char) char)))
@@ -5240,583 +5241,420 @@ and promoting software freedom.”
                               (search-forward (char-to-string char)
                                               nil nil arg)
                               (point))))
-   < example..
+   < src..
 
-   La documentación es en línea. Se necesita conocer el significado de la
-   jerga de la palabra ‘kill’.
+   La linea de documentacion esta traducida al español. En la version original
+   no se utiliza la palabra ‘Corta’ en su lugar se utiliza ‘kill’.
 
 *** La expresión @c{interactive}
 
-    La expresión interactiva en el comando @c{zap-to-char} se ve así:
+    La expresión interactiva en el comando @c{zap-to-char} es esta:
 
-    ..example >
+    ..src > elisp
       (interactive "p\ncZap to char: ")
-    < example..
+    < src..
 
-    La parte con comillas, @c{"p\ncZap to char:@: "} @e{Cortar a caracter},
-    especifica dos cosas diferentes. Primero, y más simple es el @'{p}. Este
-    parte se separa desde la siguiente parte por una nueva línea, @'{\n}. El
-    @'{p} significa que la parte del primero argumento a la función será
-    pasando el valor de un ‘prefijo procesado’. El argumento prefijo es
-    pasado escribiendo @k{C-u} y un número, o @k{M-} y un número. Si la
-    función es llamada interactivamente sin un prefijo, el número que se pasa
-    es 1.
+    La parte entre comillas, @c{"p\ncZap to char: "} (Cortar a caracter),
+    especifica dos cosas diferentes. Lo mas sencillo y que aparece primero es la
+    @'{p}. Esta parte se separa de la siguiente parte por una línea nueva,
+    @'{\n}. La @'{p} significa que el primer argumento de la función será
+    pasando el valor de un ‘prefijo procesado’. El argumento prefijo se pasa
+    Presionando @k{C-u} y un número, o @k{M-} y un número. Si la función se
+    llamada interactivamente sin un prefijo, se pasa 1 a este argumento.
 
-    La segunda parte de @c{"p\ncZap a caracter:@: "} es @'{cZap a
-    carácter:@:}. En esta parte, la tecla baja @'{c} indica que
-    @c{interactive} espera una consola que el argumento será un caracter. La
-    consola sigue el @'{c} y es la cadena @'{Zap a caracter:@: } (con un
-    espacio después del punto y coma para hacerlo bien).
+    La segunda parte de @c{"p\ncZap to char: "} es @'{cZap to char:}. En esta
+    parte, la @'{c} minuscula indica que @c{interactive} espera un prompt y que
+    el argumento será un caracter. El prompt va despues de @'{c} y es la cadena
+    @'{Zap to char: } (con un espacio después de los dos puntos para verse bien).
 
-    Todo lo que se hace es preparar los argumentos para @c{zap-to-char} así
-    están en el tipo correcto, y dan al usuario un prompt.
+    Todo lo que esto hace es preparar los argumentos de @c{zap-to-char} para que
+    sean del tipo correcto, y darle al usuario un prompt.
 
-    En un búffer de solo lectura, la función @c{zap-to-char} copia el texto
-    al anillo de la muerte, no se elimina. El área echo muestra un mensaje
-    diciendo que el búffer es de solo lectura. También, la terminal avisa con
-    un pitido.
+    En un búffer de solo lectura, la función @c{zap-to-char} copia el texto al
+    anillo de la muerte, pero no lo elimina. El área echo muestra un mensaje
+    diciendo que el búffer es de solo lectura. Ademas, el terminal puede emitir
+    un pitido o parpadeo.
 
 *** El cuerpo de @c{zap-to-char}
 
-    El cuerpo de la función @c{zap-to-char} contiene el código que mata (que
-    se borra/corta) el texto en la región desde la posición actual del cursor
-    e incluyendo el carácter especificado.
+    El cuerpo de la función @c{zap-to-char} contiene el código que mata (es
+    decir, elimina) el texto en la región desde la posición actual del cursor
+    hasta e incluyendo el carácter especificado.
 
-    La primera parte del código se ve como:
+    La primera parte del código se ve asi:
 
-    ..example >
+    ..src > elisp
       (if (char-table-p translation-table-for-input)
           (setq char (or (aref translation-table-for-input char) char)))
       (kill-region (point) (progn
                              (search-forward (char-to-string char) nil nil arg)
                              (point)))
-    < example..
+    < src..
 
-    @c{char-table-p} es una función prescrita no vista. Eso determina si sus
-    argumentos son una tabla de caracteres. Así, se asigna el carácter pasado
-    a @c{zap-to-char} a uno de ellos, si este carácter existe, o al carácter
-    en sí. (Esto llega a ser importante para ciertos caracteres en lenguajes
-    no Europeos. La función @c{aref} extrae un elemento desde un array. Eso
-    es una función específica de array que no está descrita en este
-    documento. Véase Sección @l{Array, , Arrays, elisp, El Manual de
-    Referencia de GNU Emacs Lisp}.)
+    @c{char-table-p} es una función que aun no hemos. Determina si su argumento
+    es una tabla de caracteres. Si lo es, establece el caracter pasado a
+    @c{zap-to-char} a uno de ellos, si ese carácter existe, o al carácter en
+    sí. (Esto es importante para ciertos caracteres en lenguajes no Europeos. La
+    función @c{aref} extrae un elemento desde un arreglo. Esta funcion es
+    específica para arreglos y no sera descrita en este documento. Véase Sección
+    @l{info:elisp#Array<>Arreglos} en @e(El Manual de Referencia de GNU Emacs
+    Lisp).)
 
-    Lo que devuelve @c{(point)} es la posición actual del cursor.
+    @c{(point)} es la posición actual del cursor.
 
-    La siguiente parte del código es una expresión usando @c{progn}. El
-    cuerpo del @c{progn} se basa en llamadas a @c{search-forward} y
-    @c{point}.
+    La siguiente parte del código es una expresión utilizando @c{progn}. El
+    cuerpo del @c{progn} consiste en llamadas a @c{search-forward} y @c{point}.
 
-    Es fácil comprender cómo @c{progn} funciona después de aprender acerca de
-    @c{search-forward}, así se verá en @c{search-forward} y entonces en
-    @c{progn}.
+    Es fácil comprender cómo funciona @c{progn} después de aprender sobre
+    @c{search-forward}, asi que veremos @c{search-forward} y luego @c{progn}.
 
 *** La función @c{search-forward}
 
-    La función @c{search-forward} se usa para localizar el
-    zapped-for-character en @c{zap-to-char}. Si la búsqueda es exitosa,
-    @c{search-forward} deja el punto inmediatamente después del último
-    carácter en la cadena objetivo. (En @c{zap-to-char}, la cadena objetivo
-    es solo un carácter largo. @c{zap-to-char} usa la función
-    @c{char-to-string} para asegurar que el ordenador trata este carácter
-    como una cadena). Si la búsqueda es hacia atrás, @c{search-forward} deja
-    el punto solo antes del primer carácter en el objetivo. También,
-    @c{search-forward} devuelve @c{t} para verdad. (Moviendo el punto allí es
-    un ‘efecto secundario’.)
+    La función @c{search-forward} se utiliza para localizar el caracter a borrar
+    en @c{zap-to-char}. Si la búsqueda es exitosa, @c{search-forward} deja el
+    punto inmediatamente después del último carácter en la cadena objetivo. (En
+    @c{zap-to-char}, la cadena objetivo es solo un carácter largo.
+    @c{zap-to-char} usa la función @c{char-to-string} para asegurar que el
+    computador trata este carácter como una cadena). Si la búsqueda es hacia
+    atrás, @c{search-forward} deja el punto justo antes del primer carácter en
+    el objetivo. Ademas, @c{search-forward} devuelve @c{t} para verdadero. (Por
+    lo tanto, desplazar el punto es un ‘efecto secundario’.)
 
     En @c{zap-to-char}, la función @c{search-forward} se ve así:
 
-    ..example >
+    ..src > elisp
       (search-forward (char-to-string char) nil nil arg)
-    < example..
+    < src..
 
     La función @c{search-forward} toma cuatro argumentos:
 
-    1. El primer argumento es el objetivo, para el que es buscado. Esto debe
-       ser una cadena, tal como @'{"z"}.
+    1. El primer argumento es el objetivo, que esta buscando. Debe ser una
+       cadena, como @"{z}.
 
-       Cuando eso ocurre, el argumento pasado a @c{zap-to-char} es un
-       caracter simple. Debido a la forma en la que los ordenadores son
-       construidos, el intérprete Lisp puede tratar un caracter simple siendo
-       diferente desde una cadena de caracteres. Dentro del ordenador, un
-       caracter simple tiene un formato electrónico en vez de una cadena de
-       un caracter. (Un caracter simple puede con frecuencia ser grabado en
-       el ordenador usando exactamente un byte; pero una cadena puede ser
-       larga, y el ordenador necesita estar listo para esto.) Desde que la
-       función @c{search-forward} busca una cadena, el caracter que la
-       función @c{zap-to-char} recibe como argumento debe ser convertida
-       dentro del ordenador de un formato a otro; de otro modo, la función
-       @c{search-forward} fallará. La función @c{char-to-string} es usada
-       para hacer esta conversión.
+       Cuando esto sucede, el argumento pasado a @c{zap-to-char} es un solo
+       caracter. Debido a la forma en la que se construyen los computadores, el
+       intérprete Lisp puede tratar un solo caracter de forma distinta a una
+       cadena de caracteres. Dentro del computador, un solo caracter tiene un
+       formato electrónico diferente a una cadena de un caracter. (Un solo
+       caracter con frecuencia puede grabarse en el computador utilizardo
+       exactamente un byte; pero una cadena puede ser mas larga, y el equipo
+       debe estar listo para ello.) Ya que la función @c{search-forward} busca
+       una cadena, el caracter que recive la función @c{zap-to-char} como
+       argumento debe convertirse dentro del computador de un formato a otro; de
+       lo contrario, la función @c{search-forward} fallará. Se utiliza la
+       función @c{char-to-string} para realizar esta conversión.
 
-    2. El segundo argumento asocia la búsqueda; eso se especifica como una
-       posición en el búffer. En este caso, la búsqueda puede ir al final del
-       búffer, así no se asigna y el segundo argumento es @c{nil}.
+    2. El segundo argumento limita la búsqueda; se especifica como una posición
+       en el búffer. En este caso, la búsqueda puede ir al final del búffer, por
+       lo que no se establece ningun limite y el segundo argumento es @c{nil}.
 
-    3. El tercer argumento cuenta la función que haría si la búsqueda
-       cae––eso puede señalar un error (e imprimir un mensaje) o puede
-       devolver @c{nil}. Un @c{nil} como tercer argumento hace que la función
-       señale un error cuando la búsqueda falla.
+    3. El tercer argumento le dice a la función lo que debe hacer si la búsqueda
+       falla––puede señalar un error (e imprimir un mensaje) o puede devolver
+       @c{nil}. Un @c{nil} como el tercer argumento hace que la función de señal
+       de un error cuando la búsqueda falla.
 
-
-    4. El cuarto argumento @c{search-forward} es el contaje repetido ---
-       cuántas ocurrencias de la cadena para buscar. Este argumento es
-       opcional y si la función es llamada sin un contaje repetido, este
-       argumento pasa el valor 1. Si este argumento es negativo, la búsqueda
-       va hacia atrás.
+    4. El cuarto argumento de @c{search-forward} es el numero de
+       repeticion––cuántas ocurrencias de la cadena buscar. Este argumento es
+       opcional y si la función se llamada sin contador de repeticion, este
+       argumento pasa el valor 1. Si este argumento es negativo, la búsqueda va
+       hacia atrás.
 
 
-    En la forma de plantilla, una expresión @c{search-forward} se ve así:
+    En forma de plantilla, una expresión @c{search-forward} tiene este aspecto:
 
-    ..example >
-      (search-forward "@V{cadena-a-buscar}"
-                      @V{limite-de-busqueda}
-                      @V{que-hacer-si-la-busqueda-falla}
-                      @V{repetir-contaje})
-    < example..
+    ..src > elisp
+      (search-forward "cadena-a-buscar"
+                      limite-de-busqueda
+                      que-hacer-si-la-busqueda-falla
+                      contador-de-repeticion)
+    < src..
 
-    Lo siguiente es echar un vistazo a @c{progn}.
+    A continuacion veremos @c{progn}.
 
 *** La forma especial @c{progn}
 
-    @c{progn} es una forma especial que causa que cada uno de sus argumentos
-    puedan ser evaluados en secuencia y entonces devuelve el valor del
-    último. Las expresiones precedentes son evaluadas solo por los efectos
-    laterales que ellos desarrollan. Los valores producidos por ellos son
-    descartados.
+    @c{progn} es una forma especial que hace que cada uno de sus argumentos se
+    evalue en secuencia y luego devuelve el valor del último. Las expresiones
+    anteriores solo se evaluan por los efectos secundarios que realizan. Los
+    valores que producen son descartados.
 
-    La plantilla para una expresión @c{progn} es muy simple:
+    La plantilla de una expresión @c{progn} es muy simple:
 
-    ..example >
+    ..src > elisp
       (progn
-        @V{body}…)
-    < example..
+        cuerpo…)
+    < src..
 
-    En @c{zap-to-char}, la expresión @c{progn} tiene que hacer dos cosas:
-    poner el punto en la posición exacta; y devolver la posición del punto de
-    modo que @c{kill-region} conoce cómo de lejos se copia.
+    En @c{zap-to-char}, la expresión @c{progn} tiene que hacer dos cosas: poner
+    el punto exactamente en la posición correcta; y devolver la posición del
+    punto para que @c{kill-region} sepa handa donde cortar.
 
     El primer argumento de @c{progn} es @c{search-forward}. Cuando
     @c{search-forward} encuentra la cadena, la función deja el punto
-    inmediatamente después del último caracter en la cadena objetivo. (En
-    este caso la cadena objetivo es solo un carácter largo.) Si la búsqueda
-    es hacia atrás, @c{search-forward} deja el punto justo antes del primer
-    carácter en el objetivo. El movimiento del punto es un efecto secundario.
+    inmediatamente después del último caracter en la cadena objetivo. (En este
+    caso la cadena objetivo es solo un carácter de longitud.) Si la búsqueda es
+    hacia atrás, @c{search-forward} deja el punto justo antes del primer
+    carácter objetivo. El movimiento del punto es un efecto secundario.
 
-    El segundo y último argumento de @c{progn} es la expresión
-    @c{(point)}. Esta expresión devuelve el valor del punto, que en este caso
-    será la localización para la que se ha movido por @c{search-forward}. (En
-    la fuente, una línea que cuenta la función para ir al carácter previo, si
-    se está yendo hacia delante, se comentó en 1999; yo no recuerdo si esta
-    funcionalidad o no funcionalidad era siempre parte de las fuentes
-    distribuidas.) El valor de @c{point} se devuelve por la expresión
-    @c{progn} y se pasa a @c{kill-region} como el segundo argumento de
-    @c{kill-region} .
+    El segundo y último argumento de @c{progn} es la expresión @c{(point)}. Esta
+    expresión devuelve el valor del punto, que en este caso será la ubicacion a
+    la que se ha movido por @c{search-forward}. (En el codigo, una línea le
+    indica a la función que debe ir un carácter atras, si va hacia adelante, se
+    comentó en 1999; yo no recuerdo si esta caracteriscita o caracteriscita
+    erronea alguna vez fue parte del codigo distribuido.) El valor de @c{point}
+    es devuelto por la expresión @c{progn} y se pasa a @c{kill-region} como el
+    segundo argumento de @c{kill-region} .
 
 *** Resumiendo @c{zap-to-char}
 
-    Ahora que se ha visto cómo @c{search-forward} y @c{progn} trabajan, se
-    puede ver cómo la función @c{zap-to-char} funciona como un todo.
+    Ahora que hemos visto cómo funcionan @c{search-forward} y @c{progn}, podemos
+    ver cómo la función @c{zap-to-como} trabaja como un todo.
 
-    El primer argumento de @c{kill-region} es la posición del cursor cuando
-    el comando @c{zap-to-char} da––el valor del punto en este momento. Con el
-    @c{progn}, la búsqueda de la función mueve el punto a solo después del
-    zapped-to-character y @c{point} devuelve el valor de localización. La
-    función @c{kill-region} pone junto a estos dos valores de punto, el
-    primero como el principio de la región y el segundo como el fin de la
-    región, y borra la región.
+    El primer argumento de @c{kill-region} es la posición del cursor cuando se
+    da el comando @c{zap-to-char}––el valor de punto en ese momento. Dentro de
+    @c{progn}, la funcion de búsqueda mueve el punto justo después de que ell
+    caracter a borrar y @c{point} devuelvan el valor esa ubicacion. La función
+    @c{kill-region} reune estos dos valores de punto, el primero como el inicio
+    de la región y el segundo como el final de la región, y elimina la región.
 
-    La forma especial @c{progn} se necesita porque el comando @c{kill-region}
-    toma dos argumentos; y fallaría si @c{search-forward} y expresiones
-    @c{point} fueran escritas en secuencia como dos argumentos
-    adicionales. La expresión @c{progn} es un argumento simple para
-    @c{kill-region} y devuelve un valor para que @c{kill-region} se necesite
-    por su segundo argumento.
+    La forma especial @c{progn} es necesario porque el comando @c{kill-region}
+    toma dos argumentos; y fallaría si las expresiones @c{search-forward} y
+    @c{point} se escribieran en secuencia como dos argumentos adicionales. La
+    expresión @c{progn} es solo un argumento para @c{kill-region} y devuelve el
+    valor que @c{kill-region} necesita para su segundo argumento.
 
 ** @c{kill-region}
 
-   La función @c{zap-to-char} usa la función @c{kill-region}. Esta función
-   corta texto desde una región y copia este texto al kill ring @e{anillo de
-   la muerte}, desde el que puede ser recuperado.
+   La función @c{zap-to-char} utiliza la función @c{kill-region}. Esta función
+   corta texto de una región y copia ese texto al anillo de la muerte, desde el
+   cual puede ser recuperado.
 
-   ..ignore >
-     GNU Emacs 22:
-
-     (defun kill-region (beg end &optional yank-handler)
-       "Kill (\"cut\") text between point and mark.
-     This deletes the text from the buffer and saves it in the kill ring.
-     The command \\[yank] can retrieve it from there.
-     \(If you want to kill and then yank immediately, use \\[kill-ring-save].)
-
-     If you want to append the killed region to the last killed text,
-     use \\[append-next-kill] before \\[kill-region].
-
-     If the buffer is read-only, Emacs will beep and refrain from deleting
-     the text, but put the text in the kill ring anyway.  This means that
-     you can use the killing commands to copy text from a read-only buffer.
-
-     This is the primitive for programs to kill text (as opposed to deleting it).
-     Supply two arguments, character positions indicating the stretch of text
-      to be killed.
-     Any command that calls this function is a \"kill command\".
-     If the previous command was also a kill command,
-     the text killed this time appends to the text killed last time
-     to make one entry in the kill ring.
-
-     In Lisp code, optional third arg YANK-HANDLER, if non-nil,
-     specifies the yank-handler text property to be set on the killed
-     text.  See ‘insert-for-yank’."
-       ;; Pass point first, then mark, because the order matters
-       ;; when calling kill-append.
-       (interactive (list (point) (mark)))
-       (unless (and beg end)
-         (error "The mark is not set now, so there is no region"))
-       (condition-case nil
-           (let ((string (filter-buffer-substring beg end t)))
-             (when string                        ;STRING is nil if BEG = END
-               ;; Add that string to the kill ring, one way or another.
-               (if (eq last-command 'kill-region)
-                   (kill-append string (< end beg) yank-handler)
-                 (kill-new string nil yank-handler)))
-             (when (or string (eq last-command 'kill-region))
-               (setq this-command 'kill-region))
-             nil)
-         ((buffer-read-only text-read-only)
-          ;; The code above failed because the buffer, or some of the characters
-          ;; in the region, are read-only.
-          ;; We should beep, in case the user just isn't aware of this.
-          ;; However, there's no harm in putting
-          ;; the region's text in the kill ring, anyway.
-          (copy-region-as-kill beg end)
-          ;; Set this-command now, so it will be set even if we get an error.
-          (setq this-command 'kill-region)
-          ;; This should barf, if appropriate, and give us the correct error.
-          (if kill-read-only-ok
-              (progn (message "Read only text copied to kill ring") nil)
-            ;; Signal an error if the buffer is read-only.
-            (barf-if-buffer-read-only)
-            ;; If the buffer isn't read-only, the text is.
-            (signal 'text-read-only (list (current-buffer)))))))
-   < ignore..
-
-   Tanto la versión de Emacs 22 de esta función usa @c{condition-case} y
-   @c{copy-region-as-kill}, ambas se explicarán. @c{condition-case} es una
+   La versión en Emacs 22 de esta funcion utiliza @c{condition-case} y
+   @c{copy-region-as-kill}, ambas seran explicadas. @c{condition-case} es una
    forma especial importante.
 
-   En esencia, la función @c{kill-region} llama a @c{condition-case}, que
-   toma tres argumentos. En esta función, el primer argumento no hace
-   nada. El segundo argumento contiene el código hace el trabajo cuando todo
-   va bien. El tercer argumento contiene el código que se llama en el evento
-   de un error.
+   En esencia, la función @c{kill-region} llama a @c{condition-case}, que toma
+   tres argumentos. En esta función, el primer argumento no hace nada. El
+   segundo argumento contiene el código hace el trabajo cuando todo va bien. El
+   tercer argumento contiene el código que se llama en caso de un error.
 
-   Ahora se puede volver a través del código @c{condition-case} en un
-   momento. Primero, se echa un vistazo a la definición de @c{kill-region},
-   con comentarios añadidos:
+   Veremos el código de @c{condition-case} en un momento. Primero, veamos la
+   definición de @c{kill-region}, con comentarios añadidos:
 
-   ..example >
+   ..src > elisp
      (defun kill-region (beg end)
-       "Kill (\"corta\") texto entre punto y marca.
-     Esto borra el texto desde el búffer y lo guarda en anillo de la
-       muerte @e{kill ring}.
-     El comando \\[yank] puede recuperarse desde allí. …
-      "
+       "Kill (\"corta\") el texto entre el punto y marca.
+     Esto elimina el texto del buffer y lo guarda en el anillo de la muerte.
+     El comando \\[yank] puede recuperarlo desde alli. … "
 
-       ;; • Desde materias de orden, pasa el punto primero.
+       ;; • Pueto que el orden importa, primero pasa el punto.
        (interactive (list (point) (mark)))
-       ;; • Y cuéntanos si no podemos cortar el texto.
-       ;; `a menos que' sea un `if' sin una then-part.
+       ;; • Y dinos si no podemos cortar el texto.
+       ;; ‘A menos que’ sea un ‘if’ sin parte then.
        (unless (and beg end)
-         (error "La marca no está asignada ahora, así que
-       no hay región"))
+         (error "La marca no esta definida, por lo que no hay ninguna region"))
 
-       ;; • `condition-case' toma tres argumentos
-       ;;    Si el primer argumento es nulo, como aquí
-       ;;    la información acerca del error no está
-       ;;    almacenada para ser usada por otra función
+       ;; • ‘condition-case’ toma tres argumentos.
+       ;;    Si el primer argumento es nil, como aqui,
+       ;;    la informacion del error no se almacena
+       ;;    para su uso por otra funcion.
        (condition-case nil
 
-           ;; • El segundo argumento a `condition-case' cuenta lo que el
-           ;;    intérprete que hace cuando todo va bien.
+           ;; • El segundo argumento de ‘condition-case’ le dice al
+           ;;    interprete Lisp que hacer cuando todo va bien.
 
-           ;;    Empieza con una función ‘let’ que extrae la cadena
-           ;;    y chequea si existe. Si es así (esto es lo
-           ;;    que ‘when’ chequea), eso llama a una función ‘if’ que
-           ;;    determina si el comando previo que era otra llamada
-           ;;    si el comando previo fué otra llamada a ‘kill-region’;
-           ;;    si lo era, entonces el siguiente texto se añade
-           ;;    cuando se chequea), eso llama a una función ‘if’ que
-           ;;    determina si el comando previo era otra llamada a
-           ;;    ‘kill-region’; si era eso, entonces el nuevo texto es
-           ;;    añadido al texto previo; si no, entonces una función
-           ;;    diferente, ‘kill-new’ se llama.
+           ;;    Empieza con una funcion ‘let’ que extrae la cadena y
+           ;;    comprueba si existe.  Si es asi (esta es lo que comprueba
+           ;;    ‘when’), esta llama a una funcion ‘if’ que determina
+           ;;    si el comando anterior fue otra llamada a ‘kill-region’;
+           ;;    si lo fue, el nuevo texto se añade al texto anterior; se
+           ;;    no, se llama a una funcion diferente, ‘kill-new’.
 
-           ;;    La función ‘kill-append’ concatena la nueva cadena y
-           ;;    la vieja.  La función ‘kill-new’ inserta texto dentro de
-           ;;    ítem en el kill ring @e{anillo de la muerte}.
+           ;;    La funcion ‘kill-append’ concatena la nueva y vieja cadena.
+           ;;    La funcion ‘kill-new’ inserta el texto dentro de un nuevo
+           ;;    elemento en el anillo de la muerte.
 
            ;;    ‘when’ es un ‘if’ sin una parte else.  El segundo ‘when’
-           ;;    de nuevo chequea si la cadena actual existe;
-           ;;    por añadidura, eso chequea si el comando previo fuese
-           ;;    otra llamada a ‘kill-region’. Si una u otra condición
-           ;;    es verdadero, entonces eso configura el actual comando a
-           ;;    ser ‘kill-region’.
+           ;;    comprueba de nuevo si la cadena actual existe; Ademas,
+           ;;    comprueba si el comando anterior fue otra llamada a
+           ;;    ‘kill-region’.  Si uno u otra condicion es verdadera,
+           ;;    entonces establece que el comando actual sea ‘kill-region’.
            (let ((string (filter-buffer-substring beg end t)))
-             (when string                    ;STRING is nil if BEG = END
-               ;; Add that string to the kill ring, one way or another.
+             (when string                    ;STRING es nil si BEG = END
+               ;; agrega esa cadena al anillo de la muerte, de uno forma u otra.
                (if (eq last-command 'kill-region)
-                   ;;    @minus{} ‘yank-handler’ es un argumento opcional para
-                   ;;    ‘kill-region’ que cuenta el ‘kill-append’ y funciones
-                   ;;    ‘kill-new’ como tratan con propiedades añadidas
-                   ;;    al texto, tal como ‘negrilla’ o ‘itálica’
+                   ;;    − ‘yank-handler’ es un argumento opcional de
+                   ;;    ‘kill-region’ que indica a las funciones ‘kill-append’
+                   ;;    y ‘kill-new’ como tratar las propiedades añadidas al
+                   ;;    texto, como ‘negrita’ o ‘cursiva’.
                    (kill-append string (< end beg) yank-handler)
                  (kill-new string nil yank-handler)))
              (when (or string (eq last-command 'kill-region))
                (setq this-command 'kill-region))
              nil)
 
-         ;;  • El tercer argumento a ‘condition-case’ cuenta el intérprete
-         ;;  qué hacer con un error.
-         ;;    El tercer argumento tiene una parte de condiciones y una
-         ;;    parte del cuerpo.
-         ;;    Si las condiciones se encuentra (en este caso,
-         ;;             si el texto o búffer son de solo lectura)
-         ;;    entonces el cuerpo es ejecutado.
-         ;;    La primera parte del tercer es el siguiente:
-         ((buffer-read-only text-read-only) ;; parte if
-          ;; …  parte then-part
+         ;;  • El tercer argumento de ‘condition-case’ le dice al interprete
+         ;;    que hacer con un error.
+         ;;    El tercer argumento tiene una parte de condiciones y una parte cuerpo.
+         ;;    Si se cumplen las condiciones (en este caso,
+         ;;             si el texto o el buffer son de solo lectura)
+         ;;    entonces se ejecuta el cuerpo.
+         ;;    La primer parte del tercer argumento es la siguiente:
+         ((buffer-read-only text-read-only) ;; la parte if
+          ;; …  la parte then
           (copy-region-as-kill beg end)
-          ;;    Lo siguiente, también como parte de la then-part, asigna this-command, así
-          ;;    será asignado en un error
+          ;;    A continuacion, tambien como parte de la parte then, establece
+          ;;    this-command, por lo que se establece en un error
           (setq this-command 'kill-region)
-          ;;    Finalmente, en la then-part, envía un mensaje
-          ;;    si se puede copiar el texto al anillo de la muerte
-          ;;    @e{kill ring} sin señalar un error, pero no si no se puede.
-
+          ;;    Finalmente, en la pante then, envia un mensaje si puede copiar
+          ;;    el texto en el anillo de la muerte sin señalar un error, pero
+          ;;    no la hace si no puede.
           (if kill-read-only-ok
-              (progn (message "Lee solo texto copiado para el kill ring") nil)
+              (progn (message "Read only text copied to kill ring") nil)
             (barf-if-buffer-read-only)
-            ;; If the buffer isn't read-only, the text is.
+            ;; Si el buffer no es de solo lectura, el texto es.
             (signal 'text-read-only (list (current-buffer)))))
-   < example..
-
-   ..ignore >
-     @c v 21
-     ..example >
-       (defun kill-region (beg end)
-         "Corta entre punto y marca.
-       El texto es borrado, pero guardado en el kill ring."
-         (interactive "r")
-
-         ;; 1. ‘condition-case’ tiene tres argumentos.
-         ;;    Si el primer argumento es nil, como está aquí
-         ;;    la información acerca de la señal de error no es
-         ;;    almacenada para usarse por otra función.
-         (condition-case nil
-
-             ;; 2. El segundo argumento a ‘condition-case’
-             ;;    cuenta al intéprete Lisp que hacer cuando todo va bien.
-
-             ;;    La función ‘delete-and-extract-region’ normalmente hace
-             ;;    el trabajo. Si el principio y final de la región son lo
-             ;;    mismo, entonces la varible ‘string’ estará
-             ;;    vacía, o nula
-             (let ((string (delete-and-extract-region beg end)))
-
-               ;; ‘cuando’ es una cláusula ‘if’ que no puede tomar ‘else-part’.
-               ;; Emacs normalmente asigna el valor del ‘last-command’ al
-               ;; comando previo.
-               ;; ‘kill-append’ concatena la nueva cadena y la vieja.
-               ;; ‘kill-new’ inserta texto dentro de un nuevo
-               ;; ítem dentro de un nuevo í en
-               ;; kill ring.
-               (when string
-                 (if (eq last-command 'kill-region)
-                     ;; si verdadero, concatena la cadena
-                     (kill-append string (< end beg))
-                   (kill-new string)))
-               (setq this-command 'kill-region))
-
-           ;; 3. El tercer argumento para ‘condition-case’ cuenta el intérprete
-           ;;    que hacer con un error.
-           ;;    El tercer argumento tiene una parte de condiciones y una
-           ;;    parte del cuerpo.
-           ;;    Si las condiciones se encuentra (en este caso,
-           ;;             si el texto o búffer son de solo lectura)
-           ;;    entonces el cuerpo es ejecutado.
-           ((buffer-read-only text-read-only) ;; esta el la parte if
-            ;; entonces...
-            (copy-region-as-kill beg end)
-            (if kill-read-only-ok            ;; normalmente esta variable es nula
-                (message "Lee el texto copiado al kill ring")
-              ;; o sino, señala un error si el búffer es de solo lectura;
-              (barf-if-buffer-read-only)
-              ;; y, en cualquier caso, señala el texto de solo lectura.
-              (signal 'text-read-only (list (current-buffer)))))))
-     < example..
-   < ignore..
+   < src..
 
 *** @c{condition-case}
 
-    Como se ha visto antes (@pxref{Creando errores, , Genera un Mensaje de
-    Error}), cuando el intérprete Emacs Lisp tiene problemas evaluando una
-    expresión, se provee de una ayuda; en jerga, se dice “signaling an error”
-    @e{señalando un error}. Normalmente, el ordenador para el programa y te
-    muestra un mensaje.
+    Como se ha visto antes (Ver Seccion @l{#Generar un Mensaje de Error}), cuando
+    el intérprete de Emacs Lisp tiene problemas evaluando una expresión, te
+    proporciona ayuda; en la jerga, esto se llama “Señalar un error”.
+    Normalmente, el computador detiene el programa y te muestra un mensaje.
 
-    Sin embargo, algunos programas garantizan acciones complicadas. Eso no
-    pararía en un error. En la función @c{kill-region}, la mayoría parece un
-    error que intentará cortar texto que es de solo lectura y no puede ser
-    eliminado. Así la función @c{kill-region} contiene código para manejar
-    esta circunstancia. Este código, hace que el cuerpo de la función
+    Sin embargo, algunos programas emprenden acciones complicadas. No deben
+    simplemente detenerse en un error. En la función @c{kill-region}, el error
+    mas probable es que intente cortar texto que es de solo lectura y no puede
+    ser eliminado. Así que la función @c{kill-region} contiene código para
+    manejar esta circunstancia. Este código, que forma el cuerpo de la función
     @c{kill-region}, esté dentro de una forma especial @c{condition-case}.
 
-    La plantilla para @c{condition-case} se parece a esto:
+    La plantilla para @c{condition-case} tiene este aspecto:
 
-    ..example >
+    ..src > elisp
       (condition-case
-        @V{var}
-        @V{bodyform}
-        @V{error-handler}…)
-    < example..
+        var
+        cuerpo
+        manejador-de-errores…)
+    < src..
 
-    El segundo argumento, @V{bodyform} es sencillo. La forma especial
-    @c{condition-case} causa que el intérprete Lisp evalúe el código en
-    @V{bodyform}. Si ningún error ocurre, la forma especial devuelve el
-    valor del código y produce efectos laterales, si hay.
+    El segundo argumento, @c{cuerpo} es sencillo. La forma especial
+    @c{condition-case} hace que el intérprete Lisp evalúe el código en
+    @c{cuerpo}. Si no ocurre ningún error, la forma especial devuelve el valor
+    del código y produce efectos laterales, si los hubiera.
 
-    En resumen, la parte @V{bodyform} de una expresión @c{condition-case}
-    determina qué ocurre cuando cualquier cosa funciona correctamente.
+    En resumen, la parte @c{cuerpo} de una expresión @c{condition-case}
+    determina qué deberia suceder cuando todo funciona correctamente.
 
-    Sin embargo, si un error ocurre, entre sus otras acciones, la función
-    genera la señal de error que definirá uno o más errores de nombres de
+    Sin embargo, si se produce un error, entre sus otras acciones, la función
+    genera la señal de error que define uno o más nombres de condicion de error.
+
+    Un manejador de errores es el tercer argumento de @c{condition-case}. Un
+    manejador de errores tiene dos partes, un @c{nombre-de-condicion} y un
+    @c{cuerpo}. Si la parte @c{nombre-de-condicion} de un manejador de erroros
+    coincide con un nombre de condicion generado por un error, se ejecuta la
+    parte del @c{cuerpo} del manejador de errores.
+
+    Como es de esperar, la parte @c{nombre-de-condicion} de un manejador de
+    errores puede ser un unico nombre de condicion o una lista de nombres de
     condición.
 
-    Un manejador de errores es el tercer argumento para
-    @c{condition-case}. Un manejador de errores tiene dos partes, un
-    @V{condition-name} y un @V{body}. Si la parte @V{condition-name}
-    tiene un manejador de errores encuentra un nombre de condición generado
-    por un error, entonces la parte del @V{body} del manejador de errores
-    se ejecuta.
+    Ademas, una expresión @c{condition-case} completa puede contener más de un
+    manejador de errores. Cuando se produce un error, se ejecuta el primer
+    manejador aplicable.
 
-    Como se esperaría, la parte @V{condition-name} de un manejador de
-    errores puede ser así, un nombre de condición simple o una lista de
-    nombres de condición.
+    Por ultimo, el primer argumento a la expresión @c{condition-case}, es el
+    argumento @c{var}, en ocaciones esta unido a una variable que contiene
+    información sobre el error. Sin embargo, si este argumento es @c(nil), como
+    es el caso en @c{kill-region}, esa información se descarta.
 
-    También, una expresión completa @c{condition-case} puede contener más de
-    un manejador de errores. Cuando un error ocurre, el primer manejador
-    aplicable se ejecuta.
-
-    Finalmente, el primer argumento a la expresión @c{condition-case}, es el
-    argumento @V{var}, que es algunas veces asignado a una variable que
-    contiene información acerca del error. Sin embargo, si este argumento es
-    nulo, como es el caso en @c{kill-region}, esta información se descarta.
-
-    En breve, en la función @c{kill-region}, el código @c{condition-case}
+    En resumen, en la función @c{kill-region}, el código @c{condition-case}
     funciona así:
 
     ..example >
-      @V{Si no hay errores}, @V{ejecuta solo este código}
-          @V{pero}, @V{si hay errores}, @V{ejecuta este otro código}.
+      Si no hay errores, ejecuta solo este codigo
+          pero, si hay errores, ejecuta este otro codigo.
     < example..
-
-    ..ignore >
-      2006 Oct 24
-      In Emacs 22,
-      copy-region-as-kill is short, 12 lines, and uses
-      filter-buffer-substring, which is longer, 39 lines
-      and has delete-and-extract-region in it.
-      delete-and-extract-region is written in C.
-
-      see Initializing a Variable with @c{defvar}
-      this is line 8054
-      Initializing a Variable with @c{defvar} includes line 8350
-    < ignore..
 
 *** Macro Lisp
 
-    La parte de la expresión @c{condition-case} que se evalúa en la
-    expectativa de que todo va bien si tiene un @c{when}. El código usa
-    @c{when} para determinar si la variable @c{string} (@e{cadena}) apunta al
-    texto que existe.
+    La parte de la expresión @c{condition-case} que se evalúa en la expectativa
+    de que todo va bien si tiene un @c{when}. El código utiliza @c{when} para
+    determinar si la variable @c{string} apunta a texto que existe.
 
-    Una expresión @c{when} es simplemente una conveniencia de
-    programadores. Eso es un @c{if} sin la posibilidad de una cláusula
-    else. En tu mente, se puede reemplazar @c{when} con @c{if} y comprender
-    de que va. Esto es lo que el intérprete Lisp hace.
+    Una expresión @c{when} simplemente es una conveniencia de los
+    programadores. Es un @c{if} sin la posibilidad de una cláusula else. En tu
+    mente, puedes reemplazar @c{when} con @c{if} y entender lo que pasa. Eso es
+    lo que hace el intérprete Lisp.
 
-    Técnicamente hablando, @c{when} es una macro Lisp. Una @:{macro} Lisp
-    permite definir una nueva construcción de control y otras funcionalidades
-    del lenguaje. Eso cuenta al intérprete cómo computar otra expresión Lisp
-    que dejará de computar el valor. En este caso, la ‘otra expresión’ es una
-    expresión @c{if}.
+    Técnicamente hablando, @c{when} es una macro Lisp. Una @:{macro} Lisp te
+    permite definir nuevas construcciones de control y otras caracteristicas del
+    lenguaje. Le indica al intérprete cómo computar otra expresión Lisp que a su
+    vez computa el valor. En este caso, la ‘otra expresión’ es una expresión
+    @c{if}.
 
-    La definición de función también tiene una macro @c{unless}; que acompaña
-    a @c{when}. La macro @c{unless} es un @c{if} sin una cláusula then.
+    La definición de la función @c(kill-region) también tiene una macro
+    @c{unless}; es lo contario de @c{when}. La macro @c{unless} es un @c{if} sin
+    una cláusula @c(then).
 
-    Para más acerca de macros Lisp, ver Seccion "Macros" en @e(El Manual de
-    Referencia de Emacs Lisp). El lenguaje de programación C también provee
-    macros. Estos son diferentes, pero también útiles.
+    Para optener más informacion sobre las macros Lisp, consulta la Seccion
+    @l{#info:elisp#Macros<>Macros} en @e(El Manual de Referencia de Emacs
+    Lisp). El lenguaje de programación C también proporciona macros. Estos son
+    diferentes, pero también útiles.
 
-    ..ignore >
-      We will briefly look at C macros in
-      @l{Digression into C}.
-    < ignore..
+    Respecto a la macro @c{when}, en la expresión @c{condition-case}, cuando la
+    cadena tiene contenido, se ejecuta otra expresión condicional. Esto es un
+    @c{if} tanto con parte @c(then) como con una parte @c(else).
 
-    Guardando la macro @c{when}, en la expresión @c{condition-case}, cuando
-    la cadena tiene contenido, entonces otra expresión condicional se
-    ejecuta. Esto es un @c{if} tanto con una then-part y como con una
-    else-part.
-
-    ..example >
+    ..src > elisp
       (if (eq last-command 'kill-region)
           (kill-append string (< end beg) yank-handler)
         (kill-new string nil yank-handler))
-    < example..
+    < src..
 
-    La parte then (then-part) se evalúa si el comando previo fué otra llamada
-    para @c{kill-region}; si no, se evalúa la parte else (else-part)
+    La parte @c(then) se evalúa si el comando anterior fué otra llamada
+    a @c{kill-region}; si no, se evalúa la parte @c(else).
 
-    @c{yank-handler} es un argumento opcional para @c{kill-region} que cuenta
-    cómo las funciones @c{kill-append} y @c{kill-new} se tratan con
-    propiedades añadidas al texto, tal como ‘negrilla’ o ‘itálica’.
+    @c{yank-handler} es un argumento opcional de @c{kill-region} que indica a
+    las funciones @c{kill-append} y @c{kill-new} como tratar con propiedades
+    agregadas al texto, como ‘negrilla’ o ‘cursiva’.
 
-    @c{last-command} es una variable que viene con Emacs y que no se ha visto
-    antes. Normalmente, siempre y cuando una función se ejecute, Emacs asigna
-    el valor de @c{last-command} al comando previo.
+    @c{last-command} es una variable que viene con Emacs y que no hemos visto
+    antes. Normalmente, siempre que se ejecuta una función, Emacs establece el
+    valor de @c{last-command} al comando previo.
 
-    En este segmento de la definición, la expresión @c{if} chequea si el
-    comando previo era @c{kill-region}. Si era eso,
+    En este segmento de la definición, la expresión @c{if} comprueba si el
+    comando previo fue @c{kill-region}. Si lo era,
 
-    ..example >
+    ..src > elisp
       (kill-append string (< end beg) yank-handler)
-    < example..
+    < src..
 
-    Se concatena una copia del nuevo texto cortado al texto cortado
-    previamente en el kill ring @e{anillo de la muerte}.
+    concatena una copia del texto recien cortado al texto cortado previamente en
+    el anillo de la muerte.
 
 ** @c{copy-region-as-kill}
 
-   La función @c{copy-region-as-kill} copia una región de texto desde un
-   búffer y (via @c{kill-append} o @c{kill-new}) lo guarda en el
-   @c{kill-ring}.
+   La función @c{copy-region-as-kill} copia una región de texto desde un búffer
+   y (via @c{kill-append} o @c{kill-new}) lo guarda en el @c{kill-ring}.
 
-   Si se llama a @c{copy-region-as-kill} inmediatamente después de un comando
-   @c{kill-region}, Emacs inserta el texto nuevamente copiado al texto
-   copiado previamente. Esto significa que si se pega el texto, se obtiene
-   todo, tanto esto, como la operación previa. Por otro lado, si algún otro
-   comando precede la @c{copy-region-as-kill}, la función copia el texto
-   dentro de una entrada separada el kill ring @e{anillo de la muerte}.
+   Si llamas a @c{copy-region-as-kill} inmediatamente después de un comando
+   @c{kill-region}, Emacs agrega el texto recien copiado al texto previamente
+   copiado. Esto significa traes el texto, lo obtienes todo, tanto esto
+   operacion como de la anterior. Por otro lado, si algún otro comando precede a
+   @c{copy-region-as-kill}, la función copia el texto dentro de una entrada
+   separada del anillo de la muerte.
 
-   Aquí está el texto completo de la versión 22 de la función
-   @c{copy-region-as-kill}:
+   Aquí está el texto completo de la función @c{copy-region-as-kill} de la
+   versión 22:
 
-   ..example >
+   ..src > elisp
      (defun copy-region-as-kill (beg end)
-       "Guarda la región como si estuviera cortada, pero no la cortes.
-     En el modo Marca de Tránsito @e{Transient Mark}, se desactiva la
-       marca.
-     Si ‘interprogram-cut-function’ es no nulo, también se guarda el
-       texto para una sistema de ventanas de cortar y pegar."
+       "Guarda la region como si fuese cortada, pero no la corta.
+     En el modo Transient Mark, desactiva la marca.
+     Si ‘interprogram-cut-function’ es no-nil, tambien guarda el texto de una
+     ventana del sistema corta y pega."
        (interactive "r")
        (if (eq last-command 'kill-region)
            (kill-append (filter-buffer-substring beg end) (< end beg))
@@ -5824,118 +5662,117 @@ and promoting software freedom.”
        (if transient-mark-mode
            (setq deactivate-mark t))
        nil)
-   < example..
+   < src..
 
-   De normal, esta función puede ser dividida dentro sus componentes:
+   Como de costumbre, esta función se puede dividirse en las partes que la
+   componen:
 
-   ..example >
-     (defun copy-region-as-kill (@V{argument-list})
-       "@V{documentation}…"
+   ..src > elisp
+     (defun copy-region-as-kill (lista-de-argumentos)
+       "documentacion…"
        (interactive "r")
-       @V{body}…)
-   < example..
+       cuerpo…)
+   < src..
 
-   Los argumentos son @c{beg} y @c{end} y la función es interactiva con
-   @c{"r"}, así los dos argumentos deben referirse al principio y al final de
-   la región. Si ha estado leyendo a través de este documento desde el
-   principio, comprendiendo estas partes de una función casi llegaría a ser
-   rutina.
+   Los argumentos son @c{beg} y @c{end} y la función es interactiva con @c{"r"},
+   por lo que los dos argumentos deben referirse al inicio y al final de la
+   región. Si has estado leyendo este documento desde el principio, comprenderas
+   que estas partes de una función se estan volviendo una rutina.
 
-   La documentación es algo confusa a menos que se recuerde que la palabra
-   ‘kill’ @e{matar, cortar} tiene un significado diferente de la usual. La
-   ‘Marca Transitoria’ y @c{interprogram-cut-function} comenta explicar
-   ciertos efectos laterales.
+   La documentación es un poco confusa a menos que se recuerdes que la palabra
+   ‘kill’ tiene un significado diferente al habitual. Los comentarios de
+   ‘Transient Mark’ y @c{interprogram-cut-function} explicar ciertos efectos
+   secundarios.
 
    Después de que se ha asignado una marca, un búffer siempre contiene una
-   región. Si se desea se puede usar el modo Marca Transitoria para iluminar
-   la región temporalmente. (Nadie quiere iluminar la región todo el rato,
-   así el modo Marca Transitoria subrraya solo en el momento
-   apropiado. Muchas personas desactivan el modo Marca Transitoria, así la
-   región nunca se ilumina.)
+   región. Si lo deseas puedes utilizar el modo Transient Mark para resaltar
+   temporalmente la región. (Nadie quiere resaltar la región todo el tiempo, por
+   lo que el modo Marca Transitoria lo resalta solo en los momentos
+   apropiados. Muchas personas desactivan el modo Transient Mark, por lo que la
+   región nunca se resalta.)
 
-   También, un sistema de ventanas permite copiar, cortar y pegar entre
-   programas diferentes. En el sistema de X windows, por ejemplo, la función
+   Ademas, un sistema de ventanas permite copiar, cortar y pegar entre programas
+   diferentes. En el sistema X window, por ejemplo, la función
    @c{interprogram-cut-function} es @c{x-select-text}, que funciona con el
-   sistema de ventanas equivalente del kill ring de Emacs.
+   sistema de ventanas equivalente al anillo de la muerte de Emacs.
 
-   El cuerpo de la función @c{copy-region-as-kill} empieza con una cláusula
+   El cuerpo de la función @c{copy-region-as-kill} inicia con una cláusula
    @c{if}. Lo que esta cláusula hace es distinguir entre dos situaciones
    diferentes: si este comando se ejecuta o no inmediatamente después de un
-   comando previo @c{kill-region}. En el primer caso, la nueva región se
-   concatena al texto copiado previamente. De otro modo, eso se inserta al
-   principio del anillo de la muerte @e{kill ring} como una pieza separada de
-   texto desde la pieza previa.
+   comando @c{kill-region} previo. En el primer caso, la nueva región se
+   concatena al texto previamente copiado. De lo contrario, se inserta al inicio
+   del anillo de la muerte como una pieza separada de la pieza de texto
+   anterior.
 
-   Las dos líneas de la función previene la región desde la iluminación si el
-   modo Transient Mark @e{Marca Transitoria} está activado.
+   Las dos ultimas líneas de la función impiden que la región se ilumine si el
+   modo Transient Mark está activo.
 
-   El cuerpo de @c{copy-region-as-kill} merece discusión en detalle.
+   El cuerpo de @c{copy-region-as-kill} merece una discusión en detalle.
 
 *** El cuerpo de @c{copy-region-as-kill}
 
-    La función @c{copy-region-as-kil} funciona de un modo parecido a la
-    función @c{kill-region}. Ambas están escritas de un modo que dos o más
-    textos cortados en una fila combinan su texto en una entrada simple. Si
-    se pega el texto desde el anillo de la muerte @e{kill ring}, se tiene
-    todo en una pieza. Más allá, los cortes de textos que se cortan hacia
-    adelante desde la posición actual del cursor se añaden al fin del texto
-    copiado previamente y comanda este texto copiado vaya hacia atrás al
-    principio del texto copiado previamente. De este modo, las palabras en el
-    texto están en el orden apropiado.
+    La función @c{copy-region-as-kil} funciona de un modo parecido a la función
+    @c{kill-region}. Ambas están escritas de manera que dos o más muertes en una
+    fila combinan su texto en una sola entrada. Si traes el texto del anillo de
+    la muerte, se tiene todo en una sola pieza. Ademas, las mertes que matan
+    hacia adelante desde la posición actual del cursor se añaden al final del
+    texto previamente copiado y los comandos que cortan el texto al reves hacia
+    atrás lo añaden al del texto copiado previamente copiado. De este modo, las
+    palabras en el texto permanecen en el orden correcto.
 
-    Como @c{kill-region}, la función @c{copy-region-as-kill} hace uso de la
-    variable @c{last-command} que deja traza del comando de Emacs previo.
+    Al igual que @c{kill-region}, la función @c{copy-region-as-kill} hace uso de
+    la variable @c{last-command} que realiza un seguimiento del comando anterior
+    de Emacs.
 
-    Normalmente, siempre y cuando una función se ejecuta, Emacs asigna el
-    valor de @c{this-command} a la función que se ejecuta (que en este caso
-    sería @c{copy-region-as-kill}). Al mismo tiempo, Emacs asigna el valor de
+    Normalmente, siempre que se ejecuta una función, Emacs asigna el valor de
+    @c{this-command} a la función que se ejecuta (que en este caso sería
+    @c{copy-region-as-kill}). Al mismo tiempo, Emacs asigna el valor de
     @c{last-command} al valor previo de @c{this-command}.
 
-    En la primera parte del cuerpo de la función @c{copy-region-as-kill}, una
+    En la primer parte del cuerpo de la función @c{copy-region-as-kill}, una
     expresión @c{if} determina si el valor de @c{last-command} es
-    @c{kill-region}. Si es así, la then-part de la expresión @c{if} se
-    evalúa; eso usa la función @c{kill-append} para concatenar el texto
-    copiado en esta llamada a la función con el texto ya en el primer
-    elemento (el @c{car} del anillo de la muerte. Por otro lado, si el valor
-    de @c{last-command} no es @c{kill-region}, entonces la función
-    @c{copy-region-as-kill} adjunta un nuevo elemento al anillo de la muerte
-    @e{kill ring} usando la función @c{kill-new}.
+    @c{kill-region}. Si es así, se evalua la parte then de la expresión @c{if};
+    Utiliza la función @c{kill-append} para concatenar el texto copiado en esta
+    llamada a la función con el texto ya en el primer elemento (el @c{car} del
+    anillo de la muerte. Por otro lado, si el valor de @c{last-command} no es
+    @c{kill-region}, entonces la función @c{copy-region-as-kill} asigna un nuevo
+    elemento al anillo de la muerte usando la función @c{kill-new}.
 
-    La expresión @c{or} se ve así; usa @c{eq}:
+    La expresión @c{if} se lee da la siguiente manera; utiliza @c{eq}:
 
-    ..example >
-        (if (eq last-command 'kill-region)
-            ;; @e{parte then}
-            (kill-append  (filter-buffer-substring beg end) (< end beg))
-          ;; @e{parte else}
-          (kill-new  (filter-buffer-substring beg end)))
-    < example..
+    ..src > elisp
+      (if (eq last-command 'kill-region)
+          ;; parte then
+          (kill-append  (filter-buffer-substring beg end) (< end beg))
+        ;; parte else
+        (kill-new  (filter-buffer-substring beg end)))
+    < src..
 
-    (La función @c{filter-buffer-substring} devuelve una subcadena filtrada
-    del búffer, cualquiera. Opcionalmente––los argumentos no están aquí, así
-    nunca está hecho --- la función puede borrar el texto inicial o devolver
-    el texto sin sus propiedades; esta función es un reemplazo para la vieja
-    función @c{buffer-substring}, que viene antes que las propiedades del
-    texto fuesen implementadas.)
+    (La función @c{filter-buffer-substring} devuelve una subcadena filtrada del
+    búffer, si la hay. Opcionalmente––los argumentos no están aquí, por lo que
+    tampoco se hace––la función puede borrar el texto inicial o devolver el
+    texto sin sus propiedades; esta función es un reemplazo para la antigua
+    función @c{buffer-substring}, que vino antes de implementar las propiedades
+    de texto.)
 
-    La función @c{eq} chequea si su primer argumento es el mismo objeto Lisp
-    que su segundo argumento. La función @c{eq} es similar a la función
-    @c{equal} en esto que es usado para chequear para igualdad, pero difiere
-    en esto que determina si dos representaciones son actualmente el mismo
-    objeto dentro del ordenador, pero con diferentes nombres. @c{equal}
-    determina si la estructura y contenidos de dos expresiones son la misma.
+    La función @c{eq} prueba si su primer argumento es el mismo objeto Lisp que
+    su segundo argumento. La función @c{eq} es similar a la función @c{equal} en
+    que se utiliza para probar la igualdad, pero difiere en que determina si dos
+    representaciones son realmente el mismo objeto dentro de la computadora,
+    pero con nombres diferentes. @c{equal} determina si la estructura y el
+    contenido de dos expresiones son iguales.
 
-    Si el comando previo era @c{kill-region}, entonces el intérprete Emacs
+    Si el comando anterior fue @c{kill-region}, entonces el intérprete Emacs
     Lisp llama a la función @c{kill-append}
 
 **** La función @c{kill-append}
 
-     La función @c{kill-new} se ve como así:
+     La función @c{kill-new} se ve así:
 
-     ..example >
+     ..src > elisp
        (defun kill-append (string before-p &optional yank-handler)
-         "Inserta STRING al fin del último corte en el anillo de la muerte @e{kill ring}.
-       Si BEFORE-P es no nulo, inserta STRING.
+         "Inserta STRING al fin del ultimo corte en el anillo de la muerte.
+       Si BEFORE-P no es nil, anexa STRING al corte.
        … "
          (let* ((cur (car kill-ring)))
            (kill-new (if before-p (concat string cur) (concat cur string))
@@ -5943,51 +5780,38 @@ and promoting software freedom.”
                          (equal yank-handler
                                 (get-text-property 0 'yank-handler cur)))
                      yank-handler)))
-     < example..
+     < src..
 
-     ..ignore >
-       was:
-       (defun kill-append (string before-p)
-         "Append STRING to the end of the latest kill in the kill ring.
-       If BEFORE-P is non-nil, prepend STRING to the kill.
-       If ‘interprogram-cut-function’ is set, pass the resulting kill to
-       it."
-         (kill-new (if before-p
-                       (concat string (car kill-ring))
-                     (concat (car kill-ring) string))
-                   t))
-     < ignore..
+     La función @c{kill-append} es bastante sencilla. Utiliza la función
+     @c{kill-new}, que discutiremos con más detalle en un momento.
 
-     La función @c{kill-append} es limpia. Usa la función @c{kill-new}, que
-     discutiremos en más detalle en un momento.
+     (También, la función proporciona un argumento opcional llamado
+     @c{yank-handler}; cuando se invoque, este argumento le dice a la función
+     cómo tratar con la propiedades añadidas al texto, como ‘negrita’ o
+     ‘cursiva’.)
 
-     (También, la función provee un argumento opcional llamado
-     @c{yank-handler}; cuando se invoque, este argumento cuenta a la función
-     cómo tratar con la propiedades añadidas al texto, tales como ‘negrilla’
-     o ‘itálicas’.)
-
-     Eso tiene una función @c{let*} para asignar el valor del primer elemento
-     del kill ring a @c{cur}. (No se sabe por qué la función no usa @c{let};
-     solo un valor es asignado en la expresión. ¿Quizás esto es un error que
-     no produce problemas?
+     Tiene una función @c{let*} para asignar el valor del primer elemento del
+     anillo de la muerte a @c{cur}. (No se por qué la función no utiliza
+     @c{let}; solo un valor se asigna en la expresión. ¿Tal vez este es un error
+     que no produce problemas?
 
      Considera el condicional que es uno de los dos argumentos para
-     @c{kill-new}. Eso usa @c{concat} para concatenar el nuevo texto al
-     @c{car} del anillo de la muerte @e{kill ring}. Si eso se concatena
-     atrás o delante depende de los resultados de una expresión @c{if}:
+     @c{kill-new}. Utiliza @c{concat} para concatenar el nuevo texto al @c{car}
+     del anillo de la muerte. Si agrega el texto antes o despues depende del
+     resultado una expresión @c{if}:
 
-     ..example >
-       (if before-p                            ; @e{if-part}
-           (concat string cur)                 ; @e{then-part}
-         (concat cur string))                  ; @e{else-part}
-     < example..
+     ..src > elisp
+       (if before-p                            ; parte if
+           (concat string cur)                 ; parte then
+         (concat cur string))                  ; parte else
+     < src..
 
-     Si la región cortada está antes que la región que se cortó en el último
-     comando, entonces debería ser puesto antes que el material salvador en
-     el anterior corte @e{kill}; y de manera contraria, si el texto cortado
-     sigue lo que fué cortado, eso sería añadido después del texto previo. La
-     expresión @c{if} depende del predicado @c{before-p} para decidir si el
-     texto nuevamente salvado es puesto antes o después.
+     Si la región cortada está antes de la región que se cortó en el último
+     comando, entonces debería ser puesta antes que el material guardado en el
+     corte anterior; y, a la inversa, si el texto que se corto esta despues del
+     que acaba de cortar, debe añadirse después del texto anterior. La expresión
+     @c{if} depende del predicado @c{before-p} para decidir si el texto recien
+     guardado debe colocarse antes o después del texto anterior.
 
      El símbolo @c{before-p} es el nombre de uno de los argumentos a
      @c{kill-append}. Cuando la función @c{kill-append} se evalúa, se asocia
@@ -6042,18 +5866,6 @@ and promoting software freedom.”
 
 **** La función @c{kill-new}
 
-     ..ignore >
-       Optional third arguments YANK-HANDLER controls how the STRING is later
-       inserted into a buffer; see ‘insert-for-yank’ for details.
-       When a yank handler is specified, STRING must be non-empty (the yank
-       handler, if non-nil, is stored as a ‘yank-handler’ text property on STRING).
-
-       When the yank handler has a non-nil PARAM element, the original STRING
-       argument is not used by ‘insert-for-yank’.  However, since Lisp code
-       may access and use elements from the kill ring directly, the STRING
-       argument should still be a \"useful\" string for such uses."
-     < ignore..
-
      La función @c{kill-new} se ve de esta manera:
 
      ..example >
@@ -6085,26 +5897,6 @@ and promoting software freedom.”
          (if interprogram-cut-function
              (funcall interprogram-cut-function string (not replace))))
      < example..
-
-     ..ignore >
-       was:
-       (defun kill-new (string &optional replace)
-         "Make STRING the latest kill in the kill ring.
-       Set the kill-ring-yank pointer to point to it.
-       If ‘interprogram-cut-function’ is non-nil, apply it to STRING.
-       Optional second argument REPLACE non-nil means that STRING will replace
-       the front of the kill ring, rather than being added to the list."
-         (and (fboundp 'menu-bar-update-yank-menu)
-              (menu-bar-update-yank-menu string (and replace (car kill-ring))))
-         (if (and replace kill-ring)
-             (setcar kill-ring string)
-           (setq kill-ring (cons string kill-ring))
-           (if (> (length kill-ring) kill-ring-max)
-               (setcdr (nthcdr (1- kill-ring-max) kill-ring) nil)))
-         (setq kill-ring-yank-pointer kill-ring)
-         (if interprogram-cut-function
-             (funcall interprogram-cut-function string (not replace))))
-     < ignore..
 
      (Vea que la función no es interactiva.)
 
@@ -6255,7 +6047,7 @@ and promoting software freedom.”
 
      La función @c{nthcdr} funciona repetidamente tomando el @c{cdr} de una
      lista––eso toma el @c{cdr} del @c{cdr} del @c{cdr} …. Eso hace esto
-     @V{N} veces y devuelve los resultados. (Véase Sección @l{nthcdr, ,
+     @V{N} veces y devuelve los resultados. (Véase Sección @l{#nthcdr, ,
      @c{nthcdr}}.)
 
      De este modo, si teniamos una lista de cuatro elemento que era
@@ -6263,7 +6055,7 @@ and promoting software freedom.”
      siguiente al último elemento a @c{nil}, y por eso se ordena la
      lista. (Si se asigna el último elemento a algún otro valor a @c{nil},
      que se podría hacer, entonces no se habría ordenado la lista. Véase
-     Sección @l{setcdr, , @c{setcdr}}.)
+     Sección @l{#setcdr, , @c{setcdr}}.)
 
      Se puede ver ordenando la evaluación de las siguientes tres expresiones
      en turno. Primero asigna el valor de @c{arboles} a @c{(arce encina pino
@@ -6332,16 +6124,11 @@ and promoting software freedom.”
      último argumento es devuelto. (Desde que tal valor no es @c{nil}, eso es
      considerado cierto en Emacs Lisp.) En otras palabras, una expresión @c{and}
      devuelve un valor cierto solo si todos sus argumentos son
-     verdaderos. (Véase Sección @l{Repaso-2<>Revisar el segundo búffer
+     verdaderos. (Véase Sección @l{#Repaso-2<>Revisar el segundo búffer
      relacionado}.)
 
      La expresión determina si el segundo argumento
      @c{menu-bar-update-yank-menu} es verdadero o no.
-
-     ..ignore >
-       ;; If we're supposed to be extending an existing string, and that
-       ;; string really is at the front of the menu, then update it in place.
-     < ignore..
 
      @c{menu-bar-update-yank-menu} es una de la funciones que lo hace posible
      para usar el menu ‘Seleccionar y Pegar’ en el ítem Editar de una barra
@@ -6380,44 +6167,6 @@ and promoting software freedom.”
      es mejor aprender cómo las listas son implementadas en un
      ordenador. Esto dejará claro tales misterios como el uso del término
      ‘puntero’. Pero antes de esto, nos desviaremos a C.
-
-     ..ignore >
-       @c is this true in Emacs 22?   Does not seems to be
-
-         (If the @c{(< end beg))} expression is true, @c{kill-append}
-       prepends the string to the just previously clipped text.  For a
-       detailed discussion, see @l{kill-append function, , The
-       @c{kill-append} function}.)
-
-       If you then yank back the text, i.e., ‘paste’ it, you get both pieces
-       of text at once.  That way, if you delete two words in a row, and then
-       yank them back, you get both words, in their proper order, with one
-       yank.  (The @c{(< end beg))} expression makes sure the order is
-       correct.)
-
-       On the other hand, if the previous command is not @c{kill-region},
-       then the @c{kill-new} function is called, which adds the text to
-       the kill ring as the latest item, and sets the
-       @c{kill-ring-yank-pointer} variable to point to it.
-     < ignore..
-
-     ..ignore >
-
-       @c Evidently, changed for Emacs 22. The zap-to-char command does not
-       @c use the delete-and-extract-region function
-
-       2006 Oct 26, the Digression into C is now OK but should come after
-       copy-region-as-kill and filter-buffer-substring
-
-       2006 Oct 24
-       In Emacs 22,
-       copy-region-as-kill is short, 12 lines, and uses
-       filter-buffer-substring, which is longer, 39 lines
-       and has delete-and-extract-region in it.
-       delete-and-extract-region is written in C.
-
-       see Initializing a Variable with @c{defvar}
-     < ignore..
 
 ** Disgresión dentro de C
 
@@ -6540,17 +6289,6 @@ and promoting software freedom.”
 
 ** Inicializando una variable con @c{defvar}
 
-   ..ignore >
-     2006 Oct 24
-     In Emacs 22,
-     copy-region-as-kill is short, 12 lines, and uses
-     filter-buffer-substring, which is longer, 39 lines
-     and has delete-and-extract-region in it.
-     delete-and-extract-region is written in C.
-
-     see Initializing a Variable with @c{defvar}
-   < ignore..
-
    La función @c{copy-region-as-kill} es escrita en Emacs Lisp. Dos funciones
    con eso, @c{kill-append} y @c{kill-new}, copiar una región en un búffer y
    guardarlo en una variable llamada el @c{kill-ring}. Esta sección describe
@@ -6573,7 +6311,7 @@ and promoting software freedom.”
 
    (Otra forma especial, @c{defcustom}, está diseñado para variables que la
    gente personaliza. Eso tiene más funcionalidades que @c{defvar}. (Véase
-   Sección @l{Especificar variables usando @c{defcustom}}.)
+   Sección @l{#Especificar variables usando @c{defcustom}}.)
 
    Se puede ver el actual valor de una variable, cualquier variable, usando
    la función @c{describe-variable}, que es normalmente invocado escribiendo
@@ -6622,7 +6360,7 @@ and promoting software freedom.”
     que espera un usuario cambie. Aunque se puede todavía usar @c{defvar}
     para variables personalizadas, por favor, usa @c{defcustom} en vez, desde
     que la forma especial provee una ruta dentro de los comando de
-    Personalización. (Véase Sección @l{Especificar variables usando
+    Personalización. (Véase Sección @l{#Especificar variables usando
     @c{defcustom}}.)
 
     Cuando se especifica una variable usando la forma especial @c{defvar}, se
@@ -6643,7 +6381,7 @@ and promoting software freedom.”
     edición. Los nuevos valores no están guardados entre sesiones. Cada vez
     que Emacs empieza, lee el valor original, a menos que tu cambia el valor
     con tu fichero @f{.emacs}, si configurándolo manualmente o usando
-    @c{customize}. Véase Sección @l{Tu Fichero @f{.emacs}}.
+    @c{customize}. Véase Sección @l{#Tu Fichero @f{.emacs}}.
 
     Para mí, el mayor uso del comando @c{set-variable} es sugerir variables
     que se podrían querer asignar en mi fichero @f{.emacs}. Ahora hay más de
@@ -6743,7 +6481,7 @@ and promoting software freedom.”
 
      Buscar una cadena, y si la cadena es encontrada, mueve el punto. Con una
      expresión regular, usa algo similar a @c{re-search-forward}. (Véase
-     Sección @l{Búsquedas de Expresiones Regulares}, para una explicación de
+     Sección @l{#Búsquedas de Expresiones Regulares}, para una explicación de
      expresiones regulares patrones y búsquedas.)
 
      @c{search-forward} y @c{re-search-forward} tiene cuatro argumentos:
@@ -7136,46 +6874,6 @@ and promoting software freedom.”
    búffers de Emacs. El @c{kill-ring-yank-pointer} en la otra mano, sirve
    para indicar --- que es, para ‘apuntar a’ --- esta parte del anillo de la
    muerte del que el primer elemento (el @c{car}) será insertado.
-
-   ..ignore >
-     In GNU Emacs 22, the @c{kill-new} function calls
-
-     @c{(setq kill-ring-yank-pointer kill-ring)}
-
-     (defun rotate-yank-pointer (arg)
-       "Rotate the yanking point in the kill ring.
-     With argument, rotate that many kills forward (or backward, if negative)."
-       (interactive "p")
-       (current-kill arg))
-
-     (defun current-kill (n &optional do-not-move)
-       "Rotate the yanking point by N places, and then return that kill.
-     If N is zero, ‘interprogram-paste-function’ is set, and calling it
-     returns a string, then that string is added to the front of the
-     kill ring and returned as the latest kill.
-     If optional arg DO-NOT-MOVE is non-nil, then don't actually move the
-     yanking point; just return the Nth kill forward."
-       (let ((interprogram-paste (and (= n 0)
-                                      interprogram-paste-function
-                                      (funcall interprogram-paste-function))))
-         (if interprogram-paste
-             (progn
-               ;; Disable the interprogram cut function when we add the new
-               ;; text to the kill ring, so Emacs doesn't try to own the
-               ;; selection, with identical text.
-               (let ((interprogram-cut-function nil))
-                 (kill-new interprogram-paste))
-               interprogram-paste)
-           (or kill-ring (error "Kill ring is empty"))
-           (let ((ARGth-kill-element
-                  (nthcdr (mod (- n (length kill-ring-yank-pointer))
-                               (length kill-ring))
-                          kill-ring)))
-             (or do-not-move
-                 (setq kill-ring-yank-pointer ARGth-kill-element))
-             (car ARGth-kill-element)))))
-
-   < ignore..
 
 ** Ejercicios con @c{yank} y @c{nthcdr}
 
@@ -9051,37 +8749,6 @@ and promoting software freedom.”
          (constrain-to-field nil opoint t)))
    < example..
 
-   ..ignore >
-     GNU Emacs 21
-     ..example >
-       (defun forward-sentence (&optional arg)
-
-        "Mueve hacia adelante a la siguiente sentence-end. Con el argumento,
-         repetir.  Con el argumento negativo, mueve hacia atrás
-         repetidamente a sentence-beginning. La frase que finalizan son
-         identificadas por el valor de sentence-end tratada como expresión
-         regular. También, cada párrafo límite termina las
-         frases bien"
-         (interactive "p")
-         (or arg (setq arg 1))
-         (while (< arg 0)
-           (let ((par-beg
-                  (save-excursion (start-of-paragraph-text) (point))))
-             (if (re-search-backward
-                  (concat sentence-end "[^ \t\n]") par-beg t)
-                 (goto-char (1- (match-end 0)))
-               (goto-char par-beg)))
-           (setq arg (1+ arg)))
-         (while (> arg 0)
-           (let ((par-end
-                  (save-excursion (end-of-paragraph-text) (point))))
-             (if (re-search-forward sentence-end par-end t)
-                 (skip-chars-backward " \t\n")
-               (goto-char par-end)))
-           (setq arg (1- arg))))
-     < example..
-   < ignore..
-
    La función se ve larga a primera vista y es mejor mirar primero el
    esqueleto, y entonces su músculo. El camino para ver el esqueleto es mirar
    en las expresiones que empiezan las columnas más a la izquierda:
@@ -9256,151 +8923,6 @@ and promoting software freedom.”
 
 ** @c{forward-paragraph}: una mina de oro de funciones
 
-   ..ignore >
-     @c in GNU Emacs 22
-     (defun forward-paragraph (&optional arg)
-       "Move forward to end of paragraph.
-     With argument ARG, do it ARG times;
-     a negative argument ARG = -N means move backward N paragraphs.
-
-     A line which ‘paragraph-start’ matches either separates paragraphs
-     \(if ‘paragraph-separate’ matches it also) or is the first line of a paragraph.
-     A paragraph end is the beginning of a line which is not part of the paragraph
-     to which the end of the previous line belongs, or the end of the buffer.
-     Returns the count of paragraphs left to move."
-       (interactive "p")
-       (or arg (setq arg 1))
-       (let* ((opoint (point))
-              (fill-prefix-regexp
-               (and fill-prefix (not (equal fill-prefix ""))
-                    (not paragraph-ignore-fill-prefix)
-                    (regexp-quote fill-prefix)))
-              ;; Remove ^ from paragraph-start and paragraph-sep if they are there.
-              ;; These regexps shouldn't be anchored, because we look for them
-              ;; starting at the left-margin.  This allows paragraph commands to
-              ;; work normally with indented text.
-              ;; This hack will not find problem cases like "whatever\\|^something".
-              (parstart (if (and (not (equal "" paragraph-start))
-                                 (equal ?^ (aref paragraph-start 0)))
-                            (substring paragraph-start 1)
-                          paragraph-start))
-              (parsep (if (and (not (equal "" paragraph-separate))
-                               (equal ?^ (aref paragraph-separate 0)))
-                          (substring paragraph-separate 1)
-                        paragraph-separate))
-              (parsep
-               (if fill-prefix-regexp
-                   (concat parsep "\\|"
-                           fill-prefix-regexp "[ \t]*$")
-                 parsep))
-              ;; This is used for searching.
-              (sp-parstart (concat "^[ \t]*\\(?:" parstart "\\|" parsep "\\)"))
-              start found-start)
-         (while (and (< arg 0) (not (bobp)))
-           (if (and (not (looking-at parsep))
-                    (re-search-backward "^\n" (max (1- (point)) (point-min)) t)
-                    (looking-at parsep))
-               (setq arg (1+ arg))
-             (setq start (point))
-             ;; Move back over paragraph-separating lines.
-             (forward-char -1) (beginning-of-line)
-             (while (and (not (bobp))
-                         (progn (move-to-left-margin)
-                                (looking-at parsep)))
-               (forward-line -1))
-             (if (bobp)
-                 nil
-               (setq arg (1+ arg))
-               ;; Go to end of the previous (non-separating) line.
-               (end-of-line)
-               ;; Search back for line that starts or separates paragraphs.
-               (if (if fill-prefix-regexp
-                       ;; There is a fill prefix; it overrides parstart.
-                       (let (multiple-lines)
-                         (while (and (progn (beginning-of-line) (not (bobp)))
-                                     (progn (move-to-left-margin)
-                                            (not (looking-at parsep)))
-                                     (looking-at fill-prefix-regexp))
-                           (unless (= (point) start)
-                             (setq multiple-lines t))
-                           (forward-line -1))
-                         (move-to-left-margin)
-                         ;; This deleted code caused a long hanging-indent line
-                         ;; not to be filled together with the following lines.
-                         ;; ;; Don't move back over a line before the paragraph
-                         ;; ;; which doesn't start with fill-prefix
-                         ;; ;; unless that is the only line we've moved over.
-                         ;; (and (not (looking-at fill-prefix-regexp))
-                         ;;      multiple-lines
-                         ;;      (forward-line 1))
-                         (not (bobp)))
-                     (while (and (re-search-backward sp-parstart nil 1)
-                                 (setq found-start t)
-                                 ;; Found a candidate, but need to check if it is a
-                                 ;; REAL parstart.
-                                 (progn (setq start (point))
-                                        (move-to-left-margin)
-                                        (not (looking-at parsep)))
-                                 (not (and (looking-at parstart)
-                                           (or (not use-hard-newlines)
-                                               (bobp)
-                                               (get-text-property
-                                                (1- start) 'hard)))))
-                       (setq found-start nil)
-                       (goto-char start))
-                     found-start)
-                   ;; Found one.
-                   (progn
-                     ;; Move forward over paragraph separators.
-                     ;; We know this cannot reach the place we started
-                     ;; because we know we moved back over a non-separator.
-                     (while (and (not (eobp))
-                                 (progn (move-to-left-margin)
-                                        (looking-at parsep)))
-                       (forward-line 1))
-                     ;; If line before paragraph is just margin, back up to there.
-                     (end-of-line 0)
-                     (if (> (current-column) (current-left-margin))
-                         (forward-char 1)
-                       (skip-chars-backward " \t")
-                       (if (not (bolp))
-                           (forward-line 1))))
-                 ;; No starter or separator line => use buffer beg.
-                 (goto-char (point-min))))))
-
-         (while (and (> arg 0) (not (eobp)))
-           ;; Move forward over separator lines...
-           (while (and (not (eobp))
-                       (progn (move-to-left-margin) (not (eobp)))
-                       (looking-at parsep))
-             (forward-line 1))
-           (unless (eobp) (setq arg (1- arg)))
-           ;; ... and one more line.
-           (forward-line 1)
-           (if fill-prefix-regexp
-               ;; There is a fill prefix; it overrides parstart.
-               (while (and (not (eobp))
-                           (progn (move-to-left-margin) (not (eobp)))
-                           (not (looking-at parsep))
-                           (looking-at fill-prefix-regexp))
-                 (forward-line 1))
-             (while (and (re-search-forward sp-parstart nil 1)
-                         (progn (setq start (match-beginning 0))
-                                (goto-char start)
-                                (not (eobp)))
-                         (progn (move-to-left-margin)
-                                (not (looking-at parsep)))
-                         (or (not (looking-at parstart))
-                             (and use-hard-newlines
-                                  (not (get-text-property (1- start) 'hard)))))
-               (forward-char 1))
-             (if (< (point) (point-max))
-                 (goto-char start))))
-         (constrain-to-field nil opoint t)
-         ;; Return the number of steps that could not be done.
-         arg))
-   < ignore..
-
    La función @c{forward-paragraph} mueve el punto al fin del párrafo. Eso
    está normalmente asociado a @k{M-@}} y hace uso de un número de funciones
    que son importantes en sí, incluyendo @c{let*}, @c{match-beginning}, y
@@ -9451,13 +8973,12 @@ and promoting software freedom.”
    Las primeras partes de la función son rutinas: la función lista argumentos
    que consisten de un argumento opcional. La documentación sigue.
 
-   La letra minúscula @'{p} en la declaración @c{interactive} significa que
-   el argumento prefijo se procesa, si se pasa a la función. Eso será un
-   número, y es el contaje repetido de cuántos párrafos se moverá.  La
-   expresión @c{or} en la siguiente línea maneja el caso común cuando no hay
-   argumentos que se pasan a la función, esto ocurre si la función se llama
-   desde otro código en vez de interactivamente. Este caso se describe
-   pronto. (Véase Sección @l{La función @c{forward-sentence}, La función
+   La letra minúscula @'{p} en la declaración @c{interactive} significa que el
+   argumento prefijo se procesa, si se pasa a la función. Eso será un número, y
+   es el contaje repetido de cuántos párrafos se moverá.  La expresión @c{or} en
+   la siguiente línea maneja el caso común cuando no hay argumentos que se pasan
+   a la función, esto ocurre si la función se llama desde otro código en vez de
+   interactivamente. Este caso se describe pronto. (Véase Sección @l{La función
    @c{forward-sentence}}.) Ahora se logra el fin de la parte familiar de esta
    función.
 
@@ -9471,10 +8992,6 @@ and promoting software freedom.”
     variable en secuencia, una después de otra, y las variables en la última
     parte de la varlist hacen uso de los valores para los que Emacs asignó
     variable al principio la varlist.
-
-    ..ignore >
-      ( refappend save-excursion, , code save-excursion in code append-to-buffer .)
-    < ignore..
 
     (Seccion @l{La definición de @c{append-to-buffer}}.)
 
@@ -9593,41 +9110,6 @@ and promoting software freedom.”
     es mayor que cero. En el uso más común de la función el valor del
     argumento es 1, así el cuerpo del bucle @c{while} se evalúa exactamente
     una vez, y el cursor se mueve hacia adelante un párrafo.
-
-    ..ignore >
-      (while (and (> arg 0) (not (eobp)))
-
-        ;; Move forward over separator lines...
-        (while (and (not (eobp))
-                    (progn (move-to-left-margin) (not (eobp)))
-                    (looking-at parsep))
-          (forward-line 1))
-        (unless (eobp) (setq arg (1- arg)))
-        ;; ... and one more line.
-        (forward-line 1)
-
-        (if fill-prefix-regexp
-            ;; There is a fill prefix; it overrides parstart.
-            (while (and (not (eobp))
-                        (progn (move-to-left-margin) (not (eobp)))
-                        (not (looking-at parsep))
-                        (looking-at fill-prefix-regexp))
-              (forward-line 1))
-
-          (while (and (re-search-forward sp-parstart nil 1)
-                      (progn (setq start (match-beginning 0))
-                             (goto-char start)
-                             (not (eobp)))
-                      (progn (move-to-left-margin)
-                             (not (looking-at parsep)))
-                      (or (not (looking-at parstart))
-                          (and use-hard-newlines
-                               (not (get-text-property (1- start) 'hard)))))
-            (forward-char 1))
-
-          (if (< (point) (point-max))
-              (goto-char start))))
-    < ignore..
 
     Esta parte maneja tres situaciones: cuando el punto está entre párrafos,
     cuando hay un prefijo de relleno y cuando no hay prefijo de relleno
@@ -10246,40 +9728,6 @@ and promoting software freedom.”
     errores por sí mismo.
 
     Primero, evalúa la función de la manera usual para instalarlo.
-
-    ..ignore >
-      Aquí hay una copia de la definición. Emplaza tu cursor
-      después de cerrar los paréntesis y escribir @k{C-x C-e} para
-      instalarlo.
-
-      ..example >
-        ;; @e{¡La Primera versión; tiene errores!}  (defun
-        @v{COUNT-WORDS} (beginning end)
-        "Imprime el número de palabras en la región.  Las palabras son
-        definidas como al menos un caracter de palabra constituida seguida por
-        al menos un caracter que no es una palabra constituyente. La tabla de
-        sintaxis del búffer determina qué caracteres hay."
-
-          (interactive "r")
-          (message "Contando palabras en la región ... ")
-
-        ;;; @e{1. Configurar condiciones apropiadas.}
-          (save-excursion
-            (goto-char beginning)
-            (let ((count 0))
-
-        ;;; @e{2. Ejecutar el} @e{bucle} while.
-              (while (< (point) end)
-                (re-search-forward "\\w+\\W*")
-                (setq count (1+ count)))
-
-        ;;; @e{3. Envía un mensaje al usuario.}
-              (cond ((zerop count)
-                     (message "La región no tiene palabras."))
-                    ((= 1 count) (message "The región tiene 1 palabra."))
-                    (t (message "La región tiene %d palabras." count))))))
-      < example..
-    < ignore..
 
     Si se desea, se puede también instalar este atajo para ser evaluado:
 
@@ -11177,29 +10625,6 @@ and promoting software freedom.”
    pueden ver sus fuentes usando @k{M-.} (@c{find-tag}) o @k{C-h f}
    (@c{describe-function}).)
 
-   ..ignore >
-     In Emacs 22
-     (defun find-file (filename &optional wildcards)
-       "Edit file FILENAME.
-     Switch to a buffer visiting file FILENAME,
-     creating one if none already exists.
-     Interactively, the default if you just type RET is the current directory,
-     but the visited file name is available through the minibuffer history:
-     type M-n to pull it into the minibuffer.
-
-     Interactively, or if WILDCARDS is non-nil in a call from Lisp,
-     expand wildcards (if any) and visit multiple files.  You can
-     suppress wildcard expansion by setting ‘find-file-wildcards’ to nil.
-
-     To visit a file without any kind of conversion and without
-     automatically choosing a major mode, use \\[find-file-literally]."
-       (interactive (find-file-read-args "Find file: " nil))
-       (let ((value (find-file-noselect filename nil nil wildcards)))
-         (if (listp value)
-             (mapcar 'switch-to-buffer (nreverse value))
-           (switch-to-buffer value))))
-   < ignore..
-
    La definición que se está mostrando posee una documentación corta, pero
    completa y una especificación interactiva que muestra un nombre de fichero
    cuando se usa el comando interactivamente. El cuerpo de la definición
@@ -11599,20 +11024,6 @@ and promoting software freedom.”
     @c{recursive-lengths-list-many-files} es honesta; eso usa la funci@'n
     @c{<}:
 
-    ..ignore >
-      2006 Oct 29
-      In GNU Emacs 22,  eval
-      (progn
-        (cd "/usr/local/share/emacs/22.0.50/")
-        (sort
-         (recursive-lengths-list-many-files
-          '("./lisp/macros.el"
-            "./lisp/mail/mailalias.el"
-            "./lisp/makesum.el"))
-         '<))
-
-    < ignore..
-
     ..example >
       (sort
        (recursive-lengths-list-many-files
@@ -11758,14 +11169,6 @@ and promoting software freedom.”
     recursivo es ‘acumular’ (Vease Sección @l{Patrón recursivo:
     @e{accumulate}}) usando @c{append} para combinar.
 
-    ..ignore >
-      (directory-files "/usr/local/src/emacs/lisp/" t "\\.el$")
-      (shell-command "find /usr/local/src/emacs/lisp/ -name '*.el'")
-
-      (directory-files "/usr/local/share/emacs/22.1.1/lisp/" t "\\.el$")
-      (shell-command "find /usr/local/share/emacs/22.1.1/lisp/ -name '*.el'")
-    < ignore..
-
     Aquí está la función:
 
     ..example >
@@ -11832,18 +11235,6 @@ and promoting software freedom.”
        (files-in-below-directory "/usr/local/share/emacs/22.1.1/lisp/")
        'string-lessp)
     < example..
-
-    ..ignore >
-      (defun test ()
-        "Test how long it takes to find lengths of all sorted elisp defuns."
-        (insert "\n" (current-time-string) "\n")
-        (sit-for 0)
-        (sort
-         (recursive-lengths-list-many-files
-          (files-in-below-directory "/usr/local/src/emacs/lisp/"))
-         '<)
-        (insert (format "%s" (current-time-string))))
-    < ignore..
 
 *** Contando definiciones de función
 
@@ -13581,16 +12972,6 @@ and promoting software freedom.”
          (setq grep-command "grep -i -nH -e ")
        < example..
 
-     ..ignore >
-       @c Evidently, no longer needed in GNU Emacs 22
-
-       item Automatically uncompress compressed files when visiting them
-
-       example
-         (load "uncompress")
-       end example
-     < ignore..
-
    - Encuentra un búffer existente, incluso si eso tiene un nombre diferente ::
 
      Esto evita problemas con enlaces simbólicos.
@@ -13860,17 +13241,6 @@ and promoting software freedom.”
    Lisp’ explica lo que se necesita saber para corregir la definición. La
    función @c{1=} está ‘vacía’.
 
-   ..ignore >
-     In GNU Emacs 20 and before, you will see:
-
-     ..example >
-       La definición de la función está vacío:@: 1=
-     < example..
-
-     which has the same meaning as the @f{*Backtrace*} buffer line in
-     version 21.
-   < ignore..
-
    Sin embargo, si no se conoce con bastante certeza lo que está pasando, se
    puede leer la traza completa.
 
@@ -13911,12 +13281,6 @@ and promoting software freedom.”
 
    Un GNU Emacs actual abre el depurador automáticamente cuando la función
    tiene un error.
-
-   ..ignore >
-     GNU Emacs version 20 and before did not; it simply
-     presented you with an error message.  You had to start the debugger
-     manually.
-   < ignore..
 
    Incidentalmente, se puede empezar el depurador manualmente para todas las
    versiones de Emacs; la ventaja es que el depurador se ejecuta incluso si
@@ -14701,12 +14065,6 @@ and promoting software freedom.”
     variables locales pueden solo ser accedidas con el @c{let} que los define
     o la función que los especifica en una lista de argumentos (y con
     expresiones llamadas por ellos).
-
-    ..ignore >
-      @c texi2dvi fails when the name of the section is within ifnottex ...
-      (Véase Sección @l{Prevent confusion, , @c{let} Prevents Confusion}, and
-      @l{defun, , The @c{defun} Special Form}.)
-    < ignore..
 
 *** @c{pegar}
 

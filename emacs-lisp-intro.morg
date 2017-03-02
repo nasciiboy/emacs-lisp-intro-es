@@ -5146,8 +5146,6 @@ promoting software freedom.”
 
 ** @c{zap-to-char}
 
-@  FIXME remove obsolete stuff
-
    The @c{zap-to-char} function changed little between GNU Emacs version 19
    and GNU Emacs version 22.  However, @c{zap-to-char} calls another
    function, @c{kill-region}, which enjoyed a major rewrite.
@@ -5208,7 +5206,7 @@ promoting software freedom.”
       (interactive "p\ncZap to char: ")
     < src..
 
-    The part within quotation marks, @c{"p\ncZap to char:@: "}, specifies two
+    The part within quotation marks, @c{"p\ncZap to char: "}, specifies two
     different things.  First, and most simply, is the @'{p}.  This part is
     separated from the next part by a newline, @'{\n}.  The @'{p} means that
     the first argument to the function will be passed the value of a
@@ -5216,10 +5214,10 @@ promoting software freedom.”
     a number, or @k{M-} and a number.  If the function is called
     interactively without a prefix, 1 is passed to this argument.
 
-    The second part of @c{"p\ncZap to char:@: "} is @'{cZap to char:@: }.  In
+    The second part of @c{"p\ncZap to char: "} is @'{cZap to char: }.  In
     this part, the lower case @'{c} indicates that @c{interactive} expects a
     prompt and that the argument will be a character.  The prompt follows the
-    @'{c} and is the string @'{Zap to char:@: } (with a space after the colon
+    @'{c} and is the string @'{Zap to char: } (with a space after the colon
     to make it look good).
 
     What all this does is prepare the arguments to @c{zap-to-char} so they
@@ -5252,7 +5250,7 @@ promoting software freedom.”
     the character itself.  (This becomes important for certain characters in
     non-European languages.  The @c{aref} function extracts an element from
     an array.  It is an array-specific function that is not described in this
-    document.  See Section @l{info:emacs#Arrays, Arrays} in @e{The GNU Emacs
+    document.  See Section @l{info:emacs#Arrays<>Arrays} in @e{The GNU Emacs
     Lisp Reference Manual}.)
 
     @c{(point)} is the current position of the cursor.
@@ -5285,7 +5283,7 @@ promoting software freedom.”
     The @c{search-forward} function takes four arguments:
 
     1. The first argument is the target, what is searched for.  This must be
-       a string, such as @'{"z"}.
+       a string, such as @"{z}.
 
        As it happens, the argument passed to @c{zap-to-char} is a single
        character.  Because of the way computers are built, the Lisp
@@ -5319,10 +5317,10 @@ promoting software freedom.”
     In template form, a @c{search-forward} expression looks like this:
 
     ..src > elisp
-      (search-forward "@V{target-string}"
-                      @V{limit-of-search}
-                      @V{what-to-do-if-search-fails}
-                      @V{repeat-count})
+      (search-forward "target-string"
+                      limit-of-search
+                      what-to-do-if-search-fails
+                      repeat-count)
     < src..
 
     We will look at @c{progn} next.
@@ -5338,7 +5336,7 @@ promoting software freedom.”
 
     ..src > elisp
       (progn
-        @V{body}…)
+        body…)
     < src..
 
     In @c{zap-to-char}, the @c{progn} expression has to do two things: put
@@ -5444,7 +5442,7 @@ promoting software freedom.”
              (when string                    ;STRING is nil if BEG = END
                ;; Add that string to the kill ring, one way or another.
                (if (eq last-command 'kill-region)
-                   ;;    @minus{} ‘yank-handler’ is an optional argument to
+                   ;;    − ‘yank-handler’ is an optional argument to
                    ;;    ‘kill-region’ that tells the ‘kill-append’ and
                    ;;    ‘kill-new’ functions how deal with properties
                    ;;    added to the text, such as ‘bold’ or ‘italics’.
@@ -5477,58 +5475,6 @@ promoting software freedom.”
             (signal 'text-read-only (list (current-buffer)))))
    < src..
 
-   ..ignore >
-     @c v 21
-     ..src > elisp
-       (defun kill-region (beg end)
-         "Kill between point and mark.
-       The text is deleted but saved in the kill ring."
-         (interactive "r")
-
-         ;; 1. ‘condition-case’ takes three arguments.
-         ;;    If the first argument is nil, as it is here,
-         ;;    information about the error signal is not
-         ;;    stored for use by another function.
-         (condition-case nil
-
-             ;; 2. The second argument to ‘condition-case’
-             ;;    tells the Lisp interpreter what to do when all goes well.
-
-             ;;    The ‘delete-and-extract-region’ function usually does the
-             ;;    work.  If the beginning and ending of the region are both
-             ;;    the same, then the variable ‘string’ will be empty, or nil
-             (let ((string (delete-and-extract-region beg end)))
-
-               ;; ‘when’ is an ‘if’ clause that cannot take an ‘else-part’.
-               ;; Emacs normally sets the value of ‘last-command’ to the
-               ;; previous command.
-               ;; ‘kill-append’ concatenates the new string and the old.
-               ;; ‘kill-new’ inserts text into a new item in the kill ring.
-               (when string
-                 (if (eq last-command 'kill-region)
-                     ;; if true, prepend string
-                     (kill-append string (< end beg))
-                   (kill-new string)))
-               (setq this-command 'kill-region))
-
-           ;; 3. The third argument to ‘condition-case’ tells the interpreter
-           ;;    what to do with an error.
-           ;;    The third argument has a conditions part and a body part.
-           ;;    If the conditions are met (in this case,
-           ;;             if text or buffer are read-only)
-           ;;    then the body is executed.
-           ((buffer-read-only text-read-only) ;; this is the if-part
-            ;; then...
-            (copy-region-as-kill beg end)
-            (if kill-read-only-ok            ;; usually this variable is nil
-                (message "Read only text copied to kill ring")
-              ;; or else, signal an error if the buffer is read-only;
-              (barf-if-buffer-read-only)
-              ;; and, in any case, signal that the text is read-only.
-              (signal 'text-read-only (list (current-buffer)))))))
-     < src..
-   < ignore..
-
 *** @c{condition-case}
 
     As we have seen earlier (see Section @l{Generate an Error Message}), when
@@ -5547,17 +5493,17 @@ promoting software freedom.”
 
     ..src > elisp
       (condition-case
-        @V{var}
-        @V{bodyform}
-        @V{error-handler}…)
+        var
+        bodyform
+        error-handler…)
     < src..
 
-    The second argument, @V{bodyform}, is straightforward.  The
+    The second argument, @c{bodyform}, is straightforward.  The
     @c{condition-case} special form causes the Lisp interpreter to evaluate
-    the code in @V{bodyform}.  If no error occurs, the special form returns
+    the code in @c{bodyform}.  If no error occurs, the special form returns
     the code's value and produces the side-effects, if any.
 
-    In short, the @V{bodyform} part of a @c{condition-case} expression
+    In short, the @c{bodyform} part of a @c{condition-case} expression
     determines what should happen when everything works correctly.
 
     However, if an error occurs, among its other actions, the function
@@ -5565,12 +5511,12 @@ promoting software freedom.”
     names.
 
     An error handler is the third argument to @c{condition case}.  An error
-    handler has two parts, a @V{condition-name} and a @V{body}.  If the
-    @V{condition-name} part of an error handler matches a condition name
-    generated by an error, then the @V{body} part of the error handler is
+    handler has two parts, a @c{condition-name} and a @c{body}.  If the
+    @c{condition-name} part of an error handler matches a condition name
+    generated by an error, then the @c{body} part of the error handler is
     run.
 
-    As you will expect, the @V{condition-name} part of an error handler may
+    As you will expect, the @c{condition-name} part of an error handler may
     be either a single condition name or a list of condition names.
 
     Also, a complete @c{condition-case} expression may contain more than one
@@ -5578,7 +5524,7 @@ promoting software freedom.”
     run.
 
     Lastly, the first argument to the @c{condition-case} expression, the
-    @V{var} argument, is sometimes bound to a variable that contains
+    @c{var} argument, is sometimes bound to a variable that contains
     information about the error.  However, if that argument is nil, as is the
     case in @c{kill-region}, that information is discarded.
 
@@ -5586,22 +5532,9 @@ promoting software freedom.”
     works like this:
 
     ..example >
-      @V{If no errors}, @V{run only this code}
-          @V{but}, @V{if errors}, @V{run this other code}.
+      If no errors, run only this code
+          but, if errors, run this other code.
     < example..
-
-    ..ignore >
-      2006 Oct 24
-      In Emacs 22,
-      copy-region-as-kill is short, 12 lines, and uses
-      filter-buffer-substring, which is longer, 39 lines
-      and has delete-and-extract-region in it.
-      delete-and-extract-region is written in C.
-
-      see Initializing a Variable with @c{defvar}
-      this is line 8054
-      Initializing a Variable with @c{defvar} includes line 8350
-    < ignore..
 
 *** Lisp macro
 
@@ -5620,18 +5553,13 @@ promoting software freedom.”
     in turn compute the value.  In this case, the ‘other expression’ is an
     @c{if} expression.
 
-    The @c{kill-region} function definition also has an @c{unless} macro; it
-    is the converse of @c{when}.  The @c{unless} macro is an @c{if} without a
-    then clause
+    The @c{kill-region} function definition also has an @c{unless} macro; it is
+    the converse of @c{when}.  The @c{unless} macro is an @c{if} without a
+    @c(then) clause
 
-    For more about Lisp macros, see Section @l{info:elisp#Macros, Macros, in
+    For more about Lisp macros, see Section @l{info:elisp#Macros<>Macros}, in
     @e{The GNU Emacs Lisp Reference Manual}.  The C programming language also
     provides macros.  These are different, but also useful.
-
-    ..ignore >
-      We will briefly look at C macros in
-      Section @l{Digression into C}.
-    < ignore..
 
     Regarding the @c{when} macro, in the @c{condition-case} expression, when
     the string has content, then another conditional expression is executed.
@@ -5698,10 +5626,10 @@ promoting software freedom.”
    As usual, this function can be divided into its component parts:
 
    ..src > elisp
-     (defun copy-region-as-kill (@V{argument-list})
-       "@V{documentation}…"
+     (defun copy-region-as-kill (argument-list)
+       "documentation…"
        (interactive "r")
-       @V{body}…)
+       body…)
    < src..
 
    The arguments are @c{beg} and @c{end} and the function is interactive with
@@ -5771,9 +5699,9 @@ promoting software freedom.”
 
     ..src > elisp
       (if (eq last-command 'kill-region)
-          ;; @e{then-part}
+          ;; then-part
           (kill-append  (filter-buffer-substring beg end) (< end beg))
-        ;; @e{else-part}
+        ;; else-part
         (kill-new  (filter-buffer-substring beg end)))
     < src..
 
@@ -5812,27 +5740,12 @@ promoting software freedom.”
                      yank-handler)))
      < src..
 
-     ..ignore >
-       was:
-       (defun kill-append (string before-p)
-         "Append STRING to the end of the latest kill in the kill ring.
-       If BEFORE-P is non-nil, prepend STRING to the kill.
-       If ‘interprogram-cut-function’ is set, pass the resulting kill to
-       it."
-         (kill-new (if before-p
-                       (concat string (car kill-ring))
-                     (concat (car kill-ring) string))
-                   t))
-     < ignore..
-
      The @c{kill-append} function is fairly straightforward.  It uses the
      @c{kill-new} function, which we will discuss in more detail in a moment.
 
      (Also, the function provides an optional argument called
      @c{yank-handler}; when invoked, this argument tells the function how to
      deal with properties added to the text, such as ‘bold’ or ‘italics’.)
-
-@    !!! bug in GNU Emacs 22 version of  kill-append ?
 
      It has a @c{let*} function to set the value of the first element of the
      kill ring to @c{cur}.  (I do not know why the function does not use
@@ -5845,9 +5758,9 @@ promoting software freedom.”
      depends on the results of an @c{if} expression:
 
      ..src > elisp
-       (if before-p                            ; @e{if-part}
-           (concat string cur)                 ; @e{then-part}
-         (concat cur string))                  ; @e{else-part}
+       (if before-p                            ; if-part
+           (concat string cur)                 ; then-part
+         (concat cur string))                  ; else-part
      < src..
 
      If the region being killed is before the region that was killed in the
