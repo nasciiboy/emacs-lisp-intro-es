@@ -105,7 +105,7 @@
     <li><a class="h3" href="#repaso:-cómo-escribir-definiciones-de-funciones" >Repaso</a></li>
     <li><a class="h3" href="#ejercicios" >Ejercicios</a></li>
     </ul>
-  <li><a class="h2" href="#algunas-funciones-relacionadas-al-buffer" >Algunas funciones relacionadas al buffer</a></li>
+  <li><a class="h2" href="#algunas-funciones-relacionadas-al-bufer" >Algunas funciones relacionadas al bufer</a></li>
     <ul>
     <li><a class="h3" href="#encontrar-más-información" >Encontrar Más información</a></li>
     <li><a class="h3" href="#una-definición-simplificada-de-beginning-of-buffer" >Una definición simplificada de <code>beginning-of-buffer</code></a></li>
@@ -144,12 +144,12 @@
       <li><a class="h4" href="#beginning-of-buffer-con-un-argumento" ><code>beginning-of-buffer</code> con un argumento</a></li>
         <ul>
         <li><a class="h5" href="#qué-ocurre-en-un-búfer-de-gran-tamaño" >Qué ocurre en un búfer de gran tamaño</a></li>
-        <li><a class="h5" href="#qué-ocurre-en-un-búfer-pequeño" >Qué ocurre en un búfer pequeño</a></li>
+        <li><a class="h5" href="#lo-que-sucede-en-un-búfer-pequeño" >Lo que sucede en un búfer pequeño</a></li>
         </ul>
       <li><a class="h4" href="#funcion-beginning-of-buffer-completa" >Funcion <code>beginning-of-buffer</code> Completa</a></li>
       </ul>
-    <li><a class="h3" href="#repaso" ><span id="Repaso-2" >Repaso</span></a></li>
-    <li><a class="h3" href="#ejercicio-de-argumento-opcional" >Ejercicio de argumento <code>opcional</code></a></li>
+    <li><a class="h3" href="#repaso:-algunas-funciones-más-complejas" >Repaso</a></li>
+    <li><a class="h3" href="#ejercicio-con-el-argumento-opcional" >Ejercicio con el argumento <code>opcional</code></a></li>
     </ul>
   <li><a class="h2" href="#reducir-y-extender" >Reducir y Extender</a></li>
     <ul>
@@ -660,7 +660,7 @@ Debugger entered--Lisp error: (void-function fill-column)
 <p>Si intenta evaluar un símbolo que no tiene un valor asociado, recibirá un mensaje de error. Esto se puede ver experimentando con nuestra suma 2 más 2. En la siguiente expresión, pon el cursor justo después del <code>+</code>, antes del primer número 2, presiona <kbd>C-x C-e</kbd>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre>
-<p>En GNU Emacs 25, se creará un buffer <span class="file" >*Backtrace*</span> que dice:</p>
+<p>En GNU Emacs 22, se creará un buffer <span class="file" >*Backtrace*</span> que dice:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--Lisp error: (void-variable +)
@@ -1519,36 +1519,36 @@ Multiplica NUMERO por siete.
 </li>
 </ul>
 </div>
-<h2 id="algunas-funciones-relacionadas-al-buffer" >Algunas funciones relacionadas al buffer</h2>
+<h2 id="algunas-funciones-relacionadas-al-bufer" >Algunas funciones relacionadas al bufer</h2>
 <div class="hBody-2" >
-<p>En este capítulo estudiamos en detalle varias de las funciones usadas en GNU Emacs. Esto se llama un “walk-through” (visita o demostracion de un area o tarea). Estas funciones se utilizan como ejemplos de código Lisp, pero no son ejemplos imaginarios; con excepción del primero, con la definición de función simplificada, estas funciones muestran el código real usado en GNU Emacs. Se puede aprender mucho de estas definiciones. Las funciones descritas aquí están todas relacionadas a búfers. Mas tarde, estudiaremos otras funciones.</p>
+<p>En este capítulo estudiamos en detalle varias de las funciones usadas en GNU Emacs. Esto se denomina un “recorrido” (visita o demostracion de un area o tarea). Estas funciones se utilizan como ejemplos de código Lisp, pero no son ejemplos imaginarios; con excepción del primero, con la definición de función simplificada, estas funciones muestran el código real usado en GNU Emacs. Se puede aprender mucho de estas definiciones. Las funciones descritas aquí están todas relacionadas a búfers. Mas tarde, estudiaremos otras funciones.</p>
 </div>
 <h3 id="encontrar-más-información" >Encontrar Más información</h3>
 <div class="hBody-3" >
 <p>En este recorrido, describire cada nueva función, algunas veces en detalle y algunas veces brevemente. Si estás interesado, puedes obtener la documentación completa de cualquier función de Emacs Lisp en cualquier momento presiona <kbd>C-h f</kbd> y luego escribe el nombre de la función (y luego <kbd>RET</kbd>). Del mismo modo, se puede obtener la documentación completa de una variable con <kbd>C-h v</kbd>, luego el nombre de la variable (y despues <kbd>RET</kbd>).</p>
 <p>Ademas, <code>describe-function</code> te dira la ubicacion de la definición de la función.</p>
 <p>Coloca el punto dentro del nombre del fichero que contiene la función y presiona la tecla <kbd>RET</kbd>. En este caso, <kbd>RET</kbd> significa <code>push-button</code> en lugar de ‘return’ o ‘enter’. Emacs te llevara directamente a la definición de la función.</p>
-<p>De manera más general, si quieres ver una función en su fichero fuente original, puedes utilizar la función <code>find-tag</code> para saltar a la misma. <code>find-tag</code> trabaja con una amplia variedad de lenguajes, no solo Lisp, y C, y tambien funciona con texto que no codigo de programacion. Por ejemplo, <code>find-tag</code> saltará a los distintos nodos del codigo fuente de este documento. La función <code>find-tag</code> depende de ‘tablas de etiquetas’ que registran las ubicaciones de las funciones, variables, y otros elementos a los que <code>find-tag</code> salta.</p>
-<p>Para usar el comando <code>find-tag</code>, presiona <kbd>M-.</kbd> (es decir, presiona la tecla punto mientras presionas la tecla <kbd>META</kbd>, o presiona <kbd>ESC</kbd> y luego la tecla punto), a continuacion, en es prompt, escribe el nombre de la función para ver su código fuente, por ejemplo <code>mark-whole-buffer</code>, y luego pulsa <kbd>RET</kbd>. Emacs cambiará de búfer y mostrará el código fuente de la función en la pantalla. Para regresar a tu búfer actual, presiona <kbd>C-x b RET</kbd>. (En algunos teclados, la tecla <kbd>META</kbd> se etiqueta como <kbd>ALT</kbd>.)</p>
-<p>Dependiendo de la configuracion de los valores iniciales por defecto de tu copia de Emacs, puede ser necesario especificar la posición de tu ‘tabla de tags’, que es un fichero llamado <span class="file" >TAGS</span>. Por ejemplo, si estás interesado en el codigo fuente de Emacs, la tabla de tags, si ya ha sido creada, estará en un subdirectorio del directorio <span class="file" >/usr/local/share/emacs</span>; de este modo se usaría el comando <code>M-x visit-tags-table</code> y se especifica una ruta como <span class="file" >/usr/local/share/emacs/24.1.1/lisp/TAGS</span>. Si la tabla de etiquetas no ha sido creada, tendrás que crearla por tí mismo. Estara en un fichero como <span class="file" >/usr/local/src/emacs/src/TAGS</span>.</p>
-<p>Para crear un fichero <span class="file" >TAGS</span> en un directorio específico, cambia a ese directorio en Emacs mediante el comando <kbd>M-x cd</kbd>, o lista el directorio con <kbd>C-x d</kbd> (<code>dired</code>). A continuacion ejecuta el comando de compilacion, con <code>etags *.el</code> como comando a ejecutar:</p>
+<p>De manera más general, si quieres ver una función en su fichero fuente original, puedes utilizar la función <code>find-tag</code> para saltar a la misma. <code>find-tag</code> trabaja con una amplia variedad de lenguajes, no solo Lisp, y C, y tambien funciona con texto en general. Por ejemplo, <code>find-tag</code> saltará a los distintos nodos del codigo fuente de este documento. La función <code>find-tag</code> depende de ‘tablas de etiquetas’ que registran las ubicaciones de las funciones, variables, y otros elementos a los que <code>find-tag</code> salta.</p>
+<p>Para usar el comando <code>find-tag</code>, presiona <kbd>M-.</kbd> (es decir, presiona la tecla punto mientras presionas la tecla <kbd>META</kbd>, o presiona <kbd>ESC</kbd> y luego la tecla punto), a continuacion, en el prompt, escribe el nombre de la función para ver su código fuente, por ejemplo <code>mark-whole-buffer</code>, y luego pulsa <kbd>RET</kbd>. Emacs cambiará de búfer y mostrará el código fuente de la función en la pantalla. Para regresar a tu búfer actual, presiona <kbd>C-x b RET</kbd>. (En algunos teclados, la tecla <kbd>META</kbd> se etiqueta como <kbd>ALT</kbd>.)</p>
+<p>Dependiendo de la configuracion de los valores iniciales por defecto de tu copia de Emacs, puede ser necesario especificar la posición de tu ‘tabla de etiquetas’, que es un fichero llamado <span class="file" >TAGS</span>. Por ejemplo, si estás interesado en el codigo fuente de Emacs, la tabla de etiquetas, si ya ha sido creada, estará en un subdirectorio del directorio <span class="file" >/usr/local/share/emacs</span>; de este modo se usaría el comando <code>M-x visit-tags-table</code> y se especifica una ruta como <span class="file" >/usr/local/share/emacs/24.1.1/lisp/TAGS</span>. Si la tabla de etiquetas no ha sido creada, tendrás que crearla por tí mismo. Estara en un fichero como <span class="file" >/usr/local/src/emacs/src/TAGS</span>.</p>
+<p>Para crear un fichero <span class="file" >TAGS</span> en un directorio específico, cambia a ese directorio en Emacs mediante el comando <kbd>M-x cd</kbd>, o lista el directorio con <kbd>C-x d</kbd> (<code>dired</code>). A continuacion ejecuta el comando de compilacion, con <code>etags *.el</code> como:</p>
 <div class="example-block" >
 <pre class="example" >M-x compile RET etags *.el RET
 </pre>
 </div>
-<p>Para más información, ver <a href="#crea-tu-propio-fichero-tags" >Crea tu propio fichero <span class="file" >TAGS</span></a>.</p>
+<p>Para más información, ver la Seccion <a href="#crea-tu-propio-fichero-tags" >Crea tu propio fichero <span class="file" >TAGS</span></a>.</p>
 <p>Después de te familiarices con Emacs Lisp, te encontrarás con frecuencia utilizando <code>find-tag</code> como metodo de navegar atraves del código fuente; y crearás tus propias tablas <span class="file" >TAGS</span>.</p>
-<p>Por cierto, los ficheros que contienen código Lisp son llamados convencionalmente <dfn>librerías</dfn>. La metáfora se deriva que una librería especializada, tal como una librería de leyes o una librería de ingeniería, en lugar de una librería general. Cada librería, o fichero, contiene funciones que se relacionan con un tema o actividad determinado, por ejemplo <span class="file" >abbrev.el</span> para el manejo de abreviaturas y otros atajos, y <span class="file" >help.el</span> para ayuda on-line. (Algunas veces varias librerías proporcionan código para una sola actividad, como los distintos ficheros <span class="file" >rmail…</span>  que proporcionan para leer correo electrónico.) En <em>El Manual de GNU Emacs</em>, verás varias frases como “El comando <kbd>C-h p</kbd> te permite buscar las librerias estándar de Emacs Lisp por la palabra clave del tema.</p>
+<p>Por cierto, los ficheros que contienen código Lisp son llamados convencionalmente <dfn>librerías</dfn>. La metáfora se deriva que una librería especializada, tal como una librería de leyes o una librería de ingeniería, en lugar de una librería general. Cada librería, o fichero, contiene funciones que se relacionan con un tema o actividad particular, por ejemplo <span class="file" >abbrev.el</span> para el manejo de abreviaturas y otros atajos, y <span class="file" >help.el</span> para ayuda en linea. (Algunas veces varias librerías proporcionan código para una sola actividad, como los distintos ficheros <span class="file" >rmail…</span>  que proporcionan codigo para leer correo electrónico.) En <em>El Manual de GNU Emacs</em>, verás varias frases como “El comando <kbd>C-h p</kbd> te permite buscar las librerias estándar de Emacs Lisp por la palabra clave del tema.</p>
 </div>
 <h3 id="una-definición-simplificada-de-beginning-of-buffer" >Una definición simplificada de <code>beginning-of-buffer</code></h3>
 <div class="hBody-3" >
 <p>El comando <code>beginning-of-buffer</code> es una buena función para empezar, ya que es probable que estes familiarizado con ella y es fácil de entender. Usado como un comando interactivo, <code>beginning-of-buffer</code> mueve el cursor al inicio del búfer, dejando la marca en la posición anterior. Esta generalmente unido a <kbd>M-&lt;</kbd>.</p>
-<p>En esta sección, vamos a hablar de une versión reducida de la función que muestra como se utiliza con mayor frecuencia. Esta función reducida funciona como esta escrita, pero no contiene código para una opcion compleja. En otra sección, describiremos la función entera. (Vea la Seccion <a href="#definición-completa-de-beginning-of-buffer" >Definición completa de <code>beginning-of-buffer</code></a>.</p>
-<p>Antes de mirar el código, vamos a considerar lo que la definición de función tiene que contener: debe incluir una expresión que haga la función interactiva por lo que se puede llamar escribiendo <kbd>M-x beginning-of-buffer</kbd> o pulsando uno atajos como <kbd>M-&lt;</kbd>; debe incluir código para dejar una marca en la posición original del búfer; y debe incluir código para mover el cursor al inicio del búfer.</p>
+<p>En esta sección, vamos a hablar de una versión reducida de la función que muestra como se utiliza con mayor frecuencia. Esta función reducida funciona como esta escrita, pero no contiene código para una opcion compleja. En otra sección, describiremos la función entera. (Vea la Seccion <a href="#definición-completa-de-beginning-of-buffer" >Definición completa de <code>beginning-of-buffer</code></a>.</p>
+<p>Antes de mirar el código, vamos a considerar lo que la definición de función tiene que contener: debe incluir una expresión que haga la función interactiva por lo que se puede llamar escribiendo <kbd>M-x beginning-of-buffer</kbd> o pulsando algun atajo como <kbd>M-&lt;</kbd>; debe incluir código para dejar una marca en la posición original del búfer; y debe incluir código para mover el cursor al inicio del búfer.</p>
 <p>Aquí está el texto completo la versión reducida de la función:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">simplified-beginning-of-buffer</span> <span class="p">()</span>
   <span class="s">&#34;Mover el punto al inicio del buffer;
-</span><span class="s">dejar marca en la posicion anterior.&#34;</span>
+</span><span class="s">deja la marca en la posicion anterior.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">push-mark</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)))</span>
@@ -1579,7 +1579,7 @@ Multiplica NUMERO por siete.
 </code></pre>
 <p>La primera de estas líneas es la expresión, <code>(push-mark)</code>. Cuando el interprete Lisp evalua esta expresión, se establece una marca en la posición actual del cursor, donde sea que este. La posición de esta marca se guarda en el anillo de marcas.</p>
 <p>La siguiente línea es <code>(goto-char (point-min))</code>. Esta expresión hace saltar el cursor hasta el punto mínimo en el búfer, es decir, al inicio del búfer (o al inicio de la porción accesible del búfer si narrowed esta activo. Vea la Seccion <a href="#reducir-y-extender" >Reducir y Extender</a>.)</p>
-<p>El comando <code>push-mark</code> establece una marca en el sitio donde se encontraba el cursor antes de transladarse al inicio del búfer por la expresión <code>(goto-char (point-min))</code>. En consecuencia, puedes, si quieres, volver a donde estabas originalmente presionando <kbd>C-x C-x</kbd>.</p>
+<p>El comando <code>push-mark</code> establece una marca en el sitio donde se encontraba el cursor antes de que la expresion expresión <code>(goto-char (point-min))</code> lo moviera al principio del bufer. En consecuencia, puedes, si quieres, volver a donde estabas originalmente presionando <kbd>C-x C-x</kbd>.</p>
 <p>¡Esto es todo lo que hay en la definición de función!</p>
 <p>Cuando leas código como este y te encuentres con una función desconocida, como <code>goto-char</code>, puedes averiguar que es lo que hace mediante el comando <code>describe-function</code>. Para usar este comando, presiona <kbd>C-h f</kbd> y luego escribe el nombre de la función y presiona <kbd>RET</kbd>. El comando <code>describe-function</code> imprimirá la cadena de documentacion de la función en una ventana <span class="file" >*Help*</span>. Por ejemplo, la documentación de <code>goto-char</code> es:</p>
 <div class="example-block" >
@@ -1588,31 +1588,31 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 </pre>
 </div>
 <p>El argumento de la función es la posición deseada.</p>
-<p>(En el caso de <code>describe-function</code> el prompt te facilita el símbolo debajo o anterior al cursor, lo que te puede evitar escribir el nombre de la funcion al colocar el cursor a la justo sobre o después de la función y luego presionar <kbd>C-h f RET</kbd>.)</p>
+<p>(En el caso de <code>describe-function</code> el prompt te facilita el símbolo adelante o anterior al cursor, lo que te puede evitar escribir el nombre de la funcion al colocar el cursor encima o después de la función y luego presionando <kbd>C-h f RET</kbd>.)</p>
 <p>La definición de la función <code>end-of-buffer</code> se escribe de la misma forma que la definición <code>beginnig-of-buffer</code> excepto que el cuerpo de la función contiene la expresión <code>(goto-char (point-max))</code> en lugar de <code>(goto-char (point-min))</code></p>
 </div>
 <h3 id="la-definición-de-mark-whole-buffer" >La definición de <code>mark-whole-buffer</code></h3>
 <div class="hBody-3" >
 <p>La función <code>mark-whole-buffer</code> no es mas difícil de entender que la función <code>simplified-beginning-of-buffer</code>. En este caso, sin embargo, vamos a ver la función completa, no una versión reducida.</p>
-<p>La función <code>mark-whole-buffer</code> no se utiliza tan comúnmente como la función <code>beginning-of-buffer</code>, pero no es menos útil: marca un búfer completo como una región colocando el punto al inicio y una marca al fin del búfer. Generalmente se une a <kbd>C-x h</kbd>.</p>
+<p>La función <code>mark-whole-buffer</code> no se utiliza tan comúnmente como la función <code>beginning-of-buffer</code>, pero no es menos útil: marca un búfer completo como una región colocando el punto al inicio y una marca al fin del búfer. Generalmente se enlaza a <kbd>C-x h</kbd>.</p>
 <p>En GNU Emacs 22, el código de la función completa se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">mark-whole-buffer</span> <span class="p">()</span>
   <span class="s">&#34;Coloca el punto al inicio y marca el fin del buffer.
 </span><span class="s">Probablemente no deberias utilizar esta funcion en programas Lisp;
-</span><span class="s">Por lo general es un error para una funcion Lisp utilizar cualquier subrutino
+</span><span class="s">Por lo general es un error que una funcion Lisp utilice cualquier subrutina
 </span><span class="s">que utiliza o establece la marca.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">push-mark</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
   <span class="p">(</span><span class="nv">push-mark</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">)</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)))</span>
 </code></pre>
-<p>Al igual que todas las demas funciones, la función <code>mark-whole-buffer</code> se ajusta dentro de la plantilla de una definición de funcion. La plantilla luce asi:</p>
+<p>Al igual que todas las demas funciones, la función <code>mark-whole-buffer</code> encaja dentro de la plantilla de una definición de funcion. La plantilla luce asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">nombre-de-funcion</span> <span class="p">(</span><span class="nv">lista-de-argumentos</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nv">expresion-interactiva</span><span class="err">…</span><span class="p">)</span>
   <span class="nv">cuerpo</span><span class="err">…</span><span class="p">)</span>
 </code></pre>
-<p>Aquí el cómo funciona la función: el nombre de la función es <code>mark-whole-buffer</code>; es seguido por una lista de argumentos vacía, <samp>()</samp>, que significa que la función no requiere argumentos. La documentación viene a continuacion.</p>
+<p>Asi es cómo funciona la función: el nombre de la función es <code>mark-whole-buffer</code>; le sigue una lista de argumentos vacía, <samp>()</samp>, lo que significa que la función no requiere argumentos. La documentación viene despues.</p>
 <p>La siguiente línea es una expresión <code>(interactive)</code> que indica a Emacs que la función se utilizara de forma interactiva. Estos detalles son similares a la función <code>simplified-beginning-of-buffer</code> descrita en la sección anterior</p>
 </div>
 <h4 id="cuerpo-de-mark-whole-buffer" >Cuerpo de <code>mark-whole-buffer</code></h4>
@@ -1625,18 +1625,18 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <p>La primera de estas líneas es la expresión, <code>(push-mark (point))</code>.</p>
 <p>Esta línea hace exactamente el mismo trabajo que la primera línea del cuerpo de la función <code>simplified-beginning-of-buffer</code>, en la que solo se escribe <code>(push-mark)</code>. En ambos casos, el intérprete Lisp coloca una marca en la posición actual del cursor.</p>
 <p>No sé por qué en la expresión <code>mark-whole-buffer</code> se escribe <code>(push-mark (point))</code> y en la expresión <code>beginning-of-buffer</code> se escribe <code>(push-mark)</code>. Quizás quien escribió el código no conocia que los argumentos de <code>push-mark</code> son opcionales y que si no se pasa un argumento a <code>push-mark</code>, la función establece automáticamente la marca en la posicion del punto por defecto. O quizás la expresión fué escrita paralelamente a la estructura de la siguiente línea. En cualquier caso, la línea proboca que Emacs determine la posición del punto y coloque una marca allí.</p>
-<p>En versiones anteriores de GNU Emacs, la siguiente línea de <code>mark-whole-buffer</code> era <code>(push-mark (point-max))</code>. Esta expresión establece una marca en el punto del búfer que tiene el número más alto. Este será el final del búfer (o, si el búfer tiene actio narrowing, el final de la porción accesible del búfer. Vea la Seccion <a href="#reducir-y-extender" >Reducir y Extender</a>, para más informacon sobre norrowing). Después de colocar esta marca, la marca anterior, la establecida en el punto, ya no esta configurada, pero Emacs recuerda su posición, al igual que recuerda todas las demas marcas recientes. Esto significa que se puedes, si lo deseas, volver a esta posición presionando <kbd>C-u C-SPC</kbd> dos veces.</p>
+<p>En versiones anteriores de GNU Emacs, la siguiente línea de <code>mark-whole-buffer</code> era <code>(push-mark (point-max))</code>. Esta expresión establece una marca en el punto del búfer que tiene el número más alto. Este será el final del búfer (o, si el búfer tiene activo narrowing, el final de la porción accesible del búfer. Vea la Seccion <a href="#reducir-y-extender" >Reducir y Extender</a>, para más informacion sobre norrowing). Después de colocar esta marca, la marca anterior, la establecida en el punto, ya no esta configurada, pero Emacs recuerda su posición, al igual que todas las otras marcas recientes. Esto significa que, si lo deseas, puedes volver a esta posición presionando <kbd>C-u C-SPC</kbd> dos veces.</p>
 <p>En GNU Emacs 22, <code>(point-max)</code> es ligeramente más complicado. La línea es</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">push-mark</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">)</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
 </code></pre>
-<p>La expresión funciona casi igual que antes. Se establece una marca en la posicion con la numeracion mas alta posible en el búfer. Sin embargo, en esta versión, <code>push-mark</code> tiene dos argumentos adicionales. El segundo argumento de <code>push-mark</code> es <code>nil</code>. Esto indica a la función que debe <em>mostrar</em> un mensaje que dice ‘Mark set’ cuando se coloca la marca. El tercer argumento es <code>t</code>. Esto indica a <code>push-mark</code> que active la marca cuando el modo Transient Mark está activo. Transient Mark mode resalta la región activa. Con frecuencia esta desactivado.</p>
+<p>La expresión funciona casi igual que antes. Se establece una marca en la posicion con el numero mas alto posible en el búfer. Sin embargo, en esta versión, <code>push-mark</code> tiene dos argumentos adicionales. El segundo argumento de <code>push-mark</code> es <code>nil</code>. Esto le indica a la función que debe <em>mostrar</em> un mensaje que dice ‘Mark set’ cuando se coloca la marca. El tercer argumento es <code>t</code>. Esto indica a <code>push-mark</code> que active la marca cuando el modo Transient Mark está activo. Transient Mark mode resalta la región activa. Con frecuencia esta desactivado.</p>
 <p>Finalmente, la última línea de la función es <code>(goto-char (point-min))</code>. Esta escrito exactamente de la misma forma como está escrito <code>beginning-of-buffer</code>. La expresión mueve el cursor al punto mínimo en el búfer, es decir, al inicio del búferr (o al inicio de la porción accesible del búfer). Como resultado de esto, punto se coloca al inicio del búfer y la marca se encuentra al final del búfer. Por tanto, todo el búfer es la región.</p>
 </div>
 <h3 id="la-definición-de-append-to-buffer" >La definición de <code>append-to-buffer</code></h3>
 <div class="hBody-3" >
 <p>El comando <code>append-to-buffer</code> es más complejo que el comando <code>mark-whole-buffer</code>. Lo que hace es copiar la región (es decir, la parte del búfer entre el punto y la marca) del buffer actual a un búfer específico.</p>
 <p>El comando <code>append-to-buffer</code> utiliza la función <code>insert-buffer-substring</code> para copiar la región. <code>insert-buffer-substring</code> se describe por su nombre: toma una cadena de caracteres de una parte de un búfer, una “subcadena”, y la inserta en otro búfer.</p>
-<p>La mayor parte de <code>append-to-buffer</code> corresponde a establecer la condiciones para que <code>insert-buffer-substring</code> funcione: el código debe especificar tanto el búfer al que ira el texto, la ventana fuente y destino, y la región que será copiada.</p>
+<p>La mayor parte de <code>append-to-buffer</code> tiene que ver con el establecimiento de las condiciones para que <code>insert-buffer-substring</code> funcione: el código debe especificar tanto el búfer al que ira el texto, la ventana fuente y destino, y la región que será copiada.</p>
 <p>Aquí está el texto completo de la función:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">append-to-buffer</span> <span class="p">(</span><span class="nv">buffer</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
   <span class="s">&#34;Agregar a un buffer especifico el texto de la region.
@@ -1663,14 +1663,14 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
             <span class="p">(</span><span class="nf">set-window-point</span> <span class="nv">window</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))))))</span>
 </code></pre>
 <p>Se puede entender la función si se mira como una serie de plantillas rellenas.</p>
-<p>La plantilla exterior es para la definición de función. Esta función, se ve como esto (con varios espacios ocupados):</p>
+<p>La plantilla exterior es para la definición de función. Esta función, se ve como asi (con varios espacios ocupados):</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">append-to-buffer</span> <span class="p">(</span><span class="nv">buffer</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="err">…</span><span class="p">)</span>
   <span class="nv">cuerpo</span><span class="err">…</span><span class="p">)</span>
 </code></pre>
 <p>La primer línea de la función incluye su nombre y tres argumentos. Los argumentos son el <code>búfer</code> al cual copiar el texto, <code>start</code> y <code>end</code> que son el inicio y el fin de la región del buffer actual desde donde se va a copiar.</p>
-<p>La siguiente parte de la función es la documentación, que es clara y completa. Como es convencional, los tres argumentos estan escritos en mayúsculas para que los noces con facilidad. Aun mejor, se describen en el mismo orden que en la lista de argumentos.</p>
+<p>La siguiente parte de la función es la documentación, que es clara y completa. Como es convencional, los tres argumentos estan escritos en mayúsculas para que los notes con facilidad. Aun mejor, se describen en el mismo orden que en la lista de argumentos.</p>
 <p>Observe que la documentación distingue entre un búfer y su nombre. (La función puede manejar cualquiera.)</p>
 </div>
 <h4 id="la-expresión-interactiva-append-to-buffer" >La expresión interactiva <code>append-to-buffer</code></h4>
@@ -1684,7 +1684,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
        <span class="p">(</span><span class="nf">region-end</span><span class="p">)))</span>
 </code></pre>
 <p>Esta expresión no tiene letras para representar partes, como se describio anteriormente. En su lugar, inicia una lista con estas partes:</p>
-<p>La primer parte de la lista es una expresión para leer el nombre de un búfer y devolverlo como una cadena. Es decir <code>read-buffer</code>. La función requiere una prompt como primer argumento, <samp>&#34;Agregar al buffer: &#34;</samp>. El segundo argumento le indica al comando que valor proporcionar si no se especifica nada.</p>
+<p>La primer parte de la lista es una expresión para leer el nombre de un búfer y devolverlo como una cadena. Es decir <code>read-buffer</code>. La función requiere un prompt como primer argumento, <samp>&#34;Agregar al buffer: &#34;</samp>. El segundo argumento le indica al comando que valor proporcionar si no se especifica nada.</p>
 <p>En este caso este segundo argumento es una expresión que contiene la función <code>other-buffer</code>, una excepción, y una <samp>t</samp>, para representar verdadero.</p>
 <p>El primer argumento de <code>other-buffer</code>, la excepción, es otra función, <code>current-buffer</code>. Esto no va a ser devuelto. El segundo argumento es el símbolo de verdadero, <code>t</code>. Que le dice a <code>other-buffer</code> que puede mostrar búfers visibles (excepto en este caso, no se mostrará el búfer actual, lo cual tiene sentido).</p>
 <p>La expresión se ve asi:</p>
@@ -1694,14 +1694,14 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <p>Originalmente, el comando utilizaba las letras <samp>B</samp> y <samp>r</samp>. Toda la expresión <code>interactive</code> se veia así:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;BAppend to buffer: \nr&#34;</span><span class="p">)</span>
 </code></pre>
-<p>Pero cuando se hacia esto, el valor por defecto del búfer de cambió era invisible. Esto no era lo buscado.</p>
+<p>Pero cuando se hacia esto, el valor por defecto del búfer de cambió era invisible. Esto no era lo que se queria.</p>
 <p>(El prompt se separo del segundo argumento con una línea nueva, <samp>\n</samp>. Seguido por un <samp>r</samp> que le indica a Emacs unir los dos argumentos que siguen al símbolo <code>buffer</code> en la lista de argumentos de la función (es decir, <code>start</code> y <code>end</code>) a los valores del punto y marca. Este argumento funcionaba bien.)</p>
 </div>
 <h4 id="el-cuerpo-de-append-to-buffer" >El cuerpo de <code>append-to-buffer</code></h4>
 <div class="hBody-4" >
 <p>El cuerpo de la función <code>append-to-buffer</code> inicia con <code>let</code>.</p>
-<p>Como hemos visto antes (ver Seccion <a href="#let" ><code>let</code></a>), el propósito de una expresión <code>let</code> es crear y dar valores iniciales a una o más variable que solo serán utilizadas dentro del cuerpo del <code>let</code>. Esto significa que esa variable no se debe confundir con cualquier variable del mismo nombre fuera de la expresión <code>let</code>.</p>
-<p>Podemos ver como la expresión <code>let</code> encaja en la función como un todo mostrando una plantilla de <code>append-to-buffer</code> con la expresión <code>let</code> en resumen:</p>
+<p>Como hemos visto antes (ver Seccion <a href="#let" ><code>let</code></a>), el propósito de una expresión <code>let</code> es crear y dar valores iniciales a una o más variables que solo se usaran dentro del cuerpo del <code>let</code>. Esto significa que esa variable no se debe confundir con cualquier variable del mismo nombre fuera de la expresión <code>let</code>.</p>
+<p>Podemos ver como la expresión <code>let</code> encaja en la función como un todo mostrando una plantilla de <code>append-to-buffer</code> con la expresión <code>let</code> en general:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">append-to-buffer</span> <span class="p">(</span><span class="nv">buffer</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="err">…</span><span class="p">)</span>
@@ -1734,7 +1734,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <div class="hBody-4" >
 <p>El cuerpo de la expresión <code>let</code> dentro de <code>append-to-buffer</code> consiste de una expresión <code>save-excursion</code>.</p>
 <p>La función <code>save-excursion</code> guarda las posiciones de punto y marca, y restaura estas posiciones después de que las expresiones en el cuerpo de <code>save-excursion</code> completan su ejecución. Además, <code>save-excursion</code> no pierde de vista el búfer original, y lo restaura. Asi es como se utizia <code>save-excursion</code> en <code>append-to-buffer</code>.</p>
-<p>Por cierto, vale la pena señalar que una función Lisp normalmente se formatea de modo que todo lo que se encierre en un conjunto de multiples lineas se indente más a la derecha que el primer símbolo. En esta definición de función, <code>let</code> se indenta más que <code>defun</code>, y <code>save-excursion</code> se indenta más que <code>let</code>, asi:</p>
+<p>Por cierto, vale la pena señalar que una función Lisp normalmente se formatea de modo que todo lo que esta encerrado en un conjunto de multiples lineas se indente más a la derecha que el primer símbolo. En esta definición de función, <code>let</code> se indenta más que <code>defun</code>, y <code>save-excursion</code> se indenta más que <code>let</code>, asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="err">…</span>
   <span class="err">…</span>
   <span class="err">…</span>
@@ -1742,7 +1742,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
     <span class="p">(</span><span class="nb">save-excursion</span>
       <span class="err">…</span>
 </code></pre>
-<p>Esta convención de formato hace que sea fácil de ver que líneas en el cuerpo de <code>save-excursion</code> son encerradas por los parentesis asociados con <code>save-excurion</code>, de igual forma el mismo <code>save-excursion</code> esta encerrado por los paréntesis asociados con <code>let</code>:</p>
+<p>Esta convención de formato hace que sea fácil de ver que líneas en el cuerpo de <code>save-excursion</code> estan rodeadas por los parentesis asociados con <code>save-excursion</code>, de igual forma el mismo <code>save-excursion</code> esta rodeado por los paréntesis asociados con <code>let</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">oldbuf</span> <span class="p">(</span><span class="nf">current-buffer</span><span class="p">)))</span>
   <span class="p">(</span><span class="nb">save-excursion</span>
     <span class="err">…</span>
@@ -1750,7 +1750,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
     <span class="p">(</span><span class="nf">insert-buffer-substring</span> <span class="nv">oldbuf</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
     <span class="err">…</span><span class="p">))</span>
 </code></pre>
-<p>El uso de la función <code>save-excursion</code> puede ser visto como el proceso de llenar espacios de una plantilla:</p>
+<p>El uso de la función <code>save-excursion</code> puede ser visto como el proceso de llenar ranuras de una plantilla:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">save-excursion</span>
   <span class="nv">primer-expresion-en-el-cuerpo</span>
   <span class="nv">segunda-expresion-en-el-cuerpo</span>
@@ -1758,7 +1758,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
   <span class="nv">ultima-expresion-en-el-cuerpo</span><span class="p">)</span>
 </code></pre>
 <p>En esta función, el cuerpo de <code>save-excursion</code> contiene solo una expresión, la expresión <code>let*</code>. Ya conoces la función <code>let</code>. La función <code>let*</code> es diferente. Posee un <samp>*</samp> en su nombre. Esto le permite a Emacs colocar cada variable de su varlist en secuencia, una después de otra.</p>
-<p>Su caracteristica fundamental es que las siguientes variables en la varlist puedan hacer uso de los valores establecidos por Emacs anteriomente en la varlist. Vea la Seccion <a href="#la-expresión-let*" >La expresión <code>let*</code></a>.</p>
+<p>Su caracteristica fundamental es que las siguientes variables en la varlist puedan hacer uso de los valores establecidos por Emacs antes en la varlist. Vea la Seccion <a href="#la-expresión-let*" >La expresión <code>let*</code></a>.</p>
 <p>Vamos a omitir funciones como <code>let*</code> y nos centraremos en dos: la función <code>set-buffer</code> y la función <code>insert-buffer-substring</code>.</p>
 <p>En los viejos tiempos, la expresión <code>set-buffer</code> era simplemente:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">set-buffer</span> <span class="p">(</span><span class="nf">get-buffer-create</span> <span class="nv">buffer</span><span class="p">))</span>
@@ -1767,67 +1767,63 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">set-buffer</span> <span class="nv">append-to</span><span class="p">)</span>
 </code></pre>
 <p><code>append-to</code> esta unido al <code>(get-buffer-create-buffer)</code> anterior en la expresión <code>let*</code>. Esta union extra no sería necesaria excepto que <code>append-to</code> se utiliza despues en la varlist como un argumento para <code>get-buffer-window-list</code>.</p>
-<p>La definición de la función <code>append-to-buffer</code> inserta texto desde el búfer en el que estás actualmente al buffer que se indique. Sucede que <code>insert-buffer-substring</code> copia texto desde otro búfer al búfer actual, todo lo contrario––es por ello que la definición <code>append-to-buffer</code> inicia con un <code>let</code> que une el símbolo local <code>oldbuf</code> al valor devuelto por <code>current-buffer</code>.</p>
+<p>La definición de la función <code>append-to-buffer</code> inserta texto desde el búfer en el que te encuentras actualmente al buffer que se indique. Sucede que <code>insert-buffer-substring</code> copia texto desde otro búfer al búfer actual, justo al reves––es por ello que la definición <code>append-to-buffer</code> inicia con un <code>let</code> que une el símbolo local <code>oldbuf</code> al valor devuelto por <code>current-buffer</code>.</p>
 <p>La expresión <code>insert-buffer-substring</code> es la siguiente:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">insert-buffer-substring</span> <span class="nv">oldbuf</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
 </code></pre>
-<p>La función <code>insert-buffer-substring</code> copia una cadena <em>desde</em> el búfer especificado como su primer argumento e inserta la cadena dentro del búfer actual. En este caso, el argumento de <code>insert-buffer-substring</code> es el valor de la variable creada y vinculada por el <code>let</code>, es decir, el valor de <code>oldbuf</code>, que era el búfer actual cuando diste el comando <code>append-to-buffer</code>.</p>
+<p>La función <code>insert-buffer-substring</code> copia una cadena <em>desde</em> el búfer especificado como su primer argumento e inserta la cadena dentro del búfer actual. En este caso, el argumento de <code>insert-buffer-substring</code> es el valor de la variable creada y vinculada por <code>let</code>, es decir, el valor de <code>oldbuf</code>, que era el búfer actual cuando diste el comando <code>append-to-buffer</code>.</p>
 <p>Después de que <code>insert-buffer-substring</code> ha hecho su trabajo, <code>save-excursion</code> restaurará la acción al búfer original y <code>append-to-buffer</code> habrá hecho su trabajo.</p>
-<p>Escrito en forma de esquema, los funcionamientos del cuerpo se ven asi:</p>
+<p>Escrito en forma de esqueletal, los funcionamientos del cuerpo se ven asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">unir-oldbuf-al-valor-del-buffer-actual</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">save-excursion</span>                       <span class="c1">; guarda un registro del buffer.</span>
     <span class="nv">cambio-de-buffer</span>
-    <span class="nv">ensertar-substring-desde-oldbuf-a-buffer</span><span class="p">)</span>
+    <span class="nv">insertar-subcadena-desde-oldbuf-a-buffer</span><span class="p">)</span>
 
   <span class="nv">regresar-al-buffer-original-al-terminar</span>
 <span class="nv">dejar-que-el-siginificado-local-de-oldbuf-desaparacesca-al-terminar</span>
 </code></pre>
-<p>En resumen, <code>append-to-buffer</code> funciona como sigue: se guarda el valor del búfer actual en la variable llamada <code>oldbuf</code>. Se obtiene el nuevo búfer (creando uno si es necesario) y cambia la atención de Emacs a este. Usando el valor de <code>oldbuf</code>, inserta la región del texto desde el búfer antiguo dentro del nuevo búfer; y luego se usando <code>save-excursion</code>, regresas a tu búfer original.</p>
+<p>En resumen, <code>append-to-buffer</code> funciona de la siguiente manera: guarda el valor del búfer actual en la variable <code>oldbuf</code>. Obtiene el nuevo búfer (creando uno si es necesario) y cambia la atención de Emacs a este. Usando el valor de <code>oldbuf</code>, inserta la región del texto desde el búfer antiguo dentro del nuevo búfer; y luego usando <code>save-excursion</code>, regresa al búfer original.</p>
 <p>Al observar <code>append-to-buffer</code>, se ha explorado una función bastante compleja. Muestra como usar <code>let</code> y <code>save-excursion</code>, y como cambiar y volver desde otro buffer. Muchas definiciones de función usan <code>let</code>, <code>save-excursion</code>, y <code>set-buffer</code> de esta manera.</p>
 </div>
 <h3 id="repaso" >Repaso</h3>
 <div class="hBody-3" >
 <p>Aquí está un breve resumen de las diferentes funciones descritas en este capítulo.</p>
 <dl>
-<dt>describe-function</dt>
-<dd>
-</dd>
-<dt>describe-variable</dt>
+<dt><code>describe-function</code>, <code>describe-variable</code></dt>
 <dd>
 <p>Imprime la documentación de una función o variable. Convencionalmente unidas a <kbd>C-h f</kbd> y <kbd>C-h v</kbd>.</p>
 </dd>
-<dt>find-tag</dt>
+<dt><code>find-tag</code></dt>
 <dd>
-<p>Encuentra el fichero que contiene la codigo de una función o variable y cambia a dicho buffer, colocando el punto al inicio del elemento. Convencionalmente unido a <kbd>M-.</kbd> (esto es un punto luego de la tecla <kbd>META</kbd>).</p>
+<p>Encuentra el fichero que contiene el codigo de una función o variable y cambia a dicho buffer, colocando el punto al inicio del elemento. Convencionalmente ligado a <kbd>M-.</kbd> (esto es un punto luego de la tecla <kbd>META</kbd>).</p>
 </dd>
-<dt>save-excursion</dt>
+<dt><code>save-excursion</code></dt>
 <dd>
 <p>Guarda la posicion de punto y marca y restaura sus valores tras evaluar los argumentos de <code>save-excursion</code>. Ademas, recuerda el buffer actual y regresa a el.</p>
 </dd>
-<dt>push-mark</dt>
+<dt><code>push-mark</code></dt>
 <dd>
 <p>Asigna la marca a una posicion y guarda el valor de la marca previa en el anillo de marcas. La marca es una ubicacion en el búfer que mantendra su posición relativa, incluso si se añade o borra texto del búfer.</p>
 </dd>
-<dt>goto-char</dt>
+<dt><code>goto-char</code></dt>
 <dd>
 <p>Establece el punto a la ubicacion especificada por el valor del argumento, que puede ser un número, una marca, o una expresión que devuelve el número de una posición, como <code>(point-min)</code>.</p>
 </dd>
-<dt>insert-buffer-substring</dt>
+<dt><code>insert-buffer-substring</code></dt>
 <dd>
 <p>Copia una región de texto desde un búfer que se pasa a la función como un argumento e inserta la región dentro del búfer actual.</p>
 </dd>
-<dt>mark-whole-buffer</dt>
+<dt><code>mark-whole-buffer</code></dt>
 <dd>
 <p>Marca el búfer completo como una región. Normalmente unido a <kbd>C-x h</kbd>.</p>
 </dd>
-<dt>set-buffer</dt>
+<dt><code>set-buffer</code></dt>
 <dd>
 <p>Cambia la atención de Emacs a otro búfer, pero no se muestra el cambio en la ventana. Se utiliza cuando un programa y no humano trabaja en un búfer distinto.</p>
 </dd>
-<dt>get-buffer-create</dt>
+<dt><code>get-buffer-create</code>, <code>get-buffer</code></dt>
 <dd>
-<p>get-buffer        ::</p>
-<p>Busca el búfer nombrado o crea uno si el búfer con ese nombre no existe. La función <code>get-buffer</code> devuelve <code>nil</code> si el nombre del búfer no existe.</p>
+<p>Busca el búfer con nombre o crea uno si el búfer con ese nombre no existe. La función <code>get-buffer</code> devuelve <code>nil</code> si el nombre del búfer no existe.</p>
 </dd>
 </dl>
 </div>
@@ -1841,7 +1837,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <p>Utiliza <code>if</code> y <code>get-buffer</code> para escribir una función que imprima un mensaje que te diga si un buffer existe.</p>
 </li>
 <li>
-<p>Utilizando <code>find-tag</code>, busca el codigo para la función <code>copy-to-buffer</code></p>
+<p>Usando <code>find-tag</code>, busca el codigo de la función <code>copy-to-buffer</code></p>
 </li>
 </ul>
 </div>
@@ -1851,7 +1847,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 </div>
 <h3 id="la-definición-de-copy-to-buffer" >La definición de <code>copy-to-buffer</code></h3>
 <div class="hBody-3" >
-<p>Después de comprender cómo trabaja <code>append-to-buffer</code>, es fácil entender <code>copy-to-buffer</code>. Esta función copia texto dentro de un búfer, pero en lugar de agregarlo al segundo búfer, se sustituye todo el texto anterior en el segundo búfer.</p>
+<p>Después de comprender cómo trabaja <code>append-to-buffer</code>, es fácil entender <code>copy-to-buffer</code>. Esta función copia texto dentro de un búfer, pero en lugar de agregarlo al segundo búfer, sustituye todo el texto anterior en el segundo búfer.</p>
 <p>El cuerpo de <code>copy-to-buffer</code> tiene este aspecto,</p>
 <pre class="code" ><code class="chroma" ><span class="err">…</span>
 <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;BCopy to buffer: \nr&#34;</span><span class="p">)</span>
@@ -1863,35 +1859,35 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
       <span class="p">(</span><span class="nf">insert-buffer-substring</span> <span class="nv">oldbuf</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)))))</span>
 </code></pre>
 <p>La función <code>copy-to-buffer</code> tiene una expresión <code>interactive</code> mas sencilla que <code>append-to-buffer</code>.</p>
-<p>Despues la definición dice:</p>
+<p>La definición dice:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">with-current-buffer</span> <span class="p">(</span><span class="nf">get-buffer-create</span> <span class="nv">buffer</span><span class="p">)</span> <span class="err">…</span>
 </code></pre>
-<p>En primer lugar, mira en la expresión más interna; que se evalua primero. Esta expresión inicia con <code>get-buffer-create buffer</code>. La función le indica a la computadora que utilice el búfer con el nombre específicado como aquel al que quieres copiar, o si tal búfer no existe, créarlo. Luego, la función <code>with-current-buffer</code> evalúa su cuerpo con este búfer temporal actual.</p>
+<p>En primer lugar, mira en la expresión más interna; que se evalua primero. Esta expresión inicia con <code>get-buffer-create buffer</code>. La función le indica al ordenador que utilice el búfer con el nombre específicado como aquel que quieres copiar, o si tal búfer no existe, que debe créarlo. Luego, la función <code>with-current-buffer</code> evalúa su cuerpo con este búfer temporal.</p>
 <p>(Esto demuestra otra forma de cambiar la atención de la computadora pero no por parte del usuario. La función <code>append-to-buffer</code> muestro como hacer lo mismo con <code>save-excursion</code> y <code>set-buffer</code>. <code>with-current-buffer</code> es un nuevo mecanismo, posiblemente mas sencillo.)</p>
 <p>La función <code>barf-if-buffer-read-only</code> envía un mensaje de error diciendo que el búfer es de solo lectura si no se puede modificar.</p>
 <p>La siguiente línea tiene la función <code>erase-buffer</code> como su único contenido. Este función borra el búfer.</p>
-<p>Finalmente, las últimas dos líneas contienen la expresión <code>save-excursion</code> con <code>insert-buffer-substring</code> como su cuerpo. La expresión <code>insert-buffer-substring</code> copia el texto desde el búfer en el que te encuentras (no has visto que el computador cambie su atención, por lo que no sabes que ese búfer ahora se llama <code>oldbuf</code>).</p>
+<p>Finalmente, las últimas dos líneas contienen la expresión <code>save-excursion</code> con <code>insert-buffer-substring</code> como su cuerpo. La expresión <code>insert-buffer-substring</code> copia el texto desde el búfer en el que te encuentras (y no has visto que el computador cambie su atención, por lo que no sabes que ese búfer ahora se llama <code>oldbuf</code>).</p>
 <p>Por cierto, esto es lo que se entiende por ‘reemplazo’. Para reemplazar el texto Emacs borra el texto anterior y luego inserta el texto nuevo.</p>
 <p>A grandes rasgos, el cuerpo de <code>copy-to-buffer</code> se ve asi:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">@V{bind-}@c{oldbuf}@V{-to-value-of-}@c{current-buffer}</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">@V{with-the-buffer-you-are-copying-to}</span>
-      <span class="p">(</span><span class="nv">@V{but-do-not-erase-or-copy-to-a-read-only-buffer}</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">enlazar-oldbuf-al-valor-del-bufer-actual</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">con-el-bufer-al-que-estas-copiando</span>
+      <span class="p">(</span><span class="nv">pero-no-borrar-o-copiar-a-un-bufer-de-solo-lectura</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">erase-buffer</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">save-excursion</span>
-        <span class="nv">@V{insert-substring-from-}@c{oldbuf}@V{-into-buffer}</span><span class="p">)))</span>
+        <span class="nv">insertar-la-subcadena-de-oldbuf-en-el-bufer</span><span class="p">)))</span>
 </code></pre>
 </div>
 <h3 id="la-definición-de-insert-buffer" >La definición de <code>insert-buffer</code></h3>
 <div class="hBody-3" >
 <p><code>insert-buffer</code> es otra función relacionada con búfers. Este comando copia otro búfer <em>dentro</em> del búfer actual. Es lo contrario a <code>append-to-buffer</code> o <code>copy-to-buffer</code>, dado que copia una región de texto <em>desde</em> el búfer actual a otro búfer.</p>
-<p>Aquí examinamos en el código original. El código fue simplificado en 2003 y es mas dificil de comprender.</p>
+<p>Aquí examinamos en el código original. El código fue simplificado en 2003 y es mas dificil de entender.</p>
 <p>(Vea la Seccion <a href="#nuevo-cuerpo-para-insert-buffer" >Nuevo Cuerpo para <code>insert-buffer</code></a>, para ver una discusión del nuevo cuerpo.)</p>
 <p>Además, este código ilustra el uso de <code>interactive</code> con un búfer que podría ser <dfn>read-only</dfn> (de solo lectura) y la importante distinción entre el nombre de un objeto y el objeto al que realmente hace referencia.</p>
 <p>Aquí está el código anterior:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">insert-buffer</span> <span class="p">(</span><span class="nv">buffer</span><span class="p">)</span>
-  <span class="s">&#34;Inserta despues del punto el contenido de BUFFER.
+  <span class="s">&#34;Insertar despues del punto el contenido de BUFFER.
 </span><span class="s">Coloca la marca despues del texto insertado.
-</span><span class="s">BUFFER puede ser un buffer un el nombre de un buffer.&#34;</span>
+</span><span class="s">BUFFER puede ser un buffer o el nombre de un buffer.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;*bInsert buffer: &#34;</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nf">bufferp</span> <span class="nv">buffer</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">setq</span> <span class="nv">buffer</span> <span class="p">(</span><span class="nf">get-buffer</span> <span class="nv">buffer</span><span class="p">)))</span>
@@ -1913,21 +1909,21 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 </div>
 <h4 id="la-expresión-interactiva-en-insert-buffer" >La expresión interactiva en <code>insert-buffer</code></h4>
 <div class="hBody-4" >
-<p>En <code>insert-buffer</code>, el argumetno de la declaración <code>interactive</code> tiene dos partes, un asterisco, <samp>*</samp>, y <samp>bInsert buffer: </samp>.</p>
+<p>En <code>insert-buffer</code>, el argumento de la declaración <code>interactive</code> tiene dos partes, un asterisco, <samp>*</samp>, y <samp>bInsert buffer: </samp>.</p>
 </div>
 <h5 id="un-búfer-de-solo-lectura" >Un búfer de solo lectura</h5>
 <div class="hBody-5" >
-<p>El asterisco se utliza cuando el búfer actual es un búfer de solo lectura––un búfer que no puede ser modificado. Si <code>insert-buffer</code> se llama cuando el búfer actual es de solo lectura, se imprime un mensaje en el area echo a este efecto y el terminal puede emitir un beep o parpadear; no se te permitira insertar nada en el búfer actual. El asterisco no tiene que ser seguido por un salto de linea para separarlo del siguiente argumento.</p>
+<p>El asterisco se utliza cuando el búfer actual es un búfer de solo lectura––un búfer que no puede ser modificado. Si se llama a <code>insert-buffer</code> cuando el búfer actual es de solo lectura, se imprime un mensaje en el area de eco y el terminal puede emitir un beep o parpadear; no se permitira insertar nada en el búfer actual. El asterisco no tiene que ser seguido por un salto de linea para separarlo del siguiente argumento.</p>
 </div>
 <h5 id="b-en-una-expresión-interactiva" ><samp>b</samp> en una expresión interactiva</h5>
 <div class="hBody-5" >
-<p>El siguiente argumento de la expresión interactiva inicia con una letra <samp>b</samp> minúscula. (Esta es diferente del código para <code>append-to-buffer</code>, que utiliza una <samp>B</samp> mayúscula. Vea la Seccion <a href="#la-definición-de-append-to-buffer" >La Definición de <code>append-to-buffer</code></a>.) La <samp>b</samp> minúscula le indica al intérprete Lisp que el argumento de <code>insert-buffer</code> debe ser un buffer existente o su nombre. (La opcion <samp>B</samp> mayúscula prevee la posibilidad que no exista el búfer.)  Emacs te pedira el nombre del búfer, ofreciendo un búfer por defecto, con el autocompletado de nombre habilitado. Si el búfer no existe, recibiras un mensaje que dice “No concuerda”; tu terminal tambien puede emitir un beep.</p>
-<p>El código nuevo y simplificado genera una lista <code>interactive</code>. Este utiliza las funciones <code>barf-if-buffer-read-only</code> y <code>read-buffer</code> con las que ya estamos familiarizados y la forma especial <code>progn</code> con la que no. (Se describe mas adelaste).</p>
+<p>El siguiente argumento de la expresión interactiva inicia con una letra <samp>b</samp> minúscula. (Esto es diferente del código para <code>append-to-buffer</code>, que utiliza una <samp>B</samp> mayúscula. Vea la Seccion <a href="#la-definición-de-append-to-buffer" >La Definición de <code>append-to-buffer</code></a>.) La <samp>b</samp> minúscula le indica al intérprete Lisp que el argumento de <code>insert-buffer</code> debe ser un buffer existente o su nombre. (La opcion <samp>B</samp> mayúscula permite la posibilidad que el búfer no exista.)  Emacs te pedira el nombre del búfer, ofreciendo un búfer por defecto, con el autocompletado de nombre habilitado. Si el búfer no existe, recibiras un mensaje que dice “No match” (<q>no concuerda</q>); tu terminal tambien puede emitir un beep.</p>
+<p>El nuevo código simplificado genera una lista <code>interactive</code>. Este utiliza las funciones <code>barf-if-buffer-read-only</code> y <code>read-buffer</code> con las que ya estamos familiarizados y la forma especial <code>progn</code> con la que no lo estamos. (Se describira mas adelaste).</p>
 </div>
 <h4 id="el-cuerpo-de-la-función-insert-buffer" >El cuerpo de la función <code>insert-buffer</code></h4>
 <div class="hBody-4" >
-<p>El cuerpo de la función <code>insert-buffer</code> tiene dos partes principales: una expresión <code>or</code> y una expresión <code>let</code>. El propósito de la expresión <code>or</code> es asegurar que el argumento <code>buffer</code> esta unido a un búfer y no es solo el nombre de un búfer. El cuerpo de la expresión <code>let</code> contiene el código que copia el otra búfer dentro del búfer actual.</p>
-<p>A grades rasgos, las dos expresiones encajan en la función <code>insert-buffer</code> de esta manera:</p>
+<p>El cuerpo de la función <code>insert-buffer</code> tiene dos partes principales: una expresión <code>or</code> y una expresión <code>let</code>. El propósito de la expresión <code>or</code> es asegurar que el argumento <code>buffer</code> esta unido a un búfer y no es solo el nombre de un búfer. El cuerpo de la expresión <code>let</code> contiene el código que copia el otro búfer dentro del búfer actual.</p>
+<p>A grades rasgos, las dos expresiones encajan asi en la función <code>insert-buffer</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">insert-buffer</span> <span class="p">(</span><span class="nv">buffer</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;*bInsert buffer: &#34;</span><span class="p">)</span>
@@ -1937,14 +1933,14 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
       <span class="nv">cuerpo-de-let</span><span class="err">…</span> <span class="p">)</span>
 </code></pre>
 <p>Para entender como la expresión <code>or</code> asegura que el argumento <code>buffer</code> esta unido a un buffer y no al nombre de un búfer, primero es necesario entender la función <code>or</code>.</p>
-<p>Antes de hacer esto, permíteme reescribir esta parte de la función utilizando <code>if</code> de esta manera puedes ver como se hace de una manera que será familiar.</p>
+<p>Antes de hacer esto, permíteme reescribir esta parte de la función utilizando <code>if</code> de esta manera puedes ver como se hace de una manera que resulta familiar.</p>
 </div>
 <h4 id="insert-buffer-con-un-if-en-lugar-de-un-or" ><code>insert-buffer</code> con un <code>if</code> en lugar de un <code>or</code></h4>
 <div class="hBody-4" >
-<p>El trabajo a realizar es asegurarse de que el valor de <code>buffer</code> es un búfer en sí y no el nombre de un búfer. Si el valor es el nombre, entonces debe optenerse el búfer en sí.</p>
-<p>Puedes imaginarte a tí mismo en una conferencia donde un acomodador está observando una lista con tu nombre en ella y mirándote: el acomodador sabe “asociar” tu nombre, pero no a tí; pero cuando el acomodador te encuentra y te toma el brazo, el acomodador llega a “asociarte” a tí.</p>
+<p>El trabajo a realizar es asegurarse de que el valor de <code>buffer</code> sea un búfer en sí mismo y no el nombre de un búfer. Si el valor es el nombre, entonces debe optenerse el búfer en sí.</p>
+<p>Puedes imaginarte a tí mismo en una conferencia donde un acomodador está observando una lista con tu nombre en ella y mirándote: el acomodador sabe “asociar” tu nombre, no a tí; pero cuando el acomodador te encuentra y te toma el brazo, el acomodador llega a “asociarte” a tí.</p>
 <p>En Lisp, se podría describir esta situación así:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nv">tomando-al-invitado</span><span class="p">))</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nv">tomar-al-invitado</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">encontrar-y-tomar-del-brazo-al-invitado</span><span class="p">))</span>
 </code></pre>
 <p>Queremos hacer lo mismo con un búfer––si no tenemos el búfer en sí, queremos conseguirlo.</p>
@@ -1957,45 +1953,45 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <p>La función <code>not</code> precede la expresión <code>(bufferp buffer)</code>, así la prueba verdadero-o-falso es la siguente:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">bufferp</span> <span class="nv">buffer</span><span class="p">))</span>
 </code></pre>
-<p><code>not</code> es una función que devuelve verdadero si su argumento es falso y falso si su argumento es verdadero. Por lo que si <code>(bufferp buffer)</code> devuelve cierto, la expresión <code>not</code> devuelve falso y vice-versa: lo que es “no cierto” es falso y lo que es “no falso” es verdadero.</p>
-<p>Usando esta prueba, la expresión <code>if</code> funciona como sigue: cuando el valor de la variable <code>buffer</code> está en realidad en un búfer en lugar de su nombre, la prueba verdadero-o-falso devuelve falso y la expresión <code>if</code> no evalúa la parte then. Esto está bien, ya que no tenemos que hacer nada para la variable <code>buffer</code> si realmente es un búfer.</p>
-<p>Por otro lado, cuando el valor de <code>buffer</code> no es un buffer en sí, pero si el nombre de un buffer, la prueba verdadero-o-falso devuelve verdadero y se evalua la parte then de la expresión. En este caso, la parte then es <code>(setq buffer (get-buffer buffer))</code>. Esta expresión utiliza la función <code>get-buffer</code> para devolver un buffer en sí, dado su nombre. Luego <code>setq</code> asigna la variable <code>buffer</code> reemplazando su valor anterior (que era el nombre del buffer).</p>
+<p><code>not</code> es una función que devuelve verdadero si su argumento es falso y falso si su argumento es verdadero. Por lo que si <code>(bufferp buffer)</code> devuelve cierto, la expresión <code>not</code> devuelve falso y vice-versa: lo que es “no verdadero” es falso y lo que es “no falso” es verdadero.</p>
+<p>Usando esta prueba, la expresión <code>if</code> funciona de la siguiente manera: cuando el valor de la variable <code>buffer</code> es en realidad un búfer en lugar de su nombre, la prueba verdadero-o-falso devuelve falso y la expresión <code>if</code> no evalúa la parte then. Esto está bien, ya que no tenemos que hacer nada para la variable <code>buffer</code> si realmente es un búfer.</p>
+<p>Por otro lado, cuando el valor de <code>buffer</code> no es un buffer en sí, pero si el nombre de un buffer, la prueba verdadero-o-falso devuelve verdadero y se evalua la parte then de la expresión. En este caso, la parte then es <code>(setq buffer (get-buffer buffer))</code>. Esta expresión utiliza la función <code>get-buffer</code> para devolver un buffer en real, dado su nombre. Luego <code>setq</code> asigna la variable <code>buffer</code> reemplazando su valor anterior (que era el nombre del buffer).</p>
 </div>
 <h4 id="el-or-en-el-cuerpo" >El <code>or</code> en el cuerpo</h4>
 <div class="hBody-4" >
-<p>El propósito de la expresión <code>or</code> en la función <code>insert-buffer</code> es asegurar que el argumento <code>buffer</code> está asociado a un búfer y no solo al nombre de un búfer. La sección previa muestra como se podría haber hecho el trabajo usando una expresión <code>if</code>. Sin embargo, la función <code>insert-buffer</code> realmente utiliza <code>or</code>. Para entender esto, es necesario entender funciona como <code>or</code>.</p>
-<p>Una función <code>or</code> puede tener cualquier número de argumentos. Esta evalúa un argumento a la ves y devuelve el valor del primero de sus argumentos que no es <code>nil</code>. Ademas, y esta es una caracteristica crucial de <code>or</code>, es no evalúa los argumentos posteriores después de regresar el primer valor no-<code>nil</code>.</p>
-<p>La expresión <code>or</code> luce asi:</p>
+<p>El propósito de la expresión <code>or</code> en la función <code>insert-buffer</code> es asegurar que el argumento <code>buffer</code> está asociado a un búfer y no solo al nombre de un búfer. La sección previa muestra como se podría haber hecho el trabajo usando una expresión <code>if</code>. Sin embargo, la función <code>insert-buffer</code> utiliza <code>or</code>. Para entender esto, es necesario entender como funciona <code>or</code>.</p>
+<p>Una función <code>or</code> puede tener cualquier número de argumentos. Esta evalúa un argumento a la ves y devuelve el valor del primero de sus argumentos que no es <code>nil</code>. Ademas, y esta es una caracteristica crucial de <code>or</code>, es no evalúar los argumentos posteriores después de regresar el primer valor no-<code>nil</code>.</p>
+<p>La expresión <code>or</code> se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nf">bufferp</span> <span class="nv">buffer</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">setq</span> <span class="nv">buffer</span> <span class="p">(</span><span class="nf">get-buffer</span> <span class="nv">buffer</span><span class="p">)))</span>
 </code></pre>
 <p>El primer argumento de <code>or</code> es la expresión <code>(bufferp buffer)</code>. Esta expresión devuelve verdadero (un valor no-<code>nil</code>) si el búfer es realmente un búfer, y no solo el nombre de un búfer. En la expresión <code>or</code>, si este es el caso, la expresión <code>or</code> devuelve este valor verdadero y no evalúa la siguiente expresión––y esto es bueno para nosotros, ya que no queremos hacer nada al valor de <code>buffer</code> si realmente es un búfer.</p>
 <p>Por otro lado, si el valor de <code>(bufferp buffer)</code> es <code>nil</code>, si el valor de <code>buffer</code> es el nombre de un buffer, el intérprete Lisp evalúa el siguiente elemento de la expresión. Esta es la expresión <code>(setq buffer (get-buffer buffer))</code>. Esta expresión devuelve un valor no-<code>nil</code>, que es el valor para el que asigna la variable <code>buffer</code>––y este valor es un búfer en sí, no el nombre de un búfer.</p>
-<p>El resultado de todo esto es que el símbolo <code>buffer</code> siempre es unido a un búfer en sí en vez de al nombre de un búfer. Todo esto es necesario debido a que la función <code>set-buffer</code> en la línea siguiente solo funciona con un buffer en sí, no con el nombre de un búfer.</p>
-<p>Incidentalmente, usando <code>or</code>, la situación con el acomodador se escribiria así:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">holding-on-to-guest</span><span class="p">)</span> <span class="p">(</span><span class="nv">find-and-take-arm-of-guest</span><span class="p">))</span>
+<p>El resultado de todo esto es que el símbolo <code>buffer</code> siempre se enlaza a un búfer en sí en vez de al nombre de un búfer. Todo esto es necesario debido a que la función <code>set-buffer</code> en la línea siguiente solo funciona con un buffer en sí, no con el nombre de un búfer.</p>
+<p>A proposito, usando <code>or</code>, la escena con el acomodador se escribiria así:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">tomar-al-invitado</span><span class="p">)</span> <span class="p">(</span><span class="nv">encontrar-y-tomar-del-brazo-al-invitado</span><span class="p">))</span>
 </code></pre>
 </div>
 <h4 id="la-expresión-let-en-insert-buffer" >La expresión <code>let</code> en <code>insert-buffer</code></h4>
 <div class="hBody-4" >
-<p>Después de asegurarse que la variable <code>buffer</code> se refiere a un buffer en sí y no solo al nombre de un buffer, la función <code>insert-buffer</code> continúa con una expresión <code>let</code>. Esta especifica tres variables locales, <code>start</code>, <code>end</code> y <code>newmark</code> y las une al valor inicial <code>nil</code>. Estas variables se utilizan dentro del resto de <code>let</code> y oculta temporalmente cualquier otra ocurrencia de variables con el mismo nombre en Emacs hasta el fin de <code>let</code>.</p>
-<p>El cuerpo de <code>let</code> contiene dos expresiones <code>save-excursion</code>. Primero, miremos la expresión <code>save-excursion</code> al interior en detalle. La expresión se ve asi:</p>
+<p>Después de asegurarse que la variable <code>buffer</code> se refiere a un buffer en sí y no solo al nombre de uno, la función <code>insert-buffer</code> continúa con una expresión <code>let</code>. Esta especifica tres variables locales, <code>start</code>, <code>end</code> y <code>newmark</code> y las une al valor inicial <code>nil</code>. Estas variables se utilizan dentro del resto de <code>let</code> y ocultan temporalmente cualquier otra ocurrencia de variables con el mismo nombre en Emacs hasta el final de <code>let</code>.</p>
+<p>El cuerpo de <code>let</code> contiene dos expresiones <code>save-excursion</code>. Primero, veremos la expresión interna <code>save-excursion</code> en detalle. La expresión se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">save-excursion</span>
   <span class="p">(</span><span class="nf">set-buffer</span> <span class="nv">buffer</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">setq</span> <span class="nv">start</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="nv">end</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">)))</span>
 </code></pre>
-<p>La expresión <code>(set-buffer buffer)</code> cambia la atención de Emacs de el búfer actual a el que contene el texto a copiar. En ese búfer las variables <code>start</code> y <code>end</code> se asignadan al inicio y al fin del búfer, usando los comandos <code>point-min</code> y <code>point-max</code>. Tenga en cuenta que tenemos aquí un ejemplo de cómo <code>setq</code> es capaz de asignar dos variables en la misma expresión. El primer argumento de <code>setq</code> se establece al valor del segundo, y su tercer argumento se establece al valor del cuarto.</p>
-<p>Después el cuerpo del <code>save-excursion</code> interno es evaluado, <code>save-excursion</code> restaura el búfer original, pero <code>start</code> y <code>end</code> retienen los valores del inicio y fin del búfer del que se copia el texto.</p>
-<p>La expresión exterior <code>save-excursion</code> luce asi:</p>
+<p>La expresión <code>(set-buffer buffer)</code> cambia la atención de Emacs del búfer actual al buffer del que se copiara el texto. En ese búfer las variables <code>start</code> y <code>end</code> se asignan al inicio y al fin del búfer, usando los comandos <code>point-min</code> y <code>point-max</code>. Tenga en cuenta que aquí tenemos un ejemplo de cómo <code>setq</code> es capaz de asignar dos variables en la misma expresión. El primer argumento de <code>setq</code> se establece al valor del segundo, y su tercer argumento se establece al valor del cuarto.</p>
+<p>Después de evaluar el interior del cuerpo de <code>save-excursion</code>, <code>save-excursion</code> restaura el búfer original, pero <code>start</code> y <code>end</code> retienen los valores del inicio y fin del búfer del que se copiara el texto.</p>
+<p>La expresión extena de <code>save-excursion</code> luce asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">save-excursion</span>
-  <span class="p">(</span><span class="nv">inner-save-excursion-expression</span>
-     <span class="p">(</span><span class="nv">go-to-new-buffer-and-set-start-and-end</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">expresion-interior-de-save-excursion</span>
+     <span class="p">(</span><span class="nv">ir-al-nuevo-bufer-y-establecer-start-y-end</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">insert-buffer-substring</span> <span class="nv">buffer</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">setq</span> <span class="nv">newmark</span> <span class="p">(</span><span class="nf">point</span><span class="p">)))</span>
 </code></pre>
-<p>La función <code>insert-buffer-substring</code> copia el texto <em>dento</em> del búfer actual <em>desde</em> la región indicada por <code>start</code> y <code>end</code> en el <code>búfer</code>. Dado que la totalidad del segundo búfer se encuentra entre <code>start</code> y <code>end</code>, se copia todo dentro del búfer que estás editando. A continuacion, el valor de punto, que será al fin del texto insertado, se registra en la variable <code>newmark</code>.</p>
+<p>La función <code>insert-buffer-substring</code> copia el texto <em>dento</em> del búfer actual <em>desde</em> la región indicada por <code>start</code> y <code>end</code> en el <code>búfer</code>. Puesto que la totalidad del segundo búfer se encuentra entre <code>start</code> y <code>end</code>, todo dentro del segundo búfer se copia el el bufer que se esta editando. A continuacion, el valor del punto, que será al fin del texto insertado, se registra en la variable <code>newmark</code>.</p>
 <p>Después evaluar el cuerpo del <code>save-excursion</code> externo, el punto y la marca se vuelven a colocar en su posicion original.</p>
-<p>Sin embargo, es conveniente localizar una marca al fin del texto recien insertado y localizar el punto a su comienzo. La variable <code>newmark</code> registra el fin del texto insertado. En la última línea de la expresión <code>let</code>, la expresión <code>(push-mark newmark)</code> asigna una marca a esta posición. (La posición anterior de la marca aun es accesible; está grabada en el anillo de marcas y puede volver a ella con <kbd>C-u C-SPC</kbd>.)  Mientras tanto, el punto está localizado al principio del texto insertado, que es donde estaba antes de llamar a la función de insercion, posición que fue guardada por la primer <code>save-excursion</code>.</p>
+<p>Sin embargo, es conveniente ubicar una marca al fin del texto recien insertado y ubicar el punto al principio. La variable <code>newmark</code> registra el fin del texto insertado. En la última línea de la expresión <code>let</code>, la expresión <code>(push-mark newmark)</code> asigna una marca a esta posición. (La posición anterior de la marca aun es accesible; está grabada en el anillo de marcas y puedes volver a ella con <kbd>C-u C-SPC</kbd>.) Mientras tanto, el punto se encuentra al principio del texto insertado, que es donde estaba antes de llamar a la función de insercion, cuya posición fue guardada por la primer <code>save-excursion</code>.</p>
 <p>La expresión <code>let</code> completa se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">start</span> <span class="nv">end</span> <span class="nv">newmark</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">save-excursion</span>
@@ -2011,7 +2007,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <h4 id="nuevo-cuerpo-para-insert-buffer" >Nuevo cuerpo para <code>insert-buffer</code></h4>
 <div class="hBody-4" >
 <p>El cuerpo en la versión 22 de GNU Emacs es más confuso que en el original.</p>
-<p>Se compone de dos expresiones</p>
+<p>Consta de dos expresiones</p>
 <pre class="code" ><code class="chroma" >  <span class="p">(</span><span class="nv">push-mark</span>
    <span class="p">(</span><span class="nb">save-excursion</span>
      <span class="p">(</span><span class="nf">insert-buffer-substring</span> <span class="p">(</span><span class="nf">get-buffer</span> <span class="nv">buffer</span><span class="p">))</span>
@@ -2019,28 +2015,28 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 
    <span class="no">nil</span>
 </code></pre>
-<p>excepto, y esto es lo que confunde a los principiantes, un trabajo muy importante se realiza al interior de la expresión <code>push-mark</code>.</p>
+<p>excepto que, y esto es lo que confunde a los principiantes, se hace un trabajo muy importante al interior de la expresión <code>push-mark</code>.</p>
 <p>La función <code>get-buffer</code> devuelve un búfer con el nombre proporcionado. Notaras que la función <em>no</em> se llama <code>get-buffer-create</code>; esta no crea un búfer si uno no existe ya. El búfer devuelto por <code>get-buffer</code>, un búfer existente, se pasa a <code>insert-buffer-substring</code>, que inserta todo el búfer (ya que no se especifica ninguna cosa más).</p>
-<p>La posición donde se inserta el buffer se registra por <code>push-mark</code>. Despues la función devuelve <code>nil</code>, el valor de su último comando. Dicho de otra manera, la función <code>insert-buffer</code> existe solo para producir un efecto secundario, insertar otro buffer, no para devolver ningun valor.</p>
+<p>La posición donde se inserta el buffer se registra por <code>push-mark</code>. Despues la función devuelve <code>nil</code>, el valor de su último comando. Dicho de otra manera, la función <code>insert-buffer</code> existe solo para producir un efecto secundario, insertando otro buffer, no para devolver ningun valor.</p>
 </div>
 <h3 id="definición-completa-de-beginning-of-buffer" >Definición completa de <code>beginning-of-buffer</code></h3>
 <div class="hBody-3" >
-<p>La estructura básica de la función <code>beginning-of-buffer</code> ya ha sido discutida. (Vea la Seccion <a href="#una-definición-simplificada-de-beginning-of-buffer" >Una definición simplificada de <code>beginning-of-buffer</code></a>). Esta sección describe la parte compleja de la definición.</p>
-<p>Como se ha descrito anteriormente, cuando se invoca <code>beginning-of-buffer</code> sin argumento, mueve el cursor al inicio del búfer (en realidad, al inicio de la porción accesible del búfer), dejando la marca en la posición anterior. Sin embargo, cuando el comando se invoca con un número entre uno y diez, la función considera el número sera una fracción del tamaño del búfer, medido en decenas, y Emacs mueve el cursor a dicha fracción del reccorrido desde el inicio del búfer. Por lo tanto, puedes llamar a esta función con el comando de teclado <kbd>M-&lt;</kbd>, que moverá el cursor al principio del búfer, o con un comando de teclado como <kbd>C-u 7 M-&lt;</kbd> que moverá el cursor a un 70% del recorrido a través del búfer. Si se utiliza un número mayor a diez como argumento, se movera al final del búfer.</p>
+<p>Ya se ha discutido la estructura básica de la función <code>beginning-of-buffer</code>. (Vea la Seccion <a href="#una-definición-simplificada-de-beginning-of-buffer" >Una definición simplificada de <code>beginning-of-buffer</code></a>). Esta sección describe la parte compleja de la definición.</p>
+<p>Como se ha descrito anteriormente, cuando se invoca <code>beginning-of-buffer</code> sin argumento, mueve el cursor al inicio del búfer (en realidad, al inicio de la porción accesible del búfer), dejando la marca en la posición anterior. Sin embargo, cuando el comando se invoca con un número entre uno y diez, la función considera que ese número es una fracción del tamaño del búfer, medido en decenas, y Emacs mueve el cursor a dicha fracción del reccorrido desde el inicio del búfer. Por lo tanto, puedes llamar a esta función con el comando de teclado <kbd>M-&lt;</kbd>, que moverá el cursor al principio del búfer, o con un comando de teclado como <kbd>C-u 7 M-&lt;</kbd> que moverá el cursor a un 70% del recorrido a través del búfer. Si se utiliza un número mayor a diez como argumento, se movera al final del búfer.</p>
 <p>La función <code>beginning-of-buffer</code> puede llamarse con o sin argumentos. El uso del argumento es opcional.</p>
 </div>
 <h4 id="argumentos-opcionales" >Argumentos opcionales</h4>
 <div class="hBody-4" >
-<p>A menos que se diga lo contrario, Lisp espera que una función con un argumento en su definición de función se llame con un valor para este argumento. Si esto no ocurre, se obtiene un error y un mensaje que dice <samp>Wrong number of arguments</samp> (<q>Número de argumentos erróneo</q>).</p>
-<p>Sin embargo, los argumentos opcionales son una caracteristica de Lisp: se utiliza una <dfn>palabra clave</dfn> en concreto para comunicar al intérprete Lisp que un argumento es opcional. La palabra clave es <code>&amp;optional</code>. (El <samp>&amp;</samp> al frente de <samp>optional</samp> es parte de la palabra clave.) En una definición de función, si un argumento va despues de la palabra clave <code>&amp;optional</code>, no necesita pasar ningún valor para este argumento al llamar a la función.</p>
-<p>Por lo tanto la primera línea de la definición de función de <code>beginning-of-buffer</code> tiene este aspecto :</p>
+<p>A menos que se diga lo contrario, Lisp espera que una función con un argumento en su definición de función sea llamada con un valor para ese argumento. Si esto no ocurre, se obtiene un error y un mensaje que dice <samp>Wrong number of arguments</samp> (<q>Número de argumentos erróneo</q>).</p>
+<p>Sin embargo, los argumentos opcionales son una caracteristica de Lisp: se utiliza una <dfn>palabra clave</dfn> en concreto para decirle al intérprete Lisp que un argumento es opcional. La palabra clave es <code>&amp;optional</code>. (El <samp>&amp;</samp> al frente de <samp>optional</samp> es parte de la palabra clave.) En una definición de función, si un argumento va despues de la palabra clave <code>&amp;optional</code>, no necesita pasar ningún valor para este argumento al llamar a la función.</p>
+<p>Por lo tanto la primera línea de la definición de función de <code>beginning-of-buffer</code> tiene este aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">beginning-of-buffer</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
 </code></pre>
-<p>En resumen, toda la función se ve asi:</p>
+<p>En lineas generales, toda la función se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">beginning-of-buffer</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;P&#34;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">es-el-argumento-de-una-cons-cell</span> <span class="nv">argumento</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">es-el-argumento-una-cons-cell</span> <span class="nv">argumento</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">and</span> <span class="nv">ambos-transient-mark-mode-y-mark-active-son-verdadero</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">push-mark</span><span class="p">))</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">determina-el-tamano-y-lo-establece</span><span class="p">)</span>
@@ -2051,47 +2047,46 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
       <span class="p">(</span><span class="nf">point-min</span><span class="p">))))</span>
    <span class="nv">do-nicety</span>
 </code></pre>
-<p>La función es similar a la función <code>simplified-beginning-of-buffer</code> excepto que la expresión <code>interactive</code> tiene <code>&#34;P&#34;</code> como argumento y la función <code>goto-char</code> es seguida por una expresión <code>if-then-else</code> que calcula donde poner el cursor si hay un argumento que no es un cons cell.</p>
-<p>(Puesto que no explico un cons cell en muchos capítulos, por favor, considera ignorar la función <code>consp</code>. Ve la seccion <a href="#cómo-se-implementan-las-listas" >Cómo se implementan las listas</a>, y la Seccion <a href="info:elisp#Cons-Cell-Type" >&#34;Cons Cell y Tipos de Listas&#34;</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>).</p>
-<p>La <code>&#34;P&#34;</code> en la expresión <code>interactive</code> le indica a Emacs cómo pasar un argumento prefijo, si es que hay uno, a la función en forma plana. Un argumento prefijo se crea presionando la tecla <kbd>META</kbd> seguida por un número, o pulsando <kbd>C-u</kbd> y luego un número. (Si no escribes un número, <kbd>C-u</kbd> por defecto es un cons cell con un 4. Una <code>&#34;p&#34;</code> minúscula en la expresión <code>interactive</code> hace que la función convierta un argumento prefijo a un número.)</p>
-<p>La prueba verdadero-o-falso de la expresión <code>if</code> parace compleja, pero no lo es: se comprueba si <code>argumento</code> tiene un valor que no es <code>nil</code> y si es un cons cell. (Esto es lo que hace <code>consp</code>; comprueba si su argumento es un cons cell.) Si <code>argumento</code> tiene un valor distinto a <code>nil</code> (y no es un cons cell.), que será el caso si <code>beginning-of-buffer</code> se llama con un argumento numerico, la prueba verdadero-o-falso devolverá verdadero y se evaluara la parte <code>then</code> de la expresión <code>if</code>. Por otro lado, si <code>beginning-of-bufer</code> no se llama con un argumento, el valor de <code>argumento</code> será <code>nil</code> y se evaluara la parte <code>else</code> de la expresión <code>if</code>. La parte <code>else</code> es un simple <code>point-min</code>, y cuando este es el resultado, toda la expresión <code>goto-char</code> es <code>(goto-char (point-min))</code>, que es cómo vimos la función <code>beginning-of-buffer</code> en su forma simplificada.</p>
+<p>La función es similar a la función <code>simplified-beginning-of-buffer</code> excepto que la expresión <code>interactive</code> tiene <code>&#34;P&#34;</code> como argumento y la función <code>goto-char</code> es seguida por una expresión if-then-else que calcula donde poner el cursor si hay un argumento que no es un cons cell.</p>
+<p>(Puesto que no explico que es un <em>cons cell</em> en muchos capítulos, por favor, considera ignorar la función <code>consp</code>. Ve la Seccion <a href="#cómo-se-implementan-las-listas" >Cómo se implementan las listas</a>, y la Seccion <a href="info:elisp#Cons-Cell-Type" >&#34;Cons Cell y Tipos de Listas&#34;</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>).</p>
+<p>La <code>&#34;P&#34;</code> en la expresión <code>interactive</code> le indica a Emacs cómo pasar a la funcion argumento prefijo, si es que hay uno, en su forma <q>plana</q> sin procesar. Un argumento prefijo se crea presionando la tecla <kbd>META</kbd> seguida por un número, o pulsando <kbd>C-u</kbd> y luego un número. (Si no escribes un número, <kbd>C-u</kbd> por defecto pasa un cons cell con un 4. Una <code>&#34;p&#34;</code> minúscula en la expresión <code>interactive</code> hace que la función convierta un argumento prefijo a un número.)</p>
+<p>La prueba verdadero-o-falso de la expresión <code>if</code> parace compleja, pero no lo es: se comprueba si <code>argumento</code> tiene un valor que no es <code>nil</code> y si es un cons cell. (Esto es lo que hace <code>consp</code>; comprueba si su argumento es un cons cell.) Si <code>argumento</code> tiene un valor distinto a <code>nil</code> (y no es un cons cell), que será el caso si <code>beginning-of-buffer</code> se llama con un argumento numerico, la prueba verdadero-o-falso devolverá verdadero y se evaluara la parte-then de la expresión <code>if</code>. Por otro lado, si <code>beginning-of-bufer</code> no se llama con un argumento, el valor de <code>argumento</code> será <code>nil</code> y se evaluara la parte-else de la expresión <code>if</code>. La parte-else es un simple <code>point-min</code>, y cuando este es el resultado, toda la expresión <code>goto-char</code> es <code>(goto-char (point-min))</code>, que es cómo vimos la función <code>beginning-of-buffer</code> en su forma simplificada.</p>
 </div>
 <h4 id="beginning-of-buffer-con-un-argumento" ><code>beginning-of-buffer</code> con un argumento</h4>
 <div class="hBody-4" >
-<p>Cuando se llama a <code>beginning-of-buffer</code> con un argumento, se evalua una expresión que calcula el valor a pasa a <code>goto-char</code>. A primera vista esta expresion es bastante compleja. Incluye una expresión <code>if</code> y mucha aritmética. Se ve así:</p>
+<p>Cuando se llama a <code>beginning-of-buffer</code> con un argumento, se evalua una expresión que calcula que valor pasar a <code>goto-char</code>. A primera vista esta expresion es bastante compleja. Incluye una expresión <code>if</code> y mucha aritmética. Se ve así:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="p">(</span><span class="nf">buffer-size</span><span class="p">)</span> <span class="mi">10000</span><span class="p">)</span>
     <span class="c1">;; Evita el desbordamiento en buffers de gran tamaño!</span>
-                          <span class="p">(</span><span class="nf">*</span> <span class="p">(</span><span class="nf">prefix-numeric-value</span> <span class="nv">arg</span><span class="p">)</span>
-                             <span class="p">(</span><span class="nf">/</span> <span class="nv">size</span> <span class="mi">10</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">/</span>
-   <span class="p">(</span><span class="nf">+</span> <span class="mi">10</span>
-      <span class="p">(</span><span class="nf">*</span>
-       <span class="nv">size</span> <span class="p">(</span><span class="nf">prefix-numeric-value</span> <span class="nv">arg</span><span class="p">)))</span> <span class="mi">10</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">*</span> <span class="p">(</span><span class="nf">prefix-numeric-value</span> <span class="nv">arg</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">/</span> <span class="nv">size</span> <span class="mi">10</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">/</span> <span class="p">(</span><span class="nf">+</span> <span class="mi">10</span>
+        <span class="p">(</span><span class="nf">*</span> <span class="nv">size</span> <span class="p">(</span><span class="nf">prefix-numeric-value</span> <span class="nv">arg</span><span class="p">)))</span>
+     <span class="mi">10</span><span class="p">))</span>
 </code></pre>
-<p>Como otras expresiones que paracen complejas, la expresión condicional dentro de <code>beginning-of-buffer</code> se puede desenredar viendola como partes de una plantilla, en este caso, la plantilla para una expresión if-then-else. En forma esquelética, la expresión se ve así:</p>
+<p>Como otras expresiones que parecen complejas, la expresión condicional dentro de <code>beginning-of-buffer</code> se puede desenredar viendola como partes de una plantilla, en este caso, la plantilla para una expresión if-then-else. En forma esquelética, la expresión se ve así:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">si</span> <span class="p">(</span><span class="nv">buffer-es-grande</span>
     <span class="nv">divide-el-tamaño-del-buffer-por-10-y-multiplicalo-por-arg</span>
   <span class="nv">de-otra-forma-utiliza-el-calculo-alternativo</span>
 </code></pre>
-<p>La prueba verdadero-o-falso de la expresión <code>if</code> interna comprueba el tamaño del buffer. La razón de esto es que la vieja versión de Emacs 18 utilizaba números no son más grandes que 8 millones mas o menos y el programador temía que Emacs pudiera intentar usar numeros demasiado largos si el búfer fuese extenso. El término ‘desbordamiento’, que se menciona en el comentario, significa que los números son mas grandes. Las versiones más recientes de Emacs utilizan números largos, pero este código no ha sido tocado, solo porque la gente ahora mira búfers que son mucho, mucho mas grandes de lo que nunca fueron.</p>
+<p>La prueba verdadero-o-falso de la expresión <code>if</code> interna comprueba el tamaño del buffer. La razón de esto es que la vieja versión de Emacs 18 utilizaba números que no superaban los ocho millones y en el siguiente calculo, el programador temía que Emacs pudiera intentar usar numeros demasiado grandes si el búfer fuese extenso. El término ‘desbordamiento’, que se menciona en el comentario, significa que los números son demaciado grandes. Las versiones más recientes de Emacs utilizan números mas grandes, pero este código no ha sido tocado, aunque solo sea porque la gente ahora mira búfers que son mucho, mucho mas grandes que antes.</p>
 <p>Hay dos casos: si el búfer es grande, o si no lo es.</p>
 </div>
 <h5 id="qué-ocurre-en-un-búfer-de-gran-tamaño" >Qué ocurre en un búfer de gran tamaño</h5>
 <div class="hBody-5" >
-<p>En <code>beginning-of-buffer</code>, la expresión <code>if</code> interna prueba si el tamaño del búfer es mayor a 10000 caracteres. Para hacer esto, se utiliza la función <code>&gt;</code> y el calculo de <code>size</code> que viene desde la expresión let.</p>
-<p>En los viejos tiempos, se utilizo la función <code>buffer-size</code>. No solo se llamaba en repetidas ocaciones, se daba el tamaño completo del búfer, no la parte accesible. El calculo tiene mucho más sentido cuando se maneja solo la parte accesible. (Vea la Seccion <a href="#reducir-y-extender" >Reducir y Extender</a>, para más información concentra la atención en una parte ‘accesible’.)</p>
+<p>En <code>beginning-of-buffer</code>, la expresión <code>if</code> interna prueba si el tamaño del búfer es mayor a 10000 caracteres. Para hacer esto, se utiliza la función <code>&gt;</code> y el calculo de <code>size</code> que previene de la expresión <code>let</code>.</p>
+<p>En los viejos tiempos, se utilizaba la función <code>buffer-size</code>. No solo se llamo varias ocaciones esa funcion, sino que die el tamaño completo del búfer, no la parte accesible. El calculo tiene mucho más sentido cuando se maneja solo la parte accesible. (Vea la Seccion <a href="#reducir-y-extender" >Reducir y Extender</a>, para obtener más información sobre como centrar la atención en una parte ‘accesible’.)</p>
 <p>La linea se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">size</span> <span class="mi">10000</span><span class="p">)</span>
 </code></pre>
-<p>Cuando el búfer es grande, se evalua la parte <code>then</code> de la expresión <code>if</code>. Esto se lee así (después de darle un formato facil de leer):</p>
+<p>Cuando el búfer es grande, se evalua la parte <code>then</code> de la expresión <code>if</code>. Se lee así (después de formatearlo para facilitar la lectura):</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">*</span>
   <span class="p">(</span><span class="nf">prefix-numeric-value</span> <span class="nv">arg</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">/</span> <span class="nv">size</span> <span class="mi">10</span><span class="p">))</span>
 </code></pre>
 <p>Esta expresión es una multiplicación, con dos argumentos para la función <code>*</code>.</p>
-<p>El primer argumento es <code>(prefix-numeric-value arg)</code>. Cuando se usa <code>&#34;P&#34;</code> como argumento para <code>interactive</code>, el valor dado a la función como argumento es un “argumento prefijo en bruto”, y no un número. (Es un número en una lista). Para realizar el calculo, se necesita una conversión, y <code>prefix-numeric-value</code> hace el trabajo.</p>
-<p>El segundo argumento es <code>(/ size 10)</code>. Esta expresión divide el valor numérico por diez––el valor numérico del tamaño de la porción accesible del búfer. Esto produce un número que indica cuántos caracteres constituyen una decena parte del tamaño del búfer. (En Lisp, <code>/</code> se utiliza para la división, igual que <code>*</code> se utiliza para la multiplicación.)</p>
-<p>En la expresión de multiplicación en su conjunto, esta cantidad se multiplica por el valor del argumento prefijo––la multiplicación es la siguiente:</p>
+<p>El primer argumento es <code>(prefix-numeric-value arg)</code>. Cuando se usa <code>&#34;P&#34;</code> como argumento para <code>interactive</code>, el valor pasado a la función como argumento es un “argumento prefijo en bruto”, y no un número. (Es un número en una lista). Para realizar el calculo, se necesita una conversión, y <code>prefix-numeric-value</code> hace el trabajo.</p>
+<p>El segundo argumento es <code>(/ size 10)</code>. Esta expresión divide el valor numérico por diez––el valor numérico del tamaño de la porción accesible del búfer. Esto produce un número que indica cuántos caracteres componen una decena parte del tamaño del búfer. (En Lisp, <code>/</code> se utiliza para la división, igual que <code>*</code> se utiliza para la multiplicación.)</p>
+<p>En la expresión de multiplicación como un todo, esta cantidad se multiplica por el valor del argumento prefijo––la multiplicación es la siguiente:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">*</span> <span class="nv">valor-numerico-del-argumento-prefijo-arg</span>
    <span class="nv">numero-de-caracteres-en-una-decima-parte-de-la-porcion-accesible-del-buffer</span><span class="p">)</span>
 </code></pre>
@@ -2102,13 +2097,13 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 </code></pre>
 <p>Esto coloca el cursor donde lo queremos.</p>
 </div>
-<h5 id="qué-ocurre-en-un-búfer-pequeño" >Qué ocurre en un búfer pequeño</h5>
+<h5 id="lo-que-sucede-en-un-búfer-pequeño" >Lo que sucede en un búfer pequeño</h5>
 <div class="hBody-5" >
 <p>Si el búfer contiene menos de 10000 caracteres, se lleva a cabo un calculo ligeramente diferente. Podrías pensar que esto no es necesario, ya que el primer calculo podría hacer el trabajo. Sin embargo, en un búfer pequeño, el primer método puede no colocar el cursor exactamente en la línea deseada; el segundo método hace un mejor trabajo.</p>
 <p>El código tiene este aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">/</span> <span class="p">(</span><span class="nf">+</span> <span class="mi">10</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">size</span> <span class="p">(</span><span class="nf">prefix-numeric-value</span> <span class="nv">arg</span><span class="p">)))</span> <span class="mi">10</span><span class="p">))</span>
 </code></pre>
-<p>Para averiguar que ocure en este código debemos descubrier como se anidan las funciones entre paréntesis. Es mas fácil de leer si se reformatea cada expresión, indentando la expresión que contiene:</p>
+<p>Para averiguar que ocure en este código debemos descubrir como se anidan las funciones entre paréntesis. Es mas fácil de leer si se reformate cada expresión, indentando la expresión que contiene:</p>
 <pre class="code" ><code class="chroma" >  <span class="p">(</span><span class="nf">/</span>
    <span class="p">(</span><span class="nf">+</span> <span class="mi">10</span>
       <span class="p">(</span><span class="nf">*</span>
@@ -2119,27 +2114,27 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <p>Observando los paréntesis, vemos que la operación mas profunda es <code>(prefix-numeric-value arg)</code>, que convierte el argumento prefijo en bruto a un número. En la siguiente expresión, este número se multiplica por el tamaño de la porción accesible del búfer:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">*</span> <span class="nv">size</span> <span class="p">(</span><span class="nf">prefix-numeric-value</span> <span class="nv">arg</span><span class="p">))</span>
 </code></pre>
-<p>Esta multiplicación crea un número que puede ser mayor al tamaño del buffer––siete veces mayor si el argumento es 7, por ejemplo. Luego se suma diez a éste numero y finalmente el número es dividido por 10 para proporcionar un valor que es un carácter más grande que la posición de porcentaje en el búfer.</p>
-<p>El número que resulta de todo esto se pasa a <code>goto-char</code> y el cursor se mueve a este punto.</p>
+<p>Esta multiplicación crea un número que puede ser mayor al tamaño del buffer––siete veces mayor si el argumento es 7, por ejemplo. Luego se suma diez a éste numero y finalmente el número es dividido por 10 para proporcionar un valor que es un carácter más grande que la posición porcentual en el búfer.</p>
+<p>El número que resulta de todo esto se pasa a <code>goto-char</code> y el cursor se mueve a ese punto.</p>
 </div>
 <h4 id="funcion-beginning-of-buffer-completa" >Funcion <code>beginning-of-buffer</code> Completa</h4>
 <div class="hBody-4" >
 <p>Aquí está el texto completo de la función <code>beginning-of-buffer</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">beginning-of-buffer</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
-  <span class="s">&#34;Move point to the beginning of the buffer;
-</span><span class="s">leave mark at previous position.
-</span><span class="s">With \\[universal-argument] prefix,
-</span><span class="s">do not set mark at previous position.
-</span><span class="s">With numeric arg N,
-</span><span class="s">put point N/10 of the way from the beginning.
+  <span class="s">&#34;Mueve el punto al principio del bufer;
+</span><span class="s">deja la marca en la posicion anterior.
+</span><span class="s">Con el prefijo \\[universal-argument],
+</span><span class="s">no pone la marca en la posicion anterior.
+</span><span class="s">Con un argumento numerico N,
+</span><span class="s">coloca el punto N/10 del camino desde el enicio.
 </span><span class="s">
-</span><span class="s">If the buffer is narrowed,
-</span><span class="s">this command uses the beginning and size
-</span><span class="s">of the accessible part of the buffer.
+</span><span class="s">Si el bufer tiene activo narrowing,
+</span><span class="s">este comando utiliza el principio y el tamaño
+</span><span class="s">de la parte accesible del bufer.
 </span><span class="s">
-</span><span class="s">Don&#39;t use this command in Lisp programs!
-</span><span class="s">\(goto-char (point-min)) is faster
-</span><span class="s">and avoids clobbering the mark.&#34;</span>
+</span><span class="s">No use este comando en los programas Lisp!
+</span><span class="s">\(goto-char (point-min)) es mas rapido y evita
+</span><span class="s">tocar la marca.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;P&#34;</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nf">consp</span> <span class="nv">arg</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">and</span> <span class="nv">transient-mark-mode</span> <span class="nv">mark-active</span><span class="p">)</span>
@@ -2156,28 +2151,28 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
                  <span class="p">(</span><span class="nf">point-min</span><span class="p">))))</span>
   <span class="p">(</span><span class="nb">if</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">forward-line</span> <span class="mi">1</span><span class="p">)))</span>
 </code></pre>
-<p>Excepto por dos pequeños puntos, la discusión anterior muestra cómo funciona esta función. El primer punto se refiere a un detalle en la cadena de documentación, y el segundo concierne a la última línea de la función.</p>
+<p>Excepto por dos pequeños puntos, la discusión anterior muestra cómo funciona esta función. El primer punto se refiere a un detalle en la cadena de documentación, y el segundo se refiere a la última línea de la función.</p>
 <p>En la cadena de documentación, se hace referencia a una expresión:</p>
 <div class="example-block" >
 <pre class="example" >\\[universal-argument]
 </pre>
 </div>
-<p>Se usa Un <samp>\\</samp> antes del primer corchete de esta expresión. Este <samp>\\</samp> le indica al intérprete Lisp sustituir cualquier clave qué se encuentre dentro de <samp>[…]</samp> por su convinacion de teclado actual. En el caso de <code>universal-argument</code>, suele ser <kbd>C-u</kbd>, pero podría ser distinta. (Véase Sección <a href="info:elisp#Documentation-Tips" >Consejos para Cadenas de Documentación</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para más información.)</p>
+<p>Se usa Un <samp>\\</samp> antes del primer corchete de esta expresión. Este <samp>\\</samp> le indica al intérprete Lisp que sustituya cualquier clave qué se encuentre dentro de <samp>[…]</samp> por su convinacion de teclado actual. En el caso de <code>universal-argument</code>, suele ser <kbd>C-u</kbd>, pero podría ser distinta. (Véa la Sección <a href="info:elisp#Documentation-Tips" >Consejos para Cadenas de Documentación</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para más información.)</p>
 <p>Finalmente, la última línea del comando <code>beginning-of-buffer</code> indica mover el punto al inicio de la siguiente línea si el comando se invoca con un argumento:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">forward-line</span> <span class="mi">1</span><span class="p">)))</span>
 </code></pre>
-<p>Esto pone el cursor al inicio de la primera línea a continuacion de la posicion inidicada en decenas en el búfer. Esto significa que el cursor siempre se localiza <em>al menos</em> las decenas solicitadas del recorrido del búfer, esta es una sutiliza, quizás, no necesaria, pero que, de no ocurri, seguro generaria quejas.</p>
-<p>Por otro lado, esto significa que si se especifica el comando con <kbd>C-u</kbd>, sin un número, que es decir, si el ‘argumento prefijo en bruto’ simplemente es un cons cell, entonces el comando te coloca al inicio de la segunda línea … no sé si se pretende esto o si nadie ha tratado el código para evitar que esto suceda.</p>
+<p>Esto pone el cursor al inicio de la primer línea despues de la posicion inidicada en decenas en el búfer. Esto significa que el cursor siempre se localiza <em>al menos</em> las decenas solicitadas del recorrido del búfer, esta es una sutiliza, quizás, no necesaria, pero que, si no ocurriera, seguro generaria quejas.</p>
+<p>Por otro lado, tambien significa que si se especifica el comando con <kbd>C-u</kbd>, pero sin un número, es decir, si el ‘argumento prefijo en bruto’ simplemente es un cons cell, entonces el comando te coloca al inicio de la segunda línea … no sé si se pretende esto o si nadie ha tratado el código para evitar que esto suceda.</p>
 </div>
-<h3 id="repaso" ><span id="Repaso-2" >Repaso</span></h3>
+<h3 id="repaso:-algunas-funciones-más-complejas" >Repaso</h3>
 <div class="hBody-3" >
-<p>Aquí esta un breve resumen de algunos de lo temas cubiertos en este capítulo.</p>
+<p>He aquí un breve resumen de algunos de los temas cubiertos en este capítulo.</p>
 <dl>
-<dt>or</dt>
+<dt><code>or</code></dt>
 <dd>
 <p>Evalúa cada argumento en secuencia, y devuelve el valor del primer argumento que no es <code>nil</code>, si ninguno devuelve un valor que no sea <code>nil</code>, devuelve <code>nil</code>. En resumen, devuelve el primer valor verdadero de los argumento; devuelve un valor verdadero si uno <em>o</em> cualquiera de los otros es verdadero.</p>
 </dd>
-<dt>and</dt>
+<dt><code>and</code></dt>
 <dd>
 <p>Evalúa cada argumento en secuencia, y si alguno es <code>nil</code>, devuelve <code>nil</code>; si ninguno es <code>nil</code>, devuelve el valor del último argumento. En resumen, devuelve un valor verdadero solo si todos los argumentos son verdaderos; devuelve un valor verdadero si uno <em>y</em> cada uno de los otros son verdadero.</p>
 </dd>
@@ -2185,27 +2180,27 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <dd>
 <p>Una palabra clave utilizada para indicar que un argumento en una definición de función es opcional; esto significa que la función se puede evaluar sin el argumento, si se desea.</p>
 </dd>
-<dt>prefix-numeric-value</dt>
+<dt><code>prefix-numeric-value</code></dt>
 <dd>
 <p>Convierte el ‘argumento prefijo en bruto’ producido por <code>(interactive &#34;P&#34;)</code> en un valor numérico.</p>
 </dd>
-<dt>forward-line</dt>
+<dt><code>forward-line</code></dt>
 <dd>
-<p>Mueve el punto hacia delante al principio de la siguiente línea, o si el argumento es mayor a uno, hacia delante varias líneas. Si no se puede mover tan lejos hacia delante como se supone, <code>forward-line</code> va hacia adelante tan lejos como pueda y luego devuelve un recuento del número de líneas adicionales que no pudo moverse.</p>
+<p>Mueve el punto hacia adelante al principio de la siguiente línea, o si el argumento es mayor a uno, hacia delante varias líneas. Si no se puede mover tan lejos hacia delante como se supone, <code>forward-line</code> va hacia adelante tan lejos como pueda y luego devuelve un conteo del número de líneas adicionales que no se pudo mover.</p>
 </dd>
-<dt>erase-buffer</dt>
+<dt><code>erase-buffer</code></dt>
 <dd>
 <p>Elimina todo el contenido del búfer actual.</p>
 </dd>
-<dt>bufferp</dt>
+<dt><code>bufferp</code></dt>
 <dd>
 <p>Devuelve <code>t</code> si su argumento es un búfer; de otro modo devuelve <code>nil</code>.</p>
 </dd>
 </dl>
 </div>
-<h3 id="ejercicio-de-argumento-opcional" >Ejercicio de argumento <code>opcional</code></h3>
+<h3 id="ejercicio-con-el-argumento-opcional" >Ejercicio con el argumento <code>opcional</code></h3>
 <div class="hBody-3" >
-<p>Escribe una función interactiva con un argumento opcional que pruebe si su argumento, un número, es mayor que o igual a, o de lo contrario, menor que el valor de <code>fill-column</code>, y te lo indique, en un mensaje. Sin embargo, si no pasas un argumento a la función, utiliza 56 como valor por defecto.</p>
+<p>Escribe una función interactiva con un argumento opcional que comprueve si su argumento, un número, es mayor que o igual a, o de lo contrario, menor que el valor de <code>fill-column</code>, y lo informe, en un mensaje. Sin embargo, si no pasas un argumento a la función, utiliza 56 como valor por defecto.</p>
 </div>
 <h2 id="reducir-y-extender" >Reducir y Extender</h2>
 <div class="hBody-2" >
@@ -2951,7 +2946,7 @@ ring}.
 <p>Empieza con una expresión <code>if</code></p>
 <p>En este caso, la expresión chequea primero si <code>menu-bar-update-yank-menu</code> existe como una función, y si así, se llama. La función <code>fboundp</code> devuelve cierto si el símbolo que se chequea tiene una definición de función que ‘no es vacía’. Si el símbolo de la definición de función fuera vacío, recibiría un mensaje de error, como se hizo cuando se crearon errores intencionalmente (<em><span class="file" >Creando errores, , Genera un Mensaje de Error</span></em>).</p>
 <p>La then-part contiene una expresión cuyo primer elemento es la función <code>and</code>.</p>
-<p>La forma especial <code>and</code> evalúa cada uno de sus argumentos hasta que uno de los argumentos devuelva un valor de <code>nil</code>, en cuyo caso la expresión <code>and</code> devuelve <code>nil</code>; sin embargo, si ninguno de los argumentos devuelve una valor de <code>nil</code>, el valor resultante desde la evaluación el último argumento es devuelto. (Desde que tal valor no es <code>nil</code>, eso es considerado cierto en Emacs Lisp.) En otras palabras, una expresión <code>and</code> devuelve un valor cierto solo si todos sus argumentos son verdaderos. (Vea la Seccion <a href="#Repaso-2" >Revisar el segundo búfer relacionado</a>.)</p>
+<p>La forma especial <code>and</code> evalúa cada uno de sus argumentos hasta que uno de los argumentos devuelva un valor de <code>nil</code>, en cuyo caso la expresión <code>and</code> devuelve <code>nil</code>; sin embargo, si ninguno de los argumentos devuelve una valor de <code>nil</code>, el valor resultante desde la evaluación el último argumento es devuelto. (Desde que tal valor no es <code>nil</code>, eso es considerado cierto en Emacs Lisp.) En otras palabras, una expresión <code>and</code> devuelve un valor cierto solo si todos sus argumentos son verdaderos. (Vea la Seccion <a href="#Repaso:-Algunas-Funciones-Más-Complejas" >Revisar el segundo búfer relacionado</a>.)</p>
 <p>La expresión determina si el segundo argumento <code>menu-bar-update-yank-menu</code> es verdadero o no.</p>
 <p><code>menu-bar-update-yank-menu</code> es una de la funciones que lo hace posible para usar el menu ‘Seleccionar y Pegar’ en el ítem Editar de una barra de menu; usando un ratón, se pueden mirar varias piezas de texto que se han guardado y se selecciona una pieza para pegar.</p>
 <p>La última expresión en la función <code>kill-new</code> añade las cadenas nuevamente copiadas a aquella facilidad que existe copiando y pegando entre diferentes programas ejecutando un sistema de ventanas. En el Sistema de Ventanas de X, por ejemplo, la función <code>x-select-text</code> toma la cadena y la almacena en memoria operada por X. Se puede pegar la cadena en otro programa, tal como un Xterm.</p>
@@ -3068,7 +3063,7 @@ la muerte @e{kill ring} directamente.
 <div class="hBody-3" >
 <p>Aquí hay un breve resumen de algunas funciones introducidas recientemente.</p>
 <dl>
-<dt>car</dt>
+<dt><code>car</code></dt>
 <dd>
 <p>cdr ::</p>
 <p><code>car</code> devuelve el primer elemento de una lista; <code>cdr</code> devuelve el segundo y subsiguientes elementos de una lista.</p>
@@ -3079,7 +3074,7 @@ la muerte @e{kill ring} directamente.
      <span class="err">⇒</span> <span class="p">(</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">)</span>
 </code></pre>
 </dd>
-<dt>cons</dt>
+<dt><code>cons</code></dt>
 <dd>
 <p><code>cons</code> construye una lista enlazando su primer argumento a su segundo argumento.</p>
 <p>Por ejemplo:</p>
@@ -3087,11 +3082,11 @@ la muerte @e{kill ring} directamente.
      <span class="err">⇒</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
 </code></pre>
 </dd>
-<dt>funcall</dt>
+<dt><code>funcall</code></dt>
 <dd>
 <p><code>funcall</code> evalúa su primer argumento como una función. Así pasa los argumentos que permanecen a su primer argumento.</p>
 </dd>
-<dt>nthcdr</dt>
+<dt><code>nthcdr</code></dt>
 <dd>
 <p>Devuelve el resultado de tomar <code>cdr</code> ‘n’ veces en una lista. The <span class="math" >n^{th}</span> <code>cdr</code>. El ‘resto del resto’, como estaba</p>
 <p>Por ejemplo:</p>
@@ -3099,7 +3094,7 @@ la muerte @e{kill ring} directamente.
      <span class="err">⇒</span> <span class="p">(</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">)</span>
 </code></pre>
 </dd>
-<dt>setcar</dt>
+<dt><code>setcar</code></dt>
 <dd>
 <p>setcdr ::</p>
 <p><code>setcar</code> cambia el primer elemento de una lista; <code>setcdr</code> cambia el segundo y subsiguiente elementos de una lista.</p>
@@ -3117,7 +3112,7 @@ la muerte @e{kill ring} directamente.
      <span class="err">⇒</span> <span class="p">(</span><span class="mi">37</span> <span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
 </code></pre>
 </dd>
-<dt>progn</dt>
+<dt><code>progn</code></dt>
 <dd>
 <p>Evalúa cada argumento en secuencia y entonces devuelve el valor del último.</p>
 <p>Por ejemplo:</p>
@@ -3125,11 +3120,11 @@ la muerte @e{kill ring} directamente.
      <span class="err">⇒</span> <span class="mi">4</span>
 </code></pre>
 </dd>
-<dt>save-restriction</dt>
+<dt><code>save-restriction</code></dt>
 <dd>
 <p>Graba siempre que encoger esté en efecto en el búfer, si cualquiera, restaura este encogimiento después de evaluar los argumentos.</p>
 </dd>
-<dt>search-forward</dt>
+<dt><code>search-forward</code></dt>
 <dd>
 <p>Buscar una cadena, y si la cadena es encontrada, mueve el punto. Con una expresión regular, usa algo similar a <code>re-search-forward</code>. (Véase Sección <a href="#búsquedas-de-expresiones-regulares" >Búsquedas de Expresiones Regulares</a>, para una explicación de expresiones regulares patrones y búsquedas.)</p>
 <p><code>search-forward</code> y <code>re-search-forward</code> tiene cuatro argumentos:</p>
@@ -4378,7 +4373,7 @@ nil
 <p>Como se aprendió antes la (Vease Sección <a href="Función-kill-new,-,-La-función-kill-new" >Función kill-new, , La función <code>kill-new</code></a>), la forma especial <code>and</code> evalúa cada uno de sus argumentos hasta uno de los argumentos y devuelve un valor de <code>nil</code> en el que el caso de la expresión <code>and</code> devuelve <code>nil</code>; sin embargo, si ninguno de los argumentos devuelve un valor de <code>nil</code>, el valor resultante de evaluar el último argumento es devuelto. (Puesto que tal valor no es <code>nil</code>, eso es considerado verdad en Lisp.) En otras palabras, una expresión <code>and</code> devuelve un valor de verdad solo si todos sus argumentos son verdad.</p>
 <p>En este caso, la variable <code>fill-prefix-regexp</code> está asociado a un valor no <code>nil</code> solo si el las siguientes cuatro expresiones producen un valor true (por ej., un no <code>nil</code>) cuando son evaluados; de otro modo, <code>fill-prefix-regexp</code> está asociado a <code>nil</code>.</p>
 <dl>
-<dt>fill-prefix</dt>
+<dt><code>fill-prefix</code></dt>
 <dd>
 <p>Cuando esta variable se evalúa, el valor del prefijo de relleno <em>fill prefix</em>, si cualquiera, está devuelto. Si no hay prefijo relleno, la variable devuelve <code>nil</code>.</p>
 </dd>
@@ -4561,7 +4556,7 @@ nil
 <div class="hBody-3" >
 <p>Aquí hay un breve resumen de algunas funciones introducidas recientemente.</p>
 <dl>
-<dt>while</dt>
+<dt><code>while</code></dt>
 <dd>
 <p>Repetidamente evalúa el cuerpo de la expresión tan larga como el primer elemento del cuerpo chequea cierto. Entonces devuelve <code>nil</code>. (La expresión es evaluado solo por sus efectos laterales.)</p>
 <p>Por ejemplo:</p>
@@ -4576,7 +4571,7 @@ nil
 </code></pre>
 <p>(La función <code>insert</code> inserta sus argumentos en el punto; la función <code>format</code> devuelve una cadena formateada desde sus argumentos el camino <code>message</code> formatea sus argumentos; <code>\n</code> produce una nueva línea.)</p>
 </dd>
-<dt>re-search-forward</dt>
+<dt><code>re-search-forward</code></dt>
 <dd>
 <p>Busca un patrón, y si el patrón se encuentra, mueve el punto al resto solo después de eso.</p>
 <p>Toma cuatro argumentos, como <code>search-forward</code>:</p>
@@ -4605,15 +4600,15 @@ nil
      <span class="err">⇒</span> <span class="o">`</span><span class="nv">bar</span><span class="o">&#39;</span> <span class="nv">is</span> <span class="mi">21.</span>
 </code></pre>
 </dd>
-<dt>match-beginning</dt>
+<dt><code>match-beginning</code></dt>
 <dd>
 <p>Devuelve la posición del principio del texto encontrado por la última búsqueda de la expresión regular.</p>
 </dd>
-<dt>looking-at</dt>
+<dt><code>looking-at</code></dt>
 <dd>
 <p>Devuelve <code>t</code> para verdadero si el texto después del punto se asocia al argumento, que debería ser una expresión.</p>
 </dd>
-<dt>eobp</dt>
+<dt><code>eobp</code></dt>
 <dd>
 <p>Devuelve <code>t</code> para cierto si el punto está en el fin de la parte accesible de un búfer. El fin de la parte accesible es el fin del búfer no está encogido; eso es el fin de la parte encogida si el búfer está encogido.</p>
 </dd>
