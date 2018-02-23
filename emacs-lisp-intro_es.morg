@@ -6429,52 +6429,52 @@ and promoting software freedom.”
 
 * Cómo se implementan las listas
 
-  En Lisp, los átomos se graban de manera simple, si la implementación no es
-  sencilla en la práctica, no es, nada sencilla en la teoría. El átomo
-  @'{rosa}, por ejemplo, se graba como las cuatro letras contiguas @'{r},
-  @'{o}, @'{s}, @'{a}. Una lista, por otro lado, se guarda de manera
-  diferente. El mecanismo es igualmente simple, pero toma un momento para
-  tener usada la idea. Una lista se guarda usando una serie de pares de
-  punteros. En las series, el primer puntero en cada par de puntos a un átomo
-  o a otra lista, y el segundo puntero en cada par al siguiente par, o al
-  símbolo @c{nil}, que marca el fin de la lista.
+  En Lisp, los átomos se registran de manera sencilla, si la implementación no
+  es sencilla en la práctica, es, sin embargo, sencilla en teoría. El átomo
+  @'{rosa}, por ejemplo, se graba como las cuatro letras contiguas @'{r}, @'{o},
+  @'{s}, @'{a}. Una lista, por otro lado, se guarda de manera diferente. El
+  mecanismo es igualmente simple, pero toma un momento acostumbrarse a la
+  idea. Una lista se guarda usando una serie de pares de punteros. En las serie,
+  el primer puntero de cada par apunta a un átomo o a otra lista, y el segundo
+  puntero de cada par apunta al siguiente par, o al símbolo @c{nil}, que marca
+  el final de la lista.
 
-  Un puntero por sí mismo es poco simple a la dirección electrónica de la que
-  está apuntada. Aquí, una lista se guarda como una serie de direcciones
+  Un puntero por sí mismo es simplemente la dirección electrónica de lo que
+  apunta. Por lo tanto, una lista se guarda como una serie de direcciones
   electrónicas.
 
   Por ejemplo, la lista @c{(rosa violeta tulipan)} tiene tres elementos,
   @'{rosa}, @'{violeta}, y @'{tulipan}. En el ordenador, la dirección
-  electrónica de @'{rosa} se graba en un segmento de memoria del ordenador a
+  electrónica de @'{rosa} se registra en un segmento de memoria del ordenador a
   través de la dirección que da la dirección electrónica de donde el átomo
-  @'{violeta} está localizado; y esta dirección (la que cuenta donde
-  @'{violeta} está se localiza) se guarda con una dirección que cuenta donde
-  la dirección para el átomo @'{tulipan} se localiza.
+  @'{violeta} está localizado; y esta dirección (la que dice donde se localiza
+  @'{violeta}) se guarda junto con una dirección que dice donde se localiza la
+  dirección para el átomo @'{tulipan}.
 
   Esto parece más complicado de lo que es y es más fácil visto en un
   diagrama:
 
   ..art >
-        ___ ___      ___ ___      ___ ___
-       |___|___|--> |___|___|--> |___|___|--> nil
-         |            |            |
-         |            |            |
-         ---> rosa    ---> violeta ---> tulipan
+     ___ ___      ___ ___      ___ ___
+    |___|___|--> |___|___|--> |___|___|--> nil
+      |            |            |
+      |            |            |
+      ---> rosa    ---> violeta ---> tulipan
   < art..
 
-  En el diagrama, cada caja representa una palabra de memoria del ordenador
-  que maneja un objeto Lisp, normalmente en la forma de una dirección de
-  memoria. Las cajas, por ej. las direcciones, están en pares. Cada flecha
-  apunta a lo que la dirección es la dirección de, si un átomo u otro par de
-  direcciones. La primera caja es la dirección electrónica de @'{rosa} y la
-  flecha apunta a @'{rosa}; la segunda caja es la dirección del siguiente par
-  de cajas, la primera parte de la que es la dirección de @'{violeta} y la
-  segunda parte es la dirección del siguiente par. La última caja apunta al
-  símbolo @c{nil}, que marca el fin de la lista.
+  En el diagrama, cada caja representa una palabra de la memoria del ordenador
+  que contiene un objeto Lisp, normalmente en forma de una dirección de
+  memoria. Las cajas, es decir, las direcciones, están en pares. Cada flecha
+  apunta a la dirección de un átomo u otro par de direcciones. La primer caja es
+  la dirección electrónica de @'{rosa} y la flecha apunta a @'{rosa}; la segunda
+  caja es la dirección del siguiente par de cajas, la primera parte de las
+  cuales que es la dirección de @'{violeta} y la segunda parte es la dirección
+  del siguiente par. La última caja apunta al símbolo @c{nil}, que marca el fin
+  de la la lista.
 
-  Cuando una variable es configurado a una lista con una función tal como
-  @c{setq}, almacena la dirección de la primera caja en la variable. De este
-  modo, la evaluación de la expresión es:
+  Cuando una variable se establece en una lista con una función como @c{setq},
+  almacena la dirección de la primera caja en la variable. Asi pues, la
+  evaluación de la expresión
 
   ..src > elisp
     (setq ramo '(rosa violeta tulipan))
@@ -6484,43 +6484,43 @@ and promoting software freedom.”
 
   ..art >
     ramo
-         |
-         |     ___ ___      ___ ___      ___ ___
-          --> |___|___|--> |___|___|--> |___|___|--> nil
-                |            |            |
-                |            |            |
-                 --> rosa     --> violeta   --> tulipan
+      |
+      |     ___ ___      ___ ___      ___ ___
+       --> |___|___|--> |___|___|--> |___|___|--> nil
+             |            |            |
+             |            |            |
+              --> rosa     --> violeta   --> tulipan
   < art..
 
-  En este ejemplo, el símbolo @c{ramo} maneja la dirección del primer par de
+  En este ejemplo, el símbolo @c{ramo} contiene la dirección del primer par de
   cajas.
 
-  Esta misma lista puede ser ilustrada en un modo diferente de anotación de
-  cajas como esta:
+  Esta misma lista puede ser ilustrada en un tipo diferente de notación de
+  cajas como este:
 
   ..art >
     ramo
-     |
-     |    --------------       ----------------       --------------------
-     |   | car   | cdr  |     | car     | cdr  |     | car         | cdr  |
-      -->| rosa  |   o------->| violeta |   o------->| tulipan  | nil  |
-         |       |      |     |         |      |     |             |      |
-          --------------       ----------------       --------------------
+      |
+      |    --------------       ----------------       --------------------
+      |   | car   | cdr  |     | car     | cdr  |     | car         | cdr  |
+       -->| rosa  |   o------->| violeta |   o------->| tulipan     | nil  |
+          |       |      |     |         |      |     |             |      |
+           --------------       ----------------       --------------------
   < art..
 
-  (Los símbolos consisten de más pares de direcciones, pero la estructura de
-  un símbolo es hecha de direcciones. De manera profunda, el símbolo @c{ramo}
-  consiste de un grupo de cajas-de-direcciones, una que es la dirección de la
-  palabra impresa @'{ramo}, una segunda de la que es la dirección de una
-  definición de función adjunta al símbolo, si cualquiera, un tercero del que
-  es la dirección del primer par de cajas-de-direccion para la lista @c{(rosa
-  violeta tulipan)}, y así. Aquí se está mostrando que la tercera caja de
-  dirección del símbolo apunta al primer par de cajas-de-direccion para la
-  lista.)
+  (Los símbolos consisten en más de un par de direcciones, pero la estructura de
+  un símbolo esta formado por direcciones. En efecto, el símbolo @c{ramo}
+  consiste de un grupo de cajas-de-direcciones, una de las cuales es la
+  dirección de la palabra impresa @'{ramo}, la segunda es la dirección de una
+  definición de función adjunta al símbolo, si la hubiera, una tercera parte la
+  cual es la dirección del primer par de cajas-de-direccion para la lista
+  @c{(rosa violeta tulipan)}, y así sucesivamente. Aquí mostraremos que la
+  tercera caja de direcciónes del símbolo apunta al primer par de
+  cajas-de-direccion para la lista.)
 
-  Si un símbolo se asigna al @c{cdr} de una lista, la lista en sí no cambia;
-  el símbolo simplemente tiene una dirección abajo de la lista. (En la jerga,
-  @c{car} y @c{cdr} son ‘no destructivos’.) De este modo, se evalúa la
+  Si un símbolo se asigna al @c{cdr} de una lista, la lista en sí no cambia; el
+  símbolo simplemente tiene una dirección mas abajo en la lista. (En la jerga,
+  @c{car} y @c{cdr} son ‘no destructivos’.) De este modo, la evaluacion de la
   siguiente expresión
 
   ..src > elisp
@@ -6540,19 +6540,20 @@ and promoting software freedom.”
               --> rosa       --> violeta  --> tulipan
   < art..
 
-  El valor de @c{flores} es @c{(violeta tulipan)}, esto es decir que el
-  símbolo @c{flores} maneja la dirección del par address-boxes el primero que
-  maneja la dirección de @c{violeta}, y el segundo que maneja la dirección de
-  @c{tulipan}.
+  El valor de @c{flores} es @c{(violeta tulipan)}, es decir, el símbolo
+  @c{flores} contiene la dirección del par de cajas-de-direcciones, la primera
+  de las cuales contiene la dirección de @c{violeta}, y la segunda contiene la
+  dirección de @c{tulipan}.
 
-  Un par de cajas-de-direcciones se llama una @:{cons cell} o @:{par de
-  puntos}. Vea la Seccion "la Célula Cons y los Tipos Lista" en @e(El Manual
-  de Referencia de Emacs Lisp), y @"(Notación de Pares de Puntos) en @e(El
-  Manual de Referencia de GNU Emacs Lisp), para más información acerca de
-  células cons y pares de puntos.
+  Un par de cajas-de-direcciones se denomina una @:{cons cell} o @:{par de
+  puntos}. Consulte la Seccion @l{info:elisp#Cons Cell Type<>Cons Cell y Tipos
+  de Lista} en @e(El Manual de Referencia de Emacs Lisp), y @l{info:elisp#Dotted
+  Pair Notation<>Notación de Pares de Puntos} en @e(El Manual de Referencia de
+  GNU Emacs Lisp), para más información acerca las celdas cons y pares de
+  puntos.
 
-  La función @c{cons} añade un nuevo par de direcciones al frente de una
-  serie de direcciones como son mostradas debajo. Por ejemplo, evaluando la
+  La función @c{cons} añade un nuevo par de direcciones al frente de una serie
+  de direcciones como la que se muestra a continuacion. Por ejemplo, evaluar la
   expresión
 
   ..src > elisp
@@ -6572,69 +6573,69 @@ and promoting software freedom.”
               --> lila      --> rosa       --> violeta    --> tulipan
   < art..
 
-  Sin embargo, esto no cambia el valor del símbolo @c{flores}, así puedes ver
+  Sin embargo, esto no cambia el valor del símbolo @c{flores}, como puedes ver
   evaluando lo siguiente,
 
   ..src > elisp
     (eq (cdr (cdr ramo)) flores)
   < src..
 
-  que devuelve @c{t} para verdad.
+  que devuelve @c{t} para verdadero.
 
-  Hasta que se resetea, @c{flores} todavía tiene el valor de @c{(violeta
-  tulipan)}; que es, eso tiene la dirección de la celula cons cuya primera
-  dirección es @c{violeta}. También, esto no altera cualquier célula
-  prexistente cons; ellas está todavía allí.
+  Hasta que se reinicia, @c{flores} todavía tiene el valor @c{(violeta
+  tulipan)}; es decir, tiene la dirección de la celda cons cuya primer dirección
+  es @c{violeta}. Ademas, esto no altera ninguna de las celdas cons
+  preexistentes; todas ellas todavía están allí.
 
-  De este modo, en Lisp, tiene el @c{cdr} de una lista, se obtiene la
-  dirección del siguiente cons en las serie; para tener el @c{car} de una
-  lista, se obtiene la dirección del primer elemento de la lista; para
-  @c{cons} un nuevo elemento en una lista, se añade una nueva célula cons al
-  frente de la lista. ¡Esto es todo lo que hay así! ¡La estructura subyacente
-  de Lisp es brillantemente simple!
+  De este modo, en Lisp, para obtener el @c{cdr} de una lista, solo tienes que
+  obtener la dirección del siguiente celda cons de la serie; al obtener el
+  @c{car} de una lista, se obtiene la dirección del primer elemento de la lista;
+  al agregar @%c(cons) un nuevo elemento en una lista, se añade una nueva celda
+  cons al frente de la lista. ¡Esto es todo lo que hay! ¡La estructura
+  subyacente de Lisp es brillantemente simple!
 
-  ¿Y qué hace la última dirección en una serie de células cons se refieren?
-  Eso es la dirección de la lista vacía, de @c{nil}.
+  ¿Y a que se refiere la última dirección en una serie de celda cons? A la
+  direccion de la lista vacía, de @c{nil}.
 
-  En resumen, cuando una variable Lisp es asignada a un valor, eso provee con
-  la dirección de la lista a la que la variable se refiere.
+  En resumen, cuando una variable Lisp se establece a un valor, se proporciona
+  la dirección de la lista a la que se refiere la variable.
 
 ** Símbolos como una caja con cajones
 
-   En una sección temprana, se sugería que se podría imaginar un símbolo
-   siendo una caja con cajones. La definición de función se pone en un cajón,
-   el valor en otro, y así. Lo que se pone en el cajón maneja el valor que
-   puede cambiarse sin afectar a los contenidos del cajón manejando la
-   definición de función, y viceversa.
+   En una sección anterior, sugeri que se podría imaginar un símbolo como una
+   caja con cajones. La definición de función se coloca en un cajón, el valor en
+   otro, y así sucesivamente. Lo que se pone en el cajón que contiene el valor puede
+   cambiarse sin afectar el contenido del cajón que contiene la definicion de
+   función, y viceversa.
 
-   Actualmente, lo que está puesto en cada cajón es la dirección del valor o
-   definición de función. Eso es como si se encontrara un viejo cajón en el
-   ático, y en uno de sus cajones se encontrara un mapa dándote direcciones a
-   donde está el tesoro escondido.
+   En realidad, lo que se pone en la caja es la dirección del valor o definición
+   de función. Es como si encontraras un viejo cofre en el ático, y en uno de
+   sus compartimentos hallaras un mapa con la direccion de donde se encuentra el
+   tesoro enterrado.
 
-   (Además de su nombre, la definición del símbolo, y un valor de la
-   variable, un símbolo tiene un ‘cajón’ para una @:{lista de propiedades}
-   que puede ser usada para grabar otra información. Las listas de
-   propiedades no se discuten aquí; ver @l{Listas de Propiedades, , Listas de
-   Propiedades, elisp, El Manual de Referencia de Emacs Lisp}.)
+   (Además de su nombre, la definición del símbolo, y un valor de variable, un
+   símbolo tiene un ‘cajón’ para una @:{lista de propiedades} que puede utilizar
+   para registrar otra información. Las listas de propiedades no se discuten
+   aquí; ver la seccion @l{info:elisp#Property Lists<>Listas de Propiedades} en
+   @e{El Manual de Referencia de Emacs Lisp}.)
 
-   Aquí hay una representación visionaria:
+   Aquí hay una representación imaginaria:
 
    ..art >
-                 Caja de Cajones            Contenidos de Cajones
+                 Caja de Cajones            Contenidos de los Cajones
 
                  __   o0O0o   __
                /                 \
               ---------------------
-             |    direcciones al   |            [mapeo a]
+             |    direcciones al   |            [asignar a]
              | nombre del simbolo  |            ramo
              |                     |
              +---------------------+
              |  direcciones a la   |
-             |   definición del    |            [nunca]
+             |   definición del    |            [nada]
              |    simbolo          |
              +---------------------+
-             |    direcciones al   |            [mapeo a]
+             |    direcciones al   |            [asignar a]
              |   valor de variable |            (rosa violeta tulipan)
              |                     |
              +---------------------+
@@ -6647,100 +6648,94 @@ and promoting software freedom.”
 
 ** Ejercicio
 
-   Asignar @c{flores} a @c{violeta} y @c{tulipan}. Asigna dos flores más
-   en esta lista y asigna esta nueva lista a @c{mas-flores}. Asigna el
-   @c{car} de @c{flores} a un pez. ¿Qué lista contiene ahora @c{mas-flores}?
+   Asignar @c{flores} a @c{violeta} y @c{tulipan}. Asignar dos flores más en
+   esta lista y asignarla a @c{mas-flores}. Asigna+ el @c{car} de @c{flores} a un
+   pez. ¿Qué lista contiene ahora @c{mas-flores}?
 
 * Pegando texto
 
-  Siempre y cuando se corta texto fuera de un búfer con un comando `kill’ en
-  GNU Emacs, se puede traer con un comando ‘pegar’. El texto cortado del
-  búfer es puesto en el anillo de la muerte y en los comandos pegar, se
-  insertan los contenidos apropiados del kill ring detrás de un búfer (no
-  necesariamente el búfer original).
+  Siempre que cortes texto de un búfer con un comando ‘kill’, puede traerse de
+  vuelta con un comando ‘yank’. El texto cortado del búfer es puesto en el
+  anillo de la muerte y los comandos yank insertan el contenido apropiado del
+  anillo de la muerte en un búfer (no necesariamente el búfer original).
 
-  Un simple comando @k{C-y} (@c{yank}) inserta el primer ítem desde el anillo
-  de la muerte dentro del actual búfer. Si el comando @k{C-y}
-  es seguido inmediatamente para @k{M-y}, el primer elemento se reemplaza por
-  el segundo elemento. Los sucesivos comandos @k{M-y} reemplazan el segundo
-  elemento con el tercer, cuarto, o quinto elemento, y así. Cuando se llega
-  al último elemento en el anillo de la muerte, se reemplaza
-  por el primer elemento y el ciclo se repite. (De este modo, el kill ring se
-  llama un ‘anillo’ en vez de solo una ‘lista’. Sin embargo, la estructura de
-  de datos actual que maneja el texto es una lista. Vea la Seccion @l{Qué hace
-  el anillo de la muerte, , Manejando el anillo de la muerte},
-  para los detalles de cómo la lista es manejada como un anillo.)
+  Un simple comando @k{C-y} @%c(yank) inserta el primer elemento del anillo de
+  la muerte dentro en el búfer actual. Si el comando @k{C-y} es seguido
+  inmediatamente por @k{M-y}, el primer elemento se reemplaza por el segundo
+  elemento. Los sucesivos comandos @k{M-y} reemplazan el segundo elemento con el
+  tercer, cuarto, o quinto elemento, y así sucesivamente. Cuando se alcanza el
+  último elemento del anillo de la muerte, se reemplaza por el primer elemento y
+  el ciclo se repite. (Por la tanto, el anillo de la muerte se llama un ‘anillo’
+  en lugar de solo una ‘lista’. Sin embargo, la estructura de de datos real que
+  contiene el texto es una lista. Vea la Seccion @l{#Apéndice B Manejando el
+  anillo de la muerte}, para los detalles de cómo se maneja la lista como un
+  anillo.)
 
 ** Resumen del anillo de la muerte
 
-   El anillo de la muerte es una lista de cadenas
-   textuales. Esto es lo que se ve:
+   El anillo de la muerte es una lista de cadenas de texto. Esto es lo que se
+   ve:
 
    ..src > elisp
-     ("algún texto" "una pieza diferente pieza de texto"
-     "todavía más texto")
+     ("algún texto" "un texto diferente" "aún más texto")
    < src..
 
-   Si estos fueran los contenidos de mi anillo de la muerte y
-   yo presionara @k{C-y}, la cadena de caracteres diciendo @'{algún texto}
-   sería insertado en este búfer donde mi cursor está localizado.
+   Si este fuera el contenido de mi anillo de la muerte y pulsara @k{C-y},
+   la cadena de caracteres que dice @'{algún texto} seria insertada en este
+   búfer donde se encuentra mi cursor.
 
-   El comando @c{yank} @e{pegar} es también usado para duplicar texto
-   copiándolo. El texto copiado no es cortado desde el búfer, pero una copia
-   de eso se pone en el anillo de la muerte y se inserta
-   pegándolo.
+   El comando @c{yank} también se utiliza para duplicar texto copiándolo. El
+   texto copiado no se corta del el búfer, sino que se coloca una copia del
+   mismo en el anillo de la muerte y se insarta trayendolo de vuelta.
 
-   Tres funciones se usan para atraer texto desde el anillo de la muerte
-   @e{kill ring}: @c{yank} (@e{pegar}), que normalmente se asocian a @k{C-y};
-   @c{yank-pop}, que normalmente se asocia a @k{M-y}; y
-   @c{rotate-yank-pointer}, que se usa por las otras dos funciones.
+   Se utulizan tres funciones para devolver el texto del anillo de la muerte:
+   @c{yank}, que normalmente se asocia a @k{C-y}; @c{yank-pop}, que normalmente
+   se asocia a @k{M-y}; y @c{rotate-yank-pointer}, que se utiliza por las otras
+   dos funciones.
 
-   Estas funciones se refieren al kill ring @e{anillo de la muerte} a través
-   de una variable llamada el @c{kill-ring-yank-pointer}. En vez de eso, la
-   inserción del código para ambos son las funciones @c{yank} y @c{yank-pop}:
+   Estas funciones se refieren al anillo de la muerte a través de una variable
+   llamada @c{kill-ring-yank-pointer}. De hecho, el codigo de inserción para
+   ambas funciones @c{yank} y @c{yank-pop} es:
 
    ..src > elisp
      (insert (car kill-ring-yank-pointer))
    < src..
 
-   (Bien, no más. En GNU Emacs 22, la función se ha reemplazado por
-   @c{insert-for-yank} que llama a @c{insert-for-yank-1} repetitivamente para
-   cada segmento @c{yank-handler}. En vez de eso, @c{insert-for-yank-1}
-   destituye las propiedades de texto desde el texto insertado de acuerdo a
-   @c{yank-excluded-properties}. De otro modo, eso es como
-   @c{insert}. Nosotros lo pegamos con un @c{insert} plano puesto que sea
-   fácil de comprender.)
+   (Bueno, no más. En GNU Emacs 22, la función ha sido reemplazada por
+   @c{insert-for-yank} que llama repetidamente a @c{insert-for-yank-1} para cada
+   segmento a @c{yank-handler}. A su vez, @c{insert-for-yank-1} elimina las
+   propiedades del texto insertado de acuerdo a @c{yank-excluded-properties}. De
+   otro modo, seria como @c{insert}. Nosotros pegaremos con un @c{insert} plano
+   puesto que es mas fácil de comprender.)
 
-   Para empezar a comprender cómo @c{yank} y @c{yank-pop} funcionan, primero
-   es necesario mirar en la variable @c{kill-ring-yank-pointer}.
+   Para empezar a comprender cómo funcionan @c{yank} y @c{yank-pop}, primero hay
+   que mirar la variable @c{kill-ring-yank-pointer}.
 
 ** La variable @c{kill-ring-yank-pointer}
 
-   @c{kill-ring-yank-pointer} es una variable, solo como @c{kill-ring} es una
-   variable. Eso apunta a alguna cosa siendo asignada al valor de lo que
-   apunta, como cualquier otra variable Lisp.
+   @c{kill-ring-yank-pointer} es una variable, de la misma forma que
+   @c{kill-ring} es una variable. Esta apunta a alguna cosa siendo asignada al
+   valor de lo que apunta, como cualquier otra variable Lisp.
 
-   De este modo, si el valor del kill ring es:
+   De este modo, si el valor del anillo de la muerte es:
 
    ..src > elisp
-     ("algún texto" "una pieza diferente pieza de texto"
-     "todavía más texto")
+     ("algún texto" "un texto diferente" "aún más texto")
    < src..
 
-   y el @c{kill-ring-yank-pointer} apunta a la segunda cláusula, el valor de
+   y @c{kill-ring-yank-pointer} apunta a la segunda oracion, el valor de
    @c{kill-ring-yank-pointer} es:
 
    ..src > elisp
-     ("una pieza diferente de texto" "todavía más texto")
+     ("un texto diferente" "aún más texto")
    < src..
 
-   Como se explica en el capítulo previo (Vea la Seccion @l{Cómo se implementan
-   las listas}), el ordenador no guarda dos copias diferentes del texto siendo
-   apuntado por ambos el @c{kill-ring} (el @e{anillo de la muerte}) y el
-   @c{kill-ring-yank-pointer} (el @e{puntero de pegar el anillo de la
-   muerte}). Las palabras “una pieza diferente de texto” y “todavía más texto”
-   no están duplicadas. En vez de eso, las dos variables Lisp apuntan a las
-   mismas piezas de texto. Aquí hay un diagrama:
+   Como se explico en el capítulo anterior (Vea la Seccion @l{#Cómo se
+   implementan las listas}), el ordenador no guarda dos copias diferentes del
+   texto apuntadas tanto por @c{kill-ring} como por @c{kill-ring-yank-pointer}.
+   Las palabras “un texto diferente” y “aún más texto” no están duplicadas. En
+   su lugar, las dos variables apuntan a las mismas piezas de texto. Aquí hay un
+   diagrama:
 
    ..art >
      kill-ring     kill-ring-yank-pointer
@@ -6750,123 +6745,119 @@ and promoting software freedom.”
                |___|___|----> |___|___|--> |___|___|--> nil
                  |              |            |
                  |              |            |
-                 |              |             --> "todavía más texto"
+                 |              |             --> "aún más texto"
                  |              |
-                 |               --> "una pieza diferente de texto"
+                 |               --> "un texto diferente"
                  |
-                  --> "algo de texto"
+                  --> "algún texto"
    < art..
 
-   Tanto la variable @c{kill-ring} y la variable @c{kill-ring-yank-pointer}
-   son punteros. Pero el kill ring @e{anillo de la muerte} en sí es
-   normalmente descrito como si fuera actualmente de lo que está
-   compuesto. El @c{kill-ring} se refiere a lo que es la lista en vez de lo
-   que apunta a la lista. Conversando, el @c{kill-ring-yank-pointer} se
-   refiere a como se apunta a una lista.
+   Tanto la variable @c{kill-ring} y como @c{kill-ring-yank-pointer} son
+   punteros. Pero el anillo de la muerte en sí normalmente se describe como si
+   fuera realmente lo que lo compone. Se habla de @c{kill-ring} como si fuera la
+   lista en lugar de ser un puntero a la lista. Por el contrario, se dice que
+   @c{kill-ring-yank-pointer} apunta a una lista.
 
-   Estas dos maneras hablar acerca de la misma cosa suena confuso al
-   principio pero tiene sentido para reflexionar. El kill ring @e{anillo de
-   la muerte} es generalmente pensado como la estructura completa de datos
-   que manejan la información de lo que se ha cortado reciéntemente de los
-   búfers de Emacs. El @c{kill-ring-yank-pointer} en la otra mano, sirve
-   para indicar --- que es, para ‘apuntar a’ --- esta parte del anillo de la
-   muerte del que el primer elemento (el @c{car}) será insertado.
+   Estas dos formas de hablar sobre la misma cosa suenan confusas al principio
+   pero tienen sentido tras reflexionar. El anillo de la muerte se piensa
+   generalmente como la estructura completa de datos que contiene la información
+   de lo que se ha cortado reciéntemente de los búfers de Emacs. Por otra parte,
+   @c{kill-ring-yank-pointer}, sirve para indicar––es decir, para ‘apuntar
+   a’––esa parte del anillo de la muerte de la cual se inserta el primer
+   elemento (el @c{car}).
 
 ** Ejercicios con @c{yank} y @c{nthcdr}
 
-   - Usando @k{C-h v} (@c{describe-variable}), mira en el valor de tu kill
-     ring @e{anillo de la muerte}. Añade varios ítems a tu anillo de la
-     muerte; mira en su valor de nuevo. Usando @k{M-y}
-     (@c{yank-pop}, mueve todo el camino alrededor del kill ring @e{anillo de
-     la muerte}. ¿Cuántos ítems estaban en tu kill ring @e{anillo de la
-     muerte}? Encuentra el valor de @c{kill-ring-max}. ¿Estaba tu anillo de
-     la muerte completo, o podrías haber guardado más bloques
-     de texto dentro?
+   - Usando @k{C-h v} @%c(describe-variable), mira en el valor de tu anillo de
+     la muerte. Añade varios elementos a tu anillo de la muerte; mira su valor
+     de nuevo. Usando @k{M-y} @%c{yank-pop}, muevete alrededor del anillo de la
+     muerte. ¿Cuántos elementos habia en tu anillo de la muerte? Encuentra el
+     valor de @c{kill-ring-max}. ¿Estaba lleno tu anillo de la muerte, o podrías
+     haber guardado más bloques de texto dentro en el?
 
    - Usando @c{nthcrd} y @c{car}, construye una serie de expresiones para
-     devolver, el primer, segundo, tercer y cuarto elemento de una lista.
+     devolver el primer, segundo, tercer y cuarto elemento de una lista.
 
 * Bucles y recursión
 
-  Emacs Lisp tiene dos caminos primarios para causar una expresión, o una
-  serie de expresiones, para ser evaluado repetidamente: uno usa un bucle
-  @c{while}, y el otro usa @:{recursión}.
+  Emacs Lisp tiene dos formas principales para hacer que una expresión, o una
+  serie de expresiones, sea evaluada repetidamente: una usa un bucle @c{while},
+  y la otra @:{recursión}.
 
-  La repetición puede ser valorable. Por ejemplo, para mover hacia delante
-  cuatro frases, tu solo necesitas escribir un programa que moverá hacia
-  delante una frase y entonces repite el proceso cuatro veces. Ya que un
-  ordenador no está aburrido o cansado, tal acción repetitiva no tiene los
-  efectos de borrado por equivocación o exceso que pueden tener los humanos.
+  La repetición puede ser muy valiosa. Por ejemplo, para avanzar cuatro
+  oraciones, solo necesitas escribir un programa que avance una oracion y luego
+  repetir el proceso cuatro veces. Ya que un ordenador no se aburre o se cansa,
+  tal acción repetitiva no tiene los efectos nocivos (como un monton de errores)
+  que puede tener en los humanos.
 
-  La gente mayoritariamente escribe funciones de Emacs Lisp usando bucles
-  @c{while}; pero se puede usar recursión, que provee un poderoso camino
-  mental para resolver problemas@n{10}.
+  La mayoria de personas escriben sus funciones de Emacs Lisp usando bucles
+  @c{while} y sus parientes; pero se puede usar recursión, que provee un una
+  manera muy poderosa de pensar para resolver problemas@n{11}.
 
 ** @c{while}
 
-   La forma especial @c{while} chequea si el valor devuelto para evaluar el
+   La forma especial @c{while} prueba si el valor devuelto tras evaluar su
    primer argumento es verdadero o falso. Esto es parecido a lo que el
    intérprete Lisp hace con un @c{if}; el intérprete hace lo siguiente, sin
-   embargo, es diferente.
+   embargo, lo que el interprete hace despues es diferente.
 
    En una expresión @c{while}, si el valor devuelto por evaluar el primer
-   argumento es falso, el intérprete Lisp descarta el resto de la expresión
-   (el @:{cuerpo} de la expresión) y no la evalúa. Sin embargo, si el valor
-   es cierto, el intérprete Lisp evalúa el cuerpo de la expresión y entonces
-   de nuevo chequea si el primer argumento para @c{while} es cierto o
-   falso. Si el valor devuelto de evaluar el primer argumento es cierto de
-   nuevo, el intérprete Lisp evalúa el cuerpo de la expresión.
+   argumento es falso, el intérprete Lisp omite el resto de la expresión (el
+   @:{cuerpo} de la expresión) y no la evalúa. Sin embargo, si el valor es
+   verdadero, el intérprete evalúa el cuerpo de la expresión y luego prueba
+   nuevamente si el primer argumento de @c{while} es verdadero o falso. Si el
+   valor devuelto al evaluar el primer argumento vuelve a ser verdadero, el
+   intérprete Lisp vuelve a evaluar el cuerpo de la expresión.
 
    La plantilla para una expresión @c{while} se ve así:
 
    ..src > elisp
-     (while @V{test-verdadero-o-falso}
-       @V{cuerpo}…)
+     (while prueba-verdadero-o-falso
+       cuerpo…)
    < src..
 
-   En el momento en el que el true-or-false-test de la expresión @c{while}
-   devuelve un valor cierto cuando eso se evalúa, el cuerpo es repetidamente
-   evaluado. Este proceso se llama bucle puesto que el intérprete Lisp repite
-   la misma cosa una y otra vez, como un avión haciendo un loop. Cuando el
-   resultado de evaluar el true-or-false-test es falso, el intérprete Lisp no
-   evalúa el resto de la expresión @c{while} y ‘existe el bucle’.
+   Siempre que la evaluacion de @c(prueba-verdadero-o-falso) en la expresion
+   @c{while} devuelva un valor verdadero, el cuerpo sera evaluado repetidamente.
+   Este proceso se llama bucle porque el intérprete Lisp repite lo mismo una y
+   otra vez, como un avión que hace un bucle. Cuando el resultado de evaluar
+   @c(prueba-verdadero-o-falso) es falso, el intérprete no evalúa el resto de la
+   expresión @c{while} y ‘sale del bucle’.
 
-   Claramente, si el valor devuelto evaluando el primer argumento para
-   @c{while} es siempre cierto, el cuerpo siguiente será evaluado una y otra
-   vez … y … para siempre. Recíprocamente, si el valor devuelto nunca es
-   cierto, las expresiones en el cuerpo nunca serán evaluadas. La fortaleza
-   de escribir un bucle @c{while} consiste de elegir un mecanismo tal que el
-   true-or-false-test devuelva cierto solo el número de veces que requieren
-   las subsiguientes expresiones para ser evaluadas, y entonces tener el test
-   devuelto a falso.
+   Claramente, si el valor devuelto evaluando el primer argumento de @c{while}
+   es siempre cierto, el cuerpo siguiente será evaluado una y otra vez … y otra
+   vez … por siempre. Por el contrario, si el valor devuelto nunca es verdadero,
+   las expresiones en el cuerpo nunca serán evaluadas. El arte de escribir un
+   bucle @c{while} consiste en elegir un mecanismo tal que
+   @c(prueba-verdadero-o-falso) devuelva verdadero solo el número de veces que
+   requiere evaluar las subsiguientes expresiones, y luego hacer que la prueba
+   devuelva falso.
 
-   El valor devuelto evaluando @c{while} es el valor del
-   true-or-false-test. Una consecuencia interesante de esto es que un bucle
-   @c{while} que evalúa sin errores devolverá @c{nil} o falso sin dignidad de
-   si eso ha girado 1 o 100 veces o ninguna. ¿Una expresión @c{while} que se
-   evalúa de manera exitosa nunca devuelve un valor cierto! Lo que esto
-   significa es que @c{while} es siempre evaluado por sus efectos laterales,
-   que es decir, las consecuencias de evaluar las expresiones con el cuerpo
-   del bucle @c{while}. Esto tiene sentido. Eso no es el mero acto del bucle
-   que es deseado, pero las consecuencias de lo que ocurre cuando las
-   expresiones en el bucle son repetidamente evaluadas.
+   El valor devuelto evaluando un @c{while} es el valor de
+   @c(prueba-verdadero-o-falso). Una consecuencia interesante de esto es que un
+   bucle @c{while} que se evalúa sin errores devolverá @c{nil} o falso
+   independientemen de si ha hecho el bucle 1 o 100 veces o ninguna. ¿Una
+   expresión @c{while} que se evalúa con exito nunca devuelve un valor
+   verdadero! Lo que esto significa es que @c{while} siempre se evalua por sus
+   efectos secundarios, es decir, las consecuencias de evaluar las expresiones
+   dentro del cuerpo del bucle. Esto tiene sentido. No es el mero acto del bucle
+   lo que se desea, sino las consecuencias de lo que ocurre cuando las
+   expresiones en el bucle se evaluan repetidamente.
 
 *** Un bucle @c{while} y una lista
 
-    Un camino común para controlar un bucle @c{while} es chequear si una
-    lista tiene cualquier elemento. Si eso se hace, el bucle se repite; pero
-    si no, la repetición se finaliza. Puesto que esto es una técnica
-    importante, se creará un breve ejemplo para ilustrarlo.
+    Un forma común para controlar un bucle @c{while} es probar si una lista
+    tiene algun elemento. Si es haci, el bucle se repite; pero si no, la
+    repetición finaliza. Como esta es una tecnica importante, crearemos un
+    ejemplo breve para ilustrarla.
 
-    Un camino simple para chequear si una lista tiene elementos es evaluar la
-    lista: si eso no tiene elementos, si es una lista vacía y devuelve la
-    lista vacía, @c{()}, que es un sinónimo para @c{nil} o falso. Por otro
-    lado, una lista con elementos devolverá estos elementos cuando eso se
-    evalúa. Puesto que Emacs Lisp considera como cierto cualquier valor que
-    no es @c{nil}, una lista que devuelve elementos chequeará cierto en un
-    bucle @c{while}.
+    Un manera sencilla de comprobar si una lista tiene elementos es evaluar la
+    lista: si no tiene elementos, se trata de una lista vacía y devuelve la
+    lista vacía, @c{()}, que es un sinónimo de @c{nil} o falso. Por otro lado,
+    una lista con elementos devolverá estos elementos cuando se evalúe. Ya que
+    Emacs Lisp considera como verdadero cualquier valor que no sea @c{nil}, una
+    lista que devuelve elementos sera verdadero en un bucle @c{while}.
 
-    Por ejemplo, se puede asignar la variable @c{empty-list} a @c{nil} para
+    Por ejemplo, se puede asignar la variable @c{lista-vacia} a @c{nil} para
     evaluar la siguiente expresión @c{setq}:
 
     ..src > elisp
@@ -6874,16 +6865,16 @@ and promoting software freedom.”
     < src..
 
     Después de evaluar la expresión @c{setq}, se puede evaluar la variable
-    @c{lista-vacia} es el camino normal, posicionando el cursor después del
-    símbolo y escribiendo @k{C-x C-e}; @c{nil} aparecerá en tu área de eco:
+    @c{lista-vacia} de la manera habitual, colocando el cursor después del
+    símbolo y escribiendo @k{C-x C-e}; aparecerá @c{nil} en tu área de eco:
 
     ..src > elisp
       lista-vacia
     < src..
 
-    Por otro lado, si se asigna una variable para ser una lista con
-    elementos, la lista aparecerá cuando se evalúe la variable, como se puede
-    ver evaluando las siguientes dos expresiones:
+    Por otro lado, si se asigna una variable como una lista con elementos, la
+    lista aparecerá cuando se evalúe la variable, como se puede ver al evaluar
+    las dos expresiones siguientes:
 
     ..src > elisp
       (setq animales '(gacela jirafa leon tigre))
@@ -6891,89 +6882,81 @@ and promoting software freedom.”
       animales
     < src..
 
-    De este modo, para un bucle @c{while} que chequea si hay cualquier ítem
-    en la lista @c{animales}, la primera parte del bucle será escrito así:
+    De este modo, para crear un bucle @c{while} que pruebe si hay algun elemento
+    en la lista @c{animales}, la primera parte del bucle se escribira así:
 
     ..src > elisp
       (while animales
              …
     < src..
 
-    Cuando el @c{while} chequea su primer argumento, la variable @c{animales}
-    se evalúa. Eso devuelve una lista. Mientras la lista tiene elementos, el
-    @c{while} considera los resultados del test para ser verdadero; pero
-    cuando la lista es vacía, eso considera los resultados del test para ser
-    falso.
+    Cuando @c{while} prueba su primer argumento, la evaluacion de la variable
+    @c{animales} devuelve una lista. Mientras la lista tenga elementos, el
+    @c{while} considera que el resultado de la prueba es verdadero; pero cuando
+    la lista esta vacía, se considera que el resultado de la prueba es falso.
 
-    Para prevenir que el bucle @c{while} se ejecute siempre, se necesita
-    proporcionar algún mecanismo. Una técnica usada con frecuencia es tener
-    una de las subsiguientes formas en la expresión @c{while} que asigna el
-    valor de la lista para ser el @c{cdr} de la lista. Cada vez que la
-    función @c{cdr} se evalúa, se va reduciendo, hasta que finalmente solo
-    queda la lista vacía. En este punto, el test del bucle @c{while}
-    devolverá falso, y los argumentos para el @c{while} no se evaluarán.
+    Para prevenir que el bucle @c{while} se ejecute para siempre, es necesario
+    proporcionar algún mecanismo para vaciar la lista. Una técnica usada con
+    frecuencia es tener una de las expresiones en el cuerpo de @c{while} que
+    asigne el valor del @c(cdr) de la lista a la lista. Cada vez que se evalua
+    la función @c{cdr}, la lista se va reduciendo, hasta que finalmente solo
+    queda la lista vacía. En este punto, la prueba del bucle @c{while} devolverá
+    falso, y al mismo tiempo los argumentos ya no se evaluarán.
 
-    Por ejemplo, la lista de animales asociada a la variable @c{animals} se
-    puede asignar a ser el @c{cdr} de la lista original con la siguiente
-    expresión:
+    Por ejemplo, la lista de animales asociada a la variable @c{animals} puede
+    asignarse a el @c{cdr} de la lista original con la siguiente expresión:
 
     ..src > elisp
-      (setq animals (cdr animals))
+      (setq animales (cdr animales))
     < src..
 
-    Si se han evaluado las expresiones previas y entonces se evalúa esta
-    expresión, se verá @c{(jirafa leon tigre)} que aparecerá en el área
-    echo. Si se evalúa la expresión de nuevo, @c{(leon tigre)} aparecerá en
-    el área de eco. Si se evalúa de nuevo, @c{(tigre)} y todavía de nuevo
-    aparecerá la lista vacía y se mostrará como @c{nil}.
+    Si has evaluado las expresiones anteriores y luego evaluas esta expresión,
+    veras aparecer @c{(jirafa leon tigre)} en el área de eco. Si evalúas la
+    expresión de nuevo, aparecera @c{(leon tigre)}. Si lo evalúas de nuevo una y
+    otra vez, veras @c{(tigre)} y despues la lista vacía, mostrada como @c{nil}.
 
-    Una plantilla para un bucle @c{while} usa la función @c{cdr}
-    repetidamente para causar el true-or-false-test finalmente para chequear
-    la veracidad y se parece a esto:
+    Una plantilla para un bucle @c{while} usa la función @c{cdr} repetidamente
+    para hacer que @c(prueba-verdadero-o-falso) eventualmente evalue a falso
+    como se muesta a continuacion:
 
     ..src > elisp
-      (while @V{test-whether-list-is-empty}
-        @V{body}…
-        @V{set-list-to-cdr-of-list})
+      (while prueba-si-la-lista-esta-vacia
+        cuerpo…
+        establece-lista-al-cdr-de-la-lista)
     < src..
 
-    Este chequeo y uso de @c{cdr} puede ser puesto junto a una función que va
-    a través de una lista e imprime cada elemento de la lista en una línea de
-    sí misma.
+    Esto prueba y uso de @c{cdr} puede colocarse en una funcion a la que se pase
+    una lista e imprima cada elemento de esta en una línea propia.
 
 *** Un ejemplo: @c{imprimir-elementos-de-la-lista}
 
     La función @c{imprimir-elementos-de-la-lista} ilustra un bucle @c{while}
     con una lista.
 
-    La función requiere varias líneas por su salida. Si estás leyendo esto en
-    una instancia reciente de GNU Emacs, se puede evaluar la siguiente
-    expresión dentro de Info, de normal.
+    La función requiere varias líneas para su salida. Si estás leyendo esto en
+    una instancia reciente de GNU Emacs, puedes evaluarlo de la forma habitual.
 
-    Si se está usando una versión antigua de Emacs, es necesario copiar las
-    expresiones necesarias para el búfer @f{*scratch*} y evaluarlas
-    allí. Esto es porque el área de eco tenía solo una línea en las versiones
-    antiguas.
+    Si estas usando una versión antigua de Emacs, es necesario copiar las
+    expresiones necesarias en el búfer @f{*scratch*} y evaluarlas allí. Esto se
+    debe a que el área de eco solo tenía una línea en las versiones antiguas.
 
-    Se pueden copiar las expresiones marcando el principio de la región con
-    @k{C-@k{SPC}} (@c{set-mark-command}), moviendo el cursor al fin de la
-    región y entonces copiando la región usando @k{M-w} (@c{kill-ring-save},
-    que llama a @c{copy-region-as-kill} y entonces provee realimentación
-    visual). En el búfer @f{*scratch*}, se pueden copiar las expresiones
-    escribiendo @k{C-y} (@c{yank}).
+    Puedes copiar las expresiones marcando el principio de la región con
+    @k{C-SPC} @%c{set-mark-command}, moviendo el cursor al final de la región y
+    luego copiar la región usando @k{M-w} (@c{kill-ring-save}, que llama a
+    @c{copy-region-as-kill} y proporciona la realimentación visual). En el búfer
+    @f{*scratch*}, puedes copiar las expresiones con @k{C-y} @%c{yank}.
 
-    Después de haber copiado las expresiones al búfer @f{*scratch*}, se
-    evalúa cada expresión en orden. Asegúrese de evaluar la última expresión,
-    @c{(imprimir-elementos-de-la-lista animales)}, escribiendo @k{C-u C-x
-    C-e}, que es, dando un argumento para @c{eval-last-sexp}. Esto causará el
-    resultado de la evaluación para ser impreso en el búfer @f{*scratch*} en
-    vez de siendo impreso en el área de eco. (De otro modo se verá alguna cosa
-    como esto en tu área de eco: @c{^Jgacela^J^Jjirafa^J^Jleon^J^Jtigre^Jnulo},
-    en cada @'{^J} se estructura una ‘nueva línea’.)
+    Después de haber copiado las expresiones al búfer @f{*scratch*}, evalúa cada
+    expresión en orden. Asegúrate de evaluar la última expresión,
+    @c{(imprimir-elementos-de-la-lista animales)}, presionando @k{C-u C-x C-e},
+    es decir, pasando un argumento a @c{eval-last-sexp}. Esto hara que el
+    resultado de la evaluación se imprima en el búfer @f{*scratch*} en lugar de
+    imprimirse en el área de eco. (De lo contrario, veras algo como esto en tu
+    área de eco: @c{^Jgacela^J^Jjirafa^J^Jleon^J^Jtigre^Jnil}, en la que cada
+    @'{^J} seria una ‘nueva línea’.)
 
-    En una instancia de GNU Emacs reciente, se pueden evaluar estas
-    expresiones directamente en el búfer Info, y el área de eco crecerá para
-    mostrar los resultados.
+    En una instancia de GNU Emacs reciente, podria evaluar estas expresiones
+    directamente, y el área de eco crecerá para mostrar los resultados.
 
     ..src > elisp
       (setq animales '(gacela jirafa leon tigre))
@@ -6987,7 +6970,7 @@ and promoting software freedom.”
       (imprimir-elementos-de-la-lista animales)
     < src..
 
-    Cuando se evalúan las tres expresiones en secuencia, se verá esto:
+    Cuando evalúes las tres expresiones en secuencia, verás esto:
 
     ..example >
       gacela
@@ -7000,455 +6983,446 @@ and promoting software freedom.”
       nil
     < example..
 
-    Cada elemento de la lista se imprime en una línea en sí (que es lo que la
-    función @c{print} hace) y entonces el valor devuelto por la función se
-    imprime. Desde que la última expresión en la función es el bucle
-    @c{while}, y desde que el bucle @c{while} siempre devuelve @c{nil}, un
-    @c{nil} se imprime después del último elemento de la lista.
+    Cada elemento de la lista se imprime en una línea propia (que es lo que hace
+    la función @c{print}) y luego se imprime el valor devuelto por la función.
+    Como la última expresión de la función es el bucle @c{while}, y como los
+    bucles @c{while} siempre devuelven @c{nil}, se imprime un @c{nil} después
+    del último elemento de la lista.
 
-*** Un bucle con un contaje incremental
+*** Un bucle con un contador incremental
 
-    Un bucle no es útil a menos que pare cuando debe. Bajo el control de un
-    bucle con una lista, un camino común de parar un bucle es escribir el
-    primer argumento como un test que devuelve falso cuando el número
-    correcto de repeticiones es completo. Esto significa que el bucle debe
-    tener un contador––una expresión que cuenta cuántas veces el bucle se
-    repite a sí mismo.
+    Un bucle no es útil a menos que pare cuando debe. Ademas de controlar un
+    bucle con una lista, una forma comun de detener un bucle es escribir el
+    primer argumento como una prueba que devuelve falso cuando el número
+    correcto de repeticiones esta completo. Esto significa que el bucle debe
+    tener un contador––una expresión que cuenta cuántas veces el bucle se repite
+    a sí mismo.
 
-    El test para un bucle con un contador de incremento puede ser una
-    expresión tal como @c{(< contador numero-deseado)} que devuelve @c{t}
-    para verdad si el valor de @c{contador} es menor que el
-    @c{numero-deseado} de repeticiones y @c{nil} para falso si el valor de
-    @c{contador} es igual a o es mayor que el @c{numero-deseado}. La
-    expresión que incrementa el contador puede ser un simple @c{setq} tal
-    como @c{(setq contador (1+ contador))}, donde @c{1+} es una función
-    construida en Emacs Lisp que añade 1 a su argumento. (La expresión @c{(1+
-    contador)} tiene el mismo resultado que @c{(+ contador 1)}, que es fácil
-    de leer para un humano.)
+    La prueba para un bucle con un contador incremental puede ser una expresión
+    como @c{(< contador numero-deseado)} que devuelve @c{t} para verdadero si el
+    valor de @c{contador} es menor que el @c{numero-deseado} de repeticiones y
+    @c{nil} para falso si el valor de @c{contador} es igual o mayor al
+    @c{numero-deseado}. La expresión que incrementa el contador puede ser un
+    simple @c{setq} como @c{(setq contador (1+ contador))}, donde @c{1+} es una
+    función nativa de Emacs Lisp que añade 1 a su argumento. (La expresión
+    @c{(1+ contador)} tiene el mismo resultado que @c{(+ contador 1)}, pero es
+    mas facil de leer para un humano.)
 
     La plantilla para un bucle @c{while} controlado por un contador que se
-    incrementa se parece a esto:
+    incrementa se ve asi:
 
     ..src > elisp
-      @V{asignar-contador-al-valor-inicial}
-      (while (< contador numero-deseado)         ; true-or-false-test
-        @V{body}…
-        (setq contador (1+ contador)))              ; incremento
+      asignar-un-valor-inicial-al-contador
+      (while (< contador numero-deseado)         ; prueba-verdadero-o-falso
+        cuerpo…
+        (setq contador (1+ contador)))           ; incremento
     < src..
 
-    Note que se necesita asignar el valor inicial de @c{contador};
-    normalmente asignado a 1.
+    Ten en cuenta que se necesita asignar el valor inicial de @c{contador}; por
+    lo general se asigna en 1.
 
 **** Ejemplo con contador incremental
 
      Supón que estás jugando en la playa y decides crear un triángulo de
-     asteriscos, poniendo un asterisco en la primera fila, dos en la segunda
-     fila, tres en la tercera fila y así:
+     guijarros, poniendo uno en la primera fila, dos en la segunda fila, tres en
+     la tercera fila y así sucesivamente:
 
      ..example >
-                      *
-                     * *
-                    * * *
-                   * * * *
+          •
+         • •
+        • • •
+       • • • •
      < example..
 
-     (Hace 2500 años, Pitágoras y otras desarrollaron los principios de la
-     teoría de números considerando preguntas como esta.)
+     (Hace 2500 años, Pitágoras y otros desarrollaron los principios de la
+     teoría de números al considerar preguntas como esta.)
 
-     Supón que quieres saber cuántos asteriscos necesitarás crear para un
+     Supón que quieres saber cuántos guijarros necesitarás para hacer un
      triángulo con 7 filas
 
-     Claramente, lo que necesitas hacer es añadir los números de 1 a 7. Hay
-     dos caminos para hacer esto; se puede comenzar con los números más
-     pequeños, uno, y añadir la lista en secuencia, 1, 2, 3, 4 y así; o
-     empieza con el número más largo y añade la lista bajando: 7, 6, 5, 4 y
-     así. Porque ambos mecanismos ilustran caminos comunes de escribir el
-     bucle @c{while}, crearemos dos ejemplos, uno contando hacia arriba y el
+     Claramente, lo que necesitas hacer es sumar los números de 1 a 7. Hay dos
+     maneras de hacer esto; se puede comenzar con el numero más pequeño, uno, y
+     sumar la lista en secuencia, 1, 2, 3, 4 y así sucesivamente; o empezar con
+     el número más grande y sumar la lista hacia abajo: 7, 6, 5, 4 y así
+     sucesivamente. Debido a que ambos mecanismos ilustran formas comunes de escribir
+     el bucle @c{while}, crearemos dos ejemplos, uno contando hacia arriba y el
      otro contando hacia abajo. En este primer ejemplo, empezaremos con 1 y
-     añadimos 2, 3, 4 y así.
+     sumaremos 2, 3, 4, etc.
 
-     Si se quiere sumar toda una lista de números, el camino más fácil para
-     hacer eso es sumar todos los números a la vez. Sin embargo, si no se
-     sabe cuántos números tendrá la lista, o si se requiere estar preparado
-     para una lista muy larga, entonces se necesita diseñar la adición, esto
-     es, repetir un proceso simple muchas veces en vez de hacer un proceso
-     más complejo.
+     Si quieres sumar toda una lista de números, el camino más fácil de hacerlo
+     es sumar todos los números a la vez. Sin embargo, si no se sabe de antemano
+     cuántos números tendrá la lista, o si se requiere estar preparado para una
+     lista muy larga, entonces se necesita diseñar la suma, a modo de , repetir
+     un proceso simple muchas veces en vez de hacer un proceso más complejo una
+     y otra vez.
 
-     Por ejemplo, en vez de añadir todos los asteriscos a la vez, lo que se
-     puede hacer es añadir el número de asteriscos en la primera fila, 1,
-     para el número en la segunda fila, 2, y entonces añadir el total de
-     estas dos filas a la tercera fila, 3. Entonces se puede añadir el número
-     en la cuarta fila, 4, al total de las primeras tres filas; y así.
+     Por ejemplo, en lugar de sumar todos los guijaros a la vez, lo que se puede
+     hacer es sumar el número de guijarros en la primera fila, 1, al número en
+     la segunda fila, 2, y entonces añadir el total de estas dos filas a la
+     tercera fila, 3. Luego se puede sumar el número en la cuarta fila, 4, al
+     total de las primeras tres filas; y así sucesivamente.
 
      La característica crítica del proceso es que cada acción repetitiva sea
-     simple. En este caso, en cada paso nosotros añadimos solo dos números,
-     el número de asteriscos en la fila y el total ya encontrado. Este
-     proceso de añadir dos números es repetido de nuevo y de nuevo hasta la
-     última fila que ha sido añadida al total de todas las filas
-     precedentes. En un bucle más complejo la acción repetitiva podría no ser
-     tan simple, pero será tan simple como hacer todo a la vez.
+     simple. En este caso, en cada paso se suman solo dos números, el número de
+     guijarros en la fila y el total ya encontrado. Este proceso de sumar dos
+     números se repite una y otra vez hasta que la última fila ha sido añadida
+     al total de todas las filas precedentes. En un bucle más complejo la acción
+     repetitiva podría no ser tan sencilla, pero será mas simple que hacerlo
+     todo de una sola vez.
 
 **** Las partes de la definición de función
 
-     El análisis precedente nos da los bonos de nuestra definición de
+     El análisis anterior nos da los huesos de nuestra definición de
      función: primero, necesitaremos una variable que podemos llamar
-     @c{total} que será el número total de asteriscos. Esto será el valor
+     @c{total} que será el número total de guijarros. Este será el valor
      devuelto por la función.
 
-     Segundo, sabemos que la función requerirá un argumento: este argumento
-     será el número de filas en el triángulo. Eso puede llamarse
-     @c{number-of-rows}.
+     En segundo lugar, sabemos que la función requerirá un argumento: este
+     argumento será el número total de filas del triángulo. Puede llamarse
+     @c{numero-de-filas}.
 
-     Finalmente, se necesita una variable para usarse como contador. Se
-     podría llamar a esta variable @c{counter}, pero un nombre mejor es
-     @c{row-number}. Debido a que lo que el contador hace en esta función es
-     contar filas, y un programa debería escribirse para ser comprendido en
-     la medida de lo posible.
+     Finalmente, necesitamos una variable para usar como contador. Podriamos
+     llamar a esta variable @c{contador}, pero un mejor nombre es
+     @c{numero-de-fila}. Esto se debe a que lo que hace el contador en esta
+     función es contar filas, y un programa debería escribirse para ser lo mas
+     comprensible posible.
 
-     Cuando el intérprete Lisp primero empieza evaluando las expresiones de
-     la función, el valor de @c{total} estaría asignado a cero, ya que no
-     hemos añadido cualquier cosa a eso. Entonces la función añadiría el
-     número de asteriscos en la primera fila al total, y entonces añade el
-     número de asteriscos en la segunda al total, y entonces añade el número
-     de asteriscos a la tercera fila al total, y así, hasta que no hay más
-     filas a la izquierda para añadir.
+     Cuando el intérprete Lisp comience a evaluar las expresiones de la función,
+     el valor de @c{total} deberia ser cero, ya que no hemos sumado nada al
+     mismo. Entonces la función debe sumar el número de guijarros en la primera
+     fila al total, y luego sumar el número de guijarros en la segunda al total,
+     y luego sumar el número de guijarros en la tercera fila al total, y así
+     sucesivamente, hasta que no queden más filas por sumar.
 
-     Ambos @c{total} y @c{row-number} se usan solo dentro de la función, así
-     ellos pueden ser declarados como variables locales con @c{let} y valores
-     iniciales dados. Claramente, el valor inicial para total sería 0. El
-     valor inicial de @c{row-number} sería 1, desde que se comienza con la
-     primera fila. Esto significa que la frase @c{let} se parece a esto:
-
-     ..src > elisp
-         (let ((total 0)
-               (row-number 1))
-           @V{body}…)
-     < src..
-
-     Después de que las variables internas se declaran y se asignan a sus
-     valores iniciales se podría empezar el bucle @c{while}. La expresión que
-     sirve como el test devolvería un valor de @c{t} para la verdad tan
-     grande como el @c{row-number} que es menor o igual al
-     @c{number-of-rows}. (La expresión devuelve cierto solo si el número de
-     fila es menor que el número de filas en el triángulo, la última fila
-     nunca será añadida al total; aquí el número de fila tiene que ser menor
-     o igual el número de filas.))
-
-     Lisp provee la función @c{<=} que devuelve cierto si el valor de su
-     primer argumento es menor o igual al valor de su segundo argumento y
-     falso de otro modo. Así la expresión que el @c{while} evaluará como si
-     su test se vería como esto:
+     Tanto @c{total} como @c{numero-de-fila} se usan solo dentro de la función,
+     por lo que pueden ser declarados como variables locales con @c{let} dando
+     sus valores iniciales. Evidentemente, el valor inicial para total
+     sera 0. El valor inicial de @c{numero-de-fila} sera 1, ya que comenzaremos
+     con la primera fila. Esto significa que la declaracion @c{let} se vera asi:
 
      ..src > elisp
-       (<= row-number number-of-rows)
+       (let ((total 0)
+             (numero-de-fila 1))
+         cuerpo…)
      < src..
 
-     El número de asteriscos puede encontrarse repetidamente añadiendo el
-     número de asteriscos en una fila al total ya encontrado. Puesto que el
-     número de asteriscos en la fila es igual al número de la fila, el total
+     Después de declarar y asignar las variables internas, podemos comenzar el
+     bucle @c{while}. La expresión que sirve como prueba deberia devolver un
+     valor de @c{t} para verdadero siempre que el @c{numero-de-fila} sea menor o
+     igual al @c{numero-de-filas}. (Si la prueba devuelve verdadero solo si el
+     número de fila es menor que el número de filas en el triángulo, la última
+     fila nunca se sumara al total; por lo tanto, el número de fila tiene que
+     ser menor o igual al número de filas.)
+
+     Lisp proporciona la función @c{<=} que devuelve verdadero si el valor de su
+     primer argumento es menor o igual al valor de su segundo argumento y falso
+     de otro modo. Así que la expresión que el @c{while} evaluará como su prueba
+     deveria verse asi:
+
+     ..src > elisp
+       (<= numero-de-fila numero-de-filas)
+     < src..
+
+     El número total de guijarros se puede encontrar sumando repetidamente el
+     número de guijarros en una fila al total ya encontrado. Puesto que el
+     número de guijarros en la fila es igual al número de la fila, el total
      puede encontrarse añadiendo el número de filas al total. (Claramente, en
-     una situación más compleja, el número de asteriscos en la fila podría
-     ser relacionada al número de la fila en un camino más complicado; si
-     este fuera el caso, el número de fila sería reemplazado por la expresión
+     una situación más compleja, el número de guijarros en la fila podría estar
+     relacionado con el número de la fila de una manera más complicada; si este
+     fuera el caso, el número de la fila sería reemplazado por la expresión
      apropiada.)
 
      ..src > elisp
-       (setq total (+ total row-number))
+       (setq total (+ total numero-de-fila))
      < src..
 
-     Lo que esto hace es asignar el nuevo valor de @c{total} a ser igual a la
-     suma de añadiendo el número de asteriscos en la fila al total previo.
+     Lo que esto hace es asignar el nuevo valor de @c{total} para que sea igual
+     a la suma del número de guijarros en la fila al total anterior.
 
-     Después de configurar el valor de @c{total}, las condiciones deben ser
-     establecidas para la siguiente repetición del bucle, si hay alguna. Esto
-     se hace incrementando el valor de la variable @c{row-number}, que sirve
-     como un contador. Después que la variable @c{row-number} ha sido
-     incrementada, el true-or-false-test al principio del bucle @c{while}
-     chequea si su valor es todavía menor o igual al valor del
-     @c{number-of-rows} y si eso es, añade el nuevo valor de la variable
-     @c{row-number} al @c{total} de la repetición del bucle.
+     Después de establecer el valor de @c{total}, se deben establecer las
+     condiciones para la siguiente repetición del bucle, si hay alguna. Esto se
+     hace incrementando el valor de la variable @c{numero-de-fila}, que sirve
+     como contador. Después de incrementar la variable @c{numero-de-fila}, la
+     prueba-verdodero-o-falso al principio del bucle @c{while} prueba si su
+     valor aun es menor o igual al valor del @c{numero-de-filas} y, si lo es,
+     suma el nuevo valor de la variable @c{numero-de-fila} al @c{total} de la
+     repetición previa.
 
-     La función construida en Emacs Lisp @c{1+} añade 1 a un número, así la
-     variable @c{row-number} puede ser incrementado con esta expresión:
+     La función nativa @c{1+} en Emacs Lisp añade 1 a un número, por lo que la
+     variable @c{numero-de-fila} puede incrementarse con esta expresión:
 
      ..src > elisp
-       (setq row-number (1+ row-number))
+       (setq numero-de-fila (1+ numero-de-fila))
      < src..
 
-**** Poniendo la definición de la función junta
+**** Juntando la definición de función
 
-     Nosotros hemos creado las partes para la definición de la función; ahora
-     necesitamos ponerlas juntas.
+     Hemos creado las partes para la definición de la función; ahora necesitamos
+     juntarlas.
 
-     Primero, los contenidos de la expresión @c{while}:
+     Primero, el contenido de la expresión @c{while}:
 
      ..src > elisp
-       (while (<= row-number number-of-rows)   ; true-or-false-test
-         (setq total (+ total row-number))
-         (setq row-number (1+ row-number)))    ; incremento
+       (while (<= numero-de-fila numero-de-filas)    ; prueva-verdadero-o-falso
+         (setq total (+ total numero-de-fila))
+         (setq numero-de-fila (1+ numero-de-fila)))  ; incremento
      < src..
 
-     Tener la expresión @c{let} de varlist, se acerca a completar el cuerpo
-     de la definición de función. Sin embargo, eso requiere un elemento
-     final, la necesidad para la que es alguna cosa pequeña.
+     Junto con la expresión @c{let} de la varlist, casi completan el cuerpo de
+     la definición de función. Sin embargo, se requiere un ultimo elemento, cuya
+     necesidad es algo sutil.
 
-     El toque final es emplazar la variable @c{total} en una línea por sí
-     misma después de la expresión @c{while}. De otro modo, el valor devuelto
-     por la función completa es el valor de la última expresión que es
-     evaluada en el cuerpo del @c{let}, y este es el valor devuelto por el
-     @c{while} que es siempre @c{nil}.
+     El toque final es colocar la variable @c{total} en una línea por sí misma
+     después de la expresión @c{while}. De lo contrario, el valor devuelto por
+     la función completa sera el valor de la última expresión en evaluarse
+     dentro del cuerpo del @c{let}, y este es el valor devuelto por el @c{while}
+     que es siempre @c{nil}.
 
-     Esto puede no ser evidente a primera vista. Eso casi se ve como si la
-     expresión de incremento es la última expresión de la función
-     completa. Pero esta expresión es parte del cuerpo del @c{while}; eso es
-     el último elemento de la lista que empieza con el símbolo @c{while}. Más
-     allá, el bucle @c{while} completo es una lista con el cuerpo del
-     @c{let}.
+     Esto puede no ser evidente a primera vista. Casi parece como si la
+     expresión de incremento fuera la última expresión de la función
+     completa. Pero esa expresión es parte del cuerpo del @c{while}; es el
+     último elemento de la lista que empieza con el símbolo @c{while}. Ademas,
+     todo el bucle @c{while} es una lista dentro del cuerpo del @c{let}.
 
-     En línea (@e{outline}), la función se parece a esto:
+     En el esquema, la función tendra este aspecto:
 
      ..src > elisp
-       (defun @V{name-of-function} (@V{argument-list})
-         "@V{documentation}…"
-         (let (@V{varlist})
-           (while (@V{true-or-false-test})
-             @V{body-of-while}… )
-           … ))                    ; Necesita la expresión final aquí.
+       (defun nombre-de-la-funcion (lista-de-argumentos)
+         "documentacion…"
+         (let (varlist)
+           (while (prueba-verdadero-o-falso)
+             cuerpo-de-while… )
+           … ))                    ; aqui necesita la expresión final.
      < src..
 
-     El resultado de evaluar el @c{let} es que lo que está yendo para
-     devolver el @c{defun} desde el @c{let} que no está embebido con
-     cualquier lista que contiene, excepto para la @c{defun} como un
-     todo. Sin embargo, si el @c{while} es el último elemento de la expresión
-     @c{let}, la función siempre devolverá @c{nil}. ¡Esto no es lo que
-     quiero! En vez de eso, lo que queremos es el valor de la variable
-     @c{total}. Eso devuelve simplemente emplazando el símbolo como el último
-     elemento de la lista empezando con @c{let}. Eso se evalúa después de los
-     elementos precedentes de la lista evaluada, que significa que eso se
-     evaluó después de haber sido asignado el valor correcto para el total.
+     El resultado de evaluar el @c{let} es lo que va a ser devuelto por
+     @c{defun} ya que @c{let} no está embebidob dentro de ninguna lista que
+     contenga, excepto por el @c{defun} como un todo. Sin embargo, si el
+     @c{while} es el último elemento de la expresión @c{let}, la función siempre
+     devolverá @c{nil}. ¡Esto no es lo que queremos! En vez de eso, queremos el
+     valor de la variable @c{total}. Esto se devuelve simplemente colocando el
+     símbolo como el último elemento de la lista empezanda por @c{let}. Eso se
+     evalúa después de evaluar los elementos precedentes, lo que significa que
+     se evaluó después de que se le ha asignado el valor correcto para el total.
 
-     Eso puede ser fácil de ver imprimiendo la lista empezando con @c{let}
-     todo en una línea. Este formato hace evidente que las expresiones
-     @V{varlist} y @c{while} son el segundo el tercer elementos de la lista
-     empezando con @c{let}, y el @c{total} es el último elemento:
+     Puede ser mas fácil ver esto imprimiendo la lista iniciada por @c{let} en
+     una línea. Este formato hace evidente que las expresiones @c{varlist} y
+     @c{while} son el segundo y tercer elementos de la lista iniciado por
+     @c{let}, y @c{total} es el último elemento:
 
      ..src > elisp
-       (let (@V{varlist}) (while (@V{true-or-false-test})
-       @V{body-of-while}… ) total)
+       (let (varlist) (while (prueba-verdadero-o-falso) cuerpo-de-while… ) total)
      < src..
 
-     Poniendo cualquier cosa junta, la definición de función @c{triangle} se
-     parece a esto:
+     Poniendo todo junto, la definición de la función @c{triangulo} se ve asi:
 
      ..src > elisp
-       (defun triangle (number-of-rows)    ; Versión con
-                                           ;  contador de incremento.
-         "Añade el número de asteriscos en un triángulo.
-       La primera fila tiene un asterisco, la segunda fila dos asteriscos,
-       la tercera fila tres asteriscos, y así.
-       El argumento es NUMBER-OF-ROWS."
+       (defun triangulo (numero-de-filas)  ; Versión con
+                                           ; contador de incremento.
+         "Suma el número de guijarros en un triángulo.
+       La primera fila tiene un guijarro, la segunda fila dos guijarros,
+       la tercera fila tres guijarros, y así sucesivamente.
+       El argumento es NUMERO-DE-FILAS."
          (let ((total 0)
-               (row-number 1))
-           (while (<= row-number number-of-rows)
-             (setq total (+ total row-number))
-             (setq row-number (1+ row-number)))
+               (numero-de-fila 1))
+           (while (<= numero-de-fila numero-de-filas)
+             (setq total (+ total numero-de-fila))
+             (setq numero-de-fila (1+ numero-de-fila)))
            total))
      < src..
 
-     Después de haber instalado @c{triangle} para evaluar la función, se
-     puede probar. Aquí hay dos ejemplos:
+     Después de haber instalado @c{triangulo} al evaluar la función, puede
+     probarlo. Aquí hay dos ejemplos:
 
      ..src > elisp
-       (triangle 4)
+       (triangulo 4)
 
-       (triangle 7)
+       (triangulo 7)
      < src..
 
-     La suma del primero de cuatro números es 10 y la suma de los primeros
+     La suma de los primeros cuatro números es 10 y la suma de los primeros
      siete números es 28.
 
-*** Bucle que se decrementa
+*** Bucle con contador decreciente
 
-    Otro camino común para escribir un bucle @c{while} es escribir el test
-    así que determina si un contador es mayor que cero. Así tan largo es el
-    contador mayor que cero, el bucle se repite. Pero cuando el contador es
-    igual o menor que cero, el bucle se para. Para este trabajo, el contador
-    tiene que empezar mayor que cero y entonces se hace más pequeño y pequeño
-    por una forma que es evaluada repetidamente.
+    Otra manera común de escribir un bucle @c{while} es con una prueba que
+    determine si un contador es mayor que cero. Mientras el contador sea mayor
+    que cero, el bucle se repite. Pero cuando el contador es igual o menor que
+    cero, el bucle se detiene. Para que esto funcione, el contador tiene que
+    empezar por encima de cero y luego hacerse mas y mas pequeño por una forma
+    que se evalua repetidamente.
 
-    El test será una expresión tal como @c{(> counter 0)} que devuelve @c{t}
-    @e{cierto} si el valor de @c{counter} es mayor que cero, y @c{nil}
-    @e{falso} si el valor de @c{counter} es igual a o menor que cero. La
-    expresión hace que el número menor y menor puede ser un simple @c{setq}
-    tal como @c{(setq counter (1- counter)}, donde @c{1-} es una función
-    construida en Emacs Lisp que sustrae 1 de su argumento.
+    La prueba será una expresión como @c{(> contador 0)} que devuelve @c{t} para
+    verdadero si el valor del @c{contador} es mayor que cero, y @c{nil} para
+    falso si el valor del @c{contador} es igual a o menor que cero. La expresión
+    que hace que el número menor sea cada vez mas pequeño puede ser un simple
+    @c{setq} como @c{(setq contador (1- contador)}, donde @c{1-} es una función
+    nativa en Emacs Lisp que resta 1 de su argumento.
 
-    La plantilla para decrementar el bucle @c{while} se ve así:
+    La plantilla para un bucle @c{while} decreciente se ve así:
 
     ..src > elisp
-      (while (> counter 0)                    ; test-verdadero-o-falso
-        @V{body}…
-        (setq counter (1- counter)))          ; decremento
+      (while (> contador 0)                   ; prueba-verdadero-o-falso
+        cuerpo…
+        (setq contador (1- contador)))        ; decremento
     < src..
 
-**** Ejemplo con el contador que se decrementa
+**** Ejemplo con contador decreciente
 
-     Para ilustrar un bucle con un contador de decremento, reescribirá la
-     función @c{triangle} así como el contador se decrementa a cero.
+     Para ilustrar un bucle con un contador decreciente, reescribiremos la
+     función @c{triangulo} para que el contador disminuya a cero.
 
-     Esto es lo inverso de la versión temprana de la función. En este caso,
-     para encontrar cuántos asteriscos son necesarios para crear un triángulo
-     con 3 filas, añade el número de asteriscos en la tercera fila, 3, para
-     el número en la fila precedente, 2, y entonces añade el total de estas
-     dos filas a la fila que lo precede, 1.
+     Esto es lo inverso de la versión anterior de la función. En este caso, para
+     saber cuantos guijarros se necesitan para crear un triángulo con 3 filas,
+     se suma el número de guijarros en la tercera fila, 3, al numero en la fila
+     anterior, 2, y luego se suman el total de esas dos filas a la fila que lo
+     precede, que es 1.
 
-     Más allá, para encontrar el número de asteriscos en un triángulo con 7
-     filas, añade el número de asteriscos en la fila siete, 7, al número en
-     la fila precedente, que es 6, y entonces añade el total de estas dos
-     filas a la fila esta que lo precede, que es 5, y así. Como en el ejemplo
-     previo, cada adición solo involucra la adición de dos números, el total
-     de las filas ya se añadió y el número de asteriscos en la fila que está
-     siendo añadida al total. Este proceso de añadir dos números se repite de
-     nuevo y de nuevo hasta que no haya más asteriscos que añadir.
+     Del mismo modo, para encontrar el número de guijarros en un triángulo con 7
+     filas, se suma el número de guijarros en la fila siete, 7, al número en la
+     fila anterior, que es 6, y luego se suma el total de estas dos filas a la
+     fila que las precede, que es 5, y así sucesivamente. Como en el ejemplo
+     previo, cada suma solo implica sumar dos números, el total de las filas ya
+     sumadas y el número de guijarros en la fila que se suma al total. Este
+     proceso de sumar dos números se repite una y otra vez hasta que no haya más
+     guijarros que agregar.
 
-     Sabemos con cuántos asteriscos empezar: el número de asteriscos en la
-     última fila es igual al número de filas. Si el triángulo tiene siete
-     filas, el número de asteriscos en la última fila es 7. Más allá, sabemos
-     cuántos asteriscos están en la fila precedente: eso es uno menos que el
-     número en la fila.
+     Sabemos con cuántos guijarros empezar: el número de guijarros en la última
+     fila es igual al número de filas. Si el triángulo tiene siete filas, el
+     número de guijarros en la última fila es 7. Del mismo modo, sabemos cuántos
+     guijarros hay en la fila anterior: uno menos que el número en la fila
+     actual.
 
 **** Las partes de la definición de función
 
-     Empezamos con tres variables: el número total de filas en el triángulo;
-     el número de asteriscos en una fila; y el número total de asteriscos,
-     que es lo que queremos calcular. Estas variables pueden llamarse
-     @c{number-of-rows}, @c{number-of-pebbles-in-row}, y @c{total},
-     respectivamente.
+     Empezamos con tres variables: el número total de filas en el triángulo; el
+     número de guijarros en una fila; y el número total de guijarros, que es lo
+     que queremos calcular. Estas variables pueden llamarse @c{numero-de-filas},
+     @c{numero-de-guijarros-en-fila}, y @c{total}, respectivamente.
 
-     Ambos @c{total} y @c{number-of-pebbles-in-row} se usan solo dentro de la
-     función y se declaran con @c{let}. El valor inicial de @c{total} sería
-     cero. Sin embargo, el valor inicial de @c{number-of-pebbles-in-row}
-     sería igual al número de filas en el triángulo, desde la adición
-     empezará con la fila más larga.
+     Tanto @c{total} como @c{numero-de-guijarros-en-fila} se usan solo dentro de
+     la función y se declaran con @c{let}. El valor inicial de @c{total} deberia
+     ser cero. Sin embargo, el valor inicial de @c{numero-de-guijarros-en-fila}
+     deberia ser igual al número de filas en el triángulo, ya que la suma
+     comenzara con la fila más larga.
 
      Esto significa que el principio de la expresión @c{let} se verá así:
 
      ..src > elisp
        (let ((total 0)
-             (number-of-pebbles-in-row number-of-rows))
-         @V{body}…)
+             (numero-de-guijarros-en-fila numero-de-filas))
+         body…)
      < src..
 
-     El número total de asteriscos puede encontrarse repetidamente añadiendo
-     el número de asteriscos en una fila para el total ya encontrado, que, se
-     evalúa repetidamente en la siguiente expresión:
+     El número total de guijarros se puede encontrar sumando repetidamente
+     el número de guijarros en una fila al total ya encontrado, es decir,
+     evaluando repetidamente la siguiente expresión:
 
      ..src > elisp
-       (setq total (+ total number-of-pebbles-in-row))
+       (setq total (+ total numero-de-guijarros-en-fila))
      < src..
 
-     Después el @c{number-of-pebbles-in-row} se añade al @c{total}, el
-     @c{number-of-pebbles-in-row} sería decrementado por uno, desde que la
-     siguiente vez el bucle repite, la fila precedente será añadida al total.
+     Después de sumar @c{numero-de-guijarros-en-fila} al @c{total}, el
+     @c{numero-de-guijarros-en-fila} debe decrecer por uno, ya que la siguiente
+     vez que el bucle se repita, la fila anterior se sumara al total.
 
-     El número de asteriscos en una fila precedente es uno menos que el
-     número de asteriscos en una fila, así la función Emacs Lisp construida
-     @c{1-} puede usarse para computar el número de asteriscos de la fila
-     precedente. Esto puede ser hecho con la siguiente expresión:
+     El número de guijarros en una fila anterior es uno menos que el número de
+     guijarros en la fila actual, por lo que se utilizara la función nativa
+     @c{1-} de Emacs para calcular el número de guijarros de la fila
+     anterior. Esto se puede hacer con la siguiente expresión:
 
      ..src > elisp
-       (setq number-of-pebbles-in-row
-             (1- number-of-pebbles-in-row))
+       (setq numero-de-guijarros-en-fila
+             (1- numero-de-guijarros-en-fila))
      < src..
 
-     Finalmente, sabemos que el bucle @c{while} pararía creando repetidas
-     adiciones cuando no hay asteriscos en una fila. Así el test para el
-     bucle @c{while} es simple:
+     Finalmente, sabemos que el bucle @c{while} deberia detenerse cuando no
+     halla guijarros en una fila. Así que la prueba en el bucle @c{while} es
+     simple:
 
      ..src > elisp
-       (while (> number-of-pebbles-in-row 0)
+       (while (> numero-de-guijarros-en-fila 0)
      < src..
 
-**** Poniendo la definición de la función junta
+**** Juntando la definición de función
 
-     Se pueden poner estas expresiones juntas para crear una definición de
-     función que funcione. Sin embargo, al examinarlas, encontraremos que una
-     de la variables locales ¡es innecesaria!
+     Podemos juntar estas expresiones para crear una definición de función que
+     funcione. Sin embargo, al examinarlas, encontraremos que una de la
+     variables locales ¡es innecesaria!
 
-     La definición de función se ve como esto:
+     La definición de función tiene este aspeto:
 
      ..src > elisp
-       ;;; Primero la versión substractiva.
-       (defun triangle (number-of-rows)
-         "Añade el número de asteriscos en un triángulo."
+       ;;; Primer version decreciente.
+       (defun triangulo (numero-de-filas)
+         "Suma el número de guijarros en un triángulo."
          (let ((total 0)
-               (number-of-pebbles-in-row number-of-rows))
-           (while (> number-of-pebbles-in-row 0)
-             (setq total (+ total number-of-pebbles-in-row))
-             (setq number-of-pebbles-in-row
-                   (1- number-of-pebbles-in-row)))
+               (numero-de-guijarros-en-fila numero-de-filas))
+           (while (> numero-de-guijarros-en-fila 0)
+             (setq total (+ total numero-de-guijarros-en-fila))
+             (setq numero-de-guijarros-en-fila
+                   (1- numero-de-guijarros-en-fila)))
            total))
      < src..
 
-     Como se dijo, esta función funciona.
+     Como esta escrita, esta función funciona.
 
-     Sin embargo, no se necesita @c{number-of-pebbles-in-row}.
+     Sin embargo, no se necesita @c{numero-de-guijarros-en-fila}.
 
-     Cuando la función @c{triangle} se evalúa, el símbolo @c{number-of-rows}
-     será asociado al número, dando un valor inicial. Este número puede ser
-     cambiado en el cuerpo de la función si hubiera una variable local, sin
-     miedo de que tal cambio se efectuará el valor de la variable fuera de la
-     función. Esto es una característica muy útil de Lisp; eso significa que
-     la variable @c{number-of-rows} puede ser usada en cualquier lugar en la
-     función donde @c{number-of-pebbles-in-row} se usa.
+     Cuando se evalua la función @c{triangle}, el símbolo @c{numero-de-filas} se
+     vinculara a un número, dandole un valor inicial. Ese número puede ser
+     modificado en el cuerpo de la función como si fuera una variable local, sin
+     temor a que tal cambio afecte el valor de la variable fuera de la
+     función. Esta es una característica muy útil de Lisp; significa que la
+     variable @c{numero-de-filas} se puede utilizar en cualquier lugar de la
+     función donde se utilice @c{numero-de-guijarros-en-fila}.
 
      Aquí hay una segunda versión de la función escrita un poco más
      limpiamente:
 
      ..src > elisp
-       (defun triangle (number)                ; Segunda versión.
-         "Devuelve la suma de números 1 a través de NUMBER inclusive."
+       (defun triangulo (numero)                ; Segunda versión.
+         "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO."
          (let ((total 0))
-           (while (> number 0)
-             (setq total (+ total number))
-             (setq number (1- number)))
+           (while (> numero 0)
+             (setq total (+ total numero))
+             (setq numero (1- numero)))
            total))
      < src..
 
-     En breve, un bucle @c{while} apropiadamente escrito consistirá de tres
+     En resumen, un bucle @c{while} escrito apropiadamente constará de tres
      partes:
 
-     1. Un test que devuelva falso después de que el bucle ha repetido por sí
-        mismo el número de veces correcto.
+     1. Una prueba que devuelva falso después de que el bucle se ha repetido el
+        número de veces correcto.
 
-     2. Una expresión de la evaluación de que devolverá el valor deseado
-        después de ser repetidamente evaluado.
+     2. Una expresión cuya evaluación repetida devolverá el valor deseado.
 
-     3. Una expresión para cambiar el valor pasado al true-or-false-test así
-        el test devuelve falso después de que el bucle se ha repetido por sí
-        mismo el número de veces correcto.
+     3. Una expresión para cambiar el valor pasado a la prueba-verdadero-o-falso
+        para que esta devuelva falso después de que el bucle se haya repetido el
+        numero de veces correcto.
 
-** Ahorra tiempo: @c{dolist} y @c{dotimes}
+** Ahorra tu tiempo: @c{dolist} y @c{dotimes}
 
    Además de @c{while}, tanto @c{dolist} como @c{dotimes} proveen un
-   bucle. Algunas veces estos son rápidos para escribir el bucle equivalente
-   @c{while}. Ambos son macros Lisp. (Vea la Seccion @"(Macros) en @e(El
-   Manual de Referencia GNU Emacs Lisp).)
+   bucle. Algunas veces estos son mas rápidos de escribir el bucle @c{while}
+   equivalente. Ambos son macros Lisp. (Vea la Seccion
+   @l{info:elisp#Macros<>Macros} en @e(El Manual de Referencia GNU Emacs Lisp).)
 
    @c{dolist} funciona como un bucle @c{while} con ‘@c{cdr}s que bajan la
-   lista’: @c{dolist} automáticamente ordena la lista cada vez que la lista
-   hace bucles––toma la @c{cdr} de la lista––y asocia el @c{car} de cada
-   versión ordenada de la lista al primero de sus argumentos.
+   lista’: @c{dolist} acorta automáticamente con cada bucle––toma el @c{cdr} de
+   la lista––y liga el @c{car} de cada versión mas corta al primero de sus
+   argumentos.
 
-   @c{dotimes} repite el bucle un número específico de veces: tu especificas
-   el número.
+   @c{dotimes} repite el bucle un número específico de veces: tu especificas el
+   número.
 
 *** La macro @c{dolist}
 
-    Supón, por ejemplo, que quieres invertir una lista, así que “primero”,
-    “segundo”, “tercero” llega a ser “tercero”, “segundo”, “primero”.
+    Supón, por ejemplo, que quieres invertir una lista, para que “primero”,
+    “segundo”, “tercero” se convierta en “tercero”, “segundo”, “primero”.
 
-    En la práctica, usarías la función @c{reverse}, como esta:
+    En la práctica, usarías la función @c{reverse}, como aqui:
 
     ..src > elisp
       (setq animales '(gacela jirafa leon tigre))
@@ -7456,38 +7430,39 @@ and promoting software freedom.”
       (reverse animales)
     < src..
 
-    Aquí se ve cómo se podría invertir la lista usando un bucle @c{while}:
+    A continuacion se muestra como se podría invertir la lista usando un bucle
+    @c{while}:
 
     ..src > elisp
       (setq animales '(gacela jirafa leon tigre))
 
-      (defun reverse-list-with-while (list)
-        "Usando while, invierte el orden de LIST."
-        (let (value)  ; asegura que la lista comienza vacía
-          (while list
-            (setq value (cons (car list) value))
-            (setq list (cdr list)))
-          value))
+      (defun invertir-lista-con-while (lista)
+        "Usando while, invierte el orden de LISTA."
+        (let (valor)  ; asegura que la lista comienza vacía
+          (while lista
+            (setq valor (cons (car lista) valor))
+            (setq lista (cdr lista)))
+          valor))
 
-      (reverse-list-with-while animales)
+      (invertir-lista-con-while animales)
     < src..
 
-    Y aquí se ve cómo podría usarse la macro @c{dolist}:
+    Y aquí se ve cómo puedes usar la macro @c{dolist}:
 
     ..src > elisp
       (setq animales '(gacela jirafa leon tigre))
 
-      (defun reverse-list-with-dolist (list)
-        "Usando dolist, reverse, la orden de la LISTA."
-        (let (value)  ; asegura que la lista empieza vacía
-          (dolist (element list value)
-            (setq value (cons element value)))))
+      (defun invertir-lista-con-dolist (lista)
+        "Usando dolist, invierte el orden de LISTA."
+        (let (valor)  ; asegura que la lista empieza vacía
+          (dolist (elemento lista valor)
+            (setq valor (cons elemento valor)))))
 
-      (reverse-list-with-dolist animals)
+      (invertir-lista-con-dolist animales)
     < src..
 
-    En Info, se puede localizar su cursor después de cerrar paréntesis de
-    cada expresión y escribir @k{C-x C-e}; en cada caso, se vería
+    Puedes colocar el cursor después del parentesis de cierre de
+    cada expresión y pulsar @k{C-x C-e}; en cualquier caso, deberias ver
 
     ..src > elisp
       (tigre leon jirafa gacela)
@@ -7495,257 +7470,248 @@ and promoting software freedom.”
 
     en el área de eco.
 
-    Para este ejemplo, la función @c{reverse} existente es obviamente la
-    mejor. El bucle @c{while} es solo como nuestro primer ejemplo (vease
-    Seccion @l{Un bucle @c{while} y una lista}). El @c{while} primero chequea
-    si la lista tiene elementos; si es así, eso construye una nueva lista
-    añadiendo el primer elemento de la lista a la lista existente (que en la
-    primera iteración del bucle es @c{nil}). Puesto que el segundo elemento
-    está asignado en frente del segundo elemento, la lista es inversa.
+    Para este ejemplo, la función @c{reverse} obviamente es la mejor opcion. El
+    bucle @c{while} es como nuestro primer ejemplo (ver Seccion @l{#Un bucle
+    @c{while} y una lista}). @c{while} comprueba si la lista tiene elementos; si
+    es así, construye una nueva lista añadiendo el primer elemento de la lista a
+    la lista existente (que en la primer iteración del bucle es @c{nil}). Puesto
+    que el segundo elemento se asigna delante del primero, y el tercero delante
+    del segundo, la lista se invierte.
 
-    En la expresión que usa el bucle @c{while}, la expresión @c{(setq list
-    (cdr list))} ordena la lista, así el bucle @c{while} finalmente
-    para. Además, se proporciona la expresión @c{cons} con un nuevo primer
-    elemento creando una nueva lista y se ordena en cada repetición del
-    bucle.
+    En la expresión que usa un bucle @c{while}, la expresión @c{(setq lista (cdr
+    lista))} acorta la lista, por lo que el bucle @c{while} termina
+    deteniendose. Además, se proporciona la expresión @c{cons} con un nuevo
+    primer elemento creando una nueva lista en cada repetición del bucle.
 
     La expresión @c{dolist} hace lo mismo que la expresión @c{while}, excepto
-    que la macro @c{dolist} hace algo del trabajo que se tiene que hacer
-    cuando se escribe una expresión @c{while}.
+    que la macro @c{dolist} hace algo del trabajo que tienes que hacer cuando se
+    escribe una expresión @c{while}.
 
-    Al igual que el bucle @c{while}, tenemos el bucle @c{dolist}. Lo que es
-    diferente es que automáticamente ordena la lista cada vez que se
-    repite––eso es ‘recorrer los @c{cdr}s de la lista’ en sí––y eso
-    automáticamente asocia el @c{car} de cada versión ordenada de la lista
-    al primero de sus argumentos.
+    Como un bucle @c{while}, @c{dolist} hace un bucle. Lo que es diferente es
+    que @%c(dolist) acorta automáticamente la lista con cada repeticion––con
+    ‘@c{cdr}s que bajan la lista’ por su cuenta––y asocia automáticamente el
+    @c{car} de cada versión acortada de la lista al primero de sus argumentos.
 
-    En el ejemplo, el @c{car} de cada versión ordenada de la lista se
-    refiere a usar el símbolo @'{element}, la lista en sí se llama @'{list},
-    y el valor devuelto se llama @'{value}. El resto de la expresión
-    @c{dolist} es el cuerpo.
+    En el ejemplo, el @c{car} de cada versión reducida de la lista se vincula al
+    símbolo @'{elemento}, la lista en sí se llama @'{lista}, y el valor devuelto
+    se llama @'{valor}. El resto de la expresión @c{dolist} es el cuerpo.
 
-    La expresión @c{dolist} asocia el @c{car} de cada versión ordenada de la
-    lista al @c{element} y entonces evalúa el cuerpo de la expresión y repite
-    el bucle. El resultado es devuelto en @c{value}.
+    La expresión @c{dolist} asocia el @c{car} de cada versión reducida de la
+    lista a @c{elemento} y luego evalúa el cuerpo de la expresión y repite
+    el bucle. El resultado es devuelto en @c{valor}.
 
 *** La macro @c{dotimes}
 
     La macro @c{dotimes} es similar a @c{dolist}, excepto que el bucle se
     repite un número específico de veces.
 
-    El primer argumento @c{dotimes} se asigna a los números 0, 1, 2 y así
-    vuelve al bucle, y el valor del tercer argumento se devuelve. Se necesita
-    proveer el valor del segundo argumento, que es cuántas veces la macro
-    hace el bucle.
+    Al primer argumento de @c{dotimes} se le asignan los números 0, 1, 2 y así
+    sucesivamente cada iteracion, y se devuelve el valor del tercer. Se necesita
+    proveer el valor del segundo argumento, que es el numero de veces que la
+    macro se repite.
 
-    Por ejemplo, lo siguiente asocia los números de 0 en adelante, pero no
-    incluyendo, el número 3 al primer argumento, @V{número}, y entonces
-    construye una lista de los tres números. (El primer número es 0, el
-    segundo número es 1, y el tercer número es 2; esto crea un total de tres
-    números en todo, empezando con cero como el primer número.)
+    Por ejemplo, lo siguiente asocia al primer argumento @c(numero) los números
+    de 0 en adelante, pero no incluye, el número 3, y luego construye una lista
+    de los tres números. (El primer número es 0, el segundo es 1, y el tercero es
+    2; esto hace un total de tres, comenzando con cero como el primer número.)
 
-    ..src > elisp
-      (let (value)      ; de otro modo un valor es una variable vacía
-        (dotimes (number 3 value)
-          (setq value (cons number value))))
+    ..srci > elisp
+      > (let (valor)      ; de otro modo, "valor" es una variable vacia
+      ^   (dotimes (numero 3 valor)
+      ^     (setq valor (cons numero valor))))
+      (2 1 0)
+    < srci..
 
-      ⇒ (2 1 0)
-    < src..
+    @c{dotimes} devuelve @c{valor}, así que la forma de usar @c{dotimes} es
+    operar sobre alguna expresión @c(numero) un numero veces y luego devolver el
+    resultado, como una lista o un átomo.
 
-    @c{dotimes} devuelve @c{value}, así el camino para usar @c{dotimes} es
-    para operar en alguna expresión el número de veces @V{number} y
-    entonces devolver el resultado, como una lista o un átomo.
-
-    Aquí hay un ejemplo de una @c{defun} que usa @c{dotimes} para añadir el
-    número de asteriscos en un triángulo.
+    Aquí hay un ejemplo de un @c{defun} que usa @c{dotimes} para sumar el número
+    de guijarros en un triángulo.
 
     ..src > elisp
-      (defun triangle-using-dotimes (number-of-rows)
-        "Usando dotimes, añade el número de asteriscos en un triángulo."
-      (let ((total 0))  ; de otro modo un total es una variable vacía
-        (dotimes (number number-of-rows total)
-          (setq total (+ total (1+ number))))))
+      (defun triangulo-utilizando-dotimes (numero-de-filas)
+        "Usando dotimes, suma el número de guijarros en un triángulo."
+      (let ((total 0))  ; de otro modo total es una variable vacía
+        (dotimes (numero numero-de-filas total)
+          (setq total (+ total (1+ numero))))))
 
-      (triangle-using-dotimes 4)
+      (triangulo-utilizando-dotimes 4)
     < src..
 
-** Recursión
+** Recursividad
 
-   Una función recursiva contiene código que hace que el intérprete Lisp
-   llame a un programa que ejecute el código en sí, pero con argumentos
-   ligeramente diferentes. El código ejecuta exactamente lo mismo porque eso
-   tiene el mismo nombre. Sin embargo, incluso aunque el programa tenga el
-   mismo nombre, no es la misma entidad. Eso es diferente. En la jerga, se
-   dice es una ‘instancia’ diferente.
+   Una función recursiva contiene código que indica al intérprete Lisp que llame
+   a un programa que se ejecuta exactamente como el mismo, pero con argumentos
+   ligeramente diferentes. El código funciona exactamente igual porque tiene el
+   mismo nombre. Sin embargo, aunque el programa tenga el mismo nombre, no es la
+   misma entidad. Eso es diferente. En la jerga, se dice es una ‘instancia’
+   diferente.
 
-   Finalmente, si el programa se escribe correctamente, los ‘argumentos
-   ligeramente diferentes’ llegan a ser suficientemente diferentes puesto que
-   los primeros argumentos de la instancia final se pararán.
+   Eventualmente, si el programa se escribe correctamente, los ‘argumentos
+   ligeramente diferentes’ llegan a ser suficientemente diferentes de los
+   primeros argumentos para que se detenga la instancia final.
 
 *** Construyendo robots: Extendiendo la metáfora
 
-    Algunas veces es útil pensar en un programa en ejecución como un robot
-    que hace un trabajo. Haciendo su trabajo, una función recursiva llama a
-    un segundo robot para que le ayude. El segundo robot es idéntico al
-    primero en cada paso, excepto que el segundo robot ayuda al primero y se
-    han pasado diferentes argumentos en vez del primero.
+    Algunas veces es útil pensar en un programa en ejecución como un robot que
+    hace un trabajo. Al hacer su trabajo, una función recursiva llama a un
+    segundo robot para que le ayude. El segundo robot es idéntico al primero en
+    todos los sentidos, excepto que el segundo robot ayuda al primero y ha
+    recibido argumentos diferentes al primero.
 
-    En una función recursiva, el segundo robot puede llamar a un tercero; y
-    el tercero puede llamar a un cuarto, y así. Cada una de estos es una
-    entidad diferente; pero todos son clones.
+    En una función recursiva, el segundo robot puede llamar a un tercero; y el
+    tercero puede llamar a un cuarto, y así sucesivamente. Cada uno de ellos es
+    una entidad diferente; pero todos son clones.
 
-    Desde que cada robot tiene instrucciones ligeramente diferentes --- los
-    argumentos diferirán desde un robot al siguiente––el último robot
-    conocería cuando pare.
+    Dado que cada robot tiene instrucciones ligeramente diferentes––los
+    argumentos difieren de un robot a otro––el último robot deberia saber cuando
+    detenerse.
 
-    Permite expandir la metáfora en el que un programa de ordenador es un
-    robot.
+    Expandamos la metáfora en la que un programa de ordenador es un robot.
 
-    Una definición de función provee impresiones para un robot. Cuando se
+    Una definición de función proporciona los panos para un robot. Cuando se
     instala una definición de función, que es, cuando se evalúa una forma
-    especial @c{defun}, se instala el equipamiento para construir robots. Eso
-    es como si tu estuvieras en una fábrica, configurando una línea de
-    ensamblaje. Los robots con el mismo nombre son construidos de acuerdo a
-    las mismas impresiones. Así ellos tienen, como estaban, el mismo ‘número
-    de modelo’, pero un diferente ‘número de serie’.
+    especial @c{defun}, se instala el equipo necesario para construir robots. Es
+    como si estuvieras en una fábrica, construyendo una línea de montaje. Los
+    robots con el mismo nombre se construyen segun los mismos planos. Así que
+    tienen, por asi decirlo, el mismo ‘número de modelo’, pero un ‘número de
+    serie’ diferente.
 
-    Nosotros con frecuencia decimos que una función recursiva ‘se llama así
-    misma’. Esto significa que las instrucciones en una función recursiva
-    causa que el intérprete de Lisp ejecute una función diferente que tiene
-    el mismo nombre y hace el mismo trabajo que el primero, pero con
-    diferentes argumentos.
+    A menudo decimos que una función recursiva ‘se llama así misma’. Lo que
+    queremos decir es que las instrucciones en una función recursiva hacen que
+    el intérprete Lisp ejecute una función diferente que tiene el mismo nombre y
+    hace el mismo trabajo que la primera, pero con argumentos diferentes.
 
-    Es importante que los argumentos difieran desde una instancia a la
-    siguiente; de otro modo, el proceso nunca parará.
+    Es importante que los argumentos difieran de una instancia a la siguiente;
+    de otro modo, el proceso nunca se detendra.
 
 *** Las partes de una definición recursiva
 
     Una función recursiva típicamente contiene una expresión condicional que
     tiene tres partes:
 
-    1. Un true-or-false-test que determina si la función se llama de nuevo,
-       aquí se llama el @:{do-again-test}.
+    1. Una prueva-verdadero-o-falso que determina si la función se vuelve a llamar,
+       aquí se llamara @:{prueba-hazlo-de-nuevo}.
 
-    2. El nombre de la función. Cuando este nombre se llama, es una nueva
-       instancia de la función––un nuevo robot, así––se crea y se dice qué
+    2. El nombre de la función. Cuando este nombre se llama, se crea una nueva
+       instancia de la función––un nuevo robot, por asi decirlo––y se le dice qué
        hacer.
 
+    3. Una expresión que devuelve un valor diferente cada vez que se llama a la
+       función, aquí se llamara @:{expresion-del-siguiente-paso}.
+       Consecuentemente, el argumento (o argumentos) pasados a la nueva
+       instancia de la función será diferente del argumento (o argumentos)
+       pasados a la instancia previa. Esto hace que la expresión condicional, la
+       @:{prueba-hazlo-de-nuevo}, devuelva falso después del número correcto de
+       repeticiones.
 
-    3. Una expresión que devuelve un valor diferente cada vez que la función
-       se llama, aquí llamada la @:{next-step-expression}. Consecuentemente,
-       el argumento (o argumentos) pasados a la nueva instancia de la función
-       serán diferentes puesto que se pasa a la instancia previa. Esto causa
-       la expresión condicional, que el @:{do-again-test}, devuelva falso
-       después del número correcto de repeticiones.
 
+    Las funciones recursivas pueden ser mucho más simples que cualquier otro
+    tipo de funcion. De hecho, cuando las personas comienzan a usarlas, con
+    frecuencia se ven tan misteriosamente simples como para ser incomprensibles.
+    Al igual que montar en bicicleta, leer la definicion de una función
+    recursiva requiere una cierta habilidad, es dificil al principio, pero
+    después parece facil.
 
-    Las funciones recursivas pueden ser más simples que cualquier otro tipo
-    de funciones. De manera profunda, cuando la gente empieza a usarlas, con
-    frecuencia se miran así misteriosamente de manera tan simple como
-    incompresible. Como montar en bicicleta, leer una función recursiva es
-    duro al principio, pero después es simple.
-
-    Hay varios patrones recursivos diferentes. Un patrón muy simple se parece
-    a:
+    Hay varios patrones recursivos diferentes. Un patrón muy simple se ve asi:
 
     ..src > elisp
-      (defun @V{name-of-recursive-function} (@V{argument-list})
-        "@V{documentation}…"
-        (if @V{do-again-test}
-          @V{body}…
-          (@V{name-of-recursive-function}
-               @V{next-step-expression})))
+      (defun nombre-de-funcion-recursiva (lista-de-argumentos)
+        "documentation…"
+        (if prueba-hazlo-de-nuevo
+          cuerpo…
+          (nombre-de-funcion-recursiva expresion-del-siguiente-paso)))
     < src..
 
-    Cada vez que una función recursiva es evaluada, una nueva instancia se
-    crea y se dice qué hacer. Los argumentos le dicen a la instancia qué
-    hacer.
+    Cada vez que se evalua una función recursiva, se crea una nueva instancia y
+    se le dice qué hacer. Los argumentos le dicen a la instancia qué hacer.
 
-    Un argumento se empareja al valor de la next-step-expresion. Cada
-    instancia se ejecuta con un valor diferente de la next-step-expression.
+    Un argumento es ligado al valor de la expresion-del-siguiente-paso. Cada
+    instancia se ejecuta con un valor de la expresion-del-siguiente-paso
+    diferente.
 
-    El valor en la next-step-expression es usado en la do-again-test.
+    El valor en la expresion-del-siguiente-paso se utiliza en la
+    prueba-hazlo-de-nuevo.
 
-    El valor devuelto por la next-step-expression es pasada a las nuevas
-    instancias de la función, que lo evalúa (o alguna transformación de eso)
-    para determinar si continuar o parar. El next-step-expression está
-    diseñado así que el do-again-test devuelve falso cuando la función no se
-    repetiría mucho.
+    El valor devuelto por la expresion-del-siguiente-paso se pasada a la nueva
+    instancia de la función, que lo evalúa para determinar si continua o se
+    detiene. La expresion-del-siguiente-paso está diseñada para que la
+    prueba-hazlo-de-nuevo devuelva falso cuando la función ya no deba repetirse.
 
-    El do-again-test es algunas veces llamado la @:{condición de parar},
-    puesto que sirve para parar las repeticiones cuando se devuelve falso.
+    La prueba-hazlo-de-nuevo a veces se denomina @:{condición de parada}, ya que
+    detiene las repeticiones cuando la prueba falla.
 
-*** Recursión con una lista
+*** Recursividad con una lista
 
-    El ejemplo de un bucle @c{while} que imprimió los elementos de una lista
-    de números puede ser escrito recursivamente. Aquí está el código,
+    El ejemplo de un bucle @c{while} que imprimia los elementos de una lista
+    de números puede escribirse recursivamente. Aquí está el código,
     incluyendo una expresión para asignar el valor de la variable
     @c{animales} a una lista.
 
-    Si está leyendo esto en el Info de Emacs, se puede evaluar esta expresión
-    directamente en Info. De otro modo, se debe copiar el ejemplo al búfer
-    @f{*scratch*} y evalúa cada expresión aquí. Usa @k{C-u C-x C-e} para
-    evaluar la expresión @c{(print-elements-recursively animals)} así que los
-    resultado se imprimen en el búfer; de otro modo el intérprete Lisp
-    intentará presionar los resultados dentro de una línea del área de eco.
+    Si estás leyendo esto dentro de Emacs, puedes evaluar esta expresión
+    directamente. De lo contrario, debes copiar el ejemplo al búfer
+    @f{*scratch*} y evalúar cada expresión alli. Utiliza @k{C-u C-x C-e} para
+    evaluar la expresión @c{(imprimir-elementos-recursivamente animales)} de
+    manera que se imprima el resultado en el búfer; de otro modo el intérprete
+    Lisp colocara los resultados en la línea del área de eco.
 
-    También, posiciona tu cursor inmediatamente después del último paréntesis
-    que cierra la función @c{print-elements-recursively}, antes del
-    comentario. De otro modo, el intérprete Lisp intentará evaluar el
+    También, coloca el  cursor inmediatamente después del último paréntesis
+    de cierre de la función @c{imprimir-elementos-recursivamente}, antes del
+    comentario. De lo contrario, el intérprete Lisp intentará evaluar el
     comentario.
 
     ..src > elisp
       (setq animales '(gacela jirafa leon tigre))
 
-      (defun print-elements-recursively (list)
-        "Imprime cada elemento de la LISTA de la línea en
-        sí. Usa recursión."
-        (when list                            ; do-again-test
-              (print (car list))              ; body
-              (print-elements-recursively     ; recursive call
-               (cdr list))))                  ; next-step-expression
+      (defun imprimir-elementos-recursivamente (lista)
+        "Imprime cada elemento de LISTA en una línea propia.
+      Usa recursión."
+        (when lista                               ; prueba-hazlo-de-nuevo
+              (print (car lista))                 ; cuerpo
+              (imprimir-elementos-recursivamente  ; llamada recursiva
+               (cdr lista))))                     ; expresion-del-siguiente-paso
 
-      (print-elements-recursively animales)
+      (imprimir-elementos-recursivamente animales)
     < src..
 
-    La función @c{print-elements-recursively} primero chequea si hay
-    cualquier contenido en la lista; si lo hay, la función imprime el primer
-    elemento de la lista, el @c{car} de la lista. Entonces la función se
-    ‘invoca en sí’, pero da a sí mismo como su argumento, no la lista
-    completa, pero el segundo y subsiguientes elementos de la lista, el
-    @c{cdr} de la lista.
+    La función @c{imprimir-elementos-recursivamente} primero prueba si hay algun
+    contenido en la lista; si lo hay, la función imprime el primer elemento de
+    la lista, el @c{car} de la lista. Entonces la función se ‘invoca en sí
+    misma’, pero se da como su argumento, no la lista completa, pero el segundo
+    y subsiguientes elementos de esta, es decir, el @c{cdr} de la lista.
 
-    Pon otro camino, si la lista no está vacía, la función invoca otra
+    Dicho de otro modo, si la lista no está vacía, la función invoca otra
     instancia de código que es similar al código inicial, pero es un hilo
-    diferente de ejecución, con diferentes argumentos a la primera instancia.
+    de ejecución diferente, con argumentos diferentes o los de la primera instancia.
 
-    Veamos una manera más, si la lista no está vacía, el primer robot
-    ensambla un segundo robot que cuenta qué hacer; el segundo robot es un
-    individuo diferente desde el principio, pero es el mismo modelo.
+    Dicho de otro modo más, si la lista no está vacía, el primer robot ensambla
+    un segundo robot y le dice qué hacer; el segundo robot es un individuo
+    diferente del primero, pero es del mismo modelo.
 
-    Cuando la segunda evaluación ocurre, la expresión @c{when} se evalúa y si
-    es verdad, se imprime el primer elemento de la lista que recibe como su
-    argumento (que es el segundo elemento de la lista original). Entonces la
-    función ‘llamarse a sí mismo’ con la @c{cdr} del @c{cdr} de la lista
-    original.
+    Cuando se produce la segunda evaluación, se evalua la expresión @c{when} y
+    si es verdadera, imprime el primer elemento de la lista que recibe como
+    argumento (que es el segundo elemento de la lista original). A continuacion
+    la función ‘se llama a sí misma’ (la segunda vez) con el @c{cdr} del @c{cdr}
+    de la lista original.
 
-    Note que aunque nosotros decimos que la función ‘se llama a sí misma’, lo
-    que significa es que el intérprete Lisp ensambla e instruye una nueva
-    instancia del programa. La nueva instancia es un clon del primero, pero
-    es un individuo separado.
+    Ten en cuenta que aunque decimos que la función ‘se llama a sí misma’, lo
+    que queremos decir es que el intérprete Lisp ensambla e instruye una nueva
+    instancia del programa. La nueva instancia es un clon del primero, pero es
+    un individuo separado.
 
-    Cada vez que la función ‘se invoca a sí misma’, se invoca a sí misma en
-    una versión de la lista original. Eso crea una nueva instancia que
-    funciona como una lista ordenada.
+    Cada vez que la función ‘se invoca a sí misma’, se invoca con una versión
+    mas corta de la lista original. Crea una nueva instancia que funciona en una
+    lista mas corta.
 
-    Finalmente, la función se invoca a sí misma en una lista vacía. Eso crea
-    una nueva instancia cuyo argumento es @c{nil}. La expresión condicional
-    chequea el valor de @c{lista}. Desde el valor de @c{lista} a @c{nil}, la
-    expresión @c{when} devuelve falso así la then-part no está evaluada. La
-    función es como un todo que entonces devuelve @c{nil}.
+    Eventualmente, la función se invoca a sí misma con una lista vacía. Crea una
+    nueva instancia cuyo argumento es @c{nil}. La expresión condicional prueba
+    el valor de @c{lista}. Ya que el valor de la @c{lista} es @c{nil}, la
+    expresión @c{when} devuelve falso así la parte-then no sera evaluada. La
+    función como un todo entonces devuelve @c{nil}.
 
-    Cuando se evalúa la expresión @c{(print-elements-recursively animals)} en
-    el búfer @f{*scratch*}, se verá este resultado:
+    Cuando se evalúa la expresión @c{(imprimir-elementos-recursivamente animales)} en
+    el búfer @f{*scratch*}, se ve este resultado:
 
     ..example >
       gacela
@@ -7760,300 +7726,298 @@ and promoting software freedom.”
 
 *** Recursión en lugar de un contador
 
-    La función @c{triangle} describe en una sección previa si puede ser
-    escrita recursivamente. Se ve así:
+    La función @c{triangulo} descrita en una sección anterior tambien se puede
+    escribir recursivamente. Se vera así:
 
     ..src > elisp
-      (defun triangle-recursively (number)
-        "Return the sum of the numbers 1 through NUMBER inclusive.
-      Uses recursion."
-        (if (= number 1)                    ; do-again-test
-            1                               ; then-part
-          (+ number                         ; else-part
-             (triangle-recursively          ; recursive call
-              (1- number)))))               ; next-step-expression
+      (defun triangulo-recursivo (numero)
+        "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO.
+      Usa recursion."
+        (if (= numero 1)                    ; prueba-hazlo-de-nuevo
+            1                               ; parte-then
+          (+ numero                         ; parte-else
+             (triangulo-recursivo           ; llamada recursiva
+              (1- numero)))))               ; expresion-del-siguiente-paso
 
-      (triangle-recursively 7)
+      (triangulo-recursivo 7)
     < src..
 
-    Se puede instalar esta función evaluando y entonces se intenta evaluar
-    @c{(triangle-recursively 7)}. (Recuerda poner tu cursor inmediatamente
-    después de los últimos paréntesis de la definición de la función, antes
-    del comentario.) La función se evalúa a 28.
+    Puedes instalar esta función evaluandola y luego probarla evaluando
+    @c{(triangulo-recursivo 7)}. (Recuerda colocar tu cursor inmediatamente
+    después del último paréntesis de la definición de la función, antes del
+    comentario.) La función se evalúa a 28.
 
-    Para comprender cómo funciona la función, hay que considerar qué ocurre
-    en varios casos cuando la función se le pasa 1, 2, 3, o 4 como el valor a
-    su argumento.
+    Para comprender cómo funciona esta función, hay que considerar qué ocurre en
+    varios casos cuando la función pasa 1, 2, 3, o 4 como el valor de su
+    argumento.
 
-
-    Primero, veamos qué ocurre si el valor del argumento es 1.
+    Primero, ¿que sucede si el valor del argumento es 1?
 
     La función tiene una expresión @c{if} después de la cadena de
-    documentación. Esto chequea si el valor de @c{number} es igual a 1; si es
-    así, Emacs evalúa la then-part de la expresión @c{if}, que devuelve el
+    documentación. Prueba si el valor de @c{numero} es igual a 1; si es
+    así, Emacs evalúa la parte-then de la expresión @c{if}, que devuelve el
     número 1 como el valor de la función. (Un triángulo con una fila tiene un
-    asterisco dentro.)
+    guijarro dentro.)
 
     Supón, sin embargo, que el valor del argumento es 2. En este caso, Emacs
-    evalúa la parte else de la expresión @c{if}.
+    evalúa la parte-else de la expresión @c{if}.
 
-    La parte else consiste de una adición, la llamada recursiva para
-    @c{triangle-recursively} y una acción de decremento; y se ve así:
+    La parte-else consiste de una suma, la llamada recursiva a
+    @c{triangulo-recursivo} y una acción de decremento; y se ve así:
 
     ..src > elisp
-      (+ number (triangle-recursively (1- number)))
+      (+ numero (triangulo-recursivo (1- numero)))
     < src..
 
-    Cuando Emacs evalúa esta expresión, la expresión interna es evaluada
-    primero; entonces las otras partes en secuencia. Aquí están los pasos en
+    Cuando Emacs evalúa esta expresión, la expresión interna se evalua
+    primero; luego las otras partes en secuencia. Aquí están los pasos en
     detalle:
 
-    - Paso 1 Evalúa la expresión interna. ::
+    - Paso 1 Evalúar la expresión interna. ::
 
-      La expresión interna es @c{(1- number)} así Emacs decrementa el valor
-      de @c{number} desde 2 a 1.
+      La expresión mas interna es @c{(1- numero)} por lo que Emacs decrementa el valor
+      de @c{numero} de 2 a 1.
 
-
-    - Paso 2 Evalúa la función @c{triangle-recursively}.
+    - Paso 2 Evalúar la función @c{triangulo-recursivo}.
 
       El intérprete Lisp crea una instancia individual de
-      @c{triangle-recursively}. Eso no importa que esta función está
-      contenida con sí misma. Emacs pasa el resultado Paso 1 como el
-      argumento usado por esta instancia de la función
-      @c{triangle-recursively}
+      @c{triangulo-recursivo}. No importa que esta función este contenida dentro
+      de sí misma. Emacs pasa el resultado del Paso 1 como el argumento usado
+      por esta instancia de la función @c{triangulo-recursivo}
 
-      En este caso, Emacs evalúa @c{triangle-recursively} con un argumento
-      de 1. Esto significa que esta evaluación de @c{triangle-recursively}
+      En este caso, Emacs evalúa @c{triangulo-recursivo} con un argumento
+      de 1. Esto significa que esta evaluación de @c{triangulo-recursivo}
       devuelve 1.
 
-    - Paso 3 Evalúa el valor de @c{number}. ::
+    - Paso 3 Evalúar el valor de @c{numero}. ::
 
-      La variable @c{number} es el segundo elemento de la lista que empieza
+      La variable @c{numero} es el segundo elemento de la lista que empieza
       con @c{+}; su valor es 2.
 
-    - Paso 4 Evalúa la expresión @c{+}. ::
+    - Paso 4 Evalúar la expresión @c{+}. ::
 
-      La expresión @c{+} recibe dos argumentos, el primero desde la
-      evaluación de @c{number} (Paso 3) y el segundo desde la evaluación de
-      @c{triangle-recursively} (Paso 2).
+      La expresión @c{+} recibe dos argumentos, el primero viene de la
+      evaluación del @c{numero} (Paso 3) y el segundo de la evaluación de
+      @c{triangulo-recursivo} (Paso 2).
 
-      El resultado de la adición es la suma de 2 + 1, y el número 3 es
-      devuelto, que es correcto. Un triángulo con dos filas tiene tres
-      asteriscos ahí.
+      El resultado de la operacion es la suma de 2 + 1, y se devuelve el número
+      3, que es correcto. Un triángulo con dos filas tiene tres guijarros.
 
 **** Un argumento de 3 o 4
 
-     Supón que @c{triangle-recursively} es llamado con un argumento de 3.
+     Supón que @c{triangulo-recursivo} se llama con un argumento de 3.
 
-     - Paso 1 Evalúa la do-again-test. ::
+     - Paso 1 Evalúa la prueba-hazlo-de-nuevo. ::
 
-       La expresión @c{if} se evalúa primero. Esto es el test do-again
-       y devuelve falso, así la parte else de la expresión
-       @c{if} es evaluada. (Note que en este ejemplo, el do-again-test
-       causa la función para llamarse a sí misma cuando eso
-       se chequea como falso, no cuando eso se chequea como verdadero.)
+       La expresión @c{if} se evalúa primero. Esto es la prueba-hazlo-de-nuevo y
+       devuelve falso, así que se evalua la parte-else de la expresión
+       @c{if}. (Tenga en cuenta que en este ejemplo, la prueba-hazlo-de-nuevo
+       hace que la función se llame a sí misma cuando la prueba es falsa, no
+       cuando es verdadera.)
 
-     - Paso 2 Evalúa la expresión propia de la parte else. ::
+     - Paso 2 Evalúar la expresión mas profunda de la parte-else. ::
 
-       La expresión propia de la parte que es evaluada, decrementa 3
-       a 2. Esta la next-step-expression.
+       Se evalua la expresión mas interna de la parte-else, que decrementa 3
+       a 2. Esta la expresion-del-siguiente-paso.
 
-     - Paso 3 Evalúa la función @c{triangle-recursively}. ::
+     - Paso 3 Evalúar la función @c{triangulo-recursivo}. ::
 
-       El número 2 es pasado a la función @c{triangle-recursively}.
+       El número 2 se pasa a la función @c{triangulo-recursivo}.
 
-       Nosotros ya sabemos qué ocurre cuando Emacs evalúa
-       @c{triangle-recursively} con un argumento de 2. Después de ir a
-       través de la secuencia de acciones descritas temprano, eso devuelve
-       un valor de 3. Así que es lo que ocurrirá
-       aquí.
+       Nosotros ya sabemos lo que ocurre cuando Emacs evalúa
+       @c{triangulo-recursivo} con un argumento de 2. Después de pasar a través de
+       la secuencia de acciones descritas anteriormente, devuelve un valor
+       de 3. Así que eso es lo que ocurrirá aquí.
 
-     - Paso 4 Evalúa la adición. ::
+     - Paso 4 Evalúar la suma. ::
 
-       3 será pasado como un argumento para la adición y será añadido
-       al número con el que la función se llamó, que es 3.
-
+       3 será pasado como argumento a la suma y se sumara al número con el que
+       se ha llamado a la función, que es 3.
 
 
-     El valor devuelto por la función como un todo será 6.
+     El valor devuelto por la función en su conjunto será 6.
 
-     Ahora que sabemos qué ocurrirá cuando @c{triangle-recursively} llama con
-     un argumento 3, es evidente lo que ocurrirá si se llama con el argumento
-     4:
+     Ahora que sabemos qué ocurrirá cuando se llame a @c{triangulo-recursivo}
+     con un argumento de 3, es evidente lo que ocurrirá si se llama con un
+     argumento de 4:
 
      ..tab >
        En la llamada recursiva, la evaluación de
 
        ..src > elisp
-         (triangle-recursively (1- 4))
+         (triangulo-recursivo (1- 4))
        < src..
 
-       devuelve el valor de evaluar
+       devolvera el valor de evaluar
 
        ..src > elisp
-         (triangle-recursively 3)
+         (triangulo-recursivo 3)
        < src..
 
-       que es 6 este valor será añadido a 4 por la adición en la tercera
+       que es 6 y este valor se sumara a 4 mediante la suma en la tercera
        línea.
      < tab..
 
 
-     El valor devuelto por la función como un todo será 10.
+     El valor devuelto por la función en su conjunto será 10.
 
-     Cada vez que @c{triangle-recursively} se evalúa, se interpreta una
-     versión de sí misma––una instancia diferente en sí––con un pequeño
-     argumento, hasta que el argumento es suficientemente pequeño así que no
-     se evalúa en sí.
+     Cada vez que se evalua @c{triangulo-recursivo}, se evalua una
+     versión de sí mismo––una instancia diferente en sí––con un argumento
+     mas pequeño, hasta que el argumento es lo suficientemente pequeño para que
+     no se evalue a si mismo.
 
-     Note que este particular diseño para una función recursiva requiere que
-     las operaciones sean diferidas.
+     Ten en cuenta que este particular diseño de una función recursiva
+     requiere que las operaciones sean diferidas.
 
-     Antes de que @c{(triangle-recursively 7)} pueda calcular su respuesta,
-     debe llamarse a @c{(triangle-recursively 6)}; y antes a
-     @c{(triangle-recursively 5)}; y así. Esto es decir, que el cálculo de
-     @c{(triangle-recursively 7)} a crear debe ser diferido hasta que
-     @c{(triangle-recursively 6)} haga su cálculo; y @c{(triangle-recursively
-     5)} lo complete; y así.
+     Antes de que @c{(triangulo-recursivo 7)} pueda calcular su respuesta, debe
+     llamar a @c{(triangulo-recursivo 6)}; y antes de que
+     @c{(triangulo-recursivo 6)} pueda calcular su respuesta debe llamar a
+     @c{(triangulo-recursivo 5)}; y así sucesivamente. Esto decir, el cálculo
+     que hace @c{(triangulo-recursivo 7)} debe ser pospuesto hasta que
+     @c{(triangulo-recursivo 6)} haga su cálculo; y @c{(triangulo-recursivo 6)}
+     debe posponerse hasta que @c{(triangulo-recursivo 5)} se complete; y así
+     sucesivamente.
 
-     Si cada una de estas instancias de @c{triangle-recursively} son pensadas
-     como diferentes robots, el primer robot debe esperar por el segundo para
-     completar su trabajo, que debe esperar hasta los terceros completos, y
-     así.
+     Si se piensa que cada una de estas instancias de @c{triangulo-recursivo}
+     son robots diferentes, el primer robot debe esperar al segundo para
+     completar su trabajo, que debe esperar hasta que el tercero se complete, y
+     así sucesivamente.
 
-     Hay un camino alrededor de este tipo de espera, que se discutirá en
-     @l{Recursión sin diferir}.
+     Hay un camino alrededor de este tipo de espera, que se discutirá en la Seccion
+     @l{#Recursividad sin deferencias}.
 
 *** Ejemplo de recursión usando @c{cond}
 
-    La versión de @c{triangle-recursively} antes descrita se escribió con la
-    forma especial @c{if}. Eso puede también ser escrita usando otra forma
+    La versión de @c{triangulo-recursivo} descrita anteriormente se escribió con la
+    forma especial @c{if}. También se puede escribir usando otra forma
     especial llamada @c{cond}. El nombre de la forma especial @c{cond} es una
     abreviación de la palabra @'{conditional}.
 
-    Aunque la forma especial @c{cond} no se usa con frecuencia en las fuentes
-    de Emacs como @c{if}, se usa con suficiente frecuencia para justificarse
-    explicando.
+    Aunque la forma especial @c{cond} no se usa tan a menudo en las fuentes
+    de Emacs como @c{if}, se usa con bastante frecuencia para justificar su
+    explicacion.
 
-    La plantilla para una expresión @c{cond} se parece a:
+    La plantilla de una expresión @c{cond} se ve asi:
 
     ..src > elisp
       (cond
-       @V{body}…)
+       cuerpo…)
     < src..
 
-    donde el @V{body} es una serie de listas.
+    donde el @c{cuerpo} es una serie de listas.
 
-    Escrito de manera más completa, la plantilla se parece a esto:
+    Escrito de forma más completa, la plantilla se ve asi:
 
     ..src > elisp
       (cond
-       (@V{first-true-or-false-test} @V{first-consequent})
-       (@V{second-true-or-false-test} @V{second-consequent})
-       (@V{third-true-or-false-test} @V{third-consequent})
+       (primera-prueba-verdadero-o-falso primera-consequencia)
+       (segunda-prueba-verdadero-o-falso segunda-consequencia)
+       (tercera-prueba-verdadero-o-falso tercera-consequencia)
         …)
     < src..
 
     Cuando el intérprete Lisp evalúa la expresión @c{cond}, evalúa el primer
-    elemento (el @c{car} o true-or-false-test) de la primera expresión en
-    una serie de expresiones con el cuerpo del @c{cond}.
+    elemento (el @c{car} o prueba-verdadero-o-falso) de la primer expresión en
+    una serie de expresiones dentro del cuerpo del @c{cond}.
 
-    Si el true-or-false-test devuelve @c{nil} el resto de esta expresión, el
-    consecuente, se descarta y el true-or-false-test de la siguiente
-    expresión se evalúa. Cuando una expresión encuentra un true-or-false-test
-    cuyo valor no es @c{nil}, el consecuente de esta expresión se evalúa. El
-    consecuente puede ser una o más expresiones. Si el consecuente consiste
-    de más de una expresión, las expresiones son evaluadas en secuencia y el
-    valor del último se devuelve. Si la expresión no tiene un consecuente, se
-    devuelve el valor del true-or-false-test.
+    Si la prueba-verdadero-o-falso devuelve @c{nil} el resto de esa expresión se
+    descarta y se evalua la prueba-verdadero-o-falso de la siguiente
+    expresión. Cuando se encuentra una expresión cuya prueba-verdadero-o-falso
+    devuelve un valor que no es @c{nil}, se evalua el resto de esa expresión. El
+    resto puede ser una o más expresiones. Si el resto consiste de
+    más de una expresión, las expresiones se evaluan en secuencia y se devuelve el valor
+    de la última. Si la expresión no tiene un resto, se devuelve
+    el valor de la prueba-verdadero-o-falso.
 
-    Si ninguno del test true-or-false-tests es cierto, la expresión @c{cond}
-    devuelve @c{nil}.
+    Si ninguna de las pruebas prueba-verdadero-o-falso es verdadera, la
+    expresión @c{cond} devuelve @c{nil}.
 
-    Escrito usando @c{cond}, la función @c{triangle} se parece a esto:
+    Asi se ve la función @c{triangle}, usando @c{cond}:
 
     ..src > elisp
-      (defun triangle-using-cond (number)
-        (cond ((<= number 0) 0)
-              ((= number 1) 1)
-              ((> number 1)
-               (+ number (triangle-using-cond (1- number))))))
+      (defun triangulo-usando-cond (numero)
+        (cond ((<= numero 0) 0)
+              ((= numero 1) 1)
+              ((> numero 1)
+               (+ numero (triangulo-usando-cond (1- numero))))))
     < src..
 
-    En este ejemplo, el @c{cond} devuelve 0 si el número es menor o igual a
-    0, eso devuelve 1 si el número es 1 y eso evalúa @c{(+ number
-    (triangle-using-cond (1- number)))} si el número es más grandes que 1.
+    En este ejemplo, el @c{cond} devuelve 0 si el número es menor o igual a 0,
+    devuelve 1 si el número es 1 y evalúa @c{(+ numero (triangulo-usando-cond
+    (1- numero)))} si el número es mayor a 1.
 
 *** Patrones recursivos
 
-    Aquí hay tres patrones recursivos. Cada uno involucra una lista. La
-    recursión no se necesita para involucrar listas, pero Lisp se diseña para
-    listas y esto provee un sentido de sus capacidades primarias.
+    Aquí hay tres patrones recursivos comunes. Cada uno implica una lista. La
+    recursión no necesita involucrar listas, pero Lisp esta diseñado para listas
+    y esto proporciona una idea de sus capacidades primarias.
 
 **** Patrón recursivo: @e{every}
 
-     En el patrón recursivo @c{every}, se desarrolla una acción por cada
+     En el patrón recursivo @c{every}, se desarrolla una acción en cada
      elemento de una lista.
 
      El patrón básico es:
 
-     - Si una lista es vacía, devuelve @c{nil}.
+     - Si una lista esta vacía, devuelve @c{nil}.
 
-     - Si no, se va al principio de la lista (el @c{car} de la lista)
-       actuando
+     - Si no, actua al principio de la lista (el @c{car} de la lista)
 
        - a través de una llamada recursiva por la función en el resto (el
          @c{cdr}) de la lista,
 
-       - y, opcionalmente, se combina el elemento sobre el que actúa, usando
-         @c{cons}, con los resultados de actuar en el resto.
+       - y, opcionalmente, combina el elemento sobre el que actúa, usando
+         @c{cons}, con los resultados de actuar sobre el resto.
 
 
      Aquí está el ejemplo:
 
      ..src > elisp
-       (defun square-each (numbers-list)
+       (defun cuadrar-cada-uno (lista-de-numeros)
          "El cuadrado de cada LISTA DE NUMEROS, recursivamente."
-         (if (not numbers-list)                ; test-hazlo-de-nuevo
+         (if (not lista-de-numeros)          ; prueba-hazlo-de-nuevo
              nil
            (cons
-            (* (car numbers-list) (car numbers-list))
-            (square-each (cdr numbers-list))))) ; expresion-siguiente-paso
-
-       (square-each '(1 2 3))
-           ⇒ (1 4 9)
+            (* (car lista-de-numeros) (car lista-de-numeros))
+            (cuadrar-cada-uno (cdr lista-de-numeros))))) ; expresion-del-siguiente-paso
      < src..
 
-     Si @c{numbers-list} está vacío, no hay que hacer nada. Pero si tiene
+     ..srci > elisp
+       > (cuadrar-cada-uno '(1 2 3))
+       (1 4 9)
+     < srci..
+
+     Si @c{lista-de-numeros} está vacía, no hay que hacer nada. Pero si tiene
      contenido, se construye una lista combinando el cuadrado del primer
      número en la lista con el resultado de la llamada recursiva.
 
      (El ejemplo sigue el patrón exactamente: se devuelve @c{nil} si la lista
-     de números es vacía. En la práctica, se escribiría el condicional, así
-     se ejecuta la acción cuando la lista de números no es vacía.)
+     de números es vacía. En la práctica, se escribiría el condicional, para que
+     lleve a cabo la acción cuando la lista de números no es vacía.)
 
-     La función @c{print-elements-recursively} (Vease Sección @l{Recursión
+     La función @c{imprimir-elementos-recursivamente} (Ver Sección @l{#Recursividad
      con una Lista}) es otro ejemplo de un patrón @c{every}, excepto en este
-     caso, en vez de traer los resultados juntos usando @c{cons}, se imprime
+     caso, en vez de juntar los resultados usando @c{cons}, se imprime
      cada elemento de salida.
 
-     La función @c{print-elements-recursively} se parece a esto:
+     La función @c{imprimir-elementos-recursivamente} se ve asi:
 
      ..src > elisp
        (setq animales '(gacela jirafa leon tigre))
 
-       (defun print-elements-recursively (list)
-         "Imprime cada elemento de la LISTA de la línea en
-         sí. Usa recursión."
-         (when list                            ; do-again-test
-               (print (car list))              ; body
-               (print-elements-recursively     ; recursive call
-                (cdr list))))                  ; next-step-expression
+       (defun imprimir-elementos-recursivamente (lista)
+         "Imprime cada elemento de LISTA en una línea propia.
+       Usa recursión."
+         (when lista                               ; prueba-hazlo-de-nuevo
+               (print (car lista))                 ; cuerpo
+               (imprimir-elementos-recursivamente  ; llamada recursiva
+                (cdr lista))))                     ; expresion-del-siguiente-paso
 
-       (print-elements-recursively animales)
+       (imprimir-elementos-recursivamente animales)
      < src..
 
-     El patrón para @c{print-elements-recursively} es:
+
+     El patrón para @c{imprimir-elementos-recursivamente} es:
 
      - Cuando la lista está vacía, no hacer nada.
 
@@ -8061,325 +8025,332 @@ and promoting software freedom.”
 
        - actúa al principio de la lista (el @c{car} de la lista),
 
-       - y crea una llamada recursiva en el resto (el @c{cdr} de la lista).
+       - y hacer una llamada recursiva en el resto (el @c{cdr} de la lista).
 
 **** Patrón recursivo: @e{accumulate}
 
-     Otro patrón recursivo es llamado el patrón @c{accumulate}. En el patrón
+     Otro patrón recursivo se llama patrón @c{accumulate}. En el patrón
      recursivo @c{accumulate}, se realiza una acción en cada elemento de una
      lista y el resultado de esta acción se acumula con los resultados de
-     desarrollar la acción en otros elementos.
+     realizar la acción en los otros elementos.
 
-     Esto es como ‘cada’ patrón usando @c{cons}, excepto que este @c{cons} no
-     se esté usando, pero que algún otro combine.
+     Esto es muy parecido al patron ‘every’ usando @c{cons}, excepto que este
+     @c{cons} no se utiliza, pero se usa algun otro combinador.
 
      El patrón es:
 
-     - Si una lista está vacía, devuelve cero o alguna otra constante.
+     - Si una lista está vacía, devuelve cero u otra constante.
 
-     - Lo demás, actúa al principio de la lista (el @c{car} de la lista),
+     - De lo contrario, actúa al principio de la lista (el @c{car} de la lista),
 
-       - y combinar este elemento que actúa, usando @c{+} o alguna otra
+       - y combina ese elemento actual, utilizando @c{+} o alguna otra
          función de combinación, con
 
-
-       - una llamada recursiva por la función en el resto (el @c{cdr}) de la
+       - una llamada recursiva a la función con el resto (el @c{cdr}) de la
          lista.
 
 
      Aquí hay un ejemplo:
 
      ..src > elisp
-       (defun add-elements (numbers-list)
-         "Añade los elementos de NUMBERS-LIST juntos."
-         (if (not numbers-list)
+       (defun sumar-elementos (lista-de-numeros)
+         "Suma los elementos de LISTA-DE-NUMEROS."
+         (if (not lista-de-numeros)
              0
-           (+ (car numbers-list) (add-elements (cdr numbers-list)))))
-
-       (add-elements '(1 2 3 4))
-           ⇒ 10
+           (+ (car lista-de-numeros) (sumar-elementos (cdr lista-de-numeros)))))
      < src..
 
-     Vea la Seccion @l{Creando una lista de ficheros}, para un ejemplo del
-     patrón acumulado.
+     ..srci > elisp
+       > (sumar-elementos '(1 2 3 4))
+       10
+     < srci..
+
+     Consulta la Seccion @l{#Creando una lista de ficheros}, para un ejemplo del
+     patrón accumulate.
 
 **** Patrón recursivo: @e{keep}
 
-     Un tercer patrón es llamado el patrón @c{keep}. En el patrón recursivo
-     @c{keep}, se chequea cada elemento de una lista; se actúa en el elemento
-     y los resultados se guardan solo si el elemento encuentra un criterio.
+     Un tercer patrón se llama el patrón @c{keep}. En el patrón recursivo
+     @c{keep}, se comprueba cada elemento de una lista; se actúa sobre el elemento
+     y los resultados solo se conservan si el elemento cumple un criterio.
 
-     De nuevo, esto se parece al patrón ‘every’, excepto que el elemento se
-     descarta a menos que se encuentre un criterio.
+     De nuevo, esto es muy parecido al patrón ‘every’, excepto que el elemento
+     se descarta a menos que cumpla un criterio.
 
      El patrón tiene tres partes:
 
-     - Si una lista es vacía, devuelve @c{nil}.
+     - Si una lista esta vacía, devuelve @c{nil}.
 
-     - Lo demás, si el principio de la lista (el @c{car} de la lista) pasa
-       un test
+     - De lo contrario, si el inicio de la lista (el @c{car}) pasa una prueba
 
-       - actua en este elemento y lo combina, usando @c{cons} con
+       - actuar sobre ese elemento y combinarlo, utilizando @c{cons} con
 
-       - una llamada recursiva por la función en el resto (el @c{cdr} de la
+       - una llamada recursiva a la función con el resto (el @c{cdr}) de la
          lista.
 
-     - De otro modo, si el principio de la lista (el @c{car} de la lista)
-       falla el test
+     - De lo contrario, si el inicio de la lista (el @c{car}) falla la prueba
 
-       - para en este elemento,
+       - saltar ese elemento,
 
-       - y, recursivamente llama la función al resto (el @c{cdr}) de la
+       - y, recursivamente llamar a la función sobre el resto (el @c{cdr}) de la
          lista.
 
      Aquí hay un ejemplo que usa @c{cond}:
 
      ..src > elisp
-       (defun manten-tres-letras (lista-palabras)
-         "Guarda 3 palabras en WORD-LIST."
+       (defun guardar-palabras-de-tres-letras (lista-palabras)
+         "De la LISTA-PALABRAS, guarda las palabras de 3 letras."
          (cond
-          ;; Primero do-again-test: stop-condition
+          ;; Primera prueba-hazlo-de-nuevo: condicion-de-parada
           ((not lista-palabras) nil)
 
-          ;; Segundo do-again-test: cuando actuar
+          ;; Segunda prueba-hazlo-de-nuevo: cuando actuar
           ((eq 3 (length (symbol-name (car lista-palabras))))
-           ;; combina el elemento que actúa con la llamada recursiva en la
-           ;; lista ordenada
-           (cons (car lista-palabras) (manten-tres-letras (cdr lista-palabras))))
+           ;; combina el elemento actual con la llamada recursiva en
+           ;; una lista mas corta
+           (cons (car lista-palabras) (guardar-palabras-de-tres-letras (cdr lista-palabras))))
 
-          ;; Tercero do-again-test: cuando se descarte el elemento;
-          ;; llama recursivamente a la lista ordenada con la next-step expression
-          (t (manten-tres-letras (cdr lista-palabras)))))
-
-       (manten-tres-letras '(uno dos tres cuatro cinco seis))
-           ⇒ (uno dos)
+          ;; Tercera prueba-hazlo-de-nuevo: cuando saltar el elemento;
+          ;; llamada recursiva con una lista mas corta con la
+          ;; expresion-del-siguiente-paso
+          (t (guardar-palabras-de-tres-letras (cdr lista-palabras)))))
      < src..
 
-     Eso va sin decir que no se necesita usar @c{nil} como si el test para
-     cuando para; y se puede, de acuerdo, combinar estos patrones.
 
-*** Recursión sin diferir
+     ..srci > elisp
+       > (guardar-palabras-de-tres-letras '(uno dos tres cuatro cinco seis))
+       (uno dos)
+     < srci..
 
-    Permita considerar de nuevo qué ocurre con la función
-    @c{triangle-recursively}. Nosotros encontraremos que los cálculos
-    difieran hasta que todo pueda ser hecho.
+
+     No hace falta decir que no es necesario utilizar @c{nil} como la prueba
+     para detenerse; y, por su puesto, se pueden combinar estos patrones.
+
+*** Recursividad sin deferencias
+
+    Consideremos de nuevo lo que sucede con la función @c{triangulo-recursivo}.
+    Encontraremos que los cálculos intermedios se postergan hasta que se puede
+    hacer todo.
 
     Aquí está la definición de función:
 
     ..src > elisp
-      (defun triangle-recursively (number)
-        "Devuelve la suma de los números 1 a través de NUMBER inclusive
-      Usa recursión."
-        (if (= number 1)                    ; do-again-test
-            1                               ; then-part
-          (+ number                         ; else-part
-             (triangle-recursively          ; recursive call
-              (1- number)))))               ; next-step-expression
+      (defun triangulo-recursivo (numero)
+        "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO.
+      Usa recursion."
+        (if (= numero 1)                    ; prueba-hazlo-de-nuevo
+            1                               ; parte-then
+          (+ numero                         ; parte-else
+             (triangulo-recursivo           ; llamada recursiva
+              (1- numero)))))               ; expresion-del-siguiente-paso
     < src..
 
-    ¿Qué ocurre cuando se llama a esta función con un argumento de 7?
+    ¿Qué ocurre cuando llamamos a esta función con un argumento de 7?
 
-    La primera instancia de la función @c{triangle-recursively} añade el
+    La primera instancia de la función @c{triangulo-recursivo} suma el
     número 7 al valor devuelto por una segunda instancia de
-    @c{triangle-recursively}, una instancia que ha pasado un argumento
-    de 6. Así, el primer cálculo es:
+    @c{triangulo-recursivo}, una instancia a la que se ha pasado un argumento
+    de 6. Es decir, el primer cálculo es:
 
     ..src > elisp
-      (+ 7 (triangle-recursively 6))
+      (+ 7 (triangulo-recursivo 6))
     < src..
 
-    La primera instancia de @c{triangle-recursively} --- se puede querer
-    pensar como un pequeño robot––no puede completar su trabajo. Eso debe
-    manejar el cálculo para @c{(triangle-recursively 6)} a una segunda
-    instancia del programa, a un segundo robot. Este segundo individuo es
-    completamente diferente desde el primero; eso es, en la jerga, una
-    ‘diferente instanciación’. O, poner otro camino, eso es un diferente
-    robot. Eso es el mismo modelo como el primero; eso calcula números de
-    triángulo recursivamente; pero eso tiene un número de serie diferente.
+    La primera instancia de @c{triangulo-recursivo}––tal vez quieres pensar en
+    ella como un pequeño robot––no puede completar su trabajo. Debe pasar el
+    cálculo a @c{(triangulo-recursivo 6)} una segunda instancia del programa, a
+    un segundo robot. Este segundo individuo es completamente diferente del
+    primero; en la jerga, una ‘diferente instancia’. O, dicho de otro modo, es
+    un robot diferente. Es del mismo modelo que el primero; calcula números de
+    triángulo recursivamente; pero tiene un número de serie diferente.
 
-    ¿Y qué hace @c{(triangle-recursively 6)} devuelve? Eso devuelve el número
-    6 añadido al valor devuelto para evaluar @c{triangle-recursively} con un
-    argumento de 5. Usando la metáfora del robot, eso cuestiona todavía otro
-    robot para ayudarle.
+    ¿Y qué devuelve @c{(triangulo-recursivo 6)}? Devuelve el número 6 sumado al
+    valor devuelto de evaluar @c{triangulo-recursivo} con un argumento
+    de 5. Usando la metáfora del robot, le pide a otro robot que lo ayude.
 
     Ahora el total es:
 
     ..src > elisp
-      (+ 7 6 (triangle-recursively 5))
+      (+ 7 6 (triangulo-recursivo 5))
     < src..
 
-    ¿Y qué ocurre después?
+    ¿Y qué sucede después?
 
     ..src > elisp
-      (+ 7 6 5 (triangle-recursively 4))
+      (+ 7 6 5 (triangulo-recursivo 4))
     < src..
 
-    Cada vez que @c{triangle-recursively} es llamado, excepto por la última
-    vez, eso crea otra instancia del programa––otro robot --- y pregunta para
-    crear un cálculo.
+    Cada vez que se llama a @c{triangulo-recursivo}, excepto por la última
+    vez, se crea otra instancia del programa––otro robot––y le pide que
+    haga un cálculo.
 
-    Finalmente, la adición completa es de la siguiente manera:
+    Eventualmente, se establece y realiza la suma completa:
 
     ..src > elisp
       (+ 7 6 5 4 3 2 1)
     < src..
 
-    Este diseño para la función difiere el cálculo del primer paso hasta el
-    segundo puede ser hecho, y difiere esto hasta que el tercero puede ser
-    hecho, y así. Cada defermento significa el ordenador debe recordar que
-    está siendo esperado dentro. Esto no es un problema cuando hay solo unos
-    pocos pasos, como en este ejemplo. Pero eso puede ser un problema cuando
-    hay más pasos.
+    Este diseño de la función difiere el cálculo del primer paso hasta que se
+    puede hacer el segundo, y difiere este hasta que se puede hacer el tercero,
+    y así sucesivamente. Cada aplazamiento significa el ordenador debe recordar
+    que se está esperado. Esto no es un problema cuando solo hay unos pocos
+    pasos, como en este ejemplo. Pero puede ser un problema cuando hay más
+    pasos.
 
-*** No hay solución pospuesta
+*** Solucion sin Deferencia
 
-    La solución al problema de operaciones pospuestas es para escribir en una
-    manera que no posponga operaciones@n{11}. Esto requiere escribir a un
-    patrón diferente, con frecuencia uno que involucra escribiendo dos
+    La solución al problema de deferir operaciones es escribir de una
+    manera que no se pospongan las operaciones@n{12}. Esto requiere escribir en un
+    patrón diferente, con frecuencia uno que implica escribir dos
     definiciones de función, una función de ‘inicialización’ y una función
-    ‘ayuda’.
+    ‘auxiliar’.
 
-    La función ‘inicializacion’ configura el trabajo; la función ‘ayudante’
+    La función de ‘inicializacion’ configura el trabajo; la función ‘auxiliar’
     hace el trabajo.
 
-    Aquí hay dos definiciones para añadir números. Son así de simple, aunque
-    se encuentre duro de comprender.
+    Aquí estan las dos definiciones de funcion para sumar números. Son tan
+    simples, que me cuesta entenderlas.
 
     ..src > elisp
-      (defun triangle-initialization (number)
-        "Devuelve la suma de los números 1 a través de NUMBER inclusive.
-      Este es el componente de ‘inicialización’ de una función dúo que
-      usa recursión"
-        (triangle-recursive-helper 0 0 number))
+      (defun triangulo-inicializacion (numero)
+        "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO.
+      Este es el componente de ‘inicialización’ de una función doble
+      que utiliza recursión"
+        (triangulo-recursivo-auxiliar 0 0 numero))
     < src..
 
     ..src > elisp
-      (defun triangle-recursive-helper (sum counter number)
-        "Devuelve SUM, usando COUNTER, a través de NUMBER inclusive.
-      Este es el componente ‘helper’ de unas dos funciones
-      que usan recursión."
-        (if (> counter number)
-            sum
-          (triangle-recursive-helper (+ sum counter)  ; suma
-                                     (1+ counter)     ; contador
-                                     number)))        ; número
+      (defun triangulo-recursivo-auxiliar (suma contador numero)
+        "Devuelve la SUMA, usando CONTADOR, hasta e incluyendo NUMERO.
+      Este es el componente ‘auxiliar’ de una funcion doble que
+      utiliza recursión."
+        (if (> contador numero)
+            suma
+          (triangulo-recursivo-auxiliar (+ suma contador)  ; suma
+                                        (1+ contador)      ; contador
+                                        numero)))          ; número
     < src..
 
-    Instalar ambas definiciones de función por evaluarlo, entonces llama a
-    @c{triangle-initialization} con 2 filas:
+    Instala ambas definiciones de función evaluandolas, luego llama a
+    @c{triangulo-inicializacion} con 2 filas:
 
-    ..src > elisp
-      (triangle-initialization 2)
-          ⇒ 3
-    < src..
+    ..srci > elisp
+      > (triangulo-inicializacion 2)
+      3
+    < srci..
 
-    La función ‘inicialización’ llama la primera instancia de la función
-    ‘ayudante’ con tres argumentos: cero, cero, y un número que es el número
+    La función de ‘inicialización’ llama a la primera instancia de la función
+    ‘auxiliar’ con tres argumentos: cero, cero, y un número que es el número
     de filas en el triángulo.
 
-    Los primeros dos argumentos pasaron a la función ‘ayuda’ son valores de
-    inicialización. Estos valores son cambiados cuando
-    @c{triangle-recursive-helper} invocan nuevas instancias.@n{12}
+    Los dos primeros argumentos que se pasan a la función ‘auxiliar’ son valores
+    de inicialización. Estos valores cambian cuando
+    @c{triangulo-recursivo-auxiliar} invoca nuevas instancias.@n{13}
 
-    Permítase ver que ocurre cuando tenemos un triángulo que tiene una
-    fila. (¡Este triángulo tendrá un asterisco dentro!)
+    Veamos que pasa cuando tenemos un triángulo que tiene una fila. (¡Este
+    triángulo tendrá un guijarro en el!)
 
-    @c{triangle-initialization} llamará su ayudante con los argumentos @c{0 0
-    1}. Esta función ejecutará el test condicional si @c{(> counter number)}:
+    @c{triangulo-inicializacion} llamará a su auxiliar con los argumentos @c{0 0
+    1}. Esta función ejecutará la prueba condicional si @c{(> contador numero)}:
 
     ..src > elisp
       (> 0 1)
     < src..
 
-    y encuentra que el resultado es falso, así invocará la else-part de la
-    claúsula @c{if}:
+    y encontrara que el resultado es falso, por lo que  invocara la parte-else de la
+    clausula @c{if}:
 
     ..src > elisp
-          (triangle-recursive-helper
-           (+ sum counter)  ; @e{sum más counter} ⇒ @e{sum}
-           (1+ counter)     ; @e{incrementa counter} ⇒ @e{counter}
-           number)          ; number parece lo mismo
+          (triangulo-recursivo-auxiliar
+           (+ suma contador)  ; suma más contador ⇒ suma
+           (1+ contador)      ; incrementa contador ⇒ contador
+           numero)            ; numero se mentiene igual
     < src..
 
-    que computará primero:
+    que al inicio calcula:
 
     ..src > elisp
-      (triangle-recursive-helper (+ 0 0)  ; sum
-                                 (1+ 0)   ; counter
-                                 1)       ; number
-      que es:
-
-      (triangle-recursive-helper 0 1 1)
+      (triangulo-recursivo-auxiliar (+ 0 0)  ; suma
+                                    (1+ 0)   ; contador
+                                    1)       ; numero
     < src..
 
-    De nuevo, @c{(> counter number)} será falso, así de nuevo, el intérprete
-    Lisp evaluará @c{triangle-recursive-helper}, creando una nueva instancia
+    que es:
+
+    ..src > elisp
+      (triangulo-recursivo-auxiliar 0 1 1)
+    < src..
+
+    Una vez mas, @c{(> contador numero)} será falso, por lo que de nuevo, el intérprete
+    Lisp evaluará @c{triangulo-recursivo-auxiliar}, creando una nueva instancia
     con nuevos argumentos.
 
     Esta nueva instancia será;
 
     ..src > elisp
-          (triangle-recursive-helper
-           (+ sum counter)  ; @e{suma más contador} ⇒ @e{sum}
-           (1+ counter)     ; @e{incrementar contador} ⇒ @e{contador}
-           number)          ; número empieza lo mismo
-
-      que es:
-
-      (triangle-recursive-helper 1 2 1)
+      (triangulo-recursivo-auxiliar
+       (+ suma contador)  ; suma más contador ⇒ suma
+       (1+ contador)      ; incrementa contador ⇒ contador
+      numero)             ; numero se mentiene igual
     < src..
 
-    En este caso, el test @c{(> counter number)} ¡será cierto!  Así la
-    instancia devolverá el valor de la suma, que será 1, como se espera.
+    que es:
 
-    Ahora, permite pasar @c{triangle-initialization} un argumento de 2, para
-    encontrar cuántos asterisco hay en un triángulo con dos filas.
+    ..src > elisp
+      (triangulo-recursivo-auxiliar 1 2 1)
+    < src..
 
-    Esta función llama @c{(triangle-recursive-helper 0 0 2)}.
+    En este caso, la prueba @c{(> contador numero)} ¡será verdadera!  Así que la
+    instancia devolverá el valor de la suma, que es 1, como se esperaba.
 
-    En fases, las instancias llamadas serán:
+    Ahora, vamos a pasar a @c{triangulo-inicializacion} un argumento de 2, para
+    encontrar cuántos guijarros hay en un triángulo con dos filas.
+
+    Esta función se llamaria @c{(triangulo-recursivo-auxiliar 0 0 2)}.
+
+    En etapas, las instancias llamadas serán:
 
     ..example >
-                                @e{suma contador número}
-      (triangle-recursive-helper 0    1       2)
+                                  suma contador número
+      (triangulo-recursivo-auxiliar 0    1       2)
 
-      (triangle-recursive-helper 1    2       2)
+      (triangulo-recursivo-auxiliar 1    2       2)
 
-      (triangle-recursive-helper 3    3       2)
+      (triangulo-recursivo-auxiliar 3    3       2)
     < example..
 
-    Cuando la última instancia se llama, el @c{(> counter number)} se chequea
-    si será cierto, así la instancia devolverá el valor de @c{sum}, que
+    Cuando se llama a la última instancia, la prueba @c{(> contador numero)}
+    será verdadera, por lo que la instancia devolverá el valor de @c{suma}, que
     será 3.
 
-    Este tipo de patrón ayuda cuando estás escribiendo funciones que puede
-    usar recursos en un ordenador.
+    Este tipo de patrón ayuda cuando estás escribiendo funciones que pueden
+    usar muchos recursos en un ordenador.
 
 ** Ejercicio de bucles
 
-   - Escribe una función similar a @c{triangle} en el que cada fila tiene un
-     valor que es la raíz del número de la fila. Usa un bucle @c{while}.
+   - Escribe una función similar a @c{triangulo} en la que cada fila tiene un
+     valor que es el cuadrado del número de la fila. Usa un bucle @c{while}.
 
-   - Escribe una función similar para @c{triangle} que multiplique en vez de
-     añadir los valores.
+   - Escribe una función similar a @c{triangulo} que multiplique en lugar de
+     sumar los valores.
 
    - Reescribe estas dos funciones recursivamente. Reescribe estas funciones
      usando @c{cond}.
 
    - Escribe una función para el modo Texinfo que crea una entrada índice al
-     principio de un párrafo para cada @'{@@dfn} con el párrafo. (En un
-     fichero Texinfo, @'{@@dfn} marca una definición. El libro es escrito en
-     Texinfo.)
+     principio de un párrafo para cada @'{@@dfn} dentro del mismo. (En un
+     fichero Texinfo, @'{@@dfn} marca una definición.)
 
-     Muchas de las funciones necesitarán ser descritas en dos de los
-     capítulos, @l{#Corte y Almacenamiento de Texto} y @l{Pegando texto}. Si usas
-     @c{forward-paragraph} para poner la entrada índice al principio del
-     párrafo, tendrá que usar @k{C-h f} (@c{describe-function}) para
-     encontrar cómo conseguir que el comando vaya hacia atrás.
+     Muchas de las funciones que necesitaras se describen en los dos capitulos anteriores,
+     Secciones @l{#Corte y Almacenamiento de Texto} y @l{#Pegando texto}. Si usas
+     @c{forward-paragraph} para poner la entrada de índice al principio del
+     párrafo, tendrás que usar @k{C-h f} @%c{describe-function} para
+     averiguar como hacer que el comando vaya hacia atrás.
 
-
-   Para más información, ver “Indicando Definiciones, Comandos, etc.” en
-   @e{Texinfo} el @e{Formato de Documentación de GNU}.
+   Para obtener más información, consulta la Seccion
+   @l{info:texinfo#Indicating<>Indicando Definiciones, Comandos, etc.}  en el
+   @e{Manual de Texinfo} dentro de Emacs. O, tambien puedes consultarlo en
+   internet en @l{http://www.gnu.org/software/texinfo/manual/texinfo/}
 
 * Búsqueda de expresiones regulares
 
@@ -8556,7 +8527,7 @@ and promoting software freedom.”
    exitosa, deja el punto inmediatamente después del último caracter en el
    objetivo. Si la búsqueda es hacia atrás, deja el punto antes del primer
    caracter en el objetivo. Se puede contar @c{re-search-forward} para
-   devolver @c{t} a cierto. (Moviendo el punto es por ello un ‘efecto
+   devolver @c{t} a verdadero. (Moviendo el punto es por ello un ‘efecto
    lateral’.)
 
    Como @c{search-forward}, la función @c{re-search-forward} toma cuatro
@@ -8582,10 +8553,10 @@ and promoting software freedom.”
    La plantilla para @c{re-search-forward} se parece a esto:
 
    ..src > elisp
-     (re-search-forward "@V{regular-expression}"
-                     @V{limit-of-search}
-                     @V{what-to-do-if-search-fails}
-                     @V{repeat-count})
+     (re-search-forward "regular-expression"
+                     limit-of-search
+                     what-to-do-if-search-fails
+                     repeat-count)
    < src..
 
    El segundo, tercer, y cuarto argumentos son opcionales. Sin embargo, si se
@@ -8652,18 +8623,18 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun forward-sentence (&optional arg)
-       "@V{documentation}…"
+       "documentation…"
        (interactive "p")
        (or arg (setq arg 1))
        (let ((opoint (point)) (sentence-end (sentence-end)))
          (while (< arg 0)
            (let ((pos (point))
                  (par-beg (save-excursion (start-of-paragraph-text) (point))))
-            @V{rest-of-body-of-while-loop-when-going-backwards}
+            rest-of-body-of-while-loop-when-going-backwards
          (while (> arg 0)
            (let ((par-end (save-excursion (end-of-paragraph-text) (point))))
-            @V{rest-of-body-of-while-loop-when-going-forwards}
-         @V{handle-forms-and-equivalent}
+            rest-of-body-of-while-loop-when-going-forwards
+         handle-forms-and-equivalent
    < src..
 
    ¡Esto parece bastante simple! La definición de la función consiste de
@@ -8694,7 +8665,7 @@ and promoting software freedom.”
 *** Los bucles @c{while}
 
     Sigue dos bucles @c{while}. El primer @c{while} tiene un
-    true-or-false-test que chequea cierto si el argumento prefijo para
+    true-or-false-test que chequea verdadero si el argumento prefijo para
     @c{forward-sentence} es un número negativo. Esto es para volver hacia
     atrás. El cuerpo de este bucle es similar al cuerpo de la segunda
     cláusula @c{while}, pero eso no es exactamente el mismo. Se obviará este
@@ -8705,15 +8676,15 @@ and promoting software freedom.”
 
     ..src > elisp
       (while (> arg 0)            ; true-or-false-test
-        (let @V{varlist}
-          (if (@V{true-or-false-test})
-              @V{then-part}
-            @V{else-part}
+        (let varlist
+          (if (true-or-false-test)
+              then-part
+            else-part
         (setq arg (1- arg))))     ; @c{while} @e{loop decrementer}
     < src..
 
     El bucle @c{while} es el tipo de decremento. (Vea la Seccion @l{Los bucles
-    @c{while}}.) Eso tiene un true-or-false-test que chequea cierto tan largo
+    @c{while}}.) Eso tiene un true-or-false-test que chequea verdadero tan largo
     con el contador (en este caso, la variable @c{arg}) es mayor que cero; y
     eso tiene un decremento que elimina 1 desde el valor del contador cada
     vez que el bucle se repite.
@@ -8767,7 +8738,7 @@ and promoting software freedom.”
         (goto-char par-end)))                        ; else-part
     < src..
 
-    El test @c{if} si su primer argumento es cierto y si así, evalúa su parte
+    la prueba @c{if} si su primer argumento es verdadero y si así, evalúa su parte
     then; de otro modo, el intérprete Emacs Lisp evalúa la parte else. El
     true-or-false-test de la expresión @c{if} es la búsqueda de la expresión
     regular.
@@ -8856,11 +8827,11 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun forward-paragraph (&optional arg)
-       "@V{documentation}…"
+       "documentation…"
        (interactive "p")
        (or arg (setq arg 1))
        (let*
-           @V{varlist}
+           varlist
          (while (and (< arg 0) (not (bobp)))     ; backward-moving-code
            …
          (while (and (> arg 0) (not (eobp)))     ; forward-moving-code
@@ -9067,10 +9038,10 @@ and promoting software freedom.”
     de @c{arg} por uno.
 
     (Si estamos al fin del búfer, no podemos ir más hacia adelante y el
-    siguiente bucle de la expresión @c{while} chequeará falso desde que el
+    siguiente bucle de la expresión @c{while} probará falso desde que el
     test es un @c{and} con @c{(not (eobp))}. La función @c{not} significa
     exactamente como se esperaba; eso es otro nombre de @c{null}, una función
-    que devuelve cierto cuando su argumento es falso.)
+    que devuelve verdadero cuando su argumento es falso.)
 
     De manera interesante, el bucle cuenta que no se decrementa hasta que
     deje el espacio entre párrafos, a menos que vuelva al fin del búfer o
@@ -9083,7 +9054,7 @@ and promoting software freedom.”
     izquierdo de la línea actual.
 
     La función @c{looking-at} es también auto-explicativa; eso devuelve
-    cierto si el texto después del punto asocia la expresión regular dada
+    verdadero si el texto después del punto asocia la expresión regular dada
     como su argumento.
 
     El resto del cuerpo del bucle se ve compleja al principio, pero tiene
@@ -9320,8 +9291,8 @@ and promoting software freedom.”
    - @c(while) ::
 
      Repetidamente evalúa el cuerpo de la expresión tan larga como el primer
-     elemento del cuerpo chequea cierto. Entonces devuelve @c{nil}. (La
-     expresión es evaluado solo por sus efectos laterales.)
+     elemento del cuerpo chequea verdadero. Entonces devuelve @c{nil}. (La
+     expresión es evaluado solo por sus efectos secundarios.)
 
      Por ejemplo:
 
@@ -9388,7 +9359,7 @@ and promoting software freedom.”
 
    - @c(eobp) ::
 
-     Devuelve @c{t} para cierto si el punto está en el fin de la parte
+     Devuelve @c{t} para verdadero si el punto está en el fin de la parte
      accesible de un búfer. El fin de la parte accesible es el fin del
      búfer no está encogido; eso es el fin de la parte encogida si el búfer
      está encogido.
@@ -9418,7 +9389,7 @@ and promoting software freedom.”
   La distribución de Emacs estándar contiene una función para contar el
   número de líneas en una región.
 
-  Hay cierto tipo de pregunta escrita para contar palabras. De este modo, si
+  Hay verdadero tipo de pregunta escrita para contar palabras. De este modo, si
   se escribe un ensayo, puede limitarse a 800 palabras; si se escribe una
   novela, te puedes disciplinar a ti mismo a escribir 1000 palabras al
   día. Parece raro, pero durante mucho tiempo, a Emacs le faltó un comando
@@ -9447,7 +9418,7 @@ and promoting software freedom.”
 
    Claramente, contar palabras es un acto repetitivo: empezando desde el
    principio de la región, se cuenta la primera palabra, entonces la segunda
-   palabra, entonces la tercera palabra, y así, hasta que logres el fin de la
+   palabra, entonces la tercera palabra, y así sucesivamente, hasta que logres el fin de la
    región. Esto significa que contar palabras se ajusta idealmente a
    recursión o a un bucle @c{while}.
 
@@ -9458,10 +9429,10 @@ and promoting software freedom.”
    La plantilla para una definición de función interactiva es, como siempre:
 
    ..src > elisp
-     (defun @V{name-of-function} (@V{argument-list})
-       "@V{documentation}…"
-       (@V{interactive-expression}…)
-       @V{body}…)
+     (defun name-of-function (argument-list)
+       "documentation…"
+       (interactive-expression…)
+       body…)
    < src..
 
    Lo que necesitamos hacer es rellenar los slots.
@@ -9498,7 +9469,7 @@ and promoting software freedom.”
 
    La parte central del cuerpo de la función consiste en un bucle @c{while}
    en el que una expresión salta el punto hacia delante palabra por palabra,
-   y otra expresión cuenta estos saltos. Si el test-verdadero-o-falso del
+   y otra expresión cuenta estos saltos. Si la prueba-verdadero-o-falso del
    bucle @c{while} es verdadero, el punto saltaría hacia adelante, y si es
    falso el punto estaría al fin de la región.
 
@@ -9641,7 +9612,7 @@ and promoting software freedom.”
 
     Emacs te contará, correctamente, que la región tiene tres palabras.
 
-    Repite el test, pero marca el lugar al principio de la línea y emplaza el
+    Repite la prueba, pero marca el lugar al principio de la línea y emplaza el
     punto justo @e{antes} de la palabra @'{uno}. De nuevo escribe el comando
     @k{C-c =} (o @k{M-x count-words-example}). Emacs cuenta que la región no
     tiene palabras, puesto que eso está compuesto solo por espacios en blanco
@@ -9662,7 +9633,7 @@ and promoting software freedom.”
     Considere la primera manifestación del error, en el que el comando te
     cuenta que el espacio en blanco al principio de la línea contiene una
     palabra. Lo que ocurre es esto: El comando @c{M-x count-words-example} mueve
-    el punto al principio de la región. El test @c{while} si el valor del
+    el punto al principio de la región. La prueba @c{while} si el valor del
     punto es más pequeño de lo que el valor de @c{end}, que es. Por
     consiguiente, en la expresión regular se busca y encuentra la primera
     palabra. Eso deja el punto después de la palabra. @c{count} que se
@@ -9730,13 +9701,13 @@ and promoting software freedom.”
     encuentra la búsqueda objetiva. Después la expresión
     @c{re-search-forward} devuelve @c{nil}, la siguiente expresión en el
     bucle @c{while} está evaluado. Esta expresión incrementa el
-    contador. Entonces el bucle repite. El test true-or-false-test chequea
-    cierto porque el valor del punto es todavía menor que el valor final,
+    contador. Entonces el bucle repite. La prueba true-or-false-test chequea
+    verdadero porque el valor del punto es todavía menor que el valor final,
     desde que la expresión @c{re-search-forward} no movería el punto. … y el
     ciclo repite …
 
     La definición @c{count-words-example} requiere todavía de otra modificación
-    para causar el true-or-false-test del bucle @c{while} para chequear falso
+    para causar el true-or-false-test del bucle @c{while} para probar falso
     si la búsqueda falla. Pon otro camino, hay dos condiciones que deben ser
     satisfechas en el true-or-false-test antes que el contador de palabras
     variable se incremente: el punto debe todavía estar con la región y la
@@ -9757,7 +9728,7 @@ and promoting software freedom.”
     exitosa y como efecto secundario se mueve el punto. Consiguientemente, como
     las palabras se encuentran, el punto es movido a través de la
     región. Cuando la búsqueda de la expresión falla para encontrar otra
-    palabra, o cuando el punto logra el fin de la región, el test
+    palabra, o cuando el punto logra el fin de la región, la prueba
     true-or-false-test es falso, el bucle @c{while} existe, y la función
     @c{count-words-example} muestra uno u otro de sus mensajes.
 
@@ -9826,18 +9797,18 @@ and promoting software freedom.”
    ..src > elisp
      ;; Versión Recursiva; usa la búsqueda de la expresión regular
      (defun count-words-example (beginning end)
-       "@V{documentation}…"
-       (@V{interactive-expression}…)
+       "documentation…"
+       (interactive-expression…)
 
      ;;; 1. Configura condiciones apropiadas.
-       (@V{explanatory message})
-       (@V{set-up functions}…
+       (explanatory message)
+       (set-up functions…
 
      ;;; 2. Contar las palabras.
-         @V{recursive call}
+         recursive call
 
      ;;; 3. Envía un mensaje al usuario.
-         @V{message providing word count}))
+         message providing word count))
    < src..
 
    La definición parece sencilla, excepto que como el contador devuelve la
@@ -9881,27 +9852,27 @@ and promoting software freedom.”
 
    Lo siguiente, que se necesita es escribir la función de contaje recursivo.
 
-   Una función recursiva tiene al menos tres partes: el ‘do-again-test’, la
-   ‘next-step-expression’, y la llamada recursiva.
+   Una función recursiva tiene al menos tres partes: el ‘prueba-hazlo-de-nuevo’, la
+   ‘expresion-del-siguiente-paso’, y la llamada recursiva.
 
-   El do-again-test determina si la función será o no llamada de
+   La prueba-hazlo-de-nuevo determina si la función será o no llamada de
    nuevo. Puesto que estamos contando palabras en una región y puede causar
    que una función se mueva el punto hacia delante por cada palabra, el
-   do-again-test puede chequear si el punto está todavía con la región. El
-   do-again-test encontraría el valor del punto y determina si el punto está
+   prueba-hazlo-de-nuevo puede probar si el punto está todavía con la región. El
+   prueba-hazlo-de-nuevo encontraría el valor del punto y determina si el punto está
    antes, en, o después del valor del fin de la región. Se puede usar la
    función @c{point} para localizar el punto. Claramente, se debe pasar el
    valor del fin de la región a la función de contaje recursivo como un
    argumento.
 
-   Además, el do-again-test también chequea si la búsqueda encuentra una
+   Además, el prueba-hazlo-de-nuevo también chequea si la búsqueda encuentra una
    palabra. Si no, la función no se llamaría de nuevo.
 
-   La next-step-expression cambia un valor así que cuando la función
+   La expresion-del-siguiente-paso cambia un valor así que cuando la función
    recursiva se supone que debe parar de llamarse así misma, se para. Más
-   precisamente, los cambios de next-step-expression cambia un valor así en
-   el momento adecuado, el do-again-test para la función recursiva de la
-   llamada en sí de nuevo. En este caso, la next-step-expression puede ser la
+   precisamente, los cambios de expresion-del-siguiente-paso cambia un valor así en
+   el momento adecuado, el prueba-hazlo-de-nuevo para la función recursiva de la
+   llamada en sí de nuevo. En este caso, la expresion-del-siguiente-paso puede ser la
    expresión que mueve el punto hacia adelante, palabra por palabra.
 
    La tercera parte de una función recursiva es la llamada recursiva.
@@ -9913,10 +9884,10 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun recursive-count-words (region-end)
-       "@V{documentation}…"
-        @V{do-again-test}
-        @V{next-step-expression}
-        @V{recursive call})
+       "documentation…"
+        prueba-hazlo-de-nuevo
+        expresion-del-siguiente-paso
+        recursive call)
    < src..
 
    Ahora se necesita rellenar los slots. Permite comenzar con el caso más
@@ -9928,45 +9899,45 @@ and promoting software freedom.”
    Por otro lado, si se apunta con la región y la búsqueda tiene éxito, la
    función se llamaría de nuevo.
 
-   De este modo, do-again-test se vería así:
+   De este modo, prueba-hazlo-de-nuevo se vería así:
 
    ..src > elisp
      (and (< (point) region-end)
           (re-search-forward "\\w+\\W*" region-end t))
    < src..
 
-   Note que la expresión de búsqueda es parte del do-again-test --- la
+   Note que la expresión de búsqueda es parte del prueba-hazlo-de-nuevo --- la
    función devuelve @c{t} si su búsqueda tiene éxito y @c{nil} si
    falla. (Vea la Seccion @l{Error de espacio en blanco, , El Error de Espacio
    en Blanco en @c{count-words-example}}), para una explicación de cómo
    @c{re-search-forward} funciona.)
 
-   El do-again-test es el test true-or-false de una cláusula
-   @c{if}. Claramente si el do-again-test tiene éxito, la then-part de la
+   La prueba-hazlo-de-nuevo es la prueba true-or-false de una cláusula
+   @c{if}. Claramente si el prueba-hazlo-de-nuevo tiene éxito, la then-part de la
    cláusula @c{if} llamaría a la función; pero si eso falla, la else-part
    devolvería cero desde que el punto está fuera de la región o la búsqueda
    falló porque no había palabras a encontrar.
 
    Pero antes de considerar la llamada recursiva, se necesita considerar la
-   next-step-expression. ¿Qué es eso? De manera interesante, eso es la parte
-   de la búsqueda del do-again-test.
+   expresion-del-siguiente-paso. ¿Qué es eso? De manera interesante, eso es la parte
+   de la búsqueda del prueba-hazlo-de-nuevo.
 
-   Además para devolver @c{t} o @c{nil} para el do-again-test,
+   Además para devolver @c{t} o @c{nil} para el prueba-hazlo-de-nuevo,
    @c{re-search-forward} mueve el punto hacia adelante como un efecto secundario
    de una búsqueda exitosa. Esta es la acción que cambia el valor de punto
    así que la función recursiva para de llamarse a sí misma cuando el punto
    complete su movimiento a través de la región. Por consiguiente, la
-   expresión @c{re-search-forward} es la next-step-expression.
+   expresión @c{re-search-forward} es la expresion-del-siguiente-paso.
 
    En esquema, entonces, el cuerpo de la función @c{recursive-count-words} se
    parece a esto:
 
    ..src > elisp
-     (if @V{do-again-test-and-next-step-combined}
+     (if prueba-hazlo-de-nuevo-and-next-step-combined
          ;; then
-         @V{recursive-call-returning-count}
+         recursive-call-returning-count
        ;; else
-       @V{return-zero})
+       return-zero)
    < src..
 
    ¿Cómo incorporar el mecanismo que cuenta?
@@ -9976,7 +9947,7 @@ and promoting software freedom.”
    sistemáticamente.
 
    Se sabe que el mecanismo de contaje sería asociado en algún lugar con la
-   llamada recursiva. En vez de eso, desde que la next-step-expression mueve
+   llamada recursiva. En vez de eso, desde que la expresion-del-siguiente-paso mueve
    el punto hacia adelante por una palabra, y desde que una llamada recursiva
    es hecha para cada palabra, el mecanismo de contaje debe ser una expresión
    que añade uno al valor devuelto por una llamada para
@@ -10014,9 +9985,9 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun recursive-count-words (region-end)
-       "@V{documentation}…"
+       "documentation…"
 
-     ;;; 1. do-again-test
+     ;;; 1. prueba-hazlo-de-nuevo
        (if (and (< (point) region-end)
                 (re-search-forward "\\w+\\W*" region-end t))
 
@@ -10034,13 +10005,13 @@ and promoting software freedom.”
 
    Si hay una palabra en la región, el valor del punto es menor que el valor
    de @c{region-end} y la búsqueda tiene éxito. En este caso, el
-   true-or-false-test de la expresión @c{if} chequea cierto, y la then-part
+   true-or-false-test de la expresión @c{if} chequea verdadero, y la then-part
    de la expresión @c{if} es evaluada. La expresión de contaje se
    evalúa. Esta expresión devuelve un valor (que será el valor devuelto por
    la función completa) que es la suma de uno añadida al valor devuelto por
    una llamada recursiva.
 
-   Mientras tanto, la next-step-expression ha causado el punto para saltar a
+   Mientras tanto, la expresion-del-siguiente-paso ha causado el punto para saltar a
    través de la primera (y en este caso única) palabra en la región. Esto
    significa que cuando @c{(recursive-count-words region-end)} está evaluada
    una segunda vez, como un resultado de la llamada recursiva, el valor del
@@ -10058,7 +10029,7 @@ and promoting software freedom.”
    Similarmente, si hay tres palabras en la región, la primera llamada
    @c{recursive-count-words} devuelve uno añadido al valor devuelto llamado
    @c{recursive-count-words} en una región conteniendo las dos palabras que
-   faltan––y así.
+   faltan––y así sucesivamente.
 
    Con documentación completa las dos funciones se parecen a esto:
 
@@ -10068,7 +10039,7 @@ and promoting software freedom.”
      (defun recursive-count-words (region-end)
        "Número de palabras entre punto y REGION-END."
 
-     ;;; 1. do-again-test
+     ;;; 1. prueba-hazlo-de-nuevo
        (if (and (< (point) region-end)
                 (re-search-forward "\\w+\\W*" region-end t))
 
@@ -10308,10 +10279,10 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun count-words-in-defun ()
-       "@V{documentation}…"
-       (@V{set up}…
-          (@V{while loop}…)
-        @V{return count})
+       "documentation…"
+       (set up…
+          (while loop…)
+        return count)
    < src..
 
    Así, el trabajo es rellenar los slots.
@@ -10365,7 +10336,7 @@ and promoting software freedom.”
 
    El bucle debe contener una expresión que mueva el punto hacia adelante
    palabra por palabra y símbolo por símbolo, y otra expresión que cuente los
-   saltos. El test-verdadero-o-falso para el bucle @c{while} chequearía
+   saltos. La prueba-verdadero-o-falso para el bucle @c{while} probaría
    verdadero tan largo como el punto debería saltar hacia adelante, y falso
    si apunta al fin de la definición. Ya se ha redefinido la expresión
    regular para esto, así el bucle es sencillo:
@@ -10698,15 +10669,15 @@ and promoting software freedom.”
    La plantilla se ve así:
 
    ..src > elisp
-     (while @V{test-whether-list-is-empty}
-       @V{body}…
-       @V{set-list-to-cdr-of-list})
+     (while test-whether-list-is-empty
+       body…
+       set-list-to-cdr-of-list)
    < src..
 
    También, recuérdanos que un bucle @c{while} devuelve @c{nil} (el resultado
    de evaluar el true-or-false-test), no el resultado de cualquier evaluación
    con su cuerpo. (Las evaluaciones con el cuerpo del bucle son hechas para
-   sus efectos laterales.) Sin embargo, la expresión que asigna la lista de
+   sus efectos secundarios.) Sin embargo, la expresión que asigna la lista de
    tamaños es parte del cuerpo––y que es el valor que queremos devuelto por
    la función como un todo. Para hacer esto cerramos el bucle @c{while} con
    una expresión @c{let}, y pone en orden que el último elemento de la
@@ -10795,10 +10766,10 @@ and promoting software freedom.”
    recursión. Una versión recursiva de @c{lengths-list-many-files} es corta y
    simple.
 
-   La función recursiva tiene las partes normales: el ‘do-again-test’, la
-   ‘next-step-expression’, y la llamada recursiva. El ‘do-again-test’
+   La función recursiva tiene las partes normales: el ‘prueba-hazlo-de-nuevo’, la
+   ‘expresion-del-siguiente-paso’, y la llamada recursiva. El ‘prueba-hazlo-de-nuevo’
    determina si la función se llamaría, que hará si la @c{list-of-files}
-   contiene los elementos que permanecen; la ‘next-step-expression’ resetea
+   contiene los elementos que permanecen; la ‘expresion-del-siguiente-paso’ resetea
    el @c{list-of-files} al @c{cdr} en sí, así finalmente la lista será
    vacía; y la llamada recursiva llama en sí a la lista ordenada. ¡La función
    completa está ordenada por esta descripción!
@@ -10806,7 +10777,7 @@ and promoting software freedom.”
    ..src > elisp
      (defun recursive-lengths-list-many-files (list-of-files)
        "Devuelve la lista de tamaños de cada defun en LIST-OF-FILES."
-       (if list-of-files                     ; do-again-test
+       (if list-of-files                     ; prueba-hazlo-de-nuevo
            (append
             (lengths-list-file
              (expand-file-name (car list-of-files)))
@@ -10866,7 +10837,7 @@ and promoting software freedom.”
    números ajustado para generar un grafo. La nueva lista contará cuántas
    definiciones de funciones contienen menos de 10 palabras y símbolos,
    cuantas contienen entre 10 y 19 palabras y símbolos, cuántas contienen
-   entre 20 y 29 palabras y símbolos, y así.
+   entre 20 y 29 palabras y símbolos, y así sucesivamente.
 
    En breve, se necesita ir a través el tamaño de la lista producida por la
    función @c{recursive-lengths-list-many-files} y contar el número de defuns
@@ -11025,7 +10996,7 @@ and promoting software freedom.”
     elemento.)
 
     Se querrán nuestras nuevas funciones, @c{files-in-below-directory}, para
-    listar los fichero @'{.el} en el directorio eso es contado para chequear,
+    listar los fichero @'{.el} en el directorio eso es contado para probar,
     y en los directorios bajo este directorio.
 
     Esto nos da una sugestión de como construir @c{files-in-below-directory}:
@@ -11070,7 +11041,7 @@ and promoting software freedom.”
       (defun files-in-below-directory (directory)
         "Lista los ficheros .el en DIRECTORIO y en sus subdirectorios."
         ;; Aunque la función será usada no interactivamente,
-        ;; será fácil chequear si lo hacemos interactivo.
+        ;; será fácil probar si lo hacemos interactivo.
         ;; El directorio tendrá un nombre tal como
         ;;  "/usr/local/share/emacs/22.1.1/lisp/"
         (interactive "DNombre del Directorio: ")
@@ -11136,13 +11107,13 @@ and promoting software freedom.”
     Nuestro objetivo inmediato es generar una lista que cuenta, cuantas
     definiciones de funciones contienen menos de 10 palabras y símbolos,
     cuantas contienen entre 10 y 19 palabras y símbolos, cuantas contienen
-    entre 20 y 29 palabras y símbolos, y así.
+    entre 20 y 29 palabras y símbolos, y así sucesivamente.
 
     Con una lista ordenada de números, es fácil: se cuentan cuantos elementos
     de la lista son más pequeños de 10, entonces, se devuelven los números
     contados, se cuenta cuantos son más pequeños de 20, entonces se devuelven
     los números contados, después se cuentan los que son más pequeños de 30,
-    y así. Cada uno de los números, 10, 20, 30, 40, y como, es más grande que
+    y así sucesivamente. Cada uno de los números, 10, 20, 30, 40, y como, es más grande que
     el tope de este rango. Se puede llamar a la lista de tales números, la
     lista @c{top-of-ranges}.
 
@@ -11184,7 +11155,7 @@ and promoting software freedom.”
 
     El bucle interno cuenta el número de definiciones con el rango. Eso es un
     simple contaje del tipo en el que se ha visto antes. (Vea la Seccion @l{Un
-    bucle con un contaje incremental}). El test true-or-false del bucle
+    bucle con un contaje incremental}). La prueba true-or-false del bucle
     chequea si el valor desde la lista @c{sorted-lengths} es más pequeña que
     el actual valor de lo alto del rango. Si es así, la función incrementa el
     contador y se chequea el siguiente valor desde la lista
@@ -11193,7 +11164,7 @@ and promoting software freedom.”
     El bucle interno se parece a esto:
 
     ..src > elisp
-      (while @V{length-element-smaller-than-top-of-range}
+      (while length-element-smaller-than-top-of-range
         (setq number-within-range (1+ number-within-range))
         (setq sorted-lengths (cdr sorted-lengths)))
     < src..
@@ -11205,7 +11176,7 @@ and promoting software freedom.”
 
     ..src > elisp
       (while top-of-ranges
-        @V{body-of-loop}…
+        body-of-loop…
         (setq top-of-ranges (cdr top-of-ranges)))
     < src..
 
@@ -11215,7 +11186,7 @@ and promoting software freedom.”
       (while top-of-ranges
 
         ;; Contar el número de elementos con el actual rango.
-        (while @V{length-element-smaller-than-top-of-range}
+        (while length-element-smaller-than-top-of-range
           (setq number-within-range (1+ number-within-range))
           (setq sorted-lengths (cdr sorted-lengths)))
 
@@ -11273,7 +11244,7 @@ and promoting software freedom.”
 
             ;; Bucle Interno.
             (while (and
-                    ;; Necesita el número para el test numérico.
+                    ;; Necesita el número para la prueba numérico.
                     (car sorted-lengths)
                     (< (car sorted-lengths) top-of-range))
 
@@ -11305,7 +11276,7 @@ and promoting software freedom.”
           (nreverse defuns-per-range-list)))
     < src..
 
-    La función es simple excepto para una pequeña funcionalidad. El test
+    La función es simple excepto para una pequeña funcionalidad. La prueba
     verdadero-o-falso para el bucle interno se parece a esto:
 
     ..src > elisp
@@ -11368,7 +11339,7 @@ and promoting software freedom.”
     < src..
 
     Dentro, hay dos elementos de la lista @c{sorted-lengths} menores de 110,
-    dos elementos entre 110 y 119, dos elementos entre 120 y 129 y así. Hay
+    dos elementos entre 110 y 119, dos elementos entre 120 y 129 y así sucesivamente. Hay
     cuatro elementos con un valor de 200 o superior.
 
 * Leyendo un grafo
@@ -11634,7 +11605,7 @@ and promoting software freedom.”
   columna son ‘codificadas duras’ como un espacio y un asterisco. Esto está
   bien para un prototipo, pero tu, u otro usuario, puede desear usar otros
   símbolos. Por ejemplo, chequeando la función grafo, tu quieres usar un
-  periodo en vez del espacio, asegura el punto que está siendo reposicionando
+  periodo en vez del espacio, asegura el punto que está siendo recolocando
   apropiadamente cada vez que la función @c{insert-rectangle} se llama; o se
   podría querer sustituir un signo @'{+} u otro símbolo para el asterisco. Se
   podría incluso querer hacer un graph-column que es más que un ancho de
@@ -11726,12 +11697,12 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun graph-body-print (numbers-list)
-       "@V{documentation}…"
+       "documentation…"
        (let ((height  …
               …))
 
          (while numbers-list
-           @V{insert-columns-and-reposition-point}
+           insert-columns-and-reposition-point
            (setq numbers-list (cdr numbers-list)))))
    < src..
 
@@ -11794,7 +11765,7 @@ and promoting software freedom.”
    por columna. Sin eso, Emacs no redibujaría la pantalla hasta que la
    función exista.
 
-   Se puede chequear @c{graph-body-print} con una pequeña lista de números.
+   Se puede probar @c{graph-body-print} con una pequeña lista de números.
 
    1. Instala @c{graph-symbol}, @c{graph-blank}, @c{column-of-graph}, que
       están en @l{Leyendo un grafo}, and @c{graph-body-print}.
@@ -11853,12 +11824,12 @@ and promoting software freedom.”
    < src..
 
    La función recursiva es un poco más difícil. Eso tiene cuatro partes: el
-   ‘do-again-test’, el código impreso, la llamada recursiva, y la
-   ‘next-step-expression’. El ‘do-again-test’ es una expresión @c{when}
+   ‘prueba-hazlo-de-nuevo’, el código impreso, la llamada recursiva, y la
+   ‘expresion-del-siguiente-paso’. El ‘prueba-hazlo-de-nuevo’ es una expresión @c{when}
    determina si la @c{numbers-list} contiene cualquier elemento que
    permanece; si hace eso, la función imprime una columna del grafo usando el
    código impreso y se llama así mismo de nuevo. La función se llama así
-   misma de nuevo de acuerdo al valor producido por la ‘next-step-expression’
+   misma de nuevo de acuerdo al valor producido por la ‘expresion-del-siguiente-paso’
    que causa para llamar a actuar en una versión ordenada de la
    @c{numbers-list}.
 
@@ -11949,7 +11920,7 @@ and promoting software freedom.”
 
   Se puede personalizar y extender Emacs escribiendo o adaptando un fichero
   @f{~/.emacs}. Esto es un fichero de inicialización personal; sus
-  contenidos, escritos en Emacs Lisp, cuentan a Emacs qué hacer.@n{13}
+  contenidos, escritos en Emacs Lisp, cuentan a Emacs qué hacer.@n{14}
 
   Un fichero @f{~/.emacs} contiene código Emacs Lisp. Se puede escribir este
   código por uno mismo; o se puede usar la funcionalidad @c{customize} para
@@ -12332,7 +12303,7 @@ and promoting software freedom.”
    < src..
 
    Este comando @c{setq} asigna el valor de la variable @c{mail-aliases} al
-   @c{t}. Desde que @c{t} significa cierto, la línea dice, en efecto, “Sí uso
+   @c{t}. Desde que @c{t} significa verdadero, la línea dice, en efecto, “Sí uso
    alias de correo.”
 
    Los alias de correo son nombres cortos convenientes para largas
@@ -12701,7 +12672,7 @@ and promoting software freedom.”
 
    Por ejemplo, en versiones más recientes se ocultan los cursores por
    defecto. Si se odia tal ocultación se escribe lo siguiente en mi fichero
-   @f{.emacs}@n{14}:
+   @f{.emacs}@n{15}:
 
    ..src > elisp
      (when (>= emacs-major-version 21)
@@ -12781,7 +12752,7 @@ and promoting software freedom.”
    < example..
 
    En cualquier evento que no es parte de Emacs, se asigna el color raíz de
-   mi ventana X en mi fichero @f{~/.xinitrc}, como este@n{15}
+   mi ventana X en mi fichero @f{~/.xinitrc}, como este@n{16}
 
    ..example >
      xsetroot -solid Navy -fg white &
@@ -12999,7 +12970,7 @@ and promoting software freedom.”
 
    Muchos elementos en la lista son auto-explicativos: @c{mode-line-modified}
    es una variable que cuenta si el búfer ha sido modificado, @c{mode-name}
-   cuenta el nombre del modo, y así. Sin embargo, el formato parece
+   cuenta el nombre del modo, y así sucesivamente. Sin embargo, el formato parece
    complicado porque las dos funcionalidades no han sido discutidas.
 
 
@@ -13314,30 +13285,30 @@ and promoting software freedom.”
    Edebug se describe en Seccion @"{edebug} en @e{El Manual de Referencia de
    GNU Emacs Lisp}.
 
-   Aquí hay una función con errores para @c{triangle-recursively}. Véase
+   Aquí hay una función con errores para @c{triangulo-recursivo}. Véase
    Sección @l{Recursión en lugar de un contador}, para una revisión de eso.
 
    ..src > elisp
-     (defun triangle-recursively-bugged (number)
+     (defun triangulo-recursivo-bugged (number)
        "Devuelve la suma of números 1 a través de NUMBER inclusive.
      Usa recursión."
        (if (= number 1)
            1
          (+ number
-            (triangle-recursively-bugged
+            (triangulo-recursivo-bugged
              (1= number)))))               ; Error aquí.
    < src..
 
-   Normalmente, se instalaría esta definición posicionando su cursor después
+   Normalmente, se instalaría esta definición colocando su cursor después
    de la función cerrando paréntesis y escribiendo @k{C-x C-e}
-   (@c{eval-last-sexp}) o lo demás posicionando tu cursor con la definición y
+   (@c{eval-last-sexp}) o lo demás colocando tu cursor con la definición y
    escribiendo @k{C-M-x} (@c{eval-defun}). (Por defecto, el comando
    @c{eval-defun} funciona solo en modo Emacs Lisp o en el modo de
    interacción de Lisp.)
 
    Sin embargo, para preparar esta definición de función para Edebug, se debe
    primero @:{instrumentar} el código usando un comando diferente. Se puede
-   hacer esto posicionando el cursor dentro o después de la definición y
+   hacer esto coloca el cursor dentro o después de la definición y
    escribiendo
 
    ..example >
@@ -13351,10 +13322,10 @@ and promoting software freedom.”
    expresión y escribe @k{C-x C-e} (@c{eval-last-sexp}):
 
    ..src > elisp
-     (triangle-recursively-bugged 3)
+     (triangulo-recursivo-bugged 3)
    < src..
 
-   Se vuelve a las fuentes de @c{triangle-recursively-bugged} y el cursor se
+   Se vuelve a las fuentes de @c{triangulo-recursivo-bugged} y el cursor se
    posiciona al principio del @c{if} de la línea de la función. También, se
    verá una flecha en la mano izquierda al lado de esta línea donde la
    función se está ejecutando. (En los siguientes ejemplos, se muestra la
@@ -13631,7 +13602,7 @@ and promoting software freedom.”
      (global-set-key "\C-c\\" 'the-the)
    < src..
 
-   Aquí está el test del texto:
+   Aquí está la prueba del texto:
 
    ..example >
      uno dos tres cuatro cinco
@@ -13767,8 +13738,8 @@ and promoting software freedom.”
     ..src > elisp
       (defun current-kill (n &optional do-not-move)
         "Rota el punto a pegar por N lugares, y entonces devuelve el texto cortado."
-        (let @V{varlist}
-          @V{body}…)
+        (let varlist
+          body…)
     < src..
 
     Esta función tiene dos argumentos, uno es opcional. Hay una cadena de
@@ -13804,7 +13775,7 @@ and promoting software freedom.”
         (car ARGth-kill-element))
     < src..
 
-    El código primero chequea si el kill ring @e{anillo de la muerte} tiene
+    El código primero chequea si el anillo de la muerte tiene
     contenido; de otro modo señala un error.
 
     Note que la expresión @c{or} es muy similar para testear el tamaño con un
@@ -13816,13 +13787,13 @@ and promoting software freedom.”
         ;; No hay parte-resto
     < src..
 
-    Si no hay nada en el kill ring @e{anillo de la muerte}, su tamaño debe
+    Si no hay nada en el anillo de la muerte, su tamaño debe
     ser cero y un mensaje de error se envía al usuario: @'{El kill ring está
     vacío}. La función @c{current-kill} usa una expresión @c{or} que es
     simple. Pero una expresión @c{if} recuerda lo que lleva.
 
-    Esta expresión @c{if} usa la función @c{zerop} que devuelve cierto si el
-    valor que se chequea es cero. Cuando @c{zerop} chequea cierto, la parte
+    Esta expresión @c{if} usa la función @c{zerop} que devuelve verdadero si el
+    valor que se chequea es cero. Cuando @c{zerop} chequea verdadero, la parte
     then del @c{if} se evalúa. La parte then es una lista empezando con la
     función @c{error}, que es una función que es similar a la función
     @c{message} (Vease Sección @l{message, , La Función @c{message}}) que
@@ -14075,7 +14046,7 @@ and promoting software freedom.”
     chequeo usa la variable @c{last-command} que se asigna por @c{yank} y
     discutida de algún modo. (Vea la Seccion @l{copy-region-as-kill}.)
 
-    La cláusula @c{let} asigna la variable @c{before} a cierto o falso
+    La cláusula @c{let} asigna la variable @c{before} a verdadero o falso
     dependiendo de si el punto está antes o después de la marca y entonce la
     región entre punto y marca se borra. Esta es la región que fué insertada
     por el yank previo y eso es este texto que será reemplazado.
@@ -14160,7 +14131,7 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun print-graph (numbers-list)
-       "@V{documentation}…"
+       "documentation…"
        (let ((height  …
              …))
          (print-Y-axis height … )
@@ -14288,7 +14259,7 @@ and promoting software freedom.”
 
      La primera expresión devuelve 2 y la segunda expresión devuelve 0.
 
-     Para chequear si el valor devuelto es cero o algún otro número, se puede
+     Para probar si el valor devuelto es cero o algún otro número, se puede
      usar la función @c{zerop}. Esta función devuelve @c{t} si su argumento
      debe ser un número, es cero.
 
@@ -14532,7 +14503,7 @@ and promoting software freedom.”
      eje Y creado por la función @c{Y-axis-column}. Además, eso emplaza el
      punto en la posición correcta para imprimir el cuerpo del grafo.
 
-     Se puede chequear @c{print-Y-axis}:
+     Se puede probar @c{print-Y-axis}:
 
      - Instalar
 
@@ -14844,7 +14815,7 @@ and promoting software freedom.”
 
    ..src > elisp
      (defun print-graph (numbers-list)
-       "@V{documentation}…"
+       "documentation…"
        (let ((height  …
              …))
          (print-Y-axis height … )
@@ -14965,7 +14936,7 @@ and promoting software freedom.”
 
 **** Testeando @c{print-graph}
 
-     Se puede chequear la función @c{print-graph} con una lista ordenada de
+     Se puede probar la función @c{print-graph} con una lista ordenada de
      números:
 
      - Instala las versiones finales de @c{Y-axis-column},
@@ -15041,7 +15012,7 @@ and promoting software freedom.”
      Ahora para el gráfico para el que todo este código fué escrito: un
      gráfico que muestra cuantas definiciones de función contienen unas pocas
      10 palabras y símbolos, cuantas contienen entre 10 y 19 palabras y
-     símbolos, cuantos contienen entre 20 y 29 palabras y símbolos, y así.
+     símbolos, cuantos contienen entre 20 y 29 palabras y símbolos, y así sucesivamente.
 
      Esto es un proceso de múltiples pasos. Primero asegúrate que has cargado
      todo el requisito del código.
@@ -15088,7 +15059,7 @@ and promoting software freedom.”
      Esto significa que mi copia de Emacs tiene 537 definiciones de funciones
      con poco menos de 10 palabras o símbolos en sí, 1027 definiciones de
      función con 10 a 19 palabras o símbolos dentro, 955 definiciones de
-     función con 20 a 29 palabras o símbolos dentro, y así.
+     función con 20 a 29 palabras o símbolos dentro, y así sucesivamente.
 
      Claramente, solo buscando esta lista se puede ver que la mayoría de
      definiciones de función contienen de diez a treinta palabras y símbolos.
@@ -15997,27 +15968,26 @@ and promoting software freedom.”
     entender, los dos enteros son del tipo ‘Lisp_Object’, que también puede
     ser una unión C en lugar de un tipo entero.
 
- :: @N{11} :: Se pueden escribir funciones recursivas para ser frugal o
-    basura mental o recursos de ordenador; como eso ocurre, los métodos que
-    la gente encuentra fáciles––son frugales de ‘recursos mentales’––algunas
-    veces usan recursos de ordenador considerables. Emacs fué diseñado para
-    ejecutarse en máquinas que ahora se consideran limitadas y sus
-    configuraciones por defecto son conservadoras. Se puede querer
-    incrementar los valores de @c{max-specdl-size} y
-    @c{max-lisp-eval-depth}. En mi fichero @f{.emacs}, yo los asigno a 15 o
-    30 veces su valor por defecto.
+ :: @N{11} :: Puedes escribir funciones recursivas para ser frugales o
+    derrochar recursos mentales o computacionales; como sucede, los métodos que
+    la gente encuentra fáciles––que son frugales de ‘recursos mentales’––algunas
+    veces usan considerables recursos del computador. Emacs fué diseñado para
+    ejecutarse en máquinas que ahora consideramos limitadas y su configuracion
+    por defecto es conservadora. Es posible que desees incrementar los valores de
+    @c{max-specdl-size} y @c{max-lisp-eval-depth}. En mi fichero @f{.emacs}, yo
+    los asigno a 15 o 30 veces su valor predeterminado.
 
- :: @N{12} :: La frase @:{cola recursiva} es usado para describir tal
+ :: @N{12} :: La frase @:{recursion de cola} se utiliza para describir tal
     proceso, uno que usa ‘espacio constante’.
 
- :: @N{13} :: La jerga es medianamente confusa: @c{triangle-recursive-helper}
+ :: @N{13} :: La jerga es ligeramente confusa: @c{triangulo-recursivo-auxiliar}
     usa un proceso que es iterativo en un procedimiento que es recursivo. El
-    proceso se llama iterativo porque el ordenador necesita solo grabar los
-    tres valores, @c{suma}, @c{contador}, y @c{número}: el procedimiento es
-    recursivo porque la función ‘llama a sí mismo’. Por otro lado, ambos el
-    proceso y el procedimiento usado por @c{triangle-recursively} son
-    llamados recursivos. La palabra ‘recursivo’ tiene diferentes significados
-    en los dos contextos.
+    proceso se llama iterativo porque el ordenador necesita solo grabar los tres
+    valores, @c{suma}, @c{contador}, y @c{número}: el procedimiento es recursivo
+    porque la función ‘se llama a sí misma’. Por otra parte, tanto el proceso
+    como el procedimiento usado por @c{triangulo-recursivo} se denominan
+    recursivos. La palabra ‘recursivo’ tiene significados diferentes en los dos
+    contextos.
 
  :: @N{14} :: Tu puedes también añadir @f{.el} para @f{~/.emacs} y llama a un
     fichero @f{~/.emacs}. En el pasado, fué prohibido escribir los atajos de

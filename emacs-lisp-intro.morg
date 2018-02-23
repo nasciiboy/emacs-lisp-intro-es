@@ -1,9 +1,9 @@
-@ -*- mode: org; -*-
 ..title    > An Introduction to Programming in Emacs Lisp
 ..subtitle > Revised Third Edition
 ..author   > Robert J. Chassell
 ..define   > edition-number="3.10"
 ..define   > COUNT-WORDS="count-words-example"
+..style    > worg-data/worg.css
 
 This is an @e(Introduction to Programming in Emacs Lisp), for people who are
 not programmers.
@@ -14,13 +14,13 @@ Copyright ® 1990–1995, 1997, 2001–2013 Free Software Foundation, Inc.
 
 Published by the:
 
-..pre >
+..pret >
   GNU Press,                        http://www.fsf.org/campaigns/gnu-press/
-  a division of the                                    email: sales@fsf.org
+  a division of the                                    email: sales@@fsf.org
   Free Software Foundation, Inc.                     Tel: +1 (617) 542-5942
   51 Franklin Street, Fifth Floor                    Fax: +1 (617) 542-2652
   Boston, MA 02110-1301 USA
-< pre..
+< pret..
 
 ISBN 1-882114-43-4
 
@@ -539,7 +539,7 @@ promoting software freedom.”
    like this:
 
    ..example >
-     Symbol's function definition is void:@: this
+     Symbol's function definition is void: this
    < example..
 
    The message goes away as soon as you type a key, even just to move the
@@ -552,7 +552,7 @@ promoting software freedom.”
    complication we can ignore for the moment.)
 
    The error message can be understood: @'{Symbol's function definition is
-   void:@: this}.  The symbol (that is, the word @'{this}) lacks instructions
+   void: this}.  The symbol (that is, the word @'{this}) lacks instructions
    for the computer to carry out.
 
 ** Symbol Names and Function Definitions
@@ -2072,7 +2072,7 @@ promoting software freedom.”
    argument in the same order it is specified in the @c{interactive} list.
    In the string, each part is separated from the next part by a @'{\n},
    which is a newline.  For example, you can follow @'{p} with a @'{\n} and
-   an @'{cZap to char:@: }.  This causes Emacs to pass the value of the
+   an @'{cZap to char: }.  This causes Emacs to pass the value of the
    prefix argument (if there is one) and the character.
 
    In this case, the function definition looks like the following, where
@@ -3344,7 +3344,7 @@ promoting software freedom.”
     @c{interactive} expression looked like this:
 
     ..src > elisp
-      (interactive "BAppend to buffer:@: \nr")
+      (interactive "BAppend to buffer: \nr")
     < src..
 
     But when that was done, the default value of the buffer switched to was
@@ -3712,7 +3712,7 @@ promoting software freedom.”
        "Insert after point the contents of BUFFER.
      Puts mark after the inserted text.
      BUFFER may be a buffer or a buffer name."
-       (interactive "*bInsert buffer:@: ")
+       (interactive "*bInsert buffer: ")
        (or (bufferp buffer)
            (setq buffer (get-buffer buffer)))
        (let (start end newmark)
@@ -3731,14 +3731,14 @@ promoting software freedom.”
    ..src > elisp
      (defun insert-buffer (buffer)
        "documentation…"
-       (interactive "*bInsert buffer:@: ")
+       (interactive "*bInsert buffer: ")
        body…)
    < src..
 
 *** The Interactive Expression in @c{insert-buffer}
 
     In @c{insert-buffer}, the argument to the @c{interactive} declaration has
-    two parts, an asterisk, @'{*}, and @'{bInsert buffer:@: }.
+    two parts, an asterisk, @'{*}, and @'{bInsert buffer: }.
 
 **** A Read-only Buffer
 
@@ -3782,7 +3782,7 @@ promoting software freedom.”
     ..src > elisp
       (defun insert-buffer (buffer)
         "documentation…"
-        (interactive "*bInsert buffer:@: ")
+        (interactive "*bInsert buffer: ")
         (or …
             …
         (let (varlist)
@@ -6116,11 +6116,11 @@ promoting software freedom.”
      saved and select one piece to paste.
 
      The last expression in the @c{kill-new} function adds the newly copied
-     string to whatever facility exists for copying and pasting among
-     different programs running in a windowing system.  In the X Windowing
-     system, for example, the @c{x-select-text} function takes the string and
-     stores it in memory operated by X@.  You can paste the string in another
-     program, such as an Xterm.
+     string to whatever facility exists for copying and pasting among different
+     programs running in a windowing system.  In the X Windowing system, for
+     example, the @c{x-select-text} function takes the string and stores it in
+     memory operated by X. You can paste the string in another program, such as
+     an Xterm.
 
      The expression looks like this:
 
@@ -7089,10 +7089,9 @@ promoting software freedom.”
     The @c{print-elements-of-list} function illustrates a @c{while} loop with
     a list.
 
-    The function requires several lines for its output.  If you are reading
-    this in a recent instance of GNU Emacs, @c GNU Emacs 21, GNU Emacs 22, or
-    a later version, you can evaluate the following expression inside of
-    Info, as usual.
+    The function requires several lines for its output.  If you are reading this
+    in a recent instance of GNU Emacs, you can evaluate the following expression
+    inside of Info, as usual.
 
     If you are using an earlier version of Emacs, you need to copy the
     necessary expressions to your @f{*scratch*} buffer and evaluate them
@@ -9229,7 +9228,7 @@ promoting software freedom.”
     value of @c{nil}, the value resulting from evaluating the last argument
     is returned.  (Since such a value is not @c{nil}, it is considered true
     in Lisp.)  In other words, an @c{and} expression returns a true value
-    only if all its arguments are true.  @findex and
+    only if all its arguments are true.
 
     In this case, the variable @c{fill-prefix-regexp} is bound to a
     non-@c{nil} value only if the following four expressions produce a true
@@ -10902,8 +10901,7 @@ promoting software freedom.”
    function to count the number of words and symbols in each defun.  This
    core must be surrounded by functions that do various other tasks,
    including finding the file, and ensuring that point starts out at the
-   beginning of the file.  The function definition looks like this: @findex
-   lengths-list-file
+   beginning of the file.  The function definition looks like this:
 
    ..src > elisp
      (defun lengths-list-file (filename)
@@ -11143,12 +11141,12 @@ promoting software freedom.”
    ‘next-step-expression’ resets the @c{list-of-files} to the @c{cdr} of
    itself, so eventually the list will be empty; and the recursive call calls
    itself on the shorter list.  The complete function is shorter than this
-   description!  @findex recursive-lengths-list-many-files
+   description!
 
    ..src > elisp
      (defun recursive-lengths-list-many-files (list-of-files)
        "Return list of lengths of each defun in LIST-OF-FILES."
-       (if list-of-files                     ; @e{do-again-test}
+       (if list-of-files                     ; do-again-test
            (append
             (lengths-list-file
              (expand-file-name (car list-of-files)))
@@ -11517,7 +11515,7 @@ promoting software freedom.”
      @c{top-of-ranges} list.
 
      If we wished, we could generate this list automatically, but it is
-     simpler to write a list manually.  Here it is: @vindex top-of-ranges
+     simpler to write a list manually.  Here it is:
 
      ..src > elisp
        (defvar top-of-ranges
@@ -11605,7 +11603,7 @@ promoting software freedom.”
      want to print our graph with smallest values first and the larger later.
      The solution is to reverse the order of the @c{defuns-per-range-list}.
      We can do this using the @c{nreverse} function, which reverses the order
-     of a list.  @findex nreverse
+     of a list.
 
      For example,
 
@@ -11624,7 +11622,7 @@ promoting software freedom.”
      and @c{cdr} functions, which are non-destructive.  In this case, we do
      not want the original @c{defuns-per-range-list}, so it does not matter
      that it is destroyed.  (The @c{reverse} function provides a reversed
-     copy of a list, leaving the original list as is.)  @findex reverse
+     copy of a list, leaving the original list as is.)
 
      Put all together, the @c{defuns-per-range} looks like this:
 
@@ -11785,7 +11783,7 @@ promoting software freedom.”
   command.  This command is like the @k{C-h a} (@c{command-apropos}) command,
   except that the latter finds only those functions that are commands.  The
   @k{M-x apropos} command lists all symbols that match a regular expression,
-  including functions that are not interactive.  @findex apropos
+  including functions that are not interactive.
 
   What we want to look for is some command that prints or inserts columns.
   Very likely, the name of the function will contain either the word ‘print’
@@ -11889,7 +11887,7 @@ promoting software freedom.”
   < src..
 
   returns 7.  (A corresponding function called @c{min} returns the smallest
-  of all its arguments.)  @findex max @findex min
+  of all its arguments.)
 
   However, we cannot simply call @c{max} on the @c{numbers-list}; the @c{max}
   function expects numbers as its argument, not a list of numbers.  Thus, the
@@ -13170,7 +13168,7 @@ promoting software freedom.”
           ))
      < src..
 
-   - Convert @k{@k{CTRL}-h} into @k{DEL} and @k{DEL} into @k{@k{CTRL}-h}.@*
+   - Convert @k{@k{CTRL}-h} into @k{DEL} and @k{DEL} into @k{@k{CTRL}-h}.
      (Some older keyboards needed this, although I have not seen the problem
      recently.)
 
@@ -13191,13 +13189,13 @@ promoting software freedom.”
 
      or start GNU Emacs with the command @c{emacs -nbc}.
 
-   - When using ‘grep’@* ::
+   - When using ‘grep’ ::
 
-     - @'{-i} :: Ignore case distinctions@*
+     - @'{-i} :: Ignore case distinctions
 
-     - @'{-n} :: Prefix each line of output with line number@*
+     - @'{-n} :: Prefix each line of output with line number
 
-     - @'{-H} :: Print the filename for each match.@*
+     - @'{-H} :: Print the filename for each match.
 
      - @'{-e} :: Protect patterns beginning with a hyphen character, @'{-}
 
@@ -13215,7 +13213,7 @@ promoting software freedom.”
        < src..
      < ignore..
 
-   - Find an existing buffer, even if it has a different name@* ::
+   - Find an existing buffer, even if it has a different name ::
 
      This avoids problems with symbolic links.
 
@@ -13493,7 +13491,7 @@ promoting software freedom.”
      In GNU Emacs 20 and before, you will see:
 
      ..example >
-       Symbol's function definition is void:@: 1=
+       Symbol's function definition is void: 1=
      < example..
 
      which has the same meaning as the @f{*Backtrace*} buffer line in
@@ -13765,7 +13763,7 @@ promoting software freedom.”
    says:
 
    ..example >
-     Symbol's function definition is void:@: 1=
+     Symbol's function definition is void: 1=
    < example..
 
    This is the bug.
@@ -13834,7 +13832,7 @@ promoting software freedom.”
   that we have not touched.
 
   A path you can follow right now lies among the sources to GNU Emacs and in
-  @l{info:elisp, @e{The GNU Emacs Lisp Reference Manual}.
+  @e{The GNU Emacs Lisp Reference Manual}.
 
   The Emacs Lisp sources are an adventure.  When you read the sources and
   come across a function or expression that is unfamiliar, you need to figure
@@ -16160,8 +16158,7 @@ promoting software freedom.”
 
     The largest group of functions contain 10--19 words and symbols each.
 
-* Appendix D Free Software and Free Manuals
-  @ @b{by Richard M. Stallman}
+* Appendix D Free Software and Free Manuals @%b{by Richard M. Stallman}
 
   The biggest deficiency in free operating systems is not in the software––it
   is the lack of good free manuals that we can include in these systems.
@@ -16270,7 +16267,7 @@ promoting software freedom.”
   manuals to non-copylefted ones.
 
   Note: The Free Software Foundation maintains a page on its Web site that
-  lists free books available from other publishers:@*
+  lists free books available from other publishers:
   @l{http://www.gnu.org/doc/other-free-books.html}
 
 * Appendix E GNU Free Documentation License
