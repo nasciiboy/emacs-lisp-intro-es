@@ -176,7 +176,7 @@
       <ul>
       <li><a class="h4" href="#la-expresión-interactive" >La expresión <code>interactive</code></a></li>
       <li><a class="h4" href="#el-cuerpo-de-zap-to-char" >El cuerpo de <code>zap-to-char</code></a></li>
-      <li><a class="h4" href="#la-función-search-forward" >La función <code>search-forward</code></a></li>
+      <li><a class="h4" href="#la-función-search-forward" >La Función <code>search-forward</code></a></li>
       <li><a class="h4" href="#la-forma-especial-progn" >La forma especial <code>progn</code></a></li>
       <li><a class="h4" href="#resumiendo-zap-to-char" >Resumiendo <code>zap-to-char</code></a></li>
       </ul>
@@ -259,9 +259,9 @@
     </ul>
   <li><a class="h2" href="#búsqueda-de-expresiones-regulares" >Búsqueda de expresiones regulares</a></li>
     <ul>
-    <li><a class="h3" href="#la-expresión-regular-para-sentence-end" >La expresión regular para <code>sentence-end</code></a></li>
-    <li><a class="h3" href="#la-función-re-search-forward" >La función <code>re-search-forward</code></a></li>
-    <li><a class="h3" href="#la-función-forward-sentence" >La función <code>forward-sentence</code></a></li>
+    <li><a class="h3" href="#la-expresión-regular-de-sentence-end" >La expresión regular de <code>sentence-end</code></a></li>
+    <li><a class="h3" href="#la-función-re-search-forward" >La Función <code>re-search-forward</code></a></li>
+    <li><a class="h3" href="#la-función-forward-sentence" >La Función <code>forward-sentence</code></a></li>
       <ul>
       <li><a class="h4" href="#los-bucles-while" >Los bucles <code>while</code></a></li>
       <li><a class="h4" href="#la-búsqueda-de-expresiones-regulares" >La búsqueda de expresiones regulares</a></li>
@@ -273,7 +273,7 @@
       </ul>
     <li><a class="h3" href="#crea-tu-propio-fichero-tags" >Crea tu propio fichero <span class="file" >TAGS</span></a></li>
       <ul>
-      <li><a class="h4" href="#construyendo-etiquetas-en-las-fuentes-emacs" >Construyendo Etiquetas en las fuentes Emacs</a></li>
+      <li><a class="h4" href="#construyendo-etiquetas-en-el-codigo-de-emacs" >Construyendo Etiquetas en el codigo de Emacs</a></li>
       </ul>
     <li><a class="h3" href="#repaso" >Repaso</a></li>
     <li><a class="h3" href="#ejercicios-con-re-search-forward" >Ejercicios con <code>re-search-forward</code></a></li>
@@ -2548,7 +2548,7 @@ El inicio del buffer es la posicion (point-min), el final es (point-max).
 <p>La siguiente parte del código es una expresión utilizando <code>progn</code>. El cuerpo del <code>progn</code> consiste en llamadas a <code>search-forward</code> y <code>point</code>.</p>
 <p>Es fácil comprender cómo funciona <code>progn</code> después de aprender sobre <code>search-forward</code>, asi que veremos <code>search-forward</code> y luego <code>progn</code>.</p>
 </div>
-<h4 id="la-función-search-forward" >La función <code>search-forward</code></h4>
+<h4 id="la-función-search-forward" >La Función <code>search-forward</code></h4>
 <div class="hBody-4" >
 <p>La función <code>search-forward</code> se utiliza para localizar el caracter a borrar en <code>zap-to-char</code>. Si la búsqueda es exitosa, <code>search-forward</code> deja el punto inmediatamente después del último carácter en la cadena objetivo. (En <code>zap-to-char</code>, la cadena objetivo tiene solo un carácter longitud. <code>zap-to-char</code> usa la función <code>char-to-string</code> para asegurar que el computador trata este carácter como una cadena). Si la búsqueda es hacia atrás, <code>search-forward</code> deja el punto justo antes del primer carácter en el objetivo. Ademas, <code>search-forward</code> devuelve <code>t</code> para verdadero. (Por lo tanto, desplazar el punto es un ‘efecto secundario’.)</p>
 <p>En <code>zap-to-char</code>, la función <code>search-forward</code> se ve así:</p>
@@ -4117,287 +4117,284 @@ nil
 </div>
 <h2 id="búsqueda-de-expresiones-regulares" >Búsqueda de expresiones regulares</h2>
 <div class="hBody-2" >
-<p>Las búsquedas expresiones regulares son usadas extensivamente en GNU Emacs. Las dos funciones <code>forward-sentence</code> y <code>forward-paragraph</code>, ilustran estas búsquedas bien. Usan expresiones regulares para encontrar donde mover el punto. La frase ‘expresión regular’ es con frecuencia escrita como ‘regexp’.</p>
-<p>Las búsquedas de expresiones regulares son descritas en Seccion <q>Búsqueda de Expresión Regular</q> en <em>El Manual de GNU Emacs</em>, tan bien como en Seccion <q>Expresiones Regulares</q> <em>El Manual de Referencia de GNU Emacs Lisp</em>. Escribiendo este capítulo, estoy presuponiendo que tiene al menos una familiaridad con esto. El mayor punto para recordar es que las expresiones regulares te permiten buscar patrones tan bien como para cadenas literales de caracteres. Por ejemplo, el código en <code>forward-sentence</code> busca para el patrón de posibles caracteres que podrían marcar el fin de una frase, y mueve el punto al otro lado.</p>
-<p>Antes de mirar en el código la función <code>forward-sentence</code>, es valorable considerar que el patrón que marca el fin de una frase debe estar. El patrón se discute en la siguiente sección; siguiendo que es una descripción de la expresión regular de búsqueda, <code>re-search-forward</code>. La función <code>forward-sentence</code> es descrito en la sección siguiente. Finalmente, la función <code>forward-paragraph</code> es descrito en la última sección de este capítulo. <code>forward-paragraph</code> es una función compleja que introduce varias funcionalidades.</p>
+<p>Las búsquedas de expresiones regulares se utilizan extensivamente en GNU Emacs. Las dos funciones <code>forward-sentence</code> y <code>forward-paragraph</code>, ilustran bien estas búsquedas. Usan expresiones regulares para encontrar donde mover el punto. La frase ‘expresión regular’ se escribe con frecuencia como ‘regexp’.</p>
+<p>Las búsquedas de expresiones regulares se describen en la Seccion <a href="info:emacs#Regexp-Search" >Búsqueda de Expresiónes Regulares</a> en <em>El Manual de GNU Emacs</em>, asi como en la Seccion <a href="info:elisp#Regular-Expressions" >Expresiones Regulares</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>. Al escribir este capítulo, estoy suponiendo que tienes al menos un leve conocimiento de esto. El punto principal a recordar es que que las expresiones regulares te permiten buscar patrones, asi como cadenas literales de caracteres. Por ejemplo, el código en <code>forward-sentence</code> busca el patrón de posibles caracteres que podrían marcar el final de una oracion, y mueve el punto a ese lugar.</p>
+<p>Antes de mirar el código de la función <code>forward-sentence</code>, vale la pena considerar cual debe ser el patrón que marca el final de una oracion. El patrón se discute en la siguiente sección; a continuacion se describe la funcion de busqueda de expresiónes regulares, <code>re-search-forward</code>. La función <code>forward-sentence</code> se describe en la sección siguiente. Finalmente, la función <code>forward-paragraph</code> se describe en la última sección de este capítulo. <code>forward-paragraph</code> es una función compleja que introduce varias caracteristicas nuevas.</p>
 </div>
-<h3 id="la-expresión-regular-para-sentence-end" >La expresión regular para <code>sentence-end</code></h3>
+<h3 id="la-expresión-regular-de-sentence-end" >La expresión regular de <code>sentence-end</code></h3>
 <div class="hBody-3" >
-<p>El símbolo <code>sentence-end</code> se asocia al patrón que marca el fin de una frase. ¿Cuál sería esta expresión regular?</p>
-<p>Claramente, una frase puede ser finalizada por un periodo, una marca de inicio de interrogación, o una marca de exclamación. Puesto que viene del inglés, solo las claúsulas que finalizan con uno de estos tres caracteres deberían ser consideradas al fin de una frase. Esto significa que el patrón incluiría el conjunto de caracteres:</p>
+<p>El símbolo <code>sentence-end</code> esta ligado al patrón que marca el fin de una oracion. ¿Cuál deberia ser esta expresión regular?</p>
+<p>Claramente, una oracion puede terminarse por un punto, una signo de interrogación, o un signo de exclamación. De hecho, en inglés, solo las oraciones que terminan con uno de estos tres caracteres deberían considerse como el final de una oracion. Esto significa que el patrón debe incluir el conjunto de caracteres:</p>
 <div class="example-block" >
 <pre class="example" >[.?!]
 </pre>
 </div>
-<p>Sin embargo, no queremos que <code>forward-sentence</code> salte a un periodo, una marca de pregunta, o una marca de exclamación, porque tal carácter podría ser usado en el medio de una frase. Un periodo, por ejemplo, se usa después de abreviaciones. Así, otra información es necesaria.</p>
-<p>De acuerdo a la convención, escribe dos espacios después de cada frase, pero solo un espacio después de un periodo, una marca de pregunta, o una marca de exclamación seguida por dos espacios es un buen indicador de un fin de frase. Sin embargo, en un fichero, los dos espacios pueden ser un tabulador o el fin de una línea. Esto significa que la expresión regular incluiría estos tres ítems como alternativas.</p>
-<p>Este grupo de alternativas se parece a esto:</p>
+<p>Sin embargo, no queremos que <code>forward-sentence</code> salte simplemente a un punto, a un signo de interrogacion o a un signo de exclamación, porque tal carácter podría utilizarse en medio de una oracion. Un punto, por ejemplo, se usa después de abreviaturas. Así, que se necesita otra información.</p>
+<p>Segun la convención, escribes dos espacios despues de cada oracion, pero solo un espacio después de un punto, un signo de interrogacion o un signo de exclamación en el cuerpo de una oracion. Asi que un punto, un signo de interrogacion o de exclamacion seguido por dos espacios es un buen indicador de un final de oracion. Sin embargo, en un archivo, los dos espacios pueden ser un tabulador o el fin de una línea. Esto significa que la expresión regular incluiría estos tres elementos como alternativas.</p>
+<p>Este grupo de alternativas se vera asi:</p>
 <div class="example-block" >
 <pre class="example" >\\($\\| \\|  \\)
        ^   ^^
       TAB  SPC
 </pre>
 </div>
-<p>Aquí, <samp>$</samp> indica el fin de la línea, y yo he apuntado donde el tab y dos espacios están insertados en la expresión. Ambos están insertados poniendo los caracteres actuales dentro de la expresión.</p>
-<p>Dos barras invertidas, <samp>\\</samp>, se requiere antes de los paréntesis y barras verticales: la primera barra invertida cita la siguiente barra invertida en Emacs; y el segundo indica que el siguiente caracter, el paréntesis o la barra vertical, es especial.</p>
-<p>También, una frase puede ser seguida por uno o más retornos de carro, como este:</p>
+<p>Aquí, <samp>$</samp> indica el fin de la línea, ademas he señalado en la expresión donde se inserta el tabulador y los dos espacios. Ambos se insertan poniendo los caracteres reales en la expresión.</p>
+<p>Antes de los parentesis y las barras verticales, se requiere dos barras invertidas <samp>\\</samp>: la primera barra invertida cita la siguiente barra invertida en Emacs; y la segunda indica que el siguiente caracter, el paréntesis o la barra vertical, es especial.</p>
+<p>También, una oracion puede ser seguida por uno o más retornos de carro, como aqui:</p>
 <div class="example-block" >
 <pre class="example" >[
 ]*
 </pre>
 </div>
-<p>Como en los tabuladores y espacios, un retorno de carro se inserta dentro de una expresión regular insertándolo literalmente. El asterisco indica que el <kbd>RET</kbd> se repite cero o más veces.</p>
-<p>Pero una frase no consiste solo en un periodo, una marca de pregunta o una marca de exclamación seguida por espacios apropiados: una marca de cerrar comillas o cerrar un paréntesis de algún tipo puede preceder el espacio. En realidad más de una marca o paréntesis pueden preceder el espacio. Estas requieren una expresión que se parezca a:</p>
+<p>Al igual que los tabuladores y espacios, un retorno de carro se inserta en una expresión regular insertándolo literalmente. El asterisco indica que el <kbd>RET</kbd> se repite cero o más veces.</p>
+<p>Pero una oracion no consiste solo en un punto, o un signo de interrogacion o de exclamación seguido de un espacio apropiado: una cita de cierre o una llave de cierre  de algún tipo puede preceder al espacio. De hecho, más de una marca o paréntesis pueden preceder el espacio. Estas requieren una expresión parecida a esta:</p>
 <div class="example-block" >
-<pre class="example" >[]\&#34;&#39;)@}]*
+<pre class="example" >[]\&#34;&#39;)}]*
 </pre>
 </div>
-<p>En esta expresión, el primer <samp>]</samp> es el primer caracter en la expresión; el segundo caracter es <samp>&#34;</samp>, que está precedido por un <samp>\</samp> para contar Emacs el <samp>&#34;</samp> <em>no</em> es especial. Los últimos tres caracteres son <samp>&#39;</samp>, <samp>)</samp>, y <samp>}</samp>.</p>
-<p>Todo esto sugiere que el patrón de la expresión regular para asociar el fin de una frase sería; y, profundamente, si se evalúa <code>sentence-end</code> y encuentra que se devuelve el valor siguiente:</p>
-<div class="example-block" >
-<pre class="example" >sentence-end
-     ⇒ &#34;[.?!][]\&#34;&#39;)@}]*\\($\\|     \\|  \\)[
+<p>En esta expresión, el primer <samp>]</samp> es el primer caracter en la expresión; el segundo caracter es <samp>&#34;</samp>, que está precedido por un <samp>\</samp> para decirle a Emacs que el <samp>&#34;</samp> <em>no</em> es especial. Los últimos tres caracteres son <samp>&#39;</samp>, <samp>)</samp>, y <samp>}</samp>.</p>
+<p>Todo esto sugiere cual deberia ser el patrón de la expresión regular para que coincida con el final de una oracion; y, de hecho, si evaluamos <code>sentence-end</code> encontraremos que devuelve el siguiente valor:</p>
+<pre class="srci" ><code class="elisp" ><span class="in" ><span class="prompt" >&gt; </span><span class="nv">sentence-end</span>
+</span><span class="out" >&#34;[.?!][]\&#34;&#39;)}]*\\($\\|     \\|  \\)[
 ]*&#34;
-</pre>
+</span></code></pre>
+<p>(Bieno, no en GNU Emacs 22; eso se debe a un esfuerzo por hacer el proceso simple y manejar más símbolos y lenguajes. Cuando el valor de <code>sentence-end</code> es <code>nil</code>, entonces utiliza el valor definido por la función <code>sentence-end</code>. (Aquí se utiliza la diferencia entre un valor y una función en Emacs Lisp.) La función devuelve un valor construido a partir de las variables <code>sentence-end-base</code>, <code>sentence-end-double-space</code>, <code>sentence-end-without-period</code>, y <code>sentence-end-without-space</code>. La variable crítica es <code>sentence-end-base</code>; su valor global es similar al descrito anteriormente, pero también contiene dos marcas de cita adicionales. Estas tienen diferentes grados de curvatura. La variable <code>sentence-end-without-period</code>, cuando es verdad, le dice a Emacs que una oracion puede finalizar sin un punto, como en texto en Tailandés.)</p>
 </div>
-<p>(Bien, no en GNU Emacs 22; porque es un esfuerzo crear el proceso simple y manejar más símbolos y lenguajes. Cuando el valor de <code>sentence-end</code> es <code>nil</code>, entonces usa el valor definido por la función <code>sentence-end</code> es <code>nil</code>, entonces usa el valor definido por la función <code>sentence-end</code>. (Aquí se usa la diferencia entre un valor y una función en Emacs Lisp.) La función devuelve un valor construido desde las variables <code>sentence-end-base</code>, <code>sentence-end-double-space</code>, <code>sentence-end-without-period</code>, y <code>sentence-end-without-space</code>. La variable crítica es <code>sentence-end-base</code>; su valor global es similar a uno descrito debajo pero también contiene marcas de cita adicionales. Estas tienen diferentes grados de curvas. La variable <code>sentence-end-without-period</code>, cuando es verdad, dice a Emacs que una frase puede finalizar sin un periodo tal como texto en Thai.)</p>
-</div>
-<h3 id="la-función-re-search-forward" >La función <code>re-search-forward</code></h3>
+<h3 id="la-función-re-search-forward" >La Función <code>re-search-forward</code></h3>
 <div class="hBody-3" >
-<p>La función <code>re-search-forward</code> es similar a la función <code>search-forward</code>. (Vea la Seccion <a href="La-Función-search-forward" >La Función <code>search-forward</code></a>.)</p>
-<p><code>re-search-forward</code> busca una expresión regular. Si la búsqueda es exitosa, deja el punto inmediatamente después del último caracter en el objetivo. Si la búsqueda es hacia atrás, deja el punto antes del primer caracter en el objetivo. Se puede contar <code>re-search-forward</code> para devolver <code>t</code> a verdadero. (Moviendo el punto es por ello un ‘efecto lateral’.)</p>
-<p>Como <code>search-forward</code>, la función <code>re-search-forward</code> toma cuatro argumentos:</p>
+<p>La función <code>re-search-forward</code> es similar a la función <code>search-forward</code>. (Vea la Seccion <a href="#la-función-search-forward" >La Función <code>search-forward</code></a>.)</p>
+<p><code>re-search-forward</code> busca una expresión regular. Si la búsqueda es exitosa, deja el punto inmediatamente después del último caracter en el objetivo. Si la búsqueda es hacia atrás, deja el punto antes del primer caracter en el objetivo. Puede decirle a <code>re-search-forward</code> que regrese <code>t</code> por verdadero. (El movimiento del punto es por la tanto un ‘efecto secundario’.)</p>
+<p>Al igual que <code>search-forward</code>, la función <code>re-search-forward</code> toma cuatro argumentos:</p>
 <ol class="num" >
 <li>
-<p>El primer argumento es la expresión regular que la función busca. La expresión regular será una cadena entre comillas.</p>
+<p>El primer argumento es la expresión regular que busca la función. La expresión regular será una cadena entre comillas.</p>
 </li>
 <li>
-<p>El segundo argumento opcional limita cómo la función busca; es un emparejamiento, que se especifica como una posición en el búfer.</p>
+<p>El segundo argumento opcional limita el grado de busqueda de la función; es un valor ligado con una posición especifica en el búfer.</p>
 </li>
 <li>
-<p>El tercer argumento opcional especifica cómo la función responde al fallo: <code>nil</code> como tercer argumento que causa la función para señalar un error (e imprime un mensaje) cuando la búsqueda falla; cualquier otro valor causa devolver <code>nil</code> si la búsqueda falla y <code>t</code> si la búsqueda tiene éxito.</p>
+<p>El tercer argumento opcional especifica cómo la función responde al fallo: <code>nil</code> como tercer argumento hace que la función señale un error (e imprima un mensaje) cuando la búsqueda falla; cualquier otro valor hace que se devuelva <code>nil</code> si la búsqueda falla y <code>t</code> si la búsqueda tiene éxito.</p>
 </li>
 <li>
-<p>El cuarto argumento opcional es el contaje repetido. Un contaje negativo repetido causa <code>re-search-forward</code> para buscar hacia atrás.</p>
+<p>El cuarto argumento opcional es el contador de repeticiones. Un conteo negativo hace que <code>re-search-forward</code> busque hacia atrás.</p>
 </li>
 </ol>
-<p>La plantilla para <code>re-search-forward</code> se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&#34;regular-expression&#34;</span>
-                <span class="nv">limit-of-search</span>
-                <span class="nv">what-to-do-if-search-fails</span>
-                <span class="nv">repeat-count</span><span class="p">)</span>
+<p>La plantilla para <code>re-search-forward</code> se ve asi:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&#34;expresion-regular&#34;</span>
+                   <span class="nv">limite-de-busqueda</span>
+                   <span class="nv">que-hacer-si-falla-la-busqueda</span>
+                   <span class="nv">contador-de-repeticiones</span><span class="p">)</span>
 </code></pre>
-<p>El segundo, tercer, y cuarto argumentos son opcionales. Sin embargo, si se quiere pasar un valor a uno o ambos de los últimos dos argumentos, se debe también pasar un valor a todos los argumentos precedentes. De otro modo, el intérprete Lisp errará a qué argumento estás pasando el valor.</p>
+<p>El segundo, tercer, y cuarto argumentos son opcionales. Sin embargo, si se quiere pasar un valor a uno o ambos de los últimos dos argumentos, se debe también pasar un valor a todos los argumentos precedentes. De otro modo, el intérprete Lisp confundira el argumento al que estás pasando el valor.</p>
 <p>En la función <code>forward-sentence</code>, la expresión regular será el valor de la variable <code>sentence-end</code>. En forma simple, esto es:</p>
 <div class="example-block" >
-<pre class="example" >&#34;[.?!][]\&#34;&#39;)@}]*\\($\\|  \\|  \\)[
+<pre class="example" >&#34;[.?!][]\&#34;&#39;)}]*\\($\\|  \\|  \\)[
 ]*&#34;
 </pre>
 </div>
-<p>El límite de la búsqueda será el fin del párrafo (desde una frase no puede ir bajo un párrafo). Si la búsqueda falla, la función devuelve <code>nil</code>, y el contaje repite será provisto por el argumento para la función <code>forward-sentence</code>.</p>
+<p>El límite de la búsqueda será el fin del párrafo (ya que una oracion no puede ir mas alla de un párrafo). Si la búsqueda falla, la función devuelve <code>nil</code>, y el argumento del contador de repeticion será pasado a la función <code>forward-sentence</code>.</p>
 </div>
-<h3 id="la-función-forward-sentence" >La función <code>forward-sentence</code></h3>
+<h3 id="la-función-forward-sentence" >La Función <code>forward-sentence</code></h3>
 <div class="hBody-3" >
-<p>El comando mueve el cursor hacia adelante una frase es una ilustración honesta de cómo usar búsquedas de expresiones regulares en Emacs Lisp. En realidad, la función parece más larga y más complicada de lo que es; esto es porque la función está diseñada para ir hacia atrás tan bien como hacia adelante; y, opcionalmente, a través de una frase. La función está normalmente asociada al comando <kbd>M-e</kbd>.</p>
-<p>Aquí está la código para <code>forward-sentence</code>:</p>
+<p>El comando para mover el cursor hacia adelante de una oracion es una ilustración directa de cómo usar búsqueda de expresiones regulares en Emacs Lisp. De hecho, la función parece más larga y más complicada de lo que es; esto se debe a que la función está diseñada para ir hacia atrás y hacia adelante; y, opcionalmente, mas de una oracion. La función normalmente está asociada al comando <kbd>M-e</kbd>.</p>
+<p>Aquí está la código de <code>forward-sentence</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">forward-sentence</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
-  <span class="s">&#34;Ve al siguiente ‘sentence-end’. Con el argumento, repite.
-</span><span class="s">Con el argumento negativo, mueve atrás repetidamente a ‘sentence-beginning’.
-</span><span class="s">La variable ‘sentence-end’ es una expresión regular que empareja el
-</span><span class="s">fin de frases. También, cada párrafo asociado termina las frases
-</span><span class="s">bien.
-</span><span class="s">  (interactive &#34;</span><span class="nv">p</span><span class="s">&#34;)
-</span><span class="s">  (or arg (setq arg 1))
-</span><span class="s">  (let ((opoint (point))
-</span><span class="s">        (sentence-end (sentence-end)))
-</span><span class="s">    (while (&lt; arg 0)
-</span><span class="s">      (let ((pos (point))
-</span><span class="s">            (par-beg (save-excursion (start-of-paragraph-text) (point))))
-</span><span class="s">       (if (and (re-search-backward sentence-end par-beg t)
-</span><span class="s">                (or (&lt; (match-end 0) pos)
-</span><span class="s">                    (re-search-backward sentence-end par-beg t)))
-</span><span class="s">           (goto-char (match-end 0))
-</span><span class="s">         (goto-char par-beg)))
-</span><span class="s">      (setq arg (1+ arg)))
-</span><span class="s">    (while (&gt; arg 0)
-</span><span class="s">      (let ((par-end (save-excursion (end-of-paragraph-text) (point))))
-</span><span class="s">       (if (re-search-forward sentence-end par-end t)
-</span><span class="s">           (skip-chars-backward &#34;</span> <span class="nv">\t\n</span><span class="s">&#34;)
-</span><span class="s">         (goto-char par-end)))
-</span><span class="s">      (setq arg (1- arg)))
-</span><span class="s">    (constrain-to-field nil opoint t)))
-</span><span class="s"></span></code></pre>
-<p>La función se ve larga a primera vista y es mejor mirar primero el esqueleto, y entonces su músculo. El camino para ver el esqueleto es mirar en las expresiones que empiezan las columnas más a la izquierda:</p>
+  <span class="s">&#34;Avansa al siguiente ‘sentence-end’. Con un argumento, se repite.
+</span><span class="s">Con un argumento negativo, avanza hacia atras repetidamente al ‘sentence-beginning’.
+</span><span class="s">
+</span><span class="s">La variable ‘sentence-end’ es una expresión regular que corresponde a el
+</span><span class="s">fin de las oraciones. Ademas, cada limite de párrafo tambien termina oraciones.&#34;</span>
+  <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p&#34;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">or</span> <span class="nv">arg</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">opoint</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">sentence-end</span> <span class="p">(</span><span class="nv">sentence-end</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">pos</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">par-beg</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">start-of-paragraph-text</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
+       <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">re-search-backward</span> <span class="nv">sentence-end</span> <span class="nv">par-beg</span> <span class="no">t</span><span class="p">)</span>
+                <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">match-end</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">pos</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">re-search-backward</span> <span class="nv">sentence-end</span> <span class="nv">par-beg</span> <span class="no">t</span><span class="p">)))</span>
+           <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">match-end</span> <span class="mi">0</span><span class="p">))</span>
+         <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">par-beg</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">arg</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">par-end</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-paragraph-text</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
+       <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">sentence-end</span> <span class="nv">par-end</span> <span class="no">t</span><span class="p">)</span>
+           <span class="p">(</span><span class="nf">skip-chars-backward</span> <span class="s">&#34; \t\n&#34;</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">par-end</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">arg</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">constrain-to-field</span> <span class="no">nil</span> <span class="nv">opoint</span> <span class="no">t</span><span class="p">)))</span>
+</code></pre>
+<p>La función parece larga a primera vista y es mejor mirar primero su esqueleto, y luego su músculo. La forma de ver el esqueleto es mirar las expresiones que comienzan en las columnas de la izquierda:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">forward-sentence</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
-  <span class="s">&#34;documentation…&#34;</span>
+  <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p&#34;</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">or</span> <span class="nv">arg</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="mi">1</span><span class="p">))</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">opoint</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span> <span class="p">(</span><span class="nv">sentence-end</span> <span class="p">(</span><span class="nv">sentence-end</span><span class="p">)))</span>
     <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">pos</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
             <span class="p">(</span><span class="nv">par-beg</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">start-of-paragraph-text</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
-       <span class="nv">rest-of-body-of-while-loop-when-going-backwards</span>
+       <span class="nv">resto-del-cuerpo-del-bucle-while-cuando-va-hacia-atras</span>
     <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">par-end</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-paragraph-text</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
-       <span class="nv">rest-of-body-of-while-loop-when-going-forwards</span>
-    <span class="nv">handle-forms-and-equivalent</span>
+       <span class="nv">resto-del-cuerpo-del-bucle-while-cuando-va-hacia-adelante</span>
+    <span class="nv">manejar-formularios-y-equivalentes</span>
 </code></pre>
-<p>¡Esto parece bastante simple! La definición de la función consiste de documentación una expresión <code>interactive</code>, una expresión <code>or</code>, una expresión <code>let</code>, y bucles <code>while</code>.</p>
-<p>Permite mirar cada una de estas partes.</p>
-<p>Notamos que la documentación es profunda y comprensible.</p>
-<p>La función tiene una declaración <code>interactive &#34;p&#34;</code>. Esto signifca que el argumento prefijo, si cualquiera es pasado a la función como su argumento. (Esto será un número.) Si la función no pasa un argumento (eso es opcional) entonces el argumento <code>arg</code> será asociado a 1.</p>
-<p>Cuando <code>forward-sentence</code> se llama no interactivamente sin un argumento, <code>arg</code> está asignado <code>nil</code>. La expresión <code>or</code> maneja esto. Lo que hace es dejar el valor de <code>arg</code> como eso es, pero solo si <code>arg</code> está asignado a un valor; o eso asigna el valor de <code>arg</code> a 1, en el caso de <code>arg</code> está asignado a <code>nil</code>.</p>
-<p>Lo siguiente es un <code>let</code>. Que especifica los valores de dos variables locales <code>point</code> y <code>sentence-end</code>. El valor local de punto, desde antes de la búsqueda, es usada en la función <code>constrain-to-field</code> que maneja formularios y equivalentes. La variable <code>sentence-end</code> está asignada por la función <code>sentence-end</code>.</p>
+<p>¡Esto parece mucho mas simple! La definición de la función consiste en la documentación, una expresión <code>interactive</code>, una expresión <code>or</code>, una expresión <code>let</code>, y bucles <code>while</code>.</p>
+<p>Veamos cada una de estas partes por separado.</p>
+<p>Observamos que la documentación es completa y comprensible.</p>
+<p>La función tiene una declaración <code>interactive &#34;p&#34;</code>. Esto signifca que el argumento prefijo procesado, si lo hay, pasa a la función como su argumento. (Este será un número.) Si no se pasa un argumento a la función (es opcional) entonces el argumento <code>arg</code> será vinculara a 1.</p>
+<p>Cuando <code>forward-sentence</code> se llama no interactivamente sin un argumento, <code>arg</code> está vinculado a <code>nil</code>. La expresión <code>or</code> maneja esto. Lo que hace es dejar el valor de <code>arg</code> como esta, pero solo si <code>arg</code> está ligado a un valor; de otro modo asigna el valor de <code>arg</code> a 1, en el caso de <code>arg</code> está ligado a <code>nil</code>.</p>
+<p>Lo siguiente es un <code>let</code>. Especifica los valores de dos variables locales <code>point</code> y <code>sentence-end</code>. El valor local de punto, desde antes de la búsqueda, se utiliza en la función <code>constrain-to-field</code> que maneja formularios y equivalentes. La variable <code>sentence-end</code> se establece por la función <code>sentence-end</code>.</p>
 </div>
 <h4 id="los-bucles-while" >Los bucles <code>while</code></h4>
 <div class="hBody-4" >
-<p>Sigue dos bucles <code>while</code>. El primer <code>while</code> tiene un true-or-false-test que chequea verdadero si el argumento prefijo para <code>forward-sentence</code> es un número negativo. Esto es para volver hacia atrás. El cuerpo de este bucle es similar al cuerpo de la segunda cláusula <code>while</code>, pero eso no es exactamente el mismo. Se obviará este bucle <code>while</code> y concentra en el segundo bucle <code>while</code>.</p>
-<p>El segundo bucle <code>while</code> está moviendo el punto hacia adelante. Su esqueleto se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span>            <span class="c1">; true-or-false-test</span>
+<p>Siguen dos bucles <code>while</code>. El primer <code>while</code> tiene una prueba-verdadero-o-falso que es verdadero si el argumento prefijo de <code>forward-sentence</code> es un número negativo. Esto es para retroceder. El cuerpo de este bucle es similar al cuerpo del segundo <code>while</code>, pero no es exactamente el mismo. Pasaremos de este bucle <code>while</code> y nos centraremos en el segundo <code>while</code>.</p>
+<p>El segundo bucle <code>while</code> es para mover el punto hacia adelante. Su esqueleto se parece a esto:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span>            <span class="c1">; prueba-verdadero-o-falso</span>
   <span class="p">(</span><span class="nb">let</span> <span class="nv">varlist</span>
-    <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">true-or-false-test</span><span class="p">)</span>
-        <span class="nv">then-part</span>
-      <span class="nv">else-part</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">arg</span><span class="p">))))</span>     <span class="c1">; @c{while} @e{loop decrementer}</span>
+    <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">prueba-verdadero-o-falso</span><span class="p">)</span>
+        <span class="nv">parte-then</span>
+      <span class="nv">parte-else</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">arg</span><span class="p">))))</span>     <span class="c1">; decremento del bucle while</span>
 </code></pre>
-<p>El bucle <code>while</code> es el tipo de decremento. (Vea la Seccion <a href="Los-bucles-while" >Los bucles <code>while</code></a>.) Eso tiene un true-or-false-test que chequea verdadero tan largo con el contador (en este caso, la variable <code>arg</code>) es mayor que cero; y eso tiene un decremento que elimina 1 desde el valor del contador cada vez que el bucle se repite.</p>
-<p>Si ningún argumento prefijo es dado para <code>forward-sentece</code>, que es el camino más común es usado, este bucle <code>while</code> ejecutará una vez, desde que el valor de <code>arg</code> será 1.</p>
-<p>El cuerpo del cuerpo <code>while</code> consite de una expresión <code>let</code>, que crea y asocia una variable local, y tiene, su cuerpo, una expresión <code>if</code>.</p>
-<p>El cuerpo del bucle <code>while</code> se parece a esto:</p>
+<p>El bucle <code>while</code> es de tipo decreciente. (Vea la Seccion <a href="#bucle-con-contador-decreciente" >Bucle con contador decreciente</a>.) Tiene una prueba-verdadero-o-falso que regresa verdadero siempre y cuando el contador (en este caso, la variable <code>arg</code>) sea mayor que cero; y tiene un decremento que resta 1 del valor del contador cada vez que el bucle se repite.</p>
+<p>Si no se da un argumento prefijo a <code>forward-sentece</code>, que es lo mas habitual, este bucle <code>while</code> se ejecutará una vez, ya que el valor de <code>arg</code> será 1.</p>
+<p>El cuerpo del cuerpo <code>while</code> consite en una expresión <code>let</code>, que crea y vincula una variable local, y tiene, como su cuerpo, una expresión <code>if</code>.</p>
+<p>El cuerpo del bucle <code>while</code> se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">par-end</span>
        <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-paragraph-text</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
   <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">sentence-end</span> <span class="nv">par-end</span> <span class="no">t</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">skip-chars-backward</span> <span class="s">&#34; \t\n&#34;</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">par-end</span><span class="p">)))</span>
 </code></pre>
-<p>La expresión <code>let</code> crea y asocia la variable local <code>par-end</code>. Como se ve, esta variable local está diseñada para proporcionar una asociación o límite para la búsqueda de la expresión regular. Si la búsqueda falla para encontrar una frase apropiada finalizando en el párrafo, eso se parará logrando el fin del párrafo.</p>
-<p>Pero primero, permítenos examinar cómo <code>par-end</code> se asocia a la variable del fin del párrafo. Lo que ocurre es que el <code>let</code> asigna el valor de <code>par-end</code> al valor devuelto cuando el intérprete evalúa la expresión.</p>
+<p>La expresión <code>let</code> crea y liga la variable local <code>par-end</code>. Como veremos, esta variable local está diseñada para proporcionar un limite a la búsqueda de la expresiónes regulares. Si la búsqueda falla no encuentra una oracion apropiada que termine en el párrafo, se detendra al llegar al final del párrafo.</p>
+<p>Pero primero, examinaremos cómo <code>par-end</code> se liga al valor del fin del párrafo. Lo que ocurre es que el <code>let</code> asigna el valor de <code>par-end</code> al valor devuelto cuando el intérprete evalúa la expresión.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-paragraph-text</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
 </code></pre>
-<p>En esta expresión, <code>(end-of-paragraph-text)</code> mueve el punto al fin del párrafo, <code>(point)</code> devuelve el valor del punto, y entonces <code>save-excursion</code> restaura el punto a su posición original. De este modo, el <code>let</code> asocia <code>par-end</code> al valor devuelto por la expresión <code>save-excursion</code>, que es la posición del fin del párrafo.  (La función <code>end-of-paragraph-text</code> usa <code>forward-paragraph</code>, que se discutirá pronto.)</p>
-<p>Emacs evalúa el cuerpo del <code>let</code>, que es una expresión <code>if</code> que se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">sentence-end</span> <span class="nv">par-end</span> <span class="no">t</span><span class="p">)</span> <span class="c1">; if-part</span>
-    <span class="p">(</span><span class="nf">skip-chars-backward</span> <span class="s">&#34; \t\n&#34;</span><span class="p">)</span>              <span class="c1">; then-part</span>
-  <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">par-end</span><span class="p">)))</span>                        <span class="c1">; else-part</span>
+<p>En esta expresión, <code>(end-of-paragraph-text)</code> mueve el punto al fin del párrafo, <code>(point)</code> devuelve el valor del punto, y luego <code>save-excursion</code> restaura el punto a su posición original. De este modo, el <code>let</code> liga <code>par-end</code> al valor devuelto por la expresión <code>save-excursion</code>, que es la posición del fin del párrafo.  (La función <code>end-of-paragraph-text</code> utiliza <code>forward-paragraph</code>, que discutiremos en breve.)</p>
+<p>A continuacion Emacs evalúa el cuerpo del <code>let</code>, que es una expresión <code>if</code>:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">sentence-end</span> <span class="nv">par-end</span> <span class="no">t</span><span class="p">)</span> <span class="c1">; parte-if</span>
+    <span class="p">(</span><span class="nf">skip-chars-backward</span> <span class="s">&#34; \t\n&#34;</span><span class="p">)</span>              <span class="c1">; parte-then</span>
+  <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">par-end</span><span class="p">)))</span>                        <span class="c1">; parte-else</span>
 </code></pre>
-<p>la prueba <code>if</code> si su primer argumento es verdadero y si así, evalúa su parte then; de otro modo, el intérprete Emacs Lisp evalúa la parte else. El true-or-false-test de la expresión <code>if</code> es la búsqueda de la expresión regular.</p>
-<p>Puede estar mal tener que mirar como el ‘trabajo real’ de la función <code>forward-sentence</code> es vista aquí, pero esto es un camino común de este tipo de operación traida en Lisp.</p>
+<p>El <code>if</code> comprueba si su primer argumento es verdadero y es así, evalúa su parte then; de lo contrario, el intérprete Emacs Lisp evalúa la parte else. La prueba-verdadero-o-falso de la expresión <code>if</code> es la búsqueda de la expresión regular.</p>
+<p>Puede parecer extraño tener lo que parece ser ‘trabajo real’ de la función <code>forward-sentence</code> enterrado aqui, pero esta es una forma común de realizar este tipo de operaciónes en Lisp.</p>
 </div>
 <h4 id="la-búsqueda-de-expresiones-regulares" >La búsqueda de expresiones regulares</h4>
 <div class="hBody-4" >
-<p>La función <code>re-search-forward</code> busca el fin de la frase, que es, para el patrón definido por la expresión regular <code>sentence-end</code>. Si el patrón es encontrado––si el fin de la frase se encuentra––entonces la función <code>re-search-forward</code> hace dos cosas:</p>
+<p>La función <code>re-search-forward</code> busca el fin de la oracion, es decir, el patrón definido por la expresión regular <code>sentence-end</code>. Si el patrón es encontrado––si se encuentra el fin de la oracion––entonces la función <code>re-search-forward</code> hace dos cosas:</p>
 <ol class="num" >
 <li>
-<p>La función <code>re-search-forward</code> trae un efecto secundario, que es mover el punto al final de la ocurrencia encontrada.</p>
+<p>La función <code>re-search-forward</code> realiza un efecto secundario, que es mover el punto al final de la ocurrencia encontrada.</p>
 </li>
 <li>
-<p>La función <code>re-search-forward</code> devuelve un valor de verdad. Esto es el valor recibido por el <code>if</code>, y significa que la búsqueda fué exitosa.</p>
+<p>La función <code>re-search-forward</code> devuelve un valor verdadero. Este es el valor recibido por el <code>if</code>, y significa que la búsqueda fué exitosa.</p>
 </li>
 </ol>
-<p>El efecto secundario, el movimiento del punto se completa antes de la función <code>if</code> y es manejado por el valor devuelto por la exitosa conclusión de la búsqueda.</p>
-<p>Cuando la función <code>if</code> recibe el valor de verdad desde una llamada exitosa a <code>re-search-forward</code>, el <code>if</code> evalúa la parte then que es la expresión <code>(skip-chars-backward &#34;\t\n&#34;)</code>. Esta expresión se mueve atrás a través de espacios en blanco, los tabuladores o retornos de carro hasta un caracter impreso es encontrado y entonces deja el punto correcto después del caracter impreso cerrado de la frase, que es normalmente un periodo.</p>
-<p>Por otro lado, si la función <code>re-search-forward</code> falla para encontrar un patrón marcando el fin de la frase, la función devuelve falso. Lo falso causa el <code>if</code> para evaluar su tercer argumento, que es <code>(goto-char par-end)</code>: eso mueve el punto al final del párrafo.</p>
-<p>(Y si el texto está en una forma o equivalente, y apunta a que no puede moverse completamente entonces la función <code>constrain-to-field</code> empieza a funcionar.)</p>
-<p>Las búsquedas de expresiones regulares son excepcionalmente útiles y el patrón ilustrado por <code>re-search-forward</code>, en el que la búsqueda es el test de una expresión <code>if</code>, es manejable. Se verá o escribirá código incorporando este patrón con frecuencia.</p>
+<p>El efecto secundario, el movimiento del punto se completa antes de que la función <code>if</code> reciva el valor devuelto por la conclusión exitosa de la búsqueda.</p>
+<p>Cuando la función <code>if</code> recibe el valor verdadero desde una llamada exitosa a <code>re-search-forward</code>, el <code>if</code> evalúa la parte-then que es la expresión <code>(skip-chars-backward &#34;\t\n&#34;)</code>. Esta expresión se mueve hacia atrás a través de cualquier espacio en blanco, tabulador o retorno de carro hasta encontrar un caracter imprimible y deja el punto después del caracter. Como el punto ya se ha movido al final del patron que marca el final de la oracion, esta accion deja el punto justo despues del caracter imprimible de cierre de la oracion, que suele ser un punto.</p>
+<p>Por otro lado, si la función <code>re-search-forward</code> no encuentra un patrón que marque el fin de la oracion, la función devuelve falso. El falso provoca que <code>if</code> evalue su tercer argumento, que es <code>(goto-char par-end)</code>: esto mueve el punto al final del párrafo.</p>
+<p>(Y si el texto está en una forma o equivalente, y el punto puede que no se mueva completamente, entonces entra en juego la función <code>constrain-to-field</code>.)</p>
+<p>La búsqueda de expresiones regulares son excepcionalmente útiles y el patrón ilustrado por <code>re-search-forward</code>, en el que la búsqueda es la prueba de una expresión <code>if</code>, es facil de manejar. Veras o escribirás código incorporando este patrón con frecuencia.</p>
 </div>
 <h3 id="forward-paragraph:-una-mina-de-oro-de-funciones" ><code>forward-paragraph</code>: una mina de oro de funciones</h3>
 <div class="hBody-3" >
-<p>La función <code>forward-paragraph</code> mueve el punto al fin del párrafo. Eso está normalmente asociado a <kbd>M-}</kbd> y hace uso de un número de funciones que son importantes en sí, incluyendo <code>let*</code>, <code>match-beginning</code>, y <code>looking-at</code>.</p>
-<p>La definición de función para <code>forward-paragraph</code> es considerablemente mayor que la definición de función para <code>forward-sentence</code> porque eso funciona como un párrafo, cada línea puede empezar con un prefijo de relleno <em>fill prefix</em>.</p>
-<p>Un prefijo de relleno <em>fill prefix</em> consiste en una cadena de caracteres que se repite al principio de cada línea. Por ejemplo, en código Lisp, es una convención para empezar cada línea de un comentario de párrafo largo con <samp>;;; </samp>. En modo Texto, cuatro espacios en blanco crean otro prefijo de relleno <em>fill prefix</em> común, creando un párrafo indentado. (Véase Sección <q>Fill Prefix</q> en <em>The GNU Emacs Manual</em> para más información acerca de prefijos de relleno <em>fill prefix</em>.)</p>
-<p>La existencia de un prefijo de relleno significa que además de ser capaz de encontrar el fin de un párrafo cuyas líneas empiezan más a la izquierda, la función <code>forward-paragraph</code> debe ser capaz de encontrar el fin de un párrafo cuando todas o muchas de las líneas en el búfer empiezan con el prefijo de relleno <em>fill prefix</em>.</p>
-<p>Más allá, es algunas veces práctico ignorar un prefijo de relleno <em>fill prefix</em> que existe, especialmente cuando las líneas en blanco separen párrafos. Esto es una complicación añadida.</p>
-<p>En vez de imprimir toda la función <code>forward-paragraph</code>, nosotros solo imprimiremos partes de la misma. ¡Lee sin preparación, la función puede estar para desanimar!</p>
-<p>En esquema, la función se parece a esto:</p>
+<p>La función <code>forward-paragraph</code> mueve el punto al fin del párrafo. Por lo general esta asociado a <kbd>M-}</kbd> y hace uso de un número de funciones que son importantes en sí mismas, incluyendo <code>let*</code>, <code>match-beginning</code>, y <code>looking-at</code>.</p>
+<p>La definición de función de <code>forward-paragraph</code> es considerablemente mas extensa que la definición de función de <code>forward-sentence</code> porque trabaja con un párrafo, cada línea de la cual puede empezar con un prefijo de relleno.</p>
+<p>Un prefijo de relleno consiste en una cadena de caracteres que se repite al principio de cada línea. Por ejemplo, en el código Lisp, es una convención empezar cada línea de un comentario de un párrafo extenso con <samp>;;; </samp>. En el modo Texto, cuatro espacios en blanco forman otro prefijo común de relleno, creando un párrafo indentado. (Véa la Sección <a href="info:emacs#Fill-Prefix" >info:emacs#Fill Prefix</a> en <em>El Manual de GNU Emacs</em> para más información acerca de los prefijos de relleno.)</p>
+<p>La existencia de un prefijo de relleno significa que, además de poder encontrar el fin de un párrafo cuyas líneas empiezan en la columna más a la izquierda, la función <code>forward-paragraph</code> debe ser capaz de encontrar el final de un párrafo cuando todas o muchas de las líneas en el búfer empiezan con el prefijo de relleno.</p>
+<p>Ademas, a veces es práctico ignorar un prefijo de relleno que existe, como lo pueden ser las líneas en blanco que separan los párrafos. Esto es una complicación añadida.</p>
+<p>En vez de imprimir toda la función <code>forward-paragraph</code>, solo imprimiremos partes de la misma. ¡Leer sin preparación, la función puede ser desalentador!</p>
+<p>En general, la función tiene este aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">forward-paragraph</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
-  <span class="s">&#34;documentation…&#34;</span>
+  <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p&#34;</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">or</span> <span class="nv">arg</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="mi">1</span><span class="p">))</span>
   <span class="p">(</span><span class="nb">let*</span>
       <span class="nv">varlist</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">bobp</span><span class="p">)))</span>     <span class="c1">; backward-moving-code</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">bobp</span><span class="p">)))</span>     <span class="c1">; codigo-de-movimiento-hacia-atras</span>
       <span class="err">…</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">)))</span>     <span class="c1">; forward-moving-code</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">)))</span>     <span class="c1">; codigo-de-movimiento-hacia-adelante</span>
       <span class="err">…</span>
 </code></pre>
-<p>Las primeras partes de la función son rutinas: la función lista argumentos que consisten de un argumento opcional. La documentación sigue.</p>
-<p>La letra minúscula <samp>p</samp> en la declaración <code>interactive</code> significa que el argumento prefijo se procesa, si se pasa a la función. Eso será un número, y es el contaje repetido de cuántos párrafos se moverá. La expresión <code>or</code> en la siguiente línea maneja el caso común cuando no hay argumentos que se pasan a la función, esto ocurre si la función se llama desde otro código en vez de interactivamente. Este caso se describe pronto. (Vea la Seccion <a href="La-función-forward-sentence" >La función <code>forward-sentence</code></a>.) Ahora se logra el fin de la parte familiar de esta función.</p>
+<p>Las primeras partes de la función son rutinarias: la  lista de argumentos de la función consiste en un argumento opcional. Luego se presenta la documentación.</p>
+<p>La letra minúscula <samp><code>p</code></samp> en la declaración <code>interactive</code> significa que el argumento prefijo se procesa, si lo hay, pasa a la función. Este será un número, y es el contador de repeticion de cuántos párrafos se moverá el punto. La expresión <code>or</code> en la siguiente línea maneja el caso común cuando no se pasa ningun argumento a la función, esto ocurre si la función se llama desde otro código en lugar de interactivamente. Este caso fue descrito anteriormente. (Vea la Seccion <a href="#la-función-forward-sentence" >La Función <code>forward-sentence</code></a>.) Ahora llegamos al final de la parte familiar de esta función.</p>
 </div>
 <h4 id="la-expresión-let*" >La expresión <code>let*</code></h4>
 <div class="hBody-4" >
-<p>La siguiente línea de la función <code>forward-paragraph</code> empieza una expresión <code>let*</code>. Esto es tan diferente como <code>let</code>. El símbolo es <code>let*</code> no <code>let</code>.</p>
-<p>La forma especial <code>let*</code> es como <code>let</code> excepto que Emacs asigna cada variable en secuencia, una después de otra, y las variables en la última parte de la varlist hacen uso de los valores para los que Emacs asignó variable al principio la varlist.</p>
-<p>(Seccion <a href="La-definición-de-append-to-buffer" >La definición de <code>append-to-buffer</code></a>.)</p>
+<p>La siguiente línea en la función <code>forward-paragraph</code> empieza con una expresión <code>let*</code>. Esto es diferente a <code>let</code>. El símbolo es <code>let*</code> no <code>let</code>.</p>
+<p>La forma especial <code>let*</code> es como <code>let</code> excepto que Emacs establece cada variable en secuencia, una después de otra, y las variables en la última parte de la varlist pueden hacen uso de los valores a los que Emacs asignó las variables al principio la varlist.</p>
+<p>(Seccion <a href="save-excursion-en-append-to-buffer" ><code>save-excursion</code> en <code>append-to-buffer</code></a>.)</p>
 <p>En la expresión <code>let*</code> en esta función, Emacs asigna un total de siete variables: <code>opoint</code>, <code>fill-prefix-regexp</code>, <code>parstart</code>, <code>parsep</code>, <code>sp-parstart</code>, <code>start</code>, y <code>found-start</code>.</p>
-<p>La variable <code>parsep</code> aparece dos veces, primero, para borrar instancias de <samp>^</samp>, y segundo, para manejar prefijos rellenos.</p>
-<p>La variable <code>opoint</code> es solo el valor de <code>point</code>. Como se puede adivinar, eso se usa en una expresión <code>constrain-to-field</code>, solo como en <code>forward-sentence</code>.</p>
-<p>La variable <code>fill-prefix-regexp</code> se asigna al valor devuelto para evaluar la siguiente lista:</p>
+<p>La variable <code>parsep</code> aparece dos veces, primero, para eliminar instancias de <samp>^</samp>, y segundo, para manejar prefijos de relleno.</p>
+<p>La variable <code>opoint</code> es solo el valor de <code>point</code>. Como se puede adivinar, se usa en una expresión <code>constrain-to-field</code>, igual que en <code>forward-sentence</code>.</p>
+<p>La variable <code>fill-prefix-regexp</code> se establece con el valor devuelto de evaluar la siguiente lista:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">and</span> <span class="nv">fill-prefix</span>
      <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">equal</span> <span class="nv">fill-prefix</span> <span class="s">&#34;&#34;</span><span class="p">))</span>
      <span class="p">(</span><span class="nv">not</span> <span class="nv">paragraph-ignore-fill-prefix</span><span class="p">)</span>
      <span class="p">(</span><span class="nf">regexp-quote</span> <span class="nv">fill-prefix</span><span class="p">))</span>
 </code></pre>
 <p>Esta es una expresión cuyo primer elemento es la forma especial <code>and</code>.</p>
-<p>Como se aprendió antes la (Vease Sección <a href="Función-kill-new,-,-La-función-kill-new" >Función kill-new, , La función <code>kill-new</code></a>), la forma especial <code>and</code> evalúa cada uno de sus argumentos hasta uno de los argumentos y devuelve un valor de <code>nil</code> en el que el caso de la expresión <code>and</code> devuelve <code>nil</code>; sin embargo, si ninguno de los argumentos devuelve un valor de <code>nil</code>, el valor resultante de evaluar el último argumento es devuelto. (Puesto que tal valor no es <code>nil</code>, eso es considerado verdad en Lisp.) En otras palabras, una expresión <code>and</code> devuelve un valor de verdad solo si todos sus argumentos son verdad.</p>
-<p>En este caso, la variable <code>fill-prefix-regexp</code> está asociado a un valor no <code>nil</code> solo si el las siguientes cuatro expresiones producen un valor true (por ej., un no <code>nil</code>) cuando son evaluados; de otro modo, <code>fill-prefix-regexp</code> está asociado a <code>nil</code>.</p>
+<p>Como aprendimos anteriormente (Sección <a href="#la-función-kill-new" >La función <code>kill-new</code></a>), la forma especial <code>and</code> evalúa cada uno de sus argumentos hasta uno de los argumentos devuelve un valor <code>nil</code>, en cuyo caso la expresión <code>and</code> devuelve <code>nil</code>; sin embargo, si ninguno de los argumentos devuelve un valor <code>nil</code>, se devuelve el valor resultante de evaluar el último argumento. (Puesto que tal valor no es <code>nil</code>, se considera verdadero en Lisp.) En otras palabras, una expresión <code>and</code> devuelve un valor verdadero solo si todos sus argumentos son verdaderos.</p>
+<p>En este caso, la variable <code>fill-prefix-regexp</code> se vincula a un valor no <code>nil</code> solo si las cuatro expresiones siguientes producen un valor verdadero (es decir, un valor no <code>nil</code>) cuando se evalúan; de lo contrario, la variable <code>fill-prefix-regexp</code> se vincula a <code>nil</code>.</p>
 <dl>
 <dt><code>fill-prefix</code></dt>
 <dd>
-<p>Cuando esta variable se evalúa, el valor del prefijo de relleno <em>fill prefix</em>, si cualquiera, está devuelto. Si no hay prefijo relleno, la variable devuelve <code>nil</code>.</p>
+<p>Cuando se evalua esta variable, se devuelve el valor del prefijo de relleno, si lo hay. Si no hay prefijo relleno, esta variable devuelve <code>nil</code>.</p>
 </dd>
-<dt>(not (equal fill-prefix &#34;&#34;)</dt>
+<dt><code>(not (equal fill-prefix &#34;&#34;)</code></dt>
 <dd>
-<p>Esta expresión chequea si un prefijo lleno es una cadena vacía, que es, una cadena sin caracteres en eso. Una cadena vacía no es útil un prefijo relleno <em>fill prefix</em>.</p>
+<p>Esta expresión comprueba si un prefijo de relleno existente es una cadena vacía, es decir, una cadena sin caracteres. Una cadena vacía no es un prefijo de relleno útil.</p>
 </dd>
-<dt>(not paragraph-ignore-fill-prefix)</dt>
+<dt><code>(not paragraph-ignore-fill-prefix)</code></dt>
 <dd>
-<p>Esta expresión devuelve <code>nil</code> si la variable <code>paragraph-ignore-fill-prefix</code> ha sido cambiado siendo asignado un valor de verdad tal como <code>t</code>.</p>
+<p>Esta expresión devuelve <code>nil</code> si la variable <code>paragraph-ignore-fill-prefix</code> ha sido activada al asignarle un valor verdadero como <code>t</code>.</p>
 </dd>
-<dt>(regexp-quote fill-prefix)</dt>
+<dt><code>(regexp-quote fill-prefix)</code></dt>
 <dd>
-<p>Este es el último argumento para la forma especial <code>and</code>. Si todos los argumentos de <code>and</code> son verdaderos, el valor resultante de evaluar esta expresión será devuelto por la expresión <code>and</code> y asociado a la variable <code>fill-prefix-regexp</code>,</p>
+<p>Este es el último argumento pasado a la forma especial <code>and</code>. Si todos los argumentos de <code>and</code> son verdaderos, el valor resultante de evaluar esta expresión será devuelto por la expresión <code>and</code> y asociado a la variable <code>fill-prefix-regexp</code>,</p>
 </dd>
 </dl>
-<p>El resultado de evaluar esta expresión <code>and</code> con éxito es que <code>fill-prefix-regexp</code> se asociará al valor de <code>fill-prefix</code> como fué modificado por la función <code>regexp-quote</code>. Lo que <code>regexp-quote</code> hace es leer una cadena y devolver la expresión regular que asociará exactamente la cadena y nada más. Esto significa que <code>fill-prefix-regexp</code> será asignada a un valor que asociará el prefijo si el prefijo existe. De otro modo, la variable será asignada a <code>nil</code>.</p>
-<p>Las dos variables locales siguientes en la expresión <code>let*</code> están diseñadas para eliminar instancias de <samp>^</samp> desde <code>parstart</code> y <code>parsep</code>, las variables locales indican que el párrafo empieza como separador de párrafo. La siguiente expresión asigna <code>parsep</code> de nuevo. Esto es manejar prefijos rellenos.</p>
-<p>Esta es la configuración que requiere la llamada de la definición <code>let*</code> en vez de <code>let</code>. El true-or-false-test para el <code>if</code> depende de si la variable <code>fill-prefix-regexp</code> evalúa a <code>nil</code> o algún otro valor.</p>
-<p>Si <code>fill-prefix-regexp</code> no tiene un valor, Emacs evalúa la parte else de la expresión <code>if</code> y asocia <code>parsep</code> a su valor local. (<code>parsep</code> es una expresión regular que asocia lo que los párrafos separan.)</p>
-<p>Pero si <code>fill-prefix-regexp</code> tiene un valor, Emacs evalúa la parte then de la expresión <code>if</code> y asocia <code>parsep</code> a una expresión regular que incluye el <code>fill-prefix-regexp</code> como parte del patrón.</p>
-<p>Específicamente, <code>parsep</code> está asignado al valor original del párrafo que separa la expresión regular concatenada con una expresión alternativa que consiste del <code>fill-prefix-regexp</code> seguido por espacios en blanco opcionales para el fin de la línea. El espacio en blanco está definido por <code>&#34;[ \t]*$&#34;</code>.) El <samp>\\|</samp> define esta porción del regexp como una alternativa a <code>parsep</code>.</p>
-<p>De acuerdo a un comentario en el código, la siguiente variable local, <code>sp-parstart</code>, se usa para buscar, y entonces los dos finales, <code>start</code> y <code>found-start</code>, se asignan a <code>nil</code>.</p>
-<p>Ahora tenemos dentro el cuerpo del <code>let*</code>. La primera parte del cuerpo del <code>let*</code> trata con el caso cuando la función es dada a un argumento negativo y consiguientemente moviéndose hacia atrás. Nosotros saldremos de esta sección yendo hacia atrás.</p>
+<p>El resultado de evaluar esta expresión <code>and</code> con éxito es que <code>fill-prefix-regexp</code> sera ligada al valor de <code>fill-prefix</code> como fué modificado por la función <code>regexp-quote</code>. Lo que <code>regexp-quote</code> hace es leer una cadena y devolver la expresión regular que coincida exactamente con la cadena y nada más. Esto significa que el valor de <code>fill-prefix-regexp</code> será asignado a un valor que coincida exactamente con el prefijo si existe. De lo contrario, la variable sera ligada a <code>nil</code>.</p>
+<p>Las siguientes dos variables locales en la expresión <code>let*</code> están diseñadas para eliminar instancias de <samp>^</samp> de <code>parstart</code> y <code>parsep</code>, las variables locales que indican el inicio del párrafo y el separador de párrafos. La siguiente expresión establece <code>parsep</code> de nuevo. Esto es para manejar prefijos de relleno.</p>
+<p>Esta es el ajuste que requiere la llamada de la definición <code>let*</code> en lugar de <code>let</code>. La prueba-verdadero-o-falso del <code>if</code> depende de si la variable <code>fill-prefix-regexp</code> evalúa a <code>nil</code> o algún otro valor.</p>
+<p>Si <code>fill-prefix-regexp</code> no tiene un valor, Emacs evalúa la parte else de la expresión <code>if</code> y vinculara <code>parsep</code> a su valor local. (<code>parsep</code> es una expresión regular que coincide con la separacion de párrafos.)</p>
+<p>Pero si <code>fill-prefix-regexp</code> tiene un valor, Emacs evalúa la parte-then de la expresión <code>if</code> y enlaza <code>parsep</code> a una expresión regular que incluye <code>fill-prefix-regexp</code> como parte del patrón.</p>
+<p>Específicamente, <code>parsep</code> se asigna al valor original del separador del párrafo, la expresión regular concatenada con una expresión alternativa que consiste en <code>fill-prefix-regexp</code> seguido por espacios en blanco opcionales halta el fin de la línea. (El espacio en blanco se define con <q><code>[ \t]*$</code></q>.) El <samp>\\|</samp> define esta porción del regexp como una alternativa a <code>parsep</code>.</p>
+<p>De acuerdo a un comentario en el código, la siguiente variable local, <code>sp-parstart</code>, se utiliza para la busqueda, y luego los dos finales, <code>start</code> y <code>found-start</code>, se asignan a <code>nil</code>.</p>
+<p>Ahora entramos en el cuerpo del <code>let*</code>. La primera parte del cuerpo del <code>let*</code> trata el caso cuando la función recibe un argumento negativo y por lo tanto se mueve hacia atrás. Omitiremos esta sección.</p>
 </div>
 <h4 id="el-bucle-while-hacia-adelante" >El bucle <code>while</code> hacia adelante</h4>
 <div class="hBody-4" >
-<p>La segunda parte del cuerpo del <code>let*</code> trata con el proceso hacia adelante. Eso es un bucle <code>while</code> que se repite si el valor de <code>arg</code> es mayor que cero. En el uso más común de la función el valor del argumento es 1, así el cuerpo del bucle <code>while</code> se evalúa exactamente una vez, y el cursor se mueve hacia adelante un párrafo.</p>
-<p>Esta parte maneja tres situaciones: cuando el punto está entre párrafos, cuando hay un prefijo de relleno y cuando no hay prefijo de relleno <em>fill prefix</em>.</p>
-<p>El bucle <code>while</code> se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="c1">;; yendo hacia adelante y no al fin del búfer</span>
+<p>La segunda parte del cuerpo del <code>let*</code> maneja el movimiento hacia adelante. Es un bucle <code>while</code> que se repite mientras el valor de <code>arg</code> es mayor a cero. En el uso más común de la función el valor del argumento es 1, por lo que el cuerpo del bucle <code>while</code> se evalúa exactamente una vez, y el cursor avanza hacia adelante un párrafo.</p>
+<p>Esta parte maneja tres situaciones: cuando el punto está entre párrafos, cuando hay un prefijo de relleno y cuando no hay un prefijo de relleno.</p>
+<p>El bucle <code>while</code> se ve así:</p>
+<pre class="code" ><code class="chroma" ><span class="c1">;; avanza hacia adelante y no al final del búfer</span>
 <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">)))</span>
 
   <span class="c1">;; entre párrafos</span>
-  <span class="c1">;; Mueve hacia adelante a través de líneas de</span>
-  <span class="c1">;; separación...</span>
+  <span class="c1">;; Avanzar sobre linesa de separacion...</span>
   <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">))</span>
               <span class="p">(</span><span class="nb">progn</span> <span class="p">(</span><span class="nv">move-to-left-margin</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">)))</span>
               <span class="p">(</span><span class="nf">looking-at</span> <span class="nv">parsep</span><span class="p">))</span>
     <span class="p">(</span><span class="nf">forward-line</span> <span class="mi">1</span><span class="p">))</span>
-  <span class="c1">;;  @e{Esto decremento el bucle}</span>
+  <span class="c1">;;  Esto decrementa el bucle</span>
   <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">)</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">arg</span><span class="p">)))</span>
   <span class="c1">;; ... y una línea más</span>
   <span class="p">(</span><span class="nf">forward-line</span> <span class="mi">1</span><span class="p">)</span>
 
   <span class="p">(</span><span class="nb">if</span> <span class="nv">fill-prefix-regexp</span>
-      <span class="c1">;; Hay un prefijo lleno; que sobreescribe parstart;</span>
-      <span class="c1">;; vamos adelante línea por línea</span>
+      <span class="c1">;; Hay un prefijo de relleno; sobreescribe parstart;</span>
+      <span class="c1">;; avanzamos línea a línea</span>
       <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">))</span>
                   <span class="p">(</span><span class="nb">progn</span> <span class="p">(</span><span class="nv">move-to-left-margin</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">)))</span>
                   <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">looking-at</span> <span class="nv">parsep</span><span class="p">))</span>
                   <span class="p">(</span><span class="nf">looking-at</span> <span class="nv">fill-prefix-regexp</span><span class="p">))</span>
         <span class="p">(</span><span class="nf">forward-line</span> <span class="mi">1</span><span class="p">))</span>
 
-    <span class="c1">;; No hay prefijo;</span>
-    <span class="c1">;; vamos hacia adelante caracter por caracter</span>
+    <span class="c1">;; No hay prefijo de relleno;</span>
+    <span class="c1">;; avanzamos caracter por caracter</span>
     <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">sp-parstart</span> <span class="no">nil</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="p">(</span><span class="nb">progn</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">start</span> <span class="p">(</span><span class="nf">match-beginning</span> <span class="mi">0</span><span class="p">))</span>
                        <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">start</span><span class="p">)</span>
@@ -4409,44 +4406,44 @@ nil
                          <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">get-text-property</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">start</span><span class="p">)</span> <span class="ss">&#39;hard</span><span class="p">)))))</span>
       <span class="p">(</span><span class="nf">forward-char</span> <span class="mi">1</span><span class="p">))</span>
 
-    <span class="c1">;; y si no hay prefijo y si no estamos al final</span>
+    <span class="c1">;; y si no hay prefijo de relleno y si no estamos al final</span>
     <span class="c1">;; ir a lo que fué encontrado en la búsqueda de expresiones regulares</span>
     <span class="c1">;; para sp-parstart</span>
     <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
         <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">start</span><span class="p">))))</span>
 </code></pre>
-<p>Se puede ver que esto es un contador de decremento <code>while</code>, usando la expresión <code>(setq arg (1- arg))</code> como lo que se decrementa. Esta expresión no está lejos desde el <code>while</code>, pero está oculta en otra macro Lisp, una macro <code>unless</code>. A menos que estemos al final del búfer––esto es lo que la función <code>eobp</code> determina; eso es una abreviación de <samp>Fin del Buffer P</samp> --- nosotros decrementamos el valor de <code>arg</code> por uno.</p>
-<p>(Si estamos al fin del búfer, no podemos ir más hacia adelante y el siguiente bucle de la expresión <code>while</code> probará falso desde que el test es un <code>and</code> con <code>(not (eobp))</code>. La función <code>not</code> significa exactamente como se esperaba; eso es otro nombre de <code>null</code>, una función que devuelve verdadero cuando su argumento es falso.)</p>
-<p>De manera interesante, el bucle cuenta que no se decrementa hasta que deje el espacio entre párrafos, a menos que vuelva al fin del búfer o pare viendo el valor local del separador del párrafo.</p>
-<p>El segundo <code>while</code> también tiene una expresión <code>(move-to-left-margin)</code>. La función es autoexplicativa. Eso está dentro de una expresión <code>progn</code> y no el último elemento de su cuerpo, así es solo invocado para su efecto secundario, que es mover el punto al margen izquierdo de la línea actual.</p>
-<p>La función <code>looking-at</code> es también auto-explicativa; eso devuelve verdadero si el texto después del punto asocia la expresión regular dada como su argumento.</p>
-<p>El resto del cuerpo del bucle se ve compleja al principio, pero tiene sentido cuando se comprende.</p>
-<p>Primero considera que ocurre si hay un prefijo de relleno <em>fill prefix</em>:</p>
+<p>Se puede ver que esto es un contador de decremento <code>while</code>, usando la expresión <code>(setq arg (1- arg))</code> como decremento. Esta expresión no está lejos del <code>while</code>, pero está oculta en otra macro Lisp, una macro <code>unless</code>. A menos que estemos al final del búfer––eso es lo que la función <code>eobp</code> determina; es una abreviación de <samp>End of Buffer P</samp>––disminuimos el valor de <code>arg</code> por uno.</p>
+<p>(Si estamos al fin del búfer, ya no podemos avanzar mas y el siguiente bucle de la expresión <code>while</code> sera falso ya que la prueba es un <code>and</code> con <code>(not (eobp))</code>. La función <code>not</code> significa exactamente lo que se espera; es otro nombre para <code>null</code>, una función que devuelve verdadero cuando su argumento es falso.)</p>
+<p>Curiosamento, el contador del bucle no disminuye hasta que dejamos el espacio entre párrafos, a menos que lleguemos al fin del búfer o dejemos de ver el valor local del separador del párrafo.</p>
+<p>El segundo <code>while</code> también tiene una expresión <code>(move-to-left-margin)</code>. La función es autoexplicativa. Está dentro de una expresión <code>progn</code> y no el último elemento de su cuerpo, por lo que solo se invoca por su efecto secundario, que es mover el punto al margen izquierdo de la línea actual.</p>
+<p>La función <code>looking-at</code> también es auto-explicativa; devuelve verdadero si el texto después del punto coincide con la expresión regular dada como su argumento.</p>
+<p>El resto del cuerpo del bucle parece complejo al principio, pero tiene sentido cuando llegas a entenderlo.</p>
+<p>Primero considera lo que sucede si hay un prefijo de relleno:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="nv">fill-prefix-regexp</span>
-    <span class="c1">;; Hay un prefijo lleno; que sobreescribe parstart;</span>
-    <span class="c1">;; vamos adelante línea por línea</span>
+    <span class="c1">;; Hay un prefijo de relleno; sobreescribe parstart;</span>
+    <span class="c1">;; avanzamos línea a línea</span>
     <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">))</span>
                 <span class="p">(</span><span class="nb">progn</span> <span class="p">(</span><span class="nv">move-to-left-margin</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">eobp</span><span class="p">)))</span>
                 <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">looking-at</span> <span class="nv">parsep</span><span class="p">))</span>
                 <span class="p">(</span><span class="nf">looking-at</span> <span class="nv">fill-prefix-regexp</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">forward-line</span> <span class="mi">1</span><span class="p">))</span>
 </code></pre>
-<p>Esta expresión mueve el punto hacia adelante línea por línea tan lejos como que las cuatro condiciones son ciertas:</p>
+<p>Esta expresión mueve el punto hacia adelante línea por línea siempre y cuando se cumplan las cuatro condiciones:</p>
 <ol class="num" >
 <li>
-<p>Punto no está al final del búfer.</p>
+<p>El punto no está al final del búfer.</p>
 </li>
 <li>
-<p>Podemos mover al margen izquierdo del texto y no estar al fin del búfer.</p>
+<p>Podemos movernos al margen izquierdo del texto y no estamos al fin del búfer.</p>
 </li>
 <li>
-<p>El siguiente punto no separa párrafos.</p>
+<p>El siguiente punto no separa los párrafos.</p>
 </li>
 <li>
-<p>El patrón que sigue el punto es la expresión regular prefija rellena.</p>
+<p>El patrón que sigue al punto es la expresión regular del prefijo de relleno.</p>
 </li>
 </ol>
-<p>La última condición puede ser un puzzle, hasta que se recuerde qué punto fué movido al principio de la línea temprana en la función <code>forward-paragraph</code>. Esto significa que si el texto tiene el prefijo relleno, la función <code>looking-at</code> se verá.</p>
+<p>La última condición puede ser un puzzle, hasta que se recuerde qué el punto fue movido al principio de la línea anteriormente en la función <code>forward-paragraph</code>. Esto significa que si el texto tiene un prefijo de relleno, la función <code>looking-at</code> se verá.</p>
 <p>Considera qué ocurre cuando no hay un prefijo lleno.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">sp-parstart</span> <span class="no">nil</span> <span class="mi">1</span><span class="p">)</span>
             <span class="p">(</span><span class="nb">progn</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">start</span> <span class="p">(</span><span class="nf">match-beginning</span> <span class="mi">0</span><span class="p">))</span>
@@ -4459,126 +4456,125 @@ nil
                      <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">get-text-property</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">start</span><span class="p">)</span> <span class="ss">&#39;hard</span><span class="p">)))))</span>
   <span class="p">(</span><span class="nf">forward-char</span> <span class="mi">1</span><span class="p">))</span>
 </code></pre>
-<p>El bucle <code>while</code> nos tiene buscando hacia adelante para <code>sp-parstart</code>, que es la combinación de posibles espacios en blanco con un valor local del comienzo de un párrafo o de un párrafo separador. (Las últimas dos son con una expresión empezando con <code>(?:)</code> así que no están referenciadas por la función <code>match-beginning</code>.)</p>
+<p>El bucle <code>while</code> nos lleva a la busqueda de <code>sp-parstart</code>, que es la combinación de posibles espacios en blanco con el valor local del inicio de un párrafo o de un separador de párrafos. (Los dos últimos se encuentran dentro de una expresión que comienza con <code>\(?:</code> así que no están referenciadas por la función <code>match-beginning</code>.)</p>
 <p>Las dos expresiones,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">start</span> <span class="p">(</span><span class="nf">match-beginning</span> <span class="mi">0</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">start</span><span class="p">)</span>
 </code></pre>
-<p>significa ir al comienzo del siguiente texto localizado por la expresión regular.</p>
-<p>La expresión <code>(match-beginning 0)</code> es nueva. Eso devuelve un número especificando la posición del comienzo del texto fuese asociado a la última búsqueda.</p>
-<p>La función <code>match-beginning</code> es usado aquí porque una característica de una búsqueda hacia adelante: una búsqueda hacia adelante, sin dignidad si eso es una búsqueda plana o una expresión regular, mueve el punto al fin del texto que es encontrado. En este caso, una búsqueda exitosa mueve el punto al fin del patrón para <code>sp-parstart</code>.</p>
-<p>Sin embargo, se quiere poner el punto al fin del actual párrafo, no en algún lugar más. En vez de eso, desde que la búsqueda posiblemente incluye el separador del párrafo, el punto puede finalizar al principio de lo siguiente a menos que se use una expresión que incluya <code>match-beginning</code>.</p>
-<p>Cuando un argumento de 0, <code>match-beginning</code> devuelve la posición que es el comienzo del texto asociado por la búsqueda más reciente. En este caso, la búsqueda más reciente parece <code>sp-parstart</code>. La expresión <code>(match-beginning 0)</code> devuelve la posición del comienzo de este patrón, en vez de la posición final de este patrón.</p>
-<p>(Incidentalmente, cuando se pasa un número positivo como un argumento, la función <code>match-beginning</code> devuelve la localización de punto en el que la expresión con paréntesis en la última búsqueda a menos que la expresión con paréntesis empiece con <code>\(?:</code>. No sé porque <code>\(?:</code> aparece aquí desde que el argumento es 0.)</p>
-<p>La última expresión cuando no hay prefijos es</p>
+<p>significan ir al comienzo del texto localizado con la expresión regular.</p>
+<p>La expresión <code>(match-beginning 0)</code> es nueva. Devuelve un número que especifica la ubicacion del inicio del texto que coincidio con la última búsqueda.</p>
+<p>La función <code>match-beginning</code> se utiliza aquí debido a una característica de la búsqueda hacia adelante: una búsqueda exitosa hacia adelante, independientemente de si se trata de una búsqueda simple o una expresión regular, mueve el punto al fin del texto encontrado. En este caso, una búsqueda exitosa mueve el punto al fin del patrón de <code>sp-parstart</code>.</p>
+<p>Sin embargo, queremos poner el punto al fin del actual párrafo, no en algún otro lugar. De hecho, dado que la búsqueda posiblemente incluye el separador de párrafos, el punto puede finalizar al principio del siguiente a menos que utilicemos una expresión que incluya <code>match-beginning</code>.</p>
+<p>Cuando se le da un argumento de 0, <code>match-beginning</code> devuelve la posición de inicio del texto coincidente con la búsqueda más reciente. En este caso, la búsqueda más reciente de <code>sp-parstart</code>. La expresión <code>(match-beginning 0)</code> devuelve la posición del comienzo de ese patrón, en lugar de la posición final de este patrón.</p>
+<p>(Incidentalmente, cuando se pasa un número positivo como un argumento, la función <code>match-beginning</code> devuelve la localización de punto de la expresión con paréntesis en la última búsqueda a menos que la expresión con paréntesis empiece con <code>\(?:</code>. No sé porque <code>\(?:</code> aparece aquí, ya que el argumento es 0.)</p>
+<p>La última expresión cuando no hay prefijo de relleno es</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
     <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">start</span><span class="p">))))</span>
 </code></pre>
-<p>Esto dice que si no hay prefijo lleno y no estamos al punto final que se movería al principio de lo que fué encontrado por la búsqueda de la expresión regular para <code>sp-parstart</code>.</p>
-<p>La definición completa para la función <code>forward-paragraph</code> no solo incluye código para avanzar, también código para retroceder.</p>
-<p>Si está leyendo esto dentro de GNU Emacs y quieres ver la función completa, se puede escribir <kbd>C-h f</kbd> (<code>describe-function</code>) y el nombre de la función. Esto da la documentación de función y el nombre de la librería conteniendo las fuentes de la función. Posiciona el punto a través del nombre de la librería y presionar la tecla RET; será tomado directamente a las fuentes. (¡Asegúrate de instalar las fuentes! ¡Sin eso, estarás como una persona que intenta conducir un coche con los ojos cerrados!)</p>
+<p>Esto dice que si no hay prefijo lleno y no estamos al final, el punto deberia moverse al principio de lo que sea que sea haya encontrado al buscar la expresión regular de <code>sp-parstart</code>.</p>
+<p>La definición completa de la función <code>forward-paragraph</code> no solo incluye código para avanzar, también código para retroceder.</p>
+<p>Si estás leyendo esto dentro de GNU Emacs y quieres ver la función completa, puedes escribir <kbd>C-h f</kbd> (<code>describe-function</code>) y el nombre de la función. Esto proporciona la documentación de función y el nombre de la librería que contiene el codigo fuente de la función. Coloca el punto sobre el nombre de la librería y presionar la tecla <kbd>RET</kbd>; serás llevado directamente al codigo fuente. (¡Asegúrate de instalar las fuentes! ¡Sin eso, eres como una persona que intenta conducir un coche con los ojos cerrados!)</p>
 </div>
 <h3 id="crea-tu-propio-fichero-tags" >Crea tu propio fichero <span class="file" >TAGS</span></h3>
 <div class="hBody-3" >
-<p>Bajo <kbd>C-h f</kbd> (<code>describe-function</code>), otro camino para ver la fuente de una función es escribir <kbd>M-.</kbd> (<code>find-tag</code>) y el nombre de la función se asigna para eso. Esto es un buen hábito para obtenerlo. El comando <kbd>M-.</kbd> (<code>find-tag</code>) toma directamente a las fuentes de una función, variable, o nodo. La función depende de tablas de etiquetas para saber donde ir.</p>
-<p>Si la función <code>find-tag</code> pregunta primero por el nombre de una tabla <span class="file" >TAGS</span>, dado el nombre de un fichero <span class="file" >TAGS</span> tal como <span class="file" >/usr/local/src/emacs/src/TAGS</span>. (La ruta exacta a tu fichero <span class="file" >TAGS</span> depende de cómo tu copia de Emacs fué instalada. Yo te cuento la localización que provee tanto mi C y mis fuentes de Emacs Lisp.)</p>
-<p>Se puede también crear tu propio fichero <span class="file" >TAGS</span> para los directorios que faltan.</p>
-<p>Con frecuencia se necesita construir e instalar etiquetas de tablas por uno mismo. Esas no son construidas automáticamente. Una tabla de etiquetas llama a un fichero <span class="file" >TAGS</span>; el nombre es letras mayúsculas.</p>
-<p>Se puede crear un fichero <span class="file" >TAGS</span> llamando el programa <code>etags</code> que viene como parte de la distribución Emacs. Normalmente, <code>etags</code> está compilado e instalado cuando Emacs se construye. (<code>etags</code> no es una función Lisp o una parte de Emacs; eso es un programa C.)</p>
-<p>Para crear el fichero <span class="file" >TAGS</span>, primero cambia el directorio en el que se quiere crear el fichero. En Emacs se puede hacer esto con el comando <kbd>M-x cd</kbd>, o visitando un fichero en el directorio, o listando el directorio <code>etags *.el</code> como el comando a ejecutar</p>
+<p>Ademas de <kbd>C-h f</kbd> (<code>describe-function</code>), otra forma de ver el codigo de una función es escribir <kbd>M-.</kbd> (<code>find-tag</code>) y el nombre de la función cuando se solicite. Es un buen hábito para obtenerlo. El comando <kbd>M-.</kbd> (<code>find-tag</code>) te lleva directamente al codigo de una función, variable, o nodo. La función depende de tablas de etiquetas para saber donde ir.</p>
+<p>Si la función <code>find-tag</code> pregunta primero por el nombre de una tabla <span class="file" >TAGS</span>, dale el nombre de un fichero <span class="file" >TAGS</span> como <span class="file" >/usr/local/src/emacs/src/TAGS</span>. (La ruta exacta a tu fichero <span class="file" >TAGS</span> depende de cómo instalaste tu copia de Emacs. Yo he provisto la localización tanto de mi codigo fuente de C, como de Emacs Lisp.)</p>
+<p>Tambien puedes crear tu propio fichero <span class="file" >TAGS</span> para directorios que carecen de uno.</p>
+<p>Con frecuencia se necesita construir e instalar tablas de etiquetas por uno mismo. Estas no son construidas automáticamente. Una tabla de etiquetas nombra como un fichero <span class="file" >TAGS</span>; el nombre va en letras mayúsculas.</p>
+<p>Puedes crear un fichero <span class="file" >TAGS</span> llamando al programa <code>etags</code> que viene como parte de la distribución de Emacs. Por lo general, <code>etags</code> se compila e instala cuando se construye Emacs. (<code>etags</code> no es una función Lisp o una parte de Emacs; es un programa C.)</p>
+<p>Para crear el fichero <span class="file" >TAGS</span>, primero cambia al directorio en el que se quiera crear el fichero. En Emacs se puede hacer esto con el comando <kbd>M-x cd</kbd>, o visitando un fichero en el directorio, o listando el directorio con <kbd>C-x d</kbd> (<code>dired</code>). A continuacion, ejecute el comando  de compilacion, con <code>etags *.el</code> como el comando a ejecutar</p>
 <div class="example-block" >
 <pre class="example" >M-x compile RET etags *.el RET
 </pre>
 </div>
-<p>crear un fichero de <span class="file" >TAGS</span> para Emacs Lisp.</p>
-<p>Por ejemplo, si se tiene un gran número de ficheros en el directorio <span class="file" >~/emacs</span>, como se hace––Yo tengo 137 <span class="file" >.el</span> dentro, de que se carguen 12––se puede crear un fichero <span class="file" >TAGS</span> para los ficheros Emacs Lisp en este directorio.</p>
-<p>El programa <code>etags</code> toma en toda la consola usual ‘comodines’. Por ejemplo, si tienes dos directorios para el que quieres un fichero <span class="file" >TAGS</span> simple, escribe <code>etags *.el ../elisp/*.el</code>, donde <span class="file" >../elisp/</span> es el segundo directorio:</p>
+<p>para crear un fichero <span class="file" >TAGS</span> para Emacs Lisp.</p>
+<p>Por ejemplo, si se tiene un gran número de ficheros en el directorio <span class="file" >~/emacs</span>, como en mi caso––yo tengo 137 ficheros <span class="file" >.el</span>, de los cuales cargo 12––se puede crear un fichero <span class="file" >TAGS</span> para los ficheros Emacs Lisp en ese directorio.</p>
+<p>El programa <code class="command" >etags</code> recive todos los ‘comodines’ usuales del shell. Por ejemplo, si tienes dos directorios para los que deseas un unico fichero <span class="file" >TAGS</span>, ingresa <code>etags *.el ../elisp/*.el</code>, donde <span class="file" >../elisp/</span> es el segundo directorio:</p>
 <div class="example-block" >
 <pre class="example" >M-x compile RET etags *.el ../elisp/*.el RET
 </pre>
 </div>
-<p>Tipo</p>
+<p>Ingresa</p>
 <div class="example-block" >
 <pre class="example" >M-x compile RET etags --help RET
 </pre>
 </div>
-<p>para ver una lista de las opciones aceptadas por <code>etags</code> tan bien como una lista de lenguajes soportados.</p>
-<p>El programa <code>etags</code> maneja más de 20 lenguajes, incluyendo Emacs Lisp, Common Lisp, Scheme, C, C++, Ada, Fortran, HTML, Java, LaTeX, Pascal, Perl, Postscript, Python, TeX, Texinfo, makefiles, y la mayoría de ensambladores. El programa no cambia para especificar el lenguaje; eso reconoce el lenguaje como una entrada de fichero de acuerdo a su nombre de fichero y contenidos.</p>
-<p><span class="file" >etags</span> es muy útil cuando se escribe código por tí mismo y quiere referirse a funciones que ya se han escrito. Ahora ejecuta <code>etags</code> de nuevo en intervalos como se escriben nuevas funciones, así llegan a ser parte del fichero <span class="file" >TAGS</span>.</p>
-<p>Si piensa que un fichero <span class="file" >TAGS</span> apropiado que ya existe para lo que quieres, pero no conoces donde está, se puede usar el programa <code>locate</code> para intentar encontrarlo.</p>
-<p>Escribe <kbd>M-x locate <kbd>RET</kbd> TAGS <kbd>RET</kbd></kbd> y Emacs listará para ti las rutas nombres completas de todos tus ficheros <span class="file" >TAGS</span>. En mi sistema, este comando lista 34 fichero <span class="file" >TAGS</span>. Por otro lado, un sistema ‘vanilla plano’ que recientemente no contenía fichero <span class="file" >TAGS</span>.</p>
-<p>Si la tabla de etiquetas que se quiere ha sido creada, se puede usar el comando <code>M-x visit-tags-table</code> para especificarlo. De otro modo, se necesitará la tabla de etiquetas por tí mismo y entonces usar <code>M-x visit-tags-table</code>.</p>
+<p>para ver una lista de las opciones aceptadas por <code class="command" >etags</code> asi como una lista de lenguajes soportados.</p>
+<p>El programa <code class="command" >etags</code> maneja más de 20 lenguajes, incluyendo Emacs Lisp, Common Lisp, Scheme, C, C++, Ada, Fortran, HTML, Java, LaTeX, Pascal, Perl, Postscript, Python, TeX, Texinfo, makefiles, y la mayoría de ensambladores. El programa no tiene interruptores para especificar el lenguaje; reconoce el lenguaje en un fichero de entrada segun su nombre y contenido.</p>
+<p><span class="file" >etags</span> es muy útil cuando estas escribiendo código y quieres referirse a funciones que ya has escrito. Simplemente ejecuta de nuevo <code class="command" >etags</code> a medida que escribas nuevas funciones, para que formen parte del fichero <span class="file" >TAGS</span>.</p>
+<p>Si crees que ya existe un fichero <span class="file" >TAGS</span> apropiado para lo que buscas, pero no conoces donde está, puedes usar el programa <code class="command" >locate</code> para intentar encontrarlo.</p>
+<p>Escribe <kbd>M-x locate RET TAGS RET</kbd> y Emacs listará los nombres de rutas completos de todos tus ficheros <span class="file" >TAGS</span>. En mi sistema, este comando muestra 34 fichero <span class="file" >TAGS</span>. Por otra parte, un sistema ‘vainilla’ instalado recientemente no contenía ningun fichero <span class="file" >TAGS</span>.</p>
+<p>Si la tabla de etiquetas que buscas ya ha sido creada, puedes utilizar el comando <code>M-x visit-tags-table</code> para especificarlo. De lo contrario, tendras que crear la tabla de etiquetas por tí mismo y luego utilizar <code>M-x visit-tags-table</code>.</p>
 </div>
-<h4 id="construyendo-etiquetas-en-las-fuentes-emacs" >Construyendo Etiquetas en las fuentes Emacs</h4>
+<h4 id="construyendo-etiquetas-en-el-codigo-de-emacs" >Construyendo Etiquetas en el codigo de Emacs</h4>
 <div class="hBody-4" >
-<p>Las fuentes GNU Emacs vienen con un <span class="file" >Makefile</span> que contiene un comando sofisticado <code>etags</code> que crea, recoge, y asocia tablas de etiquetas de todas las fuentes de Emacs y pone la información dentro de un fichero <span class="file" >TAGS</span> en el directorio <span class="file" >src/</span>. (El directorio <span class="file" >src/</span> está debajo del alto nivel de tu directorio Emacs.)</p>
-<p>Para construir este fichero <span class="file" >TAGS</span>, se puede ir al alto nivel de directorio de fuentes Emacs y ejecutar el comando de compilar <code>make tags</code>:</p>
+<p>El codigo fuente de GNU Emacs vienen con un <span class="file" >Makefile</span> que contiene un comando <code class="command" >etags</code> sofisticado que crea, recoge, y une tablas de etiquetas con todo el codigo de Emacs y coloca la información dentro de un fichero <span class="file" >TAGS</span> en el directorio <span class="file" >src/</span>. (El directorio <span class="file" >src/</span> está debajo del nivel superior de tu directorio Emacs.)</p>
+<p>Para construir este fichero <span class="file" >TAGS</span>, debes ir nivel superior de directorio con el codigo fuente de Emacs y ejecutar el comando de compilacion <code class="command" >make tags</code>:</p>
 <div class="example-block" >
 <pre class="example" >M-x compile RET make tags RET
 </pre>
 </div>
-<p>(El comando <code>make tags</code> trabaja bien con las fuentes de GNU Emacs, tan bien como con otros paquetes fuentes.)</p>
-<p>Para más información, mira <q>Tablas de Etiquetas</q> en <em>El Manual GNU Emacs</em>.</p>
+<p>(El comando <code class="command" >make tags</code> trabaja bien con las fuentes de GNU Emacs, tan bien como con otros paquetes de codigo fuente.)</p>
+<p>Para más información, mira <a href="info:emacs#Tags" >Tablas de Etiquetas</a> en <em>El Manual de GNU Emacs</em>.</p>
 </div>
 <h3 id="repaso" >Repaso</h3>
 <div class="hBody-3" >
-<p>Aquí hay un breve resumen de algunas funciones introducidas recientemente.</p>
+<p>Aquí hay un breve resumen de algunas funciones recientemente introducidas.</p>
 <dl>
 <dt><code>while</code></dt>
 <dd>
-<p>Repetidamente evalúa el cuerpo de la expresión tan larga como el primer elemento del cuerpo chequea verdadero. Entonces devuelve <code>nil</code>. (La expresión es evaluado solo por sus efectos secundarios.)</p>
+<p>Evalúa repetidamente el cuerpo de la expresión simpre y cuando el primer elemento del cuerpo se evalue como verdadero. Entonces devuelve <code>nil</code>. (La expresión se evalua solo por sus efectos secundarios.)</p>
 <p>Por ejemplo:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">))</span>
+<pre class="srci" ><code class="elisp" ><span class="in" ><span class="prompt" >&gt; </span><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">))</span>
   <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">foo</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;foo is %d.\n&#34;</span> <span class="nv">foo</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;foo es %d.\n&#34;</span> <span class="nv">foo</span><span class="p">))</span>
     <span class="p">(</span><span class="nb">setq</span> <span class="nv">foo</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">foo</span><span class="p">))))</span>
-
-     <span class="err">⇒</span>      <span class="nv">foo</span> <span class="nv">is</span> <span class="mi">2.</span>
-             <span class="nv">foo</span> <span class="nv">is</span> <span class="mi">1.</span>
-             <span class="no">nil</span>
-</code></pre>
-<p>(La función <code>insert</code> inserta sus argumentos en el punto; la función <code>format</code> devuelve una cadena formateada desde sus argumentos el camino <code>message</code> formatea sus argumentos; <code>\n</code> produce una nueva línea.)</p>
+</span><span class="out" >foo es 2.
+foo es 1.
+nil
+</span></code></pre>
+<p>(La función <code>insert</code> inserta sus argumentos en el punto; la función <code>format</code> devuelve una cadena formateada a partir de sus argumentos de la forma que <code>message</code> formatea sus argumentos; <code>\n</code> produce una nueva línea.)</p>
 </dd>
 <dt><code>re-search-forward</code></dt>
 <dd>
-<p>Busca un patrón, y si el patrón se encuentra, mueve el punto al resto solo después de eso.</p>
-<p>Toma cuatro argumentos, como <code>search-forward</code>:</p>
+<p>Busca un patrón, y si se encuentra, mueve el punto al final de la coincidencia.</p>
+<p>Igual que <code>search-forward</code>, toma cuatro argumentos:</p>
 <ol class="num" >
 <li>
-<p>Una expresión regular que especifica el patrón para buscarlo. (¡Recuerda por marcas de comillas alrededor de este argumento!)</p>
+<p>Una expresión regular que especifica el patrón a buscar. (¡Recuerda poner comillas alrededor de este argumento!)</p>
 </li>
 <li>
 <p>Opcionalmente, el límite de la búsqueda.</p>
 </li>
 <li>
-<p>Opcionalmente, que haces si la búsqueda falla, devuelve <code>nil</code> o un mensaje de error.</p>
+<p>Opcionalmente, que hacer si la búsqueda falla, devuelve <code>nil</code> o un mensaje de error.</p>
 </li>
 <li>
 <p>Opcionalmente, cuántas veces se puede repetir la búsqueda; si es negativa, la búsqueda va hacia atrás.</p>
 </li>
 </ol>
 </dd>
-<dt>let*</dt>
+<dt><code>let*</code></dt>
 <dd>
-<p>Asocia algunas variables localmente a valores particulares, y entonces evalúa los argumentos que permanencen, devolviendo el valor del último. Mientras se asocian las variables locales, se usan los valores locales de variables asociadas pronto, si acaso.</p>
+<p>Asocia algunas variables localmente a valores particulares, y luego evalúa los argumentos restantes, devolviendo el valor del último. Al asociar las variables locales, se pueden usan los valores locales de variables declaradas anteriormente.</p>
 <p>Por ejemplo:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">foo</span> <span class="mi">7</span><span class="p">)</span>
+<pre class="srci" ><code class="elisp" ><span class="in" ><span class="prompt" >&gt; </span><span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">foo</span> <span class="mi">7</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">bar</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">3</span> <span class="nv">foo</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;</span><span class="ss">`bar&#39;</span><span class="s"> is %d.&#34;</span> <span class="nv">bar</span><span class="p">))</span>
-     <span class="err">⇒</span> <span class="o">`</span><span class="nv">bar</span><span class="o">&#39;</span> <span class="nv">is</span> <span class="mi">21.</span>
-</code></pre>
+  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;</span><span class="ss">`bar&#39;</span><span class="s"> es %d.&#34;</span> <span class="nv">bar</span><span class="p">))</span>
+</span><span class="out" >‘bar’ es 21.
+</span></code></pre>
 </dd>
 <dt><code>match-beginning</code></dt>
 <dd>
-<p>Devuelve la posición del principio del texto encontrado por la última búsqueda de la expresión regular.</p>
+<p>Devuelve la posición del inicio del texto encontrado por la última búsqueda de una expresión regular.</p>
 </dd>
 <dt><code>looking-at</code></dt>
 <dd>
-<p>Devuelve <code>t</code> para verdadero si el texto después del punto se asocia al argumento, que debería ser una expresión.</p>
+<p>Devuelve <code>t</code> por verdadero si el texto después del punto coincide con el argumento, que debería ser una expresión regular.</p>
 </dd>
 <dt><code>eobp</code></dt>
 <dd>
-<p>Devuelve <code>t</code> para verdadero si el punto está en el fin de la parte accesible de un búfer. El fin de la parte accesible es el fin del búfer no está encogido; eso es el fin de la parte encogida si el búfer está encogido.</p>
+<p>Devuelve <code>t</code> por verdadero si el punto está al final de la parte accesible de un búfer. El final de la parte accesible es el final del búfer sin reduccion; es el final de la parte reducida en un búfer reducido.</p>
 </dd>
 </dl>
 </div>
@@ -4586,10 +4582,10 @@ nil
 <div class="hBody-3" >
 <ul>
 <li>
-<p>Escribe una función para buscar para una expresión que detecte dos o más líneas blancas en secuencia.</p>
+<p>Escribe una función para buscar para una expresión que coincida con dos o más líneas en blanco consecutivas.</p>
 </li>
 <li>
-<p>Escribe una función para buscar palabras duplicadas, tales como ‘el el’. Vea la Seccion <q>Sintaxis para Expresiones Regulares</q> en <em>El Manual de GNU Emacs</em>, para información de cómo escribir un regexp (una expresión regular) para asociar una cadena que se compone de dos mitades idénticas. Se puede disponer de varios regexps; algunos son mejores que otros. La función que se usa es descrito en un apéndice, a lo largo de varios regexps. Vea la Seccion <a href="the-the,-,-Función-de-Palabras-Duplicadas-the-the" >the-the, , Función de Palabras Duplicadas <code>the-the</code></a>.</p>
+<p>Escribe una función para buscar palabras duplicadas, como ‘el el’. Vea la Seccion <a href="info:emacs#Regexps" >info:emacs#Regexps</a> en <em>El Manual de GNU Emacs</em>, para obtener información de cómo escribir una regexp (una expresión regular) para que coincida con una cadena compuesta de dos mitades idénticas. Puedes idear varias regexps; algunos son mejores que otras. La función que yo utilizo se describe en un apéndice, junto con varias regexps. Vea la Seccion <a href="#apéndice-a-la-función-the-the" >Apéndice A La función <code>the-the</code></a>.</p>
 </li>
 </ul>
 </div>
@@ -4690,7 +4686,7 @@ nil
 <p>Para el tercer test, copia la línea de ejemplo al fin del búfer <span class="file" >*scratch*</span> y entonces escribe varios espacios al fin de la línea. Posiciona la marca correcta después de la palabra <samp>tres</samp> y apunta al fin de la línea. (El fin de la línea será el fin del búfer.) Escribe <kbd>C-c =</kbd> (o <kbd>M-x count-words-example</kbd>) como se hizo antes. De nuevo, Emacs te contaría que la región no tiene palabras, puesto que eso está compuesto solo de los espacios en blanco al fin de la línea. En vez de eso, Emacs muestra un mensaje de error diciendo <samp>Búsqueda fallida</samp>.</p>
 <p>Los dos errores queman el mismo problema.</p>
 <p>Considere la primera manifestación del error, en el que el comando te cuenta que el espacio en blanco al principio de la línea contiene una palabra. Lo que ocurre es esto: El comando <code>M-x count-words-example</code> mueve el punto al principio de la región. La prueba <code>while</code> si el valor del punto es más pequeño de lo que el valor de <code>end</code>, que es. Por consiguiente, en la expresión regular se busca y encuentra la primera palabra. Eso deja el punto después de la palabra. <code>count</code> que se establece a uno. El bucle <code>while</code> repite; pero esta vez el valor del punto es más largo que el valor de <code>end</code>, el bucle sale; y la función muestra un mensaje diciendo el número de palabras en la región es uno. En breve, la expresión regular busca y encuentra la palabra incluso aunque eso esté fuera de la región marcada.</p>
-<p>En la segunda manifestación del error, la región es un espacio en blanco al fin del búfer. Emacs dice <samp>Búsqueda fallida</samp>. Lo que ocurre es que true-or-false-test en el bucle <code>while</code> chequea verdad, así la expresión de búsqueda es ejecutada. Pero desde que no hay más palabras en el buffer, la búsqueda falla.</p>
+<p>En la segunda manifestación del error, la región es un espacio en blanco al fin del búfer. Emacs dice <samp>Búsqueda fallida</samp>. Lo que ocurre es que prueba-verdadero-o-falso en el bucle <code>while</code> chequea verdad, así la expresión de búsqueda es ejecutada. Pero desde que no hay más palabras en el buffer, la búsqueda falla.</p>
 <p>En ambas manifestaciones del error, la búsqueda extiende o intenta extenderse fuera de la región.</p>
 <p>La solución es limitar la búsqueda a la región––esto es una acción simple y limpia, pero como tu puedes tener que llegar a esperar, eso no es tan simple como se podría pensar.</p>
 <p>Como se ha visto, la función <code>re-search-forward</code> toma un patrón de búsqueda como su primer argumento. Pero además de este primer, argumento obligatorio, se aceptan tres argumentos opcionales. El segundo argumento opcional asocia la búsqueda. El tercer argumento opcional, si <code>t</code>, causa la función a devolver <code>nil</code> en vez de la señal un error si la búsqueda falla. El cuarto argumento opcional es un contador repetido. (En Emacs, se puede ver una documentación de la función escribiendo <kbd>C-h f</kbd>, el nombre de la función, y entonces <kbd>RET</kbd>.)</p>
@@ -4701,13 +4697,13 @@ nil
 <p>Lo que ocurre es esto: la búsqueda se limita a la región, y falla como se espera porque no hay caracteres de palabras constituyentes en la región. Puesto que eso falla, se recibe un mensaje de error. Pero no queremos recibir un mensaje de error en este caso; se quiere recibir el mensaje que &#34;La región no tiene palabras&#34;.</p>
 <p>La solución a este problema es proveer <code>re-search-forward</code> con un tercer argumento de <code>t</code>, que causa la función para devolver <code>nil</code> en vez la señalar un error si la búsqueda falla.</p>
 <p>Sin embargo, si se crea este cambio y se intenta, se verá el mensaje “Contando palabras en la región ...” y … se guardará viendo qué mensaje …, hasta que se escribe <kbd>C-g</kbd> (<code>keyboard-quit</code>).</p>
-<p>Aquí está lo que ocurre: la búsqueda está limitada a la región, como antes, y eso falla porque no hay caracteres no constituyentes de palabras en la región, como se espera. Por tanto, la expresión <code>re-search-forward</code> devuelve <code>nil</code>. Eso no hace nada más. En particular, no mueve el punto, que hace como un efecto secundario si se encuentra la búsqueda objetiva. Después la expresión <code>re-search-forward</code> devuelve <code>nil</code>, la siguiente expresión en el bucle <code>while</code> está evaluado. Esta expresión incrementa el contador. Entonces el bucle repite. La prueba true-or-false-test chequea verdadero porque el valor del punto es todavía menor que el valor final, desde que la expresión <code>re-search-forward</code> no movería el punto. … y el ciclo repite …</p>
-<p>La definición <code>count-words-example</code> requiere todavía de otra modificación para causar el true-or-false-test del bucle <code>while</code> para probar falso si la búsqueda falla. Pon otro camino, hay dos condiciones que deben ser satisfechas en el true-or-false-test antes que el contador de palabras variable se incremente: el punto debe todavía estar con la región y la expresión de búsqueda debe haber encontrado una palabra para contar.</p>
-<p>Por ambas la primera condición y la segunda condición deben ser ciertas juntas, las dos expresiones, la región chequea y la expresión de búsqueda, puede estar unido con una forma especial <code>and</code> y embebido en el bucle <code>while</code> como el true-or-false-test, como esto:</p>
+<p>Aquí está lo que ocurre: la búsqueda está limitada a la región, como antes, y eso falla porque no hay caracteres no constituyentes de palabras en la región, como se espera. Por tanto, la expresión <code>re-search-forward</code> devuelve <code>nil</code>. Eso no hace nada más. En particular, no mueve el punto, que hace como un efecto secundario si se encuentra la búsqueda objetiva. Después la expresión <code>re-search-forward</code> devuelve <code>nil</code>, la siguiente expresión en el bucle <code>while</code> está evaluado. Esta expresión incrementa el contador. Entonces el bucle repite. La prueba prueba-verdadero-o-falso chequea verdadero porque el valor del punto es todavía menor que el valor final, desde que la expresión <code>re-search-forward</code> no movería el punto. … y el ciclo repite …</p>
+<p>La definición <code>count-words-example</code> requiere todavía de otra modificación para causar el prueba-verdadero-o-falso del bucle <code>while</code> para probar falso si la búsqueda falla. Pon otro camino, hay dos condiciones que deben ser satisfechas en el prueba-verdadero-o-falso antes que el contador de palabras variable se incremente: el punto debe todavía estar con la región y la expresión de búsqueda debe haber encontrado una palabra para contar.</p>
+<p>Por ambas la primera condición y la segunda condición deben ser ciertas juntas, las dos expresiones, la región chequea y la expresión de búsqueda, puede estar unido con una forma especial <code>and</code> y embebido en el bucle <code>while</code> como el prueba-verdadero-o-falso, como esto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="nv">end</span><span class="p">)</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&#34;\\w+\\W*&#34;</span> <span class="nv">end</span> <span class="no">t</span><span class="p">))</span>
 </code></pre>
 <p>(Para información acerca de <code>and</code>, ver <q>La función <code>kill-new</code></q>.)</p>
-<p>La expresión <code>re-search-forward</code> devuelve <code>t</code> si la búsqueda es exitosa y como efecto secundario se mueve el punto. Consiguientemente, como las palabras se encuentran, el punto es movido a través de la región. Cuando la búsqueda de la expresión falla para encontrar otra palabra, o cuando el punto logra el fin de la región, la prueba true-or-false-test es falso, el bucle <code>while</code> existe, y la función <code>count-words-example</code> muestra uno u otro de sus mensajes.</p>
+<p>La expresión <code>re-search-forward</code> devuelve <code>t</code> si la búsqueda es exitosa y como efecto secundario se mueve el punto. Consiguientemente, como las palabras se encuentran, el punto es movido a través de la región. Cuando la búsqueda de la expresión falla para encontrar otra palabra, o cuando el punto logra el fin de la región, la prueba prueba-verdadero-o-falso es falso, el bucle <code>while</code> existe, y la función <code>count-words-example</code> muestra uno u otro de sus mensajes.</p>
 <p>Después de incorporar estos cambios finales, el <code>count-words-example</code> funciona sin errores (¡o al menos, sin los errores que yo haya encontrado!. Aquí está lo que parece:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; @e{Versión final:} @c{while}</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">count-words-example</span> <span class="p">(</span><span class="nv">beginning</span> <span class="nv">end</span><span class="p">)</span>
@@ -4852,7 +4848,7 @@ nil
 </code></pre>
 <p>Permíteme examinar cómo esto funciona:</p>
 <p>Si no hay palabras en la región, la parte else de la expresión <code>if</code> es evaluada y, por tanto, la función devuelve cero.</p>
-<p>Si hay una palabra en la región, el valor del punto es menor que el valor de <code>region-end</code> y la búsqueda tiene éxito. En este caso, el true-or-false-test de la expresión <code>if</code> chequea verdadero, y la then-part de la expresión <code>if</code> es evaluada. La expresión de contaje se evalúa. Esta expresión devuelve un valor (que será el valor devuelto por la función completa) que es la suma de uno añadida al valor devuelto por una llamada recursiva.</p>
+<p>Si hay una palabra en la región, el valor del punto es menor que el valor de <code>region-end</code> y la búsqueda tiene éxito. En este caso, el prueba-verdadero-o-falso de la expresión <code>if</code> chequea verdadero, y la then-part de la expresión <code>if</code> es evaluada. La expresión de contaje se evalúa. Esta expresión devuelve un valor (que será el valor devuelto por la función completa) que es la suma de uno añadida al valor devuelto por una llamada recursiva.</p>
 <p>Mientras tanto, la expresion-del-siguiente-paso ha causado el punto para saltar a través de la primera (y en este caso única) palabra en la región. Esto significa que cuando <code>(recursive-count-words region-end)</code> está evaluada una segunda vez, como un resultado de la llamada recursiva, el valor del punto será igual o mayor que el valor de la región final. Así esta vez, <code>recursive-count-words</code> devolverá cero. El cero será añadido a uno, y la evaluación original de <code>recursive-count-words</code> devolverá uno más cero (uno) que es la cantidad correcta.</p>
 <p>Claramente, si hay dos palabras en la región, la primera llamada a <code>recursive-count-words</code> devuelve uno que se añade al valor devuelto por el siguiente <code>recursive-count-words</code> en una región donde está la palabra que permanece––que es, eso añadir uno a uno, produciendo dos, que es la cantidad correcta.</p>
 <p>Similarmente, si hay tres palabras en la región, la primera llamada <code>recursive-count-words</code> devuelve uno añadido al valor devuelto llamado <code>recursive-count-words</code> en una región conteniendo las dos palabras que faltan––y así sucesivamente.</p>
@@ -5138,14 +5134,14 @@ nil
   <span class="nv">body</span><span class="err">…</span>
   <span class="nv">set-list-to-cdr-of-list</span><span class="p">)</span>
 </code></pre>
-<p>También, recuérdanos que un bucle <code>while</code> devuelve <code>nil</code> (el resultado de evaluar el true-or-false-test), no el resultado de cualquier evaluación con su cuerpo. (Las evaluaciones con el cuerpo del bucle son hechas para sus efectos secundarios.) Sin embargo, la expresión que asigna la lista de tamaños es parte del cuerpo––y que es el valor que queremos devuelto por la función como un todo. Para hacer esto cerramos el bucle <code>while</code> con una expresión <code>let</code>, y pone en orden que el último elemento de la expresión <code>let</code> contiene el valor de lista de tamaños. (Vea la Seccion <a href="Ejemplo-de-Incremento,-,-El-Ejemplo-del-Bucle-con-un-Contador-de-Incremento" >Ejemplo de Incremento, , El Ejemplo del Bucle con un Contador de Incremento</a>.)</p>
+<p>También, recuérdanos que un bucle <code>while</code> devuelve <code>nil</code> (el resultado de evaluar el prueba-verdadero-o-falso), no el resultado de cualquier evaluación con su cuerpo. (Las evaluaciones con el cuerpo del bucle son hechas para sus efectos secundarios.) Sin embargo, la expresión que asigna la lista de tamaños es parte del cuerpo––y que es el valor que queremos devuelto por la función como un todo. Para hacer esto cerramos el bucle <code>while</code> con una expresión <code>let</code>, y pone en orden que el último elemento de la expresión <code>let</code> contiene el valor de lista de tamaños. (Vea la Seccion <a href="Ejemplo-de-Incremento,-,-El-Ejemplo-del-Bucle-con-un-Contador-de-Incremento" >Ejemplo de Incremento, , El Ejemplo del Bucle con un Contador de Incremento</a>.)</p>
 <p>Estas consideraciones lideran directamente a la función en sí:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; @e{Usar bucle @c{while}.}</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">lengths-list-many-files</span> <span class="p">(</span><span class="nv">list-of-files</span><span class="p">)</span>
   <span class="s">&#34;Devuelve la lista de tamaños de funciones en LIST-OF-FILES.&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">lengths-list</span><span class="p">)</span>
 
-<span class="c1">;;; true-or-false-test</span>
+<span class="c1">;;; prueba-verdadero-o-falso</span>
     <span class="p">(</span><span class="nb">while</span> <span class="nv">list-of-files</span>
       <span class="p">(</span><span class="nb">setq</span> <span class="nv">lengths-list</span>
             <span class="p">(</span><span class="nf">append</span>
