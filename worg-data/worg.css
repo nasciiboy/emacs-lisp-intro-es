@@ -106,7 +106,7 @@ h1.subtitle { color: var( --FGCstart1 ); font-size:   2em; font-family: title;  
 #toc:hover #toc-contents a { text-decoration: none; }
 #toc:hover #toc-contents a:hover { color: #ffffff; }
 #toc:hover #toc-contents a.h1 { color: white             ; } /* *        */
-#toc:hover #toc-contents a.h2 { color: var( --FGCstart1 ); } /* **       */
+#toc:hover #toc-contents a.h2 { color: #3FF              ; } /* **       */
 #toc:hover #toc-contents a.h3 { color: var( --FGCstart2 ); } /* ***      */
 #toc:hover #toc-contents a.h4 { color: var( --FGCstart3 ); } /* ****     */
 #toc:hover #toc-contents a.h5 { color: var( --FGCstart4 ); } /* *****    */
@@ -242,9 +242,11 @@ pre.art { font-size: .7em; line-height: 1em;
 
 /* CODE */
 pre.code { font-size: 1.1em; line-height: 1.2em; }
+pre.code code { padding: 0em; }
 
 /* CODE */
 pre.srci { font-size: 1em; line-height: 1.1em; }
+pre.srci code { padding: 0em; }
 
 .prompt { color: green; font-weight: 900; }
 .index { user-select: none; }

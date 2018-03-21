@@ -16611,16 +16611,16 @@ and promoting software freedom.”
 #   often use when you write code in Emacs Lisp. This chapter illustrates the
 #   use of regular expression searches through the construction of word count
 #   commands using @c{while} loops and recursion.
-  La repetición y búsqueda de expresiones regulares son herramientas
-  poderosas que con frecuencia se usan cuando se escribe código en Emacs
+  La repetición y la búsqueda de expresiones regulares son poderosas
+  herramientas que con frecuencia se usan al escribir código en Emacs
   Lisp. Este capítulo ilustra el uso de búsqueda de expresiones regulares a
-  través de la construcción de comandos de contaje de palabras usando bucles
+  través de la construcción de comandos de conteo de palabras usando bucles
   @c{while} y recursión.
 
 #   The standard Emacs distribution contains functions for counting the number
 #   of lines and words within a region.
   La distribución de Emacs estándar contiene una función para contar el
-  número de líneas en una región.
+  número de líneas dentro de una región.
 
 #   Certain types of writing ask you to count words. Thus, if you write an
 #   essay, you may be limited to 800 words; if you write a novel, you may
@@ -16628,26 +16628,25 @@ and promoting software freedom.”
 #   long time, Emacs lacked a word count command. Perhaps people used Emacs
 #   mostly for code or types of documentation that did not require word counts;
 #   or perhaps they restricted themselves to the operating system word count
-#   command, @c{wc}. Alternatively, people may have followed the publishers'
+#   command, @${wc}. Alternatively, people may have followed the publishers'
 #   convention and computed a word count by dividing the number of characters
 #   in a document by five.
-  Hay verdadero tipo de pregunta escrita para contar palabras. De este modo, si
-  se escribe un ensayo, puede limitarse a 800 palabras; si se escribe una
-  novela, te puedes disciplinar a ti mismo a escribir 1000 palabras al
-  día. Parece raro, pero durante mucho tiempo, a Emacs le faltó un comando
-  para contar palabras. Quizás la gente usaba Emacs mayoritariamente para
-  codificar o documentar cosas que no requieren contar palabras, o quizás se
-  restringían al sistema operativo el comando de contar palabras, @c{wc}. De
-  manera alternativa, la gente puede seguir la convención de las editoriales
-  y computaban un contaje de palabras dividiendo el número de caracteres en
-  un documento por cinco.
+  Ciertos tipos de escritura piden el conteo de palabras. Por lo tanto, si
+  escribes un ensayo, puedes limitarte a 800 palabras; si escribes una novela,
+  puedes disciplinarte a escribir 1000 palabras al día. Parece extraño, pero
+  durante mucho tiempo, a Emacs le faltó un comando para contar palabras. Quizás
+  la gente usaba Emacs mayoritariamente para codificar o documentar cosas que no
+  requieren contar palabras, o quizás se limitaban al comando de conteo de
+  palabras del sistema operativo, @${wc}. Alternativamente, las personas pueden
+  haber seguido la convención de las editoriales y calcular un conteo de palabras
+  dividiendo el número de caracteres en un documento por cinco.
 
 #   There are many ways to implement a command to count words. Here are some
 #   examples, which you may wish to compare with the standard Emacs command,
 #   @c{count-words-region}.
-  Hay mucho caminos para implementar un comando para contar palabras. Aquí
-  hay algunos ejemplos, que pueden desear compararse con el comando de Emacs
-  estándar, @c{count-words-region}.
+  Hay muchas maneras de implementar un comando para contar palabras. Aquí hay
+  algunos ejemplos, que puede comparar con el comando estándar de Emacs,
+  @c{count-words-region}.
 
 # ** The @c{count-words-example} Function
 ** La función @c{count-words-example}
@@ -16660,30 +16659,30 @@ and promoting software freedom.”
 #    the command to count the number of words in a region. Once you have a
 #    command to count words in a region, you can, if you wish, count words in a
 #    whole buffer by marking it with @k{C-x h} @%c(mark-whole-buffer).
-   Un comando de contar palabras podría contar palabras en una línea,
-   párrafo, región, o búfer. ¿Qué comando funcionaría? Se podría diseñar el
-   comando para contar el número de palabras en un búfer completo. Sin
-   embargo, la tradición Emacs anima a la flexibilidad––se puede querer
-   contar palabras solo en una sección, en vez de en todo un búfer. Así,
-   tiene más sentido diseñar el comando para contar el número de palabras en
-   una región. Una vez tienes un comando @c{count-words-region}, se puede, si
-   desea, contar palabras en un búfer completo marcándolo con @k{C-x h} @%c(mark-whole-buffer).
+   Un comando de conteo de palabras podría contar palabras en una línea,
+   párrafo, región, o búfer. ¿Qué debe cubrir el comando? Se podría diseñar el
+   comando para contar el número de palabras en un búfer completo. Sin embargo,
+   la tradición en Emacs fomenta la flexibilidad––se puede querer contar solo
+   las palabras en una sección, en lugar de en todo un búfer. Así que tiene más
+   sentido diseñar el comando para contar el número de palabras en una
+   región. Una vez tienes un comando @c{count-words-region}, puedes, si lo
+   deseas, contar palabras en un búfer completo marcándolo con @k{C-x h}
+   @%c(mark-whole-buffer).
 
 #    Clearly, counting words is a repetitive act: starting from the beginning
 #    of the region, you count the first word, then the second word, then the
 #    third word, and so on, until you reach the end of the region. This means
 #    that word counting is ideally suited to recursion or to a @c{while} loop.
    Claramente, contar palabras es un acto repetitivo: empezando desde el
-   principio de la región, se cuenta la primera palabra, entonces la segunda
-   palabra, entonces la tercera palabra, y así sucesivamente, hasta que logres el fin de la
-   región. Esto significa que contar palabras se ajusta idealmente a
+   principio de la región, se cuenta la primer palabra, luego la segunda,
+   despues la tercera, y así sucesivamente, hasta llegar al fin de la
+   región. Esto significa el conteo de palabras se ajusta idealmente a la
    recursión o a un bucle @c{while}.
 
 #    First, we will implement the word count command with a @c{while} loop,
 #    then with recursion. The command will, of course, be interactive.
-   Primero, implementaremos el comando de contar palabras con un bucle
-   @c{while}, entonces con la recursión. El comando, de acuerdo, será
-   interactivo.
+   Primero, implementaremos el comando para contar palabras con un bucle
+   @c{while}, luego con recursión. El comando sera, por supuesto, interactivo.
 
 #    The template for an interactive function definition is, as always:
    La plantilla para una definición de función interactiva es, como siempre:
@@ -16695,26 +16694,25 @@ and promoting software freedom.”
 #        body…)
 #    < src..
    ..src > elisp
-     (defun name-of-function (argument-list)
-       "documentation…"
-       (interactive-expression…)
-       body…)
+     (defun nombre-de-funcion (lista-de-argumentos)
+       "documentacion…"
+       (expresion-interactiva…)
+       cuerpo…)
    < src..
 
 #    What we need to do is fill in the slots.
-   Lo que necesitamos hacer es rellenar los slots.
+   Lo que tenemos que hacer es llenar los espacios.
 
 #    The name of the function should be self-explanatory and similar to the
 #    existing @c{count-lines-region} name. This makes the name easier to
 #    remember.  @c{count-words-region} is the obvious choice. Since that name
 #    is now used for the standard Emacs command to count words, we will name
 #    our implementation @c{count-words-example}.
-   El nombre de la función sería auto-explicativo y similar al nombre del
-   @c{count-lines-region} existente. Esto hace que el nombre sea fácil de
-   recordar. @c{count-words-region} es una buena elección. Puesto que el
-   nombre se usa ahora para el comando de Emacs estándar para contar
-   palabras, nosotros nombraremos nuestra implementación como
-   @c{count-words-example}.
+   El nombre de la función sería auto-explicativo y similar al nombre ya
+   existente @c{count-lines-region}. Esto hace que el nombre sea fácil de
+   recordar. @c{count-words-region} es una buena elección. Ya que ese nombre
+   ahora se usa para el comando estándar de Emacs para contar palabras,
+   nombraremos a nuestra implementación @c{count-words-example}.
 
 #    The function counts words within a region. This means that the argument
 #    list must contain symbols that are bound to the two positions, the
@@ -16725,21 +16723,20 @@ and promoting software freedom.”
 #    interactive expression will be of the form @'{(interactive "r")}, since
 #    that will cause Emacs to pass the beginning and end of the region to the
 #    function's argument list. All this is routine.
-   La función cuenta palabras con una región. Esto significa que el argumento
-   lista debe contener símbolos que son asociados a las dos posiciones, el
-   principio y fin de la región. Estas dos posiciones puede ser llamadas
-   @'{beginning} y @'{end} respectivamente. La primera línea de la
-   documentación sería una frase simple, desde que esto es todo lo que está
-   impreso como documentación por un comando tal como @c{apropos}. La
-   expresión interactiva será de la forma @'{(interactive "r")}, puesto que
-   causará que Emacs pase al principio y fin de la región a la lista de
-   argumentos de función. Todo esto es rutina.
+   La función cuenta palabras dentro de una región. Esto significa que la lista
+   de argumentos debe contener símbolos que esten ligados a las dos posiciones,
+   el principio y fin de la región. Estas dos posiciones se pueden llamar
+   @'{inicio} y @'{fin} respectivamente. La primer línea de la documentación
+   deberia ser una solo frase, ya que esto es todo lo que imprimen comandos como
+   @c{apropos}. La expresión interactiva tendra la forma @'{(interactive "r")},
+   puesto que esto provoca que Emacs pase el principio y fin de la región a la lista
+   de argumentos de la función. Todo esto es rutinario.
 
 #    The body of the function needs to be written to do three tasks: first, to
 #    set up conditions under which the @c{while} loop can count words, second,
 #    to run the @c{while} loop, and third, to send a message to the user.
    El cuerpo de la función necesita ser escrita para hacer tres tareas:
-   primero, configurar condiciones bajo las que el bucle @c{while} pueda
+   primero, configurar condiciones bajo las cuales el bucle @c{while} pueda
    contar palabras, segundo, ejecutar el bucle @c{while}, y tercero, enviar
    un mensaje al usuario.
 
@@ -16750,13 +16747,13 @@ and promoting software freedom.”
 #    Of course, we will want to return point to its expected position when the
 #    function finishes its work. For this reason, the body must be enclosed in
 #    a @c{save-excursion} expression.
-   Cuando un usuario llama a @c{count-words-example}, apunta a que puede estar al
-   principio o fin de la región. Sin embargo, el proceso de conteo debe
-   empezar al principio de la región. Esto significa que querremos poner el
-   punto que hay si eso no está allí. Ejecutando @c{(goto-char beginning)}
-   asegura esto. De acuerdo, querremos devolver el punto a su posición
-   esperada cuando la función finalice su trabajo. Por esta razón, el cuerpo
-   debe ser encerrado en una expresión @c{save-excursion}.
+   Cuando un usuario llama a @c{count-words-example}, el punto puede estar al
+   principio o fin de la región. Sin embargo, el proceso de conteo debe empezar
+   al principio de la región. Esto significa que querremos poner el punto hay si
+   es que no lo esta. Ejecutando @c{(goto-char beginning)} aseguramos esto. Por
+   supuesto, querremos devolver el punto a su posición esperada cuando la
+   función termine su trabajo. Por esta razón, el cuerpo debe estar encerrado en
+   una expresión @c{save-excursion}.
 
 #    The central part of the body of the function consists of a @c{while} loop
 #    in which one expression jumps point forward word by word, and another
@@ -16766,25 +16763,25 @@ and promoting software freedom.”
    La parte central del cuerpo de la función consiste en un bucle @c{while}
    en el que una expresión salta el punto hacia delante palabra por palabra,
    y otra expresión cuenta estos saltos. Si la prueba-verdadero-o-falso del
-   bucle @c{while} es verdadero, el punto saltaría hacia adelante, y si es
-   falso el punto estaría al fin de la región.
+   bucle @c{while} es verdadera, el punto salta hacia adelante, y si es
+   falsa el punto estaría al final de la región.
 
 #    We could use @c{(forward-word 1)} as the expression for moving point
 #    forward word by word, but it is easier to see what Emacs identifies as a
 #    ‘word’ if we use a regular expression search.
-   Nosotros podríamos usar @c{(forward-word 1)} como la expresión para mover
-   el punto hacia adelante palabra por palabra, pero eso es fácil de ver que
-   Emacs identifica como una ‘palabra’ si se usa una búsqueda de expresión
+   Podríamos usar @c{(forward-word 1)} como la expresión para mover
+   el punto hacia adelante palabra por palabra, pero es mas fácil ver lo que
+   Emacs identifica como una ‘palabra’ si usamos una búsqueda de expresión
    regular.
 
 #    A regular expression search that finds the pattern for which it is
 #    searching leaves point after the last character matched. This means that
 #    a succession of successful word searches will move point forward word by
 #    word.
-   Una expresión regular busca lo que encuentra el patrón que se está
-   buscando deja el punto después del último carácter emparejado. Esto
-   significa que una sucesión de palabras exitosas busquen que moverá el
-   punto adelante palabra por palabra.
+   Una busqueda de expresión regular que localiza su patrón, deja el punto justo
+   después del último carácter de la coincidencia. Esto significa que una
+   sucesión de busqueda de palabras exitosa movera el punto hacia adelante
+   palabra por palabra.
 
 #    As a practical matter, we want the regular expression search to jump over
 #    whitespace and punctuation between words as well as over the words
@@ -16793,22 +16790,22 @@ and promoting software freedom.”
 #    the whitespace and punctuation that follows a word, if any, as well as the
 #    word itself.  (A word may end a buffer and not have any following
 #    whitespace or punctuation, so that part of the regexp must be optional.)
-   Como materia práctica, se quiere que la expresión regular se busque para
-   saltar a través de un espacio en blanco y puntúe entre palabras tan bien a
-   través de las palabras en sí. Una expresión regexp que rechaza para saltar
-   a través de espacios en blanco entre palabras ¡nunca saltaría más de una
-   palabra!. Esto significa que el regexp incluiría el espacio en blanco y la
-   puntuación sigue a una palabra cualquiera, como la palabra en sí. (Una
-   palabra puede finalizar un búfer y no tiene cualquier espacio en blanco o
-   puntuación, así esta parte del regexp debe ser opcional.)
+   Como cuestion práctica, se desea que la busqueda de expresiónes regulares
+   salta a través de los espacios en blanco y tambien sobre la puntuacion entre
+   palabras. Una regexp no pueda saltar a través de espacios en blanco entre
+   palabras ¡nunca saltara más de una palabra!. Esto significa que la regexp
+   debe incluir el espacio en blanco y los signos de puntuación que siguen a una
+   palabra, si la hay, asi como la palabra misma. (Una palabra puede terminar un
+   búfer y no tener ninguna puntuacion o espacio en blanco, por lo que esa parte de
+   la regexp debe ser opcional.)
 
 #    Thus, what we want for the regexp is a pattern defining one or more word
 #    constituent characters followed, optionally, by one or more characters
 #    that are not word constituents. The regular expression for this is:
-   De este modo, queremos para el regexp es un patrón definiendo una o más
-   palabras de caracteres que constituyen caracteres seguidos, opcionalmente,
-   por uno o más caracteres que no son palabras constituyentes. La expresión
-   regular para esto es:
+   Por lo tanto, queremos que el patron de la regexp defina uno o más caracteres
+   constituyentes de la palabra, seguidos opcionalmente, por uno o más
+   caracteres que no sean constituyentes de la palabra. La expresión regular
+   para esto es:
 
 #    ..example >
 #      \w+\W*
@@ -16819,12 +16816,11 @@ and promoting software freedom.”
 
 #    The buffer's syntax table determines which characters are and are not word
 #    constituents. For more information about syntax, see Section
-#    @l{info:elisp#Syntax Tables, Syntax Tables} in @e{The GNU Emacs Lisp
-#    Reference Manual}.
-   La tabla de sintaxis del búfer determina qué caracteres son y no son
-   palabras constituyentes. Para más información acerca de sintaxis, Vease
-   Sección @"{Tablas de Sintaxis} @e(El Manual de Referencia de GNU Emacs
-   Lisp).
+#    @l{info:elisp#Syntax Tables} in @e{The GNU Emacs Lisp Reference Manual}.
+   La tabla sintactica del búfer determina qué caracteres son o no
+   constituyentes de palabras. Para más información sobre la sintaxis, Vea la
+   Sección @l{info:elisp#Syntax Tables<>Tablas de Sintaxis} en @e(El Manual de
+   Referencia de GNU Emacs Lisp).
 
 #    The search expression looks like this:
    La expresión se parece a esto:
@@ -16844,27 +16840,27 @@ and promoting software freedom.”
 #    ordinary, ‘unspecial’ backslash, so Emacs Lisp interpreter ends of seeing
 #    a single backslash followed by a letter. So it discovers the letter is
 #    special.)
-   (Note que las barras invertidas que preceden el @'{w} y @'{W}. Una barra
-   invertida tiene significado especial al intérprete Emacs Lisp. Eso indica
-   que el caracter siguiente es interpretado de manera diferente que la
-   normal. Por ejemplo, los dos caracteres, @'{\n}, son una @'{nueva línea},
-   en vez de una barra invertida seguida por @'{\n}. Dos barras invertidas en
-   una fila para una ‘barra invertida no especial’, así Emacs Lisp interpreta
-   el fin de mirar una barra invertida simple seguida por una letra. Así
-   descubre la letra que es especial.)
+   (Observa las barras invertidas que preceden a @'{w} y @'{W}. Una barra
+   invertida tiene un significado especial para el intérprete Emacs Lisp. Indica
+   que el siguiente caracter se interpreta de forma diferente a lo habitual. Por
+   ejemplo, los dos caracteres, @'{\n}, representan una @'{nueva línea}, en
+   lugar de una barra invertida seguida por @'{\n}. Dos barras invertidas
+   consecutivas representan una ‘barra invertida ordinaria’, así que el
+   interprete de Emacs Lisp termina viendo una sola barra invertida seguida de
+   una letra. Así descubre que la letra que es especial.)
 
 #    We need a counter to count how many words there are; this variable must
 #    first be set to 0 and then incremented each time Emacs goes around the
 #    @c{while} loop. The incrementing expression is simply:
-   Se necesita un contador para contar cuántas palabras hay; esta variables
-   debe primero ser asignado a 0 y entonces incrementados cada vez que Emacs
-   va alrededor del bucle @c{while}. La expresión de incremento es simple:
+   Necesitamon un contador para contar cuántas palabras hay; esta variable debe
+   ponerse primero a 0 y luego incrementarse cada vez que Emacs recorra el bucle
+   @c{while}. La expresión de incremento es simple:
 
 #    ..src > elisp
 #      (setq count (1+ count))
 #    < src..
    ..src > elisp
-     (setq count (1+ count))
+     (setq cuenta (1+ cuenta))
    < src..
 
 #    Finally, we want to tell the user how many words there are in the region.
@@ -16877,42 +16873,61 @@ and promoting software freedom.”
 #    the number of words in the region. There are three possibilities: no
 #    words in the region, one word in the region, and more than one word. This
 #    means that the @c{cond} special form is appropriate.
-   Finalmente, se quiere contar al usuario cuántas palabras hay en la
-   región. La función @c{message} presenta este tipo de información al
-   usuario. El mensaje tiene que ser fraseado de manera que se lea
-   apropiadamente sin cuidado de cuantas palabras hay en la región: no se
-   quiere decir que “hay una palabra en la región”. El conflicto entre
+   Finalmente, necesitamos informar al usuario cuántas palabras hay en la
+   región. La función @c{message} sirve para presentar este tipo de información al
+   usuario. El mensaje tiene que estar redactado de manera que se lea
+   correctamente independientemente de cuantas palabras haya en la región: no
+   queremos decir que “hay 1 palabras en la región”. El conflicto entre
    singular y plural no es gramatical. Se puede resolver este problema usando
-   una expresión condicional que evalúa diferentes mensajes dependiendo en el
+   una expresión condicional que evalue diferentes mensajes dependiendo del
    número de palabras en la región. Hay tres posibilidades: no palabras en la
    región, una palabra en la región, y más de una palabra. Esto significa que
    la forma especial @c{cond} es apropiada.
 
 #    All this leads to the following function definition:
-   Todo esto lidera a la siguiente definición de función:
+   Todo esto lleva a la siguiente definición de función:
 
 #    ..src > elisp
+   ..src > elisp
 #      ;;; First version; has bugs!
+     ;;; ¡Primer versión; tiene errores!
 #      (defun count-words-example (beginning end)
+     (defun count-words-example (inicio fin)
 #        "Print number of words in the region.
 #      Words are defined as at least one word-constituent
 #      character followed by at least one character that
 #      is not a word-constituent. The buffer's syntax
 #      table determines which characters these are."
+       "Imprime el número de palabras en la región.
+     Las palabras se definen como al menos un caracter
+     constituyente de palabras seguido por al menos un
+     caracter no constituyente de palabras. La tabla de
+     sintaxis del búfer determina qué caracteres son."
 #        (interactive "r")
+       (interactive "r")
 #        (message "Counting words in region ... ")
-#
+       (message "Contando palaras en la región ... ")
+
 #      ;;; 1. Set up appropriate conditions.
 #        (save-excursion
 #          (goto-char beginning)
 #          (let ((count 0))
-#
-#      ;;; @e{2. Run the} while @e{loop.}
+     ;;; 1. Establecer las condiciones apropiadas.
+       (save-excursion
+         (goto-char inicio)
+         (let ((cuenta 0))
+
+#      ;;; 2. Run the while loop.
 #            (while (< (point) end)
 #              (re-search-forward "\\w+\\W*")
 #              (setq count (1+ count)))
-#
+     ;;; 2. Ejecutar el bucle while.
+           (while (< (point) fin)
+             (re-search-forward "\\w+\\W*")
+             (setq cuenta (1+ cuenta)))
+
 #      ;;; 3. Send a message to the user.
+     ;;; 3. Enviar un mensaje al usuario.
 #            (cond ((zerop count)
 #                   (message
 #                    "The region does NOT have any words."))
@@ -16922,42 +16937,20 @@ and promoting software freedom.”
 #                  (t
 #                   (message
 #                    "The region has %d words." count))))))
-#    < src..
-   ..src > elisp
-     ;;; ¡La Primera versión; tiene errores!
-     (defun count-words-region (beginning end)
-       "Imprime el número de palabras en la región.
-     Las palabras están definidas al menos una palabra
-     constituida de caracteres seguido por al menos un
-     caracter que no constituye palabra. La tabla de
-     sintaxis del búfer determina qué caracteres hay."
-       (interactive "r")
-       (message "Contando palaras en la región ... ")
-
-     ;;; 1. Configurar condiciones apropiadas.
-       (save-excursion
-         (goto-char beginning)
-         (let ((count 0))
-
-     ;;; @e{2. Ejecutar el} @e{bucle} while.
-           (while (< (point) end)
-             (re-search-forward "\\w+\\W*")
-             (setq count (1+ count)))
-
-     ;;; 3. Enviar un mensaje al usuario.
-           (cond ((zerop count)
+           (cond ((zerop cuenta)
                   (message
-                   "La región no tiene palabras."))
-                 ((= 1 count)
+                   "La región NO tiene palabras."))
+                 ((= 1 cuenta)
                   (message
                    "La región tiene 1 palabra."))
                  (t
                   (message
-                   "La región tiene %d palabras." count))))))
+                   "La región tiene %d palabras." cuenta))))))
+#    < src..
    < src..
 
 #    As written, the function works, but not in all circumstances.
-   Como se escribe, la función funciona, pero no en todas las circunstancias.
+   Como esta escrito, la función funciona, pero no en todas las circunstancias.
 
 # *** The Whitespace Bug in @c{count-words-example}
 *** El error de espacio en blanco en @c{count-words-example}
@@ -16969,31 +16962,32 @@ and promoting software freedom.”
 #     word!  Second, if you mark a region containing only whitespace at the end
 #     of the buffer or the accessible portion of a narrowed buffer, the command
 #     displays an error message that looks like this:
-    El comando @c{count-words-example} descrito en la sección precedente tiene
-    dos errores, o incluso, un error con dos manifestaciones. Primero, si se
-    marca una región conteniendo solo espacio en blanco en el medio de algún
-    texto el comando ¡@c{count-words-example} cuenta que la región contiene una
-    palabra!. Segundo, si se marca una región conteniendo solo espacios en
-    blanco al final del búfer o la porción accesible de un búfer encogido,
-    el comando muestra un mensaje de error que se parece a esto:
+    El comando @c{count-words-example} descrito en la sección anterior tiene
+    dos errores, o mas bien, un error con dos manifestaciones. Primero, si se
+    marca una región que contiene solo espacios en blanco en el medio de algún
+    texto el comando @c{count-words-example} dira que la región contiene una
+    palabra. Segundo, si se marca una región conteniendo solo espacios en
+    blanco al final del búfer o la porción accesible de un búfer reducido,
+    el comando muestra un mensaje de error que se ve asi:
 
-#     ..example >
+#     ..srci > elisp
 #       Search failed: "\\w+\\W*"
-#     < example..
-    ..example >
-      Búsqueda fallida: "\\w+\\W*"
-    < example..
+#     < srci..
+    ..srci > elisp
+      Search failed: "\\w+\\W*"
+    < srci..
 
 #     If you are reading this in Info in GNU Emacs, you can test for these bugs
 #     yourself.
-    Si está leyendo esto en Info en GNU Emacs, se puede testear para estos
-    errores por sí mismo.
+    Si estás leyendo esto en GNU Emacs, puedes probar estos errores por tí
+    mismo.
 
 #     First, evaluate the function in the usual manner to install it.
-    Primero, evalúa la función de la manera usual para instalarlo.
+    Primero, evalúa la función de la manera habitual para instalarla.
 
 #     If you wish, you can also install this keybinding by evaluating it:
-    Si se desea, se puede también instalar este atajo para ser evaluado:
+    Si quieres, también puedes vincular la funcion al atajo @k(C-c =) evaluando
+    lo siguiente:
 
 #     ..src > elisp
 #       (global-set-key "\C-c=" 'count-words-example)
@@ -17005,19 +16999,19 @@ and promoting software freedom.”
 #     To conduct the first test, set mark and point to the beginning and end of
 #     the following line and then type @k{C-c =} (or @k{M-x
 #     count-words-example} if you have not bound @k{C-c =}):
-    Para conducir el primer test, asigna marca y punto al principio y fin de
-    la siguiente línea y entonces escribe @k{C-c =} (o @k{M-x
-    count-words-example} si no se ha asignado @k{C-c =}):
+    Para realizar la primer prueba, establece la marca y punto al principio y
+    fin de la siguiente línea y luego presiona @k{C-c =} (o @k{M-x
+    count-words-example} si no se vinculo a @k{C-c =}):
 
 #     ..example >
-#       one   two  three
+#           one   two  three
 #     < example..
     ..example >
           uno   dos  tres
     < example..
 
 #     Emacs will tell you, correctly, that the region has three words.
-    Emacs te contará, correctamente, que la región tiene tres palabras.
+    Emacs te dira, correctamente, que la región tiene tres palabras.
 
 #     Repeat the test, but place mark at the beginning of the line and place
 #     point just @e{before} the word @'{one}. Again type the command @k{C-c =}
@@ -17025,12 +17019,11 @@ and promoting software freedom.”
 #     has no words, since it is composed only of the whitespace at the
 #     beginning of the line. But instead Emacs tells you that the region has
 #     one word!
-    Repite la prueba, pero marca el lugar al principio de la línea y emplaza el
-    punto justo @e{antes} de la palabra @'{uno}. De nuevo escribe el comando
-    @k{C-c =} (o @k{M-x count-words-example}). Emacs cuenta que la región no
-    tiene palabras, puesto que eso está compuesto solo por espacios en blanco
-    al principio de la línea. ¡Pero en vez de que Emacs cuente que la región
-    tiene una palabra!
+    Repite la prueba, pero coloca la marca al principio de la línea y el punto
+    justo @e{antes} de la palabra @'{uno}. De nuevo presiona @k{C-c =} (o @k{M-x
+    count-words-example}). Emacs deberia decir que la región no tiene palabras,
+    ya que está compuesta solo por espacios en blanco al inicio de la
+    línea. ¡Pero en vez de que Emacs informa que la región tiene una palabra!
 
 #     For the third test, copy the sample line to the end of the @f{*scratch*}
 #     buffer and then type several spaces at the end of the line. Place mark
@@ -17040,17 +17033,17 @@ and promoting software freedom.”
 #     that the region has no words, since it is composed only of the whitespace
 #     at the end of the line. Instead, Emacs displays an error message saying
 #     @'{Search failed}.
-    Para el tercer test, copia la línea de ejemplo al fin del búfer
-    @f{*scratch*} y entonces escribe varios espacios al fin de la
-    línea. Posiciona la marca correcta después de la palabra @'{tres} y
-    apunta al fin de la línea. (El fin de la línea será el fin del búfer.)
-    Escribe @k{C-c =} (o @k{M-x count-words-example}) como se hizo antes. De
-    nuevo, Emacs te contaría que la región no tiene palabras, puesto que eso
-    está compuesto solo de los espacios en blanco al fin de la línea. En vez
-    de eso, Emacs muestra un mensaje de error diciendo @'{Búsqueda fallida}.
+    Para la tercer prueba, copia la línea de ejemplo al fin del búfer
+    @f{*scratch*} y luego escribe varios espacios al fin de la
+    línea. Coloca la marca justo después de la palabra @'{tres} y
+    el punto al fin de la línea. (El fin de la línea será el fin del búfer.)
+    Como anteriormente, pulsa @k{C-c =} (o @k{M-x count-words-example}). De
+    nuevo, Emacs deberia decir que la región no tiene palabras, ya que
+    está compuesta solo por espacios en blanco al final de la línea. En
+    su lugar, Emacs muestra un mensaje de error diciendo @'{Search failed}.
 
 #     The two bugs stem from the same problem.
-    Los dos errores queman el mismo problema.
+    Los dos errores provienen del mismo problema.
 
 #     Consider the first manifestation of the bug, in which the command tells
 #     you that the whitespace at the beginning of the line contains one word.
@@ -17064,41 +17057,40 @@ and promoting software freedom.”
 #     saying the number of words in the region is one. In brief, the regular
 #     expression search looks for and finds the word even though it is outside
 #     the marked region.
-    Considere la primera manifestación del error, en el que el comando te
-    cuenta que el espacio en blanco al principio de la línea contiene una
-    palabra. Lo que ocurre es esto: El comando @c{M-x count-words-example} mueve
-    el punto al principio de la región. La prueba @c{while} si el valor del
-    punto es más pequeño de lo que el valor de @c{end}, que es. Por
-    consiguiente, en la expresión regular se busca y encuentra la primera
-    palabra. Eso deja el punto después de la palabra. @c{count} que se
-    establece a uno. El bucle @c{while} repite; pero esta vez el valor del
-    punto es más largo que el valor de @c{end}, el bucle sale; y la función
-    muestra un mensaje diciendo el número de palabras en la región es uno. En
-    breve, la expresión regular busca y encuentra la palabra incluso aunque
-    eso esté fuera de la región marcada.
+    Considere la primer manifestación del error, en la que el comando informa
+    que el espacio en blanco al principio de la línea contiene una palabra. Lo
+    que ocurre es lo siguiente: El comando @c{M-x count-words-example} mueve el
+    punto al principio de la región. La prueba de @c{while} que verifica que el
+    valor del punto sea más pequeño que el valor de @c{fin}, es verdadera. En
+    consecuencia, la busqueda regexp busca y encuentra la primera palabra. Eso
+    deja el punto después de la palabra. @c{count} se establece a uno. El bucle
+    @c{while} se repite; pero esta vez el valor del punto es mayor al valor de
+    @c{fin}, el bucle termina; y la función muestra un mensaje diciendo el
+    número de palabras en la región es uno. En resumen, la expresión regular
+    busca y encuentra la palabra aunque esté fuera de la región marcada.
 
 #     In the second manifestation of the bug, the region is whitespace at the
 #     end of the buffer. Emacs says @'{Search failed}. What happens is that
 #     the true-or-false-test in the @c{while} loop tests true, so the search
 #     expression is executed. But since there are no more words in the buffer,
 #     the search fails.
-    En la segunda manifestación del error, la región es un espacio en blanco
-    al fin del búfer. Emacs dice @'{Búsqueda fallida}. Lo que ocurre es que
-    prueba-verdadero-o-falso en el bucle @c{while} chequea verdad, así la expresión
-    de búsqueda es ejecutada. Pero desde que no hay más palabras en el
+    En la segunda manifestación del error, la región es un espacio en blanco al
+    final del búfer. Emacs dice @'{Search failed}. Lo que ocurre es que
+    prueba-verdadero-o-falso en el bucle @c{while} es verdadera, por lo que se
+    ejecuta la expresión de búsqueda. Pero como no hay más palabras en el
     buffer, la búsqueda falla.
 
 #     In both manifestations of the bug, the search extends or attempts to
 #     extend outside of the region.
-    En ambas manifestaciones del error, la búsqueda extiende o intenta
+    En ambas manifestaciones del error, la búsqueda se extiende o intenta
     extenderse fuera de la región.
 
 #     The solution is to limit the search to the region––this is a fairly
 #     simple action, but as you may have come to expect, it is not quite as
 #     simple as you might think.
-    La solución es limitar la búsqueda a la región––esto es una acción simple
-    y limpia, pero como tu puedes tener que llegar a esperar, eso no es tan
-    simple como se podría pensar.
+    La solución es limitar la búsqueda a la región––esta es una acción bastante
+    simple, pero como se puede esperar, eso no es tan simple como se podría
+    pensar.
 
 #     As we have seen, the @c{re-search-forward} function takes a search
 #     pattern as its first argument. But in addition to this first, mandatory
@@ -17108,23 +17100,23 @@ and promoting software freedom.”
 #     search fails. The optional fourth argument is a repeat count.  (In
 #     Emacs, you can see a function's documentation by typing @k{C-h f}, the
 #     name of the function, and then @k{RET}.)
-    Como se ha visto, la función @c{re-search-forward} toma un patrón de
+    Como hemos visto, la función @c{re-search-forward} toma un patrón de
     búsqueda como su primer argumento. Pero además de este primer, argumento
-    obligatorio, se aceptan tres argumentos opcionales. El segundo argumento
-    opcional asocia la búsqueda. El tercer argumento opcional, si @c{t},
-    causa la función a devolver @c{nil} en vez de la señal un error si la
-    búsqueda falla. El cuarto argumento opcional es un contador repetido. (En
-    Emacs, se puede ver una documentación de la función escribiendo @k{C-h
-    f}, el nombre de la función, y entonces @k{RET}.)
+    obligatorio, acepta tres argumentos opcionales. El segundo argumento
+    opcional limita la búsqueda. El tercer argumento opcional, si es @c{t}, hace
+    que la función devuelva @c{nil} en lugar de la señal de error si la búsqueda
+    falla. El cuarto argumento opcional es un contador de repeticiones. (En
+    Emacs, se puede ver la documentación de una la función pulsando @k{C-h f},
+    seguido por el nombre de la función, y finalmente presionando @k{RET}.)
 
 #     In the @c{count-words-example} definition, the value of the end of the
 #     region is held by the variable @c{end} which is passed as an argument to
 #     the function. Thus, we can add @c{end} as an argument to the regular
 #     expression search expression:
-    En la definición @c{count-words-example}, el valor del fin de la región es
-    tomada por la variable @c{end} que es pasada como un argumento para la
-    función. De este modo, se puede añadir @c{end} como un argumento para la
-    búsqueda de la expresión de búsqueda:
+    En la definición de @c{count-words-example}, el valor del fin de la región se
+    almacena en la variable @c{fin} que se pasa como un argumento a la
+    función. De este modo, podemos añadir @c{fin} como argumento en la
+    búsqueda de la expresión regulares:
 
 #     ..src > elisp
 #       (re-search-forward "\\w+\\W*" end)
@@ -17137,10 +17129,9 @@ and promoting software freedom.”
 #     definition and then test the new version of the definition on a stretch
 #     of whitespace, you will receive an error message saying @'{Search
 #     failed}.
-    Sin embargo, si se crea solo este cambio a la definición
-    @c{count-words-example} y entonces se chequea la nueva versión de la
-    definición en una extensión de espacio en blanco, se recibirá un mensaje
-    de error diciendo @'{Búsqueda fallida}.
+    Sin embargo, con solo este cambio en la definición de
+    @c{count-words-example} y luego de probar la nueva versión en una region de
+    espacios en blanco, se recibirá un mensaje de error @'{Search failed}.
 
 #     What happens is this: the search is limited to the region, and fails as
 #     you expect because there are no word-constituent characters in the
@@ -17148,24 +17139,24 @@ and promoting software freedom.”
 #     to receive an error message in this case; we want to receive the message
 #     that "The region does NOT have any words."
     Lo que ocurre es esto: la búsqueda se limita a la región, y falla como se
-    espera porque no hay caracteres de palabras constituyentes en la
-    región. Puesto que eso falla, se recibe un mensaje de error. Pero no
-    queremos recibir un mensaje de error en este caso; se quiere recibir el
-    mensaje que "La región no tiene palabras".
+    espera porque no hay caracteres constitutivos de palabras en la
+    región. Puesto que falla, se recibe un mensaje de error. Pero no
+    queremos recibir un mensaje de error en este caso; queremos recibir el
+    mensaje de que "La región no tiene palabras".
 
 #     The solution to this problem is to provide @c{re-search-forward} with a
 #     third argument of @c{t}, which causes the function to return @c{nil}
 #     rather than signal an error if the search fails.
-    La solución a este problema es proveer @c{re-search-forward} con un
-    tercer argumento de @c{t}, que causa la función para devolver @c{nil} en
-    vez la señalar un error si la búsqueda falla.
+    La solución a este problema es proveer un tercer argumento @c{t} a
+    @c{re-search-forward}, haciendo que la función regrese @c{nil} en lugar
+    de señalar un error si la búsqueda falla.
 
 #     However, if you make this change and try it, you will see the message
 #     “Counting words in region ... ” and … you will keep on seeing that
 #     message …, until you type @k{C-g} @%c(keyboard-quit).
-    Sin embargo, si se crea este cambio y se intenta, se verá el mensaje
-    “Contando palabras en la región ...” y … se guardará viendo qué mensaje
-    …, hasta que se escribe @k{C-g} @%c(keyboard-quit).
+    Sin embargo, aun con este cambio, veremos el mensaje “Contando palaras en la
+    región ... ” y … lo seguiremos viendo …, hasta presionar @k{C-g}
+    @%c(keyboard-quit).
 
 #     Here is what happens: the search is limited to the region, as before, and
 #     it fails because there are no word-constituent characters in the region,
@@ -17178,18 +17169,16 @@ and promoting software freedom.”
 #     value of point is still less than the value of end, since the
 #     @c{re-search-forward} expression did not move point. … and the cycle
 #     repeats …
-    Aquí está lo que ocurre: la búsqueda está limitada a la región, como
-    antes, y eso falla porque no hay caracteres no constituyentes de palabras
-    en la región, como se espera. Por tanto, la expresión
-    @c{re-search-forward} devuelve @c{nil}. Eso no hace nada más. En
-    particular, no mueve el punto, que hace como un efecto secundario si se
-    encuentra la búsqueda objetiva. Después la expresión
-    @c{re-search-forward} devuelve @c{nil}, la siguiente expresión en el
-    bucle @c{while} está evaluado. Esta expresión incrementa el
-    contador. Entonces el bucle repite. La prueba prueba-verdadero-o-falso chequea
-    verdadero porque el valor del punto es todavía menor que el valor final,
-    desde que la expresión @c{re-search-forward} no movería el punto. … y el
-    ciclo repite …
+    Esto es lo que ocurre: la búsqueda se limitada a la región, como antes, y
+    falla porque no hay caracteres constituyentes de palabras en la región, como
+    se esperaba. Por consiguiente, la expresión @c{re-search-forward} devuelve
+    @c{nil}. No hace nada más. En particular, no mueve el punto, coso que hace
+    como un efecto secundario si encuentra el objetivo de la búsqueda. Después
+    de que la expresión @c{re-search-forward} devuelve @c{nil}, se evalua la
+    siguiente expresión en el bucle @c{while}. Esta expresión incrementa el
+    contador. Entonces el bucle se repite. La prueba prueba-verdadero-o-falso es
+    verdadera porque el valor del punto aun es menor al valor del final, ya que
+    la expresión @c{re-search-forward} no movio el punto. … y el ciclo repite …
 
 #     The @c{count-words-example} definition requires yet another modification,
 #     to cause the true-or-false-test of the @c{while} loop to test false if
@@ -17197,31 +17186,31 @@ and promoting software freedom.”
 #     satisfied in the true-or-false-test before the word count variable is
 #     incremented: point must still be within the region and the search
 #     expression must have found a word to count.
-    La definición @c{count-words-example} requiere todavía de otra modificación
-    para causar el prueba-verdadero-o-falso del bucle @c{while} para probar falso
-    si la búsqueda falla. Pon otro camino, hay dos condiciones que deben ser
-    satisfechas en el prueba-verdadero-o-falso antes que el contador de palabras
-    variable se incremente: el punto debe todavía estar con la región y la
-    expresión de búsqueda debe haber encontrado una palabra para contar.
+    La definición de @c{count-words-example} requiere otra modificación para
+    hacer que la prueba-verdadero-o-falso del bucle @c{while} sea falsa si la
+    búsqueda falla. Dicho de otra manera, hay dos condiciones que deben
+    cumplirse en la prueba-verdadero-o-falso antes de incrementar la variable de
+    conteo: el punto debe estar dentro de la región y la expresión de búsqueda
+    debe haber encontrado una palabra para contar.
 
 #     Since both the first condition and the second condition must be true
 #     together, the two expressions, the region test and the search expression,
 #     can be joined with an @c{and} special form and embedded in the @c{while}
 #     loop as the true-or-false-test, like this:
-    Por ambas la primera condición y la segunda condición deben ser ciertas
-    juntas, las dos expresiones, la región chequea y la expresión de
-    búsqueda, puede estar unido con una forma especial @c{and} y embebido en
-    el bucle @c{while} como el prueba-verdadero-o-falso, como esto:
+    Dado que ambas condiciones deben ser ciertas a la vez, la prueba de la
+    región y la expresión de búsqueda, pueden unirse con una forma especial
+    @c{and} y empotrarse en el bucle @c{while} como la prueba-verdadero-o-falso,
+    asi:
 
 #     ..src > elisp
 #       (and (< (point) end) (re-search-forward "\\w+\\W*" end t))
 #     < src..
     ..src > elisp
-      (and (< (point) end) (re-search-forward "\\w+\\W*" end t))
+      (and (< (point) fin) (re-search-forward "\\w+\\W*" fin t))
     < src..
 
-#     (For information about @c{and}, see Section @l{The @c{kill-new} function}.)
-    (Para información acerca de @c{and}, ver @"{La función @c{kill-new}}.)
+#     (For information about @c{and}, see Section @l{#The @c{kill-new} function}.)
+    (Para obtener mas información sobre @c{and}, consulta la Seccion @l{#La función @c{kill-new}}.)
 
 #     The @c{re-search-forward} expression returns @c{t} if the search succeeds
 #     and as a side effect moves point. Consequently, as words are found,
@@ -17229,94 +17218,90 @@ and promoting software freedom.”
 #     find another word, or when point reaches the end of the region, the
 #     true-or-false-test tests false, the @c{while} loop exits, and the
 #     @c{count-words-example} function displays one or other of its messages.
-    La expresión @c{re-search-forward} devuelve @c{t} si la búsqueda es
-    exitosa y como efecto secundario se mueve el punto. Consiguientemente, como
-    las palabras se encuentran, el punto es movido a través de la
-    región. Cuando la búsqueda de la expresión falla para encontrar otra
-    palabra, o cuando el punto logra el fin de la región, la prueba
-    prueba-verdadero-o-falso es falso, el bucle @c{while} existe, y la función
-    @c{count-words-example} muestra uno u otro de sus mensajes.
+    La expresión @c{re-search-forward} devuelve @c{t} si la búsqueda tiene exito
+    y, como efecto secundario, mueve el punto. En consecuencia, a medida que se
+    encuentran las palabras, el punto se mueve a través de la región. Cuando la
+    expresion de búsqueda no encuentra otra palabra, o cuando el punto llega al
+    final de la región, la prueba-verdadero-o-falso da falso, termina el bucle
+    @c{while}, y la función @c{count-words-example} muestra uno u otro de
+    sus mensajes.
 
 #     After incorporating these final changes, the @c{count-words-example}
 #     works without bugs (or at least, without bugs that I have found!). Here
 #     is what it looks like:
-    Después de incorporar estos cambios finales, el @c{count-words-example}
-    funciona sin errores (¡o al menos, sin los errores que yo haya
-    encontrado!. Aquí está lo que parece:
+    Después de incorporar estos cambios finales, @c{count-words-example}
+    funciona sin errores (¡o al menos, sin los errores que he
+    encontrado!
 
 #     ..src > elisp
-#       ;;; @e{Final version:} @c{while}
+    ..src > elisp
+#       ;;; Final version: while
+      ;;; Versión final: while
 #       (defun count-words-example (beginning end)
+      (defun count-words-example (inicio fin)
 #         "Print number of words in the region."
+        "Imprime número de palabras en la región."
 #         (interactive "r")
 #         (message "Counting words in region ... ")
-#
-#       ;;; 1. Set up appropriate conditions.
-#         (save-excursion
-#           (let ((count 0))
-#             (goto-char beginning)
-#
-#       ;;; @e{2. Run the} while @e{loop.}
-#             (while (and (< (point) end)
-#                         (re-search-forward "\\w+\\W*" end t))
-#               (setq count (1+ count)))
-#
-#       ;;; 3. Send a message to the user.
-#             (cond ((zerop count)
-#                    (message
-#                     "The region does NOT have any words."))
-#                   ((= 1 count)
-#                    (message
-#                     "The region has 1 word."))
-#                   (t
-#                    (message
-#                     "The region has %d words." count))))))
-#     < src..
-    ..src > elisp
-      ;;; @e{Versión final:} @c{while}
-      (defun count-words-example (beginning end)
-        "Imprime número de palabras en la región."
         (interactive "r")
         (message "Contando palabras en la región ... ")
 
-      ;;; 1. Configura condiciones apropiadas.
+#       ;;; 1. Set up appropriate conditions.
+      ;;; 1. Establecer las condiciones apropiadas.
+#         (save-excursion
+#           (let ((count 0))
+#             (goto-char beginning)
         (save-excursion
-          (let ((count 0))
-            (goto-char beginning)
+          (let ((cuenta 0))
+            (goto-char inicio)
 
-      ;;; @e{2. Ejecuta el} @e{bucle} while
-            (while (and (< (point) end)
-                        (re-search-forward "\\w+\\W*" end t))
-              (setq count (1+ count)))
+#       ;;; 2. Run the while loop.
+      ;;; 2. Ejecutar el bucle while
+#             (while (and (< (point) end)
+#                         (re-search-forward "\\w+\\W*" end t))
+#               (setq count (1+ count)))
+            (while (and (< (point) fin)
+                        (re-search-forward "\\w+\\W*" fin t))
+              (setq cuenta (1+ cuenta)))
 
+#       ;;; 3. Send a message to the user.
       ;;; 3. Enviar un mensaje al usuario.
-            (cond ((zerop count)
+#             (cond ((zerop count)
+#                    (message
+            (cond ((zerop cuenta)
                    (message
-                    "La región no tiene palabras."))
-                  ((= 1 count)
+#                     "The region does NOT have any words."))
+                    "La región NO tiene palabras."))
+#                   ((= 1 count)
+#                    (message
+                  ((= 1 cuenta)
                    (message
+#                     "The region has 1 word."))
                     "La región tiene 1 palabra."))
+#                   (t
+#                    (message
                   (t
                    (message
-                    "La región tiene %d palabras." count))))))
-    < src..
+#                     "The region has %d words." count))))))
+                    "La región tiene %d palabras." cuenta))))))
+#     < src..
 
 # ** Count Words Recursively
-** Cuenta palabras recursivamente
+** Contar Palabras Recursivamente
 
 #    You can write the function for counting words recursively as well as with
 #    a @c{while} loop. Let's see how this is done.
    Se puede escribir la función para contar palabras tanto de manera
-   recursiva como con un bucle @c{while}. Permita ver cómo se hace.
+   recursiva como con un bucle @c{while}. Veamos cómo se hace esto.
 
 #    First, we need to recognize that the @c{count-words-example} function has
 #    three jobs: it sets up the appropriate conditions for counting to occur;
 #    it counts the words in the region; and it sends a message to the user
 #    telling how many words there are.
-   Primero, se necesita reconocer que la función @c{count-words-example} tiene
-   tres trabajos: eso configura las condiciones apropiadas para contar lo que
-   ocurre; eso cuenta las palabras en la región; y envía un mensaje al
-   usuario contando cuántas palabras hay.
+   En primer lugar, debemos reconocer que la función @c{count-words-example}
+   tiene tres trabajos: establecer las condiciones apropiadas para que ocurra el
+   conteo; contar las palabras en la región; y enviar un mensaje al usuario
+   diciendo cuántas palabras hay.
 
 #    If we write a single recursive function to do everything, we will receive
 #    a message for every recursive call. If the region contains 13 words, we
@@ -17325,64 +17310,60 @@ and promoting software freedom.”
 #    (the recursive function) will be used inside of the other. One function
 #    will set up the conditions and display the message; the other will return
 #    the word count.
-   Si se escribe una función recursiva simple para hacer cualquier cosa se
-   recibirá un mensaje para cada llamada recursiva. Si la región contiene 13
-   palabras, se recibirán trece mensajes, uno correcto después del otro. ¡No
-   queremos esto!. En vez de eso, se deben escribir dos funciones para hacer
-   el trabajo, una (la función recursiva) será usada dentro de la otra. Una
-   función configurará las condiciones y muestra el mensaje; la otra
-   devolverá el contador de palabras.
+   Si escribimos una sola función recursiva para hacer todo, recibiremos un
+   mensaje por cada llamada recursiva. Si la región contiene 13 palabras,
+   recibiremos trece mensajes, uno tras otro. ¡No queremos esto!. En su lugar,
+   debemos escribir dos funciones para hacer el trabajo, una de las cuales (la función
+   recursiva) será usada dentro de la otra. Una función configurará las
+   condiciones y mostrara el mensaje; la otra devolverá el conteo de palabras.
 
 #    Let us start with the function that causes the message to be displayed.
 #    We can continue to call this @c{count-words-example}.
-   Permítase comenzar con la función que causa el mensaje que se muestra. Se
-   puede continuar por llamarse @c{count-words-example}.
+   Comencemos con la función que hace que se muestre el mensaje. Podemos
+   continuar llamandola @c{count-words-example}.
 
 #    This is the function that the user will call. It will be interactive.
 #    Indeed, it will be similar to our previous versions of this function,
 #    except that it will call @c{recursive-count-words} to determine how many
 #    words are in the region.
-   Esta es la función que el usuario llama. Será interactiva. En realidad,
+   Esta es la función que el usuario llamara. Será interactiva. De hecho,
    será similar a nuestras versiones previas de esta función, excepto que
-   llamará @c{recursive-count-words} para determinar cuántas palabras hay en
+   llamará a @c{contar-palabras-recursivamente} para determinar cuántas palabras hay en
    la región.
 
 #    We can readily construct a template for this function, based on our
 #    previous versions:
-   Se puede construir una plantilla legible para esta función, basada en
-   versiones previas:
+   Podemos construir facilmente una plantilla para esta función, basada en
+   versiones anteriores:
 
 #    ..src > elisp
+   ..src > elisp
 #      ;; Recursive version; uses regular expression search
+     ;; Versión Recursiva; usa búsqueda de la expresiónes regulares
 #      (defun count-words-example (beginning end)
+     (defun count-words-example (inicio fin)
 #        "documentation…"
+       "documentacion…"
 #        (interactive-expression…)
-#
+       (expresion-interactiva…)
+
 #      ;;; 1. Set up appropriate conditions.
+     ;;; 1. Establecer las condiciones apropiadas.
 #        (explanatory message)
 #        (set-up functions…
-#
+       (mensaje explicativo)
+       (funciones de configuracion…
+
 #      ;;; 2. Count the words.
-#          recursive call
-#
-#      ;;; 3. Send a message to the user.
-#          message providing word count))
-#    < src..
-   ..src > elisp
-     ;; Versión Recursiva; usa la búsqueda de la expresión regular
-     (defun count-words-example (beginning end)
-       "documentation…"
-       (interactive-expression…)
-
-     ;;; 1. Configura condiciones apropiadas.
-       (explanatory message)
-       (set-up functions…
-
      ;;; 2. Contar las palabras.
-         recursive call
+#          recursive call
+         llamada recursiva
 
+#      ;;; 3. Send a message to the user.
      ;;; 3. Envía un mensaje al usuario.
-         message providing word count))
+#          message providing word count))
+         mensaje que proporciona el conteo de palabras))
+#    < src..
    < src..
 
 #    The definition looks straightforward, except that somehow the count
@@ -17392,39 +17373,51 @@ and promoting software freedom.”
 #    @c{let} expression to the number of words in the region, as returned by
 #    the recursive call; and then the @c{cond} expression, using binding, can
 #    display the value to the user.
-   La definición parece sencilla, excepto que como el contador devuelve la
-   llamada recursiva que debe ser pasada al mensaje mostrando el contaje de
-   palabras. Un pequeño pensamiento sugiere que esto puede ser hecho haciendo
-   uso de una expresión @c{let} al número de palabras en la región, como se
-   devuelve por la llamada recursiva; y entonces la expresión @c{cond}, que
-   usa la asociación, puede mostrar el valor al usuario.
+   La definición parece sencilla, excepto que de alguna manera el conteo
+   devuelto por la llamada recursiva debe ser pasado al mensaje que muestra el
+   conteo de palabras. Un poco de reflexion sugiere que esto se puede hacer
+   mediante una expresión @c{let}: podemos enlazar una variable en la lista de
+   variables de la expresionlet con el número de palabras de la región, tal y
+   como lo devuelve la llamada recursiva; y entonces la expresión @c{cond}, podra
+   mostrar el valor al usuario.
 
 #    Often, one thinks of the binding within a @c{let} expression as somehow
 #    secondary to the ‘primary’ work of a function. But in this case, what you
 #    might consider the ‘primary’ job of the function, counting words, is done
 #    within the @c{let} expression.
-   Con frecuencia, uno piensa que se puede asociar una expresión @c{let} como
+   Con frecuencia, uno piensa que el enlace dentro de una expresión @c{let} es
    algo secundario al trabajo ‘primario’ de una función. Pero en este caso,
-   se podría considerar el trabajo ‘primario’ de la función, contando
-   palabras, esto es hecho con la expresión @c{let}.
+   se podría considerar que el trabajo ‘primario’ de la función (contar
+   palabras), ocurre dentro de la expresión @c{let}.
 
 #    Using @c{let}, the function definition looks like this:
-   Usando @c{let}, la definición de función se parece a:
+   Usando @c{let}, la definición de función se veria asi:
 
 #    ..src > elisp
+   ..src > elisp
 #      (defun count-words-example (beginning end)
+     (defun count-words-example (inicio fin)
 #        "Print number of words in the region."
+       "Imprime número de palabras en la región."
 #        (interactive "r")
-#
+       (interactive "r")
+
 #      ;;; 1. Set up appropriate conditions.
+     ;;; 1. Establecer las condiciones apropiadas.
 #        (message "Counting words in region ... ")
+       (message "Contando palabras en la región ... ")
 #        (save-excursion
+       (save-excursion
 #          (goto-char beginning)
-#
+           (goto-char inicio)
+
 #      ;;; 2. Count the words.
+     ;;; 2. Contar las palabras.
 #          (let ((count (recursive-count-words end)))
-#
+         (let ((cuenta (contar-palabras-recursivamente fin)))
+
 #      ;;; 3. Send a message to the user.
+     ;;; 3. Enviar un mensaje al usuario.
 #            (cond ((zerop count)
 #                   (message
 #                    "The region does NOT have any words."))
@@ -17434,34 +17427,20 @@ and promoting software freedom.”
 #                  (t
 #                   (message
 #                    "The region has %d words." count))))))
-#    < src..
-   ..src > elisp
-     (defun count-words-example (beginning end)
-       "Imprime el número de palabras en la región."
-       (interactive "r")
-
-     ;;; 1. Configura condiciones apropiadas.
-       (message "Contando palabras en la región ... ")
-       (save-excursion
-         (goto-char beginning)
-
-     ;;; 2. Contar las palabras.
-         (let ((count (recursive-count-words end)))
-
-     ;;; 3. Enviar un mensaje al usuario.
-           (cond ((zerop count)
+           (cond ((zerop cuenta)
                   (message
-                   "La región no tiene palabras."))
-                 ((= 1 count)
+                   "La región NO tiene palabras."))
+                 ((= 1 cuenta)
                   (message
                    "La región tiene 1 palabra."))
                  (t
                   (message
-                   "La región tiene %d palabras." count))))))
+                   "La región tiene %d palabras." cuenta))))))
+#    < src..
    < src..
 
 #    Next, we need to write the recursive counting function.
-   Lo siguiente, que se necesita es escribir la función de contaje recursivo.
+   A continuacion, tenemos que escribir la función de conteo recursivo.
 
 #    A recursive function has at least three parts: the ‘do-again-test’, the
 #    ‘next-step-expression’, and the recursive call.
@@ -17477,19 +17456,19 @@ and promoting software freedom.”
 #    function to locate point. Clearly, we must pass the value of the end of
 #    the region to the recursive counting function as an argument.
    La prueba-hazlo-de-nuevo determina si la función será o no llamada de
-   nuevo. Puesto que estamos contando palabras en una región y puede causar
-   que una función se mueva el punto hacia delante por cada palabra, el
-   prueba-hazlo-de-nuevo puede probar si el punto está todavía con la región. El
-   prueba-hazlo-de-nuevo encontraría el valor del punto y determina si el punto está
-   antes, en, o después del valor del fin de la región. Se puede usar la
-   función @c{point} para localizar el punto. Claramente, se debe pasar el
-   valor del fin de la región a la función de contaje recursivo como un
-   argumento.
+   nuevo. Ya que estamos contando palabras en una región y podemos usar una
+   función que mueve el punto hacia delante para cada palabra, la
+   prueba-hazlo-de-nuevo puede evaluar si el punto todavía está dentro de la
+   región. La prueba-hazlo-de-nuevo debe encontrar el valor del punto y
+   determina si el punto está antes, en, o después del valor del final de la
+   región.  Podemos usar la función @c{point} para localizar el
+   punto. Claramente, se debe pasar el valor del final de la región como un
+   argumento a la función de conteo recursivo.
 
 #    In addition, the do-again-test should also test whether the search finds a
 #    word. If it does not, the function should not call itself again.
-   Además, el prueba-hazlo-de-nuevo también chequea si la búsqueda encuentra una
-   palabra. Si no, la función no se llamaría de nuevo.
+   Además, la prueba-hazlo-de-nuevo también tiene que probar si la búsqueda encuentra una
+   palabra. Si no lo hace, la función no deberia llamarse de nuevo.
 
 #    The next-step-expression changes a value so that when the recursive
 #    function is supposed to stop calling itself, it stops. More precisely,
@@ -17497,23 +17476,24 @@ and promoting software freedom.”
 #    do-again-test stops the recursive function from calling itself again. In
 #    this case, the next-step-expression can be the expression that moves point
 #    forward, word by word.
-   La expresion-del-siguiente-paso cambia un valor así que cuando la función
-   recursiva se supone que debe parar de llamarse así misma, se para. Más
-   precisamente, los cambios de expresion-del-siguiente-paso cambia un valor así en
-   el momento adecuado, el prueba-hazlo-de-nuevo para la función recursiva de la
-   llamada en sí de nuevo. En este caso, la expresion-del-siguiente-paso puede ser la
-   expresión que mueve el punto hacia adelante, palabra por palabra.
+   La expresion-del-siguiente-paso cambia un valor de modo que cuando cuando se
+   supone que la función recursiva deja de llamarse así misma, se detiene. Más
+   precisamente, la expresion-del-siguiente-paso cambia un valor
+   en el momento adecuado, la prueba-hazlo-de-nuevo detiene la función recursiva de
+   llamarse a si misma otra vez. En este caso, la expresion-del-siguiente-paso
+   puede ser la expresión que mueve el punto hacia adelante, palabra por
+   palabra.
 
 #    The third part of a recursive function is the recursive call.
    La tercera parte de una función recursiva es la llamada recursiva.
 
 #    Somewhere, also, we also need a part that does the ‘work’ of the function,
 #    a part that does the counting. A vital part!
-   En algún lugar, también, se necesita una parte que hace el ‘trabajo’ de la
-   función, una parte que es el contaje. ¡Una parte vital!
+   En algún lugar, también, se necesita una parte que haga el ‘trabajo’ de la
+   función, una parte que es el conteo. ¡Una parte vital!
 
 #    But already, we have an outline of the recursive counting function:
-   Pero ya, tenemos un guión de la función recursiva de contaje:
+   Pero ya, tenemos un esquema de la función de conteo recursivo:
 
 #    ..src > elisp
 #      (defun recursive-count-words (region-end)
@@ -17523,11 +17503,11 @@ and promoting software freedom.”
 #         recursive call)
 #    < src..
    ..src > elisp
-     (defun recursive-count-words (region-end)
-       "documentation…"
+     (defun contar-palabras-recursivamente (fin-de-region)
+       "documentacion…"
         prueba-hazlo-de-nuevo
         expresion-del-siguiente-paso
-        recursive call)
+        llamada recursiva)
    < src..
 
 #    Now we need to fill in the slots. Let's start with the simplest cases
@@ -17535,56 +17515,55 @@ and promoting software freedom.”
 #    words in the region, so the function should return zero. Likewise, if the
 #    search fails, there are no words to count, so the function should return
 #    zero.
-   Ahora se necesita rellenar los slots. Permite comenzar con el caso más
-   simple primero: si se apunta debajo del fin de la región, no puede haber
-   palabras en la región, así la función devuelve cero. De otro modo, si la
-   búsqueda falla no hay palabras para contar, así la función devolvería
-   cero.
+   Ahora se necesita rellenar los huecos. Comencemos con los casos más simples:
+   si el punto esta en o mas alla del fin de la región, no puede haber ninguna
+   palabra en la región, así que la función deberia regresar cero. Del mismo
+   modo, si la búsqueda falla no hay mas palabras a contar, así la función
+   tambien deberia regresar cero.
 
 #    On the other hand, if point is within the region and the search succeeds,
 #    the function should call itself again.
-   Por otro lado, si se apunta con la región y la búsqueda tiene éxito, la
-   función se llamaría de nuevo.
+   Por otro lado, si el punto esta dentro de la región y la búsqueda tiene éxito, la
+   función deberia volver a llamarse a si misma.
 
 #    Thus, the do-again-test should look like this:
-   De este modo, prueba-hazlo-de-nuevo se vería así:
+   Por lo tanto, la prueba-hazlo-de-nuevo se vería así:
 
 #    ..src > elisp
 #      (and (< (point) region-end)
 #           (re-search-forward "\\w+\\W*" region-end t))
 #    < src..
    ..src > elisp
-     (and (< (point) region-end)
-          (re-search-forward "\\w+\\W*" region-end t))
+     (and (< (point) fin-de-region)
+          (re-search-forward "\\w+\\W*" fin-de-region t))
    < src..
 
 #    Note that the search expression is part of the do-again-test––the function
 #    returns @c{t} if its search succeeds and @c{nil} if it fails.  (See
-#    Section @l{The Whitespace Bug in @c{count-words-example}}, for an explanation
+#    Section @l{#The Whitespace Bug in @c{count-words-example}}, for an explanation
 #    of how @c{re-search-forward} works.)
-   Note que la expresión de búsqueda es parte del prueba-hazlo-de-nuevo --- la
+   Ten en cuenta que la expresión de búsqueda es parte de la prueba-hazlo-de-nuevo––la
    función devuelve @c{t} si su búsqueda tiene éxito y @c{nil} si
-   falla. (Vea la Seccion @l{Error de espacio en blanco, , El Error de Espacio
-   en Blanco en @c{count-words-example}}), para una explicación de cómo
-   @c{re-search-forward} funciona.)
+   falla. (Vea la Seccion @l{#El error de espacio en blanco en @c{count-words-example}},
+   para una explicación de cómo funciona @c{re-search-forward}.)
 
 #    The do-again-test is the true-or-false test of an @c{if} clause. Clearly,
 #    if the do-again-test succeeds, the then-part of the @c{if} clause should
 #    call the function again; but if it fails, the else-part should return zero
 #    since either point is outside the region or the search failed because
 #    there were no words to find.
-   La prueba-hazlo-de-nuevo es la prueba true-or-false de una cláusula
-   @c{if}. Claramente si el prueba-hazlo-de-nuevo tiene éxito, la then-part de la
-   cláusula @c{if} llamaría a la función; pero si eso falla, la else-part
-   devolvería cero desde que el punto está fuera de la región o la búsqueda
+   La prueba-hazlo-de-nuevo es la prueba verdadero-o-falso de una cláusula
+   @c{if}. Claramente si la prueba-hazlo-de-nuevo tiene éxito, la parte-then de la
+   cláusula @c{if} llamaría a la función de nuevo; pero si falla, la parte-else
+   deveria regresar cero ya que el está fuera de la región o la búsqueda
    falló porque no había palabras a encontrar.
 
 #    But before considering the recursive call, we need to consider the
 #    next-step-expression. What is it?  Interestingly, it is the search part
 #    of the do-again-test.
    Pero antes de considerar la llamada recursiva, se necesita considerar la
-   expresion-del-siguiente-paso. ¿Qué es eso? De manera interesante, eso es la parte
-   de la búsqueda del prueba-hazlo-de-nuevo.
+   expresion-del-siguiente-paso. ¿Qué es eso? Curiosamente, es la parte
+   de la búsqueda de la prueba-hazlo-de-nuevo.
 
 #    In addition to returning @c{t} or @c{nil} for the do-again-test,
 #    @c{re-search-forward} moves point forward as a side effect of a successful
@@ -17592,17 +17571,17 @@ and promoting software freedom.”
 #    recursive function stops calling itself when point completes its movement
 #    through the region. Consequently, the @c{re-search-forward} expression is
 #    the next-step-expression.
-   Además para devolver @c{t} o @c{nil} para el prueba-hazlo-de-nuevo,
+   Además de regresar @c{t} o @c{nil} en la prueba-hazlo-de-nuevo,
    @c{re-search-forward} mueve el punto hacia adelante como un efecto secundario
    de una búsqueda exitosa. Esta es la acción que cambia el valor de punto
-   así que la función recursiva para de llamarse a sí misma cuando el punto
+   para que la función recursiva deje de llamarse a sí misma cuando el punto
    complete su movimiento a través de la región. Por consiguiente, la
    expresión @c{re-search-forward} es la expresion-del-siguiente-paso.
 
 #    In outline, then, the body of the @c{recursive-count-words} function looks
 #    like this:
-   En esquema, entonces, el cuerpo de la función @c{recursive-count-words} se
-   parece a esto:
+   Entonces, en el esquema, el cuerpo de la función @c{contar-palabras-recursivamente} se
+   ve asi:
 
 #    ..src > elisp
 #      (if do-again-test-and-next-step-combined
@@ -17612,11 +17591,11 @@ and promoting software freedom.”
 #        return-zero)
 #    < src..
    ..src > elisp
-     (if prueba-hazlo-de-nuevo-and-next-step-combined
+     (if prueba-hazlo-de-nuevo-y-del-siguiente-paso-combinadas
          ;; then
-         recursive-call-returning-count
+         llamada-recursiva-regresando-la-cuenta
        ;; else
-       return-zero)
+       regresar-cero)
    < src..
 
 #    How to incorporate the mechanism that counts?
@@ -17625,7 +17604,7 @@ and promoting software freedom.”
 #    If you are not used to writing recursive functions, a question like this
 #    can be troublesome. But it can and should be approached systematically.
    Si no estás acostumbrado a escribir funciones recursivas, una pregunta
-   como esta puede ser un problema. Pero eso puede y sería enfocado
+   como esta puede ser un problema. Pero puede y debe abordarse
    sistemáticamente.
 
 #    We know that the counting mechanism should be associated in some way with
@@ -17633,94 +17612,89 @@ and promoting software freedom.”
 #    forward by one word, and since a recursive call is made for each word, the
 #    counting mechanism must be an expression that adds one to the value
 #    returned by a call to @c{recursive-count-words}.
-   Se sabe que el mecanismo de contaje sería asociado en algún lugar con la
-   llamada recursiva. En vez de eso, desde que la expresion-del-siguiente-paso mueve
-   el punto hacia adelante por una palabra, y desde que una llamada recursiva
-   es hecha para cada palabra, el mecanismo de contaje debe ser una expresión
-   que añade uno al valor devuelto por una llamada para
-   @c{recursive-count-words}
+   Sabemos que el mecanismo de conteo debe estar asociado en algúna manera con
+   la llamada recursiva. De hecho, dado que la expresion-del-siguiente-paso
+   mueve el punto hacia adelante en una palabra, y dado que se hace una llamada
+   recursiva para cada palabra, el mecanismo de conteo debe ser una expresión
+   que agregue uno al valor devuelto en una llamada a @c{contar-palabras-recursivamente}
 
 #    Consider several cases:
-   Considera varias casos:
+   Considera varios casos:
 
 #    - If there are two words in the region, the function should return a value
 #      resulting from adding one to the value returned when it counts the first
 #      word, plus the number returned when it counts the remaining words in the
 #      region, which in this case is one.
-   - Si hay dos palabras en la región, la función devolverá un valor
-     resultante de añadir uno al valor devuelto al contar la primera palabra,
-     más el número devuelto al contar las palabras que permanecen en la
-     región, que en este caso es una.
+   - Si hay dos palabras en la región, la función debe devolver un valor
+     resultante de sumar uno al valor devuelto al contar la primera palabra, más
+     el número devuelto al contar las palabras restantes en la región, que en
+     este caso es uno.
 
 #    - If there is one word in the region, the function should return a value
 #      resulting from adding one to the value returned when it counts that
 #      word, plus the number returned when it counts the remaining words in the
 #      region, which in this case is zero.
    - Si hay una palabra en la región, la función devolvería un valor
-     resultante de añadir uno al valor devuelto cuando eso cuenta esta
-     palabra más el número devuelto cuando eso cuenta las palabras que
-     permanecen en la región, que en este caso es cero.
+     que resulte de sumar uno al valor devuelto cuando cuenta esa
+     palabra, más el número devuelto cuando cuenta las palabras restantes
+     en la región, que en este caso es cero.
 
 #    - If there are no words in the region, the function should return zero.
-
-   - Si no hay palabras en la región, la función devolvería cero.
+   - Si no hay palabras en la región, la función deberia regresar cero.
 
 
 #    From the sketch we can see that the else-part of the @c{if} returns zero
 #    for the case of no words. This means that the then-part of the @c{if}
 #    must return a value resulting from adding one to the value returned from a
 #    count of the remaining words.
-   Desde el esquema se puede ver que la parte else del @c{if} devuelve cero
-   para el caso en el que no hay palabras. Esto significa que la parte then
-   del @c{if} debe devolver un valor resultante de añadir uno al valor
-   devuelto desde el contaje de las palabras que permanecen.
+   En el esquema podemos ver que la parte-else del @c{if} devuelve cero
+   para el caso en el que no hay palabras. Esto significa que la parte-then
+   del @c{if} debe devolver un valor resultante de sumar uno al valor
+   devuelto por el conteo las palabras restantes.
 
 #    The expression will look like this, where @c{1+} is a function that adds
 #    one to its argument.
-   La expresión se parece a esto, donde @c{1+} es una función que añade uno a
+   La expresión se vera asi, donde @c{1+} es una función que añade uno a
    su argumento.
 
 #    ..src > elisp
 #      (1+ (recursive-count-words region-end))
 #    < src..
    ..src > elisp
-     (1+ (recursive-count-words region-end))
+     (1+ (contar-palabras-recursivamente fin-de-region))
    < src..
 
 #    The whole @c{recursive-count-words} function will then look like this:
-   La función completa @c{recursive-count-words} entonces se parecerá e esto:
+   La función @c(contar-palabras-recursivamente) completa se vera asi:
 
 #    ..src > elisp
+   ..src > elisp
 #      (defun recursive-count-words (region-end)
 #        "documentation…"
-#
+     (defun contar-palabras-recursivamente (fin-de-region)
+       "documentacion…"
+
 #      ;;; 1. do-again-test
+     ;;; 1. prueba-hazlo-de-nuevo
 #        (if (and (< (point) region-end)
 #                 (re-search-forward "\\w+\\W*" region-end t))
-#
+       (if (and (< (point) fin-de-region)
+                (re-search-forward "\\w+\\W*" fin-de-region t))
+
 #      ;;; 2. then-part: the recursive call
+     ;;; 2. parte-then: la llamada recursiva
 #            (1+ (recursive-count-words region-end))
-#
+           (1+ (contar-palabras-recursivamente fin-de-region))
+
 #      ;;; 3. else-part
 #          0))
-#    < src..
-   ..src > elisp
-     (defun recursive-count-words (region-end)
-       "documentation…"
-
-     ;;; 1. prueba-hazlo-de-nuevo
-       (if (and (< (point) region-end)
-                (re-search-forward "\\w+\\W*" region-end t))
-
-     ;;; 2. then-part: la llamada recursiva
-           (1+ (recursive-count-words region-end))
-
-     ;;; 3. else-part
+     ;;; 3. parte-else
          0))
+#    < src..
    < src..
 
 #    Let's examine how this works:
-   Permíteme examinar cómo esto funciona:
+   Examinemos como funciona esto:
 
 #    If there are no words in the region, the else part of the @c{if}
 #    expression is evaluated and consequently the function returns zero.
@@ -17735,11 +17709,11 @@ and promoting software freedom.”
 #    returned by the whole function) that is the sum of one added to the value
 #    returned by a recursive call.
    Si hay una palabra en la región, el valor del punto es menor que el valor
-   de @c{region-end} y la búsqueda tiene éxito. En este caso, el
-   prueba-verdadero-o-falso de la expresión @c{if} chequea verdadero, y la then-part
-   de la expresión @c{if} es evaluada. La expresión de contaje se
-   evalúa. Esta expresión devuelve un valor (que será el valor devuelto por
-   la función completa) que es la suma de uno añadida al valor devuelto por
+   de @c{fin-de-region} y la búsqueda tiene éxito. En este caso, la
+   prueba-verdadero-o-falso de la expresión @c{if} es verdadera, y la parte-then
+   de la expresión @c{if} es evaluada. Se evalua la expresión de conteo.
+   Esta expresión devuelve un valor (que será el valor devuelto por
+   toda la función) que es la suma de uno añadida al valor devuelto por
    una llamada recursiva.
 
 #    Meanwhile, the next-step-expression has caused point to jump over the
@@ -17750,14 +17724,14 @@ and promoting software freedom.”
 #    @c{recursive-count-words} will return zero. The zero will be added to
 #    one, and the original evaluation of @c{recursive-count-words} will return
 #    one plus zero, which is one, which is the correct amount.
-   Mientras tanto, la expresion-del-siguiente-paso ha causado el punto para saltar a
-   través de la primera (y en este caso única) palabra en la región. Esto
-   significa que cuando @c{(recursive-count-words region-end)} está evaluada
-   una segunda vez, como un resultado de la llamada recursiva, el valor del
-   punto será igual o mayor que el valor de la región final. Así esta vez,
-   @c{recursive-count-words} devolverá cero. El cero será añadido a uno, y la
-   evaluación original de @c{recursive-count-words} devolverá uno más cero
-   (uno) que es la cantidad correcta.
+   Mientras tanto, la expresion-del-siguiente-paso ha hecho que punto salte
+   sobre la primera (y en este caso única) palabra en la región. Esto significa
+   que cuando @c{(contar-palabras-recursivamente fin-de-region)} se evalua una
+   segunda vez, como resultado de la llamada recursiva, el valor del punto será
+   igual o mayor que el valor del fin de región. Así que esta vez,
+   @c{contar-palabras-recursivamente} devolverá cero. El cero se sumara a uno, y
+   la evaluación original de @c{contar-palabras-recursivamente} devolverá uno
+   más cero, que es uno y es la cantidad correcta.
 
 #    Clearly, if there are two words in the region, the first call to
 #    @c{recursive-count-words} returns one added to the value returned by
@@ -17765,113 +17739,110 @@ and promoting software freedom.”
 #    word––that is, it adds one to one, producing two, which is the correct
 #    amount.
    Claramente, si hay dos palabras en la región, la primera llamada a
-   @c{recursive-count-words} devuelve uno que se añade al valor devuelto por
-   el siguiente @c{recursive-count-words} en una región donde está la palabra
-   que permanece––que es, eso añadir uno a uno, produciendo dos, que es la
+   @c{contar-palabras-recursivamente} devuelve uno mas el valor devuelto por
+   por @c{contar-palabras-recursivamente} en una región que contiene la palabra
+   restante––es decir, suma uno a uno, produciendo dos, que es la
    cantidad correcta.
 
 #    Similarly, if there are three words in the region, the first call to
 #    @c{recursive-count-words} returns one added to the value returned by
 #    calling @c{recursive-count-words} on a region containing the remaining two
 #    words––and so on and so on.
-   Similarmente, si hay tres palabras en la región, la primera llamada
-   @c{recursive-count-words} devuelve uno añadido al valor devuelto llamado
-   @c{recursive-count-words} en una región conteniendo las dos palabras que
-   faltan––y así sucesivamente.
+   De manera similar, si hay tres palabras en la región, la primera llamada
+   @c{contar-palabras-recursivamente} devuelve uno mas el valor devuelto de
+   @c{contar-palabras-recursivamente} en una región que contiene las dos
+   palabras restantes––y así sucesivamente.
 
 #    With full documentation the two functions look like this:
-   Con documentación completa las dos funciones se parecen a esto:
+   Con la documentación completa las dos funciones serian asi:
 
 #    The recursive function:
    La función recursiva:
 
 #    ..src > elisp
+   ..src > elisp
 #      (defun recursive-count-words (region-end)
+     (defun contar-palabras-recursivamente (fin-de-region)
 #        "Number of words between point and REGION-END."
-#
+       "Número de palabras entre punto y FIN-DE-REGION."
+
 #      ;;; 1. do-again-test
+     ;;; 1. prueba-hazlo-de-nuevo
 #        (if (and (< (point) region-end)
 #                 (re-search-forward "\\w+\\W*" region-end t))
-#
+       (if (and (< (point) fin-de-region)
+                (re-search-forward "\\w+\\W*" fin-de-region t))
+
 #      ;;; 2. then-part: the recursive call
+     ;;; 2. parte-then: la llamada recursiva
 #            (1+ (recursive-count-words region-end))
-#
+           (1+ (contar-palabras-recursivamente fin-de-region))
+
 #      ;;; 3. else-part
-#          0))
-#    < src..
-   ..src > elisp
-     (defun recursive-count-words (region-end)
-       "Número de palabras entre punto y REGION-END."
-
-     ;;; 1. prueba-hazlo-de-nuevo
-       (if (and (< (point) region-end)
-                (re-search-forward "\\w+\\W*" region-end t))
-
-     ;;; 2. then-part: la llamada recursiva
-           (1+ (recursive-count-words region-end))
-
      ;;; 3. else-part
+#          0))
          0))
+#    < src..
    < src..
 
 #    The wrapper:
    El envoltorio:
 
 #    ..src > elisp
+   ..src > elisp
 #      ;;; Recursive version
+     ;;; Versión Recursiva
 #      (defun count-words-example (beginning end)
+     (defun count-words-example (inicio fin)
 #        "Print number of words in the region.
-#
+       "Imprime número de palabras en la región.
+
 #      Words are defined as at least one word-constituent
 #      character followed by at least one character that is
 #      not a word-constituent. The buffer's syntax table
 #      determines which characters these are."
+     Las palabras se definen como al menos un caracter
+     constituyente de palabras seguido por al menos un
+     caracter no constituyente de palabras. La tabla de
+     sintaxis del búfer determina qué caracteres son."
 #        (interactive "r")
+       (interactive "r")
 #        (message "Counting words in region ... ")
+       (message "Contando palabras en la región ... ")
 #        (save-excursion
 #          (goto-char beginning)
+       (save-excursion
+           (goto-char inicio)
 #          (let ((count (recursive-count-words end)))
+         (let ((cuenta (contar-palabras-recursivamente fin)))
 #            (cond ((zerop count)
+           (cond ((zerop cuenta)
 #                   (message
+                  (message
 #                    "The region does NOT have any words."))
+                   "La región NO tiene palabras."))
 #                  ((= 1 count)
+                 ((= 1 cuenta)
 #                   (message "The region has 1 word."))
+                  (message "La región tiene 1 palabra."))
 #                  (t
 #                   (message
 #                    "The region has %d words." count))))))
-#    < src..
-   ..src > elisp
-     ;;; Versión Recursiva
-     (defun count-words-example (beginning end)
-       "Imprime el número de palabras en la región.
-
-     Las palabras son definidas como al menos una palabra constituyente
-     seguida por al menos un caracter que es una palabra constituyente. La
-     tabla de sintaxis del buffer determina qué caracter hay.
-       (interactive "r")
-       (message "Contando palabras en la región ... ")
-       (save-excursion
-         (goto-char beginning)
-         (let ((count (recursive-count-words end)))
-           (cond ((zerop count)
-                  (message
-                   "La región no tiene palabras."))
-                 ((= 1 count)
-                  (message "La región tiene 1 palabra."))
                  (t
                   (message
-                   "La región tiene %d palabras." count))))))
+                   "La región tiene %d palabras." cuenta))))))
+#    < src..
    < src..
 
 # ** Exercise: Counting Punctuation
-** Ejercicio: contando puntuación
+** Ejercicio: Conteo de signos de puntuación
 
 #    Using a @c{while} loop, write a function to count the number of
 #    punctuation marks in a region––period, comma, semicolon, colon,
 #    exclamation mark, and question mark. Do the same using recursion.
    Usando un bucle @c{while}, escriba una función para contar el número de
-   marcas de puntuación en una región––periodo, coma, punto y coma, dos
-   puntos, exclamación, marca y marca de pregunta. Haga lo mismo usando
+   signos de puntuación en una región––punto, coma, punto y coma, dos
+   puntos, signos de interrogacion y exclamación. Haga lo mismo usando
    recursión.
 
 # * Counting Words in a @c{defun}
@@ -18938,7 +18909,7 @@ and promoting software freedom.”
    Estas consideraciones lideran directamente a la función en sí:
 
 #    ..src > elisp
-#      ;;; @e{Use @c{while} loop.}
+#      ;;; Use while loop.
 #      (defun lengths-list-many-files (list-of-files)
 #        "Return list of lengths of defuns in LIST-OF-FILES."
 #        (let (lengths-list)
@@ -18960,7 +18931,7 @@ and promoting software freedom.”
 #          lengths-list))
 #    < src..
    ..src > elisp
-     ;;; @e{Usar bucle @c{while}.}
+     ;;; Usar bucle while.
      (defun lengths-list-many-files (list-of-files)
        "Devuelve la lista de tamaños de funciones en LIST-OF-FILES."
        (let (lengths-list)
@@ -19086,7 +19057,7 @@ and promoting software freedom.”
    La función recursiva tiene las partes normales: el ‘prueba-hazlo-de-nuevo’, la
    ‘expresion-del-siguiente-paso’, y la llamada recursiva. El ‘prueba-hazlo-de-nuevo’
    determina si la función se llamaría, que hará si la @c{list-of-files}
-   contiene los elementos que permanecen; la ‘expresion-del-siguiente-paso’ resetea
+   contiene los elementos restantes; la ‘expresion-del-siguiente-paso’ resetea
    el @c{list-of-files} al @c{cdr} en sí, así finalmente la lista será
    vacía; y la llamada recursiva llama en sí a la lista ordenada. ¡La función
    completa está ordenada por esta descripción!
@@ -20423,7 +20394,7 @@ and promoting software freedom.”
 #   function) to its remaining arguments, the last of which may be a list.
   Se necesita una función que pasa una lista de argumentos a una
   función. Esta función es @c{apply}. Esta función ‘aplica’ su primer
-  argumento (una función) para los argumentos que permanecen, el último puede
+  argumento (una función) para los argumentos restantes, el último puede
   ser una lista.
 
 #   For example,
@@ -20647,12 +20618,12 @@ and promoting software freedom.”
 #             (number-of-top-blanks
 #              (- max-graph-height actual-height)))
 #
-#         ;; @e{Fill in @c{graph-symbols}.}
+#         ;; Fill in graph-symbols.
 #         (while (> actual-height 0)
 #           (setq insert-list (cons graph-symbol insert-list))
 #           (setq actual-height (1- actual-height)))
 #
-#         ;; @e{Fill in @c{graph-blanks}.}
+#         ;; Fill in graph-blanks.
 #         (while (> number-of-top-blanks 0)
 #           (setq insert-list (cons graph-blank insert-list))
 #           (setq number-of-top-blanks
@@ -20675,12 +20646,12 @@ and promoting software freedom.”
             (number-of-top-blanks
              (- max-graph-height actual-height)))
 
-        ;; @e{Rellenar en @c{graph-symbols}.}
+        ;; Rellenar en graph-symbols.
         (while (> actual-height 0)
           (setq insert-list (cons graph-symbol insert-list))
           (setq actual-height (1- actual-height)))
 
-        ;; @e{Rellenar en @c{graph-blanks}.}
+        ;; Rellenar en graph-blanks.
         (while (> number-of-top-blanks 0)
           (setq insert-list (cons graph-blank insert-list))
           (setq number-of-top-blanks
@@ -24677,8 +24648,8 @@ and promoting software freedom.”
     siguiente:
 
 #    ..src > elisp
-#      ;; kill-ring-yank-pointer @e{and} kill-ring @e{have a length of four}
-#      ;; @e{and} (mod (- 0 4) 4) ⇒ 0
+#      ;; kill-ring-yank-pointer and kill-ring have a length of four
+#      ;; and (mod (- 0 4) 4) ⇒ 0
 #      (nthcdr (mod (- 0 4) 4)
 #              '("fourth line of text"
 #                "third line"
@@ -24686,8 +24657,8 @@ and promoting software freedom.”
 #                "first some text"))
 #    < src..
     ..src > elisp
-      ;; kill-ring-yank-pointer @e{and} kill-ring @e{tener un tamaño de cuatro}
-      ;; @e{and} (mod (- 0 4) 4) ⇒ 0
+      ;; kill-ring-yank-pointer and kill-ring tener un tamaño de cuatro
+      ;; and (mod (- 0 4) 4) ⇒ 0
       (nthcdr (mod (- 0 4) 4)
               '("cuarta línea de texto"
                 "tercera línea"
@@ -24952,8 +24923,8 @@ and promoting software freedom.”
 #    returns. The two remaining arguments are the positions of point and mark
 #    set by the preceding @c{yank} command.
     @c{funcall} llama a su primer argumento como una función, pasando los
-    argumentos que permanecen. El primer argumento es el que la expresión
-    @c{or} devuelve. Los dos argumentos que permanecen son las posiciones de
+    argumentos restantes. El primer argumento es el que la expresión
+    @c{or} devuelve. Los dos argumentos restantes son las posiciones de
     punto y marca asignadas por el comando @c{yank} precedente.
 
 #    There is more, but that is the hardest part.
@@ -25680,7 +25651,7 @@ and promoting software freedom.”
      ..src > elisp
        (defun Y-axis-column (height width-of-label)
          "Construye la lista de ejes Y etiquetadas y cadenas en blanco.
-       Para height @e{la altura} de la línea de debajo y width-of-label."
+       Para height la altura de la línea de debajo y width-of-label."
          (let (Y-axis)
            (while (> height 1)
              (if (zerop (% height Y-axis-label-spacing))
@@ -25736,7 +25707,7 @@ and promoting software freedom.”
 #            (Y-axis-column height full-Y-label-width))
 #           ;; Place point ready for inserting graph.
 #           (goto-char start)
-#           ;; @e{Move point forward by value of} full-Y-label-width
+#           ;; Move point forward by value of full-Y-label-width
 #           (forward-char full-Y-label-width)))
 #     < src..
      ..src > elisp
@@ -25752,7 +25723,7 @@ and promoting software freedom.”
             (Y-axis-column height full-Y-label-width))
            ;; Posiciona el punto listo para inserta el grafo.
            (goto-char start)
-           ;; @e{Mueve el punto hacia adelante por valor de} full-Y-label-width
+           ;; Mueve el punto hacia adelante por valor de full-Y-label-width
            (forward-char full-Y-label-width)))
      < src..
 
@@ -26089,7 +26060,7 @@ and promoting software freedom.”
                          (* 2 (length X-axis-tic-symbol)))
                      ? )
                     X-axis-tic-symbol))
-           ;; Inserta los ticks que permanecen.
+           ;; Inserta los ticks restantes.
            (while (> number-of-X-tics 1)
              (insert X-axis-tic-element)
              (setq number-of-X-tics (1- number-of-X-tics))))
@@ -26191,7 +26162,7 @@ and promoting software freedom.”
 #          "Print X axis labels to length of NUMBERS-LIST."
 #          (let* ((leading-spaces
 #                  (make-string full-Y-label-width ? ))
-#               ;; symbol-width @e{is provided by} graph-body-print
+#               ;; symbol-width is provided by graph-body-print
 #               (tic-width (* symbol-width X-axis-label-spacing))
 #               (X-length (length numbers-list))
 #               (X-tic
@@ -26216,7 +26187,7 @@ and promoting software freedom.”
          "Imprime el eje X etique al tamaño de NUMBERS-LIST."
          (let* ((leading-spaces
                  (make-string full-Y-label-width ? ))
-              ;; symbol-width @e{se provee por} graph-body-print
+              ;; symbol-width se provee por graph-body-print
               (tic-width (* symbol-width X-axis-label-spacing))
               (X-length (length numbers-list))
               (X-tic
@@ -26485,7 +26456,7 @@ and promoting software freedom.”
 #      each line. For example, a step of 5 means that
 #      each row is five units."
 #        (let* ((symbol-width (length graph-blank))
-#               ;; @c{height} @e{is both the largest number}
+#               ;; @c{height} is both the largest number
 #               ;; and the number with the most digits.
 #               (height (apply 'max numbers-list))
 #               (height-of-top-line
@@ -26519,7 +26490,7 @@ and promoting software freedom.”
      eje Y incrementa cada línea. Por ejemplo, un paso de 5
      significa que cada fila es de cinco unidades.
        (let* ((symbol-width (length graph-blank))
-              ;; @c{height} @e{en ambos es el número más largo}
+              ;; @c{height} en ambos es el número más largo
               ;; y el número con la mayoría de los digitos.
               (height (apply 'max numbers-list))
               (height-of-top-line
@@ -26768,11 +26739,11 @@ and promoting software freedom.”
      Claramente, solo buscando esta lista se puede ver que la mayoría de
      definiciones de función contienen de diez a treinta palabras y símbolos.
 
-#     Now for printing. We do @e{not} want to print a graph that is 1,030
+#     Now for printing. We do not want to print a graph that is 1,030
 #     lines high …  Instead, we should print a graph that is fewer than
 #     twenty-five lines high. A graph that height can be displayed on almost
 #     any monitor, and easily printed on a sheet of paper.
-     Ahora para imprimir. Nosotros @e{no} queremos imprimir un grafo que es
+     Ahora para imprimir. Nosotros no queremos imprimir un grafo que es
      de 1030 líneas de alto …. En vez de eso, imprimiría un grafo que es
      mejor que venticinco líneas de alto. Un grafo cuya altura puede ser
      mostrada en casi cualquier monitor, y fácilmente impreso en una hoja de
@@ -27121,7 +27092,7 @@ and promoting software freedom.”
                      ? )
                     (number-to-string
                      (* number horizontal-step))))
-           ;; Insertar los números que permanecen.
+           ;; Insertar los números restantes.
            (setq number (+ number X-axis-label-spacing))
            (while (> number-of-X-tics 1)
              (insert (X-axis-element
