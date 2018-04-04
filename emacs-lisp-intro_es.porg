@@ -16605,7 +16605,7 @@ and promoting software freedom.”
      Seccion @l{#Apéndice A La función @c{the-the}}.
 
 # * Counting: Repetition and Regexps
-* Contando: repetición y regexps
+* Conteo: repetición y regexps
 
 #   Repetition and regular expression searches are powerful tools that you
 #   often use when you write code in Emacs Lisp. This chapter illustrates the
@@ -17850,47 +17850,45 @@ and promoting software freedom.”
 
 #   Our next project is to count the number of words in a function definition.
 #   Clearly, this can be done using some variant of @c{count-words-example}. See
-#   Section @l{Counting: Repetition and Regexps}. If we are just going to
+#   Section @l{#Counting: Repetition and Regexps}. If we are just going to
 #   count the words in one definition, it is easy enough to mark the definition
 #   with the @k{C-M-h} @%c(mark-defun) command, and then call
 #   @c{count-words-example}.
-  El siguiente proyecto es contar el número de palabras en una definición de
-  función. Claramente, esto se puede hacer usando alguna variante de
-  @c{count-words-example}. Vea la Seccion @l{Contando palabras, , Contando
-  palabras: repetición y regexps}. Si se está ahora yendo a contar las
-  palabras en una definición, es suficientemente fácil marcar la definición
-  con el comando @k{C-M-h} @%c(mark-defun), y entonces se llama a
-  @c{count-words-example}.
+  Nuestro siguiente proyecto es contar el número de palabras en una definición
+  de función. Claramente, esto se puede hacer usando alguna variante de
+  @c{count-words-example}. Vea la Seccion @l{#Conteo: repetición y regexps}.
+  Si solo vamos a contar las palabras en una definición, es
+  bastante fácil marcar la definición con el comando @k{C-M-h}
+  @%c(mark-defun), y luego llamar a @c{count-words-example}.
 
 #   However, I am more ambitious: I want to count the words and symbols in
 #   every definition in the Emacs sources and then print a graph that shows how
 #   many functions there are of each length: how many contain 40 to 49 words or
 #   symbols, how many contain 50 to 59 words or symbols, and so on. I have
 #   often been curious how long a typical function is, and this will tell.
-  Sin embargo, soy más ambicioso: Yo quiero contar las palabras y símbolos en
-  cada definición en las fuentes de Emacs y entonces imprimir un grafo que
+  Sin embargo, soy más ambicioso: quiero contar las palabras y símbolos en
+  todas las definiciónes del codigo de Emacs y despues imprimir un grafico que
   muestre cuántas funciones hay de cada tamaño: cuántas contienen de 40 a 49
   palabras o símbolos, cuántas contienen de 50 a 59 palabras o símbolos, y
-  así. Yo he sido con frecuencia curioso de cómo es una función típica, y
-  esto se contará.
+  así sucesivamente. A menudo he tenido curiosidad por saber cuanto abarca una
+  función típica, y esto lo dira.
 
 #   Described in one phrase, the histogram project is daunting; but divided
 #   into numerous small steps, each of which we can take one at a time, the
 #   project becomes less fearsome. Let us consider what the steps must be:
-  Descrito en una frase, el proyecto desanima; pero dividido dentro de
-  numerosos pequeños pasos, cada uno de los que podemos tomar en un momento,
-  el proyecto llegar ser menos atemorizante. Permítenos considerar qué pasos
-  deben ser:
+  Descrito en una frase, el proyecto del histograma desanima; pero dividido
+  dentro de muchos pequeños pasos, tomando uno a uno, el proyecto se vuelve
+  menos atemorizante. Consideremos cuales deberian ser los pasos a seguir:
 
 #   - First, write a function to count the words in one definition. This
 #     includes the problem of handling symbols as well as words.
-  - Primero, escribe una función para contar las palabras en una
-    definición. Esto incluye el problema de manejar símbolos tan bien como
+  - Primero, escribir una función para contar las palabras en una
+    definición. Esto incluye el problema de manejar tanto símbolos como
     palabras.
 
 #   - Second, write a function to list the numbers of words in each function in
 #     a file. This function can use the @c{count-words-in-defun} function.
-  - Segundo, escribe una función para listar los números de palabras en cada
+  - Segundo, escribir una función para listar el número de palabras de cada
     función en un fichero. Esta función puede usar la función
     @c{count-words-in-defun}.
 
@@ -17898,25 +17896,24 @@ and promoting software freedom.”
 #     each of several files. This entails automatically finding the various
 #     files, switching to them, and counting the words in the definitions
 #     within them.
-  - Tercero, escribe una función para listar los números de palabras en cada
-    función en cada uno de varios ficheros. Esto encola automáticamente
-    encontrando varios ficheros, cambiándolos, y contando las palabras en las
-    definiciones con ellos.
+  - Tercero, escribir una función para listar el número de palabras en cada
+    función en cada uno de los ficheros. Esto implica encontrar automáticamente
+    ficheros diferentes, cambiar entre ellos, y contar las palabras en las
+    definiciones dentro de cada uno.
 
 #   - Fourth, write a function to convert the list of numbers that we created
 #     in step three to a form that will be suitable for printing as a graph.
-  - Cuarto, escribe una función para convertir la lista de números que
-    nosotros creamos en tres pasos para un formulario que se ajustará para
-    imprimir un grafo.
+  - Cuarto, escribir una función para convertir la lista de números que
+    creamos en el paso tres a un formulario que sea adecuado para
+    imprimir en forma de grafico.
 
 #   - Fifth, write a function to print the results as a graph.
-
-  - Quinto, escribe una función para imprimir los resultados como un grafo.
+  - Quinto, escribir una función para imprimir los resultados como un grafico.
 
 
 #   This is quite a project!  But if we take each step slowly, it will not be
 #   difficult.
-  ¡Esto es un proyecto! Pero si tomamos cada paso lentamente, eso no será
+  ¡Este es un gran proyecto! Pero si tomamos cada paso lentamente, no será
   difícil.
 
 # ** What to Count?
@@ -17931,15 +17928,15 @@ and promoting software freedom.”
 #    In addition, in the documentation string, it contains the four words
 #    @'{Multiply}, @'{NUMBER}, @'{by}, and @'{seven}. The symbol @'{number} is
 #    repeated, so the definition contains a total of ten words and symbols.
-   Cuando nosotros primero empezamos pensando acerca del contaje de palabras
-   en una definición de función, la primera pregunta es (o podría ser) ¿qué
-   se va a contar?  Cuando se habla de ‘palabras’ con repecto a una
-   definición de función Lisp, estamos actualmente hablando, en parte, de
-   ‘símbolos’. Por ejemplo, la siguiente función @c{multiply-by-seven}
-   contiene los cinco símbolos @c{defun}, @c{multipy-by-seven}, @c{number},
+   Cuando empezamos a pensar en como contar las palabras
+   en una definición de función, la primera pregunta es (o deberia ser) ¿qué
+   vamos a contar?  Cuando hablamos de ‘palabras’ con repecto a una
+   definición de función Lisp, en realidad estamos hablando, en gran parte, de
+   ‘símbolos’. Por ejemplo, la siguiente función @c{multiplicar-por-siete}
+   contiene los cinco símbolos @c{defun}, @c{multiplicar-por-siete}, @c{numero},
    @c{*}, y @c{7}. Además, en la cadena de documentación, contiene cuatro
-   palabras @'{Multiplicar}, @'{NUMBER}, @'{por}, y @'{siete}. El símbolo
-   @'{número} es repetido, así la definición contiene un total de diez
+   palabras @'{Multiplicar}, @'{NUMERO}, @'{por}, y @'{siete}. El símbolo
+   @'{número} se repite, por lo que la definición contiene un total de diez
    palabras y símbolos.
 
 #    ..src > elisp
@@ -17948,18 +17945,18 @@ and promoting software freedom.”
 #        (* 7 number))
 #    < src..
    ..src > elisp
-     (defun multiply-by-seven (number)
-       "Multiplicar NUMBER por siete."
-       (* 7 number))
+     (defun multiplicar-por-siete (numero)
+       "Multiplica NUMERO por siete."
+       (* 7 numero))
    < src..
 
 #    However, if we mark the @c{multiply-by-seven} definition with @k{C-M-h}
-#    (@c{mark-defun}), and then call @c{count-words-example} on it, we will find
+#    @%c{mark-defun}, and then call @c{count-words-example} on it, we will find
 #    that @c{count-words-example} claims the definition has eleven words, not ten!
 #    Something is wrong!
-   Sin embargo, si se marca la definición @c{multiply-by-seven} con @k{C-M-h}
-   (@c{mark-defun}), y entonces se llama a @c{count-words-example} dentro, se
-   encontrará que @c{count-words-example} ¡reclama la definición tiene once
+   Sin embargo, si marcamos la definición @c{multiplicar-por-siete} con @k{C-M-h}
+   @%c{mark-defun}, y luego llamamos a @c{count-words-example} en ella, se
+   encontrará que @c{count-words-example} ¡afirma que la definición tiene once
    palabras, no diez! ¡Alguna cosa está mal!
 
 #    The problem is twofold: @c{count-words-example} does not count the @'{*} as a
@@ -17968,18 +17965,18 @@ and promoting software freedom.”
 #    spaces rather than intraword connectors: @'{multiply-by-seven} is counted
 #    as if it were written @'{multiply by seven}.
    El problema es doble: @c{count-words-example} no cuenta el @'{*} como una
-   palabra, y eso cuenta el símbolo simple, @c{multiply-by-seven},
-   conteniendo tres palabras. Las conexiones son tratadas como si fueran
-   espacios entre palabras en vez de conectores entre palabras
-   @'{multiply-by-seven} se cuenta como si fuese escrito
-   @'{multiply-by-seven}.
+   palabra, y cuenta el símbolo unico, @c{multiplicar-por-siete},
+   conteniendo tres palabras. Los guines se tratan como si fueran
+   espacios entre palabras en lugar de conectores entre palabras
+   @'{multiplicar-por-siete} se cuenta como si fuese escrito
+   @'{multiplicar por siete}.
 
 #    The cause of this confusion is the regular expression search within the
 #    @c{count-words-example} definition that moves point forward word by word. In
 #    the canonical version of @c{count-words-example}, the regexp is:
    La causa de esta confusión es la expresión regular que busca la definición
-   @c{count-words-example} que mueve el punto hacia delante palabra por
-   palabra. En la versión canónica de @c{count-words-example}, el regexp es:
+   @c{count-words-example} que mueve el punto hacia adelante palabra por
+   palabra. En la versión canónica de @c{count-words-example}, la regexp es:
 
 #    ..example >
 #      "\\w+\\W*"
@@ -17992,11 +17989,11 @@ and promoting software freedom.”
 #    characters possibly followed by one or more characters that are not word
 #    constituents. What is meant by ‘word constituent characters’ brings us to
 #    the issue of syntax, which is worth a section of its own.
-   Esta expresión regular es un patrón definiendo una o más palabras
-   constituyendo caracteres posiblemente seguidos por uno o más caracteres
-   que no son palabras constituyentes. Esto significa que los ‘caracteres que
-   constituyen palabras’ nos traen la cuestión de la sintaxis, que es el
-   valor de una sección en sí.
+   Esta expresión regular es un patrón que define uno o más caracteres
+   constituyentes de la palabra, posiblemente seguidos por uno o más caracteres
+   que no son constituyentes de palabras. Lo que se entiende por ‘caracteres que
+   constituyen palabras’ nos lleva a la cuestión de la sintaxis, que merece
+   una sección en por sí misma.
 
 # ** What Constitutes a Word or Symbol?
 ** ¿Qué constituye una palabra o símbolo?
@@ -18008,17 +18005,18 @@ and promoting software freedom.”
 #    include the class of punctuation characters, such as the period and the
 #    comma, and the class of whitespace characters, such as the blank space and
 #    the tab character.  (For more information, see Section
-#    @l{info:emacs#Syntax Tables, Syntax Tables} in @e{The GNU Emacs Lisp
+#    @l{info:emacs#Syntax Tables<>Syntax Tables} in @e{The GNU Emacs Lisp
 #    Reference Manual}.)
-   Emacs trata diferentes caracteres perteneciendo a diferentes @:{categorías
-   de sintaxis}. Por ejemplo, la expresión regular, @'{\\w+}, es un patrón
-   especificando uno o más caracteres de @e{palabras constituyentes}. Los
-   caracteres de palabras constituyentes son miembros de una categoría de
-   sintaxis. Otras categoría de sintaxis incluye la clase de caracteres de
-   puntuación, tales como el espacio en blanco o el caracter de
-   tabulación. (Para más información, ver Seccion @"{La Tabla de Sintaxis} en
-   @e(El Manual GNU Emacs), y Seccion @"{Tablas de Sintaxis} en @e(El Manual
-   de Referencia GNU Emacs Lisp).)
+   Emacs trata diferentes caracteres como perteneciendo a diferentes
+   @:{categorías sintacticas}. Por ejemplo, la expresión regular, @'{\\w+}, es
+   un patrón que especifica uno o más caracteres @e{constituyentes de
+   palabras}. Los caracteres constituyentes de palabras son miembros de una
+   categoría sintactica. Otras categoría sintactica incluye la clase de
+   caracteres de puntuación, como el punto y la coma, y la clase de caracteres
+   de espacio en blanco, como el espacio en blanco o el tabulador. (Para más
+   información, vea la Seccion @"{La Tabla de Sintaxis} en @e(El Manual GNU
+   Emacs), y Seccion @l{info:emacs#Syntax Tables<>Tablas de Sintaxis} en @e(El
+   Manual de Referencia GNU Emacs Lisp).)
 
 #    Syntax tables specify which characters belong to which categories.
 #    Usually, a hyphen is not specified as a ‘word constituent character’.
@@ -18029,42 +18027,40 @@ and promoting software freedom.”
 #    @'{multiply-by-seven} as three words.
    Las tablas de sintaxis especifican qué caracteres pertenecen a qué
    categorías. Normalmente un guión no está especificado como un ‘caracter
-   constituido por una palabra’. En vez de eso, se especificó como estando en
-   la ‘clase de caracteres que son parte de los nombres de símbolos, pero no
-   las palabras.’  Esto significa que la función @c{count-words-example} se trata
-   del mismo modo que trata un espacio en blanco entre palabras, que es el
-   por qué @c{count-words-example} cuenta @'{multiply-by-seven} como tres
-   palabras.
+   constiyente de una palabra’. En su lugar, se especifica como perteneciente a
+   la ‘clase de caracteres que son parte de los nombres de símbolos, pero no de
+   las palabras.’  Esto significa que la función @c{count-words-example} la
+   trata del mismo modo que trata un espacio en blanco entre palabras, por lo
+   qué la funcion @c{count-words-example} cuenta a @'{multiplicar-por-siete} como
+   tres palabras.
 
 #    There are two ways to cause Emacs to count @'{multiply-by-seven} as one
 #    symbol: modify the syntax table or modify the regular expression.
-   Hay dos caminos para causar que Emacs cuente @'{multiply-by-seven} como un
-   símbolo: modificar la tabla de sintaxis o modificar la expresión regular.
+   Hay dos maneras de hacer que Emacs cuente @'{multiplicar-por-siete} como un
+   símbolo: modificar la tabla sintactica o modificar la expresión regular.
 
 #    We could redefine a hyphen as a word constituent character by modifying
 #    the syntax table that Emacs keeps for each mode. This action would serve
 #    our purpose, except that a hyphen is merely the most common character
 #    within symbols that is not typically a word constituent character; there
 #    are others, too.
-   Se podría redefinir un guión (@e{hyphen}) como un caracter que constituye
-   una palabra modificando la tabla de sintaxis que Emacs guarda por cada
-   modo. Esta acción serviría nuestro propósito, excepto que una conexión es
-   meramente el caracter más común con símbolos que no son típicamente un
-   caracter de palabra constituyente; hay otros, también.
+   Se podría redefinir un guión como un caracter constituyente
+   de una palabra modificando la tabla de sintaxis que Emacs guarda para cada
+   modo. Esta acción serviría a nuestro propósito, excepto que un guion es
+   meramente el caracter más común dentro de los símbolos que no es son un típico
+   caracter constituyente de una palabra; hay otros, también.
 
 #    Alternatively, we can redefine the regexp used in the @c{count-words-example}
 #    definition so as to include symbols. This procedure has the merit of
 #    clarity, but the task is a little tricky.
-   Alternativamente, se puede redefinir la expresión regular @e{regexp} usada
-   en la definición @c{count-words} así como incluir símbolos. Este
-   procedimiento tiene el mérito de la claridad, pero la tarea es un pequeño
-   truco.
+   Alternativamente, podemos redefinir la regexp usada en la definición
+   de @c{count-words-example} para incluir símbolos. Este procedimiento tiene el mérito
+   de la claridad, pero la tarea es un poco dificil.
 
 #    The first part is simple enough: the pattern must match “at least one
 #    character that is a word or symbol constituent”. Thus:
-   La primera parte es suficientemente simple: el patrón debe asignarse “al
-   menos un carácter que es una palabra o símbolo constituyente”. De este
-   modo:
+   La primera parte es bastante simple: el patrón debe coincidir con “al
+   menos un carácter sea una palabra o símbolo constituyente”. Asi:
 
 #    ..example >
 #      "\\(\\w\\|\\s_\\)+"
@@ -18079,21 +18075,20 @@ and promoting software freedom.”
 #    any character that is part of a symbol name but not a word-constituent
 #    character. The @'{+} following the group indicates that the word or
 #    symbol constituent characters must be matched at least once.
-   El @'{\\(} es la primera parte del constructo que agrupa esto que incluye
-   el @'{\\w} y el @'{\\s_} como alternativas, separadas por los @'{\\|}. El
-   @'{\\w} asocia cualquier caracter de palabra constituyente y el @'{\\s_}
-   asocia cualquier caracter que es parte de un nombre de símbolo pero no una
-   palabra de caracteres constituyente. El @'{+} sigue al grupo que indica
-   que la palabra o símbolo constituyan caracteres que deben ser asociados al
-   menos por uno.
+   El @'{\\(} es la primera parte del constructor de agrupacion que incluye el
+   @'{\\w} y el @'{\\s_} como alternativas, separadas por @'{\\|}. El @'{\\w}
+   coincide con cualquier caracter forme parte una palabra y @'{\\s_} con
+   cualquier caracter que forme parte de un símbolo no constituyente de
+   palabras. El @'{+} a continuacion del grupo indica que los caracteres que
+   componen la palabra o el símbolo deben coincidir al menos una vez.
 
 #    However, the second part of the regexp is more difficult to design. What
 #    we want is to follow the first part with “optionally one or more
 #    characters that are not constituents of a word or symbol”. At first, I
 #    thought I could define this with the following:
-   Sin embargo, la segunda parte de regexp es más difícil de diseñar. Lo que
+   Sin embargo, la segunda parte de la regexp es más difícil de diseñar. Lo que
    queremos es seguir la primera parte con “opcionalmente uno o más
-   caracteres que no constituyen una palabra o símbolo”. Primero, se pensaba
+   caracteres que no constituyen una palabra o símbolo”. Al principio, pense
    que se podría definir esto con lo siguiente:
 
 #    ..example >
@@ -18107,10 +18102,10 @@ and promoting software freedom.”
 #    symbol constituents. Unfortunately, this expression matches any character
 #    that is either not a word constituent or not a symbol constituent. This
 #    matches any character!
-   Las mayúsculas @'{W} y @'{S} asocian caracteres que @e{no} son
-   constituyente de palabra o símbolo. Desafortunadamente, esta expresión
-   asocia cualquier caracter que sea o no una palabra constituyente no un
-   símbolo constituyente. ¡Esto asocia cualquier caracter!
+   Las mayúsculas @'{W} y @'{S} coinciden con caracteres que @e{no} son
+   parte de palabras o símbolos. Desafortunadamente, esta expresión
+   coincide con cualquier caracter que no sea parte de una palabra o simbolo.
+   ¡Esto coincide con cualquier caracter!
 
 #    I then noticed that every word or symbol in my test region was followed by
 #    white space (blank space, tab, or newline). So I tried placing a pattern
@@ -18121,17 +18116,16 @@ and promoting software freedom.”
 #    which the word or symbol constituents are followed optionally by
 #    characters that are not white space and then followed optionally by white
 #    space.
-   Entonces se notificó que cada palabra o símbolo en mi región test fué
-   seguida por algún espacio (espacio en blanco, tabulador, o nueva
-   línea). Así yo intenté emplazar un patrón para asociar uno o más espacios
+   Entonces note que cada palabra o símbolo en mi región de prueba iba
+   seguida de un espacio en blanco (espacio en blanco, tabulador, o línea
+   nueva). Así que colocar un patrón para que coincidiese con uno o más espacios
    en blanco después del patrón para una o más palabras o símbolos
-   constituyentes. Esto falló, también. Palabras y símbolos son con
-   frecuencia separados por espacios en blanco, pero en el código actual los
-   paréntesis pueden seguir símbolos y puntuación puede seguir las
-   palabras. Así finalmente, se diseño un patrón en el que la palabra o
-   símbolo constituyente es seguido opcionalmente por caracteres que no son
-   espacios en blanco y entonces son seguidos opcionalmente por espacios en
-   blanco.
+   constituyentes. Esto tambien falló. Las palabras y los símbolos suelen
+   estar separados por espacios en blanco, pero en el código real los
+   paréntesis pueden ir despues de los símbolos y la puntuación puede seguir las
+   palabras. Así que finalmente, diseñe un patrón en el que los componentes de
+   la palabra o simbolo van seguidos opcionalmente por caracteres que no son
+   espacios en blanco, seguidos a su vez por espacios en blanco opcionales.
 
 #    Here is the full regular expression:
    Aquí está la expresión regular completa:
@@ -18144,25 +18138,25 @@ and promoting software freedom.”
    < example..
 
 # ** The @c{count-words-in-defun} Function
-** La función @c{count-words-in-defun}
+** La función @c{contar-palabras-en-definicion}
 
 #    We have seen that there are several ways to write a @c{count-words-region}
 #    function. To write a @c{count-words-in-defun}, we need merely adapt one
 #    of these versions.
-   Se ha visto que hay varios caminos para escribir una función
-   @c{count-word-region}. Para escribir un @c{count-words-in-defun}, se
-   necesita solamente adaptar una de estas versiones.
+   Hemos visto que hay varias maneras de escribir la función
+   @c{count-word-region}. Para escribir @c{contar-palabras-en-definicion},
+   basta con adaptar una de estas versiones.
 
 #    The version that uses a @c{while} loop is easy to understand, so I am
 #    going to adapt that. Because @c{count-words-in-defun} will be part of a
 #    more complex program, it need not be interactive and it need not display a
 #    message but just return the count. These considerations simplify the
 #    definition a little.
-   La versión que usa un bucle @c{while} es fácil de comprender, así estoy
-   yendo a adaptar esto. Porque @c{count-words-in-defun} será parte de un
-   programa más complejo, eso no necesita ser interactivo y no necesita
-   mostrar un mensaje pero solo devuelve el contaje. Estas consideraciones
-   simplifican la definición un poco.
+   La versión que utiliza un bucle @c{while} es fácil de comprender, así que voy
+   a adaptarla. Debido a que @c{contar-palabras-en-definicion} formara parte de
+   un programa más complejo, no necesita ser interactivo y ni mostrar un
+   mensaje, solamente devolver el conteo. Estas consideraciones simplifican un
+   poco la definición.
 
 #    On the other hand, @c{count-words-in-defun} will be used within a buffer
 #    that contains function definitions. Consequently, it is reasonable to ask
@@ -18170,12 +18164,12 @@ and promoting software freedom.”
 #    function definition, and if it is, to return the count for that
 #    definition. This adds complexity to the definition, but saves us from
 #    needing to pass arguments to the function.
-   Por otro lado, @c{count-words-in-defun} será usado con un buffer que
-   contiene definiciones de función. Consiguientemente, es razonable
-   preguntar que la función determina si se llamó cuando el punto está con
-   una definición de función, y eso es, para devolver el contaje para esta
-   definición. Esto añade complejidad a la definición, pero nos guarda desde
-   la necesidad de pasar argumentos a la función.
+   Por otro lado, @c{contar-palabras-en-definicion} se utilizara dentro de un
+   buffer que contiene definiciones de función. Por consiguiente, es razonable
+   pedir que la función determina si se llama cuando el punto está dentro de una
+   definición de función, y si lo esta, que devuelva el conteo para esa
+   definición. Esto añade complejidad a la definición, pero nos ahorra la
+   necesidad de pasar argumentos a la función.
 
 #    These considerations lead us to prepare the following template:
    Estas consideraciones nos llevan a preparar la siguiente plantilla:
@@ -18188,15 +18182,15 @@ and promoting software freedom.”
 #         return count)
 #    < src..
    ..src > elisp
-     (defun count-words-in-defun ()
-       "documentation…"
-       (set up…
-          (while loop…)
-        return count)
+     (defun contar-palabras-en-definicion ()
+       "documentacion…"
+       (configuracion…
+          (bucle while…)
+        regresar conteo)
    < src..
 
 #    As usual, our job is to fill in the slots.
-   Así, el trabajo es rellenar los slots.
+   Como de costumbre, nuestro trabajo es rellenar los huecos.
 
 #    First, the set up.
    Primero, la configuración.
@@ -18206,12 +18200,11 @@ and promoting software freedom.”
 #    definition or not. For @c{count-words-in-defun} to work, point must move
 #    to the beginning of the definition, a counter must start at zero, and the
 #    counting loop must stop when point reaches the end of the definition.
-   Estamos presuponiendo que esta función será llamada con un búfer
-   conteniendo definiciones de función. Apunta si será con una definición de
-   función o no. Para que @c{count-words-in-defun} funcione, el punto debe
-   moverse al principio de la definición, un contador debe empezar a cero, y
-   el bucle contando debe parar cuando el punto logre el fin de la
-   definición.
+   Suponemos que esta función sera llamada dentro de un búfer que contiene
+   definiciones de función. El punto estara o no dentro de una definición de
+   función. Para que @c{contar-palabras-en-definicion} funcione, el punto
+   debe moverse al principio de la definición, un contador debe empezar en cero,
+   y el bucle de conteo debe parar cuando el punto alcance el final de la definición.
 
 #    The @c{beginning-of-defun} function searches backwards for an opening
 #    delimiter such as a @'{(} at the beginning of a line, and moves point to
@@ -18220,41 +18213,41 @@ and promoting software freedom.”
 #    enclosing or preceding function definition, or else to the beginning of
 #    the buffer. We can use @c{beginning-of-defun} to place point where we
 #    wish to start.
-   La función @c{beginning-of-defun} busca atrás para un delimitador de
-   apertura tal como @'{(} al principio de una línea, y mueve el punto a esta
+   La función @c{beginning-of-defun} busca hacia atrás un delimitador de
+   apertura como @'{(} al principio de una línea, y mueve el punto a esa
    posición, o sino al límite de la búsqueda. En la práctica, esto significa
-   que @c{beginning-of-defun} mueve el punto al principio de un cierre o
-   definición de función precedente, o sino al principio del buffer.
+   que @c{beginning-of-defun} mueve el punto al principio de la funcion que lo
+   rodea o a la anterior función, o bien al principio del buffer.
 
 #    The @c{while} loop requires a counter to keep track of the words or
 #    symbols being counted. A @c{let} expression can be used to create a local
 #    variable for this purpose, and bind it to an initial value of zero.
-   El bucle @c{while} requiere un contador para guardar la traza de las
-   palabras o símbolos siendo contados. Una expresión @c{let} puede ser usado
-   para crear una variable local para este propósito, y lo asocia a un valor
-   inicial de cero.
+   El bucle @c{while} requiere un contador para registrar las palabras o
+   símbolos que se estan contando. Una expresión @c{let} puede ser usada para
+   crear una variable local para este propósito, y vincularse a un valor inicial
+   de cero.
 
 #    The @c{end-of-defun} function works like @c{beginning-of-defun} except
 #    that it moves point to the end of the definition.  @c{end-of-defun} can be
 #    used as part of an expression that determines the position of the end of
 #    the definition.
-   La función @c{end-of-defun} funciona como @c{beginning-of-defun} excepto
-   que mueve el punto al fin de la definición. @c{end-of-defun} puede ser
-   usado como parte de una expresión que determina la posición del fin de la
+   La función @c{end-of-defun} opera como @c{beginning-of-defun} excepto
+   que mueve el punto al fin de la definición. @c{end-of-defun} puede usarse
+   como parte de una expresión que determina la posición del fin de la
    definición.
 
 #    The set up for @c{count-words-in-defun} takes shape rapidly: first we move
 #    point to the beginning of the definition, then we create a local variable
 #    to hold the count, and finally, we record the position of the end of the
 #    definition so the @c{while} loop will know when to stop looping.
-   La configuración para @c{count-words-in-defun} toma forma rápidamente:
-   primero movemos el punto al principio de la definición, entonces se crea
-   una variable local para manejar el conteo, y finalmente, se graba la
-   posición del fin de la definición así el bucle @c{while} conocerá cuando
-   parar el bucle.
+   La configuración para @c{contar-palabras-en-definicion} toma forma rápidamente:
+   primero movemos el punto al principio de la definición, luego cremos
+   una variable local para almacenar el conteo, y finalmente, registramos la
+   posición del final de la definición para que el bucle @c{while} sepa cuando
+   terminar.
 
 #    The code looks like this:
-   El código se parece a esto:
+   El código es asi:
 
 #    ..src > elisp
 #      (beginning-of-defun)
@@ -18263,22 +18256,22 @@ and promoting software freedom.”
 #    < src..
    ..src > elisp
      (beginning-of-defun)
-     (let ((count 0)
-           (end (save-excursion (end-of-defun) (point))))
+     (let ((cuenta 0)
+           (fin (save-excursion (end-of-defun) (point))))
    < src..
 
 #    The code is simple. The only slight complication is likely to concern
 #    @c{end}: it is bound to the position of the end of the definition by a
 #    @c{save-excursion} expression that returns the value of point after
 #    @c{end-of-defun} temporarily moves it to the end of the definition.
-   El código es simple. La única ligera complicación es probablemente ir al
-   @c{end}: eso está asociado a la posición del fin de la definición por una
-   expresión @c{save-excursion} que devuelve el valor del punto después de
-   @c{end-of-defun} temporalmente se mueve al fin de la definición.
+   El código es simple. Es probable que la única pequeña complicación este en
+   @c{fin}, que se vincula a la posición del fin de la definición con una expresión
+   @c{save-excursion} que devuelve el valor de @c{end-of-defun} que a su vez
+   mueve temporalmente el punto al final de la definición.
 
 #    The second part of the @c{count-words-in-defun}, after the set up, is the
 #    @c{while} loop.
-   La segunda parte del @c{count-words-in-defun}, después de la
+   La segunda parte del @c{contar-palabras-en-definicion}, después de la
    configuración, es el bucle @c{while}.
 
 #    The loop must contain an expression that jumps point forward word by word
@@ -18289,10 +18282,10 @@ and promoting software freedom.”
 #    the loop is straightforward:
    El bucle debe contener una expresión que mueva el punto hacia adelante
    palabra por palabra y símbolo por símbolo, y otra expresión que cuente los
-   saltos. La prueba-verdadero-o-falso para el bucle @c{while} probaría
-   verdadero tan largo como el punto debería saltar hacia adelante, y falso
-   si apunta al fin de la definición. Ya se ha redefinido la expresión
-   regular para esto, así el bucle es sencillo:
+   saltos. La prueba-verdadero-o-falso del bucle @c{while} debe ser
+   verdadero siempre y cuando el punto salte hacia adelante, y falso
+   si el punto esta al final de la definición. Ya hemos redefinido la expresión
+   regular para esto, así que el bucle es sencillo:
 
 #    ..src > elisp
 #      (while (and (< (point) end)
@@ -18301,23 +18294,23 @@ and promoting software freedom.”
 #        (setq count (1+ count)))
 #    < src..
    ..src > elisp
-     (while (and (< (point) end)
+     (while (and (< (point) fin)
                  (re-search-forward
-                  "\\(\\w\\|\\s_\\)+[^ \t\n]*[ \t\n]*" end t)
-       (setq count (1+ count)))
+                  "\\(\\w\\|\\s_\\)+[^ \t\n]*[ \t\n]*" fin t)
+       (setq cuenta (1+ cuenta)))
    < src..
 
 #    The third part of the function definition returns the count of words and
 #    symbols. This part is the last expression within the body of the @c{let}
 #    expression, and can be, very simply, the local variable @c{count}, which
 #    when evaluated returns the count.
-   La tercera parte de la definición devuelve el contaje de palabras y
-   símbolos. Esta parte es la última expresión con el cuerpo de la expresión
-   @c{let}, y puede ser, muy la variable local @c{count}, que cuando se
-   evalúa devuelve el contaje.
+   La tercera parte de la definición devuelve el numero de palabras y
+   símbolos. Esta parte es la última expresión dentro del cuerpo de la expresión
+   @c{let}, y puede ser, simplemente la variable local @c{cuenta}, que al ser
+   evalúada devuelve el conteo.
 
 #    Put together, the @c{count-words-in-defun} definition looks like this:
-   Puesto junto, la definición @c{count-words-in-defun} se ve así:
+   En conjunto, la definición @c{contar-palabras-en-definicion} luce así:
 
 #    ..src > elisp
 #      (defun count-words-in-defun ()
@@ -18334,96 +18327,93 @@ and promoting software freedom.”
 #          count))
 #    < src..
    ..src > elisp
-     (defun count-words-in-defun ()
+     (defun contar-palabras-en-definicion ()
        "Devuelve el número de palabras y símbolos en una defun."
        (beginning-of-defun)
-       (let ((count 0)
-             (end (save-excursion (end-of-defun) (point))))
+       (let ((cuenta 0)
+             (fin (save-excursion (end-of-defun) (point))))
          (while
-             (and (< (point) end)
+             (and (< (point) fin)
                   (re-search-forward
                    "\\(\\w\\|\\s_\\)+[^ \t\n]*[ \t\n]*"
-                   end t))
-           (setq count (1+ count)))
-         count))
+                   fin t))
+           (setq cuenta (1+ cuenta)))
+         cuenta))
    < src..
 
 #    How to test this?  The function is not interactive, but it is easy to put
 #    a wrapper around the function to make it interactive; we can use almost
 #    the same code as for the recursive version of @c{count-words-example}:
-   ¿Cómo se chequea esto? La función no es interactiva, pero es fácil poner
-   un envoltorio alrededor de la función para hacerla interactiva; se puede
-   usar casi el mismo código como la versión recursiva de
+   ¿Cómo probar esto? La función no es interactiva, pero es fácil poner
+   un envoltorio alrededor de la función para hacerla interactiva; podemos
+   usar casi el mismo código que el de la versión recursiva de
    @c{count-words-example}:
 
 #    ..src > elisp
+   ..src > elisp
 #      ;;; Interactive version.
+     ;;; Versión Interactiva.
 #      (defun count-words-defun ()
+     (defun contar-palabras-en-defun ()
 #        "Number of words and symbols in a function definition."
+       "Número de palabras y símbolos en una definición de función."
 #        (interactive)
+       (interactive)
 #        (message
 #         "Counting words and symbols in function definition ... ")
-#        (let ((count (count-words-in-defun)))
-#          (cond
-#           ((zerop count)
-#            (message
-#             "The definition does NOT have any words or symbols."))
-#           ((= 1 count)
-#            (message
-#             "The definition has 1 word or symbol."))
-#           (t
-#            (message
-#             "The definition has %d words or symbols." count)))))
-#    < src..
-   ..src > elisp
-     ;;; Versión Interactiva.
-     (defun count-words-defun ()
-       "Número de palabras y símbolos en una definición
-       de función."
-       (interactive)
        (message
         "Contando palabras y símbolos en la definición de función ... ")
-       (let ((count (count-words-in-defun)))
+#        (let ((count (count-words-in-defun)))
+       (let ((cuenta (contar-palabras-en-definicion)))
+#          (cond
          (cond
-          ((zerop count)
+#           ((zerop count)
+          ((zerop cuenta)
+#            (message
+#             "The definition does NOT have any words or symbols."))
            (message
             "La definición NO tiene palabras o símbolos."))
-          ((= 1 count)
+#           ((= 1 count)
+          ((= 1 cuenta)
+#            (message
+#             "The definition has 1 word or symbol."))
            (message
             "La definición tiene 1 palabra o símbolo."))
+#           (t
           (t
+#            (message
+#             "The definition has %d words or symbols." count)))))
            (message
-            "La definición tiene %d palabras o símbolos." count)))))
+            "La definición tiene %d palabras o símbolos." cuenta)))))
+#    < src..
    < src..
 
 #    Let's re-use @k{C-c =} as a convenient keybinding:
-   Permite reutilizar @k{C-c =} como un atajo conveniente:
+   Reutilicemos @k{C-c =} como un conveniente atajo:
 
 #    ..src > elisp
 #      (global-set-key "\C-c=" 'count-words-defun)
 #    < src..
    ..src > elisp
-     (global-set-key "\C-c=" 'count-words-defun)
+     (global-set-key "\C-c=" 'contar-palabras-en-defun)
    < src..
 
 #    Now we can try out @c{count-words-defun}: install both
 #    @c{count-words-in-defun} and @c{count-words-defun}, and set the
 #    keybinding, and then place the cursor within the following definition:
-   Ahora se puede intentar @c{count-words-defun}: instala ambas funciones
-   @c{count-words-in-defun} y @c{count-words-defun}, y asigna el atajo, y
-   entonces emplaza el cursor con la siguiente definición:
+   Ahora podemos probar @c{contar-palabras-en-defun}: instala ambas funciones
+   @c{contar-palabras-en-definicion} y @c{contar-palabras-en-defun}, y asigna el atajo,
+   luego coloca el cursor con la siguiente definición:
 
 #    ..src > elisp
 #      (defun multiply-by-seven (number)
 #        "Multiply NUMBER by seven."
 #        (* 7 number))
-#           ⇒ 10
 #    < src..
    ..src > elisp
-     (defun multiply-by-seven (number)
-       "Multiplicar NUMBER por siete."
-       (* 7 number))
-          ⇒ 10
+     (defun multiplicar-por-siete (numero)
+       "Multiplicar NUMERO por siete."
+       (* 7 numero))
    < src..
 
 #    Success!  The definition has 10 words and symbols.
@@ -18431,46 +18421,45 @@ and promoting software freedom.”
 
 #    The next problem is to count the numbers of words and symbols in several
 #    definitions within a single file.
-   El siguiente problema es contar los números de palabras y símbolos en
-   varias definiciones con un fichero simple.
+   El siguiente problema es contar el numero de palabras y símbolos en
+   varias definiciones con un mismo fichero.
 
 # ** Count Several @c{defuns} Within a File
-** Contar varias @c{defuns} en un fichero
+** Contar varias @c{defuns} dentro de un fichero
 
 #    A file such as @f{simple.el} may have a hundred or more function
 #    definitions within it. Our long term goal is to collect statistics on
 #    many files, but as a first step, our immediate goal is to collect
 #    statistics on one file.
-   Un fichero tal como @f{simple.el} puede tener un centenar o más
-   definiciones de función dentro. Nuestro objetivo es recoger estadísticas
-   en muchos ficheros, pero en un primer paso, nuestro objetivo inmediato es
-   recoger estadísticas en un fichero.
+   Un fichero como @f{simple.el} puede tener cientos o más definiciones dentro
+   de el. Nuestro objetivo a largo plazo es recopilar estadísticas sobre muchos ficheros,
+   pero como primer paso, nuestro objetivo inmediato es recoger estadísticas sobre
+   un fichero.
 
 #    The information will be a series of numbers, each number being the length
 #    of a function definition. We can store the numbers in a list.
-   La información será una serie de números, cada número siendo el tamaño de
-   una definición de función. Se pueden almacenar los números en una lista.
+   La información será una serie de números, siendo cada número la longitud de
+   una definición de función. Podemos almacenar los números en una lista.
 
 #    We know that we will want to incorporate the information regarding one
 #    file with information about many other files; this means that the function
 #    for counting definition lengths within one file need only return the list
 #    of lengths. It need not and should not display any messages.
-   Se sabe que se querrá incorporar la información considerando un fichero
-   con información acerca de muchos otros ficheros; esto significa que la
-   función para contar el tamaño de contaje con un fichero solo necesita
-   devolver la lista de tamaños. Eso no necesita y no mostraría mensajes.
+   Sabemos que querremos incorporar la información relativa a un fichero
+   con información sobre de muchos otros ficheros; esto significa que la
+   función para contar la longitudes de las definiciones solo necesita
+   devolver la lista de longitudes. No necesita ni debe mostrar ningun mensaje.
 
 #    The word count commands contain one expression to jump point forward word
 #    by word and another expression to count the jumps. The function to return
 #    the lengths of definitions can be designed to work the same way, with one
 #    expression to jump point forward definition by definition and another
 #    expression to construct the lengths' list.
-   Los comando de contar palabras contienen una expresión para saltar el
-   punto hacia adelante palabra por palabra y otra expresión para contar los
-   saltos. La función devuelve los tamaños de definiciones que pueden ser
-   diseñadas para trabajar del mismo modo, con una expresión para saltar el
-   punto hacia la definición por definición y otra expresión para construir
-   el tamaño de la lista.
+   Los comando de conteo de palabras contienen una expresión para mover el punto
+   palabra a palabra y otra expresión para contar los saltos. La función
+   para devolver la longitud de las definiciones puede ser diseñada para trabajar
+   del mismo modo, con una expresión para mover el punto hacia adelante definición
+   por definición y otra expresión para construir la lista de longitudes.
 
 #    This statement of the problem makes it elementary to write the function
 #    definition. Clearly, we will start the count at the beginning of the
@@ -18481,19 +18470,18 @@ and promoting software freedom.”
 #    evaluated. The body needs an expression that constructs the lengths'
 #    list.  @c{cons}, the list construction command, can be used to create the
 #    list. That is almost all there is to it.
-   Esta frase del problema hace elemental escribir la definición de
-   función. Claramente, empezaremos el conteo al principio del fichero, así
-   el primer comando será @c{(goto-char (point-min))}. Lo siguiente, es
-   empezar el bucle @c{while}; y este true-or-false del bucle puede ser una
-   búsqueda de expresión regular para la siguiente definición de función ---
-   así en el momento que la búsqueda tiene éxito, el punto se mueve hacia
-   adelante y entonces el cuerpo del bucle es evaluado. El cuerpo necesita
-   una expresión que construye la lista de tamaños. @c{cons}, la lista de
-   construcción del comando, puede ser usado para crear la lista. Esto es
-   casi todo lo que hay.
+   Esta afirmacion del problema hace que sea elemental escribir la definición de
+   función. Claramente, empezaremos el conteo al principio del fichero, por lo
+   que el primer comando será @c{(goto-char (point-min))}. Lo siguiente, es
+   iniciar el bucle @c{while}; y la puerba verdadero-o-falso del bucle puede ser
+   una regexp para la siguiente definición de función––siempre y cuando la
+   búsqueda tenga éxito, el punto se movera hacia adelante y entonces se evalua
+   el cuerpo del bucle. El cuerpo necesita una expresión que construya la lista
+   de longitudes. @c{cons}, el comando de construccion de listas, puede
+   utilizarce para crear la lista. Esto es casi todo lo que hay.
 
 #    Here is what this fragment of code looks like:
-   Aquí está este fragmento de código que se ve así:
+   Este fragmento de código tendria el siguiente aspecto:
 
 #    ..src > elisp
 #      (goto-char (point-min))
@@ -18504,8 +18492,8 @@ and promoting software freedom.”
    ..src > elisp
      (goto-char (point-min))
      (while (re-search-forward "^(defun" nil t)
-       (setq lengths-list
-             (cons (count-words-in-defun) lengths-list)))
+       (setq lista-de-longitudes
+             (cons (contar-palabras-en-definicion) lista-de-longitudes)))
    < src..
 
 #    What we have left out is the mechanism for finding the file that contains
@@ -18515,23 +18503,23 @@ and promoting software freedom.”
 
 #    In previous examples, we either used this, the Info file, or we switched
 #    back and forth to some other buffer, such as the @f{*scratch*} buffer.
-   En ejemplos previos, nosotros habíamos usado esto, el fichero Info, o
-   cambiamos atrás y adelante a algún otro búfer, tal como el búfer
-   @f{*scratch*}.
+   En ejemplos anteriores, usabamos est fichero, o el fichero Info, o cambiamos
+   de un búfer a otro, como el búfer @f{*scratch*}.
 
 #    Finding a file is a new process that we have not yet discussed.
-   Encontrar un fichero es un nuevo proceso que no tenemos todavía discutido.
+   Encontrar un fichero es un nuevo proceso que aun no hemos discutido.
 
 # ** Find a File
 ** Encontrar un fichero
 
 #    To find a file in Emacs, you use the @k{C-x C-f} @%c(find-file) command.
 #    This command is almost, but not quite right for the lengths problem.
-   Para encontrar un fichero en Emacs, se usa el comando @k{C-x C-f} @%c(find-file). Este comando es casi, pero no bastante correcto para el
-   problema de tamaños.
+   Para encontrar un fichero en Emacs, se usa el comando @k{C-x C-f}
+   @%c(find-file). Este comando es casi, pero no del todo adecuado para el
+   problema de las longitudes.
 
 #    Let's look at the source for @c{find-file}:
-   Permita mirar el fuente para @c{find-file}:
+   Veamos el codigo fuente de @c{find-file}:
 
 #    ..src > elisp
 #      (defun find-file (filename)
@@ -18555,17 +18543,17 @@ and promoting software freedom.”
 #    definition more complex and we will not discuss it here, since it is not
 #    relevant. You can see its source using either @k{M-.} @%c(find-tag) or
 #    @k{C-h f} @%c(describe-function).)
-   (La versión más reciente de la definición de función @c{find-file} permite
-   comodines especiales para visitar múltiples ficheros; que hacen la
-   definición más compleja y no se discutirá aquí, ya que no es relevante. Se
-   pueden ver sus fuentes usando @k{M-.} @%c(find-tag) o @k{C-h f} @%c(describe-function).)
+   (La definición de la versión más reciente de @c{find-file} permite
+   especificar comodines especiales para visitar múltiples ficheros; que hacen la
+   definición más compleja y no la discutiremos aquí, ya que no es relevante. Se
+   puede ver el codigo usando @k{M-.} @%c(find-tag) o @k{C-h f} @%c(describe-function).)
 
 #    The definition I am showing possesses short but complete documentation and
 #    an interactive specification that prompts you for a file name when you use
 #    the command interactively. The body of the definition contains two
 #    functions, @c{find-file-noselect} and @c{switch-to-buffer}.
-   La definición que se está mostrando posee una documentación corta, pero
-   completa y una especificación interactiva que muestra un nombre de fichero
+   La definición que estoy mostrando posee una documentación corta, pero
+   completa y una expresion interactiva que pide un nombre de fichero
    cuando se usa el comando interactivamente. El cuerpo de la definición
    contiene dos funciones, @c{find-file-noselect} y @c{switch-to-buffer}.
 
@@ -18575,11 +18563,11 @@ and promoting software freedom.”
 #    version includes an optional wildcards argument, too, as well as another
 #    to read a file literally and an other you suppress warning messages.
 #    These optional arguments are irrelevant.)
-   De acuerdo a su documentación como muestra por @k{C-h f} (el comando
+   De acuerdo con su documentación, tal y como se muestra con @k{C-h f} (el comando
    @c{describe-function}), la función @c{find-file-noselect} lee el fichero
-   nombrado dentro de un búfer y devuelve el búfer. (Su versión más
-   reciente incluye un argumento comodín, también, así como otro para leer un
-   fichero literalmente y otro que suprime mensajes de aviso. Estos
+   nombrado en un búfer y devuelve el búfer. (Su versión más
+   reciente incluye un argumento comodín opcional, así como otro para leer un
+   fichero literalmente y otro para suprimir mensajes de advertencia. Estos
    argumentos opcionales son irrelevantes.)
 
 #    However, the @c{find-file-noselect} function does not select the buffer in
@@ -18588,14 +18576,14 @@ and promoting software freedom.”
 #    what @c{switch-to-buffer} does: it switches the buffer to which Emacs
 #    attention is directed; and it switches the buffer displayed in the window
 #    to the new buffer. We have discussed buffer switching elsewhere.  (See
-#    Section @l{Switching Buffers}.)
+#    Section @l{#Switching Buffers}.)
    Sin embargo, la función @c{find-file-noselect} no selecciona el búfer en
    el que se pone el fichero. Emacs no cambia su atención (o la tuya si estás
-   usando @c{find-file-noselect}) al búfer seleccionado. Esto es lo que
-   @c{switch-to-buffer} hace: eso cambia el búfer al que se dirige la
-   atención de Emacs; y eso cambia el búfer mostrado en la ventana al nuevo
-   búfer. Se ha discutido el búfer cambiando a otro lugar. (Vea la Seccion
-   @l{Cambiando búfers}.)
+   usas @c{find-file-noselect}) al búfer seleccionado. Esto es lo que hace
+   @c{switch-to-buffer}: cambia el búfer al que se dirige la
+   atención de Emacs; y cambia el búfer mostrado en la ventana al nuevo
+   búfer. Hemos discutido el cambiando de búfer en otra parte. (Vea la Seccion
+   @l{#Cambiando búfers}.)
 
 #    In this histogram project, we do not need to display each file on the
 #    screen as the program determines the length of each definition within it.
@@ -18603,18 +18591,18 @@ and promoting software freedom.”
 #    @c{set-buffer}, which redirects the attention of the computer program to a
 #    different buffer but does not redisplay it on the screen. So instead of
 #    calling on @c{find-file} to do the job, we must write our own expression.
-   En este proyecto de histograma, no se necesita mostrar cada fichero en la
-   pantalla como el programa determina el tamaño de cada definición con
-   eso. En vez de emplear @c{switch-to-buffer}, se puede trabajar con
-   @c{set-buffer}, que redirige la atención del programa de ordenador para un
-   búfer diferente pero no lo muestra en pantalla. Así en vez llamar a
-   @c{find-file} para hacer el trabajo, debe escribir nuestra expresión.
+   En este proyecto de histograma, no necesitamos mostrar cada fichero en la
+   pantalla ya que el programa determina el tamaño de cada definición dentro de
+   el. En lugar de emplear @c{switch-to-buffer}, podemos trabajar con
+   @c{set-buffer}, que redirige la atención del programa a un búfer diferente,
+   pero no lo muestra en pantalla. Así en vez llamar a @c{find-file} para hacer
+   el trabajo, debemos escribir nuestra propia expresión.
 
 #    The task is easy: use @c{find-file-noselect} and @c{set-buffer}.
    La tarea es fácil: usar @c{find-file-noselect} y @c{set-buffer}.
 
 # ** @c{lengths-list-file} in Detail
-** @c{lengths-list-file} en detalle
+** @c{lista-de-longitudes-en-fichero} en detalle
 
 #    The core of the @c{lengths-list-file} function is a @c{while} loop
 #    containing a function to move point forward ‘defun by defun’ and a
@@ -18622,82 +18610,81 @@ and promoting software freedom.”
 #    core must be surrounded by functions that do various other tasks,
 #    including finding the file, and ensuring that point starts out at the
 #    beginning of the file. The function definition looks like this:
-   El núcleo de la función @c{lengths-list-file} es un bucle @c{while}
-   conteniendo una función para mover el punto hacia delante ‘función a
-   función’ y una función para contar el número de palabras y símbolos en
-   cada función. Este núcleo debe ser rodeado por funciones que hacen otras
+   El núcleo de la función @c{lista-de-longitudes-en-fichero} es un bucle @c{while}
+   que contiene una función para mover el punto hacia delante ‘defun a
+   defun’ y una función para contar el número de palabras y símbolos en
+   cada funcion. Este núcleo debe ser rodeado por funciones que realizan otras
    tareas varias, incluyendo encontrar el fichero, y asegurando que el punto
-   empieza al principio del fichero. La definición de la función se parece a:
+   empieza al principio del fichero. La definición de la función se ve asi:
 
 #    ..src > elisp
+   ..src > elisp
 #      (defun lengths-list-file (filename)
+     (defun lista-de-longitudes-en-fichero (nombre-de-fichero)
 #        "Return list of definitions' lengths within FILE.
 #      The returned list is a list of numbers.
 #      Each number is the number of words or
 #      symbols in one function definition."
-#        (message "Working on `%s' ... " filename)
-#        (save-excursion
-#          (let ((buffer (find-file-noselect filename))
-#                (lengths-list))
-#            (set-buffer buffer)
-#            (setq buffer-read-only t)
-#            (widen)
-#            (goto-char (point-min))
-#            (while (re-search-forward "^(defun" nil t)
-#              (setq lengths-list
-#                    (cons (count-words-in-defun) lengths-list)))
-#            (kill-buffer buffer)
-#            lengths-list)))
-#    < src..
-   ..src > elisp
-     (defun lengths-list-file (filename)
-       "Devuelve la lista de tamaños de definiciones con FILE.
+       "Devuelve la lista de longitudes de las definiciones dentro de NOMBRE-DE-FICHERO.
      La lista devuelta es una lista de números.
      Cada número es el número de palabras o
      símbolos en una definición."
-       (message "Trabajando en `%s' ... " filename)
+#        (message "Working on `%s' ... " filename)
+       (message "Trabajando en `%s' ... " nombre-de-fichero)
+#        (save-excursion
+#          (let ((buffer (find-file-noselect filename))
+#                (lengths-list))
        (save-excursion
-         (let ((buffer (find-file-noselect filename))
-               (lengths-list))
+         (let ((buffer (find-file-noselect nombre-de-fichero))
+               (lista-de-longitudes))
+#            (set-buffer buffer)
+#            (setq buffer-read-only t)
+#            (widen)
            (set-buffer buffer)
            (setq buffer-read-only t)
            (widen)
+#            (goto-char (point-min))
            (goto-char (point-min))
+#            (while (re-search-forward "^(defun" nil t)
            (while (re-search-forward "^(defun" nil t)
-             (setq lengths-list
-                   (cons (count-words-in-defun) lengths-list)))
+#              (setq lengths-list
+#                    (cons (count-words-in-defun) lengths-list)))
+#            (kill-buffer buffer)
+             (setq lista-de-longitudes
+                   (cons (contar-palabras-en-definicion) lista-de-longitudes)))
+#            lengths-list)))
            (kill-buffer buffer)
-           lengths-list)))
+           lista-de-longitudes)))
+#    < src..
    < src..
 
 #    The function is passed one argument, the name of the file on which it will
 #    work. It has four lines of documentation, but no interactive
 #    specification. Since people worry that a computer is broken if they don't
 #    see anything going on, the first line of the body is a message.
-   La función pasa un argumento, el nombre del fichero en el que se
-   trabajará. Eso tiene cuatro líneas de documentación, pero sin
-   especificación interactiva. Para evitar la preocupación de si se ha
-   estropeado el programa o no, la primera línea del cuerpo es un mensaje de
-   aviso.
+   Se pasa un argumento a la función, el nombre del fichero en el que se
+   trabajará. Tiene cuatro líneas de documentación, pero sin especificaciónes
+   interactivas. Ya que a la gente le preocupa que un ordenador se estropeado si
+   no ven nada, la primera línea del cuerpo es un mensaje de aviso.
 
 #    The next line contains a @c{save-excursion} that returns Emacs's attention
 #    to the current buffer when the function completes. This is useful in case
 #    you embed this function in another function that presumes point is
 #    restored to the original buffer.
-   La siguiente línea contiene un @c{save-excursion} que devuelve a Emacs la
-   atención al actual búfer cuando la función se completa. Esto es útil en
-   caso de embeber esta función en otra función que presume que el punto
-   restaura el búfer original.
+   La siguiente línea contiene un @c{save-excursion} que devuelve la atencion de
+   Emacs al búfer actual cuando la función se completa. Esto es útil
+   en caso de incorporar esta función dentro de otra función que suponga que el punto
+   se restaura el búfer original.
 
 #    In the varlist of the @c{let} expression, Emacs finds the file and binds
 #    the local variable @c{buffer} to the buffer containing the file. At the
 #    same time, Emacs creates @c{lengths-list} as a local variable.
-   En la varlist de la expresión @c{let}, Emacs encuentra el fichero y ajusta
-   la variable local @c{buffer} al búfer conteniendo el fichero. Al mismo
-   tiempo, Emacs crea @c{lengths-list} como una variable local.
+   En la varlist de la expresión @c{let}, Emacs busca el fichero y enlaza
+   la variable local @c{buffer} al búfer que contiene el fichero. Al mismo
+   tiempo, Emacs crea @c{lista-de-longitudes} como una variable local.
 
 #    Next, Emacs switches its attention to the buffer.
-   Lo siguiente, Emacs cambia su atención al búfer.
+   A continuacion, Emacs cambia su atención al búfer.
 
 #    In the following line, Emacs makes the buffer read-only. Ideally, this
 #    line is not necessary. None of the functions for counting words and
@@ -18708,17 +18695,17 @@ and promoting software freedom.”
 #    sources for Emacs and it is inconvenient if they are inadvertently
 #    modified. It goes without saying that I did not realize a need for this
 #    line until an experiment went awry and started to modify my Emacs source
-#    files …
-   En la siguiente línea, Emacs crea el búfer de solo lectura. Idealmente,
-   esta línea no es necesaria. Ninguna de las funciones para contar palabras
-   y símbolos en una definición de función cambiaría el búfer. Debajo, el
-   búfer no está yendo para ser guardado, incluso si eso fuese
-   cambiado. Esta línea es enteramente la consecuencia grata, quizás excesiva
-   precaución. La razón para la precaución es que esta función y esta se
-   llama a trabajar en las fuentes para Emacs y eso es un inconveniente si
-   están inadvertidamente modificadas. Eso va sin decir que no se realizó una
-   necesidad para esta línea hasta que un experimento fué cambiado hacia un
-   lado y empezó a modificar mis ficheros de fuentes Emacs …
+#    files…
+   En la siguiente línea, Emacs hace que el búfer sea de solo lectura.
+   Idealmente, esta línea no es necesaria. Ninguna de las funciones para contar
+   palabras y símbolos en una definición de función debe cambiar el búfer.
+   Ademas, el búfer no va a guardarse, incluso si se ha modificado. Esta línea
+   es enteramente la consecuencia de una gran cautela, quizás excesiva. La razón
+   de la precaución es que esta función y aquellas a las que llama trabajaran en
+   el codigo fuente de Emacs y eso es un inconveniente si son modificadas de
+   forma inadvertida. No hace falta decir que no me di cuenta de la necesidad de
+   esta línea hasta que un experimento salio mal y empezó a modificar mis
+   ficheros…
 
 #    Next comes a call to widen the buffer if it is narrowed. This function is
 #    usually not needed––Emacs creates a fresh buffer if none already exists;
@@ -18726,12 +18713,12 @@ and promoting software freedom.”
 #    In this case, the buffer may be narrowed and must be widened. If we
 #    wanted to be fully ‘user-friendly’, we would arrange to save the
 #    restriction and the location of point, but we won't.
-   Lo siguiente llama a alargar el búfer si eso está encogido. Esta función
-   es normalmente innecesaria––Emacs crea un búfer fresco si ninguno ya
-   existe; pero si un búfer está visitando el fichero que ya existe que
-   Emacs devuelve uno. En este caso, el búfer puede ser encogido y debe ser
-   amplio. Si se quiere ser completamente ‘amigo del usuario’, se pondría en
-   orden para guardar la restricción y la localización del punto, pero no.
+   Luego viene una llamada para extender el búfer si esta reducido. Esta función
+   normalmente es innecesaria––Emacs crea un búfer nuevo si no existe ninguno;
+   pero si hay un búfer visitando el fichero, Emacs devuelve ese búfer. En este
+   caso, el búfer puede estar reducido y debe extenderse. Si quisieramos ser
+   completamente ‘amigables con el usuario’, nos encargariamos de guardar la
+   restricción y la ubicacion del punto, pero no lo haremos.
 
 #    The @c{(goto-char (point-min))} expression moves point to the beginning of
 #    the buffer.
@@ -18741,53 +18728,53 @@ and promoting software freedom.”
 #    Then comes a @c{while} loop in which the ‘work’ of the function is carried
 #    out. In the loop, Emacs determines the length of each definition and
 #    constructs a lengths' list containing the information.
-   Entonces llega un bucle @c{while} en el que se devuelve el ‘trabajo’ de la
-   función. En el bucle, Emacs determina el tamaño de cada definición y
-   construye una lista de tamaños conteniendo la información.
+   Luego viene un bucle @c{while} en el que se realiza el ‘trabajo’ de la
+   función. En el bucle, Emacs determina la longitud de cada definición y
+   construye una lista de longitudes que contiene la información.
 
 #    Emacs kills the buffer after working through it. This is to save space
 #    inside of Emacs. My version of GNU Emacs 19 contained over 300 source
 #    files of interest; GNU Emacs 22 contains over a thousand source files.
 #    Another function will apply @c{lengths-list-file} to each of the files.
-   Emacs corta el búfer después de trabajar a través de eso. Esto es guardar
+   Emacs mata el búfer después de trabajar a través de el. Esto es para ahorrar
    espacio dentro de Emacs. Mi versión de GNU Emacs 19 contenía 300 ficheros
-   fuente de interés; GNU Emacs 22 contiene a través de un millar de ficheros
-   fuente. Otra función aplicará @c{lengths-list-file} a cada uno de los
+   de codigo fuente de interés; GNU Emacs 22 contiene mas de mil ficheros de codigo
+   fuente. Otra función aplicará @c{lista-de-longitudes-en-fichero} a cada uno de los
    ficheros.
 
 #    Finally, the last expression within the @c{let} expression is the
 #    @c{lengths-list} variable; its value is returned as the value of the whole
 #    function.
-   Finalmente, la última expresión con la expresión @c{let} es la variable
-   @c{lengths-list}; su valor es devuelto como el valor de la función
-   completa.
+   Finalmente, la última expresión dentro de la expresión @c{let} es la variable
+   @c{lista-de-longitudes}; su valor se devuelve como el valor de toda la función.
 
 #    You can try this function by installing it in the usual fashion. Then
 #    place your cursor after the following expression and type @k{C-x C-e}
 #    @%c(eval-last-sexp).
-   Se puede probar esta función instalándolo en el modo usual. Entonces
-   posiciona tu cursor después de la siguiente expresión y escribe @k{C-x C-e} @%c(eval-last-sexp).
+   Se puede probar esta función instalándolo de la forma habitual. A
+   continuacion coloca tu cursor después de la siguiente expresión y presiona
+   @k{C-x C-e} @%c(eval-last-sexp).
 
 #    ..src > elisp
 #      (lengths-list-file
 #       "/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/debug.el")
 #    < src..
    ..src > elisp
-     (lengths-list-file
+     (lista-de-longitudes-en-fichero
       "/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/debug.el")
    < src..
 
-#    (You may need to change the pathname of the file; the one here is for GNU
+#    You may need to change the pathname of the file; the one here is for GNU
 #    Emacs version 22.1.1. To change the expression, copy it to the
 #    @f{*scratch*} buffer and edit it.
-   (Se puede necesitar cambiar la ruta del fichero; el único aquí es para GNU
-   Emacs versión 22.1.1. Para cambiar la expresión, cópialo al búfer
-   @f{*scratch*} y edítalo.
+   Puene que necesites cambiar la ruta del fichero; la de aqui es para GNU
+   Emacs versión 22.1.1. Para cambiar la expresión, cópiala al búfer
+   @f{*scratch*} y edítala.
 
-#    (Also, to see the full length of the list, rather than a truncated
+#    Also, to see the full length of the list, rather than a truncated
 #    version, you may have to evaluate the following:
-   (También, para ver el tamaño completo de la lista, en vez de una versión
-   truncada se puede tener que evaluar lo siguiente:
+   Ademas, para ver el la longitud completa de la lista, en lugar de una versión
+   truncada es posible tener que evaluar lo siguiente:
 
 #    ..src > elisp
 #      (custom-set-variables '(eval-expression-print-length nil))
@@ -18796,27 +18783,27 @@ and promoting software freedom.”
      (custom-set-variables '(eval-expression-print-length nil))
    < src..
 
-#    (See Section @l{Specifying Variables using @c{defcustom}}. Then evaluate
+#    (See Section @l{#Specifying Variables using @c{defcustom}}. Then evaluate
 #    the @c{lengths-list-file} expression.)
-   (Vea la Seccion @l{Especificar Variables usando @c{defcustom}}. Entonces
-   evalúa la expresión @c{lengths-list-file}.)
+   (Vea la Seccion @l{#Especificar variables usando @c{defcustom}}. A contituacion
+   evalúa la expresión @c{lista-de-longitudes-en-fichero}.)
 
 #    The lengths' list for @f{debug.el} takes less than a second to produce and
 #    looks like this in GNU Emacs 22:
-   La lista de tamaños para @f{debug.el} toma menos de un segundo para
-   producirse esto en GNU Emacs 22:
+   La lista de longitudes para @f{debug.el} tarda menos de un segundo en
+   producirse y se ve asi en GNU Emacs 22:
 
-#    ..src > elisp
+#    ..srci > elisp
 #      (83 113 105 144 289 22 30 97 48 89 25 52 52 88 28 29 77 49 43 290 232 587)
-#    < src..
-   ..src > elisp
+#    < srci..
+   ..srci > elisp
      (83 113 105 144 289 22 30 97 48 89 25 52 52 88 28 29 77 49 43 290 232 587)
-   < src..
+   < srci..
 
-#    (Using my old machine, the version 19 lengths' list for @f{debug.el} took
+#    Using my old machine, the version 19 lengths' list for @f{debug.el} took
 #    seven seconds to produce and looked like this:
-   (Usando mi vieja máquina, la versión 19 lista tamaños para @f{debug.el}
-   que en siete segundos para producen esto:
+   Usando mi vieja máquina, con la versión 19 tambien con @f{debug.el}
+   demora siete segundos en producir esto:
 
 #    ..src > elisp
 #      (75 41 80 62 20 45 44 68 45 12 34 235)
@@ -18825,15 +18812,15 @@ and promoting software freedom.”
      (75 41 80 62 20 45 44 68 45 12 34 235)
    < src..
 
-#    (The newer version of @f{debug.el} contains more defuns than the earlier
-#    one; and my new machine is much faster than the old one.)
-   (La versión nueva de @f{debug.el} contiene más defuns que la temprana; y
-   mi nueva máquina es más rápida que la vieja.
+#    The newer version of @f{debug.el} contains more defuns than the earlier
+#    one; and my new machine is much faster than the old one.
+   La versión nueva de @f{debug.el} contiene más defuns que la anterior; y
+   mi nueva máquina es mucho más rápida que la vieja.
 
 #    Note that the length of the last definition in the file is first in the
 #    list.
-   Nótese que el tamaño de la última definición en el fichero es el primero
-   en la lista.
+   Tenga en cuenta que el tamaño de la última definición en el fichero es la primera
+   de la lista.
 
 # ** Count Words in @c{defuns} in Different Files
 ** Contar palabras en @c{defuns} en diferentes ficheros
@@ -18842,18 +18829,18 @@ and promoting software freedom.”
 #    lengths of each definition in a file. Now, we want to define a function
 #    to return a master list of the lengths of the definitions in a list of
 #    files.
-   En la sección previa, se creaba una función que devuelve una lista de los
-   tamaños de cada definición en un fichero. Ahora, se quiere definir una
-   función para devolver una lista maestra de los tamaños de las definiciones
+   En la sección anterior, creamos una función que devuelve una lista de las
+   longitudes de cada definición en un fichero. Ahora, queremos definir una
+   función para devolver una lista maestra de las longitudes de las definiciones
    en una lista de ficheros.
 
 #    Working on each of a list of files is a repetitious act, so we can use
 #    either a @c{while} loop or recursion.
-   Trabajar en cada elemento de una lista de ficheros es un acto repetitivo,
-   así se puede usar un bucle @c{while} o recursión.
+   Trabajar en cada una de las listas de ficheros es es un acto repetitivo,
+   por lo que podemos usar un bucle @c{while} o recursión.
 
 #    The design using a @c{while} loop is routine. The argument passed the
-#    function is a list of files. As we saw earlier (see Section @l{A
+#    function is a list of files. As we saw earlier (see Section @l{#A
 #    @c{while} Loop and a List}), you can write a @c{while} loop so that the
 #    body of the loop is evaluated if such a list contains elements, but to
 #    exit the loop if the list is empty. For this design to work, the body of
@@ -18861,15 +18848,15 @@ and promoting software freedom.”
 #    body is evaluated, so that eventually the list is empty. The usual
 #    technique is to set the value of the list to the value of the @c{cdr} of
 #    the list each time the body is evaluated.
-   El diseño usando un bucle @c{while} es rutina. El argumento que se pasaba
-   a la función es una lista de ficheros. Como se vió pronto (Vease Sección
-   @l{Ejemplo de bucle}), se puede escribir un bucle @c{while} de un modo que
-   el cuerpo del bucle es evaluado si tal lista contiene elementos, pero sale
-   del bucle si la lista está vacía. Para que este diseño funcione, el cuerpo
-   del bucle debe contener una expresión que ordene la lista cada vez que el
-   cuerpo es evaluado, de modo que finalmente la lista esté vacía. La técnica
-   normal es asignar el valor de la lista para el valor del @c{cdr} de la
-   lista cada vez que el cuerpo es evaluado.
+   El diseño utilizando un bucle @c{while} es rutinario. El argumento que se
+   pasaba a la función es una lista de ficheros. Como vimos anteriormente (Ver
+   Sección @l{#Un bucle @c{while} y una lista}), se puede escribir un bucle
+   @c{while} de un modo que el cuerpo del bucle sea evaluado si tal lista
+   contiene elementos, pero que deba salir del sale del bucle si la lista está
+   vacía. Para que este diseño funcione, el cuerpo del bucle debe contener una
+   expresión que acorte la lista con cada evaluacion del cuerpo, de modo que
+   finalmente la lista esté vacía. La técnica usual es asignar el valor de la
+   lista al valor del @c{cdr} de la lista cada vez que se evalua el cuerpo.
 
 #    The template looks like this:
    La plantilla se ve así:
@@ -18880,9 +18867,9 @@ and promoting software freedom.”
 #        set-list-to-cdr-of-list)
 #    < src..
    ..src > elisp
-     (while test-whether-list-is-empty
-       body…
-       set-list-to-cdr-of-list)
+     (while comprobar-si-la-lista-esta-vacia
+       cuerpo…
+       asignar-lista-al-cdr-de-la-lista)
    < src..
 
 #    Also, we remember that a @c{while} loop returns @c{nil} (the result of
@@ -18893,78 +18880,72 @@ and promoting software freedom.”
 #    the function as a whole. To do this, we enclose the @c{while} loop within
 #    a @c{let} expression, and arrange that the last element of the @c{let}
 #    expression contains the value of the lengths' list.  (See Section
-#    @l{Example with Incrementing Counter}.)
-   También, recuérdanos que un bucle @c{while} devuelve @c{nil} (el resultado
-   de evaluar el prueba-verdadero-o-falso), no el resultado de cualquier evaluación
-   con su cuerpo. (Las evaluaciones con el cuerpo del bucle son hechas para
-   sus efectos secundarios.) Sin embargo, la expresión que asigna la lista de
-   tamaños es parte del cuerpo––y que es el valor que queremos devuelto por
-   la función como un todo. Para hacer esto cerramos el bucle @c{while} con
-   una expresión @c{let}, y pone en orden que el último elemento de la
-   expresión @c{let} contiene el valor de lista de tamaños. (Vea la Seccion
-   @l{Ejemplo de Incremento, , El Ejemplo del Bucle con un Contador de
-   Incremento}.)
+#    @l{#Example with Incrementing Counter}.)
+   Ademas, recordamos que un bucle @c{while} devuelve @c{nil} (el resultado
+   de evaluar la prueba-verdadero-o-falso), no el resultado de ninguna evaluación
+   dentro de su cuerpo. (Las evaluaciones dentro del cuerpo del bucle se hacen por
+   sus efectos secundarios.) Sin embargo, la expresión que establece la lista de
+   longitudes es parte del cuerpo––y ese el valor que queremos que devuelva
+   la función como un todo. Para hacer esto, rodeamos el bucle @c{while} con
+   una expresión @c{let}, y arreglamos que el último elemento de la
+   expresión @c{let} contiene el valor de lista de longitudes. (Vea la Seccion
+   @l{#Ejemplo con contador incremental}.)
 
 #    These considerations lead us directly to the function itself:
-   Estas consideraciones lideran directamente a la función en sí:
+   Estas consideraciones nos llevan directamente a la función en sí:
 
 #    ..src > elisp
+   ..src > elisp
 #      ;;; Use while loop.
+     ;;; Usar bucle while.
 #      (defun lengths-list-many-files (list-of-files)
+     (defun lista-de-longitudes-de-muchos-ficheros (lista-de-ficheros)
 #        "Return list of lengths of defuns in LIST-OF-FILES."
+       "Devuelve la lista de longitudes de defuns en LISTA-DE-FICHEROS."
 #        (let (lengths-list)
-#
+       (let (lista-de-longitudes)
+
 #      ;;; true-or-false-test
+     ;;; prueba-verdadero-o-falso
 #          (while list-of-files
 #            (setq lengths-list
 #                  (append
 #                   lengths-list
-#
+         (while lista-de-ficheros
+           (setq lista-de-longitudes
+                 (append
+                  lista-de-longitudes
+
 #      ;;; Generate a lengths' list.
+     ;;; Genera una lista de longitudes.
 #                   (lengths-list-file
 #                    (expand-file-name (car list-of-files)))))
-#
+                  (lista-de-longitudes-en-fichero
+                   (expand-file-name (car lista-de-ficheros)))))
+
 #      ;;; Make files' list shorter.
+     ;;; Reducir la lista de ficheros.
 #            (setq list-of-files (cdr list-of-files)))
-#
+           (setq lista-de-ficheros (cdr lista-de-ficheros)))
+
 #      ;;; Return final value of lengths' list.
+     ;;; Devuelve el valor final de la lista de longitudes.
 #          lengths-list))
+         lista-de-longitudes))
 #    < src..
-   ..src > elisp
-     ;;; Usar bucle while.
-     (defun lengths-list-many-files (list-of-files)
-       "Devuelve la lista de tamaños de funciones en LIST-OF-FILES."
-       (let (lengths-list)
-
-     ;;; prueba-verdadero-o-falso
-         (while list-of-files
-           (setq lengths-list
-                 (append
-                  lengths-list
-
-     ;;; Genera una lista de tamaños.
-                  (lengths-list-file
-                   (expand-file-name (car list-of-files)))))
-
-     ;;; Crea una lista ordenada de ficheros.
-           (setq list-of-files (cdr list-of-files)))
-
-     ;;; Devuelve la lista final de valores de tamaños.
-         lengths-list))
    < src..
 
 #    @c{expand-file-name} is a built-in function that converts a file name to
 #    the absolute, long, path name form. The function employs the name of the
 #    directory in which the function is called.
-   @c{expand-file-name} es una función construida que convierte un nombre de
-   fichero al absoluto, forma de nombre de ruta. La función emplea el nombre
-   del directorio en el que la función se llama.
+   @c{expand-file-name} es una función nativa que convierte el nombre de
+   fichero a su nombre de ruta absoluto. La función emplea el nombre
+   del directorio en el que se llama la función.
 
 #    Thus, if @c{expand-file-name} is called on @c{debug.el} when Emacs is
 #    visiting the @f{/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/} directory,
-   De este modo, si @c{expand-file-name} es llamado en @c{debug.el} cuando
-   Emacs está visitando el directorio
-   @f{/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/}
+   De este modo, si se llama a @c{expand-file-name} dentro de @c{debug.el} cuando
+   Emacs está visitando el directorio @f{/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/}
 
 #    ..example >
 #      debug.el
@@ -18974,7 +18955,7 @@ and promoting software freedom.”
    < example..
 
 #    becomes
-   llega a ser
+   se convierte en
 
 #    ..example >
 #      /usr/local/share/emacs/22.1.1/lisp/emacs-lisp/debug.el
@@ -18985,14 +18966,14 @@ and promoting software freedom.”
 
 #    The only other new element of this function definition is the as yet
 #    unstudied function @c{append}, which merits a short section for itself.
-   El único nuevo elemento de esta definición de función es la todavía no
-   estudiada función @c{append}, que merece una corta sección en sí.
+   El único otro nuevo elemento de esta definición de función es la todavía no
+   estudiada función @c{append}, que merece una breve sección.
 
 # *** The @c{append} Function
 *** La función @c{append}
 
 #     The @c{append} function attaches one list to another. Thus,
-    La función @c{append} adjunta una lista a otra. De este modo,
+    La función @c{append} une una lista a otra. De este modo,
 
 #     ..src > elisp
 #       (append '(1 2 3 4) '(5 6 7 8))
@@ -19013,8 +18994,8 @@ and promoting software freedom.”
 
 #     This is exactly how we want to attach two lengths' lists produced by
 #     @c{lengths-list-file} to each other. The results contrast with @c{cons},
-    Esto es exactamente cómo queremos adjuntar dos listas de tamaños
-    producidas por @c{lengths-list-file} a cualquier otra. Los resultados
+    Asi es exactamente cómo queremos unir dos listas de longitudes
+    producidas por @c{lista-de-longitudes-en-fichero} entre si. Los resultados
     contrastan con @c{cons},
 
 #     ..src > elisp
@@ -19026,8 +19007,8 @@ and promoting software freedom.”
 
 #     which constructs a new list in which the first argument to @c{cons}
 #     becomes the first element of the new list:
-    que construye una nueva lista en el que el primer argumento para @c{cons}
-    llega a ser el primer elemento de la nueva lista:
+    que construye una nueva lista en la que el primer argumento de @c{cons}
+    se convierte en el primer elemento de la nueva lista:
 
 #     ..src > elisp
 #       ((1 2 3 4) 5 6 7 8)
@@ -19037,14 +19018,14 @@ and promoting software freedom.”
     < src..
 
 # ** Recursively Count Words in Different Files
-** Recursivamente cuenta palabras en diferentes ficheros
+** Contar palabras recursivamente en diferentes ficheros
 
 #    Besides a @c{while} loop, you can work on each of a list of files with
 #    recursion. A recursive version of @c{lengths-list-many-files} is short
 #    and simple.
-   Bajo un bucle @c{while}, se puede trabajar cada lista de ficheros con
-   recursión. Una versión recursiva de @c{lengths-list-many-files} es corta y
-   simple.
+   Ademas de un bucle @c{while}, podemos trabajar en cada lista de ficheros con
+   recursión. Una versión recursiva de @c{lista-de-longitudes-de-muchos-ficheros}
+   es corta y simple.
 
 #    The recursive function has the usual parts: the ‘do-again-test’, the
 #    ‘next-step-expression’, and the recursive call. The ‘do-again-test’
@@ -19054,13 +19035,14 @@ and promoting software freedom.”
 #    itself, so eventually the list will be empty; and the recursive call calls
 #    itself on the shorter list. The complete function is shorter than this
 #    description!
-   La función recursiva tiene las partes normales: el ‘prueba-hazlo-de-nuevo’, la
-   ‘expresion-del-siguiente-paso’, y la llamada recursiva. El ‘prueba-hazlo-de-nuevo’
-   determina si la función se llamaría, que hará si la @c{list-of-files}
-   contiene los elementos restantes; la ‘expresion-del-siguiente-paso’ resetea
-   el @c{list-of-files} al @c{cdr} en sí, así finalmente la lista será
-   vacía; y la llamada recursiva llama en sí a la lista ordenada. ¡La función
-   completa está ordenada por esta descripción!
+   La función recursiva tiene las partes usuales: la ‘prueba-hazlo-de-nuevo’, la
+   ‘expresion-del-siguiente-paso’, y la llamada recursiva. La
+   ‘prueba-hazlo-de-nuevo’ determina si la función debe volver a llamarse a si
+   misma, lo que hará si la @c{lista-de-ficheros} contiene cualquier elemento
+   restante; la ‘expresion-del-siguiente-paso’ reasigna la @c{lista-de-ficheros}
+   con su mismo @c{cdr}, por lo que eventualmente la lista estara vacía; y la
+   llamada recursiva se llamara a si misma en la lista mas corta. ¡La función
+   completa es mas corta que esta descripción!
 
 #    ..src > elisp
 #      (defun recursive-lengths-list-many-files (list-of-files)
@@ -19073,29 +19055,29 @@ and promoting software freedom.”
 #              (cdr list-of-files)))))
 #    < src..
    ..src > elisp
-     (defun recursive-lengths-list-many-files (list-of-files)
-       "Devuelve la lista de tamaños de cada defun en LIST-OF-FILES."
-       (if list-of-files                     ; prueba-hazlo-de-nuevo
+     (defun lista-de-longitudes-de-muchos-ficheros-recursiva (lista-de-ficheros)
+       "Devuelve la lista de longitudes de cada defun en LISTA-DE-FICHEROS."
+       (if lista-de-ficheros                      ; prueba-hazlo-de-nuevo
            (append
-            (lengths-list-file
-             (expand-file-name (car list-of-files)))
-            (recursive-lengths-list-many-files
-             (cdr list-of-files)))))
+            (lista-de-longitudes-en-fichero
+             (expand-file-name (car lista-de-ficheros)))
+            (lista-de-longitudes-de-muchos-ficheros-recursiva
+             (cdr lista-de-ficheros)))))
    < src..
 
 #    In a sentence, the function returns the lengths' list for the first of the
 #    @c{list-of-files} appended to the result of calling itself on the rest of
 #    the @c{list-of-files}.
-   En una frase, la función devuelve de tamaños de la lista para la el
-   primero de la @c{list-of-files} al resultado de llamarse así mismo al
-   resto de @c{list-of-files}.
+   En una frase, la función devuelve la lista de longitudes para la
+   primer @c{lista-de-ficheros} adjunta al resultado de llamarse así misma al
+   resto de la @c{lista-de-ficheros}.
 
 #    Here is a test of @c{recursive-lengths-list-many-files}, along with the
 #    results of running @c{lengths-list-file} on each of the files
 #    individually.
-   Aquí hay un test @c{recursive-lengths-list-many-files}, a lo largo de los
-   resultados de ejecutar @c{lengths-list-file} en cada uno de los ficheros
-   individualmente.
+   Aquí hay una prueba de @c{lista-de-longitudes-de-muchos-ficheros-recursiva},
+   junto con los resultados de ejecutar @c{lista-de-longitudes-en-fichero} en cada
+   uno de los ficheros individualmente.
 
 #    Install @c{recursive-lengths-list-many-files} and @c{lengths-list-file},
 #    if necessary, and then evaluate the following expressions. You may need
@@ -19103,68 +19085,58 @@ and promoting software freedom.”
 #    the Emacs sources are located in their customary places. To change the
 #    expressions, copy them to the @f{*scratch*} buffer, edit them, and then
 #    evaluate them.
-   Instala @c{recursive-lengths-list-many-files} y @c{lengths-list-file}, si
-   es necesario, y entonces evalúa las siguientes expresiones. Se puede
-   necesitar cambiar las rutas de ficheros; aquí se trabaja cuando este
-   fichero Info y las fuentes de Emacs están localizadas en sus lugares
-   personales. Para cambiar las expresiones, cópialas al búfer
-   @f{*scratch*}, edítalos y entonces evalúalos.
+   Instala @c{lista-de-longitudes-de-muchos-ficheros-recursiva} y
+   @c{lista-de-longitudes-en-fichero}, y luego evalúa las siguientes
+   expresiones. Es posible que necesites cambiar las rutas a los ficheros; las
+   que aquí se incluyen funcionan cuando las fuentes de Emacs se encuentran
+   en sus lugares habituales. Para cambiar las expresiones, cópialas al búfer
+   @f{*scratch*}, edítalas y evalualas.
 
-#    The results are shown after the @'{⇒}.  (These results are for files from
-#    Emacs version 22.1.1; files from other versions of Emacs may produce
-#    different results.)
-   Los resultados son mostrados después del @'{⇒}. (Estos resultados son para
-   ficheros de Emacs versión 22.1.1; ficheros desde otras versiones de Emacs
-   puede producir diferentes resultados.)
+#    (These results are for files from Emacs version 22.1.1; files from other
+#    versions of Emacs may produce different results.)
+   (Estos resultados son para ficheros de la versión 22.1.1; los ficheros
+   de otras versiones puede producir resultados diferentes.)
 
-#    ..src > elisp
-#      (cd "/usr/local/share/emacs/22.1.1/")
-#
-#      (lengths-list-file "./lisp/macros.el")
-#           ⇒ (283 263 480 90)
-#
-#      (lengths-list-file "./lisp/mail/mailalias.el")
-#           ⇒ (38 32 29 95 178 180 321 218 324)
-#
-#      (lengths-list-file "./lisp/makesum.el")
-#           ⇒ (85 181)
-#
-#        (recursive-lengths-list-many-files
-#         '("./lisp/macros.el"
-#           "./lisp/mail/mailalias.el"
-#           "./lisp/makesum.el"))
-#             ⇒ (283 263 480 90 38 32 29 95 178 180 321 218 324 85 181)
-#    < src..
-   ..src > elisp
-     (cd "/usr/local/share/emacs/22.1.1/")
-
-     (lengths-list-file "./lisp/macros.el")
-          ⇒ (283 263 480 90)
-
-     (lengths-list-file "./lisp/mail/mailalias.el")
-          ⇒ (38 32 29 95 178 180 321 218 324)
-
-     (lengths-list-file "./lisp/makesum.el")
-          ⇒ (85 181)
-
-       (recursive-lengths-list-many-files
-        '("./lisp/macros.el"
-          "./lisp/mail/mailalias.el"
-          "./lisp/makesum.el"))
-            ⇒ (283 263 480 90 38 32 29 95 178 180 321 218 324 85 181)
-   < src..
+#    ..srci > elisp
+#      > (cd "/usr/local/share/emacs/22.1.1/")
+#      > (lengths-list-file "./lisp/macros.el")
+#      (283 263 480 90)
+#      > (lengths-list-file "./lisp/mail/mailalias.el")
+#      (38 32 29 95 178 180 321 218 324)
+#      > (lengths-list-file "./lisp/makesum.el")
+#      (85 181)
+#      > (recursive-lengths-list-many-files
+#      ^  '("./lisp/macros.el"
+#      ^    "./lisp/mail/mailalias.el"
+#      ^    "./lisp/makesum.el"))
+#      (283 263 480 90 38 32 29 95 178 180 321 218 324 85 181)
+#    < srci..
+   ..srci > elisp
+     > (cd "/usr/local/share/emacs/22.1.1/")
+     > (lista-de-longitudes-en-fichero "./lisp/macros.el")
+     (283 263 480 90)
+     > (lista-de-longitudes-en-fichero "./lisp/mail/mailalias.el")
+     (38 32 29 95 178 180 321 218 324)
+     > (lista-de-longitudes-en-fichero "./lisp/makesum.el")
+     (85 181)
+     > (lista-de-longitudes-de-muchos-ficheros-recursiva
+     ^  '("./lisp/macros.el"
+     ^    "./lisp/mail/mailalias.el"
+     ^    "./lisp/makesum.el"))
+     (283 263 480 90 38 32 29 95 178 180 321 218 324 85 181)
+   < srci..
 
 #    The @c{recursive-lengths-list-many-files} function produces the output we
 #    want.
-   La función @c{recursive-lengths-list-many-files} produce la salida que
+   La función @c{lista-de-longitudes-de-muchos-ficheros-recursiva} produce la salida que
    queremos.
 
 #    The next step is to prepare the data in the list for display in a graph.
-   El siguiente paso es preparar el dato en la lista para mostrarlo en un
-   grafo.
+   El siguiente paso es preparar los datos de la lista para visualizarlos en un
+   grafico.
 
 # ** Prepare the Data for Display in a Graph
-** Preparar los datos para mostrarlos en un grafo
+** Preparar los datos para visualizarlos en un grafico
 
 #    The @c{recursive-lengths-list-many-files} function returns a list of
 #    numbers. Each number records the length of a function definition. What
@@ -19173,29 +19145,29 @@ and promoting software freedom.”
 #    definitions contain less than 10 words and symbols, how many contain
 #    between 10 and 19 words and symbols, how many contain between 20 and 29
 #    words and symbols, and so on.
-   La función @c{recursive-lengths-list-many-files} devuelve una lista de
-   números. Cada número graba el tamaño de una definición de función. Lo que
-   se necesita hacer ahora es transformar estos datos dentro de una lista de
-   números ajustado para generar un grafo. La nueva lista contará cuántas
-   definiciones de funciones contienen menos de 10 palabras y símbolos,
-   cuantas contienen entre 10 y 19 palabras y símbolos, cuántas contienen
-   entre 20 y 29 palabras y símbolos, y así sucesivamente.
+   La función @c{lista-de-longitudes-de-muchos-ficheros-recursiva} devuelve una
+   lista de números. Cada número registra la longitud de una definición de
+   función. Lo que que tenemos que hacer ahora es transformar estos datos en una
+   lista de números adecuados para generar un grafico. La nueva lista dira
+   cuántas definiciones de funcion contienen menos de 10 palabras y símbolos,
+   cuantas entre 10 y 19, cuántas entre 20 y 29, y así sucesivamente.
 
 #    In brief, we need to go through the lengths' list produced by the
 #    @c{recursive-lengths-list-many-files} function and count the number of
 #    defuns within each range of lengths, and produce a list of those numbers.
-   En breve, se necesita ir a través el tamaño de la lista producida por la
-   función @c{recursive-lengths-list-many-files} y contar el número de defuns
-   con cada rango de tamaños, y produce una lista de esto de números.
+   En resumen, necesitamos revisar la lista de longitudes producida por la
+   función @c{lista-de-longitudes-de-muchos-ficheros-recursiva} y contar el
+   número de definiciones dentro de cada rango, y producir una lista de esos
+   números.
 
 #    Based on what we have done before, we can readily foresee that it should
 #    not be too hard to write a function that ‘@c{cdr}s’ down the lengths'
 #    list, looks at each element, determines which length range it is in, and
 #    increments a counter for that range.
-   Basado en lo que hemos hecho antes, se prevee que no sería difícil
-   escribir una función que ‘@c{cdr}s’ bajo la lista de tamaños, parece que
-   cada elemento, determina que rango de tamaños está dentro, e incrementa un
-   contador para este rango.
+   Basado en lo que hemos hecho antes, podemos preveer que no sera demaciado difícil
+   escribir una función que redusca la lista de longitudes con ‘@c{cdr}s’, mire
+   cada elemento, determine en que rango de longitud esta, e incremente un
+   contador para ese rango.
 
 #    However, before beginning to write such a function, we should consider the
 #    advantages of sorting the lengths' list first, so the numbers are ordered
@@ -19204,14 +19176,14 @@ and promoting software freedom.”
 #    same length range or in adjacent ranges. Second, by inspecting a sorted
 #    list, we can discover the highest and lowest number, and thereby determine
 #    the largest and smallest length range that we will need.
-   Sin embargo, antes de empezar a escribir tal función, nosotros
-   consideraríamos las ventajas de ordenar los tamaños de la lista primero,
-   así los números son ordenados desde el más pequeño al más largo. Primero,
-   ordenando se hará fácil contar los números en cada rango, desde dos
-   números adyacentes será el mismo rango del tamaño en rangos
-   adyacentes. Segundo, inspeccionando una lista ordenada, se puede descubrir
-   el número mayor y menor, y esto significa determinar el rango de tamaño
-   mayor y menor que necesitará.
+   Sin embargo, antes de empezar a escribir tal función, debemos
+   considerar las ventajas de primero ordenar la lista de longitudes,
+   de modo que los números se ordenen del más pequeño al más grande. En primer lugar,
+   la ordenacion facilitara el conteo de los números en el mismo rango, ya que dos
+   números adyacentes estaran en el mismo rango de longitud o en rangos
+   adyacentes. Segundo, inspeccionando una lista ordenada, podemos descubrir
+   el número mas alto y el mas bajo, y asi determinar el rango de longitud mas
+   grande y mas pequeño que necesitaremos.
 
 # **** Sorting Lists
 *** Ordenando listas
@@ -19220,26 +19192,26 @@ and promoting software freedom.”
 #      @c{sort}. The @c{sort} function takes two arguments, the list to be
 #      sorted, and a predicate that determines whether the first of two list
 #      elements is “less” than the second.
-    Emacs contiene una función para listas ordenadas, llamadas (como se
+    Emacs contiene una función para ordenar listas, llamada (como se
     podría adivinar) @c{sort}. La función @c{sort} toma dos argumentos, la
-    lista es ordenada, y un predicado que determina si la primera de dos
-    elementos de lista es “menor” que la segunda.
+    lista a ordenar, y un predicado que determina si el primero de dos
+    elementos de lista es “menor” que el segundo.
 
-#      As we saw earlier (see Section @l{Using the Wrong Type Object as an
+#      As we saw earlier (see Section @l{#Using the Wrong Type Object as an
 #      Argument}), a predicate is a function that determines whether some
 #      property is true or false. The @c{sort} function will reorder a list
 #      according to whatever property the predicate uses; this means that
 #      @c{sort} can be used to sort non-numeric lists by non-numeric
 #      criteria––it can, for example, alphabetize a list.
-    Como se vió antes (Vease Sección @"{Usando el Tipo Incorrecto de Objeto
-    como un Argumento}), un predicado es una función que determina si alguna
-    propiedad es verdadera o falsa. La función @c{sort} reordenará una lista
-    de acuerdo a lo que la propiedad del predicado usa; esto significa que
-    @c{sort} puede ser usado para ordenar listas no numéricas por un criterio
-    no numérico --- eso puede, por ejemplo, alfabetizar una lista.
+    Como vimos anteriormente (Ver Sección @l{Usando el tipo incorrecto de objeto
+    como un argumento}), un predicado es una función que determina si alguna
+    propiedad es verdadera o falsa. La función @c{sort} reordenará una lista de
+    acuerdo a cualquier propiedad que use el predicado; esto significa que
+    @c{sort} puede usarse para ordenar listas no numéricas por un criterio no
+    numérico––puede, por ejemplo, ordenar la lista alfabeticamente.
 
 #      The @c{<} function is used when sorting a numeric list. For example,
-    La función @c{<} se usa cuando se ordena una lista numérica. Por ejemplo,
+    La función @c{<} se utiliza para ordena una lista numérica. Por ejemplo,
 
 #      ..src > elisp
 #        (sort '(4 8 21 17 33 7 21 7) '<)
@@ -19260,14 +19232,14 @@ and promoting software freedom.”
 
 #      (Note that in this example, both the arguments are quoted so that the
 #      symbols are not evaluated before being passed to @c{sort} as arguments.)
-    (Note que en este ejemplo, ambos argumentos se citan así que los símbolos
-    no se evalúan antes de ser pasados por @c{sort} como argumentos.)
+    (Ten en cuenta que en este ejemplo, ambos argumentos se citan para que no
+    se evaluen los símbolos antes de pasarlos a @c{sort} como argumentos.)
 
 #      Sorting the list returned by the @c{recursive-lengths-list-many-files}
 #      function is straightforward; it uses the @c{<} function:
-    Ordenando la lista devuelta por la función
-    @c{recursive-lengths-list-many-files} es honesta; eso usa la función
-    @c{<}:
+    Ordenar la lista devuelta por la función
+    @c{lista-de-longitudes-de-muchos-ficheros-recursiva} es sencillo; utilizando
+    la función @c{<}:
 
 #      ..src > elisp
 #        (sort
@@ -19279,7 +19251,7 @@ and promoting software freedom.”
 #      < src..
     ..src > elisp
       (sort
-       (recursive-lengths-list-many-files
+       (lista-de-longitudes-de-muchos-ficheros-recursiva
         '("./lisp/macros.el"
           "./lisp/mailalias.el"
           "./lisp/makesum.el"))
@@ -19299,9 +19271,9 @@ and promoting software freedom.”
 #      (Note that in this example, the first argument to @c{sort} is not
 #      quoted, since the expression must be evaluated so as to produce the list
 #      that is passed to @c{sort}.)
-    (Note que en este ejemplo, el primer argumento para @c{sort} no está
-    citado, desde que la expresión debe ser evaluado así como producir la
-    lista que es pasada para @c{sort}.)
+    (Nota que en este ejemplo, el primer argumento para @c{sort} no se cita,
+    ya que la expresión debe ser evaluada para producir la lista que se
+    pasada para @c{sort}.)
 
 # **** Making a List of Files
 *** Creando una lista de ficheros
@@ -19312,22 +19284,23 @@ and promoting software freedom.”
 #      do for that. Instead, we will write a function to do the job for us.
 #      In this function, we will use both a @c{while} loop and a recursive
 #      call.
-    La función @c{recursive-lengths-list-many-files} requiere una lista de
-    fichero como argumento. Para nuestros ejemplos de test, se construyeron
-    tal como una lista a mano; pero el directorio fuente de Emacs Lisp es
-    demasiado grande para hacer esto. Así, se escribirá una función para
-    hacer el trabajo. En esta función, se usa tanto un bucle @c{while} como
-    una llamada recursiva.
+    La función @c{lista-de-longitudes-de-muchos-ficheros-recursiva} requiere una
+    lista de ficheros como argumento. Para nuestros ejemplos de prueba, hemos
+    construido una lista de este tipo a mano; pero el directorio fuente de Emacs
+    Lisp es demasiado grande para que podamos hacerlo. En su lugar, escribiremos
+    una función para hacer el trabajo por nosotros. En esta función, usaremos
+    tanto un bucle @c{while} como una llamada recursiva.
 
 #      We did not have to write a function like this for older versions of GNU
 #      Emacs, since they placed all the @'{.el} files in one directory.
 #      Instead, we were able to use the @c{directory-files} function, which
 #      lists the names of files that match a specified pattern within a single
 #      directory.
-    En viejas versiones de GNU Emacs no hizo falta tener que escribir esta
-    función, puesto que todos los ficheros @'{.el} en un directorio. En vez
-    de eso, se puede ser capaz de usar la función @c{directory-files}, que
-    lista los nombres de fichero que hay en un directorio simple.
+    En las viejas versiones de GNU Emacs no hacia falta escribir esta función,
+    ya que todos los ficheros @'{.el} estaban colocados en un directorio. En su
+    lugar, pudimos usar la función @c{directory-files}, que lista los nombres de
+    los ficheros que coinciden con un patron especifico dentro de un solo
+    directorio.
 
 #      However, recent versions of Emacs place Emacs Lisp files in
 #      sub-directories of the top level @f{lisp} directory. This
@@ -19335,12 +19308,12 @@ and promoting software freedom.”
 #      files are in a @f{lisp} sub-directory called @f{mail}. But at the same
 #      time, this arrangement forces us to create a file listing function that
 #      descends into the sub-directories.
-    Sin embargo, las versiones reciente Emacs emplazan ficheros de Emacs Lisp
-    en subdirectorios del directorio de alto nivel @f{lisp}. Esto facilita la
-    navegación. Por ejemplo, todos los ficheros de correo relacionados que
-    están en el subdirectorio llamado @f{mail}. Pero al mismo tiempo, esta
-    facilidad fuerza a crear un fichero listando la función que desciende
-    dentro de los subdirectorios.
+    Sin embargo, las versiones reciente de Emacs colocan los ficheros de Emacs
+    Lisp en subdirectorios del directorio @f{lisp} de nivel superior. Esta
+    reorganizacion facilita la navegación. Por ejemplo, todos los ficheros
+    relacionados con el correo están en el subdirectorio @f{mail}. Pero al mismo
+    tiempo, esta estructura nos obliga a crear una funcion de listado de
+    ficheros que desciende dentro de los subdirectorios.
 
 #      We can create this function, called @c{files-in-below-directory}, using
 #      familiar functions such as @c{car}, @c{nthcdr}, and @c{substring} in
@@ -19348,19 +19321,18 @@ and promoting software freedom.”
 #      @c{directory-files-and-attributes}. This latter function not only lists
 #      all the filenames in a directory, including the names of
 #      sub-directories, but also their attributes.
-    Se puede crear esta función, llamada @c{files-en-below-directory}, usando
-    funciones familiares tales como @c{car}, @c{nthcdr}, y @c{substring} en
-    conjunción con una función existente llamada
-    @c{directory-files-and-attributes}. Esta última función no solo listas de
-    ficheros en un directorio, incluyendo los nombres de subdirectorios, pero
-    también sus atributos.
+    Podemos crear esta función, llamada @c{ficheros-en-el-siguiente-directorio},
+    usando funciones familiares como @c{car}, @c{nthcdr}, y @c{substring} en
+    conjunción con una función existente llamada @c{directory-files-and-attributes}.
+    Esta última función no solo listas todos los ficheros en un directorio,
+    incluyendo los nombres de los subdirectorios, también sus atributos.
 
 #      To restate our goal: to create a function that will enable us to feed
 #      filenames to @c{recursive-lengths-list-many-files} as a list that looks
 #      like this (but with more elements):
-    Para empezar nuestro objetivo: crear una función que nos permita
-    alimentas ficheros a @c{recursive-lengths-list-many-files} como una lista
-    que se parece a esto (pero con más elementos):
+    Repitamos nuestro objetivo: crear una función que nos permita alimentar a
+    @c{lista-de-longitudes-de-muchos-ficheros-recursiva} con nombres de fichero
+    en una lista parecida a esta (pero con más elementos):
 
 #      ..src > elisp
 #        ("./lisp/macros.el"
@@ -19381,101 +19353,98 @@ and promoting software freedom.”
 #      @c{t} for a directory, a string for symbolic link (the string is the
 #      name linked to), or @c{nil}.
     La función @c{directory-files-and-attributes} devuelve una lista de
-    listas. Cada una de las listas con la lista principal consiste de 13
+    listas. Cada una de las listas de la lista principal consiste de 13
     elementos. El primer elemento es una cadena que contiene el nombre del
-    fichero––que, en GNU/Linux, puede ser un ‘directorio fichero’, que dice,
+    fichero––que, en GNU/Linux, puede ser un ‘fichero de directorio’, es decir,
     un fichero con los atributos especiales de un directorio. El segundo
-    elemento de la lista es @c{t} para un directorio, es una cadena para el
-    enlace simbólico (la cadena es el nombre enlazado), o @c{nil}.
+    elemento de la lista es @c{t} para un directorio, una cadena para el
+    enlace simbólico (la cadena es el nombre al que enlaza), o @c{nil}.
 
 #      For example, the first @'{.el} file in the @f{lisp/} directory is
-#      @f{abbrev.el}. Its name is
-#      @f{/usr/local/share/emacs/22.1.1/lisp/abbrev.el} and it is not a
-#      directory or a symbolic link.
-    Por ejemplo, el primer fichero @'{.el} en el directorio es
-    @f{abbrev.el}. Su nombre es
-    @f{/usr/local/share/emacs/22.1.1/lisp/abbrev.el} y no es un directorio o
-    un enlace simbólico.
+#      @f{abbrev.el}. Its name is @f{/usr/local/share/emacs/22.1.1/lisp/abbrev.el}
+#      and it is not a directory or a symbolic link.
+    Por ejemplo, el primer fichero @'{.el} en el directorio @f{abbrev.el} es
+    @f(abbrev.el). Su nombre es @f{/usr/local/share/emacs/22.1.1/lisp/abbrev.el}
+    y no es un directorio o un enlace simbólico.
 
 #      This is how @c{directory-files-and-attributes} lists that file and its
 #      attributes:
-    Esto es cómo @c{directory-files-and-attributes} lista este fichero y sus
+    Asi es cómo @c{directory-files-and-attributes} lista este fichero y sus
     atributos:
 
 #      ..src > elisp
 #        ("abbrev.el"
-#        nil
-#        1
-#        1000
-#        100
-#        (20615 27034 579989 697000)
-#        (17905 55681 0 0)
-#        (20615 26327 734791 805000)
-#        13188
-#        "-rw-r--r--"
-#        nil
-#        2971624
-#        773)
+#         nil
+#         1
+#         1000
+#         100
+#         (20615 27034 579989 697000)
+#         (17905 55681 0 0)
+#         (20615 26327 734791 805000)
+#         13188
+#         "-rw-r--r--"
+#         nil
+#         2971624
+#         773)
 #      < src..
     ..src > elisp
       ("abbrev.el"
-      nil
-      1
-      1000
-      100
-      (20615 27034 579989 697000)
-      (17905 55681 0 0)
-      (20615 26327 734791 805000)
-      13188
-      "-rw-r--r--"
-      nil
-      2971624
-      773)
+       nil
+       1
+       1000
+       100
+       (20615 27034 579989 697000)
+       (17905 55681 0 0)
+       (20615 26327 734791 805000)
+       13188
+       "-rw-r--r--"
+       nil
+       2971624
+       773)
     < src..
 
 #      On the other hand, @f{mail/} is a directory within the @f{lisp/}
 #      directory. The beginning of its listing looks like this:
-    Por otro lado, @f{mail/} es un directorio con el directorio @f{lisp/}. El
-    principio del listado se parece a esto:
+    Por otro lado, @f{mail/} es un directorio dentro del directorio @f{lisp/}. El
+    inicio del listado se ve asi:
 
 #      ..src > elisp
 #        ("mail"
-#        t
-#        …
-#        )
+#         t
+#         …
+#         )
 #      < src..
     ..src > elisp
       ("mail"
-      t
-      …
-      )
+       t
+       …
+       )
     < src..
 
 #      (To learn about the different attributes, look at the documentation of
 #      @c{file-attributes}. Bear in mind that the @c{file-attributes} function
 #      does not list the filename, so its first element is
 #      @c{directory-files-and-attributes}'s second element.)
-    (Para aprender acerca de los diferentes atributos, mira en la
-    documentación de @c{file-attributes}. Tenga en mente que la función
-    @c{file-attributes} no lista el nombre del fichero, así su primer
-    elemento es @c{directory-files-and-attributes} que es el segundo
-    elemento.)
+    (Para conocer los diferentes atributos, mira en la
+    documentación de @c{file-attributes}. Ten en mente que la función
+    @c{file-attributes} no lista el nombre del fichero, por lo que el primer
+    elemento es el segundo elemento de @c{directory-files-and-attributes}.)
 
 #      We will want our new function, @c{files-in-below-directory}, to list the
 #      @'{.el} files in the directory it is told to check, and in any
 #      directories below that directory.
-    Se querrán nuestras nuevas funciones, @c{files-in-below-directory}, para
-    listar los fichero @'{.el} en el directorio eso es contado para probar,
-    y en los directorios bajo este directorio.
+    Quisieramos que nuestra nueva funcion, @c{ficheros-bajo-el-dirirectorio},
+    listara los ficheros @'{.el} en el directorio que le pedimos inspeccionar,
+    y en cualquier directorio debajo de ese directorio.
 
 #      This gives us a hint on how to construct @c{files-in-below-directory}:
 #      within a directory, the function should add @'{.el} filenames to a list;
 #      and if, within a directory, the function comes upon a sub-directory, it
 #      should go into that sub-directory and repeat its actions.
-    Esto nos da una sugestión de como construir @c{files-in-below-directory}:
-    con un directorio, la función añadir los nombres de ficheros @'{.el} a
-    una lista; y si, con un directorio, la función viene con un
-    subdirectorio, iría dentro de este subdirectorio y repite sus acciones.
+    Esto nos da una pista de como construir @c{ficheros-bajo-el-dirirectorio}:
+    dentro de un directorio, la función deberia añadir los ficheros @'{.el} a
+    una lista; y si, dentro de un directorio, la función se encuentra con un
+    subdirectorio, ir dentro de este subdirectorio y repetir sus acciones.
 
 #      However, we should note that every directory contains a name that refers
 #      to itself, called @f{.}, (“dot”) and a name that refers to its parent
@@ -19484,37 +19453,35 @@ and promoting software freedom.”
 #      want our @c{files-in-below-directory} function to enter those
 #      directories, since they always lead us, directly or indirectly, to the
 #      current directory.
-    Sin embargo, nosotros notaríamos que cada directorio contiene un nombre
-    que se refiere a sí mismo, llamado @f{.}, (“dot”) y un nombre que se
-    refiere a su directorio padre, llamado @f{..} (“doble punto”). (En @f{/},
-    el directorio raíz, @f{..} se refiere así mismo, desde que @f{/} no tiene
-    padre.) Claramente, no que se quiere nuestra función
-    @c{files-in-below-directory} para introducir estos directorio, desde que
-    ellos siempre nos lideran, directamente o indirectamente, al directorio
-    actual.
+    Sin embargo, debemos tener en cuenta que cada directorio contiene un nombre
+    que hace referencia a sí mismo, llamado @f{.}, (“punto”) y un nombre que
+    hace referencia a su directorio padre, llamado @f{..} (“doble punto”). (En
+    @f{/}, el directorio raíz, @f{..} se refiere así mismo, ya que @f{/} no
+    tiene padre.) Claramente, no queremos que nuestra función
+    @c{ficheros-bajo-el-dirirectorio} ingrese a estos directorio, puesto que nos
+    llevaran directamente o indirectamente, al directorio actual.
 
 #      Consequently, our @c{files-in-below-directory} function must do several
 #      tasks:
-    Consecuentemente, nuestra función @c{files-in-below-directory} debe hacer
+    Por consiguiente, nuestra función @c{ficheros-bajo-el-dirirectorio} debe realizar
     varias tareas:
 
 #      - Check to see whether it is looking at a filename that ends in @'{.el};
 #        and if so, add its name to a list.
-    - Chequee para ver si se está mirando en un nombre de fichero que
-      finaliza en @'{.el} y si es así, se añade el nombre a una lista.
+    - Probar si se está mirando un nombre de fichero que finaliza en @'{.el} y
+      si es así, añadir su nombre a una lista.
 
 #      - Check to see whether it is looking at a filename that is the name of a
 #        directory; and if so,
-    - Chequee para ver si está mirando en un nombre de fichero que es el
+    - Probar si está mirando en un nombre de fichero que es el
       nombre de un directorio; y si es así,
 
 #        - Check to see whether it is looking at @f{.}  or @f{..}; and if so
 #          skip it.
-      - Chequee para ver si está mirando en @f{.} o @f{..}; y si es así sal.
+      - Probar si está mirando en @f{.} o @f{..}; y si es así omitirlo.
 
 #        - Or else, go into that directory and repeat the process.
-
-      - O además, ve dentro de este directorio y repite el proceso.
+      - Si no, ir dentro de ese directorio y repetir el proceso.
 
 
 #      Let's write a function definition to do these tasks. We will use a
@@ -19523,105 +19490,104 @@ and promoting software freedom.”
 #      repeat the actions on each sub-directory. The recursive pattern is
 #      ‘accumulate’ (see Section @l{Recursive Pattern: @e{accumulate}}), using
 #      @c{append} as the combiner.
-    Se permite escribir una definición de función para hacer estas tareas. Se
-    usará un bucle @c{while} para mover de un nombre de fichero a otro con un
-    directorio chequeando lo que necesita ser hecho; y se usa una llamada
+    Escribamos una definición de función para realizar estas tareas. Usaremos un
+    bucle @c{while} para movernos de un nombre de fichero a otro con un
+    directorio comprobando lo que hay que hacer; y usaremos una llamada
     recursiva para repetir las acciones en cada subdirectorio. El patrón
-    recursivo es ‘acumular’ (Vease Sección @l{Patrón recursivo:
-    @e{accumulate}}) usando @c{append} para combinar.
+    recursivo es ‘acumular’ (Vease Sección @l{#Patrón recursivo:
+    @e{accumulate}}) usando @c{append} como combinador.
 
 #      Here is the function:
     Aquí está la función:
 
 #      ..src > elisp
+    ..src > elisp
 #        (defun files-in-below-directory (directory)
+      (defun ficheros-bajo-el-dirirectorio (directorio)
 #          "List the .el files in DIRECTORY and in its sub-directories."
+        "Lista los ficheros .el en DIRECTORIO y en sus subdirectorios."
 #          ;; Although the function will be used non-interactively,
 #          ;; it will be easier to test if we make it interactive.
 #          ;; The directory will have a name such as
 #          ;;  "/usr/local/share/emacs/22.1.1/lisp/"
+        ;; Aunque la función se utilizara no interactivamente,
+        ;; será mas fácil de probar si la hacemos interactiva.
+        ;; El directorio tendrá un nombre como
+        ;;  "/usr/local/share/emacs/22.1.1/lisp/"
 #          (interactive "DDirectory name: ")
+        (interactive "DNombre del Directorio: ")
 #          (let (el-files-list
 #                (current-directory-list
 #                 (directory-files-and-attributes directory t)))
+        (let (lista-de-ficheros-el
+              (lista-del-directorio-actual
+               (directory-files-and-attributes directorio t)))
 #            ;; while we are in the current directory
+          ;; mientras estamos en el directorio actual
 #            (while current-directory-list
 #              (cond
+          (while lista-del-directorio-actual
+            (cond
 #               ;; check to see whether filename ends in ‘.el’
 #               ;; and if so, append its name to a list.
+             ;; realiza una prueba para ver si el nombre del fichero termina
+             ;; en ‘.el’ y si es así, añade su nombre a una lista.
 #               ((equal ".el" (substring (car (car current-directory-list)) -3))
 #                (setq el-files-list
 #                      (cons (car (car current-directory-list)) el-files-list)))
+             ((equal ".el" (substring (car (car lista-del-directorio-actual)) -3))
+              (setq lista-de-ficheros-el
+                    (cons (car (car lista-del-directorio-actual)) lista-de-ficheros-el)))
 #               ;; check whether filename is that of a directory
+             ;; prueba si el nombre del fichero es un directorio
 #               ((eq t (car (cdr (car current-directory-list))))
+             ((eq t (car (cdr (car lista-del-directorio-actual))))
 #                ;; decide whether to skip or recurse
+              ;; decide si ignorarlo o hacer recursión
 #                (if
 #                    (equal "."
 #                           (substring (car (car current-directory-list)) -1))
+              (if
+                  (equal "."
+                         (substring (car (car lista-del-directorio-actual)) -1))
 #                    ;; then do nothing since filename is that of
 #                    ;;   current directory or parent, "." or ".."
+                  ;; entonces no hacer nada puesto que el nombre del fichero es
+                  ;; el directorio actual o el padre, "." o ".."
 #                    ()
+                  ()
 #                  ;; else descend into the directory and repeat the process
+                ;; de otra forma, desciende dentro del directorio y repite el proceso
 #                  (setq el-files-list
 #                        (append
 #                         (files-in-below-directory
 #                          (car (car current-directory-list)))
 #                         el-files-list)))))
+                (setq lista-de-ficheros-el
+                      (append
+                       (ficheros-bajo-el-dirirectorio
+                        (car (car lista-del-directorio-actual)))
+                       lista-de-ficheros-el)))))
 #              ;; move to the next filename in the list; this also
 #              ;; shortens the list so the while loop eventually comes to an end
+            ;; move al siguiente fichero en la lista; esto también acorta
+            ;; la lista para que el bucle while eventualmente llegue a su fin
 #              (setq current-directory-list (cdr current-directory-list)))
+            (setq lista-del-directorio-actual (cdr lista-del-directorio-actual)))
 #            ;; return the filenames
-#            el-files-list))
-#      < src..
-    ..src > elisp
-      (defun files-in-below-directory (directory)
-        "Lista los ficheros .el en DIRECTORIO y en sus subdirectorios."
-        ;; Aunque la función será usada no interactivamente,
-        ;; será fácil probar si lo hacemos interactivo.
-        ;; El directorio tendrá un nombre tal como
-        ;;  "/usr/local/share/emacs/22.1.1/lisp/"
-        (interactive "DNombre del Directorio: ")
-        (let (el-files-list
-              (current-directory-list
-               (directory-files-and-attributes directory t)))
-          ;; mientras estamos en el directorio actual
-          (while current-directory-list
-            (cond
-             ;; chequee para ver si el nombre del fichero finaliza en ‘.el’
-             ;; y si es así, añade su nombre a una lista.
-             ((equal ".el" (substring (car (car current-directory-list)) -3))
-              (setq el-files-list
-                    (cons (car (car current-directory-list)) el-files-list)))
-             ;; chequee si el nombre del fichero es un directorio
-             ((eq t (car (cdr (car current-directory-list))))
-              ;; decide si salir o hacer recursión
-              (if
-                  (equal "."
-                         (substring (car (car current-directory-list)) -1))
-                  ;; entonces no hagas nada puesto que el nombre del fichero es
-                  ;; el actual directorio o padre, "." o ".."
-                  ()
-                ;; else desciende dentro del directorio y repite el proceso
-                (setq el-files-list
-                      (append
-                       (files-in-below-directory
-                        (car (car current-directory-list)))
-                       el-files-list)))))
-            ;; mueve al siguiente fichero en la lista; esto también
-            ;; ordena la lista así mientras el bucle
-            ;; eventualmente llega a un fin
-            (setq current-directory-list (cdr current-directory-list)))
           ;; devuelve los ficheros
-          el-files-list))
+#            el-files-list))
+          lista-de-ficheros-el))
+#      < src..
     < src..
 
-#      The @c{files-in-below-directory} @c{directory-files} function takes one
-#      argument, the name of a directory.
-    Las funciones @c{files-in-below-directory} @c{directory-files} toma un
-    argumento, el nombre de un directorio.
+#      The @c{files-in-below-directory} function takes one argument, the name of
+#      a directory.
+    La funcion @c{ficheros-bajo-el-dirirectorio} toma un argumento, el nombre de
+    un directorio.
 
 #      Thus, on my system,
-    De este modo, en mi sistema,
+    Por eso, en mi sistema,
 
 #      ..src > elisp
 #        (length
@@ -19629,15 +19595,18 @@ and promoting software freedom.”
 #      < src..
     ..src > elisp
       (length
-       (files-in-below-directory "/usr/local/share/emacs/22.1.1/lisp/"))
+       (ficheros-bajo-el-dirirectorio "/usr/local/share/emacs/22.1.1/lisp/"))
     < src..
 
-    se cuenta que dentro y debajo de mi directorio de fuentes Lisp hay 1031
-    ficheros @'{.el}
+#     tells me that in and below my Lisp sources directory are 1031 @'f(.el) files.
+    me dice que en y debajo de mi directorio de codigo fuente Lisp hay 1031
+    ficheros @'f{.el}
 
-    @c{files-in-below-directory} devuelve una lista en orden alfabético
-    inverso. Una expresión para ordenar la lista en orden que parece como
-    este:
+#     @c(files-in-below-directory) returns a list in reverse alphabetical order.
+#     An expression to sort the list in alphabetical order looks like this
+    @c{ficheros-bajo-el-dirirectorio} devuelve una lista en orden alfabético
+    inverso. Una expresión para ordenar la lista en orden alfabetico tiene el
+    siguiente aspecto:
 
 #      ..src > elisp
 #        (sort
@@ -19646,7 +19615,7 @@ and promoting software freedom.”
 #      < src..
     ..src > elisp
       (sort
-       (files-in-below-directory "/usr/local/share/emacs/22.1.1/lisp/")
+       (ficheros-bajo-el-dirirectorio "/usr/local/share/emacs/22.1.1/lisp/")
        'string-lessp)
     < src..
 
@@ -19657,10 +19626,10 @@ and promoting software freedom.”
 #      definitions contain fewer than 10 words and symbols, how many contain
 #      between 10 and 19 words and symbols, how many contain between 20 and 29
 #      words and symbols, and so on.
-    Nuestro objetivo inmediato es generar una lista que cuenta, cuantas
-    definiciones de funciones contienen menos de 10 palabras y símbolos,
-    cuantas contienen entre 10 y 19 palabras y símbolos, cuantas contienen
-    entre 20 y 29 palabras y símbolos, y así sucesivamente.
+    Nuestro objetivo inmediato es generar una lista que nos diga cuantas
+    definiciones de funcion contienen menos de 10 palabras y símbolos, cuantas
+    contienen entre 10 y 19 palabras y símbolos, cuantas entre 20 y 29, y así
+    sucesivamente.
 
 #      With a sorted list of numbers, this is easy: count how many elements of
 #      the list are smaller than 10, then, after moving past the numbers just
@@ -19669,18 +19638,19 @@ and promoting software freedom.”
 #      Each of the numbers, 10, 20, 30, 40, and the like, is one larger than
 #      the top of that range. We can call the list of such numbers the
 #      @c{top-of-ranges} list.
-    Con una lista ordenada de números, es fácil: se cuentan cuantos elementos
-    de la lista son más pequeños de 10, entonces, se devuelven los números
-    contados, se cuenta cuantos son más pequeños de 20, entonces se devuelven
-    los números contados, después se cuentan los que son más pequeños de 30,
-    y así sucesivamente. Cada uno de los números, 10, 20, 30, 40, y como, es más grande que
-    el tope de este rango. Se puede llamar a la lista de tales números, la
-    lista @c{top-of-ranges}.
+    Con una lista ordenada de números, es fácil: se cuentan cuantos elementos de
+    la lista son más pequeños de 10, luego, luego, despues de de haber pasado
+    los numeros que se acaban de contar, se cuenta cuantos son más pequeños de
+    20, luego, despues de haber pasado los numeros que se acaban de contar, los
+    que son más pequeños de 30, y así sucesivamente. Cada uno de los números,
+    10, 20, 30, 40, y similares, es uno más grande que la parte superior de ese
+    rango. Podemos llamar a la lista de estos numeros, la lista
+    @c{cima-de-rangos}.
 
 #      If we wished, we could generate this list automatically, but it is
 #      simpler to write a list manually. Here it is:
-    Si se desea, se podría generar esta lista automáticamente, pero es más
-    simple escribir una lista manualmente. Aquí está:
+    Si quisieramos, podriamos generar esta lista automáticamente, pero es más
+    sencillo escribir una lista manualmente. Aquí está:
 
 #      ..src > elisp
 #        (defvar top-of-ranges
@@ -19690,29 +19660,28 @@ and promoting software freedom.”
 #          160 170 180 190 200
 #          210 220 230 240 250
 #          260 270 280 290 300)
-#         "List specifying ranges for `defuns-per-range'.")
+#         "List specifying ranges for ‘defuns-per-range’.")
 #      < src..
     ..src > elisp
-      (defvar top-of-ranges
+      (defvar cima-de-rangos
        '(10  20  30  40  50
          60  70  80  90 100
         110 120 130 140 150
         160 170 180 190 200
         210 220 230 240 250
         260 270 280 290 300)
-       "Listar especificando rangos para ‘defuns-per-range’.")
+       "Listar especificando rangos para ‘definiciones-por-rango’.")
     < src..
 
 #      To change the ranges, we edit this list.
-    Para cambiar los rangos, se edita esta lista.
+    Para cambiar los rangos, editamos esta lista.
 
 #      Next, we need to write the function that creates the list of the number
 #      of definitions within each range. Clearly, this function must take the
 #      @c{sorted-lengths} and the @c{top-of-ranges} lists as arguments.
-    Lo siguiente, que se necesita es escribir la función que crea la lista
-    del número de definiciones con cada rango. Claramente, esta función debe
-    tomar el @c{sorted-lengths} y las listas @c{top-of-ranges} listas como
-    argumentos.
+    A continuacion, necesitamos escribir la función que crea la lista del número
+    de definiciones con cada rango. Evidentemente, esta función debe tomar las
+    listas @c{longitudes-ordenadas} y @c{cima-de-rangos} como argumentos.
 
 #      The @c{defuns-per-range} function must do two things again and again: it
 #      must count the number of definitions within a range specified by the
@@ -19722,42 +19691,41 @@ and promoting software freedom.”
 #      use @c{while} loops for the job. One loop counts the number of
 #      definitions in the range defined by the current top-of-range value, and
 #      the other loop selects each of the top-of-range values in turn.
-    La función @c{defuns-per-range} debe hacer dos cosas una y otra vez: eso
-    debe contar el número de definiciones con un rango específico por el
-    actual valor top-of-range; y eso debe dividir al siguiente gran valor en
-    la lista @c{top-of-ranges} después de contar el número de definiciones en
-    el rango actual. Desde que cada una de estas acciones es repetitiva, se
-    puede usar los bucles @c{while} para el trabajo. Un bucle cuenta el
-    número de definiciones en el rango definido por el valor actual
-    top-of-range, y el otro bucle selecciona cada uno de los valores
-    top-of-range en turno.
+    La función @c{definiciones-por-rango} debe hacer dos cosas una y otra vez:
+    debe contar el número de definiciones con un rango específicado por el valor
+    superior actual del rango; y debe pasar al siguiente valor superior en la
+    lista @c{cima-de-rangos} después de contar el número de definiciones en el
+    rango actual. Dado que cada una de estas acciones es repetitiva, se pueden
+    utilizar bucles @c{while} para el trabajo. Un bucle cuenta el número de
+    definiciones en el rango definido por el valor superior actual del rango, y
+    el otro bucle a su vez selecciona cada uno de los valores del valor del
+    superior del rango.
 
 #      Several entries of the @c{sorted-lengths} list are counted for each
 #      range; this means that the loop for the @c{sorted-lengths} list will be
 #      inside the loop for the @c{top-of-ranges} list, like a small gear inside
 #      a big gear.
-    Varias entradas de la lista @c{sorted-lengths} se cuentan para cada
-    rango; esto significa que el bucle para la lista @c{sorted-lengths} será
-    dentro del bucle para la lista @c{top-of-ranges}, como un pequeño adorno
-    dentro de un gran adorno.
+    Se cuentan varias entradas de la lista de @c{longitudes-ordenadas} para cada
+    rango; esto significa que el bucle para la lista de @c{longitudes-ordenadas}
+    estara dentro del bucle para la lista de @c{cima-de-rangos}, como un pequeño
+    engrane dentro de un gran mecanismo.
 
 #      The inner loop counts the number of definitions within the range. It is
 #      a simple counting loop of the type we have seen before.  (See Section
-#      @l{A loop with an incrementing counter}.)  The true-or-false test of the
+#      @l{#A loop with an incrementing counter}.)  The true-or-false test of the
 #      loop tests whether the value from the @c{sorted-lengths} list is smaller
 #      than the current value of the top of the range. If it is, the function
 #      increments the counter and tests the next value from the
 #      @c{sorted-lengths} list.
-    El bucle interno cuenta el número de definiciones con el rango. Eso es un
-    simple contaje del tipo en el que se ha visto antes. (Vea la Seccion @l{Un
-    bucle con un contaje incremental}). La prueba true-or-false del bucle
-    chequea si el valor desde la lista @c{sorted-lengths} es más pequeña que
-    el actual valor de lo alto del rango. Si es así, la función incrementa el
-    contador y se chequea el siguiente valor desde la lista
-    @c{sorted-lengths}.
+    El bucle interno cuenta el número de definiciones dentro del rango. Es un
+    simple bucle conteo del tipo que hemos visto antes. (Ver la Seccion @l{#Un
+    bucle con un contador incremental}). La prueba verdadero-o-falso del bucle
+    comprueba si el valor de la lista @c{longitudes-ordenadas} es menor que el
+    valor actual de la cima del rango. Si es así, la función incrementa el
+    contador y prueba el siguiente valor de la lista @c{longitudes-ordenadas}.
 
 #      The inner loop looks like this:
-    El bucle interno se parece a esto:
+    El bucle interno se ve asi:
 
 #      ..src > elisp
 #        (while length-element-smaller-than-top-of-range
@@ -19765,14 +19733,17 @@ and promoting software freedom.”
 #          (setq sorted-lengths (cdr sorted-lengths)))
 #      < src..
     ..src > elisp
-      (while length-element-smaller-than-top-of-range
-        (setq number-within-range (1+ number-within-range))
-        (setq sorted-lengths (cdr sorted-lengths)))
+      (while elemento-de-longitud-menor-que-el-de-la-cima-de-rango
+        (setq numero-dentro-del-rango (1+ numero-dentro-del-rango))
+        (setq longitudes-ordenadas (cdr longitudes-ordenadas)))
     < src..
 
-    El bucle de fuera debe empezar con el valor más bajo de la lista
-    @c{top-of-ranges}, y entonces se asigna a cada uno de los valores
-    superiores exitosos a su vez. Esto puede ser hecho con un bucle como
+#     The outer loop must start with the lowest value of the @c(top-of-ranges)
+#     list, and then be set to each of the succeeding higher values in
+#     turn. This can be done with a loop like this:
+    El bucle exterior debe empezar con el valor más bajo de la lista
+    @c{cima-de-rangos}, y acontinuacion, ajustarse a cada uno de los valores
+    superiores sucesivos. Esto puede ser hecho con un bucle como
     este:
 
 #      ..src > elisp
@@ -19781,43 +19752,43 @@ and promoting software freedom.”
 #          (setq top-of-ranges (cdr top-of-ranges)))
 #      < src..
     ..src > elisp
-      (while top-of-ranges
-        body-of-loop…
-        (setq top-of-ranges (cdr top-of-ranges)))
+      (while cima-de-rangos
+        cuerpo-del-bucle…
+        (setq cima-de-rangos (cdr cima-de-rangos)))
     < src..
 
 #      Put together, the two loops look like this:
-    Se ponen juntos, los dos bucles como este:
+    Puestos juntos, los dos bucles se ven asi:
 
 #      ..src > elisp
-#        (while top-of-ranges
     ..src > elisp
-      (while top-of-ranges
+#        (while top-of-ranges
+      (while cima-de-rangos
 
 #          ;; Count the number of elements within the current range.
+        ;; Contar el número de elementos dentro del rango actual.
 #          (while length-element-smaller-than-top-of-range
 #            (setq number-within-range (1+ number-within-range))
 #            (setq sorted-lengths (cdr sorted-lengths)))
-        ;; Contar el número de elementos con el actual rango.
-        (while length-element-smaller-than-top-of-range
-          (setq number-within-range (1+ number-within-range))
-          (setq sorted-lengths (cdr sorted-lengths)))
+        (while elemento-de-longitud-menor-que-el-de-la-cima-de-rango
+          (setq numero-dentro-del-rango (1+ numero-dentro-del-rango))
+          (setq longitudes-ordenadas (cdr longitudes-ordenadas)))
 
 #          ;; Move to next range.
-#          (setq top-of-ranges (cdr top-of-ranges)))
-#      < src..
         ;; Mover al siguiente rango.
-        (setq top-of-ranges (cdr top-of-ranges)))
+#          (setq top-of-ranges (cdr top-of-ranges)))
+        (setq cima-de-rangos (cdr cima-de-rangos)))
+#      < src..
     < src..
 
 #      In addition, in each circuit of the outer loop, Emacs should record the
 #      number of definitions within that range (the value of
 #      @c{number-within-range}) in a list. We can use @c{cons} for this
-#      purpose.  (See Section @l{@c{cons}}.)
-    Además, en cada circuito del bucle exterior, Emacs grabaría el número de
-    definiciones con este rango (el valor de @c{number-within-range}) en una
-    lista. Se puede usar @c{cons} para este propósito. (Vea la Seccion
-    @l{@c{cons}}.)
+#      purpose.  (See Section @l{#@c{cons}}.)
+    Además, en cada iteracion del bucle exterior, Emacs debe registrar el número de
+    definiciones dentro de ese rango (el valor de @c{numero-dentro-del-rango}) en una
+    lista. Podemos usar @c{cons} para este propósito. (Vea la Seccion
+    @l{#@c{cons}}.)
 
 #      The @c{cons} function works fine, except that the list it constructs
 #      will contain the number of definitions for the highest range at its
@@ -19830,17 +19801,17 @@ and promoting software freedom.”
 #      The solution is to reverse the order of the @c{defuns-per-range-list}.
 #      We can do this using the @c{nreverse} function, which reverses the order
 #      of a list.
-    La función @c{cons} trabaja bien, excepto que la lista que se construye
-    contendrá el número de definiciones para el alto rango y su principio el
-    número de definiciones para el más bajo rango a su fin. Esto es porque
-    @c{cons} adjunta nuevos elementos de la lista al principio de la lista, y
-    desde los dos bucles que hacen cálculos a través de la lista de tamaños
-    desde lo bajo finaliza primero, el @c{defuns-per-range-list} finalizará
-    el primer número más largo. Pero lo que se quiere es imprimir nuestro
-    grafo con pequeños valores primero y el más grande después. La solución
-    es invertir el orden del @c{defuns-per-range-list}. Nosotros podemos
-    hacer esto usando la función @c{nreverse}, que invierte el orden de una
-    lista.
+    La función @c{cons} trabaja bien, excepto que la lista que construye
+    contendrá el número de definiciones para el rango mas alto y el número de
+    definiciones para el más rango bajo al final. Esto se debe a que @c{cons}
+    adjunta nuevos elementos de la lista al principio de la lista, y ya que los
+    dos bucles hacen cálculos a través de la lista de longitudes desde el
+    extremo inferior en primer lugar, la @c{lista-de-definiciones-por-rango}
+    terminara con el numero mayor al pricipio. Pero querremos imprimir nuestro
+    grafo con los valores pequeños primero y los más grandes después. La
+    solución es invertir el orden de la @c{lista-de-definiciones-por-rango}.
+    Podemos hacer esto usando la función @c{nreverse}, que invierte el orden de
+    una lista.
 
 #      For example,
     Por ejemplo,
@@ -19868,149 +19839,140 @@ and promoting software freedom.”
 #      not want the original @c{defuns-per-range-list}, so it does not matter
 #      that it is destroyed.  (The @c{reverse} function provides a reversed
 #      copy of a list, leaving the original list as is.)
-    Note que la función @c{nreverse} es “destructiva”––que es, cambiar la
+    Note que la función @c{nreverse} es “destructiva”––es decir, cambiar la
     lista a la que se aplica; esto contrasta con las funciones @c{car} y
-    @c{cdr}, que no son destructivas. En este caso, no se quiere que el
-    original @c{defuns-per-range-list}, de manera que no hay materia que se
-    destruya. (La función @c{reverse} provee un copia inversa de una lista,
-    dejando la lista original como es.)
+    @c{cdr}, que no son destructivas. En este caso, no queremos la
+    @c{lista-de-definiciones-por-rango} original, asi que no importa que sea
+    destruida. (La función @c{reverse} proporciona un copia inversa de una lista,
+    dejando la lista original tal cual.)
 
 #      Put all together, the @c{defuns-per-range} looks like this:
-    Pon todo junto, el @c{defuns-per-range} se parece a esto:
+    En conjunto, la funcion @c{definiciones-por-rango} se ven asi:
 
 #      ..src > elisp
+    ..src > elisp
 #        (defun defuns-per-range (sorted-lengths top-of-ranges)
+      (defun definiciones-por-rango (longitudes-ordenadas cima-de-rangos)
 #          "SORTED-LENGTHS defuns in each TOP-OF-RANGES range."
+        "defuns de LONGITUDES-ORDENADAS en cada CIMA-DE-RANGOS."
 #          (let ((top-of-range (car top-of-ranges))
 #                (number-within-range 0)
 #                defuns-per-range-list)
-#
+        (let ((cima-de-rango (car cima-de-rangos))
+              (numero-dentro-del-rango 0)
+              lista-de-definiciones-por-rango)
+
 #            ;; Outer loop.
+          ;; Bucle Externo.
 #            (while top-of-ranges
-#
+          (while cima-de-rangos
+
 #              ;; Inner loop.
+            ;; Bucle Interno.
 #              (while (and
+            (while (and
 #                      ;; Need number for numeric test.
+                    ;; Necesita el número para la prueba numérica.
 #                      (car sorted-lengths)
 #                      (< (car sorted-lengths) top-of-range))
-#
+                    (car longitudes-ordenadas)
+                    (< (car longitudes-ordenadas) cima-de-rango))
+
 #                ;; Count number of definitions within current range.
+              ;; Cuenta el número de definiciones dentro del rango actual.
 #                (setq number-within-range (1+ number-within-range))
 #                (setq sorted-lengths (cdr sorted-lengths)))
-#
+              (setq numero-dentro-del-rango (1+ numero-dentro-del-rango))
+              (setq longitudes-ordenadas (cdr longitudes-ordenadas)))
+
 #              ;; Exit inner loop but remain within outer loop.
-#
+            ;; Sale del bucle interno pero permanece dentro del bucle externo.
+
 #              (setq defuns-per-range-list
 #                    (cons number-within-range defuns-per-range-list))
 #              (setq number-within-range 0)      ; Reset count to zero.
-#
+            (setq lista-de-definiciones-por-rango
+                  (cons numero-dentro-del-rango lista-de-definiciones-por-rango))
+            (setq numero-dentro-del-rango 0)      ; Restablece el conteo a cero.
+
 #              ;; Move to next range.
+            ;; Mover al siguiente rango.
 #              (setq top-of-ranges (cdr top-of-ranges))
+            (setq cima-de-rangos (cdr cima-de-rangos))
 #              ;; Specify next top of range value.
+            ;; Designa el siguiente valor superior del rango.
 #              (setq top-of-range (car top-of-ranges)))
+            (setq cima-de-rango (car cima-de-rangos)))
 #
 #            ;; Exit outer loop and count the number of defuns larger than
 #            ;;   the largest top-of-range value.
+          ;; Sale del bucle externo y cuenta el número de defuns mayor que
+          ;; el valor mas alto de cima-de-rango.
 #            (setq defuns-per-range-list
 #                  (cons
 #                   (length sorted-lengths)
 #                   defuns-per-range-list))
-#
+          (setq lista-de-definiciones-por-rango
+                (cons
+                 (length longitudes-ordenadas)
+                 lista-de-definiciones-por-rango))
+
 #            ;; Return a list of the number of definitions within each range,
 #            ;;   smallest to largest.
+          ;; Devuelve una lista del número de definiciones dentro de cada rango,
+          ;;  del menor al mayor.
 #            (nreverse defuns-per-range-list)))
+          (nreverse lista-de-definiciones-por-rango)))
 #      < src..
-    ..src > elisp
-      (defun defuns-per-range (sorted-lengths top-of-ranges)
-        "funciones de SORTED-LENGTHS en cada rango TOP-OF-RANGES."
-        (let ((top-of-range (car top-of-ranges))
-              (number-within-range 0)
-              defuns-per-range-list)
-
-          ;; Bucle Exterior.
-          (while top-of-ranges
-
-            ;; Bucle Interno.
-            (while (and
-                    ;; Necesita el número para la prueba numérico.
-                    (car sorted-lengths)
-                    (< (car sorted-lengths) top-of-range))
-
-              ;; Contar número de definiciones con el rango actual.
-              (setq number-within-range (1+ number-within-range))
-              (setq sorted-lengths (cdr sorted-lengths)))
-
-            ;; Sal del bucle interno pero permanece con el bucle externo.
-
-            (setq defuns-per-range-list
-                  (cons number-within-range defuns-per-range-list))
-            (setq number-within-range 0)      ; Resetear el contaje a cero.
-
-            ;; Mover al siguiente rango.
-            (setq top-of-ranges (cdr top-of-ranges))
-            ;; Especifica el siguiente mejor rango de valores.
-            (setq top-of-range (car top-of-ranges)))
-
-          ;; Salir del bucle externo y contar el número de defuns más
-          ;; largas que
-          ;; el valor más largo del valor top-of-range.
-          (setq defuns-per-range-list
-                (cons
-                 (length sorted-lengths)
-                 defuns-per-range-list))
-
-          ;; Devuelve una lista del número de definiciones con cada rango,
-          ;;  del más pequeño al más largo.
-          (nreverse defuns-per-range-list)))
     < src..
 
 #      The function is straightforward except for one subtle feature. The
 #      true-or-false test of the inner loop looks like this:
-    La función es simple excepto para una pequeña funcionalidad. La prueba
-    verdadero-o-falso para el bucle interno se parece a esto:
+    La función es sencilla, excepto por una caracteristica sutil. La prueba
+    verdadero-o-falso del bucle interno es asi:
 
 #      ..src > elisp
 #        (and (car sorted-lengths)
 #             (< (car sorted-lengths) top-of-range))
 #      < src..
     ..src > elisp
-      (and (car sorted-lengths)
-           (< (car sorted-lengths) top-of-range))
+      (and (car longitudes-ordenadas)
+           (< (car longitudes-ordenadas) cima-de-rango))
     < src..
 
 #      instead of like this:
-    en vez de algo como esto:
+    en lugar de asi:
 
 #      ..src > elisp
 #        (< (car sorted-lengths) top-of-range)
 #      < src..
     ..src > elisp
-      (< (car sorted-lengths) top-of-range)
+      (< (car longitudes-ordenadas) cima-de-rango)
     < src..
 
 #      The purpose of the test is to determine whether the first item in the
 #      @c{sorted-lengths} list is less than the value of the top of the range.
-    El propósito del test es determinar si el primer ítem en la lista
-    @c{sorted-lengths} es menor que el valor de lo mejor del rango.
+    El propósito de la prueba es determinar si el primer elemento de la lista
+    de @c{longitudes-ordenadas} es inferior al valor de la parte superior del rango.
 
 #      The simple version of the test works fine unless the @c{sorted-lengths}
 #      list has a @c{nil} value. In that case, the @c{(car sorted-lengths)}
 #      expression function returns @c{nil}. The @c{<} function cannot compare
 #      a number to @c{nil}, which is an empty list, so Emacs signals an error
 #      and stops the function from attempting to continue to execute.
-    La versión simple del test trabaja bien a menos que la lista
-    @c{sorted-lengths} tiene un valor @c{nil}. En este caso, la expresión
-    @c{(car sorted-lengths)} devuelve @c{nil}. La función @c{<} no se puede
-    compara un número a @c{nil}, que es una lista vacía, así Emacs señala un
-    error y para la función desde el intento de continuar la ejecución.
+    La versión simple de la prueba funciona bien a menos que la lista
+    @c{longitudes-ordenadas} tenga un valor @c{nil}. En este caso, la expresión
+    @c{(car longitudes-ordenadas)} devuelve @c{nil}. La función @c{<} no puede
+    compara un número con @c{nil}, que es una lista vacía, por lo que Emacs indica un
+    error e impide que la función siga ejecutandose.
 
 #      The @c{sorted-lengths} list always becomes @c{nil} when the counter
 #      reaches the end of the list. This means that any attempt to use the
 #      @c{defuns-per-range} function with the simple version of the test will
 #      fail.
-    La lista @c{sorted-lengths} siempre llega a ser @c{nil} cuando el
-    contador logra el fin de la lista. Esto significa que cualquier intento
-    de usar la función @c{defuns-per-range} con la versión simple del test
+    La lista de @c{longitudes-ordenadas} siempre se convierte en @c{nil} cuando el
+    contador llega al fin de la lista. Esto significa que cualquier intento
+    de usar la función @c{definiciones-por-rango} con la versión simple de la prueba
     fallará.
 
 #      We solve the problem by using the @c{(car sorted-lengths)} expression in
@@ -20023,54 +19985,52 @@ and promoting software freedom.”
 #      returns a non-@c{nil} value, the @c{and} expression evaluates the @c{<}
 #      expression, and returns that value as the value of the @c{and}
 #      expression.
-    Se resuelve el problema usando @c{(car sorted-lengths)} en conjunción con
-    la expresión @c{and}. La expresión @c{(car sorted-lengths)} devuelve un
-    valor no @c{nil} tan largo como la lista que tiene al menos un número con
-    eso, pero devuelve @c{nil} si la lista está vacía. La expresión @c{and}
-    primero evalúa el @c{(car sorted-lengths)}, y si eso es @c{nil}, devuelve
-    falso @e{sin} evaluar la expresión @c{<} y devuelve este valor como el
-    valor de la expresión @c{and}.
+    Resolvemos el problema usando la expresion @c{(car longitudes-ordenadas)}
+    junto con la expresión @c{and}. La expresión @c{(car longitudes-ordenadas)}
+    devuelve un valor no @c{nil} siempre y cuando la lista contenga al menos un
+    número, pero devuelve @c{nil} si la lista está vacía. La expresión @c{and}
+    primero evalúa @c{(car longitudes-ordenadas)}, y si es @c{nil}, devuelve
+    falso @e{sin} evaluar la expresión @c{<} y devuelve este valor como el valor
+    de la expresión @c{and}.
 
-#      This way, we avoid an error.  (See Section @l{The @c{kill-new}
+#      This way, we avoid an error.  (See Section @l{#The @c{kill-new}
 #      function}, for information about @c{and}.)
-    Este camino, evita un error.  (Para información acerca de @c{and}, ver
-    @l{La función @c{kill-new}}
+    De esta manera, evitamos un error.  (Para información acerca de @c{and},
+    consulta la Seccion @l{#La función @c{kill-new}}
 
 #      Here is a short test of the @c{defuns-per-range} function. First,
 #      evaluate the expression that binds (a shortened) @c{top-of-ranges} list
 #      to the list of values, then evaluate the expression for binding the
 #      @c{sorted-lengths} list, and then evaluate the @c{defuns-per-range}
 #      function.
-    Aquí hay un pequeño test de la función @c{defuns-per-range}. Primero,
-    evalúa la expresión que ajusta (una resumida) lista @c{top-of-ranges} a
-    la lista de valores, entonces evalúa la expresión para ajustar la lista
-    @c{sorted-lengths}, y entonces evalúa la función @c{defuns-per-range}.
+    He aqui una breve prueba de la función @c{definiciones-por-rango}. Primero,
+    evalúa la expresión que enlaza la lista (ordenada) @c{cima-de-rangos} a
+    la lista de valores, luego evalúa la expresión que enlaza la lista
+    @c{longitudes-ordenadas}, y despues evalúa la función @c{definiciones-por-rango}.
 
 #      ..src > elisp
+    ..src > elisp
 #        ;; (Shorter list than we will use later.)
+      ;; (La lista ordenada que usaremos después.)
 #        (setq top-of-ranges
 #         '(110 120 130 140 150
 #           160 170 180 190 200))
-#
-#        (setq sorted-lengths
-#              '(85 86 110 116 122 129 154 176 179 200 265 300 300))
-#
-#        (defuns-per-range sorted-lengths top-of-ranges)
-#      < src..
-    ..src > elisp
-      ;; (La lista ordenada que usará después.)
-      (setq top-of-ranges
+      (setq cima-de-rangos
        '(110 120 130 140 150
          160 170 180 190 200))
 
-      (setq sorted-lengths
+#        (setq sorted-lengths
+#              '(85 86 110 116 122 129 154 176 179 200 265 300 300))
+      (setq longitudes-ordenadas
             '(85 86 110 116 122 129 154 176 179 200 265 300 300))
 
-      (defuns-per-range sorted-lengths top-of-ranges)
+#        (defuns-per-range sorted-lengths top-of-ranges)
+      (definiciones-por-rango longitudes-ordenadas cima-de-rangos)
+#      < src..
     < src..
 
 #      The list returned looks like this:
-    La lista devuelta se parece a esto:
+    Esta es la lista que devuelve:
 
 #      ..src > elisp
 #        (2 2 2 0 0 1 0 2 0 0 4)
@@ -20082,12 +20042,12 @@ and promoting software freedom.”
 #      Indeed, there are two elements of the @c{sorted-lengths} list smaller
 #      than 110, two elements between 110 and 119, two elements between 120 and
 #      129, and so on. There are four elements with a value of 200 or larger.
-    Dentro, hay dos elementos de la lista @c{sorted-lengths} menores de 110,
-    dos elementos entre 110 y 119, dos elementos entre 120 y 129 y así sucesivamente. Hay
+    De hecho, hay dos elementos de la lista @c{longitudes-ordenadas} menores a 110,
+    dos elementos entre 110 y 119, dos elementos entre 120 y 129, etcetera. Hay
     cuatro elementos con un valor de 200 o superior.
 
 # * Readying a Graph
-* Leyendo un grafo
+* Preparar un grafico
 
 #   Our goal is to construct a graph showing the numbers of function
 #   definitions of various lengths in the Emacs lisp sources.
@@ -20446,7 +20406,7 @@ and promoting software freedom.”
 #   which we can apply @c{max} (we could also apply @c{max} to the sorted
 #   numbers' list; it does not matter whether the list is sorted or not.)
   Este camino tardío usará @c{apply}. La función
-  @c{recursive-lengths-list-many-files} devuelve una lista de números que se
+  @c{lista-de-longitudes-de-muchos-ficheros-recursiva} devuelve una lista de números que se
   puede aplicar a @c{max} (se podría también aplicar @e{(hacer apply)} a la
   lista de números ordenados; eso no importa si la lista está o no).
 
@@ -20737,7 +20697,7 @@ and promoting software freedom.”
 #    < src..
    ..src > elisp
      (defun graph-body-print (numbers-list)
-       "documentation…"
+       "documentacion…"
        (let ((height  …
               …))
 
@@ -20865,7 +20825,7 @@ and promoting software freedom.”
 #    - Install @c{graph-symbol}, @c{graph-blank}, @c{column-of-graph}, which
 #      are in Section @l{Readying a Graph}, and @c{graph-body-print}.
    1. Instala @c{graph-symbol}, @c{graph-blank}, @c{column-of-graph}, que
-      están en @l{Leyendo un grafo}, and @c{graph-body-print}.
+      están en @l{Preparar un grafico}, and @c{graph-body-print}.
 
 #    - Copy the following expression:
    2. Copia la siguiente expresión:
@@ -20969,7 +20929,7 @@ and promoting software freedom.”
 #    act on a shorter version of the @c{numbers-list}.
    La función recursiva es un poco más difícil. Eso tiene cuatro partes: el
    ‘prueba-hazlo-de-nuevo’, el código impreso, la llamada recursiva, y la
-   ‘expresion-del-siguiente-paso’. El ‘prueba-hazlo-de-nuevo’ es una expresión @c{when}
+   ‘expresion-del-siguiente-paso’. la ‘prueba-hazlo-de-nuevo’ es una expresión @c{when}
    determina si la @c{numbers-list} contiene cualquier elemento que
    permanece; si hace eso, la función imprime una columna del grafo usando el
    código impreso y se llama así mismo de nuevo. La función se llama así
@@ -23866,7 +23826,7 @@ and promoting software freedom.”
   hicimos la función @c{forward-sentence}. (Vea la Seccion @l{La función
   @c{forward-sentence}}.) O se puede querer salir de esta función y mirar en
   otra, tal como @c{split-line}. No se necesita leer todas las funciones. De
-  acuerdo a @c{count-words-in-defun}, la función @c{split-line} contiene 102
+  acuerdo a @c{contar-palabras-en-definicion}, la función @c{split-line} contiene 102
   palabras y símbolos.
 
 #   Even though it is short, @c{split-line} contains expressions we have not
@@ -24950,7 +24910,7 @@ and promoting software freedom.”
 #   print the body of a graph. Here we write the code for printing and
 #   labeling vertical and horizontal axes, along with the body itself.
    Los ejes impresos ayudan a comprender un grafo. Para crear escalas. En un
-   capítulo anterior (Vease Sección @l{Leyendo un grafo, , Leyendo un
+   capítulo anterior (Vease Sección @l{Preparar un grafico, , Leyendo un
    grafo}), se escribió el código para imprimir el cuerpo de un grafo. Aquí
    se escribe el código para imprimir y etiquetar ejes horizontales y
    verticales, a lo largo del cuerpo en sí.
@@ -25064,7 +25024,7 @@ and promoting software freedom.”
 #   < src..
    ..src > elisp
      (defun print-graph (numbers-list)
-       "documentation…"
+       "documentacion…"
        (let ((height  …
              …))
          (print-Y-axis height … )
@@ -26293,7 +26253,7 @@ and promoting software freedom.”
 #    < src..
    ..src > elisp
      (defun print-graph (numbers-list)
-       "documentation…"
+       "documentacion…"
        (let ((height  …
              …))
          (print-Y-axis height … )
@@ -26658,7 +26618,7 @@ and promoting software freedom.”
 
 #     It is a good idea to reset the value of @c{top-of-ranges} in case you
 #     have set it to some different value. You can evaluate the following:
-     Eso es una buena idea para eliminar el valor de @c{top-of-ranges} en
+     Eso es una buena idea para eliminar el valor de @c{cima-de-rangos} en
      caso de que has asignado a algún valor diferente. Se puede evaluar lo
      siguiente:
 
@@ -26672,7 +26632,7 @@ and promoting software freedom.”
 #          260 270 280 290 300)
 #      < src..
      ..src > elisp
-       (setq top-of-ranges
+       (setq cima-de-rangos
         '(10  20  30  40  50
           60  70  80  90 100
          110 120 130 140 150
@@ -26700,13 +26660,13 @@ and promoting software freedom.”
 #      < src..
      ..src > elisp
        (setq list-for-graph
-              (defuns-per-range
+              (definiciones-por-rango
                 (sort
-                 (recursive-lengths-list-many-files
+                 (lista-de-longitudes-de-muchos-ficheros-recursiva
                   (directory-files "/usr/local/emacs/lisp"
                                    t ".+el$"))
                  '<)
-                top-of-ranges))
+                cima-de-rangos))
      < src..
 
 #     On my old machine, this took about an hour. It looked though 303 Lisp
@@ -26799,10 +26759,10 @@ and promoting software freedom.”
 #     multiplied its argument by 7. This function is similar, except it
 #     divides its argument by 50; and, it has no name. The anonymous
 #     equivalent of @c{multiply-by-seven} is:
-     Pronto, por ejemplo, se tenía una función @c{multiply-by-seven}; se
+     Pronto, por ejemplo, se tenía una función @c{multiplicar-por-siete}; se
      multiplica su argumento por 7. Esta función es similar, excepto que
      divide su argumento por 50; y, no tiene nombre. El equivalente anónimo
-     de @c{multiply-by-seven} es:
+     de @c{multiplicar-por-siete} es:
 
 #      ..src > elisp
 #        (lambda (number) (* 7 number))
@@ -26824,7 +26784,7 @@ and promoting software freedom.”
 #             function  argument
 #     < art..
      ..art >
-       (multiply-by-seven 3)
+       (multiplicar-por-siete 3)
         \_______________/ ^
                 |         |
              función  argumento
@@ -26919,7 +26879,7 @@ and promoting software freedom.”
 #     remaining.  (See Section @l{Readying a Graph}, for a explanation of
 #     @c{apply}.)
     En contraste con esto @c{apply}, se aplica su primer argumento a todo lo
-    que permanece. (Vea la Seccion @l{Leyendo un grafo}, para una explicación
+    que permanece. (Vea la Seccion @l{Preparar un grafico}, para una explicación
     de @c{apply}.)
 
 #     In the definition of @c{one-fiftieth}, the first argument is the
@@ -27001,7 +26961,7 @@ and promoting software freedom.”
 #     300 by tens. But the @c{print-graph} function will print only by ones.
      ¡Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la
      función @c{print-graph} …. Esta tiene una opción @c{vertical-step}, pero
-     no una opción @c{horizontal-step}. La escala @c{top-of-range} va desde
+     no una opción @c{horizontal-step}. La escala @c{cima-de-rango} va desde
      10 a 300 por decenas. Pero la función @c{print-graph} imprimirá solo uno
      por uno.
 

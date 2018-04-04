@@ -232,7 +232,6 @@ pre { overflow: auto;
 .pre-block,
 .example-block { line-height: 1em;
                  display: flex;
-                 justify-content: center;
                }
 
 pre.art { font-size: .7em; line-height: 1em;

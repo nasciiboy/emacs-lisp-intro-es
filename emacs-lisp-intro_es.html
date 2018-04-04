@@ -278,7 +278,7 @@
     <li><a class="h3" href="#repaso" >Repaso</a></li>
     <li><a class="h3" href="#ejercicios-con-re-search-forward" >Ejercicios con <code>re-search-forward</code></a></li>
     </ul>
-  <li><a class="h2" href="#contando:-repetición-y-regexps" >Contando: repetición y regexps</a></li>
+  <li><a class="h2" href="#conteo:-repetición-y-regexps" >Conteo: repetición y regexps</a></li>
     <ul>
     <li><a class="h3" href="#la-función-count-words-example" >La función <code>count-words-example</code></a></li>
       <ul>
@@ -291,23 +291,23 @@
     <ul>
     <li><a class="h3" href="#¿qué-contar?" >¿Qué contar?</a></li>
     <li><a class="h3" href="#¿qué-constituye-una-palabra-o-símbolo?" >¿Qué constituye una palabra o símbolo?</a></li>
-    <li><a class="h3" href="#la-función-count-words-in-defun" >La función <code>count-words-in-defun</code></a></li>
-    <li><a class="h3" href="#contar-varias-defuns-en-un-fichero" >Contar varias <code>defuns</code> en un fichero</a></li>
+    <li><a class="h3" href="#la-función-contar-palabras-en-definicion" >La función <code>contar-palabras-en-definicion</code></a></li>
+    <li><a class="h3" href="#contar-varias-defuns-dentro-de-un-fichero" >Contar varias <code>defuns</code> dentro de un fichero</a></li>
     <li><a class="h3" href="#encontrar-un-fichero" >Encontrar un fichero</a></li>
-    <li><a class="h3" href="#lengths-list-file-en-detalle" ><code>lengths-list-file</code> en detalle</a></li>
+    <li><a class="h3" href="#lista-de-longitudes-en-fichero-en-detalle" ><code>lista-de-longitudes-en-fichero</code> en detalle</a></li>
     <li><a class="h3" href="#contar-palabras-en-defuns-en-diferentes-ficheros" >Contar palabras en <code>defuns</code> en diferentes ficheros</a></li>
       <ul>
       <li><a class="h4" href="#la-función-append" >La función <code>append</code></a></li>
       </ul>
-    <li><a class="h3" href="#recursivamente-cuenta-palabras-en-diferentes-ficheros" >Recursivamente cuenta palabras en diferentes ficheros</a></li>
-    <li><a class="h3" href="#preparar-los-datos-para-mostrarlos-en-un-grafo" >Preparar los datos para mostrarlos en un grafo</a></li>
+    <li><a class="h3" href="#contar-palabras-recursivamente-en-diferentes-ficheros" >Contar palabras recursivamente en diferentes ficheros</a></li>
+    <li><a class="h3" href="#preparar-los-datos-para-visualizarlos-en-un-grafico" >Preparar los datos para visualizarlos en un grafico</a></li>
       <ul>
       <li><a class="h4" href="#ordenando-listas" >Ordenando listas</a></li>
       <li><a class="h4" href="#creando-una-lista-de-ficheros" >Creando una lista de ficheros</a></li>
       <li><a class="h4" href="#contando-definiciones-de-función" >Contando definiciones de función</a></li>
       </ul>
     </ul>
-  <li><a class="h2" href="#leyendo-un-grafo" >Leyendo un grafo</a></li>
+  <li><a class="h2" href="#preparar-un-grafico" >Preparar un grafico</a></li>
     <ul>
     <li><a class="h3" href="#la-función-graph-body-print" >La función <code>graph-body-print</code></a></li>
     <li><a class="h3" href="#la-función-recursive-graph-body-print" >La función <code>recursive-graph-body-print</code></a></li>
@@ -4589,7 +4589,7 @@ nil
 </li>
 </ul>
 </div>
-<h2 id="contando:-repetición-y-regexps" >Contando: repetición y regexps</h2>
+<h2 id="conteo:-repetición-y-regexps" >Conteo: repetición y regexps</h2>
 <div class="hBody-2" >
 <p>La repetición y la búsqueda de expresiones regulares son poderosas herramientas que con frecuencia se usan al escribir código en Emacs Lisp. Este capítulo ilustra el uso de búsqueda de expresiones regulares a través de la construcción de comandos de conteo de palabras usando bucles <code>while</code> y recursión.</p>
 <p>La distribución de Emacs estándar contiene una función para contar el número de líneas dentro de una región.</p>
@@ -4895,170 +4895,168 @@ nil
 </div>
 <h2 id="contando-palabras-en-una-defun" >Contando palabras en una <code>defun</code></h2>
 <div class="hBody-2" >
-<p>El siguiente proyecto es contar el número de palabras en una definición de función. Claramente, esto se puede hacer usando alguna variante de <code>count-words-example</code>. Vea la Seccion <a href="Contando-palabras,-,-Contando-palabras:-repetición-y-regexps" >Contando palabras, , Contando palabras: repetición y regexps</a>. Si se está ahora yendo a contar las palabras en una definición, es suficientemente fácil marcar la definición con el comando <kbd>C-M-h</kbd> (<code>mark-defun</code>), y entonces se llama a <code>count-words-example</code>.</p>
-<p>Sin embargo, soy más ambicioso: Yo quiero contar las palabras y símbolos en cada definición en las fuentes de Emacs y entonces imprimir un grafo que muestre cuántas funciones hay de cada tamaño: cuántas contienen de 40 a 49 palabras o símbolos, cuántas contienen de 50 a 59 palabras o símbolos, y así. Yo he sido con frecuencia curioso de cómo es una función típica, y esto se contará.</p>
-<p>Descrito en una frase, el proyecto desanima; pero dividido dentro de numerosos pequeños pasos, cada uno de los que podemos tomar en un momento, el proyecto llegar ser menos atemorizante. Permítenos considerar qué pasos deben ser:</p>
+<p>Nuestro siguiente proyecto es contar el número de palabras en una definición de función. Claramente, esto se puede hacer usando alguna variante de <code>count-words-example</code>. Vea la Seccion <a href="#conteo:-repetición-y-regexps" >Conteo: repetición y regexps</a>. Si solo vamos a contar las palabras en una definición, es bastante fácil marcar la definición con el comando <kbd>C-M-h</kbd> (<code>mark-defun</code>), y luego llamar a <code>count-words-example</code>.</p>
+<p>Sin embargo, soy más ambicioso: quiero contar las palabras y símbolos en todas las definiciónes del codigo de Emacs y despues imprimir un grafico que muestre cuántas funciones hay de cada tamaño: cuántas contienen de 40 a 49 palabras o símbolos, cuántas contienen de 50 a 59 palabras o símbolos, y así sucesivamente. A menudo he tenido curiosidad por saber cuanto abarca una función típica, y esto lo dira.</p>
+<p>Descrito en una frase, el proyecto del histograma desanima; pero dividido dentro de muchos pequeños pasos, tomando uno a uno, el proyecto se vuelve menos atemorizante. Consideremos cuales deberian ser los pasos a seguir:</p>
 <ul>
 <li>
-<p>Primero, escribe una función para contar las palabras en una definición. Esto incluye el problema de manejar símbolos tan bien como palabras.</p>
+<p>Primero, escribir una función para contar las palabras en una definición. Esto incluye el problema de manejar tanto símbolos como palabras.</p>
 </li>
 <li>
-<p>Segundo, escribe una función para listar los números de palabras en cada función en un fichero. Esta función puede usar la función <code>count-words-in-defun</code>.</p>
+<p>Segundo, escribir una función para listar el número de palabras de cada función en un fichero. Esta función puede usar la función <code>count-words-in-defun</code>.</p>
 </li>
 <li>
-<p>Tercero, escribe una función para listar los números de palabras en cada función en cada uno de varios ficheros. Esto encola automáticamente encontrando varios ficheros, cambiándolos, y contando las palabras en las definiciones con ellos.</p>
+<p>Tercero, escribir una función para listar el número de palabras en cada función en cada uno de los ficheros. Esto implica encontrar automáticamente ficheros diferentes, cambiar entre ellos, y contar las palabras en las definiciones dentro de cada uno.</p>
 </li>
 <li>
-<p>Cuarto, escribe una función para convertir la lista de números que nosotros creamos en tres pasos para un formulario que se ajustará para imprimir un grafo.</p>
+<p>Cuarto, escribir una función para convertir la lista de números que creamos en el paso tres a un formulario que sea adecuado para imprimir en forma de grafico.</p>
 </li>
 <li>
-<p>Quinto, escribe una función para imprimir los resultados como un grafo.</p>
+<p>Quinto, escribir una función para imprimir los resultados como un grafico.</p>
 </li>
 </ul>
-<p>¡Esto es un proyecto! Pero si tomamos cada paso lentamente, eso no será difícil.</p>
+<p>¡Este es un gran proyecto! Pero si tomamos cada paso lentamente, no será difícil.</p>
 </div>
 <h3 id="¿qué-contar?" >¿Qué contar?</h3>
 <div class="hBody-3" >
-<p>Cuando nosotros primero empezamos pensando acerca del contaje de palabras en una definición de función, la primera pregunta es (o podría ser) ¿qué se va a contar?  Cuando se habla de ‘palabras’ con repecto a una definición de función Lisp, estamos actualmente hablando, en parte, de ‘símbolos’. Por ejemplo, la siguiente función <code>multiply-by-seven</code> contiene los cinco símbolos <code>defun</code>, <code>multipy-by-seven</code>, <code>number</code>, <code>*</code>, y <code>7</code>. Además, en la cadena de documentación, contiene cuatro palabras <samp>Multiplicar</samp>, <samp>NUMBER</samp>, <samp>por</samp>, y <samp>siete</samp>. El símbolo <samp>número</samp> es repetido, así la definición contiene un total de diez palabras y símbolos.</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiply-by-seven</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span>
-  <span class="s">&#34;Multiplicar NUMBER por siete.&#34;</span>
-  <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">number</span><span class="p">))</span>
+<p>Cuando empezamos a pensar en como contar las palabras en una definición de función, la primera pregunta es (o deberia ser) ¿qué vamos a contar?  Cuando hablamos de ‘palabras’ con repecto a una definición de función Lisp, en realidad estamos hablando, en gran parte, de ‘símbolos’. Por ejemplo, la siguiente función <code>multiplicar-por-siete</code> contiene los cinco símbolos <code>defun</code>, <code>multiplicar-por-siete</code>, <code>numero</code>, <code>*</code>, y <code>7</code>. Además, en la cadena de documentación, contiene cuatro palabras <samp>Multiplicar</samp>, <samp>NUMERO</samp>, <samp>por</samp>, y <samp>siete</samp>. El símbolo <samp>número</samp> se repite, por lo que la definición contiene un total de diez palabras y símbolos.</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiplicar-por-siete</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>
+  <span class="s">&#34;Multiplica NUMERO por siete.&#34;</span>
+  <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">numero</span><span class="p">))</span>
 </code></pre>
-<p>Sin embargo, si se marca la definición <code>multiply-by-seven</code> con <kbd>C-M-h</kbd> (<code>mark-defun</code>), y entonces se llama a <code>count-words-example</code> dentro, se encontrará que <code>count-words-example</code> ¡reclama la definición tiene once palabras, no diez! ¡Alguna cosa está mal!</p>
-<p>El problema es doble: <code>count-words-example</code> no cuenta el <samp>*</samp> como una palabra, y eso cuenta el símbolo simple, <code>multiply-by-seven</code>, conteniendo tres palabras. Las conexiones son tratadas como si fueran espacios entre palabras en vez de conectores entre palabras <samp>multiply-by-seven</samp> se cuenta como si fuese escrito <samp>multiply-by-seven</samp>.</p>
-<p>La causa de esta confusión es la expresión regular que busca la definición <code>count-words-example</code> que mueve el punto hacia delante palabra por palabra. En la versión canónica de <code>count-words-example</code>, el regexp es:</p>
+<p>Sin embargo, si marcamos la definición <code>multiplicar-por-siete</code> con <kbd>C-M-h</kbd> (<code>mark-defun</code>), y luego llamamos a <code>count-words-example</code> en ella, se encontrará que <code>count-words-example</code> ¡afirma que la definición tiene once palabras, no diez! ¡Alguna cosa está mal!</p>
+<p>El problema es doble: <code>count-words-example</code> no cuenta el <samp>*</samp> como una palabra, y cuenta el símbolo unico, <code>multiplicar-por-siete</code>, conteniendo tres palabras. Los guines se tratan como si fueran espacios entre palabras en lugar de conectores entre palabras <samp>multiplicar-por-siete</samp> se cuenta como si fuese escrito <samp>multiplicar por siete</samp>.</p>
+<p>La causa de esta confusión es la expresión regular que busca la definición <code>count-words-example</code> que mueve el punto hacia adelante palabra por palabra. En la versión canónica de <code>count-words-example</code>, la regexp es:</p>
 <div class="example-block" >
 <pre class="example" >&#34;\\w+\\W*&#34;
 </pre>
 </div>
-<p>Esta expresión regular es un patrón definiendo una o más palabras constituyendo caracteres posiblemente seguidos por uno o más caracteres que no son palabras constituyentes. Esto significa que los ‘caracteres que constituyen palabras’ nos traen la cuestión de la sintaxis, que es el valor de una sección en sí.</p>
+<p>Esta expresión regular es un patrón que define uno o más caracteres constituyentes de la palabra, posiblemente seguidos por uno o más caracteres que no son constituyentes de palabras. Lo que se entiende por ‘caracteres que constituyen palabras’ nos lleva a la cuestión de la sintaxis, que merece una sección en por sí misma.</p>
 </div>
 <h3 id="¿qué-constituye-una-palabra-o-símbolo?" >¿Qué constituye una palabra o símbolo?</h3>
 <div class="hBody-3" >
-<p>Emacs trata diferentes caracteres perteneciendo a diferentes <dfn>categorías de sintaxis</dfn>. Por ejemplo, la expresión regular, <samp>\\w+</samp>, es un patrón especificando uno o más caracteres de <em>palabras constituyentes</em>. Los caracteres de palabras constituyentes son miembros de una categoría de sintaxis. Otras categoría de sintaxis incluye la clase de caracteres de puntuación, tales como el espacio en blanco o el caracter de tabulación. (Para más información, ver Seccion <q>La Tabla de Sintaxis</q> en <em>El Manual GNU Emacs</em>, y Seccion <q>Tablas de Sintaxis</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>.)</p>
-<p>Las tablas de sintaxis especifican qué caracteres pertenecen a qué categorías. Normalmente un guión no está especificado como un ‘caracter constituido por una palabra’. En vez de eso, se especificó como estando en la ‘clase de caracteres que son parte de los nombres de símbolos, pero no las palabras.’  Esto significa que la función <code>count-words-example</code> se trata del mismo modo que trata un espacio en blanco entre palabras, que es el por qué <code>count-words-example</code> cuenta <samp>multiply-by-seven</samp> como tres palabras.</p>
-<p>Hay dos caminos para causar que Emacs cuente <samp>multiply-by-seven</samp> como un símbolo: modificar la tabla de sintaxis o modificar la expresión regular.</p>
-<p>Se podría redefinir un guión (<em>hyphen</em>) como un caracter que constituye una palabra modificando la tabla de sintaxis que Emacs guarda por cada modo. Esta acción serviría nuestro propósito, excepto que una conexión es meramente el caracter más común con símbolos que no son típicamente un caracter de palabra constituyente; hay otros, también.</p>
-<p>Alternativamente, se puede redefinir la expresión regular <em>regexp</em> usada en la definición <code>count-words</code> así como incluir símbolos. Este procedimiento tiene el mérito de la claridad, pero la tarea es un pequeño truco.</p>
-<p>La primera parte es suficientemente simple: el patrón debe asignarse “al menos un carácter que es una palabra o símbolo constituyente”. De este modo:</p>
+<p>Emacs trata diferentes caracteres como perteneciendo a diferentes <dfn>categorías sintacticas</dfn>. Por ejemplo, la expresión regular, <samp>\\w+</samp>, es un patrón que especifica uno o más caracteres <em>constituyentes de palabras</em>. Los caracteres constituyentes de palabras son miembros de una categoría sintactica. Otras categoría sintactica incluye la clase de caracteres de puntuación, como el punto y la coma, y la clase de caracteres de espacio en blanco, como el espacio en blanco o el tabulador. (Para más información, vea la Seccion <q>La Tabla de Sintaxis</q> en <em>El Manual GNU Emacs</em>, y Seccion <a href="info:emacs#Syntax-Tables" >Tablas de Sintaxis</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>.)</p>
+<p>Las tablas de sintaxis especifican qué caracteres pertenecen a qué categorías. Normalmente un guión no está especificado como un ‘caracter constiyente de una palabra’. En su lugar, se especifica como perteneciente a la ‘clase de caracteres que son parte de los nombres de símbolos, pero no de las palabras.’  Esto significa que la función <code>count-words-example</code> la trata del mismo modo que trata un espacio en blanco entre palabras, por lo qué la funcion <code>count-words-example</code> cuenta a <samp>multiplicar-por-siete</samp> como tres palabras.</p>
+<p>Hay dos maneras de hacer que Emacs cuente <samp>multiplicar-por-siete</samp> como un símbolo: modificar la tabla sintactica o modificar la expresión regular.</p>
+<p>Se podría redefinir un guión como un caracter constituyente de una palabra modificando la tabla de sintaxis que Emacs guarda para cada modo. Esta acción serviría a nuestro propósito, excepto que un guion es meramente el caracter más común dentro de los símbolos que no es son un típico caracter constituyente de una palabra; hay otros, también.</p>
+<p>Alternativamente, podemos redefinir la regexp usada en la definición de <code>count-words-example</code> para incluir símbolos. Este procedimiento tiene el mérito de la claridad, pero la tarea es un poco dificil.</p>
+<p>La primera parte es bastante simple: el patrón debe coincidir con “al menos un carácter sea una palabra o símbolo constituyente”. Asi:</p>
 <div class="example-block" >
 <pre class="example" >&#34;\\(\\w\\|\\s_\\)+&#34;
 </pre>
 </div>
-<p>El <samp>\\(</samp> es la primera parte del constructo que agrupa esto que incluye el <samp>\\w</samp> y el <samp>\\s_</samp> como alternativas, separadas por los <samp>\\|</samp>. El <samp>\\w</samp> asocia cualquier caracter de palabra constituyente y el <samp>\\s_</samp> asocia cualquier caracter que es parte de un nombre de símbolo pero no una palabra de caracteres constituyente. El <samp>+</samp> sigue al grupo que indica que la palabra o símbolo constituyan caracteres que deben ser asociados al menos por uno.</p>
-<p>Sin embargo, la segunda parte de regexp es más difícil de diseñar. Lo que queremos es seguir la primera parte con “opcionalmente uno o más caracteres que no constituyen una palabra o símbolo”. Primero, se pensaba que se podría definir esto con lo siguiente:</p>
+<p>El <samp>\\(</samp> es la primera parte del constructor de agrupacion que incluye el <samp>\\w</samp> y el <samp>\\s_</samp> como alternativas, separadas por <samp>\\|</samp>. El <samp>\\w</samp> coincide con cualquier caracter forme parte una palabra y <samp>\\s_</samp> con cualquier caracter que forme parte de un símbolo no constituyente de palabras. El <samp>+</samp> a continuacion del grupo indica que los caracteres que componen la palabra o el símbolo deben coincidir al menos una vez.</p>
+<p>Sin embargo, la segunda parte de la regexp es más difícil de diseñar. Lo que queremos es seguir la primera parte con “opcionalmente uno o más caracteres que no constituyen una palabra o símbolo”. Al principio, pense que se podría definir esto con lo siguiente:</p>
 <div class="example-block" >
 <pre class="example" >&#34;\\(\\W\\|\\S_\\)*&#34;
 </pre>
 </div>
-<p>Las mayúsculas <samp>W</samp> y <samp>S</samp> asocian caracteres que <em>no</em> son constituyente de palabra o símbolo. Desafortunadamente, esta expresión asocia cualquier caracter que sea o no una palabra constituyente no un símbolo constituyente. ¡Esto asocia cualquier caracter!</p>
-<p>Entonces se notificó que cada palabra o símbolo en mi región test fué seguida por algún espacio (espacio en blanco, tabulador, o nueva línea). Así yo intenté emplazar un patrón para asociar uno o más espacios en blanco después del patrón para una o más palabras o símbolos constituyentes. Esto falló, también. Palabras y símbolos son con frecuencia separados por espacios en blanco, pero en el código actual los paréntesis pueden seguir símbolos y puntuación puede seguir las palabras. Así finalmente, se diseño un patrón en el que la palabra o símbolo constituyente es seguido opcionalmente por caracteres que no son espacios en blanco y entonces son seguidos opcionalmente por espacios en blanco.</p>
+<p>Las mayúsculas <samp>W</samp> y <samp>S</samp> coinciden con caracteres que <em>no</em> son parte de palabras o símbolos. Desafortunadamente, esta expresión coincide con cualquier caracter que no sea parte de una palabra o simbolo. ¡Esto coincide con cualquier caracter!</p>
+<p>Entonces note que cada palabra o símbolo en mi región de prueba iba seguida de un espacio en blanco (espacio en blanco, tabulador, o línea nueva). Así que colocar un patrón para que coincidiese con uno o más espacios en blanco después del patrón para una o más palabras o símbolos constituyentes. Esto tambien falló. Las palabras y los símbolos suelen estar separados por espacios en blanco, pero en el código real los paréntesis pueden ir despues de los símbolos y la puntuación puede seguir las palabras. Así que finalmente, diseñe un patrón en el que los componentes de la palabra o simbolo van seguidos opcionalmente por caracteres que no son espacios en blanco, seguidos a su vez por espacios en blanco opcionales.</p>
 <p>Aquí está la expresión regular completa:</p>
 <div class="example-block" >
 <pre class="example" >&#34;\\(\\w\\|\\s_\\)+[^ \t\n]*[ \t\n]*&#34;
 </pre>
 </div>
 </div>
-<h3 id="la-función-count-words-in-defun" >La función <code>count-words-in-defun</code></h3>
+<h3 id="la-función-contar-palabras-en-definicion" >La función <code>contar-palabras-en-definicion</code></h3>
 <div class="hBody-3" >
-<p>Se ha visto que hay varios caminos para escribir una función <code>count-word-region</code>. Para escribir un <code>count-words-in-defun</code>, se necesita solamente adaptar una de estas versiones.</p>
-<p>La versión que usa un bucle <code>while</code> es fácil de comprender, así estoy yendo a adaptar esto. Porque <code>count-words-in-defun</code> será parte de un programa más complejo, eso no necesita ser interactivo y no necesita mostrar un mensaje pero solo devuelve el contaje. Estas consideraciones simplifican la definición un poco.</p>
-<p>Por otro lado, <code>count-words-in-defun</code> será usado con un buffer que contiene definiciones de función. Consiguientemente, es razonable preguntar que la función determina si se llamó cuando el punto está con una definición de función, y eso es, para devolver el contaje para esta definición. Esto añade complejidad a la definición, pero nos guarda desde la necesidad de pasar argumentos a la función.</p>
+<p>Hemos visto que hay varias maneras de escribir la función <code>count-word-region</code>. Para escribir <code>contar-palabras-en-definicion</code>, basta con adaptar una de estas versiones.</p>
+<p>La versión que utiliza un bucle <code>while</code> es fácil de comprender, así que voy a adaptarla. Debido a que <code>contar-palabras-en-definicion</code> formara parte de un programa más complejo, no necesita ser interactivo y ni mostrar un mensaje, solamente devolver el conteo. Estas consideraciones simplifican un poco la definición.</p>
+<p>Por otro lado, <code>contar-palabras-en-definicion</code> se utilizara dentro de un buffer que contiene definiciones de función. Por consiguiente, es razonable pedir que la función determina si se llama cuando el punto está dentro de una definición de función, y si lo esta, que devuelva el conteo para esa definición. Esto añade complejidad a la definición, pero nos ahorra la necesidad de pasar argumentos a la función.</p>
 <p>Estas consideraciones nos llevan a preparar la siguiente plantilla:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">count-words-in-defun</span> <span class="p">()</span>
-  <span class="s">&#34;documentation…&#34;</span>
-  <span class="p">(</span><span class="nf">set</span> <span class="nv">up</span><span class="err">…</span>
-     <span class="p">(</span><span class="nb">while</span> <span class="nb">loop</span><span class="err">…</span><span class="p">)</span>
-   <span class="nb">return</span> <span class="nv">count</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">contar-palabras-en-definicion</span> <span class="p">()</span>
+  <span class="s">&#34;documentacion…&#34;</span>
+  <span class="p">(</span><span class="nv">configuracion</span><span class="err">…</span>
+     <span class="p">(</span><span class="nv">bucle</span> <span class="nb">while</span><span class="err">…</span><span class="p">)</span>
+   <span class="nv">regresar</span> <span class="nv">conteo</span><span class="p">)</span>
 </code></pre>
-<p>Así, el trabajo es rellenar los slots.</p>
+<p>Como de costumbre, nuestro trabajo es rellenar los huecos.</p>
 <p>Primero, la configuración.</p>
-<p>Estamos presuponiendo que esta función será llamada con un búfer conteniendo definiciones de función. Apunta si será con una definición de función o no. Para que <code>count-words-in-defun</code> funcione, el punto debe moverse al principio de la definición, un contador debe empezar a cero, y el bucle contando debe parar cuando el punto logre el fin de la definición.</p>
-<p>La función <code>beginning-of-defun</code> busca atrás para un delimitador de apertura tal como <samp>(</samp> al principio de una línea, y mueve el punto a esta posición, o sino al límite de la búsqueda. En la práctica, esto significa que <code>beginning-of-defun</code> mueve el punto al principio de un cierre o definición de función precedente, o sino al principio del buffer.</p>
-<p>El bucle <code>while</code> requiere un contador para guardar la traza de las palabras o símbolos siendo contados. Una expresión <code>let</code> puede ser usado para crear una variable local para este propósito, y lo asocia a un valor inicial de cero.</p>
-<p>La función <code>end-of-defun</code> funciona como <code>beginning-of-defun</code> excepto que mueve el punto al fin de la definición. <code>end-of-defun</code> puede ser usado como parte de una expresión que determina la posición del fin de la definición.</p>
-<p>La configuración para <code>count-words-in-defun</code> toma forma rápidamente: primero movemos el punto al principio de la definición, entonces se crea una variable local para manejar el conteo, y finalmente, se graba la posición del fin de la definición así el bucle <code>while</code> conocerá cuando parar el bucle.</p>
-<p>El código se parece a esto:</p>
+<p>Suponemos que esta función sera llamada dentro de un búfer que contiene definiciones de función. El punto estara o no dentro de una definición de función. Para que <code>contar-palabras-en-definicion</code> funcione, el punto debe moverse al principio de la definición, un contador debe empezar en cero, y el bucle de conteo debe parar cuando el punto alcance el final de la definición.</p>
+<p>La función <code>beginning-of-defun</code> busca hacia atrás un delimitador de apertura como <samp>(</samp> al principio de una línea, y mueve el punto a esa posición, o sino al límite de la búsqueda. En la práctica, esto significa que <code>beginning-of-defun</code> mueve el punto al principio de la funcion que lo rodea o a la anterior función, o bien al principio del buffer.</p>
+<p>El bucle <code>while</code> requiere un contador para registrar las palabras o símbolos que se estan contando. Una expresión <code>let</code> puede ser usada para crear una variable local para este propósito, y vincularse a un valor inicial de cero.</p>
+<p>La función <code>end-of-defun</code> opera como <code>beginning-of-defun</code> excepto que mueve el punto al fin de la definición. <code>end-of-defun</code> puede usarse como parte de una expresión que determina la posición del fin de la definición.</p>
+<p>La configuración para <code>contar-palabras-en-definicion</code> toma forma rápidamente: primero movemos el punto al principio de la definición, luego cremos una variable local para almacenar el conteo, y finalmente, registramos la posición del final de la definición para que el bucle <code>while</code> sepa cuando terminar.</p>
+<p>El código es asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">beginning-of-defun</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">count</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">end</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-defun</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
+<span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">cuenta</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">fin</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-defun</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
 </code></pre>
-<p>El código es simple. La única ligera complicación es probablemente ir al <code>end</code>: eso está asociado a la posición del fin de la definición por una expresión <code>save-excursion</code> que devuelve el valor del punto después de <code>end-of-defun</code> temporalmente se mueve al fin de la definición.</p>
-<p>La segunda parte del <code>count-words-in-defun</code>, después de la configuración, es el bucle <code>while</code>.</p>
-<p>El bucle debe contener una expresión que mueva el punto hacia adelante palabra por palabra y símbolo por símbolo, y otra expresión que cuente los saltos. La prueba-verdadero-o-falso para el bucle <code>while</code> probaría verdadero tan largo como el punto debería saltar hacia adelante, y falso si apunta al fin de la definición. Ya se ha redefinido la expresión regular para esto, así el bucle es sencillo:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="nv">end</span><span class="p">)</span>
+<p>El código es simple. Es probable que la única pequeña complicación este en <code>fin</code>, que se vincula a la posición del fin de la definición con una expresión <code>save-excursion</code> que devuelve el valor de <code>end-of-defun</code> que a su vez mueve temporalmente el punto al final de la definición.</p>
+<p>La segunda parte del <code>contar-palabras-en-definicion</code>, después de la configuración, es el bucle <code>while</code>.</p>
+<p>El bucle debe contener una expresión que mueva el punto hacia adelante palabra por palabra y símbolo por símbolo, y otra expresión que cuente los saltos. La prueba-verdadero-o-falso del bucle <code>while</code> debe ser verdadero siempre y cuando el punto salte hacia adelante, y falso si el punto esta al final de la definición. Ya hemos redefinido la expresión regular para esto, así que el bucle es sencillo:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="nv">fin</span><span class="p">)</span>
             <span class="p">(</span><span class="nf">re-search-forward</span>
-             <span class="s">&#34;\\(\\w\\|\\s_\\)+[^ \t\n]*[ \t\n]*&#34;</span> <span class="nv">end</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">count</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">count</span><span class="p">)))</span>
+             <span class="s">&#34;\\(\\w\\|\\s_\\)+[^ \t\n]*[ \t\n]*&#34;</span> <span class="nv">fin</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">cuenta</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">cuenta</span><span class="p">)))</span>
 </code></pre>
-<p>La tercera parte de la definición devuelve el contaje de palabras y símbolos. Esta parte es la última expresión con el cuerpo de la expresión <code>let</code>, y puede ser, muy la variable local <code>count</code>, que cuando se evalúa devuelve el contaje.</p>
-<p>Puesto junto, la definición <code>count-words-in-defun</code> se ve así:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">count-words-in-defun</span> <span class="p">()</span>
+<p>La tercera parte de la definición devuelve el numero de palabras y símbolos. Esta parte es la última expresión dentro del cuerpo de la expresión <code>let</code>, y puede ser, simplemente la variable local <code>cuenta</code>, que al ser evalúada devuelve el conteo.</p>
+<p>En conjunto, la definición <code>contar-palabras-en-definicion</code> luce así:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">contar-palabras-en-definicion</span> <span class="p">()</span>
   <span class="s">&#34;Devuelve el número de palabras y símbolos en una defun.&#34;</span>
   <span class="p">(</span><span class="nv">beginning-of-defun</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">count</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">end</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-defun</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">cuenta</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fin</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">end-of-defun</span><span class="p">)</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
     <span class="p">(</span><span class="nb">while</span>
-        <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="nv">end</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="nv">fin</span><span class="p">)</span>
              <span class="p">(</span><span class="nf">re-search-forward</span>
               <span class="s">&#34;\\(\\w\\|\\s_\\)+[^ \t\n]*[ \t\n]*&#34;</span>
-              <span class="nv">end</span> <span class="no">t</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">count</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">count</span><span class="p">)))</span>
-    <span class="nv">count</span><span class="p">))</span>
+              <span class="nv">fin</span> <span class="no">t</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">cuenta</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">cuenta</span><span class="p">)))</span>
+    <span class="nv">cuenta</span><span class="p">))</span>
 </code></pre>
-<p>¿Cómo se chequea esto? La función no es interactiva, pero es fácil poner un envoltorio alrededor de la función para hacerla interactiva; se puede usar casi el mismo código como la versión recursiva de <code>count-words-example</code>:</p>
+<p>¿Cómo probar esto? La función no es interactiva, pero es fácil poner un envoltorio alrededor de la función para hacerla interactiva; podemos usar casi el mismo código que el de la versión recursiva de <code>count-words-example</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Versión Interactiva.</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">count-words-defun</span> <span class="p">()</span>
-  <span class="s">&#34;Número de palabras y símbolos en una definición
-</span><span class="s">  de función.&#34;</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">contar-palabras-en-defun</span> <span class="p">()</span>
+  <span class="s">&#34;Número de palabras y símbolos en una definición de función.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">message</span>
    <span class="s">&#34;Contando palabras y símbolos en la definición de función ... &#34;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">count</span> <span class="p">(</span><span class="nv">count-words-in-defun</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">cuenta</span> <span class="p">(</span><span class="nv">contar-palabras-en-definicion</span><span class="p">)))</span>
     <span class="p">(</span><span class="nb">cond</span>
-     <span class="p">((</span><span class="nv">zerop</span> <span class="nv">count</span><span class="p">)</span>
+     <span class="p">((</span><span class="nv">zerop</span> <span class="nv">cuenta</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">message</span>
        <span class="s">&#34;La definición NO tiene palabras o símbolos.&#34;</span><span class="p">))</span>
-     <span class="p">((</span><span class="nf">=</span> <span class="mi">1</span> <span class="nv">count</span><span class="p">)</span>
+     <span class="p">((</span><span class="nf">=</span> <span class="mi">1</span> <span class="nv">cuenta</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">message</span>
        <span class="s">&#34;La definición tiene 1 palabra o símbolo.&#34;</span><span class="p">))</span>
      <span class="p">(</span><span class="no">t</span>
       <span class="p">(</span><span class="nf">message</span>
-       <span class="s">&#34;La definición tiene %d palabras o símbolos.&#34;</span> <span class="nv">count</span><span class="p">)))))</span>
+       <span class="s">&#34;La definición tiene %d palabras o símbolos.&#34;</span> <span class="nv">cuenta</span><span class="p">)))))</span>
 </code></pre>
-<p>Permite reutilizar <kbd>C-c =</kbd> como un atajo conveniente:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-c=&#34;</span> <span class="ss">&#39;count-words-defun</span><span class="p">)</span>
+<p>Reutilicemos <kbd>C-c =</kbd> como un conveniente atajo:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-c=&#34;</span> <span class="ss">&#39;contar-palabras-en-defun</span><span class="p">)</span>
 </code></pre>
-<p>Ahora se puede intentar <code>count-words-defun</code>: instala ambas funciones <code>count-words-in-defun</code> y <code>count-words-defun</code>, y asigna el atajo, y entonces emplaza el cursor con la siguiente definición:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiply-by-seven</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span>
-  <span class="s">&#34;Multiplicar NUMBER por siete.&#34;</span>
-  <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">number</span><span class="p">))</span>
-     <span class="err">⇒</span> <span class="mi">10</span>
+<p>Ahora podemos probar <code>contar-palabras-en-defun</code>: instala ambas funciones <code>contar-palabras-en-definicion</code> y <code>contar-palabras-en-defun</code>, y asigna el atajo, luego coloca el cursor con la siguiente definición:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiplicar-por-siete</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>
+  <span class="s">&#34;Multiplicar NUMERO por siete.&#34;</span>
+  <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">numero</span><span class="p">))</span>
 </code></pre>
 <p>¡Éxito! La definición tiene 10 palabras y símbolos.</p>
-<p>El siguiente problema es contar los números de palabras y símbolos en varias definiciones con un fichero simple.</p>
+<p>El siguiente problema es contar el numero de palabras y símbolos en varias definiciones con un mismo fichero.</p>
 </div>
-<h3 id="contar-varias-defuns-en-un-fichero" >Contar varias <code>defuns</code> en un fichero</h3>
+<h3 id="contar-varias-defuns-dentro-de-un-fichero" >Contar varias <code>defuns</code> dentro de un fichero</h3>
 <div class="hBody-3" >
-<p>Un fichero tal como <span class="file" >simple.el</span> puede tener un centenar o más definiciones de función dentro. Nuestro objetivo es recoger estadísticas en muchos ficheros, pero en un primer paso, nuestro objetivo inmediato es recoger estadísticas en un fichero.</p>
-<p>La información será una serie de números, cada número siendo el tamaño de una definición de función. Se pueden almacenar los números en una lista.</p>
-<p>Se sabe que se querrá incorporar la información considerando un fichero con información acerca de muchos otros ficheros; esto significa que la función para contar el tamaño de contaje con un fichero solo necesita devolver la lista de tamaños. Eso no necesita y no mostraría mensajes.</p>
-<p>Los comando de contar palabras contienen una expresión para saltar el punto hacia adelante palabra por palabra y otra expresión para contar los saltos. La función devuelve los tamaños de definiciones que pueden ser diseñadas para trabajar del mismo modo, con una expresión para saltar el punto hacia la definición por definición y otra expresión para construir el tamaño de la lista.</p>
-<p>Esta frase del problema hace elemental escribir la definición de función. Claramente, empezaremos el conteo al principio del fichero, así el primer comando será <code>(goto-char (point-min))</code>. Lo siguiente, es empezar el bucle <code>while</code>; y este true-or-false del bucle puede ser una búsqueda de expresión regular para la siguiente definición de función --- así en el momento que la búsqueda tiene éxito, el punto se mueve hacia adelante y entonces el cuerpo del bucle es evaluado. El cuerpo necesita una expresión que construye la lista de tamaños. <code>cons</code>, la lista de construcción del comando, puede ser usado para crear la lista. Esto es casi todo lo que hay.</p>
-<p>Aquí está este fragmento de código que se ve así:</p>
+<p>Un fichero como <span class="file" >simple.el</span> puede tener cientos o más definiciones dentro de el. Nuestro objetivo a largo plazo es recopilar estadísticas sobre muchos ficheros, pero como primer paso, nuestro objetivo inmediato es recoger estadísticas sobre un fichero.</p>
+<p>La información será una serie de números, siendo cada número la longitud de una definición de función. Podemos almacenar los números en una lista.</p>
+<p>Sabemos que querremos incorporar la información relativa a un fichero con información sobre de muchos otros ficheros; esto significa que la función para contar la longitudes de las definiciones solo necesita devolver la lista de longitudes. No necesita ni debe mostrar ningun mensaje.</p>
+<p>Los comando de conteo de palabras contienen una expresión para mover el punto palabra a palabra y otra expresión para contar los saltos. La función para devolver la longitud de las definiciones puede ser diseñada para trabajar del mismo modo, con una expresión para mover el punto hacia adelante definición por definición y otra expresión para construir la lista de longitudes.</p>
+<p>Esta afirmacion del problema hace que sea elemental escribir la definición de función. Claramente, empezaremos el conteo al principio del fichero, por lo que el primer comando será <code>(goto-char (point-min))</code>. Lo siguiente, es iniciar el bucle <code>while</code>; y la puerba verdadero-o-falso del bucle puede ser una regexp para la siguiente definición de función––siempre y cuando la búsqueda tenga éxito, el punto se movera hacia adelante y entonces se evalua el cuerpo del bucle. El cuerpo necesita una expresión que construya la lista de longitudes. <code>cons</code>, el comando de construccion de listas, puede utilizarce para crear la lista. Esto es casi todo lo que hay.</p>
+<p>Este fragmento de código tendria el siguiente aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&#34;^(defun&#34;</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">lengths-list</span>
-        <span class="p">(</span><span class="nf">cons</span> <span class="p">(</span><span class="nv">count-words-in-defun</span><span class="p">)</span> <span class="nv">lengths-list</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-longitudes</span>
+        <span class="p">(</span><span class="nf">cons</span> <span class="p">(</span><span class="nv">contar-palabras-en-definicion</span><span class="p">)</span> <span class="nv">lista-de-longitudes</span><span class="p">)))</span>
 </code></pre>
 <p>Dejamos fuera el mecanismo para encontrar el fichero que contiene las definiciones de función.</p>
-<p>En ejemplos previos, nosotros habíamos usado esto, el fichero Info, o cambiamos atrás y adelante a algún otro búfer, tal como el búfer <span class="file" >*scratch*</span>.</p>
-<p>Encontrar un fichero es un nuevo proceso que no tenemos todavía discutido.</p>
+<p>En ejemplos anteriores, usabamos est fichero, o el fichero Info, o cambiamos de un búfer a otro, como el búfer <span class="file" >*scratch*</span>.</p>
+<p>Encontrar un fichero es un nuevo proceso que aun no hemos discutido.</p>
 </div>
 <h3 id="encontrar-un-fichero" >Encontrar un fichero</h3>
 <div class="hBody-3" >
-<p>Para encontrar un fichero en Emacs, se usa el comando <kbd>C-x C-f</kbd> (<code>find-file</code>). Este comando es casi, pero no bastante correcto para el problema de tamaños.</p>
-<p>Permita mirar el fuente para <code>find-file</code>:</p>
+<p>Para encontrar un fichero en Emacs, se usa el comando <kbd>C-x C-f</kbd> (<code>find-file</code>). Este comando es casi, pero no del todo adecuado para el problema de las longitudes.</p>
+<p>Veamos el codigo fuente de <code>find-file</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">find-file</span> <span class="p">(</span><span class="nv">filename</span><span class="p">)</span>
   <span class="s">&#34;Edita el fichero FILENAME.
 </span><span class="s">Cambia a un búfer visitando el fichero FILENAME,
@@ -5066,182 +5064,178 @@ nil
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;FFind file: &#34;</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">switch-to-buffer</span> <span class="p">(</span><span class="nv">find-file-noselect</span> <span class="nv">filename</span><span class="p">)))</span>
 </code></pre>
-<p>(La versión más reciente de la definición de función <code>find-file</code> permite comodines especiales para visitar múltiples ficheros; que hacen la definición más compleja y no se discutirá aquí, ya que no es relevante. Se pueden ver sus fuentes usando <kbd>M-.</kbd> (<code>find-tag</code>) o <kbd>C-h f</kbd> (<code>describe-function</code>).)</p>
-<p>La definición que se está mostrando posee una documentación corta, pero completa y una especificación interactiva que muestra un nombre de fichero cuando se usa el comando interactivamente. El cuerpo de la definición contiene dos funciones, <code>find-file-noselect</code> y <code>switch-to-buffer</code>.</p>
-<p>De acuerdo a su documentación como muestra por <kbd>C-h f</kbd> (el comando <code>describe-function</code>), la función <code>find-file-noselect</code> lee el fichero nombrado dentro de un búfer y devuelve el búfer. (Su versión más reciente incluye un argumento comodín, también, así como otro para leer un fichero literalmente y otro que suprime mensajes de aviso. Estos argumentos opcionales son irrelevantes.)</p>
-<p>Sin embargo, la función <code>find-file-noselect</code> no selecciona el búfer en el que se pone el fichero. Emacs no cambia su atención (o la tuya si estás usando <code>find-file-noselect</code>) al búfer seleccionado. Esto es lo que <code>switch-to-buffer</code> hace: eso cambia el búfer al que se dirige la atención de Emacs; y eso cambia el búfer mostrado en la ventana al nuevo búfer. Se ha discutido el búfer cambiando a otro lugar. (Vea la Seccion <a href="Cambiando-búfers" >Cambiando búfers</a>.)</p>
-<p>En este proyecto de histograma, no se necesita mostrar cada fichero en la pantalla como el programa determina el tamaño de cada definición con eso. En vez de emplear <code>switch-to-buffer</code>, se puede trabajar con <code>set-buffer</code>, que redirige la atención del programa de ordenador para un búfer diferente pero no lo muestra en pantalla. Así en vez llamar a <code>find-file</code> para hacer el trabajo, debe escribir nuestra expresión.</p>
+<p>(La definición de la versión más reciente de <code>find-file</code> permite especificar comodines especiales para visitar múltiples ficheros; que hacen la definición más compleja y no la discutiremos aquí, ya que no es relevante. Se puede ver el codigo usando <kbd>M-.</kbd> (<code>find-tag</code>) o <kbd>C-h f</kbd> (<code>describe-function</code>).)</p>
+<p>La definición que estoy mostrando posee una documentación corta, pero completa y una expresion interactiva que pide un nombre de fichero cuando se usa el comando interactivamente. El cuerpo de la definición contiene dos funciones, <code>find-file-noselect</code> y <code>switch-to-buffer</code>.</p>
+<p>De acuerdo con su documentación, tal y como se muestra con <kbd>C-h f</kbd> (el comando <code>describe-function</code>), la función <code>find-file-noselect</code> lee el fichero nombrado en un búfer y devuelve el búfer. (Su versión más reciente incluye un argumento comodín opcional, así como otro para leer un fichero literalmente y otro para suprimir mensajes de advertencia. Estos argumentos opcionales son irrelevantes.)</p>
+<p>Sin embargo, la función <code>find-file-noselect</code> no selecciona el búfer en el que se pone el fichero. Emacs no cambia su atención (o la tuya si estás usas <code>find-file-noselect</code>) al búfer seleccionado. Esto es lo que hace <code>switch-to-buffer</code>: cambia el búfer al que se dirige la atención de Emacs; y cambia el búfer mostrado en la ventana al nuevo búfer. Hemos discutido el cambiando de búfer en otra parte. (Vea la Seccion <a href="#cambiando-búfers" >Cambiando búfers</a>.)</p>
+<p>En este proyecto de histograma, no necesitamos mostrar cada fichero en la pantalla ya que el programa determina el tamaño de cada definición dentro de el. En lugar de emplear <code>switch-to-buffer</code>, podemos trabajar con <code>set-buffer</code>, que redirige la atención del programa a un búfer diferente, pero no lo muestra en pantalla. Así en vez llamar a <code>find-file</code> para hacer el trabajo, debemos escribir nuestra propia expresión.</p>
 <p>La tarea es fácil: usar <code>find-file-noselect</code> y <code>set-buffer</code>.</p>
 </div>
-<h3 id="lengths-list-file-en-detalle" ><code>lengths-list-file</code> en detalle</h3>
+<h3 id="lista-de-longitudes-en-fichero-en-detalle" ><code>lista-de-longitudes-en-fichero</code> en detalle</h3>
 <div class="hBody-3" >
-<p>El núcleo de la función <code>lengths-list-file</code> es un bucle <code>while</code> conteniendo una función para mover el punto hacia delante ‘función a función’ y una función para contar el número de palabras y símbolos en cada función. Este núcleo debe ser rodeado por funciones que hacen otras tareas varias, incluyendo encontrar el fichero, y asegurando que el punto empieza al principio del fichero. La definición de la función se parece a:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">lengths-list-file</span> <span class="p">(</span><span class="nv">filename</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve la lista de tamaños de definiciones con FILE.
+<p>El núcleo de la función <code>lista-de-longitudes-en-fichero</code> es un bucle <code>while</code> que contiene una función para mover el punto hacia delante ‘defun a defun’ y una función para contar el número de palabras y símbolos en cada funcion. Este núcleo debe ser rodeado por funciones que realizan otras tareas varias, incluyendo encontrar el fichero, y asegurando que el punto empieza al principio del fichero. La definición de la función se ve asi:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">lista-de-longitudes-en-fichero</span> <span class="p">(</span><span class="nv">nombre-de-fichero</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve la lista de longitudes de las definiciones dentro de NOMBRE-DE-FICHERO.
 </span><span class="s">La lista devuelta es una lista de números.
 </span><span class="s">Cada número es el número de palabras o
 </span><span class="s">símbolos en una definición.&#34;</span>
-  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Trabajando en </span><span class="ss">`%s&#39;</span><span class="s"> ... &#34;</span> <span class="nv">filename</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Trabajando en </span><span class="ss">`%s&#39;</span><span class="s"> ... &#34;</span> <span class="nv">nombre-de-fichero</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">save-excursion</span>
-    <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">buffer</span> <span class="p">(</span><span class="nv">find-file-noselect</span> <span class="nv">filename</span><span class="p">))</span>
-          <span class="p">(</span><span class="nv">lengths-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">buffer</span> <span class="p">(</span><span class="nv">find-file-noselect</span> <span class="nv">nombre-de-fichero</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">lista-de-longitudes</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">set-buffer</span> <span class="nv">buffer</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">setq</span> <span class="nv">buffer-read-only</span> <span class="no">t</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">widen</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
       <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&#34;^(defun&#34;</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">setq</span> <span class="nv">lengths-list</span>
-              <span class="p">(</span><span class="nf">cons</span> <span class="p">(</span><span class="nv">count-words-in-defun</span><span class="p">)</span> <span class="nv">lengths-list</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-longitudes</span>
+              <span class="p">(</span><span class="nf">cons</span> <span class="p">(</span><span class="nv">contar-palabras-en-definicion</span><span class="p">)</span> <span class="nv">lista-de-longitudes</span><span class="p">)))</span>
       <span class="p">(</span><span class="nf">kill-buffer</span> <span class="nv">buffer</span><span class="p">)</span>
-      <span class="nv">lengths-list</span><span class="p">)))</span>
+      <span class="nv">lista-de-longitudes</span><span class="p">)))</span>
 </code></pre>
-<p>La función pasa un argumento, el nombre del fichero en el que se trabajará. Eso tiene cuatro líneas de documentación, pero sin especificación interactiva. Para evitar la preocupación de si se ha estropeado el programa o no, la primera línea del cuerpo es un mensaje de aviso.</p>
-<p>La siguiente línea contiene un <code>save-excursion</code> que devuelve a Emacs la atención al actual búfer cuando la función se completa. Esto es útil en caso de embeber esta función en otra función que presume que el punto restaura el búfer original.</p>
-<p>En la varlist de la expresión <code>let</code>, Emacs encuentra el fichero y ajusta la variable local <code>buffer</code> al búfer conteniendo el fichero. Al mismo tiempo, Emacs crea <code>lengths-list</code> como una variable local.</p>
-<p>Lo siguiente, Emacs cambia su atención al búfer.</p>
-<p>En la siguiente línea, Emacs crea el búfer de solo lectura. Idealmente, esta línea no es necesaria. Ninguna de las funciones para contar palabras y símbolos en una definición de función cambiaría el búfer. Debajo, el búfer no está yendo para ser guardado, incluso si eso fuese cambiado. Esta línea es enteramente la consecuencia grata, quizás excesiva precaución. La razón para la precaución es que esta función y esta se llama a trabajar en las fuentes para Emacs y eso es un inconveniente si están inadvertidamente modificadas. Eso va sin decir que no se realizó una necesidad para esta línea hasta que un experimento fué cambiado hacia un lado y empezó a modificar mis ficheros de fuentes Emacs …</p>
-<p>Lo siguiente llama a alargar el búfer si eso está encogido. Esta función es normalmente innecesaria––Emacs crea un búfer fresco si ninguno ya existe; pero si un búfer está visitando el fichero que ya existe que Emacs devuelve uno. En este caso, el búfer puede ser encogido y debe ser amplio. Si se quiere ser completamente ‘amigo del usuario’, se pondría en orden para guardar la restricción y la localización del punto, pero no.</p>
+<p>Se pasa un argumento a la función, el nombre del fichero en el que se trabajará. Tiene cuatro líneas de documentación, pero sin especificaciónes interactivas. Ya que a la gente le preocupa que un ordenador se estropeado si no ven nada, la primera línea del cuerpo es un mensaje de aviso.</p>
+<p>La siguiente línea contiene un <code>save-excursion</code> que devuelve la atencion de Emacs al búfer actual cuando la función se completa. Esto es útil en caso de incorporar esta función dentro de otra función que suponga que el punto se restaura el búfer original.</p>
+<p>En la varlist de la expresión <code>let</code>, Emacs busca el fichero y enlaza la variable local <code>buffer</code> al búfer que contiene el fichero. Al mismo tiempo, Emacs crea <code>lista-de-longitudes</code> como una variable local.</p>
+<p>A continuacion, Emacs cambia su atención al búfer.</p>
+<p>En la siguiente línea, Emacs hace que el búfer sea de solo lectura. Idealmente, esta línea no es necesaria. Ninguna de las funciones para contar palabras y símbolos en una definición de función debe cambiar el búfer. Ademas, el búfer no va a guardarse, incluso si se ha modificado. Esta línea es enteramente la consecuencia de una gran cautela, quizás excesiva. La razón de la precaución es que esta función y aquellas a las que llama trabajaran en el codigo fuente de Emacs y eso es un inconveniente si son modificadas de forma inadvertida. No hace falta decir que no me di cuenta de la necesidad de esta línea hasta que un experimento salio mal y empezó a modificar mis ficheros…</p>
+<p>Luego viene una llamada para extender el búfer si esta reducido. Esta función normalmente es innecesaria––Emacs crea un búfer nuevo si no existe ninguno; pero si hay un búfer visitando el fichero, Emacs devuelve ese búfer. En este caso, el búfer puede estar reducido y debe extenderse. Si quisieramos ser completamente ‘amigables con el usuario’, nos encargariamos de guardar la restricción y la ubicacion del punto, pero no lo haremos.</p>
 <p>La expresión <code>(goto-char (point-min))</code> mueve el punto al principio del búfer.</p>
-<p>Entonces llega un bucle <code>while</code> en el que se devuelve el ‘trabajo’ de la función. En el bucle, Emacs determina el tamaño de cada definición y construye una lista de tamaños conteniendo la información.</p>
-<p>Emacs corta el búfer después de trabajar a través de eso. Esto es guardar espacio dentro de Emacs. Mi versión de GNU Emacs 19 contenía 300 ficheros fuente de interés; GNU Emacs 22 contiene a través de un millar de ficheros fuente. Otra función aplicará <code>lengths-list-file</code> a cada uno de los ficheros.</p>
-<p>Finalmente, la última expresión con la expresión <code>let</code> es la variable <code>lengths-list</code>; su valor es devuelto como el valor de la función completa.</p>
-<p>Se puede probar esta función instalándolo en el modo usual. Entonces posiciona tu cursor después de la siguiente expresión y escribe <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>).</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">lengths-list-file</span>
+<p>Luego viene un bucle <code>while</code> en el que se realiza el ‘trabajo’ de la función. En el bucle, Emacs determina la longitud de cada definición y construye una lista de longitudes que contiene la información.</p>
+<p>Emacs mata el búfer después de trabajar a través de el. Esto es para ahorrar espacio dentro de Emacs. Mi versión de GNU Emacs 19 contenía 300 ficheros de codigo fuente de interés; GNU Emacs 22 contiene mas de mil ficheros de codigo fuente. Otra función aplicará <code>lista-de-longitudes-en-fichero</code> a cada uno de los ficheros.</p>
+<p>Finalmente, la última expresión dentro de la expresión <code>let</code> es la variable <code>lista-de-longitudes</code>; su valor se devuelve como el valor de toda la función.</p>
+<p>Se puede probar esta función instalándolo de la forma habitual. A continuacion coloca tu cursor después de la siguiente expresión y presiona <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>).</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">lista-de-longitudes-en-fichero</span>
  <span class="s">&#34;/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/debug.el&#34;</span><span class="p">)</span>
 </code></pre>
-<p>(Se puede necesitar cambiar la ruta del fichero; el único aquí es para GNU Emacs versión 22.1.1. Para cambiar la expresión, cópialo al búfer <span class="file" >*scratch*</span> y edítalo.</p>
-<p>(También, para ver el tamaño completo de la lista, en vez de una versión truncada se puede tener que evaluar lo siguiente:</p>
+<p>Puene que necesites cambiar la ruta del fichero; la de aqui es para GNU Emacs versión 22.1.1. Para cambiar la expresión, cópiala al búfer <span class="file" >*scratch*</span> y edítala.</p>
+<p>Ademas, para ver el la longitud completa de la lista, en lugar de una versión truncada es posible tener que evaluar lo siguiente:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">custom-set-variables</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">eval-expression-print-length</span> <span class="no">nil</span><span class="p">))</span>
 </code></pre>
-<p>(Vea la Seccion <a href="Especificar-Variables-usando-defcustom" >Especificar Variables usando <code>defcustom</code></a>. Entonces evalúa la expresión <code>lengths-list-file</code>.)</p>
-<p>La lista de tamaños para <span class="file" >debug.el</span> toma menos de un segundo para producirse esto en GNU Emacs 22:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">83</span> <span class="mi">113</span> <span class="mi">105</span> <span class="mi">144</span> <span class="mi">289</span> <span class="mi">22</span> <span class="mi">30</span> <span class="mi">97</span> <span class="mi">48</span> <span class="mi">89</span> <span class="mi">25</span> <span class="mi">52</span> <span class="mi">52</span> <span class="mi">88</span> <span class="mi">28</span> <span class="mi">29</span> <span class="mi">77</span> <span class="mi">49</span> <span class="mi">43</span> <span class="mi">290</span> <span class="mi">232</span> <span class="mi">587</span><span class="p">)</span>
-</code></pre>
-<p>(Usando mi vieja máquina, la versión 19 lista tamaños para <span class="file" >debug.el</span> que en siete segundos para producen esto:</p>
+<p>(Vea la Seccion <a href="#especificar-variables-usando-defcustom" >Especificar variables usando <code>defcustom</code></a>. A contituacion evalúa la expresión <code>lista-de-longitudes-en-fichero</code>.)</p>
+<p>La lista de longitudes para <span class="file" >debug.el</span> tarda menos de un segundo en producirse y se ve asi en GNU Emacs 22:</p>
+<pre class="srci" ><code class="elisp" ><span class="out" >(83 113 105 144 289 22 30 97 48 89 25 52 52 88 28 29 77 49 43 290 232 587)
+</span></code></pre>
+<p>Usando mi vieja máquina, con la versión 19 tambien con <span class="file" >debug.el</span> demora siete segundos en producir esto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">75</span> <span class="mi">41</span> <span class="mi">80</span> <span class="mi">62</span> <span class="mi">20</span> <span class="mi">45</span> <span class="mi">44</span> <span class="mi">68</span> <span class="mi">45</span> <span class="mi">12</span> <span class="mi">34</span> <span class="mi">235</span><span class="p">)</span>
 </code></pre>
-<p>(La versión nueva de <span class="file" >debug.el</span> contiene más defuns que la temprana; y mi nueva máquina es más rápida que la vieja.</p>
-<p>Nótese que el tamaño de la última definición en el fichero es el primero en la lista.</p>
+<p>La versión nueva de <span class="file" >debug.el</span> contiene más defuns que la anterior; y mi nueva máquina es mucho más rápida que la vieja.</p>
+<p>Tenga en cuenta que el tamaño de la última definición en el fichero es la primera de la lista.</p>
 </div>
 <h3 id="contar-palabras-en-defuns-en-diferentes-ficheros" >Contar palabras en <code>defuns</code> en diferentes ficheros</h3>
 <div class="hBody-3" >
-<p>En la sección previa, se creaba una función que devuelve una lista de los tamaños de cada definición en un fichero. Ahora, se quiere definir una función para devolver una lista maestra de los tamaños de las definiciones en una lista de ficheros.</p>
-<p>Trabajar en cada elemento de una lista de ficheros es un acto repetitivo, así se puede usar un bucle <code>while</code> o recursión.</p>
-<p>El diseño usando un bucle <code>while</code> es rutina. El argumento que se pasaba a la función es una lista de ficheros. Como se vió pronto (Vease Sección <a href="Ejemplo-de-bucle" >Ejemplo de bucle</a>), se puede escribir un bucle <code>while</code> de un modo que el cuerpo del bucle es evaluado si tal lista contiene elementos, pero sale del bucle si la lista está vacía. Para que este diseño funcione, el cuerpo del bucle debe contener una expresión que ordene la lista cada vez que el cuerpo es evaluado, de modo que finalmente la lista esté vacía. La técnica normal es asignar el valor de la lista para el valor del <code>cdr</code> de la lista cada vez que el cuerpo es evaluado.</p>
+<p>En la sección anterior, creamos una función que devuelve una lista de las longitudes de cada definición en un fichero. Ahora, queremos definir una función para devolver una lista maestra de las longitudes de las definiciones en una lista de ficheros.</p>
+<p>Trabajar en cada una de las listas de ficheros es es un acto repetitivo, por lo que podemos usar un bucle <code>while</code> o recursión.</p>
+<p>El diseño utilizando un bucle <code>while</code> es rutinario. El argumento que se pasaba a la función es una lista de ficheros. Como vimos anteriormente (Ver Sección <a href="#un-bucle-while-y-una-lista" >Un bucle <code>while</code> y una lista</a>), se puede escribir un bucle <code>while</code> de un modo que el cuerpo del bucle sea evaluado si tal lista contiene elementos, pero que deba salir del sale del bucle si la lista está vacía. Para que este diseño funcione, el cuerpo del bucle debe contener una expresión que acorte la lista con cada evaluacion del cuerpo, de modo que finalmente la lista esté vacía. La técnica usual es asignar el valor de la lista al valor del <code>cdr</code> de la lista cada vez que se evalua el cuerpo.</p>
 <p>La plantilla se ve así:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">test-whether-list-is-empty</span>
-  <span class="nv">body</span><span class="err">…</span>
-  <span class="nv">set-list-to-cdr-of-list</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">comprobar-si-la-lista-esta-vacia</span>
+  <span class="nv">cuerpo</span><span class="err">…</span>
+  <span class="nv">asignar-lista-al-cdr-de-la-lista</span><span class="p">)</span>
 </code></pre>
-<p>También, recuérdanos que un bucle <code>while</code> devuelve <code>nil</code> (el resultado de evaluar el prueba-verdadero-o-falso), no el resultado de cualquier evaluación con su cuerpo. (Las evaluaciones con el cuerpo del bucle son hechas para sus efectos secundarios.) Sin embargo, la expresión que asigna la lista de tamaños es parte del cuerpo––y que es el valor que queremos devuelto por la función como un todo. Para hacer esto cerramos el bucle <code>while</code> con una expresión <code>let</code>, y pone en orden que el último elemento de la expresión <code>let</code> contiene el valor de lista de tamaños. (Vea la Seccion <a href="Ejemplo-de-Incremento,-,-El-Ejemplo-del-Bucle-con-un-Contador-de-Incremento" >Ejemplo de Incremento, , El Ejemplo del Bucle con un Contador de Incremento</a>.)</p>
-<p>Estas consideraciones lideran directamente a la función en sí:</p>
+<p>Ademas, recordamos que un bucle <code>while</code> devuelve <code>nil</code> (el resultado de evaluar la prueba-verdadero-o-falso), no el resultado de ninguna evaluación dentro de su cuerpo. (Las evaluaciones dentro del cuerpo del bucle se hacen por sus efectos secundarios.) Sin embargo, la expresión que establece la lista de longitudes es parte del cuerpo––y ese el valor que queremos que devuelva la función como un todo. Para hacer esto, rodeamos el bucle <code>while</code> con una expresión <code>let</code>, y arreglamos que el último elemento de la expresión <code>let</code> contiene el valor de lista de longitudes. (Vea la Seccion <a href="#ejemplo-con-contador-incremental" >Ejemplo con contador incremental</a>.)</p>
+<p>Estas consideraciones nos llevan directamente a la función en sí:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Usar bucle while.</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">lengths-list-many-files</span> <span class="p">(</span><span class="nv">list-of-files</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve la lista de tamaños de funciones en LIST-OF-FILES.&#34;</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">lengths-list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">lista-de-longitudes-de-muchos-ficheros</span> <span class="p">(</span><span class="nv">lista-de-ficheros</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve la lista de longitudes de defuns en LISTA-DE-FICHEROS.&#34;</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">lista-de-longitudes</span><span class="p">)</span>
 
 <span class="c1">;;; prueba-verdadero-o-falso</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="nv">list-of-files</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lengths-list</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="nv">lista-de-ficheros</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-longitudes</span>
             <span class="p">(</span><span class="nf">append</span>
-             <span class="nv">lengths-list</span>
+             <span class="nv">lista-de-longitudes</span>
 
-<span class="c1">;;; Genera una lista de tamaños.</span>
-             <span class="p">(</span><span class="nv">lengths-list-file</span>
-              <span class="p">(</span><span class="nf">expand-file-name</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">list-of-files</span><span class="p">)))))</span>
+<span class="c1">;;; Genera una lista de longitudes.</span>
+             <span class="p">(</span><span class="nv">lista-de-longitudes-en-fichero</span>
+              <span class="p">(</span><span class="nf">expand-file-name</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-de-ficheros</span><span class="p">)))))</span>
 
-<span class="c1">;;; Crea una lista ordenada de ficheros.</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">list-of-files</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">list-of-files</span><span class="p">)))</span>
+<span class="c1">;;; Reducir la lista de ficheros.</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-ficheros</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">lista-de-ficheros</span><span class="p">)))</span>
 
-<span class="c1">;;; Devuelve la lista final de valores de tamaños.</span>
-    <span class="nv">lengths-list</span><span class="p">))</span>
+<span class="c1">;;; Devuelve el valor final de la lista de longitudes.</span>
+    <span class="nv">lista-de-longitudes</span><span class="p">))</span>
 </code></pre>
-<p><code>expand-file-name</code> es una función construida que convierte un nombre de fichero al absoluto, forma de nombre de ruta. La función emplea el nombre del directorio en el que la función se llama.</p>
-<p>De este modo, si <code>expand-file-name</code> es llamado en <code>debug.el</code> cuando Emacs está visitando el directorio <span class="file" >/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/</span></p>
+<p><code>expand-file-name</code> es una función nativa que convierte el nombre de fichero a su nombre de ruta absoluto. La función emplea el nombre del directorio en el que se llama la función.</p>
+<p>De este modo, si se llama a <code>expand-file-name</code> dentro de <code>debug.el</code> cuando Emacs está visitando el directorio <span class="file" >/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/</span></p>
 <div class="example-block" >
 <pre class="example" >debug.el
 </pre>
 </div>
-<p>llega a ser</p>
+<p>se convierte en</p>
 <div class="example-block" >
 <pre class="example" >/usr/local/share/emacs/22.1.1/lisp/emacs-lisp/debug.el
 </pre>
 </div>
-<p>El único nuevo elemento de esta definición de función es la todavía no estudiada función <code>append</code>, que merece una corta sección en sí.</p>
+<p>El único otro nuevo elemento de esta definición de función es la todavía no estudiada función <code>append</code>, que merece una breve sección.</p>
 </div>
 <h4 id="la-función-append" >La función <code>append</code></h4>
 <div class="hBody-4" >
-<p>La función <code>append</code> adjunta una lista a otra. De este modo,</p>
+<p>La función <code>append</code> une una lista a otra. De este modo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">append</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">))</span>
 </code></pre>
 <p>produce la lista</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">)</span>
 </code></pre>
-<p>Esto es exactamente cómo queremos adjuntar dos listas de tamaños producidas por <code>lengths-list-file</code> a cualquier otra. Los resultados contrastan con <code>cons</code>,</p>
+<p>Asi es exactamente cómo queremos unir dos listas de longitudes producidas por <code>lista-de-longitudes-en-fichero</code> entre si. Los resultados contrastan con <code>cons</code>,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">cons</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">))</span>
 </code></pre>
-<p>que construye una nueva lista en el que el primer argumento para <code>cons</code> llega a ser el primer elemento de la nueva lista:</p>
+<p>que construye una nueva lista en la que el primer argumento de <code>cons</code> se convierte en el primer elemento de la nueva lista:</p>
 <pre class="code" ><code class="chroma" ><span class="p">((</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">)</span>
 </code></pre>
 </div>
-<h3 id="recursivamente-cuenta-palabras-en-diferentes-ficheros" >Recursivamente cuenta palabras en diferentes ficheros</h3>
+<h3 id="contar-palabras-recursivamente-en-diferentes-ficheros" >Contar palabras recursivamente en diferentes ficheros</h3>
 <div class="hBody-3" >
-<p>Bajo un bucle <code>while</code>, se puede trabajar cada lista de ficheros con recursión. Una versión recursiva de <code>lengths-list-many-files</code> es corta y simple.</p>
-<p>La función recursiva tiene las partes normales: el ‘prueba-hazlo-de-nuevo’, la ‘expresion-del-siguiente-paso’, y la llamada recursiva. El ‘prueba-hazlo-de-nuevo’ determina si la función se llamaría, que hará si la <code>list-of-files</code> contiene los elementos restantes; la ‘expresion-del-siguiente-paso’ resetea el <code>list-of-files</code> al <code>cdr</code> en sí, así finalmente la lista será vacía; y la llamada recursiva llama en sí a la lista ordenada. ¡La función completa está ordenada por esta descripción!</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">recursive-lengths-list-many-files</span> <span class="p">(</span><span class="nv">list-of-files</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve la lista de tamaños de cada defun en LIST-OF-FILES.&#34;</span>
-  <span class="p">(</span><span class="nb">if</span> <span class="nv">list-of-files</span>                     <span class="c1">; prueba-hazlo-de-nuevo</span>
+<p>Ademas de un bucle <code>while</code>, podemos trabajar en cada lista de ficheros con recursión. Una versión recursiva de <code>lista-de-longitudes-de-muchos-ficheros</code> es corta y simple.</p>
+<p>La función recursiva tiene las partes usuales: la ‘prueba-hazlo-de-nuevo’, la ‘expresion-del-siguiente-paso’, y la llamada recursiva. La ‘prueba-hazlo-de-nuevo’ determina si la función debe volver a llamarse a si misma, lo que hará si la <code>lista-de-ficheros</code> contiene cualquier elemento restante; la ‘expresion-del-siguiente-paso’ reasigna la <code>lista-de-ficheros</code> con su mismo <code>cdr</code>, por lo que eventualmente la lista estara vacía; y la llamada recursiva se llamara a si misma en la lista mas corta. ¡La función completa es mas corta que esta descripción!</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">lista-de-longitudes-de-muchos-ficheros-recursiva</span> <span class="p">(</span><span class="nv">lista-de-ficheros</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve la lista de longitudes de cada defun en LISTA-DE-FICHEROS.&#34;</span>
+  <span class="p">(</span><span class="nb">if</span> <span class="nv">lista-de-ficheros</span>                      <span class="c1">; prueba-hazlo-de-nuevo</span>
       <span class="p">(</span><span class="nf">append</span>
-       <span class="p">(</span><span class="nv">lengths-list-file</span>
-        <span class="p">(</span><span class="nf">expand-file-name</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">list-of-files</span><span class="p">)))</span>
-       <span class="p">(</span><span class="nv">recursive-lengths-list-many-files</span>
-        <span class="p">(</span><span class="nf">cdr</span> <span class="nv">list-of-files</span><span class="p">)))))</span>
+       <span class="p">(</span><span class="nv">lista-de-longitudes-en-fichero</span>
+        <span class="p">(</span><span class="nf">expand-file-name</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-de-ficheros</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nv">lista-de-longitudes-de-muchos-ficheros-recursiva</span>
+        <span class="p">(</span><span class="nf">cdr</span> <span class="nv">lista-de-ficheros</span><span class="p">)))))</span>
 </code></pre>
-<p>En una frase, la función devuelve de tamaños de la lista para la el primero de la <code>list-of-files</code> al resultado de llamarse así mismo al resto de <code>list-of-files</code>.</p>
-<p>Aquí hay un test <code>recursive-lengths-list-many-files</code>, a lo largo de los resultados de ejecutar <code>lengths-list-file</code> en cada uno de los ficheros individualmente.</p>
-<p>Instala <code>recursive-lengths-list-many-files</code> y <code>lengths-list-file</code>, si es necesario, y entonces evalúa las siguientes expresiones. Se puede necesitar cambiar las rutas de ficheros; aquí se trabaja cuando este fichero Info y las fuentes de Emacs están localizadas en sus lugares personales. Para cambiar las expresiones, cópialas al búfer <span class="file" >*scratch*</span>, edítalos y entonces evalúalos.</p>
-<p>Los resultados son mostrados después del <samp>⇒</samp>. (Estos resultados son para ficheros de Emacs versión 22.1.1; ficheros desde otras versiones de Emacs puede producir diferentes resultados.)</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">cd</span> <span class="s">&#34;/usr/local/share/emacs/22.1.1/&#34;</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nv">lengths-list-file</span> <span class="s">&#34;./lisp/macros.el&#34;</span><span class="p">)</span>
-     <span class="err">⇒</span> <span class="p">(</span><span class="mi">283</span> <span class="mi">263</span> <span class="mi">480</span> <span class="mi">90</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nv">lengths-list-file</span> <span class="s">&#34;./lisp/mail/mailalias.el&#34;</span><span class="p">)</span>
-     <span class="err">⇒</span> <span class="p">(</span><span class="mi">38</span> <span class="mi">32</span> <span class="mi">29</span> <span class="mi">95</span> <span class="mi">178</span> <span class="mi">180</span> <span class="mi">321</span> <span class="mi">218</span> <span class="mi">324</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nv">lengths-list-file</span> <span class="s">&#34;./lisp/makesum.el&#34;</span><span class="p">)</span>
-     <span class="err">⇒</span> <span class="p">(</span><span class="mi">85</span> <span class="mi">181</span><span class="p">)</span>
-
-  <span class="p">(</span><span class="nv">recursive-lengths-list-many-files</span>
-   <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;./lisp/macros.el&#34;</span>
-     <span class="s">&#34;./lisp/mail/mailalias.el&#34;</span>
-     <span class="s">&#34;./lisp/makesum.el&#34;</span><span class="p">))</span>
-       <span class="err">⇒</span> <span class="p">(</span><span class="mi">283</span> <span class="mi">263</span> <span class="mi">480</span> <span class="mi">90</span> <span class="mi">38</span> <span class="mi">32</span> <span class="mi">29</span> <span class="mi">95</span> <span class="mi">178</span> <span class="mi">180</span> <span class="mi">321</span> <span class="mi">218</span> <span class="mi">324</span> <span class="mi">85</span> <span class="mi">181</span><span class="p">)</span>
-</code></pre>
-<p>La función <code>recursive-lengths-list-many-files</code> produce la salida que queremos.</p>
-<p>El siguiente paso es preparar el dato en la lista para mostrarlo en un grafo.</p>
+<p>En una frase, la función devuelve la lista de longitudes para la primer <code>lista-de-ficheros</code> adjunta al resultado de llamarse así misma al resto de la <code>lista-de-ficheros</code>.</p>
+<p>Aquí hay una prueba de <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code>, junto con los resultados de ejecutar <code>lista-de-longitudes-en-fichero</code> en cada uno de los ficheros individualmente.</p>
+<p>Instala <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> y <code>lista-de-longitudes-en-fichero</code>, y luego evalúa las siguientes expresiones. Es posible que necesites cambiar las rutas a los ficheros; las que aquí se incluyen funcionan cuando las fuentes de Emacs se encuentran en sus lugares habituales. Para cambiar las expresiones, cópialas al búfer <span class="file" >*scratch*</span>, edítalas y evalualas.</p>
+<p>(Estos resultados son para ficheros de la versión 22.1.1; los ficheros de otras versiones puede producir resultados diferentes.)</p>
+<pre class="srci" ><code class="elisp" ><span class="in" ><span class="prompt" >&gt; </span><span class="p">(</span><span class="nv">cd</span> <span class="s">&#34;/usr/local/share/emacs/22.1.1/&#34;</span><span class="p">)</span>
+</span><span class="in" ><span class="prompt" >&gt; </span><span class="p">(</span><span class="nv">lista-de-longitudes-en-fichero</span> <span class="s">&#34;./lisp/macros.el&#34;</span><span class="p">)</span>
+</span><span class="out" >(283 263 480 90)
+</span><span class="in" ><span class="prompt" >&gt; </span><span class="p">(</span><span class="nv">lista-de-longitudes-en-fichero</span> <span class="s">&#34;./lisp/mail/mailalias.el&#34;</span><span class="p">)</span>
+</span><span class="out" >(38 32 29 95 178 180 321 218 324)
+</span><span class="in" ><span class="prompt" >&gt; </span><span class="p">(</span><span class="nv">lista-de-longitudes-en-fichero</span> <span class="s">&#34;./lisp/makesum.el&#34;</span><span class="p">)</span>
+</span><span class="out" >(85 181)
+</span><span class="in" ><span class="prompt" >&gt; </span><span class="p">(</span><span class="nv">lista-de-longitudes-de-muchos-ficheros-recursiva</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;./lisp/macros.el&#34;</span>
+   <span class="s">&#34;./lisp/mail/mailalias.el&#34;</span>
+   <span class="s">&#34;./lisp/makesum.el&#34;</span><span class="p">))</span>
+</span><span class="out" >(283 263 480 90 38 32 29 95 178 180 321 218 324 85 181)
+</span></code></pre>
+<p>La función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> produce la salida que queremos.</p>
+<p>El siguiente paso es preparar los datos de la lista para visualizarlos en un grafico.</p>
 </div>
-<h3 id="preparar-los-datos-para-mostrarlos-en-un-grafo" >Preparar los datos para mostrarlos en un grafo</h3>
+<h3 id="preparar-los-datos-para-visualizarlos-en-un-grafico" >Preparar los datos para visualizarlos en un grafico</h3>
 <div class="hBody-3" >
-<p>La función <code>recursive-lengths-list-many-files</code> devuelve una lista de números. Cada número graba el tamaño de una definición de función. Lo que se necesita hacer ahora es transformar estos datos dentro de una lista de números ajustado para generar un grafo. La nueva lista contará cuántas definiciones de funciones contienen menos de 10 palabras y símbolos, cuantas contienen entre 10 y 19 palabras y símbolos, cuántas contienen entre 20 y 29 palabras y símbolos, y así sucesivamente.</p>
-<p>En breve, se necesita ir a través el tamaño de la lista producida por la función <code>recursive-lengths-list-many-files</code> y contar el número de defuns con cada rango de tamaños, y produce una lista de esto de números.</p>
-<p>Basado en lo que hemos hecho antes, se prevee que no sería difícil escribir una función que ‘<code>cdr</code>s’ bajo la lista de tamaños, parece que cada elemento, determina que rango de tamaños está dentro, e incrementa un contador para este rango.</p>
-<p>Sin embargo, antes de empezar a escribir tal función, nosotros consideraríamos las ventajas de ordenar los tamaños de la lista primero, así los números son ordenados desde el más pequeño al más largo. Primero, ordenando se hará fácil contar los números en cada rango, desde dos números adyacentes será el mismo rango del tamaño en rangos adyacentes. Segundo, inspeccionando una lista ordenada, se puede descubrir el número mayor y menor, y esto significa determinar el rango de tamaño mayor y menor que necesitará.</p>
+<p>La función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> devuelve una lista de números. Cada número registra la longitud de una definición de función. Lo que que tenemos que hacer ahora es transformar estos datos en una lista de números adecuados para generar un grafico. La nueva lista dira cuántas definiciones de funcion contienen menos de 10 palabras y símbolos, cuantas entre 10 y 19, cuántas entre 20 y 29, y así sucesivamente.</p>
+<p>En resumen, necesitamos revisar la lista de longitudes producida por la función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> y contar el número de definiciones dentro de cada rango, y producir una lista de esos números.</p>
+<p>Basado en lo que hemos hecho antes, podemos preveer que no sera demaciado difícil escribir una función que redusca la lista de longitudes con ‘<code>cdr</code>s’, mire cada elemento, determine en que rango de longitud esta, e incremente un contador para ese rango.</p>
+<p>Sin embargo, antes de empezar a escribir tal función, debemos considerar las ventajas de primero ordenar la lista de longitudes, de modo que los números se ordenen del más pequeño al más grande. En primer lugar, la ordenacion facilitara el conteo de los números en el mismo rango, ya que dos números adyacentes estaran en el mismo rango de longitud o en rangos adyacentes. Segundo, inspeccionando una lista ordenada, podemos descubrir el número mas alto y el mas bajo, y asi determinar el rango de longitud mas grande y mas pequeño que necesitaremos.</p>
 </div>
 <h4 id="ordenando-listas" >Ordenando listas</h4>
 <div class="hBody-4" >
-<p>Emacs contiene una función para listas ordenadas, llamadas (como se podría adivinar) <code>sort</code>. La función <code>sort</code> toma dos argumentos, la lista es ordenada, y un predicado que determina si la primera de dos elementos de lista es “menor” que la segunda.</p>
-<p>Como se vió antes (Vease Sección <q>Usando el Tipo Incorrecto de Objeto como un Argumento</q>), un predicado es una función que determina si alguna propiedad es verdadera o falsa. La función <code>sort</code> reordenará una lista de acuerdo a lo que la propiedad del predicado usa; esto significa que <code>sort</code> puede ser usado para ordenar listas no numéricas por un criterio no numérico --- eso puede, por ejemplo, alfabetizar una lista.</p>
-<p>La función <code>&lt;</code> se usa cuando se ordena una lista numérica. Por ejemplo,</p>
+<p>Emacs contiene una función para ordenar listas, llamada (como se podría adivinar) <code>sort</code>. La función <code>sort</code> toma dos argumentos, la lista a ordenar, y un predicado que determina si el primero de dos elementos de lista es “menor” que el segundo.</p>
+<p>Como vimos anteriormente (Ver Sección <a href="Usando-el-tipo-incorrecto-de-objeto-como-un-argumento" >Usando el tipo incorrecto de objeto como un argumento</a>), un predicado es una función que determina si alguna propiedad es verdadera o falsa. La función <code>sort</code> reordenará una lista de acuerdo a cualquier propiedad que use el predicado; esto significa que <code>sort</code> puede usarse para ordenar listas no numéricas por un criterio no numérico––puede, por ejemplo, ordenar la lista alfabeticamente.</p>
+<p>La función <code>&lt;</code> se utiliza para ordena una lista numérica. Por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">sort</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">8</span> <span class="mi">21</span> <span class="mi">17</span> <span class="mi">33</span> <span class="mi">7</span> <span class="mi">21</span> <span class="mi">7</span><span class="p">)</span> <span class="ss">&#39;&lt;</span><span class="p">)</span>
 </code></pre>
 <p>produce esto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">4</span> <span class="mi">7</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">17</span> <span class="mi">21</span> <span class="mi">21</span> <span class="mi">33</span><span class="p">)</span>
 </code></pre>
-<p>(Note que en este ejemplo, ambos argumentos se citan así que los símbolos no se evalúan antes de ser pasados por <code>sort</code> como argumentos.)</p>
-<p>Ordenando la lista devuelta por la función <code>recursive-lengths-list-many-files</code> es honesta; eso usa la función <code>&lt;</code>:</p>
+<p>(Ten en cuenta que en este ejemplo, ambos argumentos se citan para que no se evaluen los símbolos antes de pasarlos a <code>sort</code> como argumentos.)</p>
+<p>Ordenar la lista devuelta por la función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> es sencillo; utilizando la función <code>&lt;</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">sort</span>
- <span class="p">(</span><span class="nv">recursive-lengths-list-many-files</span>
+ <span class="p">(</span><span class="nv">lista-de-longitudes-de-muchos-ficheros-recursiva</span>
   <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;./lisp/macros.el&#34;</span>
     <span class="s">&#34;./lisp/mailalias.el&#34;</span>
     <span class="s">&#34;./lisp/makesum.el&#34;</span><span class="p">))</span>
@@ -5250,238 +5244,235 @@ nil
 <p>que produce:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">29</span> <span class="mi">32</span> <span class="mi">38</span> <span class="mi">85</span> <span class="mi">90</span> <span class="mi">95</span> <span class="mi">178</span> <span class="mi">180</span> <span class="mi">181</span> <span class="mi">218</span> <span class="mi">263</span> <span class="mi">283</span> <span class="mi">321</span> <span class="mi">324</span> <span class="mi">480</span><span class="p">)</span>
 </code></pre>
-<p>(Note que en este ejemplo, el primer argumento para <code>sort</code> no está citado, desde que la expresión debe ser evaluado así como producir la lista que es pasada para <code>sort</code>.)</p>
+<p>(Nota que en este ejemplo, el primer argumento para <code>sort</code> no se cita, ya que la expresión debe ser evaluada para producir la lista que se pasada para <code>sort</code>.)</p>
 </div>
 <h4 id="creando-una-lista-de-ficheros" >Creando una lista de ficheros</h4>
 <div class="hBody-4" >
-<p>La función <code>recursive-lengths-list-many-files</code> requiere una lista de fichero como argumento. Para nuestros ejemplos de test, se construyeron tal como una lista a mano; pero el directorio fuente de Emacs Lisp es demasiado grande para hacer esto. Así, se escribirá una función para hacer el trabajo. En esta función, se usa tanto un bucle <code>while</code> como una llamada recursiva.</p>
-<p>En viejas versiones de GNU Emacs no hizo falta tener que escribir esta función, puesto que todos los ficheros <samp>.el</samp> en un directorio. En vez de eso, se puede ser capaz de usar la función <code>directory-files</code>, que lista los nombres de fichero que hay en un directorio simple.</p>
-<p>Sin embargo, las versiones reciente Emacs emplazan ficheros de Emacs Lisp en subdirectorios del directorio de alto nivel <span class="file" >lisp</span>. Esto facilita la navegación. Por ejemplo, todos los ficheros de correo relacionados que están en el subdirectorio llamado <span class="file" >mail</span>. Pero al mismo tiempo, esta facilidad fuerza a crear un fichero listando la función que desciende dentro de los subdirectorios.</p>
-<p>Se puede crear esta función, llamada <code>files-en-below-directory</code>, usando funciones familiares tales como <code>car</code>, <code>nthcdr</code>, y <code>substring</code> en conjunción con una función existente llamada <code>directory-files-and-attributes</code>. Esta última función no solo listas de ficheros en un directorio, incluyendo los nombres de subdirectorios, pero también sus atributos.</p>
-<p>Para empezar nuestro objetivo: crear una función que nos permita alimentas ficheros a <code>recursive-lengths-list-many-files</code> como una lista que se parece a esto (pero con más elementos):</p>
+<p>La función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> requiere una lista de ficheros como argumento. Para nuestros ejemplos de prueba, hemos construido una lista de este tipo a mano; pero el directorio fuente de Emacs Lisp es demasiado grande para que podamos hacerlo. En su lugar, escribiremos una función para hacer el trabajo por nosotros. En esta función, usaremos tanto un bucle <code>while</code> como una llamada recursiva.</p>
+<p>En las viejas versiones de GNU Emacs no hacia falta escribir esta función, ya que todos los ficheros <samp>.el</samp> estaban colocados en un directorio. En su lugar, pudimos usar la función <code>directory-files</code>, que lista los nombres de los ficheros que coinciden con un patron especifico dentro de un solo directorio.</p>
+<p>Sin embargo, las versiones reciente de Emacs colocan los ficheros de Emacs Lisp en subdirectorios del directorio <span class="file" >lisp</span> de nivel superior. Esta reorganizacion facilita la navegación. Por ejemplo, todos los ficheros relacionados con el correo están en el subdirectorio <span class="file" >mail</span>. Pero al mismo tiempo, esta estructura nos obliga a crear una funcion de listado de ficheros que desciende dentro de los subdirectorios.</p>
+<p>Podemos crear esta función, llamada <code>ficheros-en-el-siguiente-directorio</code>, usando funciones familiares como <code>car</code>, <code>nthcdr</code>, y <code>substring</code> en conjunción con una función existente llamada <code>directory-files-and-attributes</code>. Esta última función no solo listas todos los ficheros en un directorio, incluyendo los nombres de los subdirectorios, también sus atributos.</p>
+<p>Repitamos nuestro objetivo: crear una función que nos permita alimentar a <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> con nombres de fichero en una lista parecida a esta (pero con más elementos):</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="s">&#34;./lisp/macros.el&#34;</span>
  <span class="s">&#34;./lisp/mail/rmail.el&#34;</span>
  <span class="s">&#34;./lisp/makesum.el&#34;</span><span class="p">)</span>
 </code></pre>
-<p>La función <code>directory-files-and-attributes</code> devuelve una lista de listas. Cada una de las listas con la lista principal consiste de 13 elementos. El primer elemento es una cadena que contiene el nombre del fichero––que, en GNU/Linux, puede ser un ‘directorio fichero’, que dice, un fichero con los atributos especiales de un directorio. El segundo elemento de la lista es <code>t</code> para un directorio, es una cadena para el enlace simbólico (la cadena es el nombre enlazado), o <code>nil</code>.</p>
-<p>Por ejemplo, el primer fichero <samp>.el</samp> en el directorio es <span class="file" >abbrev.el</span>. Su nombre es <span class="file" >/usr/local/share/emacs/22.1.1/lisp/abbrev.el</span> y no es un directorio o un enlace simbólico.</p>
-<p>Esto es cómo <code>directory-files-and-attributes</code> lista este fichero y sus atributos:</p>
+<p>La función <code>directory-files-and-attributes</code> devuelve una lista de listas. Cada una de las listas de la lista principal consiste de 13 elementos. El primer elemento es una cadena que contiene el nombre del fichero––que, en GNU/Linux, puede ser un ‘fichero de directorio’, es decir, un fichero con los atributos especiales de un directorio. El segundo elemento de la lista es <code>t</code> para un directorio, una cadena para el enlace simbólico (la cadena es el nombre al que enlaza), o <code>nil</code>.</p>
+<p>Por ejemplo, el primer fichero <samp>.el</samp> en el directorio <span class="file" >abbrev.el</span> es <span class="file" >abbrev.el</span>. Su nombre es <span class="file" >/usr/local/share/emacs/22.1.1/lisp/abbrev.el</span> y no es un directorio o un enlace simbólico.</p>
+<p>Asi es cómo <code>directory-files-and-attributes</code> lista este fichero y sus atributos:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="s">&#34;abbrev.el&#34;</span>
-<span class="no">nil</span>
-<span class="mi">1</span>
-<span class="mi">1000</span>
-<span class="mi">100</span>
-<span class="p">(</span><span class="mi">20615</span> <span class="mi">27034</span> <span class="mi">579989</span> <span class="mi">697000</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">17905</span> <span class="mi">55681</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">20615</span> <span class="mi">26327</span> <span class="mi">734791</span> <span class="mi">805000</span><span class="p">)</span>
-<span class="mi">13188</span>
-<span class="s">&#34;-rw-r--r--&#34;</span>
-<span class="no">nil</span>
-<span class="mi">2971624</span>
-<span class="mi">773</span><span class="p">)</span>
+ <span class="no">nil</span>
+ <span class="mi">1</span>
+ <span class="mi">1000</span>
+ <span class="mi">100</span>
+ <span class="p">(</span><span class="mi">20615</span> <span class="mi">27034</span> <span class="mi">579989</span> <span class="mi">697000</span><span class="p">)</span>
+ <span class="p">(</span><span class="mi">17905</span> <span class="mi">55681</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span>
+ <span class="p">(</span><span class="mi">20615</span> <span class="mi">26327</span> <span class="mi">734791</span> <span class="mi">805000</span><span class="p">)</span>
+ <span class="mi">13188</span>
+ <span class="s">&#34;-rw-r--r--&#34;</span>
+ <span class="no">nil</span>
+ <span class="mi">2971624</span>
+ <span class="mi">773</span><span class="p">)</span>
 </code></pre>
-<p>Por otro lado, <span class="file" >mail/</span> es un directorio con el directorio <span class="file" >lisp/</span>. El principio del listado se parece a esto:</p>
+<p>Por otro lado, <span class="file" >mail/</span> es un directorio dentro del directorio <span class="file" >lisp/</span>. El inicio del listado se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="s">&#34;mail&#34;</span>
-<span class="no">t</span>
-<span class="err">…</span>
-<span class="p">)</span>
+ <span class="no">t</span>
+ <span class="err">…</span>
+ <span class="p">)</span>
 </code></pre>
-<p>(Para aprender acerca de los diferentes atributos, mira en la documentación de <code>file-attributes</code>. Tenga en mente que la función <code>file-attributes</code> no lista el nombre del fichero, así su primer elemento es <code>directory-files-and-attributes</code> que es el segundo elemento.)</p>
-<p>Se querrán nuestras nuevas funciones, <code>files-in-below-directory</code>, para listar los fichero <samp>.el</samp> en el directorio eso es contado para probar, y en los directorios bajo este directorio.</p>
-<p>Esto nos da una sugestión de como construir <code>files-in-below-directory</code>: con un directorio, la función añadir los nombres de ficheros <samp>.el</samp> a una lista; y si, con un directorio, la función viene con un subdirectorio, iría dentro de este subdirectorio y repite sus acciones.</p>
-<p>Sin embargo, nosotros notaríamos que cada directorio contiene un nombre que se refiere a sí mismo, llamado <span class="file" >.</span>, (“dot”) y un nombre que se refiere a su directorio padre, llamado <span class="file" >..</span> (“doble punto”). (En <span class="file" >/</span>, el directorio raíz, <span class="file" >..</span> se refiere así mismo, desde que <span class="file" >/</span> no tiene padre.) Claramente, no que se quiere nuestra función <code>files-in-below-directory</code> para introducir estos directorio, desde que ellos siempre nos lideran, directamente o indirectamente, al directorio actual.</p>
-<p>Consecuentemente, nuestra función <code>files-in-below-directory</code> debe hacer varias tareas:</p>
+<p>(Para conocer los diferentes atributos, mira en la documentación de <code>file-attributes</code>. Ten en mente que la función <code>file-attributes</code> no lista el nombre del fichero, por lo que el primer elemento es el segundo elemento de <code>directory-files-and-attributes</code>.)</p>
+<p>Quisieramos que nuestra nueva funcion, <code>ficheros-bajo-el-dirirectorio</code>, listara los ficheros <samp>.el</samp> en el directorio que le pedimos inspeccionar, y en cualquier directorio debajo de ese directorio.</p>
+<p>Esto nos da una pista de como construir <code>ficheros-bajo-el-dirirectorio</code>: dentro de un directorio, la función deberia añadir los ficheros <samp>.el</samp> a una lista; y si, dentro de un directorio, la función se encuentra con un subdirectorio, ir dentro de este subdirectorio y repetir sus acciones.</p>
+<p>Sin embargo, debemos tener en cuenta que cada directorio contiene un nombre que hace referencia a sí mismo, llamado <span class="file" >.</span>, (“punto”) y un nombre que hace referencia a su directorio padre, llamado <span class="file" >..</span> (“doble punto”). (En <span class="file" >/</span>, el directorio raíz, <span class="file" >..</span> se refiere así mismo, ya que <span class="file" >/</span> no tiene padre.) Claramente, no queremos que nuestra función <code>ficheros-bajo-el-dirirectorio</code> ingrese a estos directorio, puesto que nos llevaran directamente o indirectamente, al directorio actual.</p>
+<p>Por consiguiente, nuestra función <code>ficheros-bajo-el-dirirectorio</code> debe realizar varias tareas:</p>
 <ul>
 <li>
-<p>Chequee para ver si se está mirando en un nombre de fichero que finaliza en <samp>.el</samp> y si es así, se añade el nombre a una lista.</p>
+<p>Probar si se está mirando un nombre de fichero que finaliza en <samp>.el</samp> y si es así, añadir su nombre a una lista.</p>
 </li>
 <li>
-<p>Chequee para ver si está mirando en un nombre de fichero que es el nombre de un directorio; y si es así,</p>
+<p>Probar si está mirando en un nombre de fichero que es el nombre de un directorio; y si es así,</p>
 <ul>
 <li>
-<p>Chequee para ver si está mirando en <span class="file" >.</span> o <span class="file" >..</span>; y si es así sal.</p>
+<p>Probar si está mirando en <span class="file" >.</span> o <span class="file" >..</span>; y si es así omitirlo.</p>
 </li>
 <li>
-<p>O además, ve dentro de este directorio y repite el proceso.</p>
+<p>Si no, ir dentro de ese directorio y repetir el proceso.</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>Se permite escribir una definición de función para hacer estas tareas. Se usará un bucle <code>while</code> para mover de un nombre de fichero a otro con un directorio chequeando lo que necesita ser hecho; y se usa una llamada recursiva para repetir las acciones en cada subdirectorio. El patrón recursivo es ‘acumular’ (Vease Sección <a href="Patrón-recursivo:-accumulate" >Patrón recursivo: <em>accumulate</em></a>) usando <code>append</code> para combinar.</p>
+<p>Escribamos una definición de función para realizar estas tareas. Usaremos un bucle <code>while</code> para movernos de un nombre de fichero a otro con un directorio comprobando lo que hay que hacer; y usaremos una llamada recursiva para repetir las acciones en cada subdirectorio. El patrón recursivo es ‘acumular’ (Vease Sección <a href="#patrón-recursivo:-accumulate" >Patrón recursivo: <em>accumulate</em></a>) usando <code>append</code> como combinador.</p>
 <p>Aquí está la función:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">files-in-below-directory</span> <span class="p">(</span><span class="nv">directory</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">ficheros-bajo-el-dirirectorio</span> <span class="p">(</span><span class="nv">directorio</span><span class="p">)</span>
   <span class="s">&#34;Lista los ficheros .el en DIRECTORIO y en sus subdirectorios.&#34;</span>
-  <span class="c1">;; Aunque la función será usada no interactivamente,</span>
-  <span class="c1">;; será fácil probar si lo hacemos interactivo.</span>
-  <span class="c1">;; El directorio tendrá un nombre tal como</span>
+  <span class="c1">;; Aunque la función se utilizara no interactivamente,</span>
+  <span class="c1">;; será mas fácil de probar si la hacemos interactiva.</span>
+  <span class="c1">;; El directorio tendrá un nombre como</span>
   <span class="c1">;;  &#34;/usr/local/share/emacs/22.1.1/lisp/&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;DNombre del Directorio: &#34;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">el-files-list</span>
-        <span class="p">(</span><span class="nv">current-directory-list</span>
-         <span class="p">(</span><span class="nf">directory-files-and-attributes</span> <span class="nv">directory</span> <span class="no">t</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">lista-de-ficheros-el</span>
+        <span class="p">(</span><span class="nv">lista-del-directorio-actual</span>
+         <span class="p">(</span><span class="nf">directory-files-and-attributes</span> <span class="nv">directorio</span> <span class="no">t</span><span class="p">)))</span>
     <span class="c1">;; mientras estamos en el directorio actual</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="nv">current-directory-list</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="nv">lista-del-directorio-actual</span>
       <span class="p">(</span><span class="nb">cond</span>
-       <span class="c1">;; chequee para ver si el nombre del fichero finaliza en ‘.el’</span>
-       <span class="c1">;; y si es así, añade su nombre a una lista.</span>
-       <span class="p">((</span><span class="nf">equal</span> <span class="s">&#34;.el&#34;</span> <span class="p">(</span><span class="nf">substring</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">current-directory-list</span><span class="p">))</span> <span class="mi">-3</span><span class="p">))</span>
-        <span class="p">(</span><span class="nb">setq</span> <span class="nv">el-files-list</span>
-              <span class="p">(</span><span class="nf">cons</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">current-directory-list</span><span class="p">))</span> <span class="nv">el-files-list</span><span class="p">)))</span>
-       <span class="c1">;; chequee si el nombre del fichero es un directorio</span>
-       <span class="p">((</span><span class="nf">eq</span> <span class="no">t</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">current-directory-list</span><span class="p">))))</span>
-        <span class="c1">;; decide si salir o hacer recursión</span>
+       <span class="c1">;; realiza una prueba para ver si el nombre del fichero termina</span>
+       <span class="c1">;; en ‘.el’ y si es así, añade su nombre a una lista.</span>
+       <span class="p">((</span><span class="nf">equal</span> <span class="s">&#34;.el&#34;</span> <span class="p">(</span><span class="nf">substring</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-del-directorio-actual</span><span class="p">))</span> <span class="mi">-3</span><span class="p">))</span>
+        <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-ficheros-el</span>
+              <span class="p">(</span><span class="nf">cons</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-del-directorio-actual</span><span class="p">))</span> <span class="nv">lista-de-ficheros-el</span><span class="p">)))</span>
+       <span class="c1">;; prueba si el nombre del fichero es un directorio</span>
+       <span class="p">((</span><span class="nf">eq</span> <span class="no">t</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-del-directorio-actual</span><span class="p">))))</span>
+        <span class="c1">;; decide si ignorarlo o hacer recursión</span>
         <span class="p">(</span><span class="nb">if</span>
             <span class="p">(</span><span class="nf">equal</span> <span class="s">&#34;.&#34;</span>
-                   <span class="p">(</span><span class="nf">substring</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">current-directory-list</span><span class="p">))</span> <span class="mi">-1</span><span class="p">))</span>
-            <span class="c1">;; entonces no hagas nada puesto que el nombre del fichero es</span>
-            <span class="c1">;; el actual directorio o padre, &#34;.&#34; o &#34;..&#34;</span>
+                   <span class="p">(</span><span class="nf">substring</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-del-directorio-actual</span><span class="p">))</span> <span class="mi">-1</span><span class="p">))</span>
+            <span class="c1">;; entonces no hacer nada puesto que el nombre del fichero es</span>
+            <span class="c1">;; el directorio actual o el padre, &#34;.&#34; o &#34;..&#34;</span>
             <span class="p">()</span>
-          <span class="c1">;; else desciende dentro del directorio y repite el proceso</span>
-          <span class="p">(</span><span class="nb">setq</span> <span class="nv">el-files-list</span>
+          <span class="c1">;; de otra forma, desciende dentro del directorio y repite el proceso</span>
+          <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-ficheros-el</span>
                 <span class="p">(</span><span class="nf">append</span>
-                 <span class="p">(</span><span class="nv">files-in-below-directory</span>
-                  <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">current-directory-list</span><span class="p">)))</span>
-                 <span class="nv">el-files-list</span><span class="p">)))))</span>
-      <span class="c1">;; mueve al siguiente fichero en la lista; esto también</span>
-      <span class="c1">;; ordena la lista así mientras el bucle</span>
-      <span class="c1">;; eventualmente llega a un fin</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">current-directory-list</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">current-directory-list</span><span class="p">)))</span>
+                 <span class="p">(</span><span class="nv">ficheros-bajo-el-dirirectorio</span>
+                  <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-del-directorio-actual</span><span class="p">)))</span>
+                 <span class="nv">lista-de-ficheros-el</span><span class="p">)))))</span>
+      <span class="c1">;; move al siguiente fichero en la lista; esto también acorta</span>
+      <span class="c1">;; la lista para que el bucle while eventualmente llegue a su fin</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-del-directorio-actual</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">lista-del-directorio-actual</span><span class="p">)))</span>
     <span class="c1">;; devuelve los ficheros</span>
-    <span class="nv">el-files-list</span><span class="p">))</span>
+    <span class="nv">lista-de-ficheros-el</span><span class="p">))</span>
 </code></pre>
-<p>Las funciones <code>files-in-below-directory</code> <code>directory-files</code> toma un argumento, el nombre de un directorio.</p>
-<p>De este modo, en mi sistema,</p>
+<p>La funcion <code>ficheros-bajo-el-dirirectorio</code> toma un argumento, el nombre de un directorio.</p>
+<p>Por eso, en mi sistema,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">length</span>
- <span class="p">(</span><span class="nv">files-in-below-directory</span> <span class="s">&#34;/usr/local/share/emacs/22.1.1/lisp/&#34;</span><span class="p">))</span>
+ <span class="p">(</span><span class="nv">ficheros-bajo-el-dirirectorio</span> <span class="s">&#34;/usr/local/share/emacs/22.1.1/lisp/&#34;</span><span class="p">))</span>
 </code></pre>
-<p>se cuenta que dentro y debajo de mi directorio de fuentes Lisp hay 1031 ficheros <samp>.el</samp></p>
-<p><code>files-in-below-directory</code> devuelve una lista en orden alfabético inverso. Una expresión para ordenar la lista en orden que parece como este:</p>
+<p>me dice que en y debajo de mi directorio de codigo fuente Lisp hay 1031 ficheros <samp><span class="file" >.el</span></samp></p>
+<p><code>ficheros-bajo-el-dirirectorio</code> devuelve una lista en orden alfabético inverso. Una expresión para ordenar la lista en orden alfabetico tiene el siguiente aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">sort</span>
- <span class="p">(</span><span class="nv">files-in-below-directory</span> <span class="s">&#34;/usr/local/share/emacs/22.1.1/lisp/&#34;</span><span class="p">)</span>
+ <span class="p">(</span><span class="nv">ficheros-bajo-el-dirirectorio</span> <span class="s">&#34;/usr/local/share/emacs/22.1.1/lisp/&#34;</span><span class="p">)</span>
  <span class="ss">&#39;string-lessp</span><span class="p">)</span>
 </code></pre>
 </div>
 <h4 id="contando-definiciones-de-función" >Contando definiciones de función</h4>
 <div class="hBody-4" >
-<p>Nuestro objetivo inmediato es generar una lista que cuenta, cuantas definiciones de funciones contienen menos de 10 palabras y símbolos, cuantas contienen entre 10 y 19 palabras y símbolos, cuantas contienen entre 20 y 29 palabras y símbolos, y así sucesivamente.</p>
-<p>Con una lista ordenada de números, es fácil: se cuentan cuantos elementos de la lista son más pequeños de 10, entonces, se devuelven los números contados, se cuenta cuantos son más pequeños de 20, entonces se devuelven los números contados, después se cuentan los que son más pequeños de 30, y así sucesivamente. Cada uno de los números, 10, 20, 30, 40, y como, es más grande que el tope de este rango. Se puede llamar a la lista de tales números, la lista <code>top-of-ranges</code>.</p>
-<p>Si se desea, se podría generar esta lista automáticamente, pero es más simple escribir una lista manualmente. Aquí está:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defvar</span> <span class="nv">top-of-ranges</span>
+<p>Nuestro objetivo inmediato es generar una lista que nos diga cuantas definiciones de funcion contienen menos de 10 palabras y símbolos, cuantas contienen entre 10 y 19 palabras y símbolos, cuantas entre 20 y 29, y así sucesivamente.</p>
+<p>Con una lista ordenada de números, es fácil: se cuentan cuantos elementos de la lista son más pequeños de 10, luego, luego, despues de de haber pasado los numeros que se acaban de contar, se cuenta cuantos son más pequeños de 20, luego, despues de haber pasado los numeros que se acaban de contar, los que son más pequeños de 30, y así sucesivamente. Cada uno de los números, 10, 20, 30, 40, y similares, es uno más grande que la parte superior de ese rango. Podemos llamar a la lista de estos numeros, la lista <code>cima-de-rangos</code>.</p>
+<p>Si quisieramos, podriamos generar esta lista automáticamente, pero es más sencillo escribir una lista manualmente. Aquí está:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defvar</span> <span class="nv">cima-de-rangos</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="mi">10</span>  <span class="mi">20</span>  <span class="mi">30</span>  <span class="mi">40</span>  <span class="mi">50</span>
    <span class="mi">60</span>  <span class="mi">70</span>  <span class="mi">80</span>  <span class="mi">90</span> <span class="mi">100</span>
   <span class="mi">110</span> <span class="mi">120</span> <span class="mi">130</span> <span class="mi">140</span> <span class="mi">150</span>
   <span class="mi">160</span> <span class="mi">170</span> <span class="mi">180</span> <span class="mi">190</span> <span class="mi">200</span>
   <span class="mi">210</span> <span class="mi">220</span> <span class="mi">230</span> <span class="mi">240</span> <span class="mi">250</span>
   <span class="mi">260</span> <span class="mi">270</span> <span class="mi">280</span> <span class="mi">290</span> <span class="mi">300</span><span class="p">)</span>
- <span class="s">&#34;Listar especificando rangos para ‘defuns-per-range’.&#34;</span><span class="p">)</span>
+ <span class="s">&#34;Listar especificando rangos para ‘definiciones-por-rango’.&#34;</span><span class="p">)</span>
 </code></pre>
-<p>Para cambiar los rangos, se edita esta lista.</p>
-<p>Lo siguiente, que se necesita es escribir la función que crea la lista del número de definiciones con cada rango. Claramente, esta función debe tomar el <code>sorted-lengths</code> y las listas <code>top-of-ranges</code> listas como argumentos.</p>
-<p>La función <code>defuns-per-range</code> debe hacer dos cosas una y otra vez: eso debe contar el número de definiciones con un rango específico por el actual valor top-of-range; y eso debe dividir al siguiente gran valor en la lista <code>top-of-ranges</code> después de contar el número de definiciones en el rango actual. Desde que cada una de estas acciones es repetitiva, se puede usar los bucles <code>while</code> para el trabajo. Un bucle cuenta el número de definiciones en el rango definido por el valor actual top-of-range, y el otro bucle selecciona cada uno de los valores top-of-range en turno.</p>
-<p>Varias entradas de la lista <code>sorted-lengths</code> se cuentan para cada rango; esto significa que el bucle para la lista <code>sorted-lengths</code> será dentro del bucle para la lista <code>top-of-ranges</code>, como un pequeño adorno dentro de un gran adorno.</p>
-<p>El bucle interno cuenta el número de definiciones con el rango. Eso es un simple contaje del tipo en el que se ha visto antes. (Vea la Seccion <a href="Un-bucle-con-un-contaje-incremental" >Un bucle con un contaje incremental</a>). La prueba true-or-false del bucle chequea si el valor desde la lista <code>sorted-lengths</code> es más pequeña que el actual valor de lo alto del rango. Si es así, la función incrementa el contador y se chequea el siguiente valor desde la lista <code>sorted-lengths</code>.</p>
-<p>El bucle interno se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">length-element-smaller-than-top-of-range</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">number-within-range</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">number-within-range</span><span class="p">))</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">sorted-lengths</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">sorted-lengths</span><span class="p">)))</span>
+<p>Para cambiar los rangos, editamos esta lista.</p>
+<p>A continuacion, necesitamos escribir la función que crea la lista del número de definiciones con cada rango. Evidentemente, esta función debe tomar las listas <code>longitudes-ordenadas</code> y <code>cima-de-rangos</code> como argumentos.</p>
+<p>La función <code>definiciones-por-rango</code> debe hacer dos cosas una y otra vez: debe contar el número de definiciones con un rango específicado por el valor superior actual del rango; y debe pasar al siguiente valor superior en la lista <code>cima-de-rangos</code> después de contar el número de definiciones en el rango actual. Dado que cada una de estas acciones es repetitiva, se pueden utilizar bucles <code>while</code> para el trabajo. Un bucle cuenta el número de definiciones en el rango definido por el valor superior actual del rango, y el otro bucle a su vez selecciona cada uno de los valores del valor del superior del rango.</p>
+<p>Se cuentan varias entradas de la lista de <code>longitudes-ordenadas</code> para cada rango; esto significa que el bucle para la lista de <code>longitudes-ordenadas</code> estara dentro del bucle para la lista de <code>cima-de-rangos</code>, como un pequeño engrane dentro de un gran mecanismo.</p>
+<p>El bucle interno cuenta el número de definiciones dentro del rango. Es un simple bucle conteo del tipo que hemos visto antes. (Ver la Seccion <a href="#un-bucle-con-un-contador-incremental" >Un bucle con un contador incremental</a>). La prueba verdadero-o-falso del bucle comprueba si el valor de la lista <code>longitudes-ordenadas</code> es menor que el valor actual de la cima del rango. Si es así, la función incrementa el contador y prueba el siguiente valor de la lista <code>longitudes-ordenadas</code>.</p>
+<p>El bucle interno se ve asi:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">elemento-de-longitud-menor-que-el-de-la-cima-de-rango</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">numero-dentro-del-rango</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">numero-dentro-del-rango</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">longitudes-ordenadas</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">longitudes-ordenadas</span><span class="p">)))</span>
 </code></pre>
-<p>El bucle de fuera debe empezar con el valor más bajo de la lista <code>top-of-ranges</code>, y entonces se asigna a cada uno de los valores superiores exitosos a su vez. Esto puede ser hecho con un bucle como este:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">top-of-ranges</span>
-  <span class="nv">body-of-loop</span><span class="err">…</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">top-of-ranges</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">top-of-ranges</span><span class="p">)))</span>
+<p>El bucle exterior debe empezar con el valor más bajo de la lista <code>cima-de-rangos</code>, y acontinuacion, ajustarse a cada uno de los valores superiores sucesivos. Esto puede ser hecho con un bucle como este:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">cima-de-rangos</span>
+  <span class="nv">cuerpo-del-bucle</span><span class="err">…</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">cima-de-rangos</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">cima-de-rangos</span><span class="p">)))</span>
 </code></pre>
-<p>Se ponen juntos, los dos bucles como este:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">top-of-ranges</span>
+<p>Puestos juntos, los dos bucles se ven asi:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">while</span> <span class="nv">cima-de-rangos</span>
 
-  <span class="c1">;; Contar el número de elementos con el actual rango.</span>
-  <span class="p">(</span><span class="nb">while</span> <span class="nv">length-element-smaller-than-top-of-range</span>
-    <span class="p">(</span><span class="nb">setq</span> <span class="nv">number-within-range</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">number-within-range</span><span class="p">))</span>
-    <span class="p">(</span><span class="nb">setq</span> <span class="nv">sorted-lengths</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">sorted-lengths</span><span class="p">)))</span>
+  <span class="c1">;; Contar el número de elementos dentro del rango actual.</span>
+  <span class="p">(</span><span class="nb">while</span> <span class="nv">elemento-de-longitud-menor-que-el-de-la-cima-de-rango</span>
+    <span class="p">(</span><span class="nb">setq</span> <span class="nv">numero-dentro-del-rango</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">numero-dentro-del-rango</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">setq</span> <span class="nv">longitudes-ordenadas</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">longitudes-ordenadas</span><span class="p">)))</span>
 
   <span class="c1">;; Mover al siguiente rango.</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">top-of-ranges</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">top-of-ranges</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">cima-de-rangos</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">cima-de-rangos</span><span class="p">)))</span>
 </code></pre>
-<p>Además, en cada circuito del bucle exterior, Emacs grabaría el número de definiciones con este rango (el valor de <code>number-within-range</code>) en una lista. Se puede usar <code>cons</code> para este propósito. (Vea la Seccion <a href="cons" ><code>cons</code></a>.)</p>
-<p>La función <code>cons</code> trabaja bien, excepto que la lista que se construye contendrá el número de definiciones para el alto rango y su principio el número de definiciones para el más bajo rango a su fin. Esto es porque <code>cons</code> adjunta nuevos elementos de la lista al principio de la lista, y desde los dos bucles que hacen cálculos a través de la lista de tamaños desde lo bajo finaliza primero, el <code>defuns-per-range-list</code> finalizará el primer número más largo. Pero lo que se quiere es imprimir nuestro grafo con pequeños valores primero y el más grande después. La solución es invertir el orden del <code>defuns-per-range-list</code>. Nosotros podemos hacer esto usando la función <code>nreverse</code>, que invierte el orden de una lista.</p>
+<p>Además, en cada iteracion del bucle exterior, Emacs debe registrar el número de definiciones dentro de ese rango (el valor de <code>numero-dentro-del-rango</code>) en una lista. Podemos usar <code>cons</code> para este propósito. (Vea la Seccion <a href="#cons" ><code>cons</code></a>.)</p>
+<p>La función <code>cons</code> trabaja bien, excepto que la lista que construye contendrá el número de definiciones para el rango mas alto y el número de definiciones para el más rango bajo al final. Esto se debe a que <code>cons</code> adjunta nuevos elementos de la lista al principio de la lista, y ya que los dos bucles hacen cálculos a través de la lista de longitudes desde el extremo inferior en primer lugar, la <code>lista-de-definiciones-por-rango</code> terminara con el numero mayor al pricipio. Pero querremos imprimir nuestro grafo con los valores pequeños primero y los más grandes después. La solución es invertir el orden de la <code>lista-de-definiciones-por-rango</code>. Podemos hacer esto usando la función <code>nreverse</code>, que invierte el orden de una lista.</p>
 <p>Por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">nreverse</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
 </code></pre>
 <p>produce:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre>
-<p>Note que la función <code>nreverse</code> es “destructiva”––que es, cambiar la lista a la que se aplica; esto contrasta con las funciones <code>car</code> y <code>cdr</code>, que no son destructivas. En este caso, no se quiere que el original <code>defuns-per-range-list</code>, de manera que no hay materia que se destruya. (La función <code>reverse</code> provee un copia inversa de una lista, dejando la lista original como es.)</p>
-<p>Pon todo junto, el <code>defuns-per-range</code> se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">defuns-per-range</span> <span class="p">(</span><span class="nv">sorted-lengths</span> <span class="nv">top-of-ranges</span><span class="p">)</span>
-  <span class="s">&#34;funciones de SORTED-LENGTHS en cada rango TOP-OF-RANGES.&#34;</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">top-of-range</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">top-of-ranges</span><span class="p">))</span>
-        <span class="p">(</span><span class="nv">number-within-range</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="nv">defuns-per-range-list</span><span class="p">)</span>
+<p>Note que la función <code>nreverse</code> es “destructiva”––es decir, cambiar la lista a la que se aplica; esto contrasta con las funciones <code>car</code> y <code>cdr</code>, que no son destructivas. En este caso, no queremos la <code>lista-de-definiciones-por-rango</code> original, asi que no importa que sea destruida. (La función <code>reverse</code> proporciona un copia inversa de una lista, dejando la lista original tal cual.)</p>
+<p>En conjunto, la funcion <code>definiciones-por-rango</code> se ven asi:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">definiciones-por-rango</span> <span class="p">(</span><span class="nv">longitudes-ordenadas</span> <span class="nv">cima-de-rangos</span><span class="p">)</span>
+  <span class="s">&#34;defuns de LONGITUDES-ORDENADAS en cada CIMA-DE-RANGOS.&#34;</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">cima-de-rango</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">cima-de-rangos</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">numero-dentro-del-rango</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="nv">lista-de-definiciones-por-rango</span><span class="p">)</span>
 
-    <span class="c1">;; Bucle Exterior.</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="nv">top-of-ranges</span>
+    <span class="c1">;; Bucle Externo.</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="nv">cima-de-rangos</span>
 
       <span class="c1">;; Bucle Interno.</span>
       <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nb">and</span>
-              <span class="c1">;; Necesita el número para la prueba numérico.</span>
-              <span class="p">(</span><span class="nf">car</span> <span class="nv">sorted-lengths</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">sorted-lengths</span><span class="p">)</span> <span class="nv">top-of-range</span><span class="p">))</span>
+              <span class="c1">;; Necesita el número para la prueba numérica.</span>
+              <span class="p">(</span><span class="nf">car</span> <span class="nv">longitudes-ordenadas</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">longitudes-ordenadas</span><span class="p">)</span> <span class="nv">cima-de-rango</span><span class="p">))</span>
 
-        <span class="c1">;; Contar número de definiciones con el rango actual.</span>
-        <span class="p">(</span><span class="nb">setq</span> <span class="nv">number-within-range</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">number-within-range</span><span class="p">))</span>
-        <span class="p">(</span><span class="nb">setq</span> <span class="nv">sorted-lengths</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">sorted-lengths</span><span class="p">)))</span>
+        <span class="c1">;; Cuenta el número de definiciones dentro del rango actual.</span>
+        <span class="p">(</span><span class="nb">setq</span> <span class="nv">numero-dentro-del-rango</span> <span class="p">(</span><span class="nf">1+</span> <span class="nv">numero-dentro-del-rango</span><span class="p">))</span>
+        <span class="p">(</span><span class="nb">setq</span> <span class="nv">longitudes-ordenadas</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">longitudes-ordenadas</span><span class="p">)))</span>
 
-      <span class="c1">;; Sal del bucle interno pero permanece con el bucle externo.</span>
+      <span class="c1">;; Sale del bucle interno pero permanece dentro del bucle externo.</span>
 
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">defuns-per-range-list</span>
-            <span class="p">(</span><span class="nf">cons</span> <span class="nv">number-within-range</span> <span class="nv">defuns-per-range-list</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">number-within-range</span> <span class="mi">0</span><span class="p">)</span>      <span class="c1">; Resetear el contaje a cero.</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-definiciones-por-rango</span>
+            <span class="p">(</span><span class="nf">cons</span> <span class="nv">numero-dentro-del-rango</span> <span class="nv">lista-de-definiciones-por-rango</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">numero-dentro-del-rango</span> <span class="mi">0</span><span class="p">)</span>      <span class="c1">; Restablece el conteo a cero.</span>
 
       <span class="c1">;; Mover al siguiente rango.</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">top-of-ranges</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">top-of-ranges</span><span class="p">))</span>
-      <span class="c1">;; Especifica el siguiente mejor rango de valores.</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">top-of-range</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">top-of-ranges</span><span class="p">)))</span>
-
-    <span class="c1">;; Salir del bucle externo y contar el número de defuns más</span>
-    <span class="c1">;; largas que</span>
-    <span class="c1">;; el valor más largo del valor top-of-range.</span>
-    <span class="p">(</span><span class="nb">setq</span> <span class="nv">defuns-per-range-list</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">cima-de-rangos</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">cima-de-rangos</span><span class="p">))</span>
+      <span class="c1">;; Designa el siguiente valor superior del rango.</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">cima-de-rango</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">cima-de-rangos</span><span class="p">)))</span>
+    <span class="c1">;; Sale del bucle externo y cuenta el número de defuns mayor que</span>
+    <span class="c1">;; el valor mas alto de cima-de-rango.</span>
+    <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-definiciones-por-rango</span>
           <span class="p">(</span><span class="nf">cons</span>
-           <span class="p">(</span><span class="nf">length</span> <span class="nv">sorted-lengths</span><span class="p">)</span>
-           <span class="nv">defuns-per-range-list</span><span class="p">))</span>
+           <span class="p">(</span><span class="nf">length</span> <span class="nv">longitudes-ordenadas</span><span class="p">)</span>
+           <span class="nv">lista-de-definiciones-por-rango</span><span class="p">))</span>
 
-    <span class="c1">;; Devuelve una lista del número de definiciones con cada rango,</span>
-    <span class="c1">;;  del más pequeño al más largo.</span>
-    <span class="p">(</span><span class="nf">nreverse</span> <span class="nv">defuns-per-range-list</span><span class="p">)))</span>
+    <span class="c1">;; Devuelve una lista del número de definiciones dentro de cada rango,</span>
+    <span class="c1">;;  del menor al mayor.</span>
+    <span class="p">(</span><span class="nf">nreverse</span> <span class="nv">lista-de-definiciones-por-rango</span><span class="p">)))</span>
 </code></pre>
-<p>La función es simple excepto para una pequeña funcionalidad. La prueba verdadero-o-falso para el bucle interno se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">sorted-lengths</span><span class="p">)</span>
-     <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">sorted-lengths</span><span class="p">)</span> <span class="nv">top-of-range</span><span class="p">))</span>
+<p>La función es sencilla, excepto por una caracteristica sutil. La prueba verdadero-o-falso del bucle interno es asi:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">longitudes-ordenadas</span><span class="p">)</span>
+     <span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">longitudes-ordenadas</span><span class="p">)</span> <span class="nv">cima-de-rango</span><span class="p">))</span>
 </code></pre>
-<p>en vez de algo como esto:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">sorted-lengths</span><span class="p">)</span> <span class="nv">top-of-range</span><span class="p">)</span>
+<p>en lugar de asi:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">&lt;</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">longitudes-ordenadas</span><span class="p">)</span> <span class="nv">cima-de-rango</span><span class="p">)</span>
 </code></pre>
-<p>El propósito del test es determinar si el primer ítem en la lista <code>sorted-lengths</code> es menor que el valor de lo mejor del rango.</p>
-<p>La versión simple del test trabaja bien a menos que la lista <code>sorted-lengths</code> tiene un valor <code>nil</code>. En este caso, la expresión <code>(car sorted-lengths)</code> devuelve <code>nil</code>. La función <code>&lt;</code> no se puede compara un número a <code>nil</code>, que es una lista vacía, así Emacs señala un error y para la función desde el intento de continuar la ejecución.</p>
-<p>La lista <code>sorted-lengths</code> siempre llega a ser <code>nil</code> cuando el contador logra el fin de la lista. Esto significa que cualquier intento de usar la función <code>defuns-per-range</code> con la versión simple del test fallará.</p>
-<p>Se resuelve el problema usando <code>(car sorted-lengths)</code> en conjunción con la expresión <code>and</code>. La expresión <code>(car sorted-lengths)</code> devuelve un valor no <code>nil</code> tan largo como la lista que tiene al menos un número con eso, pero devuelve <code>nil</code> si la lista está vacía. La expresión <code>and</code> primero evalúa el <code>(car sorted-lengths)</code>, y si eso es <code>nil</code>, devuelve falso <em>sin</em> evaluar la expresión <code>&lt;</code> y devuelve este valor como el valor de la expresión <code>and</code>.</p>
-<p>Este camino, evita un error.  (Para información acerca de <code>and</code>, ver <a href="La-función-kill-new" >La función <code>kill-new</code></a></p>
-<p>Aquí hay un pequeño test de la función <code>defuns-per-range</code>. Primero, evalúa la expresión que ajusta (una resumida) lista <code>top-of-ranges</code> a la lista de valores, entonces evalúa la expresión para ajustar la lista <code>sorted-lengths</code>, y entonces evalúa la función <code>defuns-per-range</code>.</p>
-<pre class="code" ><code class="chroma" ><span class="c1">;; (La lista ordenada que usará después.)</span>
-<span class="p">(</span><span class="nb">setq</span> <span class="nv">top-of-ranges</span>
+<p>El propósito de la prueba es determinar si el primer elemento de la lista de <code>longitudes-ordenadas</code> es inferior al valor de la parte superior del rango.</p>
+<p>La versión simple de la prueba funciona bien a menos que la lista <code>longitudes-ordenadas</code> tenga un valor <code>nil</code>. En este caso, la expresión <code>(car longitudes-ordenadas)</code> devuelve <code>nil</code>. La función <code>&lt;</code> no puede compara un número con <code>nil</code>, que es una lista vacía, por lo que Emacs indica un error e impide que la función siga ejecutandose.</p>
+<p>La lista de <code>longitudes-ordenadas</code> siempre se convierte en <code>nil</code> cuando el contador llega al fin de la lista. Esto significa que cualquier intento de usar la función <code>definiciones-por-rango</code> con la versión simple de la prueba fallará.</p>
+<p>Resolvemos el problema usando la expresion <code>(car longitudes-ordenadas)</code> junto con la expresión <code>and</code>. La expresión <code>(car longitudes-ordenadas)</code> devuelve un valor no <code>nil</code> siempre y cuando la lista contenga al menos un número, pero devuelve <code>nil</code> si la lista está vacía. La expresión <code>and</code> primero evalúa <code>(car longitudes-ordenadas)</code>, y si es <code>nil</code>, devuelve falso <em>sin</em> evaluar la expresión <code>&lt;</code> y devuelve este valor como el valor de la expresión <code>and</code>.</p>
+<p>De esta manera, evitamos un error.  (Para información acerca de <code>and</code>, consulta la Seccion <a href="#la-función-kill-new" >La función <code>kill-new</code></a></p>
+<p>He aqui una breve prueba de la función <code>definiciones-por-rango</code>. Primero, evalúa la expresión que enlaza la lista (ordenada) <code>cima-de-rangos</code> a la lista de valores, luego evalúa la expresión que enlaza la lista <code>longitudes-ordenadas</code>, y despues evalúa la función <code>definiciones-por-rango</code>.</p>
+<pre class="code" ><code class="chroma" ><span class="c1">;; (La lista ordenada que usaremos después.)</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">cima-de-rangos</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="mi">110</span> <span class="mi">120</span> <span class="mi">130</span> <span class="mi">140</span> <span class="mi">150</span>
    <span class="mi">160</span> <span class="mi">170</span> <span class="mi">180</span> <span class="mi">190</span> <span class="mi">200</span><span class="p">))</span>
 
-<span class="p">(</span><span class="nb">setq</span> <span class="nv">sorted-lengths</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">longitudes-ordenadas</span>
       <span class="o">&#39;</span><span class="p">(</span><span class="mi">85</span> <span class="mi">86</span> <span class="mi">110</span> <span class="mi">116</span> <span class="mi">122</span> <span class="mi">129</span> <span class="mi">154</span> <span class="mi">176</span> <span class="mi">179</span> <span class="mi">200</span> <span class="mi">265</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">))</span>
 
-<span class="p">(</span><span class="nv">defuns-per-range</span> <span class="nv">sorted-lengths</span> <span class="nv">top-of-ranges</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">definiciones-por-rango</span> <span class="nv">longitudes-ordenadas</span> <span class="nv">cima-de-rangos</span><span class="p">)</span>
 </code></pre>
-<p>La lista devuelta se parece a esto:</p>
+<p>Esta es la lista que devuelve:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">4</span><span class="p">)</span>
 </code></pre>
-<p>Dentro, hay dos elementos de la lista <code>sorted-lengths</code> menores de 110, dos elementos entre 110 y 119, dos elementos entre 120 y 129 y así sucesivamente. Hay cuatro elementos con un valor de 200 o superior.</p>
+<p>De hecho, hay dos elementos de la lista <code>longitudes-ordenadas</code> menores a 110, dos elementos entre 110 y 119, dos elementos entre 120 y 129, etcetera. Hay cuatro elementos con un valor de 200 o superior.</p>
 </div>
-<h2 id="leyendo-un-grafo" >Leyendo un grafo</h2>
+<h2 id="preparar-un-grafico" >Preparar un grafico</h2>
 <div class="hBody-2" >
 <p>Nuestro objetivo es construir un grafo mostrando los números de definiciones de función de varios tamaños en las fuentes de Emacs lisp.</p>
 <p>Como una materia práctica, si se estuviese creando un grafo, probablemente usarías un programa tal como <code>gnuplot</code> para hacer el trabajo. (<code>gnuplot</code> está bien integrado dentro de GNU Emacs.) En este caso, sin embargo, creamos uno desde cero, y en el proceso lo reconstruimos nosotros mismos con algo de lo que se aprende antes y así poder aprender más.</p>
@@ -5540,7 +5531,7 @@ superior y el punto en la esquina derecha inferior.
 <p>El segundo y subsiguientes argumentos para <code>apply</code> son opcionales, así se puede usar <code>apply</code> para llamar a una función y pasan los elementos de una lista, como este, que también devuelve 8:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">8</span> <span class="mi">5</span><span class="p">))</span>
 </code></pre>
-<p>Este camino tardío usará <code>apply</code>. La función <code>recursive-lengths-list-many-files</code> devuelve una lista de números que se puede aplicar a <code>max</code> (se podría también aplicar <em>(hacer apply)</em> a la lista de números ordenados; eso no importa si la lista está o no).</p>
+<p>Este camino tardío usará <code>apply</code>. La función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> devuelve una lista de números que se puede aplicar a <code>max</code> (se podría también aplicar <em>(hacer apply)</em> a la lista de números ordenados; eso no importa si la lista está o no).</p>
 <p>Aquí, la operación para encontrar el tamaño máximo del grafo es este:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">max-graph-height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">numbers-list</span><span class="p">))</span>
 </code></pre>
@@ -5621,7 +5612,7 @@ superior y el punto en la esquina derecha inferior.
 <p>La función <code>column-of-graph</code> requiere el alto del grafo como un argumento, así se asigna y guarda esto como una variable local.</p>
 <p>Esto lidera a la siguiente plantilla para el bucle <code>while</code> versión de esta función:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">graph-body-print</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
-  <span class="s">&#34;documentation…&#34;</span>
+  <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span>  <span class="err">…</span>
          <span class="err">…</span><span class="p">))</span>
 
@@ -5661,7 +5652,7 @@ superior y el punto en la esquina derecha inferior.
 <p>Se puede probar <code>graph-body-print</code> con una pequeña lista de números.</p>
 <ol class="num" >
 <li>
-<p>Instala <code>graph-symbol</code>, <code>graph-blank</code>, <code>column-of-graph</code>, que están en <a href="Leyendo-un-grafo" >Leyendo un grafo</a>, and <code>graph-body-print</code>.</p>
+<p>Instala <code>graph-symbol</code>, <code>graph-blank</code>, <code>column-of-graph</code>, que están en <a href="Preparar-un-grafico" >Preparar un grafico</a>, and <code>graph-body-print</code>.</p>
 </li>
 <li>
 <p>Copia la siguiente expresión:</p>
@@ -5708,7 +5699,7 @@ superior y el punto en la esquina derecha inferior.
      <span class="nv">height</span>
      <span class="nv">symbol-width</span><span class="p">)))</span>
 </code></pre>
-<p>La función recursiva es un poco más difícil. Eso tiene cuatro partes: el ‘prueba-hazlo-de-nuevo’, el código impreso, la llamada recursiva, y la ‘expresion-del-siguiente-paso’. El ‘prueba-hazlo-de-nuevo’ es una expresión <code>when</code> determina si la <code>numbers-list</code> contiene cualquier elemento que permanece; si hace eso, la función imprime una columna del grafo usando el código impreso y se llama así mismo de nuevo. La función se llama así misma de nuevo de acuerdo al valor producido por la ‘expresion-del-siguiente-paso’ que causa para llamar a actuar en una versión ordenada de la <code>numbers-list</code>.</p>
+<p>La función recursiva es un poco más difícil. Eso tiene cuatro partes: el ‘prueba-hazlo-de-nuevo’, el código impreso, la llamada recursiva, y la ‘expresion-del-siguiente-paso’. la ‘prueba-hazlo-de-nuevo’ es una expresión <code>when</code> determina si la <code>numbers-list</code> contiene cualquier elemento que permanece; si hace eso, la función imprime una columna del grafo usando el código impreso y se llama así mismo de nuevo. La función se llama así misma de nuevo de acuerdo al valor producido por la ‘expresion-del-siguiente-paso’ que causa para llamar a actuar en una versión ordenada de la <code>numbers-list</code>.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">recursive-graph-body-print-internal</span>
   <span class="p">(</span><span class="nv">numbers-list</span> <span class="nv">height</span> <span class="nv">symbol-width</span><span class="p">)</span>
   <span class="s">&#34;Imprime un gráfico de barras.
@@ -6566,7 +6557,7 @@ Debugger entered--Lisp error: (void-function 1=)
 <p>Ir al Manual de Referencia. Eso está a través del completo, limpio y fácil de leer descripción de Emacs Lisp. Está escrito no solo para expertos, pero sí para gente que conoce lo que usted conoce. (El <em>Manual de Referencia</em> viene con la distribución de GNU Emacs. Como esta introducción, viene como un fichero fuente Texinfo, así se puede leer on-line como un libro impreso.)</p>
 <p>Ir a otra ayuda on-line que sea parte de GNU Emacs: la documentación on-line para todas las funciones y variables, y <code>find-tag</code>, el programa que va a las fuentes.</p>
 <p>Aquí hay un ejemplo de cómo explorar las fuentes. Porque su nombre, <span class="file" >simple.el</span> es el fichero que se vió primero, hace tiempo. Como eso ocurre alguna de las funciones en <span class="file" >simple.el</span> son complicadas, o al menos parece complicado a primera vista. La función <code>open-line</code>, por ejemplo, parece complicada.</p>
-<p>Se puede querer pasear a través de esta función lentamente, como nosotros hicimos la función <code>forward-sentence</code>. (Vea la Seccion <a href="La-función-forward-sentence" >La función <code>forward-sentence</code></a>.) O se puede querer salir de esta función y mirar en otra, tal como <code>split-line</code>. No se necesita leer todas las funciones. De acuerdo a <code>count-words-in-defun</code>, la función <code>split-line</code> contiene 102 palabras y símbolos.</p>
+<p>Se puede querer pasear a través de esta función lentamente, como nosotros hicimos la función <code>forward-sentence</code>. (Vea la Seccion <a href="La-función-forward-sentence" >La función <code>forward-sentence</code></a>.) O se puede querer salir de esta función y mirar en otra, tal como <code>split-line</code>. No se necesita leer todas las funciones. De acuerdo a <code>contar-palabras-en-definicion</code>, la función <code>split-line</code> contiene 102 palabras y símbolos.</p>
 <p>Incluso aunque sean pocas, <code>split-line</code> contiene expresiones que no se han estudiado: <code>skip-chars-forward</code>, <code>indent-to</code>, <code>current-column</code> y <code>insert-and-inherit</code>.</p>
 <p>Considera la función <code>skip-chars-forward</code>. (Eso es parte de la definición de función para <code>back-to-indentation</code>, que muestra la <a href="Repaso:-Cómo-escribir-definiciones-de-funciones" >Repaso</a>.)</p>
 <p>En GNU Emacs, se puede encontrar más acerca de <code>skip-chars-forward</code> escribiendo <kbd>C-h f</kbd> (<code>describe-function</code>) y el nombre de la función. Esto te da la documentación de función.</p>
@@ -6863,7 +6854,7 @@ quinto bit de texto
 </div>
 <h3 id="apéndice-c-un-grafo-con-ejes-etiquetados" >Apéndice C <span id="un-grafo-con-ejes-etiquetados" >Un grafo con ejes etiquetados</span></h3>
 <div class="hBody-3" >
-<p>Los ejes impresos ayudan a comprender un grafo. Para crear escalas. En un capítulo anterior (Vease Sección <a href="Leyendo-un-grafo,-,-Leyendo-un-grafo" >Leyendo un grafo, , Leyendo un grafo</a>), se escribió el código para imprimir el cuerpo de un grafo. Aquí se escribe el código para imprimir y etiquetar ejes horizontales y verticales, a lo largo del cuerpo en sí.</p>
+<p>Los ejes impresos ayudan a comprender un grafo. Para crear escalas. En un capítulo anterior (Vease Sección <a href="Preparar-un-grafico,-,-Leyendo-un-grafo" >Preparar un grafico, , Leyendo un grafo</a>), se escribió el código para imprimir el cuerpo de un grafo. Aquí se escribe el código para imprimir y etiquetar ejes horizontales y verticales, a lo largo del cuerpo en sí.</p>
 <p>Puesto que las inserciones rellenan un búfer a la derecha y debajo del punto, el nuevo grafo imprime la función que primero imprimiría el eje vertical Y, después el cuerpo del grafo, y finalmente el eje horizontal X. Esta secuencia nos da los contenidos de la función:</p>
 <ol class="num" >
 <li>
@@ -6909,7 +6900,7 @@ quinto bit de texto
 <p>Dentro, con un pequeño pensamiento, se puede fácilmente venir con una variedad de esquemas de etiquetado verticales y horizontales. Nuestra tarea podría llegar a ser complicada. Pero las complicaciones generan confusión. En vez de permitir esto, es mejor elegir un simple esquema de etiquetado para nuestro primer esfuerzo, y modificarlo o reemplazarlo después.</p>
 <p>Estas consideraciones sugieren el siguiente outline para la función <code>print-graph</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
-  <span class="s">&#34;documentation…&#34;</span>
+  <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span>  <span class="err">…</span>
         <span class="err">…</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">print-Y-axis</span> <span class="nv">height</span> <span class="err">…</span> <span class="p">)</span>
@@ -7321,7 +7312,7 @@ print-Y-axis
 <p>La función para imprimir el grafo con las etiquetas apropiadas sigue el esquema que creamos antes (Vease Sección <a href="Un-Grafo-con-Ejes-Etiquetados" >Un Grafo con Ejes Etiquetados</a>), pero con adiciones.</p>
 <p>Aquí está el esquema:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
-  <span class="s">&#34;documentation…&#34;</span>
+  <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span>  <span class="err">…</span>
         <span class="err">…</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">print-Y-axis</span> <span class="nv">height</span> <span class="err">…</span> <span class="p">)</span>
@@ -7489,8 +7480,8 @@ print-Y-axis
 <div class="hBody-5" >
 <p>Ahora para el gráfico para el que todo este código fué escrito: un gráfico que muestra cuantas definiciones de función contienen unas pocas 10 palabras y símbolos, cuantas contienen entre 10 y 19 palabras y símbolos, cuantos contienen entre 20 y 29 palabras y símbolos, y así sucesivamente.</p>
 <p>Esto es un proceso de múltiples pasos. Primero asegúrate que has cargado todo el requisito del código.</p>
-<p>Eso es una buena idea para eliminar el valor de <code>top-of-ranges</code> en caso de que has asignado a algún valor diferente. Se puede evaluar lo siguiente:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">top-of-ranges</span>
+<p>Eso es una buena idea para eliminar el valor de <code>cima-de-rangos</code> en caso de que has asignado a algún valor diferente. Se puede evaluar lo siguiente:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">cima-de-rangos</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="mi">10</span>  <span class="mi">20</span>  <span class="mi">30</span>  <span class="mi">40</span>  <span class="mi">50</span>
    <span class="mi">60</span>  <span class="mi">70</span>  <span class="mi">80</span>  <span class="mi">90</span> <span class="mi">100</span>
   <span class="mi">110</span> <span class="mi">120</span> <span class="mi">130</span> <span class="mi">140</span> <span class="mi">150</span>
@@ -7501,13 +7492,13 @@ print-Y-axis
 <p>Lo siguiente crea una lista del número de palabras y símbolos en cada rango.</p>
 <p>Evalúa lo siguiente:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">list-for-graph</span>
-       <span class="p">(</span><span class="nv">defuns-per-range</span>
+       <span class="p">(</span><span class="nv">definiciones-por-rango</span>
          <span class="p">(</span><span class="nf">sort</span>
-          <span class="p">(</span><span class="nv">recursive-lengths-list-many-files</span>
+          <span class="p">(</span><span class="nv">lista-de-longitudes-de-muchos-ficheros-recursiva</span>
            <span class="p">(</span><span class="nf">directory-files</span> <span class="s">&#34;/usr/local/emacs/lisp&#34;</span>
                             <span class="no">t</span> <span class="s">&#34;.+el$&#34;</span><span class="p">))</span>
           <span class="ss">&#39;&lt;</span><span class="p">)</span>
-         <span class="nv">top-of-ranges</span><span class="p">))</span>
+         <span class="nv">cima-de-rangos</span><span class="p">))</span>
 </code></pre>
 <p>En mi vieja máquina, esto lleva como una hora. Se parece a 303 ficheros Lisp en mi copia de Emacs version 19.23. Después de toda esta computación, el <code>list-for-graph</code> tenía este valor:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="mi">537</span> <span class="mi">1027</span> <span class="mi">955</span> <span class="mi">785</span> <span class="mi">594</span> <span class="mi">483</span> <span class="mi">349</span> <span class="mi">292</span> <span class="mi">224</span> <span class="mi">199</span> <span class="mi">166</span> <span class="mi">120</span> <span class="mi">116</span> <span class="mi">99</span>
@@ -7530,13 +7521,13 @@ print-Y-axis
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">arg</span><span class="p">)</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">arg</span> <span class="mi">50</span><span class="p">))</span>
 </code></pre>
 <p>es una definición de función que dice ‘devuelve el valor resultante de dividir cualquier cosa que es pasada como <code>arg</code> por 50’.</p>
-<p>Pronto, por ejemplo, se tenía una función <code>multiply-by-seven</code>; se multiplica su argumento por 7. Esta función es similar, excepto que divide su argumento por 50; y, no tiene nombre. El equivalente anónimo de <code>multiply-by-seven</code> es:</p>
+<p>Pronto, por ejemplo, se tenía una función <code>multiplicar-por-siete</code>; se multiplica su argumento por 7. Esta función es similar, excepto que divide su argumento por 50; y, no tiene nombre. El equivalente anónimo de <code>multiplicar-por-siete</code> es:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">number</span><span class="p">))</span>
 </code></pre>
 <p>(Vea la Seccion <a href="La-forma-especial-defun" >La forma especial <code>defun</code></a>.)</p>
 <p>Si queremos multiplicar 3 por 7, podemos escribir:</p>
 <div class="art-block" >
-<pre class="art" >(multiply-by-seven 3)
+<pre class="art" >(multiplicar-por-siete 3)
  \_______________/ ^
          |         |
       función  argumento
@@ -7571,7 +7562,7 @@ print-Y-axis
      <span class="err">⇒</span> <span class="p">(</span><span class="mi">3</span> <span class="mi">5</span> <span class="mi">7</span><span class="p">)</span>
 </code></pre>
 <p>La función <code>1+</code> añade uno a su argumento, es ejecutada en <em>each</em> de la lista, y una nueva lista es devuelta.</p>
-<p>En contraste con esto <code>apply</code>, se aplica su primer argumento a todo lo que permanece. (Vea la Seccion <a href="Leyendo-un-grafo" >Leyendo un grafo</a>, para una explicación de <code>apply</code>.)</p>
+<p>En contraste con esto <code>apply</code>, se aplica su primer argumento a todo lo que permanece. (Vea la Seccion <a href="Preparar-un-grafico" >Preparar un grafico</a>, para una explicación de <code>apply</code>.)</p>
 <p>En la definición de <code>one-fiftieth</code>, el primer argumento es la función anónima:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">arg</span><span class="p">)</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">arg</span> <span class="mi">50</span><span class="p">))</span>
 </code></pre>
@@ -7592,7 +7583,7 @@ print-Y-axis
 </div>
 <h5 id="otro-error-…-más-insidioso" >Otro error … más insidioso</h5>
 <div class="hBody-5" >
-<p>¡Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la función <code>print-graph</code> …. Esta tiene una opción <code>vertical-step</code>, pero no una opción <code>horizontal-step</code>. La escala <code>top-of-range</code> va desde 10 a 300 por decenas. Pero la función <code>print-graph</code> imprimirá solo uno por uno.</p>
+<p>¡Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la función <code>print-graph</code> …. Esta tiene una opción <code>vertical-step</code>, pero no una opción <code>horizontal-step</code>. La escala <code>cima-de-rango</code> va desde 10 a 300 por decenas. Pero la función <code>print-graph</code> imprimirá solo uno por uno.</p>
 <p>Esto es un ejemplo clásico de lo que algunos consideramos el tipo más insidioso de error, el error de omisión. Este no es el tipo de error que se puede encontrar estudiando el código, para eso no es el código; es una funcionalidad omitida. Tus mejores acciones son probar tu programa pronto y con frecuencia; e intentar poner en orden, tanto como se pueda, escribir código que sea fácil de comprender y fácil de cambiar. Intenta ser consciente, siempre y cuando se pueda, esto es siempre que tengas que escribir, <em>será</em> reescrito, si no pronto, eventualmente. Un máximo duro de seguir.</p>
 <p>Esta es la función <code>print-X-axis-numbered-line</code> que necesita el trabajo; y entonces el <code>print-X-axis</code> y la función <code>print-graph</code> necesita ser adaptada. No se necesita mucho para ser hecho; hay uno simpático: los números podrían alinearse con marcas de tic. Esto toma un pequeño pensamiento.</p>
 <p>Aquí está el <code>print-X-axis-numbered-line</code> corregido:</p>
