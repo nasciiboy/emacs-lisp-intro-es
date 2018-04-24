@@ -309,9 +309,9 @@
     </ul>
   <li><a class="h2" href="#preparar-un-grafico" >Preparar un grafico</a></li>
     <ul>
-    <li><a class="h3" href="#la-función-graph-body-print" >La función <code>graph-body-print</code></a></li>
-    <li><a class="h3" href="#la-función-recursive-graph-body-print" >La función <code>recursive-graph-body-print</code></a></li>
-    <li><a class="h3" href="#necesidad-para-ejes-impresos" >Necesidad para ejes impresos</a></li>
+    <li><a class="h3" href="#la-función-imprimir-cuerpo-grafico" >La función <code>imprimir-cuerpo-grafico</code></a></li>
+    <li><a class="h3" href="#la-función-imprimir-cuerpo-grafico-con-recursividad" >La función <code>imprimir-cuerpo-grafico-con-recursividad</code></a></li>
+    <li><a class="h3" href="#necesidad-de-ejes-de-impresion" >Necesidad de Ejes de impresion</a></li>
     <li><a class="h3" href="#ejercicio" >Ejercicio</a></li>
     </ul>
   <li><a class="h2" href="#tu-fichero-.emacs" >Tu fichero <span class="file" >.emacs</span></a></li>
@@ -352,36 +352,34 @@
       <li><a class="h4" href="#yank-pop" ><code>yank-pop</code></a></li>
       <li><a class="h4" href="#el-fichero-ring.el" >El fichero <span class="file" >ring.el</span></a></li>
       </ul>
-    <li><a class="h3" href="#apéndice-c-un-grafo-con-ejes-etiquetados" >Apéndice C <span id="un-grafo-con-ejes-etiquetados" >Un grafo con ejes etiquetados</span></a></li>
-      <ul>
-      <li><a class="h4" href="#la-varlist-print-graph" >La varlist <code>print-graph</code></a></li>
-      <li><a class="h4" href="#la-función-print-y-axis" >La función <code>print-Y-axis</code></a></li>
-        <ul>
-        <li><a class="h5" href="#viaje-lateral:-calcula-un-resto" >Viaje lateral: Calcula un resto</a></li>
-        <li><a class="h5" href="#construye-un-elemento-del-eje-y" >Construye un elemento del eje Y</a></li>
-        <li><a class="h5" href="#crea-un-eje-de-la-columna-y" >Crea un eje de la columna Y</a></li>
-        <li><a class="h5" href="#la-versión-no-demasiado-final-de-print-y-axis" >La versión no demasiado final de <code>print-Y-axis</code></a></li>
-        </ul>
-      <li><a class="h4" href="#la-función-print-x-axis" >La función <code>print-X-axis</code></a></li>
-        <ul>
-        <li><a class="h5" href="#eje-x-marca-tic" >Eje X marca tic</a></li>
-        </ul>
-      </ul>
-    <li><a class="h3" href="#imprimiendo-el-grafo-completo" >Imprimiendo el grafo completo</a></li>
-      <ul>
-        <ul>
-        <li><a class="h5" href="#testeando-print-graph" >Testeando <code>print-graph</code></a></li>
-        <li><a class="h5" href="#creando-gráficas-de-números-de-palabras-y-símbolos" >Creando gráficas de números de palabras y símbolos</a></li>
-        <li><a class="h5" href="#una-expresión-lambda:-anonimicidad-útil" >Una expresión <code>lambda</code>: Anonimicidad útil</a></li>
-        </ul>
-      <li><a class="h4" href="#la-función-mapcar" >La función <code>mapcar</code></a></li>
-        <ul>
-        <li><a class="h5" href="#otro-error-…-más-insidioso" >Otro error … más insidioso</a></li>
-        <li><a class="h5" href="#el-gráfico-impreso" >El gráfico impreso</a></li>
-        </ul>
-      </ul>
-    <li><a class="h3" href="#apéndice-d-software-libre-y-manuales-libres-por-richard-m.-stallman" >Apéndice D Software Libre y Manuales Libres (<b>por Richard M. Stallman</b>)</a></li>
     </ul>
+  <li><a class="h2" href="#apéndice-c" >Apéndice C Un grafico con ejes etiquetados</a></li>
+    <ul>
+    <li><a class="h3" href="#la-varlist-print-graph" >La varlist <code>print-graph</code></a></li>
+    <li><a class="h3" href="#la-función-print-y-axis" >La función <code>print-Y-axis</code></a></li>
+      <ul>
+      <li><a class="h4" href="#viaje-lateral:-calcula-un-resto" >Viaje lateral: Calcula un resto</a></li>
+      <li><a class="h4" href="#construye-un-elemento-del-eje-y" >Construye un elemento del eje Y</a></li>
+      <li><a class="h4" href="#crea-un-eje-de-la-columna-y" >Crea un eje de la columna Y</a></li>
+      <li><a class="h4" href="#la-versión-no-demasiado-final-de-print-y-axis" >La versión no demasiado final de <code>print-Y-axis</code></a></li>
+      </ul>
+    <li><a class="h3" href="#la-función-print-x-axis" >La función <code>print-X-axis</code></a></li>
+      <ul>
+      <li><a class="h4" href="#eje-x-marca-tic" >Eje X marca tic</a></li>
+      </ul>
+    <li><a class="h3" href="#imprimiendo-el-grafico-completo" >Imprimiendo el grafico completo</a></li>
+      <ul>
+      <li><a class="h4" href="#testeando-print-graph" >Testeando <code>print-graph</code></a></li>
+      <li><a class="h4" href="#creando-gráficas-de-números-de-palabras-y-símbolos" >Creando gráficas de números de palabras y símbolos</a></li>
+      <li><a class="h4" href="#una-expresión-lambda:-anonimicidad-útil" >Una expresión <code>lambda</code>: Anonimicidad útil</a></li>
+      </ul>
+    <li><a class="h3" href="#la-función-mapcar" >La función <code>mapcar</code></a></li>
+      <ul>
+      <li><a class="h4" href="#otro-error-…-más-insidioso" >Otro error … más insidioso</a></li>
+      <li><a class="h4" href="#el-gráfico-impreso" >El gráfico impreso</a></li>
+      </ul>
+    </ul>
+  <li><a class="h2" href="#apéndice-d-software-libre-y-manuales-libres-por-richard-m.-stallman" >Apéndice D Software Libre y Manuales Libres (<b>por Richard M. Stallman</b>)</a></li>
   <li><a class="h2" href="#appendix-e-gnu-free-documentation-license" >Appendix E GNU Free Documentation License</a></li>
     <ul>
     <li><a class="h3" href="#0.-preamble" >0. PREAMBLE</a></li>
@@ -5474,205 +5472,204 @@ nil
 </div>
 <h2 id="preparar-un-grafico" >Preparar un grafico</h2>
 <div class="hBody-2" >
-<p>Nuestro objetivo es construir un grafo mostrando los números de definiciones de función de varios tamaños en las fuentes de Emacs lisp.</p>
-<p>Como una materia práctica, si se estuviese creando un grafo, probablemente usarías un programa tal como <code>gnuplot</code> para hacer el trabajo. (<code>gnuplot</code> está bien integrado dentro de GNU Emacs.) En este caso, sin embargo, creamos uno desde cero, y en el proceso lo reconstruimos nosotros mismos con algo de lo que se aprende antes y así poder aprender más.</p>
-<p>En este capítulo, primero se escribe un grafo simple imprimiendo la función. Esta primera definición será un <dfn>prototipo</dfn>, una función escrita rápidamente nos permite reconocer este territorio de crear un grafo. Se descubren dragones, o resulta que son mitos. Después de olisquear el terreno, nos sentiremos más confidentes y mejoraremos la función para etiquetar las coordenadas automáticamente.</p>
-<p>Puesto que Emacs está diseñado para ser flexible y trabajar con todo tipo de terminales, incluyendo los terminales de caracteres, el grafo necesitará ser hecho desde símbolos de ‘escritura’. Un asterisco hará; como nosotros mejoramos la función de impresión del grafo, se puede crear la elección del símbolo como una opción de usuario.</p>
-<p>Se puede llamar a esta función <code>graph-body-print</code>; se tomará un <code>numbers-list</code> como su único argumento. En esta fase, no se etiquetará el grafo, pero se imprime su cuerpo.</p>
-<p>La función <code>graph-body-print</code> inserta una columna vertical de asteriscos para cada elemento en la lista <code>numbers-list</code>. La altura de cada línea está determinada por el valor de este elemento de la <code>numbers-list</code>.</p>
-<p>Insertar columnas es un acto repetitivo; que significa que esta función debe ser escrita con un bucle <code>while</code> o recursivamente.</p>
-<p>Nuestro primer reto es descubrir como imprimir una columna de asteriscos. Normalmente, en Emacs, se imprimen caracteres dentro de una pantalla horizontalmente, línea a línea, escribiendo. Se tienen dos rutas que se pueden seguir: escribir nuestra función column-insertion o descubrir si una que exista en Emacs.</p>
-<p>Para ver si hay uno en Emacs, se puede usar el comando <kbd>M-x apropos</kbd>. Este comando es como el comando <kbd>C-h a</kbd> (<code>command-apropos</code>), excepto que último encuentra solo estas funciones que son comandos. El comando <kbd>M-x apropos</kbd> lista todos los símbolos que se asocian a una expresión regular, incluyendo funciones que no son interactivas.</p>
-<p>Lo que se quiere buscar es algún comando que imprima o inserte columnas. Muy probablemente, el nombre de la función contendrá la palabra ‘print’ o la palabra ‘insert’ o la palabra ‘column’. Por esta razón, podemos simplemente escribir <kbd>M-x apropos RET print \|insert\|column RET</kbd> y se ve el resultado. En mi sistema, este comando toma todavía algún tiempo, y entonces se produce una lista de 79 funciones y variables. Ahora no se tarda mucho y se produce una lista de 211 funciones y variables. Escaneando la lista, la única función que se ve como si se pudiera hacer el trabajo que es <code>insert-rectangle</code>.</p>
-<p>En realidad, esta es la función que queremos; su documentación dice:</p>
+<p>Nuestro objetivo es construir un grafo que muestre el numero de definiciones de función de varios tamaños en el codigo fuente de Emacs lisp.</p>
+<p>Como cuestion práctica, si estuvieras creando un grafico, probablemente usarías un programa como <code class="command" >gnuplot</code> para hacer el trabajo. (<code class="command" >gnuplot</code> está bien integrado dentro de GNU Emacs.) En este caso, sin embargo, creamos uno desde cero, y en el proceso volveremos a familiarizarnos con algo que de lo que aprendimos antes y aprenderemos más.</p>
+<p>En este capítulo, primero escribiremos una simple funcion de impresion de graficos. Esta primera definición será un <dfn>prototipo</dfn>, una función escrita rápidamente que nos permita reconocer este territorio desconocido en la creacion de graficos. Descubriremos dragones, o descubriremos que son mitos. Después de explorar el terreno, nos sentiremos más seguros y mejoraremos la función para etiquetar las coordenadas automáticamente.</p>
+<p>Dado que Emacs está diseñado para ser flexible y funcionar con todo tipo de terminales, incluyendo los terminales de solo caracteres, el grafico debera realizarse a partir de simbolos de ‘maquina de escribir’. Un asterisco servira; a medida que mejoremos la función de impresión del grafico, podremos hacer que el simbolo a usar sea una elección del usuario.</p>
+<p>Podemos llamar a esta función <code>imprimir-cuerpo-grafico</code>; tomará como unico argumento una <code>lista-de-numeros</code>. En esta etapa, no etiquetaremos el grafico, sino que solo imprimiremos su cuerpo.</p>
+<p>La función <code>imprimir-cuerpo-grafico</code> inserta una columna vertical de asteriscos para cada elemento en la lista <code>lista-de-numeros</code>. La altura de cada línea está determinada por el valor de ese elemento de la <code>lista-de-numeros</code>.</p>
+<p>Insertar columnas es un acto repetitivo; esto significa que esta función puede escribirse con un bucle <code>while</code> o recursivamente.</p>
+<p>Nuestro primer reto es descubrir como imprimir una columna de asteriscos. Normalmente, en Emacs, se imprimen caracteres dentro de una pantalla horizontalmente, escribiendo línea a línea. Tenemos dos rutas a seguir: escribir nuestra propia función de insercion-de-columnas o descubrir si ya existe una en Emacs.</p>
+<p>Para ver si hay una en Emacs, podemos usar el comando <kbd>M-x apropos</kbd>. Este comando es como el comando <kbd>C-h a</kbd> (<code>command-apropos</code>), excepto que este último solo encuentra aquellas funciones que son comandos. El comando <kbd>M-x apropos</kbd> lista todos los símbolos que coinciden con una expresión regular, incluyendo funciones que no son interactivas.</p>
+<p>Lo que queremos buscar es algún comando que imprima o inserte columnas. Muy probablemente, el nombre de la función contendrá la palabra ‘print’ o la palabra ‘insert’ o la palabra ‘column’. Por esta razón, podemos simplemente escribir <kbd>M-x apropos RET print\|insert\|column RET</kbd> y ver el resultado. En mi sistema, este comando demoro bastante tiempo, y luego produjo una lista de 79 funciones y variables. Ahora no demora mucho y produce una lista de 211 funciones y variables. Explorando la lista, la única función que parece puede hacer el trabajo es <code>insert-rectangle</code>.</p>
+<p>De hecho, esta es la función que queremos; su documentación dice:</p>
 <div class="example-block" >
 <pre class="example" >insert-rectangle:
-Insertar texto de RECTANGLE con la esquina izquierda a punto
-La primera línea de RECTANGLE es insertada al punto
-su segunda línea es insertada a un punto verticalmente
-bajo el punto, etc.
-El RECTANGLE debería ser una lista de cadenas.
+Insertar texto de RECTANGLE con la esquina superior izquierda en el punto
+La primera línea de RECTANGLE se inserta en el punto
+la segunda línea se inserta en un punto verticalmente debajo del punto, etc
+RECTANGLE debe ser una lista de cadenas.
 Después de este comando, la marca está en la esquina izquierda
-superior y el punto en la esquina derecha inferior.
+superior y el punto en la esquina inferior derecha.
 </pre>
 </div>
-<p>Se puede ejecutar un test rápido, para asegurar que hace lo que se espera de eso.</p>
-<p>Aquí está el resultado de emplazar el cursor después de la expresión <code>insert-rectangle</code> y escribiendo <kbd>C-u C-x C-e</kbd> (<code>eval-last-sexp</code>). La función inserta las cadenas <samp>&#34;primero&#34;</samp>, <samp>&#34;segundo&#34;</samp>, y <samp>&#34;tercero&#34;</samp> en el punto. También la función devuelve <code>nil</code>.</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">insert-rectangle</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;primero&#34;</span> <span class="s">&#34;segundo&#34;</span> <span class="s">&#34;tercer&#34;</span><span class="p">))</span><span class="nv">primero</span>
-                                              <span class="nv">segundo</span>
-                                              <span class="nv">terceronil</span>
-</code></pre>
-<p>De acuerdo, no se inserta el texto de la expresión <code>insert-rectangle</code> en sí dentro del búfer en el que se marca el grafo, pero se llamará la función de nuestro programa. Nosotros, sin embargo, tenemos que asegurar que el punto está en el búfer en el lugar donde la función <code>insert-rectangle</code> insertará la columna de cadenas.</p>
-<p>Si se está leyendo esto en Info, se puede ver como este trabajo cambia a otro búfer, tal como el búfer <span class="file" >*scratch*</span>, emplazando el punto a algún lugar en el búfer, se escribe <kbd>M::</kbd>, después se escribe la expresión <code>insert-rectangle</code> dentro del minibúfer en la consola, y entonces se escribe <kbd>RET</kbd>. Esto causa que Emacs evalúe la expresión en el minibúfer, pero usa como el valor del punto la posición del punto en el búfer <span class="file" >*scratch*</span>. (<kbd>M::</kbd> es el atajo para <code>eval-expression</code>. <code>nil</code> tampoco aparece en el búfer <span class="file" >*scratch*</span> desde que la expresión se evalúa en el minibúfer.)</p>
-<p>Se encuentra cuando hacer esto hasta el punto que finaliza al fin de la última línea insertada––es decir, esta función mueve el punto como un efecto secundario. Si se iba a repetir el comando, con el punto en esta posición, la siguiente inserción sería debajo y a la derecha de la inserción previa. ¡Nosotros no queremos esto!. Si se está yendo a crear un gráfico de barras, las columnas necesitan estar debajo unas de otras.</p>
-<p>Así se descubre que cada ciclo del bucle <code>while</code> de column-inserting debe reposicionar el punto al lugar que queremos, y este lugar estará arriba, no abajo, de la columna. Más allá, se recuerda que cuando se imprime un grafo, no esperan todas las columnas para estar a la misma altura. Esto significa que el alto de cada columna puede estar a una altura diferente desde una previa. Nosotros simplemente reposicionamos el punto a la misma línea cada vez, pero movido cubriendo a la derecha––o quizás se puede …</p>
-<p>Estamos planeando crear las columnas de la barra gráfica sin asteriscos. El número de asteriscos en la columna es el número específico por el elemento actual del <code>numbers-list</code>. Necesitamos construir una lista de asteriscos del tamaño derecho para cada llamada a <code>insert-rectangle</code>. Si esta lista consiste únicamente del número requerido de asteriscos, entonces tendremos la posición de punto el número correcto de líneas bajo la base del gráfico para imprimirse correctamente. Esto podría ser difícil.</p>
-<p>Alternativamente, si podemos figurarnos algún camino para pasar <code>insert-rectangle</code> del mismo tamaño cada vez, entonces podemos posicionar el punto en la misma línea cada vez, pero se mueve a través de una columna a la derecha por cada nueva columna. Si hacemos esto, sin embargo, alguna de las entradas en la lista pasaba a <code>insert-rectangle</code> y deben ser espacios en blanco en vez de asteriscos. Por ejemplo, si la altura máxima del grafo es 5, pero la altura de la columna es 3, entonces <code>insert-rectangle</code> requiere un argumento que se parezca a esto:</p>
+<p>Podemos ejecutar una prueba rápida, para asegurarnos que hace lo que se espera.</p>
+<p>Este es el resultado de colocar el cursor después de la expresión <code>insert-rectangle</code> y presionar <kbd>C-u C-x C-e</kbd> (<code>eval-last-sexp</code>). La función inserta las cadenas <code>&#34;primero&#34;</code>, <code>&#34;segundo&#34;</code>, y <code>&#34;tercero&#34;</code> debajo del punto. También la función devuelve <code>nil</code>.</p>
+<div class="example-block" >
+<pre class="example" >(insert-rectangle &#39;(&#34;primero&#34; &#34;segundo&#34; &#34;tercer&#34;))primero
+                                                  segundo
+                                                  tercernil
+</pre>
+</div>
+<p>Por supuesto, no insertaremos el texto de la expresión <code>insert-rectangle</code> en el búfer en el que estamos haciendo el grafico, sino qque llamaremos a la función desde nuestro programa. Sin embargo, tendremos que asegurarnos de que el punto está en el búfer en el lugar donde la función <code>insert-rectangle</code> insertará la columna de cadenas.</p>
+<p>Si se está leyendo esto en Emacs, puedes ver como funciona cambiando a otro búfer, como el búfer <span class="file" >*scratch*</span>, colocar el punto a algún lugar del búfer, escribiendo <kbd>M-:</kbd>, luego escribir la expresión <code>insert-rectangle</code> dentro del minibúfer en la consola, y presionar <kbd>RET</kbd>. Esto hace que Emacs evalúe la expresión en el minibúfer, pero utilice como el valor del punto la posición del punto en el búfer <span class="file" >*scratch*</span>. (<kbd>M-:</kbd> es el atajo para <code>eval-expression</code>. Tampoco aparece <code>nil</code> en el búfer <span class="file" >*scratch*</span>, ya que la expresión se evalúa en el minibúfer.)</p>
+<p>Cuando hacemos esto, encontraremos que el punto termina al final de la última línea insertada––es decir, esta función mueve el punto como un efecto secundario. Si repitieramos el comando, con el punto en esta posición, la siguiente inserción estaria debajo y a la derecha de la inserción anterior. ¡No queremos esto!. Si vamos a crear un gráfico de barras, las columnas deben estar una al lado de la otra.</p>
+<p>Así descubrimos que cada ciclo del bucle <code>while</code> de insercion de corumnas debe reposicionar el punto al lugar que queremos, y ese lugar estará en la parte superior, no en la inferior de la columna. Ademas, recordamos que cuando imprimimos un grafico, no se espera que todas las columnas tengan la misma altura. Esto significa que la parte superior de cada columna puede estar a una altura diferente de la anterior. No podemos simplemente reposicionar el punto en la misma línea cada vez, sino movernos hacia la derecha––o tal vez podamos…</p>
+<p>Estamos planeando crear las columnas del grafico de barras con asteriscos. El número de asteriscos en la columna es el número específicado por el elemento actual de la <code>lista-de-numeros</code>. Necesitamos construir una lista de asteriscos de la longitud correcta para cada llamada a <code>insert-rectangle</code>. Si esta lista consiste únicamente del número requerido de asteriscos, entonces tendremos la posición de punto el número correcto de líneas sobre la base del gráfico para imprimirse correctamente. Esto podría ser difícil.</p>
+<p>Alternativamente, si podemos encotrar alguna manear de pasar a <code>insert-rectangle</code> una lista de la misma longitud cada vez, entonces podemos posicionar el punto en la misma línea cada vez, pero moverlo una columna a la derecha para cada nueva columna. Si hacemos esto, sin embargo, algunas de las entradas en la lista pasaba a <code>insert-rectangle</code> deben ser espacios en blanco en vez de asteriscos. Por ejemplo, si la altura máxima del grafico es 5, pero la altura de la columna es 3, entonces <code>insert-rectangle</code> requiere un argumento como este:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="s">&#34; &#34;</span> <span class="s">&#34; &#34;</span> <span class="s">&#34;*&#34;</span> <span class="s">&#34;*&#34;</span> <span class="s">&#34;*&#34;</span><span class="p">)</span>
 </code></pre>
-<p>Esta última propuesta no es tan difícil, de hecho se puede determinar la altura de la columna. Hay dos caminos para nosotros especificar la altura de la columna: se puede arbitrariamente situar lo que será, lo que funcionaría bien para gráficas de esta altura; o podemos buscar a través de la lista de números y usar la altura máxima de la lista como la altura máxima del grafo. Si la última operación fuera difícil, entonces el procedimiento formal sería fácil, pero hay una función construida en Emacs para determinar el máximo de sus argumentos. Se puede usar esta función. La función se llamaba <code>max</code> y eso devuelve el mayor de sus argumentos, que deben ser números. De este modo, por ejemplo,</p>
+<p>Esta última propuesta no es tan difícil, siempre y cuando podamos determinar la altura de la columna. Hay dos maneras de especificar la altura de la columna: podemos indicar arbitrariamente cual sera, lo que funcionaría bien para gráficos de esta altura; o podemos buscar a través de la lista de números y usar la altura máxima de la lista como la altura máxima del grafico. Si la segunda operación fuera difícil, entonces el procedimiento anterior seria mas fácil, pero hay una función nativa en Emacs para determinar el máximo de sus argumentos. Podemos usar esta función. La función se llamaba <code>max</code> y devuelve el mayor de todos sus argumentos, que deben ser números. Asi, por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">max</span>  <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">3</span><span class="p">)</span>
 </code></pre>
-<p>devuelve 7. (Una función correspondiente llamada <code>min</code> devuelve lo más pequeño de todos sus argumentos.)</p>
-<p>Sin embargo, no podemos simplemente llama a <code>max</code> en el <code>numbers-list</code>; la función <code>max</code> espera números como sus argumentos, no una lista de números. De este modo, la siguiente expresión,</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">max</span>  <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">3</span><span class="p">))</span>
+<p>devuelve 7. (Una función correspondiente llamada <code>min</code> devuelve el más pequeño de todos sus argumentos.)</p>
+<p>Sin embargo, no podemos simplemente llama a <code>max</code> sobre la <code>lista-de-numeros</code>; la función <code>max</code> espera números como su argumento, no una lista de números. De este modo, la siguiente expresión,</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">max</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">3</span><span class="p">))</span>
 </code></pre>
 <p>produce el siguiente mensaje error;</p>
 <div class="example-block" >
-<pre class="example" >Mal tipo de argumento: number-or-marker-p, (3 4 6 5 7 3)
+<pre class="example" >Tipo incorrecto de argumento: number-or-marker-p, (3 4 6 5 7 3)
 </pre>
 </div>
-<p>Se necesita una función que pasa una lista de argumentos a una función. Esta función es <code>apply</code>. Esta función ‘aplica’ su primer argumento (una función) para los argumentos restantes, el último puede ser una lista.</p>
+<p>Necesitamos una función que pase una lista de argumentos a una función. Esa función es <code>apply</code>. Esta función ‘aplica’ su primer argumento (una función) a los argumentos restantes, el último puede ser una lista.</p>
 <p>Por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">3</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">8</span> <span class="mi">5</span><span class="p">))</span>
 </code></pre>
 <p>devuelve 8</p>
-<p>(Incidentalmente, yo no sabría cómo aprender acerca de esta función sin un libro tal como este. Eso es posible descubrir otras funciones, como <code>search-forward</code> o <code>insert-rectangle</code>, adivinando una parte de sus nombres y entonces usando <code>apropos</code>. Incluso aunque su base metafórica es clara––‘apply’ su primer argumento al resto––dudo que un novicio vendría con esta palabra particular usando <code>apropos</code> u otra ayuda. De acuerdo, podría ser incorrecto; después de todo, la función fué primero llamada por alguien quien lo había inventado.</p>
-<p>El segundo y subsiguientes argumentos para <code>apply</code> son opcionales, así se puede usar <code>apply</code> para llamar a una función y pasan los elementos de una lista, como este, que también devuelve 8:</p>
+<p>(Por cierto, no cómo aprenderias sobre esta función sin un libro como este. Es posible descubrir otras funciones, como <code>search-forward</code> o <code>insert-rectangle</code>, adivinando una parte de sus nombres y luego usando <code>apropos</code>. Aunque su base metafórica es clara––‘apply’ (aplicar) su primer argumento al resto––dudo que a un novato se le ocurra esa palabra en particular usando <code>apropos</code> u otra ayuda. Por supuesto, podría estar equivocado; después de todo, la función fué nombrada por primera vez por alguien que la tuvo que inventar.</p>
+<p>El segundo y siguientes argumentos de <code>apply</code> son opcionales, por lo que podemos usar <code>apply</code> para llamar a una función y pasarle los elementos de una lista, de la siguiente manera, que también devuelve 8:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">8</span> <span class="mi">5</span><span class="p">))</span>
 </code></pre>
-<p>Este camino tardío usará <code>apply</code>. La función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> devuelve una lista de números que se puede aplicar a <code>max</code> (se podría también aplicar <em>(hacer apply)</em> a la lista de números ordenados; eso no importa si la lista está o no).</p>
-<p>Aquí, la operación para encontrar el tamaño máximo del grafo es este:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">max-graph-height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">numbers-list</span><span class="p">))</span>
+<p>Este ultima forma es la que usaremos para <code>apply</code>. La función <code>lista-de-longitudes-de-muchos-ficheros-recursiva</code> devuelve una lista de números a la que podemos aplicar <code>max</code> (tambien podriamos aplicar <code>max</code> a la lista de números ordenados; no importa si la lista está ordenada o no).</p>
+<p>Por lo tanto, la operación para encontrar la altura máxima del grafico es esta:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">altura-maxima-del-grafico</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">lista-de-numeros</span><span class="p">))</span>
 </code></pre>
-<p>Ahora se puede devolver la pregunta de como crear una lista de cadenas para una columna del grafo. Cuenta la máxima altura del grafo y el número de asteriscos que aparecerían en la columna, la función devolverá una lista de cadenas para el comando a insertar <code>insert-rectangle</code>.</p>
-<p>Cada columna se realiza con asteriscos o espacios en blanco. Puesto que la función pasa el valor del alto de la columna y el número de asteriscos en el columna, el número de espacios en blanco puede ser encontrado sustrayendo el número de asteriscos desde lo alto de la columna. Dado el número de espacios en blanco y el número de asteriscos, dos bucles <code>while</code> puede ser usado para construir la lista:</p>
+<p>Ahora podemos volver a la pregunta de como crear una lista de cadenas para una columna del grafico. Indicando la máxima altura del grafico y el número de asteriscos que aparecerían en la columna, la función devolverá una lista de cadenas para el comando <code>insert-rectangle</code>.</p>
+<p>Cada columna se compone de asteriscos o espacios en blanco. Puesto que pasamos a la función la altura de la columna y el número de asteriscos en ella, el número de espacios en blanco se puede encontrar restando los asteriscos de la altura. Dado el número de espacios en blanco y el número de asteriscos, podemos usar dos bucles <code>while</code> para construir la lista:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Primera versión.</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">column-of-graph</span> <span class="p">(</span><span class="nv">max-graph-height</span> <span class="nv">actual-height</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve la lista de cadenas que una columna de un grafo.&#34;</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">insert-list</span> <span class="no">nil</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">number-of-top-blanks</span>
-         <span class="p">(</span><span class="nf">-</span> <span class="nv">max-graph-height</span> <span class="nv">actual-height</span><span class="p">)))</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">columna-del-grafico</span> <span class="p">(</span><span class="nv">altura-maxima-del-grafico</span> <span class="nv">altura-real</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve la lista de cadenas que es una columna de un grafico.&#34;</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">lista-de-insercion</span> <span class="no">nil</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">numero-de-espacios</span>
+         <span class="p">(</span><span class="nf">-</span> <span class="nv">altura-maxima-del-grafico</span> <span class="nv">altura-real</span><span class="p">)))</span>
 
-    <span class="c1">;; Llenar asteriscos.</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">actual-height</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">insert-list</span> <span class="p">(</span><span class="nf">cons</span> <span class="s">&#34;*&#34;</span> <span class="nv">insert-list</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">actual-height</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">actual-height</span><span class="p">)))</span>
+    <span class="c1">;; Rellenar los asteriscos.</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">altura-real</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-insercion</span> <span class="p">(</span><span class="nf">cons</span> <span class="s">&#34;*&#34;</span> <span class="nv">lista-de-insercion</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">altura-real</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">altura-real</span><span class="p">)))</span>
 
-    <span class="c1">;; Rellena espacios en blanco.</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">number-of-top-blanks</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">insert-list</span> <span class="p">(</span><span class="nf">cons</span> <span class="s">&#34; &#34;</span> <span class="nv">insert-list</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">number-of-top-blanks</span>
-            <span class="p">(</span><span class="nf">1-</span> <span class="nv">number-of-top-blanks</span><span class="p">)))</span>
+    <span class="c1">;; Rellena los espacios.</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">numero-de-espacios</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-insercion</span> <span class="p">(</span><span class="nf">cons</span> <span class="s">&#34; &#34;</span> <span class="nv">lista-de-insercion</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">numero-de-espacios</span>
+            <span class="p">(</span><span class="nf">1-</span> <span class="nv">numero-de-espacios</span><span class="p">)))</span>
 
     <span class="c1">;; Devuelve la lista completa.</span>
-    <span class="nv">insert-list</span><span class="p">))</span>
+    <span class="nv">lista-de-insercion</span><span class="p">))</span>
 </code></pre>
-<p>Si se instala esta función y entonces evalúa la siguiente expresión se verá que devuelve la lista como se desea:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">column-of-graph</span> <span class="mi">5</span> <span class="mi">3</span><span class="p">)</span>
+<p>Si instalas esta función y luego evaluas  la siguiente expresión, veras que devuelve la lista que se espera:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">columna-del-grafico</span> <span class="mi">5</span> <span class="mi">3</span><span class="p">)</span>
 </code></pre>
 <p>devuelve</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="s">&#34; &#34;</span> <span class="s">&#34; &#34;</span> <span class="s">&#34;*&#34;</span> <span class="s">&#34;*&#34;</span> <span class="s">&#34;*&#34;</span><span class="p">)</span>
 </code></pre>
-<p>Como está escrito, <code>column-of-graph</code> contiene una grieta mayor: los símbolos usados para el espacio en blanco para las entradas marcadas en la columna son ‘codificadas duras’ como un espacio y un asterisco. Esto está bien para un prototipo, pero tu, u otro usuario, puede desear usar otros símbolos. Por ejemplo, chequeando la función grafo, tu quieres usar un periodo en vez del espacio, asegura el punto que está siendo recolocando apropiadamente cada vez que la función <code>insert-rectangle</code> se llama; o se podría querer sustituir un signo <samp>+</samp> u otro símbolo para el asterisco. Se podría incluso querer hacer un graph-column que es más que un ancho de columna. El programa debería ser más flexible. El camino para hacer esto es reemplazar el espacio en blanco y el asterisco con dos variables que se puede llamar <code>graph-blank</code> y <code>graph-symbol</code> y define estas variables separadamente.</p>
-<p>También la documentación no está escrita. Estas consideraciones nos llevan también a la segunda versión de la función:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defvar</span> <span class="nv">graph-symbol</span> <span class="s">&#34;*&#34;</span>
-  <span class="s">&#34;Cadena usada como símbolo en grafo, normalmente un asterisco.&#34;</span><span class="p">)</span>
+<p>Como está escrito, <code>columna-del-grafico</code> contiene una defecto importante: los símbolos usados para el espacio y las entradas marcadas en la columna estan ‘incrustados en el codigo’ como un espacio y un asterisco. Esto está bien para un prototipo, pero tu, u otro usuario, pueden querer usar otros símbolos. Por ejemplo, al probar la función del grafico, podrias querer usar un punto en vez del espacio, para asegurar que el punto que está recolocando apropiadamente cada vez que se llama a la función <code>insert-rectangle</code>; o tal vez quieras sustituir un signo de asterisco por <samp>+</samp>. Incluso es posible querer crear un grafico de columna que tenga mas de una columna de visualizacion. El programa debería ser más flexible. La forma de hacerlo es reemplazar el espacio en blanco y el asterisco con dos variables que podemos llamar <code>simbolo-en-blanco</code> y <code>simbolo-grafico</code> y definir esa variables por separado.</p>
+<p>Ademas, la documentación no está bien escrita. Estas consideraciones nos llevan a la segunda versión de la función:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defvar</span> <span class="nv">simbolo-grafico</span> <span class="s">&#34;*&#34;</span>
+  <span class="s">&#34;Cadena utilizada como símbolo en el grafico, normalmente un asterisco.&#34;</span><span class="p">)</span>
 
-<span class="p">(</span><span class="nb">defvar</span> <span class="nv">graph-blank</span> <span class="s">&#34; &#34;</span>
-  <span class="s">&#34;La cadena como un espacio en blanco en grafo, normalmente un
-</span><span class="s">  espacio en blanco.
-</span><span class="s">graph-blank debe ser el mismo número de columnas amplio como graph-symbol.&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defvar</span> <span class="nv">simbolo-en-blanco</span> <span class="s">&#34; &#34;</span>
+  <span class="s">&#34;Cadena utilizada como un espacio en blanco en el grafico, normalmente un espacio en blanco.
+</span><span class="s">simbolo-en-blanco debe tener el mismo número de columnas de ancho que simbolo-grafico.&#34;</span><span class="p">)</span>
 </code></pre>
-<p>(Para una explicación de <code>defvar</code>, ver <a href="Inicializando-una-Variable-con-defvar" >Inicializando una Variable con <code>defvar</code></a>.)</p>
+<p>(Para una explicación de <code>defvar</code>, vera la seccion <a href="#inicializando-una-variable-con-defvar" >Inicializando una variable con <code>defvar</code></a>.)</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Segunda versión.</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">column-of-graph</span> <span class="p">(</span><span class="nv">max-graph-height</span> <span class="nv">actual-height</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve cadenas MAX-GRAPH-HEIGHT; ACTUAL-HEIGHT son
-</span><span class="s">  símbolos de grafos.
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">columna-del-grafico</span> <span class="p">(</span><span class="nv">altura-maxima-del-grafico</span> <span class="nv">altura-real</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve cadenas con la ALTURA-MAXIMA-DEL-GRAFICO; ALTURA-REAL son símbolos graficos.
 </span><span class="s">
-</span><span class="s">Los graph-symbols son entradas contiguo al fin de la lista.
-</span><span class="s">La lista será insertado como una columna de un grafo.
-</span><span class="s">Las cadenas son tanto graph-blank o graph-symbol.
-</span><span class="s">
-</span><span class="s">  (let ((insert-list nil)
-</span><span class="s">        (number-of-top-blanks
-</span><span class="s">         (- max-graph-height actual-height)))
-</span><span class="s">
-</span><span class="s">    ;; Rellenar en graph-symbols.
-</span><span class="s">    (while (&gt; actual-height 0)
-</span><span class="s">      (setq insert-list (cons graph-symbol insert-list))
-</span><span class="s">      (setq actual-height (1- actual-height)))
-</span><span class="s">
-</span><span class="s">    ;; Rellenar en graph-blanks.
-</span><span class="s">    (while (&gt; number-of-top-blanks 0)
-</span><span class="s">      (setq insert-list (cons graph-blank insert-list))
-</span><span class="s">      (setq number-of-top-blanks
-</span><span class="s">            (1- number-of-top-blanks)))
-</span><span class="s">
-</span><span class="s">    ;; Devuelve la lista completa.
-</span><span class="s">    insert-list))
-</span><span class="s"></span></code></pre>
-<p>Si se desea, podríamos reescribir <code>column-of-graph</code> una tercera vez para proporcionar opcionalmente un gráfico de líneas, como gráfico de barras. Esto no sería duro de hacer. Un camino para pensar en un grafo de líneas es que no es más que un grafo de barras en el que la parte de cada barra que está debajo del alto es blanco. Para construir una columna para gráfico de líneas, la función primero construyen una lista de espacios en blanco que es una más ordenada que el valor, entonces usa <code>cons</code> para adjuntar un símbolo gráfico a la lista; entonces eso usa <code>cons</code> de nuevo para adjuntar el ‘alto de espacios en blanco’ a la lista.</p>
-<p>Es fácil ver como escribir tal función, pero puesto que no se necesita eso, no se hará. Pero el trabajo podría ser hecho, y si eso se hiciera, se haría con <code>column-of-graph</code>. Incluso más importante, no se valora nada más que pocos cambios que tendrían que ser hechos de cualquier otra manera. La mejora, que se desea hacer, es simple.</p>
-<p>Ahora, finalmente, volvemos a nuestra primera función de grafo impresa. Esto imprime el cuerpo de un grafo, no las etiquetas para los ejes horizontal y vertical, así se puede llamar este <code>graph-body-print</code>.</p>
+</span><span class="s">Los simbolo-graficos son entradas contiguas al final de la lista.
+</span><span class="s">La lista se insertara como una columna de un grafico.
+</span><span class="s">Las cadenas contienen tanto simbolos en blanco o simbolos graficos.&#34;</span>
+
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">lista-de-insercion</span> <span class="no">nil</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">numero-de-espacios</span>
+         <span class="p">(</span><span class="nf">-</span> <span class="nv">altura-maxima-del-grafico</span> <span class="nv">altura-real</span><span class="p">)))</span>
+
+    <span class="c1">;; Rellena con simbolo-grafico.</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">altura-real</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-insercion</span> <span class="p">(</span><span class="nf">cons</span> <span class="nv">simbolo-grafico</span> <span class="nv">lista-de-insercion</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">altura-real</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">altura-real</span><span class="p">)))</span>
+
+    <span class="c1">;; Rellena con simbolo-en-blanco.</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">numero-de-espacios</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-insercion</span> <span class="p">(</span><span class="nf">cons</span> <span class="nv">simbolo-en-blanco</span> <span class="nv">lista-de-insercion</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">numero-de-espacios</span>
+            <span class="p">(</span><span class="nf">1-</span> <span class="nv">numero-de-espacios</span><span class="p">)))</span>
+
+    <span class="c1">;; Devuelve la lista completa.</span>
+    <span class="nv">lista-de-insercion</span><span class="p">))</span>
+</code></pre>
+<p>Si quisieramos, podríamos reescribir <code>columna-del-grafico</code> una tercera vez para proporcionar opcionalmente un gráfico de líneas, asi como gráfico de barras. Esto no sería dificil de hacer. Una manera de pensar en un grafico de líneas es que no es más que un grafico de barras en el que la parte de cada barra que está debajo la parte superior esta en blanco. Para construir una columna para gráfico de líneas, la función primero construyen una lista de espacios en blanco que más que mas pequeñå que el valor en uno, luego usa <code>cons</code> para adjuntar un símbolo gráfico a la lista; despues usa <code>cons</code> de nuevo para adjuntar el ‘alto de espacios en blanco’ a la lista.</p>
+<p>Es fácil ver como escribir una función de este tipo, pero puesto que no la necesitamos, no se hará. Pero el trabajo podría hacerse, y si se hiciera, se haría con <code>columna-del-grafico</code>. Y lo que es más importante, señalar que pocos cambios que tendrían que realizarce en otra lugar. La mejora, si alguna vez la hacemos, es simple.</p>
+<p>Ahora, finalmente, llegamos a nuestra primera función real de impresion de graficos. Esta imprime el cuerpo de un grafico, no las etiquetas para los ejes horizontal y vertical, así que podemos nombrarla como <code>imprimir-cuerpo-grafico</code>.</p>
 </div>
-<h3 id="la-función-graph-body-print" >La función <code>graph-body-print</code></h3>
+<h3 id="la-función-imprimir-cuerpo-grafico" >La función <code>imprimir-cuerpo-grafico</code></h3>
 <div class="hBody-3" >
-<p>Después de nuestra preparación en la sección precedente, la función <code>graph-body-print</code> es simple. La función imprimirá la columna después de la columna de asteriscos y espacios en blanco, usando los elementos de la lista de números para especificar el número de asteriscos en cada columna. Esto es un acto repetitivo, que significa que se puede usar un bucle <code>while</code> que decrementa o una función recursiva para el trabajo. En esta sección, se escribirá la definición usando un bucle <code>while</code>.</p>
-<p>La función <code>column-of-graph</code> requiere el alto del grafo como un argumento, así se asigna y guarda esto como una variable local.</p>
-<p>Esto lidera a la siguiente plantilla para el bucle <code>while</code> versión de esta función:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">graph-body-print</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
+<p>Después de nuestra preparación en la sección anterior, la función <code>imprimir-cuerpo-grafico</code> es sencilla. La función imprimirá columna tras columna de de asteriscos y espacios en blanco, usando los elementos de la lista de números para especificar el número de asteriscos en cada columna. Este es un acto repetitivo, lo que significa que podemos utilizar un bucle <code>while</code> decreciente o una función recursiva para el trabajo. En esta sección, escribiremos la definición usando un bucle <code>while</code>.</p>
+<p>La función <code>columna-del-grafico</code> requiere como argumento la altura del grafico, por lo que debemos determinar y registrarla como una variable local.</p>
+<p>Esto nos lleva a la siguiente plantilla para la funcion con el bucle <code>while</code>:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">imprimir-cuerpo-grafico</span> <span class="p">(</span><span class="nv">lista-de-numeros</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span>  <span class="err">…</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">altura</span>  <span class="err">…</span>
          <span class="err">…</span><span class="p">))</span>
 
-    <span class="p">(</span><span class="nb">while</span> <span class="nv">numbers-list</span>
-      <span class="nv">insert-columns-and-reposition-point</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">numbers-list</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">numbers-list</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="nv">lista-de-numeros</span>
+      <span class="nv">insertar-columna-y-reposicionar-punto</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-numeros</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">lista-de-numeros</span><span class="p">)))))</span>
 </code></pre>
-<p>Necesitamos rellenar los slots de la plantilla.</p>
-<p>Claramente, se puede usar la expresión <code>(apply &#39;max numbers-list)</code> para determinar el alto del grafo.</p>
-<p>El bucle <code>while</code> iterará a través de <code>numbers-list</code> un elemento a la vez. Como eso está ordenado por la expresión <code>(setq numbers-list (cdr numbers-list))</code>, el <code>car</code> de cada instancia de la lista es el valor del argumento para <code>column-of-graph</code>.</p>
-<p>En cada ciclo del bucle <code>while</code>, la función <code>insert-rectangle</code> inserta la lista devuelta por <code>column-of-graph</code>. Desde que la función <code>insert-rectangle</code>, se necesita guardar la localización de punto al tiempo que el rectángulo se inserta, mueve atrás a esta posición después de que el rectángulo es insertado, y entonces se mueve horizontalmente al siguiente lugar desde el que <code>insert-rectangle</code> se llama.</p>
-<p>Si las columnas se insertan en un carácter amplio, será si los espacios en blanco y asteriscos se usan, el comando de reposición es simple <code>(forward-char 1)</code>; sin embargo, el ancho de una columna puede ser más grande que uno. Esto significa que el comando de reposicionamiento sería escrito <code>(forward-char symbol-width)</code>. El mejor lugar para asociar la variable <code>symbol-width</code> al valor del width de la columna grafo está en la varlist de la expresión <code>let</code>.</p>
-<p>Estas consideraciones lideran a la siguiente definición de función:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">graph-body-print</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
-  <span class="s">&#34;Imprime un gráfico de barras de la NUMBERS-LIST.
-</span><span class="s">La numbers-list consiste en los valores del eje Y.&#34;</span>
+<p>Necesitamos completar los espacios de la plantilla.</p>
+<p>Claramente, podemos usar la expresión <code>(apply &#39;max lista-de-numeros)</code> para determinar la altura del grafico.</p>
+<p>El bucle <code>while</code> recorrera la <code>lista-de-numeros</code> un elemento a la vez. A medida que se acorta la lista por la expresión <code>(setq lista-de-numeros (cdr lista-de-numeros))</code>, el <code>car</code> de cada instancia de la lista es el valor del argumento para <code>columna-del-grafico</code>.</p>
+<p>En cada ciclo del bucle <code>while</code>, la función <code>insert-rectangle</code> inserta la lista devuelta por <code>columna-del-grafico</code>. Dado que la función <code>insert-rectangle</code>, mueve el punto a la parte inferior derecha del rectangulo insertado, necesitamos guardar la ubicacion del punto en el momento que se inserta el rectángulo, volver a esta posición después de insertar el rectángulo, y despues moverlo horizontalmente al siguiente lugar donde se llamo a <code>insert-rectangle</code>.</p>
+<p>Si las columnas insertadas tienen un carácter de ancho, como será si se utilizan espacios y asteriscos unicos, el comando de reposicionamiento consiste solamente en <code>(forward-char 1)</code>; sin embargo, el ancho de una columna puede ser mayor que uno. Esto significa que el comando de reposicionamiento debe escribirse <code>(forward-char ancho-del-simbolo)</code>. El ancho del simbolo en si es la longitud de un grafico en blanco y se puede encontrar usando la expresion <code>(length graph-blank)</code>. El mejor lugar para asociar la variable <code>ancho-del-simbolo</code> al valor de la columna de grafico está en la varlist de la expresión <code>let</code>.</p>
+<p>Estas consideraciones conducen a la siguiente definición de función:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">imprimir-cuerpo-grafico</span> <span class="p">(</span><span class="nv">lista-de-numeros</span><span class="p">)</span>
+  <span class="s">&#34;Imprime un gráfico de barras de la LISTA-DE-NUMEROS.
+</span><span class="s">La lista-de-numeros esta formada por los valores del eje Y.&#34;</span>
 
-  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">numbers-list</span><span class="p">))</span>
-        <span class="p">(</span><span class="nv">symbol-width</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">graph-blank</span><span class="p">))</span>
-        <span class="nv">from-position</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">altura</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">lista-de-numeros</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">ancho-del-simbolo</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">simbolo-en-blanco</span><span class="p">))</span>
+        <span class="nv">desde-la-posicion</span><span class="p">)</span>
 
-    <span class="p">(</span><span class="nb">while</span> <span class="nv">numbers-list</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">from-position</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="nv">lista-de-numeros</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">desde-la-posicion</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">insert-rectangle</span>
-       <span class="p">(</span><span class="nv">column-of-graph</span> <span class="nv">height</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">numbers-list</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">from-position</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">forward-char</span> <span class="nv">symbol-width</span><span class="p">)</span>
-      <span class="c1">;; Dibuja la columna del grafo por columna.</span>
+       <span class="p">(</span><span class="nv">columna-del-grafico</span> <span class="nv">altura</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-de-numeros</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">desde-la-posicion</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">forward-char</span> <span class="nv">ancho-del-simbolo</span><span class="p">)</span>
+      <span class="c1">;; Dibuja el grafico columna por columna.</span>
       <span class="p">(</span><span class="nv">sit-for</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">numbers-list</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">numbers-list</span><span class="p">)))</span>
-    <span class="c1">;; Emplaza el punto para etiquetas de ejes X.</span>
-    <span class="p">(</span><span class="nf">forward-line</span> <span class="nv">height</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-numeros</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">lista-de-numeros</span><span class="p">)))</span>
+    <span class="c1">;; Coloca el punto para las etiquetas del eje X.</span>
+    <span class="p">(</span><span class="nf">forward-line</span> <span class="nv">altura</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">insert</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
 <span class="p">))</span>
 </code></pre>
-<p>La expresión inesperada en esta función es la expresión <code>(sit-for 0)</code> en el bucle <code>while</code>. Esta expresión hace que el grafo imprima la operación más interesante para vigilar lo que sería de otro modo. La expresión causa que Emacs pare (sit-for 0) para un momento cero y entonces redibuje la pantalla. Puesto aquí, eso causa que Emacs redibuje la pantalla columna por columna. Sin eso, Emacs no redibujaría la pantalla hasta que la función exista.</p>
-<p>Se puede probar <code>graph-body-print</code> con una pequeña lista de números.</p>
+<p>La unica expresión inesperada en esta función es <code>(sit-for 0)</code> dentro del bucle <code>while</code>. Esta expresión hace que la operacion de impresion de graficos sea más de lo que sería de otro modo. La expresión hace que Emacs <samp>pare</samp> <em>(sit)</em> o no haga nada un periodo de tiempo cero y luego vuelva a dibujar la pantalla. Puesto aquí, hace que Emacs redibuje la pantalla columna por columna. Sin ella, Emacs no redibujaría la pantalla hasta que la función termine.</p>
+<p>Podemos probar <code>imprimir-cuerpo-grafico</code> con una pequeña lista de números.</p>
 <ol class="num" >
 <li>
-<p>Instala <code>graph-symbol</code>, <code>graph-blank</code>, <code>column-of-graph</code>, que están en <a href="Preparar-un-grafico" >Preparar un grafico</a>, and <code>graph-body-print</code>.</p>
+<p>Instala <code>simbolo-grafico</code>, <code>simbolo-en-blanco</code>, <code>columna-del-grafico</code>, que están en las Secciones <a href="#preparar-un-grafico" >Preparar un grafico</a>, y <code>#La función <code>imprimir-cuerpo-grafico</code></code>.</p>
 </li>
 <li>
 <p>Copia la siguiente expresión:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">graph-body-print</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">imprimir-cuerpo-grafico</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
 </code></pre>
 </li>
 <li>
-<p>Cambia al búfer <span class="file" >*scratch*</span> y emplaza el cursor donde quiere que el grafo empiece.</p>
+<p>Cambia al búfer <span class="file" >*scratch*</span> y coloca el cursor donde quieras que empiece el grafico.</p>
 </li>
 <li>
-<p>Escribe <kbd>M::</kbd> (<code>eval-expression</code>).</p>
+<p>Pulsa <kbd>M-:</kbd> (<code>eval-expression</code>).</p>
 </li>
 <li>
-<p>Pega la expresión <code>graph-body-print</code> dentro del minibúfer con <kbd>C-y</kbd> (<code>yank</code>).</p>
+<p>Pega la expresión <code>imprimir-cuerpo-grafico</code> dentro del minibúfer con <kbd>C-y</kbd> (<code>yank</code>).</p>
 </li>
 <li>
-<p>Presiona <kbd>RET</kbd> para evaluar la expresión <code>graph-body-print</code>.</p>
+<p>Presiona <kbd>RET</kbd> para evaluar la expresión <code>imprimir-cuerpo-grafico</code>.</p>
 </li>
 </ol>
-<p>Emacs imprimirá un grafo como este:</p>
+<p>Emacs imprimirá un grafico como este:</p>
 <div class="example-block" >
 <pre class="example" >        *
     *   **
@@ -5684,41 +5681,41 @@ superior y el punto en la esquina derecha inferior.
 </pre>
 </div>
 </div>
-<h3 id="la-función-recursive-graph-body-print" >La función <code>recursive-graph-body-print</code></h3>
+<h3 id="la-función-imprimir-cuerpo-grafico-con-recursividad" >La función <code>imprimir-cuerpo-grafico-con-recursividad</code></h3>
 <div class="hBody-3" >
-<p>La función <code>graph-body-print</code> puede también ser escrito recursivamente. La solución recursiva es dividida dentro de dos partes: una fuera ‘wrapper’ <em>envoltorio</em> que usa una expresión <code>let</code> para determinar los valores varias variables que solo necesitan ser encontradas una vez, tal como la máxima altura del grafo, y una función dentro que es llamada recursivamente para imprimir el grafo.</p>
-<p>El ‘envoltorio’ no es complicado:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">recursive-graph-body-print</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
-  <span class="s">&#34;Imprime un gráfico de barras del NUMBERS-LIST.
-</span><span class="s">El numbers-list consiste en los valores del eje Y.&#34;</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">numbers-list</span><span class="p">))</span>
-        <span class="p">(</span><span class="nv">symbol-width</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">graph-blank</span><span class="p">))</span>
-        <span class="nv">from-position</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">recursive-graph-body-print-internal</span>
-     <span class="nv">numbers-list</span>
-     <span class="nv">height</span>
-     <span class="nv">symbol-width</span><span class="p">)))</span>
+<p>La función <code>imprimir-cuerpo-grafico</code> también puede escribirse recursivamente. La solución recursiva se divide en dos partes: una <samp>envoltura</samp> externa que utiliza una expresión <code>let</code> para determinar los valores de varias variables que solo necesitan encontrarse una vez, como la altura máxima del grafico, y una función interna que se llama recursivamente para imprimir el grafico.</p>
+<p>La ‘envoltura’ no es complicada:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">imprimir-cuerpo-grafico-con-recursividad</span> <span class="p">(</span><span class="nv">lista-de-numeros</span><span class="p">)</span>
+  <span class="s">&#34;Imprime un gráfico de barras de la LISTA-DE-NUMEROS.
+</span><span class="s">La lista-de-numeros esta formada por los valores del eje Y.&#34;</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">altura</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">lista-de-numeros</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">ancho-del-simbolo</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">simbolo-en-blanco</span><span class="p">))</span>
+        <span class="nv">desde-la-posicion</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">imprimir-cuerpo-grafico-con-recursividad-interna</span>
+     <span class="nv">lista-de-numeros</span>
+     <span class="nv">altura</span>
+     <span class="nv">ancho-del-simbolo</span><span class="p">)))</span>
 </code></pre>
-<p>La función recursiva es un poco más difícil. Eso tiene cuatro partes: el ‘prueba-hazlo-de-nuevo’, el código impreso, la llamada recursiva, y la ‘expresion-del-siguiente-paso’. la ‘prueba-hazlo-de-nuevo’ es una expresión <code>when</code> determina si la <code>numbers-list</code> contiene cualquier elemento que permanece; si hace eso, la función imprime una columna del grafo usando el código impreso y se llama así mismo de nuevo. La función se llama así misma de nuevo de acuerdo al valor producido por la ‘expresion-del-siguiente-paso’ que causa para llamar a actuar en una versión ordenada de la <code>numbers-list</code>.</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">recursive-graph-body-print-internal</span>
-  <span class="p">(</span><span class="nv">numbers-list</span> <span class="nv">height</span> <span class="nv">symbol-width</span><span class="p">)</span>
+<p>La función recursiva es un poco más difícil. Tiene cuatro partes: la ‘prueba-hazlo-de-nuevo’, el código de impresion, la llamada recursiva, y la ‘expresion-del-siguiente-paso’. La ‘prueba-hazlo-de-nuevo’ es una expresión <code>when</code> que determina si la <code>lista-de-numeros</code> contiene algun elemento restante; si lo tiene, la función imprime una columna del grafico usando el código de impresion y se vuelve a llamar asi misma. La función se llama así misma de acuerdo al valor producido por la ‘expresion-del-siguiente-paso’ le que hace que la llamada actue sobre una versión mas corta de la <code>lista-de-numeros</code>.</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">imprimir-cuerpo-grafico-con-recursividad-interna</span>
+  <span class="p">(</span><span class="nv">lista-de-numeros</span> <span class="nv">altura</span> <span class="nv">ancho-del-simbolo</span><span class="p">)</span>
   <span class="s">&#34;Imprime un gráfico de barras.
-</span><span class="s">Usado con la función recursive-graph-body-print.&#34;</span>
+</span><span class="s">Se utiliza dentro del cuerpo de la función imprimir-cuerpo-grafico-con-recursividad.&#34;</span>
 
-  <span class="p">(</span><span class="nb">when</span> <span class="nv">numbers-list</span>
-        <span class="p">(</span><span class="nb">setq</span> <span class="nv">from-position</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">when</span> <span class="nv">lista-de-numeros</span>
+        <span class="p">(</span><span class="nb">setq</span> <span class="nv">desde-la-posicion</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
         <span class="p">(</span><span class="nv">insert-rectangle</span>
-         <span class="p">(</span><span class="nv">column-of-graph</span> <span class="nv">height</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">numbers-list</span><span class="p">)))</span>
-        <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">from-position</span><span class="p">)</span>
-        <span class="p">(</span><span class="nf">forward-char</span> <span class="nv">symbol-width</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">sit-for</span> <span class="mi">0</span><span class="p">)</span>     <span class="c1">; Dibuja un gráfico columna por columna.</span>
-        <span class="p">(</span><span class="nv">recursive-graph-body-print-internal</span>
-         <span class="p">(</span><span class="nf">cdr</span> <span class="nv">numbers-list</span><span class="p">)</span> <span class="nv">height</span> <span class="nv">symbol-width</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nv">columna-del-grafico</span> <span class="nv">altura</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-de-numeros</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">desde-la-posicion</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">forward-char</span> <span class="nv">ancho-del-simbolo</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">sit-for</span> <span class="mi">0</span><span class="p">)</span>     <span class="c1">; Dibuja el gráfico columna por columna.</span>
+        <span class="p">(</span><span class="nv">imprimir-cuerpo-grafico-con-recursividad-interna</span>
+         <span class="p">(</span><span class="nf">cdr</span> <span class="nv">lista-de-numeros</span><span class="p">)</span> <span class="nv">altura</span> <span class="nv">ancho-del-simbolo</span><span class="p">)))</span>
 </code></pre>
-<p>Después de la siguiente instalación, esta expresión puede ser chequeada; aquí hay un ejemplo:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">recursive-graph-body-print</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">))</span>
+<p>Podemos probar esta expresión después de instalarla; aquí hay un ejemplo:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">imprimir-cuerpo-grafico-con-recursividad</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">))</span>
 </code></pre>
-<p>Aquí está lo que <code>recursive-graph-body-print</code> produce:</p>
+<p>Aquí está el resultado:</p>
 <div class="example-block" >
 <pre class="example" >    *
    **   *
@@ -5729,16 +5726,16 @@ superior y el punto en la esquina derecha inferior.
 *************
 </pre>
 </div>
-<p>Cada una de estas dos funciones, <code>graph-body-print</code> o <code>recursive-graph-body-print</code>, crea el cuerpo de un grafo.</p>
+<p>Cada una de estas dos funciones, <code>imprimir-cuerpo-grafico</code> o <code>imprimir-cuerpo-grafico-con-recursividad</code>, crea el cuerpo de un grafico.</p>
 </div>
-<h3 id="necesidad-para-ejes-impresos" >Necesidad para ejes impresos</h3>
+<h3 id="necesidad-de-ejes-de-impresion" >Necesidad de Ejes de impresion</h3>
 <div class="hBody-3" >
-<p>Un grafo necesita ejes impresos, así se puede orientar a tí mismo. Para un proyecto do-once, eso puede ser razonable dibujar los ejes a mano usando el modo de emacs Picture, pero un grafo dibuja la función que puede ser usada más de una vez.</p>
-<p>Por esta razón, se han escrito mejoras a la función básica <code>print-graph-body</code> que automáticamente imprime etiquetas para los ejes horizontal y vertical. Puesto que la etiqueta de imprimir funciones no contiene mucho material nuevo, se ha emplazado su descripción en un apéndice Vea la Seccion <a href="Un-Grafo-con-Ejes-Etiquetados" >Un Grafo con Ejes Etiquetados</a>.</p>
+<p>Un grafico necesita ejes impresos para poder orientarse. Para un proyecto de usar una vez, puede ser razonable dibujar los ejes a mano usando el modo Picture de emacs, pero una funcion de dibujo de graficos puede usarse más de una vez.</p>
+<p>Por esta razón, he escrito mejoras a la función básica <code>print-graph-body</code> que imprime automáticamente etiquetas para los ejes horizontal y vertical. Como las funciones de impresion de etiquetas no contiene mucho material nuevo, se puesto su descripción en un apéndice. Ver Seccion <a href="#Apéndice-C" >Apéndice C Un grafico con ejes etiquetados</a>.</p>
 </div>
 <h3 id="ejercicio" >Ejercicio</h3>
 <div class="hBody-3" >
-<p>Escribe una versión de línea de grafo de la funciones de impresión del grafo.</p>
+<p>Escribe una versión de grafico de lineas de las funciones de impresión del graficos.</p>
 </div>
 <h2 id="tu-fichero-.emacs" >Tu fichero <span class="file" >.emacs</span></h2>
 <div class="hBody-2" >
@@ -6852,10 +6849,10 @@ quinto bit de texto
 <div class="hBody-4" >
 <p>De manera interesante, GNU Emacs posee un fichero llamado <span class="file" >ring.el</span> que provee muchas de las funcionalidades que ahora se discuten. Pero las funciones tales como <code>kill-ring-yank-pointer</code> no usan esta librería, posiblemente porque fueron escritas pronto.</p>
 </div>
-<h3 id="apéndice-c-un-grafo-con-ejes-etiquetados" >Apéndice C <span id="un-grafo-con-ejes-etiquetados" >Un grafo con ejes etiquetados</span></h3>
-<div class="hBody-3" >
-<p>Los ejes impresos ayudan a comprender un grafo. Para crear escalas. En un capítulo anterior (Vease Sección <a href="Preparar-un-grafico,-,-Leyendo-un-grafo" >Preparar un grafico, , Leyendo un grafo</a>), se escribió el código para imprimir el cuerpo de un grafo. Aquí se escribe el código para imprimir y etiquetar ejes horizontales y verticales, a lo largo del cuerpo en sí.</p>
-<p>Puesto que las inserciones rellenan un búfer a la derecha y debajo del punto, el nuevo grafo imprime la función que primero imprimiría el eje vertical Y, después el cuerpo del grafo, y finalmente el eje horizontal X. Esta secuencia nos da los contenidos de la función:</p>
+<h2 id="apéndice-c" >Apéndice C Un grafico con ejes etiquetados</h2>
+<div class="hBody-2" >
+<p>Los ejes impresos ayudan a comprender un grafico. Para crear escalas. En un capítulo anterior (Vease Sección <a href="Preparar-un-grafico,-,-Leyendo-un-grafico" >Preparar un grafico, , Leyendo un grafico</a>), se escribió el código para imprimir el cuerpo de un grafico. Aquí se escribe el código para imprimir y etiquetar ejes horizontales y verticales, a lo largo del cuerpo en sí.</p>
+<p>Puesto que las inserciones rellenan un búfer a la derecha y debajo del punto, el nuevo grafico imprime la función que primero imprimiría el eje vertical Y, después el cuerpo del grafico, y finalmente el eje horizontal X. Esta secuencia nos da los contenidos de la función:</p>
 <ol class="num" >
 <li>
 <p>Configura código.</p>
@@ -6864,13 +6861,13 @@ quinto bit de texto
 <p>Imprime el eje Y.</p>
 </li>
 <li>
-<p>Imprime el cuerpo del grafo.</p>
+<p>Imprime el cuerpo del grafico.</p>
 </li>
 <li>
 <p>Imprime el eje X.</p>
 </li>
 </ol>
-<p>Aquí hay un ejemplo de como se ve un grafo finalizado:</p>
+<p>Aquí hay un ejemplo de como se ve un grafico finalizado:</p>
 <div class="example-block" >
 <pre class="example" >0 -
              *
@@ -6886,7 +6883,7 @@ quinto bit de texto
     1   5   10   15
 </pre>
 </div>
-<p>En este grafo, en ambos ejes vertical y horizontal se etiquetan con números. Sin embargo, en algunos grafos, el eje horizontal es tiempo y estaría mejor etiquetarlo con meses, así:</p>
+<p>En este grafico, en ambos ejes vertical y horizontal se etiquetan con números. Sin embargo, en algunos graficos, el eje horizontal es tiempo y estaría mejor etiquetarlo con meses, así:</p>
 <div class="example-block" >
 <pre class="example" >5 -      *
        * ** *
@@ -6899,30 +6896,30 @@ quinto bit de texto
 </div>
 <p>Dentro, con un pequeño pensamiento, se puede fácilmente venir con una variedad de esquemas de etiquetado verticales y horizontales. Nuestra tarea podría llegar a ser complicada. Pero las complicaciones generan confusión. En vez de permitir esto, es mejor elegir un simple esquema de etiquetado para nuestro primer esfuerzo, y modificarlo o reemplazarlo después.</p>
 <p>Estas consideraciones sugieren el siguiente outline para la función <code>print-graph</code>:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span> <span class="p">(</span><span class="nv">lista-de-numeros</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span>  <span class="err">…</span>
         <span class="err">…</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">print-Y-axis</span> <span class="nv">height</span> <span class="err">…</span> <span class="p">)</span>
-    <span class="p">(</span><span class="nv">graph-body-print</span> <span class="nv">numbers-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">imprimir-cuerpo-grafico</span> <span class="nv">lista-de-numeros</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">print-X-axis</span> <span class="err">…</span> <span class="p">)))</span>
 </code></pre>
 <p>Nosotros podemos trabajar en cada parte de la definición de función <code>print-graph</code>.</p>
 </div>
-<h4 id="la-varlist-print-graph" >La varlist <code>print-graph</code></h4>
-<div class="hBody-4" >
+<h3 id="la-varlist-print-graph" >La varlist <code>print-graph</code></h3>
+<div class="hBody-3" >
 <p>Para escribir la función <code>print-graph</code>, la primera tarea es escribir la varlist en la expresión <code>let</code>. (Nosotros dejaremos por ahora cualquier pensamiento acerca de hacer la función interactive o acerca de los contenidos de su cadena de documentación.)</p>
-<p>La varlist asignaría varios valores. Claramente, la etiqueta superior del eje vertical debe ser al menos la altura del grafo, que significa que debe obtener esta información aquí. Note que la función <code>print-graph-body</code> también requiere esta información. No hay razón para calcular la altura del grafo en dos lugares diferentes, así cambiaría <code>print-graph-body</code> desde el camino que definimos pronto para tomar ventaja del cálculo.</p>
+<p>La varlist asignaría varios valores. Claramente, la etiqueta superior del eje vertical debe ser al menos la altura del grafico, que significa que debe obtener esta información aquí. Note que la función <code>print-graph-body</code> también requiere esta información. No hay razón para calcular la altura del grafico en dos lugares diferentes, así cambiaría <code>print-graph-body</code> desde el camino que definimos pronto para tomar ventaja del cálculo.</p>
 <p>De manera similar, tanto la función para imprimir la etiqueta del eje X y la función <code>print-graph-body</code> se necesita aprender el valor del ancho de cada símbolo. Se puede desarrollar el cálculo aquí y cambiar la definición para <code>print-graph-body</code> desde el camino que se definió en el capítulo previo.</p>
-<p>El tamaño de la etiqueta para el eje horizontal debe ser al menos tan largo como el grafo. Sin embargo, esta información es usada solo en la función que imprime el eje horizontal, así no necesita calcularse aquí.</p>
+<p>El tamaño de la etiqueta para el eje horizontal debe ser al menos tan largo como el grafico. Sin embargo, esta información es usada solo en la función que imprime el eje horizontal, así no necesita calcularse aquí.</p>
 <p>Estos pensamientos nos llevan directamente a la siguiente forma para la varlist en el <code>let</code> para <code>print-graph</code>:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">numbers-list</span><span class="p">))</span> <span class="c1">; Primera versión.</span>
-      <span class="p">(</span><span class="nv">symbol-width</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">graph-blank</span><span class="p">)))</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">lista-de-numeros</span><span class="p">))</span> <span class="c1">; Primera versión.</span>
+      <span class="p">(</span><span class="nv">ancho-del-simbolo</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">simbolo-en-blanco</span><span class="p">)))</span>
 </code></pre>
 <p>Como se verá, esta expresión no es bastante correcta.</p>
 </div>
-<h4 id="la-función-print-y-axis" >La función <code>print-Y-axis</code></h4>
-<div class="hBody-4" >
+<h3 id="la-función-print-y-axis" >La función <code>print-Y-axis</code></h3>
+<div class="hBody-3" >
 <p>El trabajo de la función <code>print-Y-axis</code> es imprimir una etiqueta para el eje vertical que se parece a esto:</p>
 <div class="example-block" >
 <pre class="example" >    10 -
@@ -6937,16 +6934,16 @@ quinto bit de texto
      1 -
 </pre>
 </div>
-<p>La función se pasaría a lo alto del grafo, y así construyen e insertan los números y marcas apropiados.</p>
+<p>La función se pasaría a lo alto del grafico, y así construyen e insertan los números y marcas apropiados.</p>
 <p>Es suficientemente fácil ver en la figura que la etiqueta del eje Y pero se puede decir en palabras, y entonces escribir una definición de función para hacer el trabajo es otra materia. No es bastante verdad decir que se quiere un número y un tic cada cinco líneas: solo hay tres líneas entre el <samp>1</samp> y el <samp>5</samp> (líneas 2, 3 y 4), pero cuatro líneas entre el <samp>5</samp> y el <samp>10</samp> (líneas 6, 7, 8 y 9). Es mejor decir que se quiere un número y un tic en la quinta línea desde abajo a cada línea que es un múltiplo de cinco.</p>
-<p>La siguiente cuestión es a que altura se etiquetaría. Supón que la máxima altura de la columna mayor del grafo es siete. La etiqueta superior en el eje Y sería <samp>5 -</samp>, ¿y el grafo se pegaría debajo de la etiqueta?, ¿o la etiqueta superior sería <samp>7 -</samp>, y marcar la vertical del grafo? ¿o sería la etiqueta superior <code>10 -</code>, que es múltiplo de cinco, y es superior al valor más alto del grafo?</p>
-<p>La última forma es preferida. La mayoría de los grafos son rectángulos cuyos lados son un número integral de pasos a lo largo––5, 10, 15, y así para un paso a distancia de cinco. Pero tan pronto se decide usar un paso alto para el eje vertical, se descubre que la expresión simple en la varlist para la altura de la computación es errónea. La expresión es <code>(apply &#39;max numbers-list)</code>. Esto devuelve la altura precisa, no la altura máxima más de lo que es necesario para redondear el múltiplo de cinco. Una expresión más compleja es requerida.</p>
+<p>La siguiente cuestión es a que altura se etiquetaría. Supón que la máxima altura de la columna mayor del grafico es siete. La etiqueta superior en el eje Y sería <samp>5 -</samp>, ¿y el grafico se pegaría debajo de la etiqueta?, ¿o la etiqueta superior sería <samp>7 -</samp>, y marcar la vertical del grafico? ¿o sería la etiqueta superior <code>10 -</code>, que es múltiplo de cinco, y es superior al valor más alto del grafico?</p>
+<p>La última forma es preferida. La mayoría de los graficos son rectángulos cuyos lados son un número integral de pasos a lo largo––5, 10, 15, y así para un paso a distancia de cinco. Pero tan pronto se decide usar un paso alto para el eje vertical, se descubre que la expresión simple en la varlist para la altura de la computación es errónea. La expresión es <code>(apply &#39;max lista-de-numeros)</code>. Esto devuelve la altura precisa, no la altura máxima más de lo que es necesario para redondear el múltiplo de cinco. Una expresión más compleja es requerida.</p>
 <p>Como es normal en casos como este, un problema complejo llega a ser simple si está dividido en varios problemas pequeños.</p>
-<p>Primero, considere el caso cuando el valor superior del grafo es un múltiplo integral de cinco––cuando eso es 5, 10, 15, o algún múltiplo de cinco. Se puede usar este valor como la altura del eje Y.</p>
+<p>Primero, considere el caso cuando el valor superior del grafico es un múltiplo integral de cinco––cuando eso es 5, 10, 15, o algún múltiplo de cinco. Se puede usar este valor como la altura del eje Y.</p>
 <p>Un camino simple y limpio para determinar si un número es múltiplo de cinco se divide por cinco y mira si la división devuelve resto. Si no hay resto, el número es un múltiplo de cinco. De este modo, siete dividido tiene un resto de dos, y siete no es un entero múltiplo de cinco. Dicho de otra manera, recordando la escuela, cinco entre siete es uno y me llevo dos. Sin embargo, diez entre dos, no tiene resto: diez es un múltiplo entero de cinco.</p>
 </div>
-<h5 id="viaje-lateral:-calcula-un-resto" >Viaje lateral: Calcula un resto</h5>
-<div class="hBody-5" >
+<h4 id="viaje-lateral:-calcula-un-resto" >Viaje lateral: Calcula un resto</h4>
+<div class="hBody-4" >
 <p>En Lisp, la función para calcular un resto es <code>%</code>. La función devuelve el resto de su primer argumento dividido por su segundo argumento. Como ocurre, <code>%</code> es una función en Emacs Lisp que no se puede implementar usando <code>apropos</code>: no se puede encontrar nada si se escribe <kbd>M-x apropos <kbd>RET</kbd> resto <kbd>RET</kbd></kbd>. El único camino para aprender la existencia de <code>%</code> es leer acerca de eso en un libro tal como este o en las fuentes de Emacs Lisp.</p>
 <p>Se puede probar la función <code>%</code> evaluando las siguientes dos expresiones:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">%</span> <span class="mi">7</span> <span class="mi">5</span><span class="p">)</span>
@@ -6961,10 +6958,10 @@ quinto bit de texto
 <span class="p">(</span><span class="nv">zerop</span> <span class="p">(</span><span class="nf">%</span> <span class="mi">10</span> <span class="mi">5</span><span class="p">))</span>
      <span class="err">⇒</span> <span class="no">t</span>
 </code></pre>
-<p>De este modo, la siguiente expresión devolverá <code>t</code> si la altura del grafo es divisible por cinco:</p>
+<p>De este modo, la siguiente expresión devolverá <code>t</code> si la altura del grafico es divisible por cinco:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">zerop</span> <span class="p">(</span><span class="nf">%</span> <span class="nv">height</span> <span class="mi">5</span><span class="p">))</span>
 </code></pre>
-<p>(El valor de <code>height</code>, de acuerdo, puede ser encontrado desde <code>(apply &#39;max numbers-list)</code>.)</p>
+<p>(El valor de <code>height</code>, de acuerdo, puede ser encontrado desde <code>(apply &#39;max lista-de-numeros)</code>.)</p>
 <p>Por otro lado, si el valor de <code>height</code> no es un múltiplo de cinco, nosotros queremos resetear el valor al siguiente múltiplo de cinco. Esta es la aritmética sencilla usando funciones con las que ya se está familiarizado. Primero, se divide el valor de <code>height</code> por cinco para determinar cuantas veces cinco va dentro del número. De este modo, cinco va dentro doce veces. Si se añade uno a este cociente y se multiplica por cinco, obtendremos el valor del siguiente múltiplo de cinco que es más largo que el mayor. Cinco va dentro de doce dos veces. Añade uno a dos, y multiplica por cinco; el resultado es quince, que es el siguiente múltiplo de cinco que es mayor de doce. La expresión Lisp para esto es:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">*</span> <span class="p">(</span><span class="nf">1+</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">height</span> <span class="mi">5</span><span class="p">))</span> <span class="mi">5</span><span class="p">)</span>
 </code></pre>
@@ -6985,20 +6982,20 @@ quinto bit de texto
   <span class="s">&#34;Número de líneas desde una etiqueta del eje Y al siguiente.&#34;</span><span class="p">)</span>
 
 <span class="err">…</span>
-<span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">numbers-list</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">height</span> <span class="p">(</span><span class="nf">apply</span> <span class="ss">&#39;max</span> <span class="nv">lista-de-numeros</span><span class="p">))</span>
        <span class="p">(</span><span class="nv">height-of-top-line</span>
         <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">zerop</span> <span class="p">(</span><span class="nf">%</span> <span class="nv">height</span> <span class="nv">Y-axis-label-spacing</span><span class="p">))</span>
             <span class="nv">height</span>
           <span class="c1">;; else</span>
           <span class="p">(</span><span class="nf">*</span> <span class="p">(</span><span class="nf">1+</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">height</span> <span class="nv">Y-axis-label-spacing</span><span class="p">))</span>
              <span class="nv">Y-axis-label-spacing</span><span class="p">)))</span>
-       <span class="p">(</span><span class="nv">symbol-width</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">graph-blank</span><span class="p">))))</span>
+       <span class="p">(</span><span class="nv">ancho-del-simbolo</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">simbolo-en-blanco</span><span class="p">))))</span>
 <span class="err">…</span>
 </code></pre>
-<p>(Note que el uso de la función <code>let*</code>: el valor inicial de la altura es calculada una vez por la expresión <code>(apply &#39;max numbers-list)</code> y entonces el valor resultado de <code>height</code> es usado para computar su valor final. Vea la Seccion <a href="La-expresión-let*" >La expresión <code>let*</code></a>, para más acerca de <code>let*</code>.)</p>
+<p>(Note que el uso de la función <code>let*</code>: el valor inicial de la altura es calculada una vez por la expresión <code>(apply &#39;max lista-de-numeros)</code> y entonces el valor resultado de <code>height</code> es usado para computar su valor final. Vea la Seccion <a href="La-expresión-let*" >La expresión <code>let*</code></a>, para más acerca de <code>let*</code>.)</p>
 </div>
-<h5 id="construye-un-elemento-del-eje-y" >Construye un elemento del eje Y</h5>
-<div class="hBody-5" >
+<h4 id="construye-un-elemento-del-eje-y" >Construye un elemento del eje Y</h4>
+<div class="hBody-4" >
 <p>Cuando se imprime el eje vertical, se quieren insertar cadenas tales como <samp>5 -</samp> y <samp>10 - </samp> cada cinco líneas. Más allá, se quieren los números agitados para alinear, así pocos números deben ser acuñados con espacios de guía. Si alguna de las cadenas usan dos dígitos, las cadenas con un simple dígito deben incluir una guía en blanco antes del número.</p>
 <p>Para figurarse el tamaño del número, se usa la función <code>length</code>. Pero la función <code>length</code> funciona solo con una cadena, no con un número. Así el número tiene que ser convertido desde un número a una cadena. Esto se hace con la función <code>number-to-string</code>. Por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">length</span> <span class="p">(</span><span class="nf">number-to-string</span> <span class="mi">35</span><span class="p">))</span>
@@ -7012,7 +7009,7 @@ quinto bit de texto
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defvar</span> <span class="nv">Y-axis-tic</span> <span class="s">&#34; - &#34;</span>
    <span class="s">&#34;La Cadena que sigue el número en una etiqueta del eje Y.&#34;</span><span class="p">)</span>
 </code></pre>
-<p>El tamaño de la etiqueta Y es la suma del tamaño del eje Y y el tamaño del número del alto del grafo.</p>
+<p>El tamaño de la etiqueta Y es la suma del tamaño del eje Y y el tamaño del número del alto del grafico.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">length</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">number-to-string</span> <span class="nv">height</span><span class="p">)</span> <span class="nv">Y-axis-tic</span><span class="p">)))</span>
 </code></pre>
 <p>Este valor será calculado por la función <code>print-graph</code> en su varlist como <code>full-Y-label-width</code> y se pasa dentro. (Note que no se pensaba en incluir esto en el varlist cuando se propuso.)</p>
@@ -7037,8 +7034,8 @@ quinto bit de texto
 <p>Los espacios en blanco se insertan usando la función <code>make-string</code>. Esta función tiene dos argumentos: lo primero cuenta como de larga será a cadena y el segundo es un símbolo para el caracter a insertar, en un formato espcial. El formato es una marca de pregunta seguida por un espacio en blanco, como este, <samp>?</samp>. Vea la Seccion <q>Tipo de Caracter</q> en <em>El Manual de Referencia Emacs Lisp</em>, para una descripción de la sintaxis para caracteres. (De acuerdo, se podría querer reemplazar el espacio en blanco por algún otro caracter …. Tu sabes qué hacer.)</p>
 <p>La función <code>number-to-string</code> es usada en la expresión de concatenación, para convertir el número a una cadena que es concatenada con los espacios que se lideran y la marca de tic.</p>
 </div>
-<h5 id="crea-un-eje-de-la-columna-y" >Crea un eje de la columna Y</h5>
-<div class="hBody-5" >
+<h4 id="crea-un-eje-de-la-columna-y" >Crea un eje de la columna Y</h4>
+<div class="hBody-4" >
 <p>Las funciones precedentes proporcionan todas las herramientas necesarias para construir una función que genera una lista de cadenas enumeradas y en blanco para inserta como la etiqueta para el eje vertical:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">Y-axis-column</span> <span class="p">(</span><span class="nv">height</span> <span class="nv">width-of-label</span><span class="p">)</span>
   <span class="s">&#34;Construye la lista de ejes Y etiquetadas y cadenas en blanco.
@@ -7064,12 +7061,12 @@ quinto bit de texto
 </code></pre>
 <p>En esta función, nosotros empezamos con el valor de <code>height</code> y repetitivamente sustrae uno desde su valor. Después de cada sustración, se chequea para ver si el valor es una integral múltiple del <code>Y-axis-label-spacing</code>. Si eso es, se construye una etiqueta numerada usando la función <code>Y-axis-element</code>; si no, se construye una etiqueta blanca usando la función <code>make-string</code>. La línea base consiste del número uno seguido por una marca tic.</p>
 </div>
-<h5 id="la-versión-no-demasiado-final-de-print-y-axis" >La versión no demasiado final de <code>print-Y-axis</code></h5>
-<div class="hBody-5" >
+<h4 id="la-versión-no-demasiado-final-de-print-y-axis" >La versión no demasiado final de <code>print-Y-axis</code></h4>
+<div class="hBody-4" >
 <p>La lista construida por la función <code>Y-axis-column</code> está pasada a la función <code>print-Y-axis</code>, que inserta la lista como una columna.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-Y-axis</span> <span class="p">(</span><span class="nv">height</span> <span class="nv">full-Y-label-width</span><span class="p">)</span>
   <span class="s">&#34;Inserta el eje Y usando HEIGHT y FULL-Y-LABEL-WIDTH.
-</span><span class="s">La altura debe ser la máxima altura del grafo.
+</span><span class="s">La altura debe ser la máxima altura del grafico.
 </span><span class="s">El ancho completo es el ancho del mayor elemento de la
 </span><span class="s">etiqueta&#34;</span>
 <span class="c1">;; El valor del alto y full-Y-label-width</span>
@@ -7077,12 +7074,12 @@ quinto bit de texto
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">start</span> <span class="p">(</span><span class="nf">point</span><span class="p">)))</span>
     <span class="p">(</span><span class="nv">insert-rectangle</span>
      <span class="p">(</span><span class="nv">Y-axis-column</span> <span class="nv">height</span> <span class="nv">full-Y-label-width</span><span class="p">))</span>
-    <span class="c1">;; Posiciona el punto listo para inserta el grafo.</span>
+    <span class="c1">;; Posiciona el punto listo para inserta el grafico.</span>
     <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">start</span><span class="p">)</span>
     <span class="c1">;; Mueve el punto hacia adelante por valor de full-Y-label-width</span>
     <span class="p">(</span><span class="nf">forward-char</span> <span class="nv">full-Y-label-width</span><span class="p">)))</span>
 </code></pre>
-<p>El <code>print-Y-axis</code> usa la función <code>insert-rectangle</code> para inserta el eje Y creado por la función <code>Y-axis-column</code>. Además, eso emplaza el punto en la posición correcta para imprimir el cuerpo del grafo.</p>
+<p>El <code>print-Y-axis</code> usa la función <code>insert-rectangle</code> para inserta el eje Y creado por la función <code>Y-axis-column</code>. Además, eso emplaza el punto en la posición correcta para imprimir el cuerpo del grafico.</p>
 <p>Se puede probar <code>print-Y-axis</code>:</p>
 <ul>
 <li>
@@ -7105,10 +7102,10 @@ print-Y-axis
 <p>Cambia al búfer <span class="file" >*scratch*</span> y emplaza el cursor donde se quiere el eje etiquetado para empezar.</p>
 </li>
 <li>
-<p>Escribe <kbd>M::</kbd> (<code>eval-expression</code>).</p>
+<p>Escribe <kbd>M-:</kbd> (<code>eval-expression</code>).</p>
 </li>
 <li>
-<p>Pega la expresión <code>graph-body-print</code> dentro del minibúfer con <kbd>C-y</kbd> (<code>yank</code>).</p>
+<p>Pega la expresión <code>imprimir-cuerpo-grafico</code> dentro del minibúfer con <kbd>C-y</kbd> (<code>yank</code>).</p>
 </li>
 <li>
 <p>Presiona <kbd>RET</kbd> para evaluar la expresión</p>
@@ -7116,17 +7113,17 @@ print-Y-axis
 </ul>
 <p>Emacs imprimirá etiquetas verticalmente, el primero siendo <samp>10 - </samp>. (La función <code>print-graph</code> pasará el valor de <code>height-of-top-line</code>, que en este caso finalizará en 15, por esto lo que se obtiene podría aparecer como un error.)</p>
 </div>
-<h4 id="la-función-print-x-axis" >La función <code>print-X-axis</code></h4>
-<div class="hBody-4" >
+<h3 id="la-función-print-x-axis" >La función <code>print-X-axis</code></h3>
+<div class="hBody-3" >
 <p>Las etiquetas del eje X son como las etiquetas del eje Y, excepto que los ticks son un línea debajo de los números. Las etiquetas se parece como esto:</p>
 <div class="example-block" >
 <pre class="example" >|   |    |    |
 1   5   10   15
 </pre>
 </div>
-<p>El primer tic está bajo la primera columna del grafo y está precedido por varios espacios en blanco. Estos espacios proporcionan la habitación en filas de debajo para las etiquetas del eje Y. El segundo, tercer, cuarto, y subsiguientes ticks son todos espaciados igualmente, de acuerdo al valor de <code>X-axis-label-spacing</code>.</p>
+<p>El primer tic está bajo la primera columna del grafico y está precedido por varios espacios en blanco. Estos espacios proporcionan la habitación en filas de debajo para las etiquetas del eje Y. El segundo, tercer, cuarto, y subsiguientes ticks son todos espaciados igualmente, de acuerdo al valor de <code>X-axis-label-spacing</code>.</p>
 <p>La segunda fila del eje X consiste de números, precedidos por varios espacios en blanco y también separado de acuerdo al valor de la variable <code>X-axis-label-spacing</code>.</p>
-<p>El valor de la variable <code>X-axis-label-spacing</code> sería medido en unidades de <code>symbol-width</code>, puesto que se puede querer cambiar el ancho de los símbolos que estás usando para imprimir el cuerpo del grafo sin cambiar los caminos del grafo que está etiquetado.</p>
+<p>El valor de la variable <code>X-axis-label-spacing</code> sería medido en unidades de <code>ancho-del-simbolo</code>, puesto que se puede querer cambiar el ancho de los símbolos que estás usando para imprimir el cuerpo del grafico sin cambiar los caminos del grafico que está etiquetado.</p>
 <p>La función <code>print-X-axis</code> está construida más o menos del mismo modo como que la función <code>print-Y-axis</code> excepto que tiene dos líneas: la línea de marcas tic y los números. Nosotros escribiremos una función separado a imprimir cada línea y entonces combinarlo con la función <code>print-X-axis</code>.</p>
 <p>Esto es un proceso de tres pasos:</p>
 <ol class="num" >
@@ -7141,15 +7138,15 @@ print-Y-axis
 </li>
 </ol>
 </div>
-<h5 id="eje-x-marca-tic" >Eje X marca tic</h5>
-<div class="hBody-5" >
+<h4 id="eje-x-marca-tic" >Eje X marca tic</h4>
+<div class="hBody-4" >
 <p>La primera función imprimiría las marcas de tic del eje X. Se deben especificar las marcas en sí y su espacio:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defvar</span> <span class="nv">X-axis-label-spacing</span>
-  <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">boundp</span> <span class="ss">&#39;graph-blank</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">*</span> <span class="mi">5</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">graph-blank</span><span class="p">))</span> <span class="mi">5</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">boundp</span> <span class="ss">&#39;simbolo-en-blanco</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">*</span> <span class="mi">5</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">simbolo-en-blanco</span><span class="p">))</span> <span class="mi">5</span><span class="p">)</span>
   <span class="s">&#34;Números de unidades desde un eje X al siguiente.&#34;</span><span class="p">)</span>
 </code></pre>
-<p>(Note que el valor de <code>graph-blank</code> est&#39;a asignado por otro <code>defvar</code>. El predicado <code>boundp</code> chequea si ya ha sido asignado; <code>boundp</code> devuelve <code>nil</code> si no lo tiene. Si <code>graph-blank</code> fuera disociado y no usara esta construcción condicional, en un GNU Emacs reciente, se introduciría el depurador y mirará un mensaje de error diciendo <samp>Debugger entered--Lisp error: (void-variable graph-blank)</samp></p>
+<p>(Note que el valor de <code>simbolo-en-blanco</code> est&#39;a asignado por otro <code>defvar</code>. El predicado <code>boundp</code> chequea si ya ha sido asignado; <code>boundp</code> devuelve <code>nil</code> si no lo tiene. Si <code>simbolo-en-blanco</code> fuera disociado y no usara esta construcción condicional, en un GNU Emacs reciente, se introduciría el depurador y mirará un mensaje de error diciendo <samp>Debugger entered--Lisp error: (void-variable simbolo-en-blanco)</samp></p>
 <p>Aquí está el <code>defvar</code> para <code>X-axis-tic-symbol</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defvar</span> <span class="nv">X-axis-tic-symbol</span> <span class="s">&#34;|&#34;</span>
   <span class="s">&#34;Cadena para insertar para apuntar a una columna en el eje X.&#34;</span><span class="p">)</span>
@@ -7167,14 +7164,14 @@ print-Y-axis
 <span class="p">(</span><span class="nf">concat</span>
  <span class="p">(</span><span class="nf">make-string</span>
   <span class="c1">;; Crea una cadena de blancos.</span>
-  <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">length</span> <span class="nv">X-axis-tic-symbol</span><span class="p">))</span>
   <span class="sc">? </span><span class="p">)</span>
  <span class="c1">;; Concatena blancos con símbolos.</span>
  <span class="nv">X-axis-tic-symbol</span><span class="p">)</span>
 <span class="err">…</span>
 </code></pre>
-<p>Lo siguiente, determina cuantos espacios en blanco son necesarios para indentar la primera marca tic a la primera del grafo. Esto usa el valor de <code>full-Y-label-width</code> pasaba por la función <code>print-graph</code>.</p>
+<p>Lo siguiente, determina cuantos espacios en blanco son necesarios para indentar la primera marca tic a la primera del grafico. Esto usa el valor de <code>full-Y-label-width</code> pasaba por la función <code>print-graph</code>.</p>
 <p>El código para crear <code>X-axis-leading-spaces</code> se parece a esto:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;; X-axis-leading-spaces</span>
 <span class="err">…</span>
@@ -7184,11 +7181,11 @@ print-Y-axis
 <p>También necesita determinar el tamaño del eje horizontal, que es el tamaño de la lista de números, y el número de ticks en el eje horizontal:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;; X-length</span>
 <span class="err">…</span>
-<span class="p">(</span><span class="nf">length</span> <span class="nv">numbers-list</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">length</span> <span class="nv">lista-de-numeros</span><span class="p">)</span>
 
 <span class="c1">;; tic-width</span>
 <span class="err">…</span>
-<span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
 
 <span class="c1">;; number-of-X-ticks</span>
 <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">zerop</span> <span class="p">(</span><span class="nf">%</span> <span class="p">(</span><span class="nv">X-length</span> <span class="nv">tic-width</span><span class="p">)))</span>
@@ -7204,7 +7201,7 @@ print-Y-axis
     <span class="c1">;; Inserta el segundo tic en el lugar adecuado.</span>
     <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">concat</span>
              <span class="p">(</span><span class="nf">make-string</span>
-              <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
                   <span class="c1">;; Inserta el espacio en blanco al segundo símbolo tic.</span>
                   <span class="p">(</span><span class="nf">*</span> <span class="mi">2</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">X-axis-tic-symbol</span><span class="p">)))</span>
               <span class="sc">? </span><span class="p">)</span>
@@ -7219,7 +7216,7 @@ print-Y-axis
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">X-axis-element</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span>
   <span class="s">&#34;Construye un elemento del eje X numerado.&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">leading-spaces</span>
-         <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
              <span class="p">(</span><span class="nf">length</span> <span class="p">(</span><span class="nf">number-to-string</span> <span class="nv">number</span><span class="p">)))))</span>
     <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">make-string</span> <span class="nv">leading-spaces</span> <span class="sc">? </span><span class="p">)</span>
             <span class="p">(</span><span class="nf">number-to-string</span> <span class="nv">number</span><span class="p">))))</span>
@@ -7234,7 +7231,7 @@ print-Y-axis
     <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">concat</span>
              <span class="p">(</span><span class="nf">make-string</span>
               <span class="c1">;; Inserta espacios en blanco al siguiente número.</span>
-              <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
               <span class="sc">? </span><span class="p">)</span>
              <span class="p">(</span><span class="nf">number-to-string</span> <span class="nv">number</span><span class="p">)))</span>
     <span class="c1">;; Insertar números.</span>
@@ -7247,18 +7244,18 @@ print-Y-axis
 <p>Finalmente, se necesita escribir lo que <code>print-X-axis</code> que usa <code>print-X-axis-tic-line</code> y <code>print-X-axis-numbered-line</code>.</p>
 <p>La función debe determinar los valores locales de las variables usadas por <code>print-X-axis-tic-line</code> y <code>print-X-axis-numbered-line</code>, y entonces eso debe llamarlas. También, debe imprimir el retorno de carro que separe las dos líneas.</p>
 <p>La función consiste de una varlist que especifica cinco variables locales, y llama cada una de las dos líneas imprimiendo funciones:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-X-axis</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
-  <span class="s">&#34;Imprime el eje X etique al tamaño de NUMBERS-LIST.&#34;</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-X-axis</span> <span class="p">(</span><span class="nv">lista-de-numeros</span><span class="p">)</span>
+  <span class="s">&#34;Imprime el eje X etique al tamaño de LISTA-DE-NUMEROS.&#34;</span>
   <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">leading-spaces</span>
           <span class="p">(</span><span class="nf">make-string</span> <span class="nv">full-Y-label-width</span> <span class="sc">? </span><span class="p">))</span>
-       <span class="c1">;; symbol-width se provee por graph-body-print</span>
-       <span class="p">(</span><span class="nv">tic-width</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span> <span class="nv">X-axis-label-spacing</span><span class="p">))</span>
-       <span class="p">(</span><span class="nv">X-length</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">numbers-list</span><span class="p">))</span>
+       <span class="c1">;; ancho-del-simbolo se provee por imprimir-cuerpo-grafico</span>
+       <span class="p">(</span><span class="nv">tic-width</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span> <span class="nv">X-axis-label-spacing</span><span class="p">))</span>
+       <span class="p">(</span><span class="nv">X-length</span> <span class="p">(</span><span class="nf">length</span> <span class="nv">lista-de-numeros</span><span class="p">))</span>
        <span class="p">(</span><span class="nv">X-tic</span>
         <span class="p">(</span><span class="nf">concat</span>
          <span class="p">(</span><span class="nf">make-string</span>
           <span class="c1">;; Crea una cadena de espacios en blanco.</span>
-          <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span> <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">length</span> <span class="nv">X-axis-tic-symbol</span><span class="p">))</span>
           <span class="sc">? </span><span class="p">)</span>
          <span class="c1">;; Concatena espacio en blanco con símbolos</span>
@@ -7281,7 +7278,7 @@ print-Y-axis
 <p>Copia la siguiente expresión:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">progn</span>
  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">full-Y-label-width</span> <span class="mi">5</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">symbol-width</span> <span class="mi">1</span><span class="p">))</span>
+       <span class="p">(</span><span class="nv">ancho-del-simbolo</span> <span class="mi">1</span><span class="p">))</span>
    <span class="p">(</span><span class="nv">print-X-axis</span>
     <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span> <span class="mi">14</span> <span class="mi">15</span> <span class="mi">16</span><span class="p">))))</span>
 </code></pre>
@@ -7290,7 +7287,7 @@ print-Y-axis
 <p>Cambia al búfer <span class="file" >*scratch*</span> y emplaza el cursor donde se quiere el eje etiquetado para empezar.</p>
 </li>
 <li>
-<p>Escribe <kbd>M::</kbd> (<code>eval-expression</code>).</p>
+<p>Escribe <kbd>M-:</kbd> (<code>eval-expression</code>).</p>
 </li>
 <li>
 <p>Pegue la expresión de test dentro del minibuffer con <kbd>C-y</kbd> (<code>yank</code>).</p>
@@ -7306,32 +7303,32 @@ print-Y-axis
 </pre>
 </div>
 </div>
-<h3 id="imprimiendo-el-grafo-completo" >Imprimiendo el grafo completo</h3>
+<h3 id="imprimiendo-el-grafico-completo" >Imprimiendo el grafico completo</h3>
 <div class="hBody-3" >
-<p>Ahora estamos listos para imprimir el grafo completo.</p>
-<p>La función para imprimir el grafo con las etiquetas apropiadas sigue el esquema que creamos antes (Vease Sección <a href="Un-Grafo-con-Ejes-Etiquetados" >Un Grafo con Ejes Etiquetados</a>), pero con adiciones.</p>
+<p>Ahora estamos listos para imprimir el grafico completo.</p>
+<p>La función para imprimir el grafico con las etiquetas apropiadas sigue el esquema que creamos antes (Vease Sección <a href="Un-Grafico-con-Ejes-Etiquetados" >Un Grafico con Ejes Etiquetados</a>), pero con adiciones.</p>
 <p>Aquí está el esquema:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span> <span class="p">(</span><span class="nv">numbers-list</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span> <span class="p">(</span><span class="nv">lista-de-numeros</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">height</span>  <span class="err">…</span>
         <span class="err">…</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">print-Y-axis</span> <span class="nv">height</span> <span class="err">…</span> <span class="p">)</span>
-    <span class="p">(</span><span class="nv">graph-body-print</span> <span class="nv">numbers-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">imprimir-cuerpo-grafico</span> <span class="nv">lista-de-numeros</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">print-X-axis</span> <span class="err">…</span> <span class="p">)))</span>
 </code></pre>
-<p>La versión final es diferente desde que se planea en dos caminos: primero, contiene los valores adicionales calculadas una vez que en la varlist; segundo, eso trae una opción para específicar las etiquetas se incrementa la fila. Esta última funcionalidad cambia a ser esencial; de otro modo, un grafo puede tener más filas que ajustarse en una muestra o en una hoja de papel.</p>
+<p>La versión final es diferente desde que se planea en dos caminos: primero, contiene los valores adicionales calculadas una vez que en la varlist; segundo, eso trae una opción para específicar las etiquetas se incrementa la fila. Esta última funcionalidad cambia a ser esencial; de otro modo, un grafico puede tener más filas que ajustarse en una muestra o en una hoja de papel.</p>
 <p>Esta nueva funcionalidad requiere un cambio a la función <code>Y-axis-column</code>, para añadir <code>vertical-step</code> para eso. Esta función es parece a esto:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Versión Final.</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">Y-axis-column</span>
   <span class="p">(</span><span class="nv">height</span> <span class="nv">width-of-label</span> <span class="kp">&amp;optional</span> <span class="nv">vertical-step</span><span class="p">)</span>
   <span class="s">&#34;Construye una lista de etiquetas para el eje Y.
-</span><span class="s">HEIGHT es la máxima altura del grafo.
+</span><span class="s">HEIGHT es la máxima altura del grafico.
 </span><span class="s">WIDTH-OF-LABEL es el máximo ancho de la etiqueta.
 </span><span class="s">VERTICAL-STEP, una opción, es un entero positivo
 </span><span class="s">que especifica cuanto una etiqueta de eje Y incrementa
 </span><span class="s">cada línea. Por ejemplo, un paso de 5
 </span><span class="s">significa que cada línea es cinco unidades
-</span><span class="s">del grafo.&#34;</span>
+</span><span class="s">del grafico.&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">Y-axis</span>
         <span class="p">(</span><span class="nv">number-per-line</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">vertical-step</span> <span class="mi">1</span><span class="p">)))</span>
     <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">height</span> <span class="mi">1</span><span class="p">)</span>
@@ -7356,23 +7353,23 @@ print-Y-axis
                        <span class="nv">Y-axis</span><span class="p">))</span>
     <span class="p">(</span><span class="nf">nreverse</span> <span class="nv">Y-axis</span><span class="p">)))</span>
 </code></pre>
-<p>Los valores para la máxima altura del grafo y el ancho de un símbolo se computan por <code>print-graph</code> es su expresión <code>let</code>; así <code>graph-body-print</code> debe ser cambiado para aceptarlos.</p>
+<p>Los valores para la máxima altura del grafico y el ancho de un símbolo se computan por <code>print-graph</code> es su expresión <code>let</code>; así <code>imprimir-cuerpo-grafico</code> debe ser cambiado para aceptarlos.</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Versión Final.</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">graph-body-print</span> <span class="p">(</span><span class="nv">numbers-list</span> <span class="nv">height</span> <span class="nv">symbol-width</span><span class="p">)</span>
-  <span class="s">&#34;Imprime una gráfica de barras del NUMBERS-LIST.
-</span><span class="s">El numbers-list consiste en los valores del eje Y.
-</span><span class="s">HEIGHT es la máxisma altura del grafo.
-</span><span class="s">SYMBOL-WIDTH es el número de cada columna.&#34;</span>
-  <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">from-position</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="nv">numbers-list</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">from-position</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">imprimir-cuerpo-grafico</span> <span class="p">(</span><span class="nv">lista-de-numeros</span> <span class="nv">height</span> <span class="nv">ancho-del-simbolo</span><span class="p">)</span>
+  <span class="s">&#34;Imprime una gráfica de barras del LISTA-DE-NUMEROS.
+</span><span class="s">El lista-de-numeros consiste en los valores del eje Y.
+</span><span class="s">HEIGHT es la máxisma altura del grafico.
+</span><span class="s">ANCHO-DEL-SIMBOLO es el número de cada columna.&#34;</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="nv">desde-la-posicion</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="nv">lista-de-numeros</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">desde-la-posicion</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">insert-rectangle</span>
-       <span class="p">(</span><span class="nv">column-of-graph</span> <span class="nv">height</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">numbers-list</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">from-position</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">forward-char</span> <span class="nv">symbol-width</span><span class="p">)</span>
-      <span class="c1">;; Dibuja el grafo columna por columna.</span>
+       <span class="p">(</span><span class="nv">columna-del-grafico</span> <span class="nv">height</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">lista-de-numeros</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">desde-la-posicion</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">forward-char</span> <span class="nv">ancho-del-simbolo</span><span class="p">)</span>
+      <span class="c1">;; Dibuja el grafico columna por columna.</span>
       <span class="p">(</span><span class="nv">sit-for</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">numbers-list</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">numbers-list</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">lista-de-numeros</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">lista-de-numeros</span><span class="p">)))</span>
     <span class="c1">;; Posiciona el punto para las etiquetas del eje X.</span>
     <span class="p">(</span><span class="nf">forward-line</span> <span class="nv">height</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">insert</span> <span class="s">&#34;\n&#34;</span><span class="p">)))</span>
@@ -7380,17 +7377,17 @@ print-Y-axis
 <p>Finalmente, el código para la función <code>print-graph</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Versión Final.</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span>
-  <span class="p">(</span><span class="nv">numbers-list</span> <span class="kp">&amp;optional</span> <span class="nv">vertical-step</span><span class="p">)</span>
-  <span class="s">&#34;El gráfico de barras etiquetadas del NUMBERS-LIST.
-</span><span class="s">El numbers-list consiste en los valores de eje Y.
+  <span class="p">(</span><span class="nv">lista-de-numeros</span> <span class="kp">&amp;optional</span> <span class="nv">vertical-step</span><span class="p">)</span>
+  <span class="s">&#34;El gráfico de barras etiquetadas del LISTA-DE-NUMEROS.
+</span><span class="s">El lista-de-numeros consiste en los valores de eje Y.
 </span><span class="s">
 </span><span class="s">Opcionalmente, VERTICAL-STEP, un entero positivo, especifica cuanto el
 </span><span class="s">eje Y incrementa cada línea. Por ejemplo, un paso de 5
 </span><span class="s">significa que cada fila es de cinco unidades.
-</span><span class="s">  (let* ((symbol-width (length graph-blank))
+</span><span class="s">  (let* ((ancho-del-simbolo (length simbolo-en-blanco))
 </span><span class="s">         ;; @c{height} en ambos es el número más largo
 </span><span class="s">         ;; y el número con la mayoría de los digitos.
-</span><span class="s">         (height (apply &#39;max numbers-list))
+</span><span class="s">         (height (apply &#39;max lista-de-numeros))
 </span><span class="s">         (height-of-top-line
 </span><span class="s">          (if (zerop (% height Y-axis-label-spacing))
 </span><span class="s">              height
@@ -7407,17 +7404,17 @@ print-Y-axis
 </span><span class="s">
 </span><span class="s">    (print-Y-axis
 </span><span class="s">     height-of-top-line full-Y-label-width vertical-step)
-</span><span class="s">    (graph-body-print
-</span><span class="s">     numbers-list height-of-top-line symbol-width)
-</span><span class="s">    (print-X-axis numbers-list)))
+</span><span class="s">    (imprimir-cuerpo-grafico
+</span><span class="s">     lista-de-numeros height-of-top-line ancho-del-simbolo)
+</span><span class="s">    (print-X-axis lista-de-numeros)))
 </span><span class="s"></span></code></pre>
 </div>
-<h5 id="testeando-print-graph" >Testeando <code>print-graph</code></h5>
-<div class="hBody-5" >
+<h4 id="testeando-print-graph" >Testeando <code>print-graph</code></h4>
+<div class="hBody-4" >
 <p>Se puede probar la función <code>print-graph</code> con una lista ordenada de números:</p>
 <ul>
 <li>
-<p>Instala las versiones finales de <code>Y-axis-column</code>, <code>graph-body-print</code>, y <code>print-graph</code> (además del resto del código.)</p>
+<p>Instala las versiones finales de <code>Y-axis-column</code>, <code>imprimir-cuerpo-grafico</code>, y <code>print-graph</code> (además del resto del código.)</p>
 </li>
 <li>
 <p>Copia la siguiente expresión:</p>
@@ -7428,7 +7425,7 @@ print-Y-axis
 <p>Cambia al búfer <span class="file" >*scratch*</span> y emplaza el cursor donde se quiere el eje etiquetado para empezar.</p>
 </li>
 <li>
-<p>Escribe <kbd>M::</kbd> (<code>eval-expression</code>).</p>
+<p>Escribe <kbd>M-:</kbd> (<code>eval-expression</code>).</p>
 </li>
 <li>
 <p>Pegue la expresión de test dentro del minibuffer con <kbd>C-y</kbd> (<code>yank</code>).</p>
@@ -7437,7 +7434,7 @@ print-Y-axis
 <p>Presiona <kbd>RET</kbd> para evaluar la expresión</p>
 </li>
 </ul>
-<p>Emacs imprimirá un grafo que se parece a:</p>
+<p>Emacs imprimirá un grafico que se parece a:</p>
 <div class="example-block" >
 <pre class="example" >10 -
 
@@ -7457,7 +7454,7 @@ print-Y-axis
 <p>Por otro lado, si se pasa a <code>print-graph</code> un <code>vertical-step</code> valor de 2, evaluando esta expresión:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">print-graph</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre>
-<p>El grafo se parece a esto:</p>
+<p>El grafico se parece a esto:</p>
 <div class="example-block" >
 <pre class="example" >20 -
 
@@ -7476,8 +7473,8 @@ print-Y-axis
 </div>
 <p>(Una pregunta: ¿es el ‘2’ debajo del eje vertical un error o una funcionalidad? Si se piensa que es un error, y sería un ‘1’, (o incluso un ‘0’), se pueden modificar las fuentes.)</p>
 </div>
-<h5 id="creando-gráficas-de-números-de-palabras-y-símbolos" >Creando gráficas de números de palabras y símbolos</h5>
-<div class="hBody-5" >
+<h4 id="creando-gráficas-de-números-de-palabras-y-símbolos" >Creando gráficas de números de palabras y símbolos</h4>
+<div class="hBody-4" >
 <p>Ahora para el gráfico para el que todo este código fué escrito: un gráfico que muestra cuantas definiciones de función contienen unas pocas 10 palabras y símbolos, cuantas contienen entre 10 y 19 palabras y símbolos, cuantos contienen entre 20 y 29 palabras y símbolos, y así sucesivamente.</p>
 <p>Esto es un proceso de múltiples pasos. Primero asegúrate que has cargado todo el requisito del código.</p>
 <p>Eso es una buena idea para eliminar el valor de <code>cima-de-rangos</code> en caso de que has asignado a algún valor diferente. Se puede evaluar lo siguiente:</p>
@@ -7506,7 +7503,7 @@ print-Y-axis
 </code></pre>
 <p>Esto significa que mi copia de Emacs tiene 537 definiciones de funciones con poco menos de 10 palabras o símbolos en sí, 1027 definiciones de función con 10 a 19 palabras o símbolos dentro, 955 definiciones de función con 20 a 29 palabras o símbolos dentro, y así sucesivamente.</p>
 <p>Claramente, solo buscando esta lista se puede ver que la mayoría de definiciones de función contienen de diez a treinta palabras y símbolos.</p>
-<p>Ahora para imprimir. Nosotros no queremos imprimir un grafo que es de 1030 líneas de alto …. En vez de eso, imprimiría un grafo que es mejor que venticinco líneas de alto. Un grafo cuya altura puede ser mostrada en casi cualquier monitor, y fácilmente impreso en una hoja de papel.</p>
+<p>Ahora para imprimir. Nosotros no queremos imprimir un grafico que es de 1030 líneas de alto …. En vez de eso, imprimiría un grafico que es mejor que venticinco líneas de alto. Un grafico cuya altura puede ser mostrada en casi cualquier monitor, y fácilmente impreso en una hoja de papel.</p>
 <p>Esto significa que cada valor en <code>list-for-graph</code> debe ser reducido a un quinceavo de su valor presente.</p>
 <p>Aquí hay una corta función para hacer esto, usando dos funciones que no se han visto todavía, <code>mapcar</code> y <code>lambda</code>.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">one-fiftieth</span> <span class="p">(</span><span class="nv">full-range</span><span class="p">)</span>
@@ -7514,8 +7511,8 @@ print-Y-axis
  <span class="p">(</span><span class="nf">mapcar</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">arg</span><span class="p">)</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">arg</span> <span class="mi">50</span><span class="p">))</span> <span class="nv">full-range</span><span class="p">))</span>
 </code></pre>
 </div>
-<h5 id="una-expresión-lambda:-anonimicidad-útil" >Una expresión <code>lambda</code>: Anonimicidad útil</h5>
-<div class="hBody-5" >
+<h4 id="una-expresión-lambda:-anonimicidad-útil" >Una expresión <code>lambda</code>: Anonimicidad útil</h4>
+<div class="hBody-4" >
 <p><code>lambda</code> es el símbolo para una función anónima, una función sin un nombre. Cada vez que se use una función anónima, se necesita incluir su cuerpo completo.</p>
 <p>De este modo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">arg</span><span class="p">)</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">arg</span> <span class="mi">50</span><span class="p">))</span>
@@ -7553,8 +7550,8 @@ print-Y-axis
 <p>Esta expresión devuelve 2. El 100 es pasado para la función, que divide este número por 50.</p>
 <p>Vea la Seccion <q>Expresiones Lambda</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>, para más acerca de <code>lambda</code>. Lisp y expresiones Lambda se derivan del Cálculo Lambda.</p>
 </div>
-<h4 id="la-función-mapcar" >La función <code>mapcar</code></h4>
-<div class="hBody-4" >
+<h3 id="la-función-mapcar" >La función <code>mapcar</code></h3>
+<div class="hBody-3" >
 <p><code>mapcar</code> es una función que llama a su primer argumento con cada elemento de su segundo argumento. El segundo argumento debe ser una secuencia.</p>
 <p>La parte <samp>map</samp> del nombre viene de la frase matemática, ‘mapeando a través de un dominio’, significa hace apply a una función a cada uno de los elementos en un dominio. La frase matemática está basada en la metáfora de un superviviente paseando, un paso en un momento, a través de un área él está mapeando. Y <samp>car</samp>, de acuerdo, viene desde la noción Lisp del primero de una lista.</p>
 <p>Por ejemplo,</p>
@@ -7581,8 +7578,8 @@ print-Y-axis
 </code></pre>
 <p>Así, ¡ya estamos casi listos para imprimir!  (También se notifica la pérdida de información: muchos de los rangos superiores son 0, esto significa que menos de 50 funciones tenían muchas palabras o símbolos––pero no necesariamente significando que niguna tenía muchas palabras o símbolos.)</p>
 </div>
-<h5 id="otro-error-…-más-insidioso" >Otro error … más insidioso</h5>
-<div class="hBody-5" >
+<h4 id="otro-error-…-más-insidioso" >Otro error … más insidioso</h4>
+<div class="hBody-4" >
 <p>¡Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la función <code>print-graph</code> …. Esta tiene una opción <code>vertical-step</code>, pero no una opción <code>horizontal-step</code>. La escala <code>cima-de-rango</code> va desde 10 a 300 por decenas. Pero la función <code>print-graph</code> imprimirá solo uno por uno.</p>
 <p>Esto es un ejemplo clásico de lo que algunos consideramos el tipo más insidioso de error, el error de omisión. Este no es el tipo de error que se puede encontrar estudiando el código, para eso no es el código; es una funcionalidad omitida. Tus mejores acciones son probar tu programa pronto y con frecuencia; e intentar poner en orden, tanto como se pueda, escribir código que sea fácil de comprender y fácil de cambiar. Intenta ser consciente, siempre y cuando se pueda, esto es siempre que tengas que escribir, <em>será</em> reescrito, si no pronto, eventualmente. Un máximo duro de seguir.</p>
 <p>Esta es la función <code>print-X-axis-numbered-line</code> que necesita el trabajo; y entonces el <code>print-X-axis</code> y la función <code>print-graph</code> necesita ser adaptada. No se necesita mucho para ser hecho; hay uno simpático: los números podrían alinearse con marcas de tic. Esto toma un pequeño pensamiento.</p>
@@ -7601,7 +7598,7 @@ print-Y-axis
     <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">concat</span>
              <span class="p">(</span><span class="nf">make-string</span>
               <span class="c1">;; Inserta espacio en blanco.</span>
-              <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">symbol-width</span>
+              <span class="p">(</span><span class="nf">-</span>  <span class="p">(</span><span class="nf">*</span> <span class="nv">ancho-del-simbolo</span>
                      <span class="nv">X-axis-label-spacing</span><span class="p">)</span>
                   <span class="p">(</span><span class="nf">1-</span>
                    <span class="p">(</span><span class="nf">length</span>
@@ -7619,19 +7616,19 @@ print-Y-axis
       <span class="p">(</span><span class="nb">setq</span> <span class="nv">number-of-X-tics</span> <span class="p">(</span><span class="nf">1-</span> <span class="nv">number-of-X-tics</span><span class="p">)))))</span>
 </code></pre>
 <p>Si se está leyendo esto en Info, se pueden ver las nuevas versiones <code>print-X-axis</code> y <code>print-graph</code> y los evaluarlas. Si se está leyendo esto en un libro impreso, se pueden ver las líneas cambiadas aquí (el texto completo es mucho para imprimir).</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-X-axis</span> <span class="p">(</span><span class="nv">numbers-list</span> <span class="nv">horizontal-step</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-X-axis</span> <span class="p">(</span><span class="nv">lista-de-numeros</span> <span class="nv">horizontal-step</span><span class="p">)</span>
   <span class="err">…</span>
     <span class="p">(</span><span class="nv">print-X-axis-numbered-line</span>
      <span class="nv">tic-number</span> <span class="nv">leading-spaces</span> <span class="nv">horizontal-step</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">print-graph</span>
-  <span class="p">(</span><span class="nv">numbers-list</span>
+  <span class="p">(</span><span class="nv">lista-de-numeros</span>
    <span class="kp">&amp;optional</span> <span class="nv">vertical-step</span> <span class="nv">horizontal-step</span><span class="p">)</span>
   <span class="err">…</span>
-    <span class="p">(</span><span class="nv">print-X-axis</span> <span class="nv">numbers-list</span> <span class="nv">horizontal-step</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">print-X-axis</span> <span class="nv">lista-de-numeros</span> <span class="nv">horizontal-step</span><span class="p">))</span>
 </code></pre>
 </div>
-<h5 id="el-gráfico-impreso" >El gráfico impreso</h5>
-<div class="hBody-5" >
+<h4 id="el-gráfico-impreso" >El gráfico impreso</h4>
+<div class="hBody-4" >
 <p>Cuando esté hecho e instalado, se puede llamar al comando <code>print-graph</code> como esto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">print-graph</span> <span class="nv">fiftieth-list-for-graph</span> <span class="mi">50</span> <span class="mi">10</span><span class="p">)</span>
 </code></pre>
@@ -7663,8 +7660,8 @@ print-Y-axis
 </div>
 <p>El grupo largo de funciones contienen de 10 a 19 palabras y símbolos.</p>
 </div>
-<h3 id="apéndice-d-software-libre-y-manuales-libres-por-richard-m.-stallman" >Apéndice D Software Libre y Manuales Libres (<b>por Richard M. Stallman</b>)</h3>
-<div class="hBody-3" >
+<h2 id="apéndice-d-software-libre-y-manuales-libres-por-richard-m.-stallman" >Apéndice D Software Libre y Manuales Libres (<b>por Richard M. Stallman</b>)</h2>
+<div class="hBody-2" >
 <p>La mayor deficiencia en sistemas operativos libres no está en el software––es la falta de buenos manuales libres que se puedan incluir en estos sistemas. Muchos de nuestros programas más importantes no vienen con manuales completos. La documentación es una parte esencial de cualquier paquete de software; cuando un paquete de software libre no viene con un manual libre, es una brecha mayor. Nosotros tenemos muchas brechas hoy.</p>
 <p>Érase una vez, hace muchos años, se piensa que aprendería Perl. Se tiene una copia de un manual libre, pero se encontró difícil de leer. Cuando pregunto a los usuarios de Perl acerca de alternativas, me contaron que serían mejor los manuales introductorios––pero estos no eran libres.</p>
 <p>¿Por qué era esto? Los autores de los buenos manuales los habían escrito para O&#39;Reilly Associates, que los publicaron con términos restrictivos––no copiando, no modificando, los ficheros fuentes están disponibles––que los excluyen desde la comunidad de software libre.</p>

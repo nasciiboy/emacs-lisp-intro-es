@@ -11245,176 +11245,171 @@ and promoting software freedom.”
 
 * Preparar un grafico
 
-  Nuestro objetivo es construir un grafo mostrando los números de
-  definiciones de función de varios tamaños en las fuentes de Emacs lisp.
+  Nuestro objetivo es construir un grafo que muestre el numero de definiciones
+  de función de varios tamaños en el codigo fuente de Emacs lisp.
 
-  Como una materia práctica, si se estuviese creando un grafo, probablemente
-  usarías un programa tal como @c{gnuplot} para hacer el
-  trabajo. (@c{gnuplot} está bien integrado dentro de GNU Emacs.) En este
-  caso, sin embargo, creamos uno desde cero, y en el proceso lo reconstruimos
-  nosotros mismos con algo de lo que se aprende antes y así poder aprender
-  más.
+  Como cuestion práctica, si estuvieras creando un grafico, probablemente
+  usarías un programa como @${gnuplot} para hacer el trabajo. (@${gnuplot} está
+  bien integrado dentro de GNU Emacs.) En este caso, sin embargo, creamos uno
+  desde cero, y en el proceso volveremos a familiarizarnos con algo que de lo
+  que aprendimos antes y aprenderemos más.
 
-  En este capítulo, primero se escribe un grafo simple imprimiendo la
-  función. Esta primera definición será un @:{prototipo}, una función escrita
-  rápidamente nos permite reconocer este territorio de crear un grafo. Se
-  descubren dragones, o resulta que son mitos. Después de olisquear el
-  terreno, nos sentiremos más confidentes y mejoraremos la función para
-  etiquetar las coordenadas automáticamente.
+  En este capítulo, primero escribiremos una simple funcion de impresion de
+  graficos. Esta primera definición será un @:{prototipo}, una función escrita
+  rápidamente que nos permita reconocer este territorio desconocido en la
+  creacion de graficos. Descubriremos dragones, o descubriremos que son
+  mitos. Después de explorar el terreno, nos sentiremos más seguros y
+  mejoraremos la función para etiquetar las coordenadas automáticamente.
 
-  Puesto que Emacs está diseñado para ser flexible y trabajar con todo tipo
-  de terminales, incluyendo los terminales de caracteres, el grafo necesitará
-  ser hecho desde símbolos de ‘escritura’. Un asterisco hará; como nosotros
-  mejoramos la función de impresión del grafo, se puede crear la elección del
-  símbolo como una opción de usuario.
+  Dado que Emacs está diseñado para ser flexible y funcionar con todo tipo de
+  terminales, incluyendo los terminales de solo caracteres, el grafico debera
+  realizarse a partir de simbolos de ‘maquina de escribir’. Un asterisco
+  servira; a medida que mejoremos la función de impresión del grafico, podremos
+  hacer que el simbolo a usar sea una elección del usuario.
 
-  Se puede llamar a esta función @c{graph-body-print}; se tomará un
-  @c{numbers-list} como su único argumento. En esta fase, no se etiquetará el
-  grafo, pero se imprime su cuerpo.
+  Podemos llamar a esta función @c{imprimir-cuerpo-grafico}; tomará como unico
+  argumento una @c{lista-de-numeros}. En esta etapa, no etiquetaremos el grafico,
+  sino que solo imprimiremos su cuerpo.
 
-  La función @c{graph-body-print} inserta una columna vertical de asteriscos
-  para cada elemento en la lista @c{numbers-list}. La altura de cada línea
-  está determinada por el valor de este elemento de la @c{numbers-list}.
+  La función @c{imprimir-cuerpo-grafico} inserta una columna vertical de asteriscos
+  para cada elemento en la lista @c{lista-de-numeros}. La altura de cada línea
+  está determinada por el valor de ese elemento de la @c{lista-de-numeros}.
 
-  Insertar columnas es un acto repetitivo; que significa que esta función
-  debe ser escrita con un bucle @c{while} o recursivamente.
+  Insertar columnas es un acto repetitivo; esto significa que esta función
+  puede escribirse con un bucle @c{while} o recursivamente.
 
   Nuestro primer reto es descubrir como imprimir una columna de
   asteriscos. Normalmente, en Emacs, se imprimen caracteres dentro de una
-  pantalla horizontalmente, línea a línea, escribiendo. Se tienen dos rutas
-  que se pueden seguir: escribir nuestra función column-insertion o descubrir
-  si una que exista en Emacs.
+  pantalla horizontalmente, escribiendo línea a línea. Tenemos dos rutas
+  a seguir: escribir nuestra propia función de insercion-de-columnas o descubrir
+  si ya existe una en Emacs.
 
-  Para ver si hay uno en Emacs, se puede usar el comando @k{M-x
-  apropos}. Este comando es como el comando @k{C-h a} @%c(command-apropos),
-  excepto que último encuentra solo estas funciones que son comandos. El
-  comando @k{M-x apropos} lista todos los símbolos que se asocian a una
-  expresión regular, incluyendo funciones que no son interactivas.
+  Para ver si hay una en Emacs, podemos usar el comando @k{M-x apropos}. Este
+  comando es como el comando @k{C-h a} @%c(command-apropos), excepto que este
+  último solo encuentra aquellas funciones que son comandos. El comando @k{M-x
+  apropos} lista todos los símbolos que coinciden con una expresión regular,
+  incluyendo funciones que no son interactivas.
 
-  Lo que se quiere buscar es algún comando que imprima o inserte
-  columnas. Muy probablemente, el nombre de la función contendrá la palabra
-  ‘print’ o la palabra ‘insert’ o la palabra ‘column’. Por esta razón,
-  podemos simplemente escribir @k{M-x apropos RET print \|insert\|column RET}
-  y se ve el resultado. En mi sistema, este comando toma todavía algún
-  tiempo, y entonces se produce una lista de 79 funciones y variables. Ahora
-  no se tarda mucho y se produce una lista de 211 funciones y
-  variables. Escaneando la lista, la única función que se ve como si se
-  pudiera hacer el trabajo que es @c{insert-rectangle}.
+  Lo que queremos buscar es algún comando que imprima o inserte columnas. Muy
+  probablemente, el nombre de la función contendrá la palabra ‘print’ o la
+  palabra ‘insert’ o la palabra ‘column’. Por esta razón, podemos simplemente
+  escribir @k{M-x apropos RET print\|insert\|column RET} y ver el resultado. En
+  mi sistema, este comando demoro bastante tiempo, y luego produjo una
+  lista de 79 funciones y variables. Ahora no demora mucho y produce una
+  lista de 211 funciones y variables. Explorando la lista, la única función que
+  parece puede hacer el trabajo es @c{insert-rectangle}.
 
-  En realidad, esta es la función que queremos; su documentación dice:
+  De hecho, esta es la función que queremos; su documentación dice:
 
   ..example >
     insert-rectangle:
-    Insertar texto de RECTANGLE con la esquina izquierda a punto
-    La primera línea de RECTANGLE es insertada al punto
-    su segunda línea es insertada a un punto verticalmente
-    bajo el punto, etc.
-    El RECTANGLE debería ser una lista de cadenas.
+    Insertar texto de RECTANGLE con la esquina superior izquierda en el punto
+    La primera línea de RECTANGLE se inserta en el punto
+    la segunda línea se inserta en un punto verticalmente debajo del punto, etc
+    RECTANGLE debe ser una lista de cadenas.
     Después de este comando, la marca está en la esquina izquierda
-    superior y el punto en la esquina derecha inferior.
+    superior y el punto en la esquina inferior derecha.
   < example..
 
-  Se puede ejecutar un test rápido, para asegurar que hace lo que se espera
-  de eso.
+  Podemos ejecutar una prueba rápida, para asegurarnos que hace lo que se espera.
 
-  Aquí está el resultado de emplazar el cursor después de la expresión
-  @c{insert-rectangle} y escribiendo @k{C-u C-x C-e} @%c(eval-last-sexp). La
-  función inserta las cadenas @'{"primero"}, @'{"segundo"}, y @'{"tercero"}
-  en el punto. También la función devuelve @c{nil}.
+  Este es el resultado de colocar el cursor después de la expresión
+  @c{insert-rectangle} y presionar @k{C-u C-x C-e} @%c(eval-last-sexp). La
+  función inserta las cadenas @c{"primero"}, @c{"segundo"}, y @c{"tercero"}
+  debajo del punto. También la función devuelve @c{nil}.
 
-  ..src > elisp
+  ..example >
     (insert-rectangle '("primero" "segundo" "tercer"))primero
-                                                  segundo
-                                                  terceronil
-  < src..
+                                                      segundo
+                                                      tercernil
+  < example..
 
-  De acuerdo, no se inserta el texto de la expresión @c{insert-rectangle} en
-  sí dentro del búfer en el que se marca el grafo, pero se llamará la
-  función de nuestro programa. Nosotros, sin embargo, tenemos que asegurar
-  que el punto está en el búfer en el lugar donde la función
+  Por supuesto, no insertaremos el texto de la expresión @c{insert-rectangle} en
+  el búfer en el que estamos haciendo el grafico, sino qque llamaremos a la
+  función desde nuestro programa. Sin embargo, tendremos que asegurarnos de que
+  el punto está en el búfer en el lugar donde la función
   @c{insert-rectangle} insertará la columna de cadenas.
 
-  Si se está leyendo esto en Info, se puede ver como este trabajo cambia a
-  otro búfer, tal como el búfer @f{*scratch*}, emplazando el punto a algún
-  lugar en el búfer, se escribe @k{M::}, después se escribe la expresión
-  @c{insert-rectangle} dentro del minibúfer en la consola, y entonces se
-  escribe @k{RET}. Esto causa que Emacs evalúe la expresión en el minibúfer,
-  pero usa como el valor del punto la posición del punto en el búfer
-  @f{*scratch*}. (@k{M::} es el atajo para @c{eval-expression}. @c{nil}
-  tampoco aparece en el búfer @f{*scratch*} desde que la expresión se evalúa
-  en el minibúfer.)
+  Si se está leyendo esto en Emacs, puedes ver como funciona cambiando a otro
+  búfer, como el búfer @f{*scratch*}, colocar el punto a algún lugar del búfer,
+  escribiendo @k{M-:}, luego escribir la expresión @c{insert-rectangle} dentro
+  del minibúfer en la consola, y presionar @k{RET}. Esto hace que Emacs evalúe
+  la expresión en el minibúfer, pero utilice como el valor del punto la posición
+  del punto en el búfer @f{*scratch*}. (@k{M-:} es el atajo para
+  @c{eval-expression}. Tampoco aparece @c{nil} en el búfer @f{*scratch*}, ya que
+  la expresión se evalúa en el minibúfer.)
 
-  Se encuentra cuando hacer esto hasta el punto que finaliza al fin de la
+  Cuando hacemos esto, encontraremos que el punto termina al final de la
   última línea insertada––es decir, esta función mueve el punto como un
-  efecto secundario. Si se iba a repetir el comando, con el punto en esta
-  posición, la siguiente inserción sería debajo y a la derecha de la
-  inserción previa. ¡Nosotros no queremos esto!. Si se está yendo a crear un
-  gráfico de barras, las columnas necesitan estar debajo unas de otras.
+  efecto secundario. Si repitieramos el comando, con el punto en esta
+  posición, la siguiente inserción estaria debajo y a la derecha de la
+  inserción anterior. ¡No queremos esto!. Si vamos a crear un
+  gráfico de barras, las columnas deben estar una al lado de la otra.
 
-  Así se descubre que cada ciclo del bucle @c{while} de column-inserting debe
-  reposicionar el punto al lugar que queremos, y este lugar estará arriba, no
-  abajo, de la columna. Más allá, se recuerda que cuando se imprime un grafo,
-  no esperan todas las columnas para estar a la misma altura. Esto significa
-  que el alto de cada columna puede estar a una altura diferente desde una
-  previa. Nosotros simplemente reposicionamos el punto a la misma línea cada
-  vez, pero movido cubriendo a la derecha––o quizás se puede …
+  Así descubrimos que cada ciclo del bucle @c{while} de insercion de corumnas
+  debe reposicionar el punto al lugar que queremos, y ese lugar estará en la
+  parte superior, no en la inferior de la columna. Ademas, recordamos que cuando
+  imprimimos un grafico, no se espera que todas las columnas tengan la misma
+  altura. Esto significa que la parte superior de cada columna puede estar a una
+  altura diferente de la anterior. No podemos simplemente reposicionar el punto
+  en la misma línea cada vez, sino movernos hacia la derecha––o tal vez podamos…
 
-  Estamos planeando crear las columnas de la barra gráfica sin asteriscos. El
-  número de asteriscos en la columna es el número específico por el elemento
-  actual del @c{numbers-list}. Necesitamos construir una lista de asteriscos
-  del tamaño derecho para cada llamada a @c{insert-rectangle}. Si esta lista
+  Estamos planeando crear las columnas del grafico de barras con asteriscos. El
+  número de asteriscos en la columna es el número específicado por el elemento
+  actual de la @c{lista-de-numeros}. Necesitamos construir una lista de asteriscos
+  de la longitud correcta para cada llamada a @c{insert-rectangle}. Si esta lista
   consiste únicamente del número requerido de asteriscos, entonces tendremos
-  la posición de punto el número correcto de líneas bajo la base del gráfico
+  la posición de punto el número correcto de líneas sobre la base del gráfico
   para imprimirse correctamente. Esto podría ser difícil.
 
-  Alternativamente, si podemos figurarnos algún camino para pasar
-  @c{insert-rectangle} del mismo tamaño cada vez, entonces podemos posicionar
-  el punto en la misma línea cada vez, pero se mueve a través de una columna
-  a la derecha por cada nueva columna. Si hacemos esto, sin embargo, alguna
-  de las entradas en la lista pasaba a @c{insert-rectangle} y deben ser
-  espacios en blanco en vez de asteriscos. Por ejemplo, si la altura máxima
-  del grafo es 5, pero la altura de la columna es 3, entonces
-  @c{insert-rectangle} requiere un argumento que se parezca a esto:
+  Alternativamente, si podemos encotrar alguna manear de pasar a
+  @c{insert-rectangle} una lista de la misma longitud cada vez, entonces podemos
+  posicionar el punto en la misma línea cada vez, pero moverlo una
+  columna a la derecha para cada nueva columna. Si hacemos esto, sin embargo,
+  algunas de las entradas en la lista pasaba a @c{insert-rectangle} deben ser
+  espacios en blanco en vez de asteriscos. Por ejemplo, si la altura máxima del
+  grafico es 5, pero la altura de la columna es 3, entonces @c{insert-rectangle}
+  requiere un argumento como este:
 
   ..src > elisp
     (" " " " "*" "*" "*")
   < src..
 
-  Esta última propuesta no es tan difícil, de hecho se puede determinar la
-  altura de la columna. Hay dos caminos para nosotros especificar la altura
-  de la columna: se puede arbitrariamente situar lo que será, lo que
-  funcionaría bien para gráficas de esta altura; o podemos buscar a través de
-  la lista de números y usar la altura máxima de la lista como la altura
-  máxima del grafo. Si la última operación fuera difícil, entonces el
-  procedimiento formal sería fácil, pero hay una función construida en Emacs
-  para determinar el máximo de sus argumentos. Se puede usar esta función. La
-  función se llamaba @c{max} y eso devuelve el mayor de sus argumentos, que
-  deben ser números. De este modo, por ejemplo,
+  Esta última propuesta no es tan difícil, siempre y cuando podamos determinar
+  la altura de la columna. Hay dos maneras de especificar la altura de la
+  columna: podemos indicar arbitrariamente cual sera, lo que funcionaría bien
+  para gráficos de esta altura; o podemos buscar a través de la lista de números
+  y usar la altura máxima de la lista como la altura máxima del grafico. Si la
+  segunda operación fuera difícil, entonces el procedimiento anterior seria mas fácil,
+  pero hay una función nativa en Emacs para determinar el máximo de sus
+  argumentos. Podemos usar esta función. La función se llamaba @c{max} y
+  devuelve el mayor de todos sus argumentos, que deben ser números. Asi, por
+  ejemplo,
 
   ..src > elisp
     (max  3 4 6 5 7 3)
   < src..
 
-  devuelve 7. (Una función correspondiente llamada @c{min} devuelve lo más
+  devuelve 7. (Una función correspondiente llamada @c{min} devuelve el más
   pequeño de todos sus argumentos.)
 
-  Sin embargo, no podemos simplemente llama a @c{max} en el @c{numbers-list};
-  la función @c{max} espera números como sus argumentos, no una lista de
+  Sin embargo, no podemos simplemente llama a @c{max} sobre la @c{lista-de-numeros};
+  la función @c{max} espera números como su argumento, no una lista de
   números. De este modo, la siguiente expresión,
 
   ..src > elisp
-    (max  '(3 4 6 5 7 3))
+    (max '(3 4 6 5 7 3))
   < src..
 
   produce el siguiente mensaje error;
 
   ..example >
-    Mal tipo de argumento: number-or-marker-p, (3 4 6 5 7 3)
+    Tipo incorrecto de argumento: number-or-marker-p, (3 4 6 5 7 3)
   < example..
 
-  Se necesita una función que pasa una lista de argumentos a una
-  función. Esta función es @c{apply}. Esta función ‘aplica’ su primer
-  argumento (una función) para los argumentos restantes, el último puede
+  Necesitamos una función que pase una lista de argumentos a una
+  función. Esa función es @c{apply}. Esta función ‘aplica’ su primer
+  argumento (una función) a los argumentos restantes, el último puede
   ser una lista.
 
   Por ejemplo,
@@ -11425,74 +11420,73 @@ and promoting software freedom.”
 
   devuelve 8
 
-  (Incidentalmente, yo no sabría cómo aprender acerca de esta función sin un
-  libro tal como este. Eso es posible descubrir otras funciones, como
-  @c{search-forward} o @c{insert-rectangle}, adivinando una parte de sus
-  nombres y entonces usando @c{apropos}. Incluso aunque su base metafórica es
-  clara––‘apply’ su primer argumento al resto––dudo que un novicio vendría
-  con esta palabra particular usando @c{apropos} u otra ayuda. De acuerdo,
-  podría ser incorrecto; después de todo, la función fué primero llamada por
-  alguien quien lo había inventado.
+  (Por cierto, no cómo aprenderias sobre esta función sin un libro como este. Es
+  posible descubrir otras funciones, como @c{search-forward} o
+  @c{insert-rectangle}, adivinando una parte de sus nombres y luego usando
+  @c{apropos}. Aunque su base metafórica es clara––‘apply’ @%(aplicar) su primer
+  argumento al resto––dudo que a un novato se le ocurra esa palabra en
+  particular usando @c{apropos} u otra ayuda. Por supuesto, podría estar
+  equivocado; después de todo, la función fué nombrada por primera vez por
+  alguien que la tuvo que inventar.
 
-  El segundo y subsiguientes argumentos para @c{apply} son opcionales, así se
-  puede usar @c{apply} para llamar a una función y pasan los elementos de una
-  lista, como este, que también devuelve 8:
+  El segundo y siguientes argumentos de @c{apply} son opcionales, por lo que
+  podemos usar @c{apply} para llamar a una función y pasarle los elementos de una
+  lista, de la siguiente manera, que también devuelve 8:
 
   ..src > elisp
     (apply 'max '(4 8 5))
   < src..
 
-  Este camino tardío usará @c{apply}. La función
-  @c{lista-de-longitudes-de-muchos-ficheros-recursiva} devuelve una lista de números que se
-  puede aplicar a @c{max} (se podría también aplicar @e{(hacer apply)} a la
-  lista de números ordenados; eso no importa si la lista está o no).
+  Este ultima forma es la que usaremos para @c{apply}. La función
+  @c{lista-de-longitudes-de-muchos-ficheros-recursiva} devuelve una lista de
+  números a la que podemos aplicar @c{max} (tambien podriamos aplicar @c(max) a
+  la lista de números ordenados; no importa si la lista está ordenada o no).
 
-  Aquí, la operación para encontrar el tamaño máximo del grafo es este:
+  Por lo tanto, la operación para encontrar la altura máxima del grafico es esta:
 
   ..src > elisp
-    (setq max-graph-height (apply 'max numbers-list))
+    (setq altura-maxima-del-grafico (apply 'max lista-de-numeros))
   < src..
 
-  Ahora se puede devolver la pregunta de como crear una lista de cadenas para
-  una columna del grafo. Cuenta la máxima altura del grafo y el número de
+  Ahora podemos volver a la pregunta de como crear una lista de cadenas para
+  una columna del grafico. Indicando la máxima altura del grafico y el número de
   asteriscos que aparecerían en la columna, la función devolverá una lista de
-  cadenas para el comando a insertar @c{insert-rectangle}.
+  cadenas para el comando @c{insert-rectangle}.
 
-  Cada columna se realiza con asteriscos o espacios en blanco. Puesto que la
-  función pasa el valor del alto de la columna y el número de asteriscos en
-  el columna, el número de espacios en blanco puede ser encontrado
-  sustrayendo el número de asteriscos desde lo alto de la columna. Dado el
-  número de espacios en blanco y el número de asteriscos, dos bucles
-  @c{while} puede ser usado para construir la lista:
+  Cada columna se compone de asteriscos o espacios en blanco. Puesto que pasamos
+  a la función la altura de la columna y el número de asteriscos en ella, el
+  número de espacios en blanco se puede encontrar restando los asteriscos de la
+  altura. Dado el número de espacios en blanco y el número de asteriscos,
+  podemos usar dos bucles @c{while} para construir la lista:
 
   ..src > elisp
     ;;; Primera versión.
-    (defun column-of-graph (max-graph-height actual-height)
-      "Devuelve la lista de cadenas que una columna de un grafo."
-      (let ((insert-list nil)
-            (number-of-top-blanks
-             (- max-graph-height actual-height)))
+    (defun columna-del-grafico (altura-maxima-del-grafico altura-real)
+      "Devuelve la lista de cadenas que es una columna de un grafico."
+      (let ((lista-de-insercion nil)
+            (numero-de-espacios
+             (- altura-maxima-del-grafico altura-real)))
 
-        ;; Llenar asteriscos.
-        (while (> actual-height 0)
-          (setq insert-list (cons "*" insert-list))
-          (setq actual-height (1- actual-height)))
+        ;; Rellenar los asteriscos.
+        (while (> altura-real 0)
+          (setq lista-de-insercion (cons "*" lista-de-insercion))
+          (setq altura-real (1- altura-real)))
 
-        ;; Rellena espacios en blanco.
-        (while (> number-of-top-blanks 0)
-          (setq insert-list (cons " " insert-list))
-          (setq number-of-top-blanks
-                (1- number-of-top-blanks)))
+        ;; Rellena los espacios.
+        (while (> numero-de-espacios 0)
+          (setq lista-de-insercion (cons " " lista-de-insercion))
+          (setq numero-de-espacios
+                (1- numero-de-espacios)))
 
         ;; Devuelve la lista completa.
-        insert-list))
+        lista-de-insercion))
   < src..
 
-  Si se instala esta función y entonces evalúa la siguiente expresión se verá
-  que devuelve la lista como se desea:
+  Si instalas esta función y luego evaluas  la siguiente expresión, veras que
+  devuelve la lista que se espera:
 
   ..src > elisp
-    (column-of-graph 5 3)
+    (columna-del-grafico 5 3)
   < src..
 
   devuelve
@@ -11501,194 +11495,194 @@ and promoting software freedom.”
     (" " " " "*" "*" "*")
   < src..
 
-  Como está escrito, @c{column-of-graph} contiene una grieta mayor: los
-  símbolos usados para el espacio en blanco para las entradas marcadas en la
-  columna son ‘codificadas duras’ como un espacio y un asterisco. Esto está
-  bien para un prototipo, pero tu, u otro usuario, puede desear usar otros
-  símbolos. Por ejemplo, chequeando la función grafo, tu quieres usar un
-  periodo en vez del espacio, asegura el punto que está siendo recolocando
-  apropiadamente cada vez que la función @c{insert-rectangle} se llama; o se
-  podría querer sustituir un signo @'{+} u otro símbolo para el asterisco. Se
-  podría incluso querer hacer un graph-column que es más que un ancho de
-  columna. El programa debería ser más flexible. El camino para hacer esto es
-  reemplazar el espacio en blanco y el asterisco con dos variables que se
-  puede llamar @c{graph-blank} y @c{graph-symbol} y define estas variables
-  separadamente.
+  Como está escrito, @c{columna-del-grafico} contiene una defecto importante:
+  los símbolos usados para el espacio y las entradas marcadas en la columna
+  estan ‘incrustados en el codigo’ como un espacio y un asterisco. Esto está
+  bien para un prototipo, pero tu, u otro usuario, pueden querer usar otros
+  símbolos. Por ejemplo, al probar la función del grafico, podrias querer usar
+  un punto en vez del espacio, para asegurar que el punto que está recolocando
+  apropiadamente cada vez que se llama a la función @c{insert-rectangle}; o tal
+  vez quieras sustituir un signo de asterisco por @'{+}. Incluso es posible
+  querer crear un grafico de columna que tenga mas de una columna de
+  visualizacion. El programa debería ser más flexible. La forma de hacerlo
+  es reemplazar el espacio en blanco y el asterisco con dos variables que
+  podemos llamar @c{simbolo-en-blanco} y @c{simbolo-grafico} y definir esa variables
+  por separado.
 
-  También la documentación no está escrita. Estas consideraciones nos llevan
-  también a la segunda versión de la función:
+  Ademas, la documentación no está bien escrita. Estas consideraciones nos llevan
+  a la segunda versión de la función:
 
   ..src > elisp
-    (defvar graph-symbol "*"
-      "Cadena usada como símbolo en grafo, normalmente un asterisco.")
+    (defvar simbolo-grafico "*"
+      "Cadena utilizada como símbolo en el grafico, normalmente un asterisco.")
 
-    (defvar graph-blank " "
-      "La cadena como un espacio en blanco en grafo, normalmente un
-      espacio en blanco.
-    graph-blank debe ser el mismo número de columnas amplio como graph-symbol.")
+    (defvar simbolo-en-blanco " "
+      "Cadena utilizada como un espacio en blanco en el grafico, normalmente un espacio en blanco.
+    simbolo-en-blanco debe tener el mismo número de columnas de ancho que simbolo-grafico.")
   < src..
 
-  (Para una explicación de @c{defvar}, ver @l{Inicializando una Variable con
-  @c{defvar}}.)
+  (Para una explicación de @c{defvar}, vera la seccion @l{#Inicializando una
+  variable con @c{defvar}}.)
 
   ..src > elisp
     ;;; Segunda versión.
-    (defun column-of-graph (max-graph-height actual-height)
-      "Devuelve cadenas MAX-GRAPH-HEIGHT; ACTUAL-HEIGHT son
-      símbolos de grafos.
+    (defun columna-del-grafico (altura-maxima-del-grafico altura-real)
+      "Devuelve cadenas con la ALTURA-MAXIMA-DEL-GRAFICO; ALTURA-REAL son símbolos graficos.
 
-    Los graph-symbols son entradas contiguo al fin de la lista.
-    La lista será insertado como una columna de un grafo.
-    Las cadenas son tanto graph-blank o graph-symbol.
+    Los simbolo-graficos son entradas contiguas al final de la lista.
+    La lista se insertara como una columna de un grafico.
+    Las cadenas contienen tanto simbolos en blanco o simbolos graficos."
 
-      (let ((insert-list nil)
-            (number-of-top-blanks
-             (- max-graph-height actual-height)))
+      (let ((lista-de-insercion nil)
+            (numero-de-espacios
+             (- altura-maxima-del-grafico altura-real)))
 
-        ;; Rellenar en graph-symbols.
-        (while (> actual-height 0)
-          (setq insert-list (cons graph-symbol insert-list))
-          (setq actual-height (1- actual-height)))
+        ;; Rellena con simbolo-grafico.
+        (while (> altura-real 0)
+          (setq lista-de-insercion (cons simbolo-grafico lista-de-insercion))
+          (setq altura-real (1- altura-real)))
 
-        ;; Rellenar en graph-blanks.
-        (while (> number-of-top-blanks 0)
-          (setq insert-list (cons graph-blank insert-list))
-          (setq number-of-top-blanks
-                (1- number-of-top-blanks)))
+        ;; Rellena con simbolo-en-blanco.
+        (while (> numero-de-espacios 0)
+          (setq lista-de-insercion (cons simbolo-en-blanco lista-de-insercion))
+          (setq numero-de-espacios
+                (1- numero-de-espacios)))
 
         ;; Devuelve la lista completa.
-        insert-list))
+        lista-de-insercion))
   < src..
 
-  Si se desea, podríamos reescribir @c{column-of-graph} una tercera vez para
-  proporcionar opcionalmente un gráfico de líneas, como gráfico de
-  barras. Esto no sería duro de hacer. Un camino para pensar en un grafo de
-  líneas es que no es más que un grafo de barras en el que la parte de cada
-  barra que está debajo del alto es blanco. Para construir una columna para
-  gráfico de líneas, la función primero construyen una lista de espacios en
-  blanco que es una más ordenada que el valor, entonces usa @c{cons} para
-  adjuntar un símbolo gráfico a la lista; entonces eso usa @c{cons} de nuevo
-  para adjuntar el ‘alto de espacios en blanco’ a la lista.
+  Si quisieramos, podríamos reescribir @c{columna-del-grafico} una tercera vez
+  para proporcionar opcionalmente un gráfico de líneas, asi como gráfico de
+  barras. Esto no sería dificil de hacer. Una manera de pensar en un grafico de
+  líneas es que no es más que un grafico de barras en el que la parte de cada
+  barra que está debajo la parte superior esta en blanco. Para construir una
+  columna para gráfico de líneas, la función primero construyen una lista de
+  espacios en blanco que más que mas pequeñå que el valor en uno, luego usa
+  @c{cons} para adjuntar un símbolo gráfico a la lista; despues usa @c{cons} de
+  nuevo para adjuntar el ‘alto de espacios en blanco’ a la lista.
 
-  Es fácil ver como escribir tal función, pero puesto que no se necesita eso,
-  no se hará. Pero el trabajo podría ser hecho, y si eso se hiciera, se haría
-  con @c{column-of-graph}. Incluso más importante, no se valora nada más que
-  pocos cambios que tendrían que ser hechos de cualquier otra manera. La
-  mejora, que se desea hacer, es simple.
+  Es fácil ver como escribir una función de este tipo, pero puesto que no la
+  necesitamos, no se hará. Pero el trabajo podría hacerse, y si se hiciera, se
+  haría con @c{columna-del-grafico}. Y lo que es más importante, señalar que
+  pocos cambios que tendrían que realizarce en otra lugar. La mejora,
+  si alguna vez la hacemos, es simple.
 
-  Ahora, finalmente, volvemos a nuestra primera función de grafo
-  impresa. Esto imprime el cuerpo de un grafo, no las etiquetas para los ejes
-  horizontal y vertical, así se puede llamar este @c{graph-body-print}.
+  Ahora, finalmente, llegamos a nuestra primera función real de impresion de
+  graficos. Esta imprime el cuerpo de un grafico, no las etiquetas para los ejes
+  horizontal y vertical, así que podemos nombrarla como @c{imprimir-cuerpo-grafico}.
 
-** La función @c{graph-body-print}
+** La función @c{imprimir-cuerpo-grafico}
 
-   Después de nuestra preparación en la sección precedente, la función
-   @c{graph-body-print} es simple. La función imprimirá la columna después de
-   la columna de asteriscos y espacios en blanco, usando los elementos de la
-   lista de números para especificar el número de asteriscos en cada
-   columna. Esto es un acto repetitivo, que significa que se puede usar un
-   bucle @c{while} que decrementa o una función recursiva para el trabajo. En
-   esta sección, se escribirá la definición usando un bucle @c{while}.
+   Después de nuestra preparación en la sección anterior, la función
+   @c{imprimir-cuerpo-grafico} es sencilla. La función imprimirá columna tras
+   columna de de asteriscos y espacios en blanco, usando los elementos de la
+   lista de números para especificar el número de asteriscos en cada columna.
+   Este es un acto repetitivo, lo que significa que podemos utilizar un bucle
+   @c{while} decreciente o una función recursiva para el trabajo. En esta
+   sección, escribiremos la definición usando un bucle @c{while}.
 
-   La función @c{column-of-graph} requiere el alto del grafo como un
-   argumento, así se asigna y guarda esto como una variable local.
+   La función @c{columna-del-grafico} requiere como argumento la altura del
+   grafico, por lo que debemos determinar y registrarla como una variable local.
 
-   Esto lidera a la siguiente plantilla para el bucle @c{while} versión de
-   esta función:
+   Esto nos lleva a la siguiente plantilla para la funcion con el bucle @c{while}:
 
    ..src > elisp
-     (defun graph-body-print (numbers-list)
+     (defun imprimir-cuerpo-grafico (lista-de-numeros)
        "documentacion…"
-       (let ((height  …
+       (let ((altura  …
               …))
 
-         (while numbers-list
-           insert-columns-and-reposition-point
-           (setq numbers-list (cdr numbers-list)))))
+         (while lista-de-numeros
+           insertar-columna-y-reposicionar-punto
+           (setq lista-de-numeros (cdr lista-de-numeros)))))
    < src..
 
-   Necesitamos rellenar los slots de la plantilla.
+   Necesitamos completar los espacios de la plantilla.
 
-   Claramente, se puede usar la expresión @c{(apply 'max numbers-list)} para
-   determinar el alto del grafo.
+   Claramente, podemos usar la expresión @c{(apply 'max lista-de-numeros)} para
+   determinar la altura del grafico.
 
-   El bucle @c{while} iterará a través de @c{numbers-list} un elemento a la
-   vez. Como eso está ordenado por la expresión @c{(setq numbers-list (cdr
-   numbers-list))}, el @c{car} de cada instancia de la lista es el valor del
-   argumento para @c{column-of-graph}.
+   El bucle @c{while} recorrera la @c{lista-de-numeros} un elemento a la vez. A
+   medida que se acorta la lista por la expresión @c{(setq lista-de-numeros (cdr
+   lista-de-numeros))}, el @c{car} de cada instancia de la lista es el valor del
+   argumento para @c{columna-del-grafico}.
 
    En cada ciclo del bucle @c{while}, la función @c{insert-rectangle} inserta
-   la lista devuelta por @c{column-of-graph}. Desde que la función
-   @c{insert-rectangle}, se necesita guardar la localización de punto al
-   tiempo que el rectángulo se inserta, mueve atrás a esta posición después
-   de que el rectángulo es insertado, y entonces se mueve horizontalmente al
-   siguiente lugar desde el que @c{insert-rectangle} se llama.
+   la lista devuelta por @c{columna-del-grafico}. Dado que la función
+   @c{insert-rectangle}, mueve el punto a la parte inferior derecha del
+   rectangulo insertado, necesitamos guardar la ubicacion del punto en el
+   momento que se inserta el rectángulo, volver a esta posición después
+   de insertar el rectángulo, y despues moverlo horizontalmente al
+   siguiente lugar donde se llamo a @c{insert-rectangle}.
 
-   Si las columnas se insertan en un carácter amplio, será si los espacios en
-   blanco y asteriscos se usan, el comando de reposición es simple
-   @c{(forward-char 1)}; sin embargo, el ancho de una columna puede ser más
-   grande que uno. Esto significa que el comando de reposicionamiento sería
-   escrito @c{(forward-char symbol-width)}. El mejor lugar para asociar la
-   variable @c{symbol-width} al valor del width de la columna grafo está en
-   la varlist de la expresión @c{let}.
+   Si las columnas insertadas tienen un carácter de ancho, como será si se
+   utilizan espacios y asteriscos unicos, el comando de reposicionamiento
+   consiste solamente en @c{(forward-char 1)}; sin embargo, el ancho de una
+   columna puede ser mayor que uno. Esto significa que el comando de
+   reposicionamiento debe escribirse @c{(forward-char ancho-del-simbolo)}. El
+   ancho del simbolo en si es la longitud de un grafico en blanco y se puede
+   encontrar usando la expresion @c{(length graph-blank)}. El mejor lugar para
+   asociar la variable @c{ancho-del-simbolo} al valor de la columna
+   de grafico está en la varlist de la expresión @c{let}.
 
-   Estas consideraciones lideran a la siguiente definición de función:
+   Estas consideraciones conducen a la siguiente definición de función:
 
    ..src > elisp
-     (defun graph-body-print (numbers-list)
-       "Imprime un gráfico de barras de la NUMBERS-LIST.
-     La numbers-list consiste en los valores del eje Y."
+     (defun imprimir-cuerpo-grafico (lista-de-numeros)
+       "Imprime un gráfico de barras de la LISTA-DE-NUMEROS.
+     La lista-de-numeros esta formada por los valores del eje Y."
 
-       (let ((height (apply 'max numbers-list))
-             (symbol-width (length graph-blank))
-             from-position)
+       (let ((altura (apply 'max lista-de-numeros))
+             (ancho-del-simbolo (length simbolo-en-blanco))
+             desde-la-posicion)
 
-         (while numbers-list
-           (setq from-position (point))
+         (while lista-de-numeros
+           (setq desde-la-posicion (point))
            (insert-rectangle
-            (column-of-graph height (car numbers-list)))
-           (goto-char from-position)
-           (forward-char symbol-width)
-           ;; Dibuja la columna del grafo por columna.
+            (columna-del-grafico altura (car lista-de-numeros)))
+           (goto-char desde-la-posicion)
+           (forward-char ancho-del-simbolo)
+           ;; Dibuja el grafico columna por columna.
            (sit-for 0)
-           (setq numbers-list (cdr numbers-list)))
-         ;; Emplaza el punto para etiquetas de ejes X.
-         (forward-line height)
+           (setq lista-de-numeros (cdr lista-de-numeros)))
+         ;; Coloca el punto para las etiquetas del eje X.
+         (forward-line altura)
          (insert "\n")
      ))
    < src..
 
-   La expresión inesperada en esta función es la expresión @c{(sit-for 0)} en
-   el bucle @c{while}. Esta expresión hace que el grafo imprima la operación
-   más interesante para vigilar lo que sería de otro modo. La expresión causa
-   que Emacs pare (sit-for 0) para un momento cero y entonces redibuje la
-   pantalla. Puesto aquí, eso causa que Emacs redibuje la pantalla columna
-   por columna. Sin eso, Emacs no redibujaría la pantalla hasta que la
-   función exista.
+   La unica expresión inesperada en esta función es @c{(sit-for 0)} dentro del
+   bucle @c{while}. Esta expresión hace que la operacion de impresion de
+   graficos sea más de lo que sería de otro modo. La expresión hace que Emacs
+   @'(pare) @e%(sit) o no haga nada un periodo de tiempo cero y luego vuelva a
+   dibujar la pantalla. Puesto aquí, hace que Emacs redibuje la pantalla
+   columna por columna. Sin ella, Emacs no redibujaría la pantalla hasta que la
+   función termine.
 
-   Se puede probar @c{graph-body-print} con una pequeña lista de números.
+   Podemos probar @c{imprimir-cuerpo-grafico} con una pequeña lista de números.
 
-   1. Instala @c{graph-symbol}, @c{graph-blank}, @c{column-of-graph}, que
-      están en @l{Preparar un grafico}, and @c{graph-body-print}.
+   1. Instala @c{simbolo-grafico}, @c{simbolo-en-blanco}, @c{columna-del-grafico}, que
+      están en las Secciones @l{#Preparar un grafico}, y @c{#La función @c{imprimir-cuerpo-grafico}}.
 
    2. Copia la siguiente expresión:
 
       ..src > elisp
-        (graph-body-print '(1 2 3 4 6 4 3 5 7 6 5 2 3))
+        (imprimir-cuerpo-grafico '(1 2 3 4 6 4 3 5 7 6 5 2 3))
       < src..
 
-   3. Cambia al búfer @f{*scratch*} y emplaza el cursor donde quiere que el
-      grafo empiece.
+   3. Cambia al búfer @f{*scratch*} y coloca el cursor donde quieras que empiece
+      el grafico.
 
-   4. Escribe @k{M::} @%c(eval-expression).
+   4. Pulsa @k{M-:} @%c(eval-expression).
 
-   5. Pega la expresión @c{graph-body-print} dentro del minibúfer con
+   5. Pega la expresión @c{imprimir-cuerpo-grafico} dentro del minibúfer con
       @k{C-y} @%c(yank).
 
-   6. Presiona @k{RET} para evaluar la expresión @c{graph-body-print}.
+   6. Presiona @k{RET} para evaluar la expresión @c{imprimir-cuerpo-grafico}.
 
 
-   Emacs imprimirá un grafo como este:
+   Emacs imprimirá un grafico como este:
 
    ..example >
              *
@@ -11700,65 +11694,64 @@ and promoting software freedom.”
      *************
    < example..
 
-** La función @c{recursive-graph-body-print}
+** La función @c{imprimir-cuerpo-grafico-con-recursividad}
 
-   La función @c{graph-body-print} puede también ser escrito
-   recursivamente. La solución recursiva es dividida dentro de dos partes:
-   una fuera ‘wrapper’ @e{envoltorio} que usa una expresión @c{let} para
-   determinar los valores varias variables que solo necesitan ser encontradas
-   una vez, tal como la máxima altura del grafo, y una función dentro que es
-   llamada recursivamente para imprimir el grafo.
+   La función @c{imprimir-cuerpo-grafico} también puede escribirse
+   recursivamente. La solución recursiva se divide en dos partes: una
+   @'(envoltura) externa que utiliza una expresión @c{let} para determinar los
+   valores de varias variables que solo necesitan encontrarse una vez, como la
+   altura máxima del grafico, y una función interna que se llama recursivamente
+   para imprimir el grafico.
 
-   El ‘envoltorio’ no es complicado:
+   La ‘envoltura’ no es complicada:
 
    ..src > elisp
-     (defun recursive-graph-body-print (numbers-list)
-       "Imprime un gráfico de barras del NUMBERS-LIST.
-     El numbers-list consiste en los valores del eje Y."
-       (let ((height (apply 'max numbers-list))
-             (symbol-width (length graph-blank))
-             from-position)
-         (recursive-graph-body-print-internal
-          numbers-list
-          height
-          symbol-width)))
+     (defun imprimir-cuerpo-grafico-con-recursividad (lista-de-numeros)
+       "Imprime un gráfico de barras de la LISTA-DE-NUMEROS.
+     La lista-de-numeros esta formada por los valores del eje Y."
+       (let ((altura (apply 'max lista-de-numeros))
+             (ancho-del-simbolo (length simbolo-en-blanco))
+             desde-la-posicion)
+         (imprimir-cuerpo-grafico-con-recursividad-interna
+          lista-de-numeros
+          altura
+          ancho-del-simbolo)))
    < src..
 
-   La función recursiva es un poco más difícil. Eso tiene cuatro partes: el
-   ‘prueba-hazlo-de-nuevo’, el código impreso, la llamada recursiva, y la
-   ‘expresion-del-siguiente-paso’. la ‘prueba-hazlo-de-nuevo’ es una expresión @c{when}
-   determina si la @c{numbers-list} contiene cualquier elemento que
-   permanece; si hace eso, la función imprime una columna del grafo usando el
-   código impreso y se llama así mismo de nuevo. La función se llama así
-   misma de nuevo de acuerdo al valor producido por la ‘expresion-del-siguiente-paso’
-   que causa para llamar a actuar en una versión ordenada de la
-   @c{numbers-list}.
+   La función recursiva es un poco más difícil. Tiene cuatro partes: la
+   ‘prueba-hazlo-de-nuevo’, el código de impresion, la llamada recursiva, y la
+   ‘expresion-del-siguiente-paso’. La ‘prueba-hazlo-de-nuevo’ es una expresión
+   @c{when} que determina si la @c{lista-de-numeros} contiene algun elemento
+   restante; si lo tiene, la función imprime una columna del grafico usando el
+   código de impresion y se vuelve a llamar asi misma. La función se llama así
+   misma de acuerdo al valor producido por la ‘expresion-del-siguiente-paso’ le
+   que hace que la llamada actue sobre una versión mas corta de la
+   @c{lista-de-numeros}.
 
    ..src > elisp
-     (defun recursive-graph-body-print-internal
-       (numbers-list height symbol-width)
+     (defun imprimir-cuerpo-grafico-con-recursividad-interna
+       (lista-de-numeros altura ancho-del-simbolo)
        "Imprime un gráfico de barras.
-     Usado con la función recursive-graph-body-print."
+     Se utiliza dentro del cuerpo de la función imprimir-cuerpo-grafico-con-recursividad."
 
-       (when numbers-list
-             (setq from-position (point))
+       (when lista-de-numeros
+             (setq desde-la-posicion (point))
              (insert-rectangle
-              (column-of-graph height (car numbers-list)))
-             (goto-char from-position)
-             (forward-char symbol-width)
-             (sit-for 0)     ; Dibuja un gráfico columna por columna.
-             (recursive-graph-body-print-internal
-              (cdr numbers-list) height symbol-width)))
+              (columna-del-grafico altura (car lista-de-numeros)))
+             (goto-char desde-la-posicion)
+             (forward-char ancho-del-simbolo)
+             (sit-for 0)     ; Dibuja el gráfico columna por columna.
+             (imprimir-cuerpo-grafico-con-recursividad-interna
+              (cdr lista-de-numeros) altura ancho-del-simbolo)))
    < src..
 
-   Después de la siguiente instalación, esta expresión puede ser chequeada;
-   aquí hay un ejemplo:
+   Podemos probar esta expresión después de instalarla; aquí hay un ejemplo:
 
    ..src > elisp
-     (recursive-graph-body-print '(3 2 5 6 7 5 3 4 6 4 3 2 1))
+     (imprimir-cuerpo-grafico-con-recursividad '(3 2 5 6 7 5 3 4 6 4 3 2 1))
    < src..
 
-   Aquí está lo que @c{recursive-graph-body-print} produce:
+   Aquí está el resultado:
 
    ..example >
          *
@@ -11770,26 +11763,26 @@ and promoting software freedom.”
      *************
    < example..
 
-   Cada una de estas dos funciones, @c{graph-body-print} o
-   @c{recursive-graph-body-print}, crea el cuerpo de un grafo.
+   Cada una de estas dos funciones, @c{imprimir-cuerpo-grafico} o
+   @c{imprimir-cuerpo-grafico-con-recursividad}, crea el cuerpo de un grafico.
 
-** Necesidad para ejes impresos
+** Necesidad de Ejes de impresion
 
-   Un grafo necesita ejes impresos, así se puede orientar a tí mismo. Para un
-   proyecto do-once, eso puede ser razonable dibujar los ejes a mano usando
-   el modo de emacs Picture, pero un grafo dibuja la función que puede ser
-   usada más de una vez.
+   Un grafico necesita ejes impresos para poder orientarse. Para un
+   proyecto de usar una vez, puede ser razonable dibujar los ejes a mano usando
+   el modo Picture de emacs, pero una funcion de dibujo de graficos puede usarse
+   más de una vez.
 
-   Por esta razón, se han escrito mejoras a la función básica
-   @c{print-graph-body} que automáticamente imprime etiquetas para los ejes
-   horizontal y vertical. Puesto que la etiqueta de imprimir funciones no
-   contiene mucho material nuevo, se ha emplazado su descripción en un
-   apéndice Vea la Seccion @l{Un Grafo con Ejes Etiquetados}.
+   Por esta razón, he escrito mejoras a la función básica
+   @c{print-graph-body} que imprime automáticamente etiquetas para los ejes
+   horizontal y vertical. Como las funciones de impresion de etiquetas no
+   contiene mucho material nuevo, se puesto su descripción en un
+   apéndice. Ver Seccion @l{#Apéndice C<>Apéndice C Un grafico con ejes etiquetados}.
 
 ** Ejercicio
 
-   Escribe una versión de línea de grafo de la funciones de impresión del
-   grafo.
+   Escribe una versión de grafico de lineas de las funciones de impresión del
+   graficos.
 
 * Tu fichero @f{.emacs}
 
@@ -13964,30 +13957,30 @@ and promoting software freedom.”
     funciones tales como @c{kill-ring-yank-pointer} no usan esta librería,
     posiblemente porque fueron escritas pronto.
 
-** Apéndice C @t(Un grafo con ejes etiquetados)
+* Apéndice C <> Apéndice C Un grafico con ejes etiquetados
 
-   Los ejes impresos ayudan a comprender un grafo. Para crear escalas. En un
+   Los ejes impresos ayudan a comprender un grafico. Para crear escalas. En un
    capítulo anterior (Vease Sección @l{Preparar un grafico, , Leyendo un
-   grafo}), se escribió el código para imprimir el cuerpo de un grafo. Aquí
+   grafico}), se escribió el código para imprimir el cuerpo de un grafico. Aquí
    se escribe el código para imprimir y etiquetar ejes horizontales y
    verticales, a lo largo del cuerpo en sí.
 
    Puesto que las inserciones rellenan un búfer a la derecha y debajo del
-   punto, el nuevo grafo imprime la función que primero imprimiría el eje
-   vertical Y, después el cuerpo del grafo, y finalmente el eje horizontal
+   punto, el nuevo grafico imprime la función que primero imprimiría el eje
+   vertical Y, después el cuerpo del grafico, y finalmente el eje horizontal
    X. Esta secuencia nos da los contenidos de la función:
 
    1. Configura código.
 
    2. Imprime el eje Y.
 
-   3. Imprime el cuerpo del grafo.
+   3. Imprime el cuerpo del grafico.
 
 
    4. Imprime el eje X.
 
 
-   Aquí hay un ejemplo de como se ve un grafo finalizado:
+   Aquí hay un ejemplo de como se ve un grafico finalizado:
 
    ..example >
      0 -
@@ -14004,8 +13997,8 @@ and promoting software freedom.”
          1   5   10   15
    < example..
 
-   En este grafo, en ambos ejes vertical y horizontal se etiquetan con
-   números. Sin embargo, en algunos grafos, el eje horizontal es tiempo y
+   En este grafico, en ambos ejes vertical y horizontal se etiquetan con
+   números. Sin embargo, en algunos graficos, el eje horizontal es tiempo y
    estaría mejor etiquetarlo con meses, así:
 
    ..example >
@@ -14029,19 +14022,19 @@ and promoting software freedom.”
    @c{print-graph}:
 
    ..src > elisp
-     (defun print-graph (numbers-list)
+     (defun print-graph (lista-de-numeros)
        "documentacion…"
        (let ((height  …
              …))
          (print-Y-axis height … )
-         (graph-body-print numbers-list)
+         (imprimir-cuerpo-grafico lista-de-numeros)
          (print-X-axis … )))
    < src..
 
    Nosotros podemos trabajar en cada parte de la definición de función
    @c{print-graph}.
 
-*** La varlist @c{print-graph}
+** La varlist @c{print-graph}
 
     Para escribir la función @c{print-graph}, la primera tarea es escribir la
     varlist en la expresión @c{let}. (Nosotros dejaremos por ahora cualquier
@@ -14049,10 +14042,10 @@ and promoting software freedom.”
     contenidos de su cadena de documentación.)
 
     La varlist asignaría varios valores. Claramente, la etiqueta superior del
-    eje vertical debe ser al menos la altura del grafo, que significa que
+    eje vertical debe ser al menos la altura del grafico, que significa que
     debe obtener esta información aquí. Note que la función
     @c{print-graph-body} también requiere esta información. No hay razón para
-    calcular la altura del grafo en dos lugares diferentes, así cambiaría
+    calcular la altura del grafico en dos lugares diferentes, así cambiaría
     @c{print-graph-body} desde el camino que definimos pronto para tomar
     ventaja del cálculo.
 
@@ -14063,20 +14056,20 @@ and promoting software freedom.”
     capítulo previo.
 
     El tamaño de la etiqueta para el eje horizontal debe ser al menos tan
-    largo como el grafo. Sin embargo, esta información es usada solo en la
+    largo como el grafico. Sin embargo, esta información es usada solo en la
     función que imprime el eje horizontal, así no necesita calcularse aquí.
 
     Estos pensamientos nos llevan directamente a la siguiente forma para la
     varlist en el @c{let} para @c{print-graph}:
 
     ..src > elisp
-      (let ((height (apply 'max numbers-list)) ; Primera versión.
-            (symbol-width (length graph-blank)))
+      (let ((height (apply 'max lista-de-numeros)) ; Primera versión.
+            (ancho-del-simbolo (length simbolo-en-blanco)))
     < src..
 
     Como se verá, esta expresión no es bastante correcta.
 
-*** La función @c{print-Y-axis}
+** La función @c{print-Y-axis}
 
     El trabajo de la función @c{print-Y-axis} es imprimir una etiqueta para el
     eje vertical que se parece a esto:
@@ -14094,7 +14087,7 @@ and promoting software freedom.”
            1 -
     < example..
 
-    La función se pasaría a lo alto del grafo, y así construyen e insertan los
+    La función se pasaría a lo alto del grafico, y así construyen e insertan los
     números y marcas apropiados.
 
     Es suficientemente fácil ver en la figura que la etiqueta del eje Y pero
@@ -14107,25 +14100,25 @@ and promoting software freedom.”
     cinco.
 
     La siguiente cuestión es a que altura se etiquetaría. Supón que la máxima
-    altura de la columna mayor del grafo es siete. La etiqueta superior en el
-    eje Y sería @'{5 -}, ¿y el grafo se pegaría debajo de la etiqueta?, ¿o la
-    etiqueta superior sería @'{7 -}, y marcar la vertical del grafo? ¿o sería
+    altura de la columna mayor del grafico es siete. La etiqueta superior en el
+    eje Y sería @'{5 -}, ¿y el grafico se pegaría debajo de la etiqueta?, ¿o la
+    etiqueta superior sería @'{7 -}, y marcar la vertical del grafico? ¿o sería
     la etiqueta superior @c{10 -}, que es múltiplo de cinco, y es superior al
-    valor más alto del grafo?
+    valor más alto del grafico?
 
-    La última forma es preferida. La mayoría de los grafos son rectángulos
+    La última forma es preferida. La mayoría de los graficos son rectángulos
     cuyos lados son un número integral de pasos a lo largo––5, 10, 15, y así
     para un paso a distancia de cinco. Pero tan pronto se decide usar un paso
     alto para el eje vertical, se descubre que la expresión simple en la
     varlist para la altura de la computación es errónea. La expresión es
-    @c{(apply 'max numbers-list)}. Esto devuelve la altura precisa, no la
+    @c{(apply 'max lista-de-numeros)}. Esto devuelve la altura precisa, no la
     altura máxima más de lo que es necesario para redondear el múltiplo de
     cinco. Una expresión más compleja es requerida.
 
     Como es normal en casos como este, un problema complejo llega a ser simple
     si está dividido en varios problemas pequeños.
 
-    Primero, considere el caso cuando el valor superior del grafo es un
+    Primero, considere el caso cuando el valor superior del grafico es un
     múltiplo integral de cinco––cuando eso es 5, 10, 15, o algún múltiplo de
     cinco. Se puede usar este valor como la altura del eje Y.
 
@@ -14137,7 +14130,7 @@ and promoting software freedom.”
     dos. Sin embargo, diez entre dos, no tiene resto: diez es un múltiplo
     entero de cinco.
 
-**** Viaje lateral: Calcula un resto
+*** Viaje lateral: Calcula un resto
 
      En Lisp, la función para calcular un resto es @c{%}. La función devuelve
      el resto de su primer argumento dividido por su segundo argumento. Como
@@ -14171,14 +14164,14 @@ and promoting software freedom.”
      < src..
 
      De este modo, la siguiente expresión devolverá @c{t} si la altura del
-     grafo es divisible por cinco:
+     grafico es divisible por cinco:
 
      ..src > elisp
        (zerop (% height 5))
      < src..
 
      (El valor de @c{height}, de acuerdo, puede ser encontrado desde
-     @c{(apply 'max numbers-list)}.)
+     @c{(apply 'max lista-de-numeros)}.)
 
      Por otro lado, si el valor de @c{height} no es un múltiplo de cinco,
      nosotros queremos resetear el valor al siguiente múltiplo de cinco. Esta
@@ -14231,24 +14224,24 @@ and promoting software freedom.”
          "Número de líneas desde una etiqueta del eje Y al siguiente.")
 
        …
-       (let* ((height (apply 'max numbers-list))
+       (let* ((height (apply 'max lista-de-numeros))
               (height-of-top-line
                (if (zerop (% height Y-axis-label-spacing))
                    height
                  ;; else
                  (* (1+ (/ height Y-axis-label-spacing))
                     Y-axis-label-spacing)))
-              (symbol-width (length graph-blank))))
+              (ancho-del-simbolo (length simbolo-en-blanco))))
        …
      < src..
 
      (Note que el uso de la función @c{let*}: el valor inicial de la altura
-     es calculada una vez por la expresión @c{(apply 'max numbers-list)} y
+     es calculada una vez por la expresión @c{(apply 'max lista-de-numeros)} y
      entonces el valor resultado de @c{height} es usado para computar su
      valor final. Vea la Seccion @l{La expresión @c{let*}}, para más acerca de
      @c{let*}.)
 
-**** Construye un elemento del eje Y
+*** Construye un elemento del eje Y
 
      Cuando se imprime el eje vertical, se quieren insertar cadenas tales
      como @'{5 -} y @'{10 - } cada cinco líneas. Más allá, se quieren los
@@ -14282,7 +14275,7 @@ and promoting software freedom.”
      < src..
 
      El tamaño de la etiqueta Y es la suma del tamaño del eje Y y el tamaño
-     del número del alto del grafo.
+     del número del alto del grafico.
 
      ..src > elisp
        (length (concat (number-to-string height) Y-axis-tic)))
@@ -14338,7 +14331,7 @@ and promoting software freedom.”
      concatenación, para convertir el número a una cadena que es concatenada
      con los espacios que se lideran y la marca de tic.
 
-**** Crea un eje de la columna Y
+*** Crea un eje de la columna Y
 
      Las funciones precedentes proporcionan todas las herramientas necesarias
      para construir una función que genera una lista de cadenas enumeradas y
@@ -14376,7 +14369,7 @@ and promoting software freedom.”
      blanca usando la función @c{make-string}. La línea base consiste del
      número uno seguido por una marca tic.
 
-**** La versión no demasiado final de @c{print-Y-axis}
+*** La versión no demasiado final de @c{print-Y-axis}
 
      La lista construida por la función @c{Y-axis-column} está pasada a la
      función @c{print-Y-axis}, que inserta la lista como una columna.
@@ -14384,7 +14377,7 @@ and promoting software freedom.”
      ..src > elisp
        (defun print-Y-axis (height full-Y-label-width)
          "Inserta el eje Y usando HEIGHT y FULL-Y-LABEL-WIDTH.
-       La altura debe ser la máxima altura del grafo.
+       La altura debe ser la máxima altura del grafico.
        El ancho completo es el ancho del mayor elemento de la
        etiqueta"
        ;; El valor del alto y full-Y-label-width
@@ -14392,7 +14385,7 @@ and promoting software freedom.”
          (let ((start (point)))
            (insert-rectangle
             (Y-axis-column height full-Y-label-width))
-           ;; Posiciona el punto listo para inserta el grafo.
+           ;; Posiciona el punto listo para inserta el grafico.
            (goto-char start)
            ;; Mueve el punto hacia adelante por valor de full-Y-label-width
            (forward-char full-Y-label-width)))
@@ -14400,7 +14393,7 @@ and promoting software freedom.”
 
      El @c{print-Y-axis} usa la función @c{insert-rectangle} para inserta el
      eje Y creado por la función @c{Y-axis-column}. Además, eso emplaza el
-     punto en la posición correcta para imprimir el cuerpo del grafo.
+     punto en la posición correcta para imprimir el cuerpo del grafico.
 
      Se puede probar @c{print-Y-axis}:
 
@@ -14423,9 +14416,9 @@ and promoting software freedom.”
      - Cambia al búfer @f{*scratch*} y emplaza el cursor donde se quiere el
        eje etiquetado para empezar.
 
-     - Escribe @k{M::} @%c(eval-expression).
+     - Escribe @k{M-:} @%c(eval-expression).
 
-     - Pega la expresión @c{graph-body-print} dentro del minibúfer con
+     - Pega la expresión @c{imprimir-cuerpo-grafico} dentro del minibúfer con
        @k{C-y} @%c(yank).
 
 
@@ -14437,7 +14430,7 @@ and promoting software freedom.”
      @c{height-of-top-line}, que en este caso finalizará en 15, por esto lo
      que se obtiene podría aparecer como un error.)
 
-*** La función @c{print-X-axis}
+** La función @c{print-X-axis}
 
     Las etiquetas del eje X son como las etiquetas del eje Y, excepto que los
     ticks son un línea debajo de los números. Las etiquetas se parece como
@@ -14448,7 +14441,7 @@ and promoting software freedom.”
       1   5   10   15
     < example..
 
-    El primer tic está bajo la primera columna del grafo y está precedido por
+    El primer tic está bajo la primera columna del grafico y está precedido por
     varios espacios en blanco. Estos espacios proporcionan la habitación en
     filas de debajo para las etiquetas del eje Y. El segundo, tercer, cuarto,
     y subsiguientes ticks son todos espaciados igualmente, de acuerdo al valor
@@ -14459,9 +14452,9 @@ and promoting software freedom.”
     @c{X-axis-label-spacing}.
 
     El valor de la variable @c{X-axis-label-spacing} sería medido en unidades
-    de @c{symbol-width}, puesto que se puede querer cambiar el ancho de los
-    símbolos que estás usando para imprimir el cuerpo del grafo sin cambiar
-    los caminos del grafo que está etiquetado.
+    de @c{ancho-del-simbolo}, puesto que se puede querer cambiar el ancho de los
+    símbolos que estás usando para imprimir el cuerpo del grafico sin cambiar
+    los caminos del grafico que está etiquetado.
 
     La función @c{print-X-axis} está construida más o menos del mismo modo
     como que la función @c{print-Y-axis} excepto que tiene dos líneas: la
@@ -14481,24 +14474,24 @@ and promoting software freedom.”
        @c{print-X-axis}, usando @c{print-X-axis-tic-line} y
        @c{print-X-axis-numbered-line}.
 
-**** Eje X marca tic
+*** Eje X marca tic
 
      La primera función imprimiría las marcas de tic del eje X. Se deben
      especificar las marcas en sí y su espacio:
 
      ..src > elisp
        (defvar X-axis-label-spacing
-         (if (boundp 'graph-blank)
-             (* 5 (length graph-blank)) 5)
+         (if (boundp 'simbolo-en-blanco)
+             (* 5 (length simbolo-en-blanco)) 5)
          "Números de unidades desde un eje X al siguiente.")
      < src..
 
-     (Note que el valor de @c{graph-blank} est'a asignado por otro
+     (Note que el valor de @c{simbolo-en-blanco} est'a asignado por otro
      @c{defvar}. El predicado @c{boundp} chequea si ya ha sido asignado;
-     @c{boundp} devuelve @c{nil} si no lo tiene. Si @c{graph-blank} fuera
+     @c{boundp} devuelve @c{nil} si no lo tiene. Si @c{simbolo-en-blanco} fuera
      disociado y no usara esta construcción condicional, en un GNU Emacs
      reciente, se introduciría el depurador y mirará un mensaje de error
-     diciendo @'{Debugger entered--Lisp error: (void-variable graph-blank)}
+     diciendo @'{Debugger entered--Lisp error: (void-variable simbolo-en-blanco)}
 
      Aquí está el @c{defvar} para @c{X-axis-tic-symbol}:
 
@@ -14528,7 +14521,7 @@ and promoting software freedom.”
        (concat
         (make-string
          ;; Crea una cadena de blancos.
-         (-  (* symbol-width X-axis-label-spacing)
+         (-  (* ancho-del-simbolo X-axis-label-spacing)
              (length X-axis-tic-symbol))
          ? )
         ;; Concatena blancos con símbolos.
@@ -14537,7 +14530,7 @@ and promoting software freedom.”
      < src..
 
      Lo siguiente, determina cuantos espacios en blanco son necesarios para
-     indentar la primera marca tic a la primera del grafo. Esto usa el valor
+     indentar la primera marca tic a la primera del grafico. Esto usa el valor
      de @c{full-Y-label-width} pasaba por la función @c{print-graph}.
 
      El código para crear @c{X-axis-leading-spaces} se parece a esto:
@@ -14556,11 +14549,11 @@ and promoting software freedom.”
      ..src > elisp
        ;; X-length
        …
-       (length numbers-list)
+       (length lista-de-numeros)
 
        ;; tic-width
        …
-       (* symbol-width X-axis-label-spacing)
+       (* ancho-del-simbolo X-axis-label-spacing)
 
        ;; number-of-X-ticks
        (if (zerop (% (X-length tic-width)))
@@ -14579,7 +14572,7 @@ and promoting software freedom.”
            ;; Inserta el segundo tic en el lugar adecuado.
            (insert (concat
                     (make-string
-                     (-  (* symbol-width X-axis-label-spacing)
+                     (-  (* ancho-del-simbolo X-axis-label-spacing)
                          ;; Inserta el espacio en blanco al segundo símbolo tic.
                          (* 2 (length X-axis-tic-symbol)))
                      ? )
@@ -14599,7 +14592,7 @@ and promoting software freedom.”
        (defun X-axis-element (number)
          "Construye un elemento del eje X numerado."
          (let ((leading-spaces
-                (-  (* symbol-width X-axis-label-spacing)
+                (-  (* ancho-del-simbolo X-axis-label-spacing)
                     (length (number-to-string number)))))
            (concat (make-string leading-spaces ? )
                    (number-to-string number))))
@@ -14618,7 +14611,7 @@ and promoting software freedom.”
            (insert (concat
                     (make-string
                      ;; Inserta espacios en blanco al siguiente número.
-                     (-  (* symbol-width X-axis-label-spacing) 2)
+                     (-  (* ancho-del-simbolo X-axis-label-spacing) 2)
                      ? )
                     (number-to-string number)))
            ;; Insertar números.
@@ -14641,18 +14634,18 @@ and promoting software freedom.”
      locales, y llama cada una de las dos líneas imprimiendo funciones:
 
      ..src > elisp
-       (defun print-X-axis (numbers-list)
-         "Imprime el eje X etique al tamaño de NUMBERS-LIST."
+       (defun print-X-axis (lista-de-numeros)
+         "Imprime el eje X etique al tamaño de LISTA-DE-NUMEROS."
          (let* ((leading-spaces
                  (make-string full-Y-label-width ? ))
-              ;; symbol-width se provee por graph-body-print
-              (tic-width (* symbol-width X-axis-label-spacing))
-              (X-length (length numbers-list))
+              ;; ancho-del-simbolo se provee por imprimir-cuerpo-grafico
+              (tic-width (* ancho-del-simbolo X-axis-label-spacing))
+              (X-length (length lista-de-numeros))
               (X-tic
                (concat
                 (make-string
                  ;; Crea una cadena de espacios en blanco.
-                 (-  (* symbol-width X-axis-label-spacing)
+                 (-  (* ancho-del-simbolo X-axis-label-spacing)
                      (length X-axis-tic-symbol))
                  ? )
                 ;; Concatena espacio en blanco con símbolos
@@ -14678,7 +14671,7 @@ and promoting software freedom.”
        ..src > elisp
          (progn
           (let ((full-Y-label-width 5)
-                (symbol-width 1))
+                (ancho-del-simbolo 1))
             (print-X-axis
              '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16))))
        < src..
@@ -14686,7 +14679,7 @@ and promoting software freedom.”
      - Cambia al búfer @f{*scratch*} y emplaza el cursor donde se quiere el
        eje etiquetado para empezar.
 
-     - Escribe @k{M::} @%c(eval-expression).
+     - Escribe @k{M-:} @%c(eval-expression).
 
      - Pegue la expresión de test dentro del minibuffer con @k{C-y}
        (@c{yank}).
@@ -14702,23 +14695,23 @@ and promoting software freedom.”
        1   5   10   15   20
      < example..
 
-** Imprimiendo el grafo completo
+** Imprimiendo el grafico completo
 
-   Ahora estamos listos para imprimir el grafo completo.
+   Ahora estamos listos para imprimir el grafico completo.
 
-   La función para imprimir el grafo con las etiquetas apropiadas sigue el
-   esquema que creamos antes (Vease Sección @l{Un Grafo con Ejes
+   La función para imprimir el grafico con las etiquetas apropiadas sigue el
+   esquema que creamos antes (Vease Sección @l{Un Grafico con Ejes
    Etiquetados}), pero con adiciones.
 
    Aquí está el esquema:
 
    ..src > elisp
-     (defun print-graph (numbers-list)
+     (defun print-graph (lista-de-numeros)
        "documentacion…"
        (let ((height  …
              …))
          (print-Y-axis height … )
-         (graph-body-print numbers-list)
+         (imprimir-cuerpo-grafico lista-de-numeros)
          (print-X-axis … )))
    < src..
 
@@ -14726,7 +14719,7 @@ and promoting software freedom.”
    contiene los valores adicionales calculadas una vez que en la varlist;
    segundo, eso trae una opción para específicar las etiquetas se incrementa
    la fila. Esta última funcionalidad cambia a ser esencial; de otro modo, un
-   grafo puede tener más filas que ajustarse en una muestra o en una hoja de
+   grafico puede tener más filas que ajustarse en una muestra o en una hoja de
    papel.
 
    Esta nueva funcionalidad requiere un cambio a la función
@@ -14738,13 +14731,13 @@ and promoting software freedom.”
      (defun Y-axis-column
        (height width-of-label &optional vertical-step)
        "Construye una lista de etiquetas para el eje Y.
-     HEIGHT es la máxima altura del grafo.
+     HEIGHT es la máxima altura del grafico.
      WIDTH-OF-LABEL es el máximo ancho de la etiqueta.
      VERTICAL-STEP, una opción, es un entero positivo
      que especifica cuanto una etiqueta de eje Y incrementa
      cada línea. Por ejemplo, un paso de 5
      significa que cada línea es cinco unidades
-     del grafo."
+     del grafico."
        (let (Y-axis
              (number-per-line (or vertical-step 1)))
          (while (> height 1)
@@ -14770,27 +14763,27 @@ and promoting software freedom.”
          (nreverse Y-axis)))
    < src..
 
-   Los valores para la máxima altura del grafo y el ancho de un símbolo se
+   Los valores para la máxima altura del grafico y el ancho de un símbolo se
    computan por @c{print-graph} es su expresión @c{let}; así
-   @c{graph-body-print} debe ser cambiado para aceptarlos.
+   @c{imprimir-cuerpo-grafico} debe ser cambiado para aceptarlos.
 
    ..src > elisp
      ;;; Versión Final.
-     (defun graph-body-print (numbers-list height symbol-width)
-       "Imprime una gráfica de barras del NUMBERS-LIST.
-     El numbers-list consiste en los valores del eje Y.
-     HEIGHT es la máxisma altura del grafo.
-     SYMBOL-WIDTH es el número de cada columna."
-       (let (from-position)
-         (while numbers-list
-           (setq from-position (point))
+     (defun imprimir-cuerpo-grafico (lista-de-numeros height ancho-del-simbolo)
+       "Imprime una gráfica de barras del LISTA-DE-NUMEROS.
+     El lista-de-numeros consiste en los valores del eje Y.
+     HEIGHT es la máxisma altura del grafico.
+     ANCHO-DEL-SIMBOLO es el número de cada columna."
+       (let (desde-la-posicion)
+         (while lista-de-numeros
+           (setq desde-la-posicion (point))
            (insert-rectangle
-            (column-of-graph height (car numbers-list)))
-           (goto-char from-position)
-           (forward-char symbol-width)
-           ;; Dibuja el grafo columna por columna.
+            (columna-del-grafico height (car lista-de-numeros)))
+           (goto-char desde-la-posicion)
+           (forward-char ancho-del-simbolo)
+           ;; Dibuja el grafico columna por columna.
            (sit-for 0)
-           (setq numbers-list (cdr numbers-list)))
+           (setq lista-de-numeros (cdr lista-de-numeros)))
          ;; Posiciona el punto para las etiquetas del eje X.
          (forward-line height)
          (insert "\n")))
@@ -14801,17 +14794,17 @@ and promoting software freedom.”
    ..src > elisp
      ;;; Versión Final.
      (defun print-graph
-       (numbers-list &optional vertical-step)
-       "El gráfico de barras etiquetadas del NUMBERS-LIST.
-     El numbers-list consiste en los valores de eje Y.
+       (lista-de-numeros &optional vertical-step)
+       "El gráfico de barras etiquetadas del LISTA-DE-NUMEROS.
+     El lista-de-numeros consiste en los valores de eje Y.
 
      Opcionalmente, VERTICAL-STEP, un entero positivo, especifica cuanto el
      eje Y incrementa cada línea. Por ejemplo, un paso de 5
      significa que cada fila es de cinco unidades.
-       (let* ((symbol-width (length graph-blank))
+       (let* ((ancho-del-simbolo (length simbolo-en-blanco))
               ;; @c{height} en ambos es el número más largo
               ;; y el número con la mayoría de los digitos.
-              (height (apply 'max numbers-list))
+              (height (apply 'max lista-de-numeros))
               (height-of-top-line
                (if (zerop (% height Y-axis-label-spacing))
                    height
@@ -14828,18 +14821,18 @@ and promoting software freedom.”
 
          (print-Y-axis
           height-of-top-line full-Y-label-width vertical-step)
-         (graph-body-print
-          numbers-list height-of-top-line symbol-width)
-         (print-X-axis numbers-list)))
+         (imprimir-cuerpo-grafico
+          lista-de-numeros height-of-top-line ancho-del-simbolo)
+         (print-X-axis lista-de-numeros)))
    < src..
 
-**** Testeando @c{print-graph}
+*** Testeando @c{print-graph}
 
      Se puede probar la función @c{print-graph} con una lista ordenada de
      números:
 
      - Instala las versiones finales de @c{Y-axis-column},
-       @c{graph-body-print}, y @c{print-graph} (además del resto del código.)
+       @c{imprimir-cuerpo-grafico}, y @c{print-graph} (además del resto del código.)
 
      - Copia la siguiente expresión:
 
@@ -14850,7 +14843,7 @@ and promoting software freedom.”
      - Cambia al búfer @f{*scratch*} y emplaza el cursor donde se quiere el
        eje etiquetado para empezar.
 
-     - Escribe @k{M::} @%c(eval-expression).
+     - Escribe @k{M-:} @%c(eval-expression).
 
      - Pegue la expresión de test dentro del minibuffer con @k{C-y}
        (@c{yank}).
@@ -14859,7 +14852,7 @@ and promoting software freedom.”
      - Presiona @k{RET} para evaluar la expresión
 
 
-     Emacs imprimirá un grafo que se parece a:
+     Emacs imprimirá un grafico que se parece a:
 
      ..example >
        10 -
@@ -14884,7 +14877,7 @@ and promoting software freedom.”
        (print-graph '(3 2 5 6 7 5 3 4 6 4 3 2 1) 2)
      < src..
 
-     El grafo se parece a esto:
+     El grafico se parece a esto:
 
      ..example >
        20 -
@@ -14906,7 +14899,7 @@ and promoting software freedom.”
      funcionalidad? Si se piensa que es un error, y sería un ‘1’, (o incluso
      un ‘0’), se pueden modificar las fuentes.)
 
-**** Creando gráficas de números de palabras y símbolos
+*** Creando gráficas de números de palabras y símbolos
 
      Ahora para el gráfico para el que todo este código fué escrito: un
      gráfico que muestra cuantas definiciones de función contienen unas pocas
@@ -14963,9 +14956,9 @@ and promoting software freedom.”
      Claramente, solo buscando esta lista se puede ver que la mayoría de
      definiciones de función contienen de diez a treinta palabras y símbolos.
 
-     Ahora para imprimir. Nosotros no queremos imprimir un grafo que es
-     de 1030 líneas de alto …. En vez de eso, imprimiría un grafo que es
-     mejor que venticinco líneas de alto. Un grafo cuya altura puede ser
+     Ahora para imprimir. Nosotros no queremos imprimir un grafico que es
+     de 1030 líneas de alto …. En vez de eso, imprimiría un grafico que es
+     mejor que venticinco líneas de alto. Un grafico cuya altura puede ser
      mostrada en casi cualquier monitor, y fácilmente impreso en una hoja de
      papel.
 
@@ -14981,7 +14974,7 @@ and promoting software freedom.”
         (mapcar '(lambda (arg) (/ arg 50)) full-range))
      < src..
 
-**** Una expresión @c{lambda}: Anonimicidad útil
+*** Una expresión @c{lambda}: Anonimicidad útil
 
      @c{lambda} es el símbolo para una función anónima, una función sin un
      nombre. Cada vez que se use una función anónima, se necesita incluir su
@@ -15043,7 +15036,7 @@ and promoting software freedom.”
      Emacs Lisp}, para más acerca de @c{lambda}. Lisp y expresiones Lambda se
      derivan del Cálculo Lambda.
 
-*** La función @c{mapcar}
+** La función @c{mapcar}
 
     @c{mapcar} es una función que llama a su primer argumento con cada
     elemento de su segundo argumento. El segundo argumento debe ser una
@@ -15111,7 +15104,7 @@ and promoting software freedom.”
     símbolos––pero no necesariamente significando que niguna tenía muchas
     palabras o símbolos.)
 
-**** Otro error … más insidioso
+*** Otro error … más insidioso
 
      ¡Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la
      función @c{print-graph} …. Esta tiene una opción @c{vertical-step}, pero
@@ -15152,7 +15145,7 @@ and promoting software freedom.”
            (insert (concat
                     (make-string
                      ;; Inserta espacio en blanco.
-                     (-  (* symbol-width
+                     (-  (* ancho-del-simbolo
                             X-axis-label-spacing)
                          (1-
                           (length
@@ -15176,18 +15169,18 @@ and promoting software freedom.”
      texto completo es mucho para imprimir).
 
      ..src > elisp
-       (defun print-X-axis (numbers-list horizontal-step)
+       (defun print-X-axis (lista-de-numeros horizontal-step)
          …
            (print-X-axis-numbered-line
             tic-number leading-spaces horizontal-step))
        (defun print-graph
-         (numbers-list
+         (lista-de-numeros
           &optional vertical-step horizontal-step)
          …
-           (print-X-axis numbers-list horizontal-step))
+           (print-X-axis lista-de-numeros horizontal-step))
      < src..
 
-**** El gráfico impreso
+*** El gráfico impreso
 
      Cuando esté hecho e instalado, se puede llamar al comando
      @c{print-graph} como esto:
@@ -15226,7 +15219,7 @@ and promoting software freedom.”
 
      El grupo largo de funciones contienen de 10 a 19 palabras y símbolos.
 
-** Apéndice D Software Libre y Manuales Libres @%b{por Richard M. Stallman}
+* Apéndice D Software Libre y Manuales Libres @%b{por Richard M. Stallman}
 
    La mayor deficiencia en sistemas operativos libres no está en el
    software––es la falta de buenos manuales libres que se puedan incluir en
