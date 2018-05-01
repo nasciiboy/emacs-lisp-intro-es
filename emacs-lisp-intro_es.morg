@@ -1984,7 +1984,7 @@ and promoting software freedom.”
    tres oraciones. (Ya que @c{multiply-by-seven} no esta ligado a un atajo, no
    se puede utilizar como ejemplo.)
 
-   (Vea la Seccion @l{#Atajos de teclado}, para aprender como vincular un
+   (Vea la Seccion @l{#Algunos Atajos de teclado}, para aprender como vincular un
    comando a una atajo.)
 
    Un argumento prefijo se pasa a una función interactiva pulsando la tecla
@@ -11786,259 +11786,253 @@ and promoting software freedom.”
 
 * Tu fichero @f{.emacs}
 
-  “No te tiene que gustar Emacs para lo que te gusta”––esto que parece una
-  frase paradójica es el secreto de GNU Emacs. En realidad, Emacs es una
-  herramienta genérica. La mayoría de la gente que usa Emacs, lo personaliza
+  “No te tiene que gustar Emacs para que te guste”––esta declaracion
+  aparentemente paradójica es el secreto de GNU Emacs. En realidad, Emacs es una
+  herramienta genérica. La mayoría de las personas que lo usan, lo personalizan
   para ajustarlo a sus necesidades.
 
-  GNU Emacs está mayoritariamente escrito en Emacs Lisp; esto significa que
+  GNU Emacs está escrito principalmente en Emacs Lisp; esto significa que
   escribiendo expresiones en Emacs Lisp se puede modificar o extender Emacs.
 
-  Hay quien aprecia la configuración por defecto de Emacs. Después de todo,
-  Emacs empieza en modo C cuando se edita un fichero C, empieza en modo
-  Fortran cuando se edita un fichero Fortran, y empieza en modo Fundamental
-  cuando se edita un fichero no adornado. Esto tiene sentido, si no sabes
-  quien está yendo a usar Emacs. ¿Quién sabe lo que una persona espera hacer
-  con un fichero no adornado? El modo fundamental es el modo correcto por
-  defecto para tal fichero, tal como el modo C es lo correcto para editar
-  código C. (Suficientes lenguajes de programación tienen sintaxis que
-  permiten compartir funcionalidades, tal como el modo C es ahora
-  proporcionado por el modo CC, la ‘Colección C’.)
+  Hay quienes aprecian la configuración por defecto de Emacs. Después de todo,
+  Emacs inicia en modo C cuando se edita un fichero C, inicia en modo Fortran
+  cuando se edita un fichero Fortran, y en modo Fundamental cuando se edita un
+  fichero sin adornos. Esto tiene sentido, si no sabes quien va a utilizar
+  Emacs. ¿Quién sabe lo que una persona espera hacer con un fichero sin adornos?
+  Para dicho fichero, el modo fundamental es el modo por defecto apropiado, de
+  la misma manera C es el modo predeterminado correcto para editar código
+  C. (Hay suficientes lenguajes de programación con sintaxis que permiten
+  compartir funcionalidades, por lo que el modo C ahora se proporciona para el
+  modo CC, la ‘Colección C’.)
 
-  Pero cuando se conoce quien está yendo a usar Emacs––tu, tu mismo––entonces
-  eso tiene sentido para personalizar Emacs.
+  Pero cuando sabes quen va a utilizar Emacs––tu, tu mismo––entonces
+  tiene sentido personalizar Emacs.
 
-  Por ejemplo, yo raramente quiero el modo Fundamental cuando edito un
-  fichero de otro modo no distinguido; yo quiero el modo Texto. Esto es por
-  lo que yo personalizo Emacs: así eso se ajusta a mí.
+  Por ejemplo, rara vez quiero el modo Fundamental cuando edito un
+  fichero de otro modo indistinguible; yo quiero el modo Texto. Por eso
+  personalizo Emacs: para que se adapte a mí.
 
-  Se puede personalizar y extender Emacs escribiendo o adaptando un fichero
-  @f{~/.emacs}. Esto es un fichero de inicialización personal; sus
-  contenidos, escritos en Emacs Lisp, cuentan a Emacs qué hacer.@n{14}
+  Puede personalizar y ampliar Emacs escribiendo o adaptando un fichero
+  @f{~/.emacs}. Este es tu fichero de inicialización personal; su
+  contenido, escrito en Emacs Lisp, le indica a Emacs qué hacer.@n{14}
 
-  Un fichero @f{~/.emacs} contiene código Emacs Lisp. Se puede escribir este
-  código por uno mismo; o se puede usar la funcionalidad @c{customize} para
-  escribir el código para ti. Se puede combinar tus propias expresiones y
-  expresiones auto-escritas personalizadas en tu fichero @f{.emacs}.
+  Un fichero @f{~/.emacs} contiene código Emacs Lisp. Puedes escribir este
+  código por su cuenta; o usar la funcion de Emacs @c{customize} para
+  que escriba el código por ti. Puedes combinar tus propias expresiones y
+  expresiones personalizadas en tu fichero @f{.emacs}.
 
-  (Yo prefiero por mí mismo escribir mis propias expresiones, excepto para
-  estas, fuentes particularmente, que se encuentran fáciles de manipular
-  usando el comando @c{customize}. Yo combino los dos métodos.)
+  (Yo prefiero escribir mis propias expresiones, excepto para
+  estas, particularmente las fuentes, que encuentro mas fáciles de manipular
+  usando el comando @c{customize}. Combino los dos métodos.)
 
-  La mayoría de este capítulo es acerca de escribir expresiones por uno
-  mismo. Eso describe un fichero @f{.emacs} simple; para más información,
-  mira @"{El Fichero de Inicio} en @e(El Manual GNU Emacs), y la Seccion
-  @"{El Fichero de Inicio} en @e(El Manual de Referencia GNU Emacs Lisp).
+  La mayor parte de este capítulo trata sobre como escribir expresiones por uno
+  mismo. Describe un fichero @f{.emacs} simple; para más información, vea
+  @l{info:emacs#Init File<>El fichero de inicio} en @e(El Manual de GNU Emacs),
+  y la Seccion @l{info:elisp#Init File<>El fichero de inicio} en @e(El Manual de
+  Referencia GNU Emacs Lisp).
 
-** Fichero de inicialización site-wide
+** Ficheros de inicialización site-wide
 
-   Además de tu fichero de inicialización personal, Emacs automáticamente
-   carga varios ficheros de inicialización amplios, si existen. Tienen la
-   misma forma que tu fichero @f{.emacs}, pero se cargan por cualquiera.
+   Además de tu fichero de inicialización personal, Emacs carga automáticamente
+   varios ficheros de inicialización amplios, si existen. Estos tienen la misma forma
+   que tu fichero @f{.emacs}, pero se cargan para todos.
 
-   Dos ficheros de incialización, @f{site-load.el} y @f{site-init.el}, están
-   cargados dentro de Emacs y volcados @e{dumped} sin una versión dumped de
-   Emacs se creó, como es más común. (Las copias dumped de Emacs cargan más
-   rápidamente. Sin embargo, puesto que un fichero se carga y compila, un
-   cambio no llega a ser un cambio en Emacs a menos que se cargue por uno
-   mismo o se recompile Emacs. Vea la Seccion @"(Construyendo Emacs) en @e(El
-   Manual de Referencia de GNU Emacs Lisp), y el fichero @f{INSTALL})
+   Dos ficheros de incialización para todos los usuarios, @f{site-load.el} y
+   @f{site-init.el}, se cargan en Emacs y luego se @'(vuelcan) si se crea una
+   version @'(volcada) de Emacs, como es más común. (Las copias volcadas de
+   Emacs se cargan más rápidamente. Sin embargo, una vez que un fichero se carga
+   y vuelca, un cambio en el no conduce a un cambio en Emacs a menos que lo
+   cargues por tu cuenta. Consulta la Seccion @l{info:elisp#Building
+   Emacs<>Construyendo Emacs} en @e(El Manual de Referencia de GNU Emacs Lisp), y
+   el fichero @f{INSTALL)}
 
-   Los otros tres ficheros de inicialización se cargan automáticamente cada
+   Otros tres ficheros de inicialización se cargan automáticamente cada
    vez que se inicia Emacs, si existen. Son @f{site-start.el}, que se carga
    @e{antes} que tu fichero @f{.emacs}, y @f{default.el}, y el tipo de
-   fichero terminal, que se cargan @e{después} de tu fichero @f{.emacs}.
+   fichero terminal, que se cargan @e{después} de @f{.emacs}.
 
-   Las configuraciones y definiciones en tu fichero @f{.emacs}
-   sobreescribirán las configuraciones en conflicto y definiciones en un
-   fichero @f{site-start.el}, si eso existe; pero las configuraciones y
-   definiciones en un @f{default.el} o el tipo de fichero terminal
-   sobreescribirá estos en tu fichero @f{.emacs}. (Se pueden prevenir
-   interferencias desde un tipo de fichero terminal configurando
-   @c{term-file-prefix} para @c{nil}. Vea la Seccion @l{Una extensión simple:
-   @c{line-to-top-of-window}}.)
+   Las configuraciones y definiciones en tu fichero @f{.emacs} sobreescribirán
+   las configuraciones y definiciones conflictivas del fichero @f{site-start.el},
+   si existe; pero las configuraciones y definiciones en @f{default.el} o el
+   fichero de tipo de terminal sobreescribirán las de @f{.emacs}. (puede
+   evitar las interferencias del fichero de tipo de terminal configurando
+   @c{term-file-prefix} a @c{nil}. Vea la Seccion @l{#Una extensión simple:
+   @c{linea-a-lo-alto-de-la-ventana}}.)
 
    El fichero @f{INSTALL} que viene en la distribución contiene descripciones
-   de los fichero @f{site-init.el} y @f{site-load.el}.
+   de los ficheros @f{site-init.el} y @f{site-load.el}.
 
    Los ficheros @f{loadup.el}, @f{startup.el}, y @f{loaddefs.el} controlan la
    carga. Estos ficheros están en el directorio @f{lisp} de la distribución
-   Emacs y tiene valor de uso.
+   Emacs y vale la pena leerlos.
 
-   El fichero @f{loaddefs.el} contiene buenas sugerencias como las que poner
-   dentro de tu propio fichero @f{.emacs}, o dentro de un fichero de
-   inicialización amplio.
+   El fichero @f{loaddefs.el} contiene muchas sugerencias sobre que poner en tu
+   propio fichero @f{.emacs}, o dentro de un fichero de inicialización amplio.
 
 ** Especificar variables usando @c{defcustom}
 
-   Se pueden especificar variables usando @c{defcustom} así que la gente
-   pueda usar la funcionalidad de Emacs @c{customize} para asignar sus
-   valores. (No se puede usar @c{customize} para escribir definiciones de
-   función; pero se pueden escribir @c{defuns} en tu fichero @f{.emacs}. En
-   vez de eso, se puede escribir cualquier expresión Lisp en tu fichero
-   @f{.emacs}).
+   Puede especificar variables usando @c{defcustom} para que tu y otros puedan
+   usar la caracteristica de Emacs @c{customize} para establecer sus valores.
+   (No se puede usar @c{customize} para escribir definiciones de función; pero
+   se pueden escribir @c{defuns} en el fichero @f{.emacs}. De hecho, se puede
+   escribir cualquier expresión Lisp en el fichero @f{.emacs}).
 
-   La funcionalidad @c{customize} depende de la forma especial
-   @c{defcustom}. Aunque se puede usar @c{defvar} o @c{setq} para las
-   variables que los usuarios asignan, la forma especial @c{defcustom} está
-   diseñada para el trabajo.
+   La caracteristica de configuracion ofrecida por @c{customize} depende de la
+   forma especial @c{defcustom}. Aunque se puede usar @c{defvar} o @c{setq} para
+   las variables que los usuarios establecen, la forma especial @c{defcustom} está
+   diseñada para este trabajo.
 
-   Se puede usar tu conocimiento de @c{defvar} para escribir los primeros
-   tres argumentos para @c{defcustom}. El primer argumento para @c{defcustom}
+   Puedes usar tu conocimiento de @c{defvar} para escribir los primeros
+   tres argumentos de @c{defcustom}. El primer argumento de @c{defcustom}
    es el nombre de la variable. El segundo argumento es el valor inicial de
-   la variable, cualquiera; y este valor es asignado solo si el valor no ha
+   la variable, si lo hay; y este valor se asigna solo si el valor no ha
    sido ya asignado. El tercer argumento es la documentación.
 
-   El cuarto y subsiguientes argumentos para @c{defcustom} especifican los
-   tipos y opciones; estos no son funcionales en @c{defvar}. (Estos
+   El cuarto y subsiguientes argumentos de @c{defcustom} especifican
+   tipos y opciones; estos no se presentan en @c{defvar}. (Estos
    argumentos son opcionales.)
 
-   Cada uno de estos argumentos consiste de una palabra seguido de una
-   palabra por un valor. Cada palabra clave empieza con los dos puntos @'{:}.
+   Cada uno de estos argumentos consiste de una palabra clave seguida de un
+   valor. Cada palabra clave empieza con el caracter dos puntos @'{:}.
 
-   Por ejemplo, la variable de opciones personalizable @c{text-mode-hook} se
-   parece a esto:
+   Por ejemplo, la variable de opciones personalizable @c{text-mode-hook} tiene
+   el siguiente aspecto:
 
    ..src > elisp
      (defcustom text-mode-hook nil
-       "El hook normal se ejecuta cuando se introduce en modo texto y
-       muchos modos relacionados."
+       "El hook normal se ejecuta cuando se ingresa en modo texto y en muchos modos relacionados."
        :type 'hook
        :options '(turn-on-auto-fill flyspell-mode)
-       :group 'data)
+       :group 'wp)
    < src..
 
    El nombre de la variable es @c{text-mode-hook}; no tiene valor por
    defecto; y su cadena de documentación cuenta lo que hace.
 
-   La palabra clave @c{:type} le cuenta a Emacs el tipo de datos para los que
-   @c{text-mode-hook} sería asignado y como muestra el valor en un búfer de
-   Personalización.
+   La palabra clave @c{:type} le indica a Emacs el tipo de datos a los que
+   @c{text-mode-hook} sera asignado y como mostrar el valor en un búfer
+   de personalización.
 
-   La palabra clave @c{:options} especifica una lista sugerida de valores
-   para la variable. Normalmente, @c{:options} se asocia a un gancho
-   (@e{hook}. La lista es solo una sugerencia; esa no es exclusiva; una
-   persona quien asigna la variable puede asignarse a otros valores; la lista
-   mostrada siguiendo la palabra clave @c{:options} se pretende ofrecer
-   elecciones convenientes a un usuario.
+   La palabra clave @c{:options} especifica una lista sugerida de valores para
+   la variable. Normalmente, @c{:options} se asocia a un @"(gancho)
+   @e%(hook). La lista es solo una sugerencia; no es excluyente; una persona que
+   establece la variable puede establecerla en otros valores; la lista que se
+   muestra despues de la palabra clave @c{:options} tiene la intencion de
+   ofrecer opciones convenientes a un usuario.
 
-   Finalmente, la palabra clave @c{:group} cuenta el comando de
-   Personalización de Emacs en el que el grupo de la variable está
-   localizado. Esto cuenta dónde encontralo.
+   Finalmente, la palabra clave @c{:group} indica al comando de Personalización
+   de Emacs en que el grupo se encuentra la variable. Esto dice dónde encontralo.
 
-   La función @c{defcustom} reconoce más de una docena de palabras
-   clave. Para más información, mire @"{Escribiendo las Definiciones de
-   Personalización} en @e(El Manual de Referencia GNU Emacs Lisp).
+   La función @c{defcustom} reconoce más de una docena de palabras clave. Para
+   obtener más información, consulte @l{info:elips#Customization<>Escribir
+   las Definiciones de Personalización} en @e(El Manual de Referencia GNU Emacs
+   Lisp).
 
    Considere @c{text-mode-hook} como un ejemplo.
 
-   Hay dos caminos para personalizar esta variable. Se puede usar el comando
-   de personalización o escribir las expresiones apropiadas por uno mismo.
+   Hay dos caminos de personalizar esta variable. Puedes utilizar el comando
+   de personalización o escribir las expresiones apropiadas por tu cuenta.
 
-   Usando el comando de personalización, se puede escribir:
+   Utilizando el comando de personalización, puedes escribir:
 
    ..example >
      M-x customize
    < example..
 
-   y encuentre que el grupo para editar ficheros de datos se llama
-   ‘datos’. Introduzca este grupo. El Hook @e{Disparador} es el primer
-   miembro. Se puede hacer click en sus opciones varias, tal como
-   @c{turn-on-auto-fill}, para asignar los valores. Después de hacer click en
+   y encontrar que el grupo para editar ficheros de datos se llama
+   ‘datos’. Introduce este grupo. El Gancho del Modo Texto es el primer
+   miembro. Puedes hacer click en sus opciones varias, como
+   @c{turn-on-auto-fill}, para establecer los valores. Después de hacer click en
    el botón.
 
    ..example >
-     Guárdalo para Futuras Sesiones
+     Guárdar para sesiones futuras
    < example..
 
-   Emacs escribirá una expresión en tu fichero @f{.emacs}. Se parecerá a
-   esto:
+   Emacs escribirá una expresión en tu fichero @f{.emacs}. Se vera asi:
 
    ..src > elisp
      (custom-set-variables
        ;; custom-set-variables fué añadido por Custom.
-       ;; Si se edita a mano, tu podrías liarte,
-       ;; así que ten cuidado.
-       ;; Tu fichero init contendría solo esta instancia.
-       ;; Si hay más de uno, ellos no quieren trabajar.
+       ;; Si lo editas a mano, podrías estropearlo, así que ten cuidado.
+       ;; Tu fichero init deberia contener solo una de esta instancia.
+       ;; Si hay más de uno, no funcionara bien.
       '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify))))
    < src..
 
-   (La función @c{text-mode-hook-identify} cuenta
-   @c{toggle-text-mode-auto-fill} que buffers hay en modo Texto. Eso viene
+   (La función @c{text-mode-hook-identify} le indica a
+   @c{toggle-text-mode-auto-fill} que buffers estan en modo Texto. Se encendera
    automáticamente)
 
-   La función @c{custom-set-variables} funciona de alguna manera diferente
-   más de un @c{setq}. Mientras yo nunca he aprendido las diferencias, yo
-   modifico las expresiones @c{custom-set-variable} en mi fichero @f{.emacs}
-   a mano: yo creo los cambios en los que aparecen a mi para ser una manera
-   razonable y no tener problemas. Otros prefieren usar el comando de
-   Personalización y permitir a Emacs hacer el trabajo para ellos.
+   La función @c{custom-set-variables} funciona de una manera algo distinta a
+   @c{setq}. Aunque nunca he aprendido las diferencias, modifico las expresiones
+   @c{custom-set-variable} en mi fichero @f{.emacs} a mano: Hago los cambios de
+   la forma que me parecen razonables y no he tenido ningun problema. Otros
+   prefieren usar el comando de Personalización y dejar que Emacs haga el
+   trabajo por ellos.
 
-   Otra función @c{custom-set-…} es @c{custom-set-faces}. Esta función asigna
-   varios tipos de fuentes. A través del tiempo, yo he asignado un
-   considerable número de tipos. Algo de tiempo, yo las reseteo usando
-   @c{customize}; otras veces, simplemente edito la expresión
-   @c{custom-set-faces} en mi fichero @f{.emacs} en sí.
+   Otra función de @c{custom-set-…} es @c{custom-set-faces}. Esta función
+   establece varios tipos de fuentes. Con el tiempo, he asignado un considerable
+   número de fuentes. Algunas veces, las reseteo usando @c{customize}; otras
+   veces, simplemente edito la expresión @c{custom-set-faces} en mi fichero
+   @f{.emacs}.
 
-   El segundo modo de personalizar tu @c{text-mode-hook} es asignarte a tí
-   mismo en tu fichero @f{.emacs} usando código que no tiene nada que hacer
-   con las funciones @c{custom-set-…}.
+   La segunda forma de personalizar tu @c{text-mode-hook} es configurarlo
+   directamente en tu fichero @f{.emacs} usando código que no tiene nada que
+   hacer con las funciones @c{custom-set-…}.
 
-   Cuando se hace esto, y después usa @c{customize}, se verá un mensaje que
+   Al hacer esto, y mas tarde usar @c{customize}, verás un mensaje que
    dice:
 
    ..example >
-     CHANGED fuera de Personalizar; operando dentro aquí
-     puede ser no confiable.
+     CAMBIADO fuera de Customize; operar con el aquí puede ser no confiable.
    < example..
 
-   Este mensaje es solo un aviso. Si se puede cliquear en el botón a
+   Este mensaje es solo una advertencia. Si se cliquear en el botón
 
    ..example >
-     Guárdalo para Futuras Sesiones
+     Guárdar para sesiones futuras
    < example..
 
    Emacs escribirá una expresión @c{custom-set-…} cerca del fin de tu fichero
-   @f{.emacs} que será evaluado después de que tu expresión sea escrita a
-   mano. Por esta razón, se sobreescribirá tu expresión escrita a
-   mano. Ningún daño será hecho. Cuando se haga esto, sin embargo, ten
-   cuidado para recordar que expresión está activa; si olvidas, puedes
-   confundirte por tí mismo.
+   @f{.emacs} que será evaluada después de que la expresión escrita a mano. Por
+   lo tanto, invalidará tu expresión escrita a mano. Ningún daño será hecho.
+   Sin embargo, cuando hagas esto, ten cuidado para recordar que expresión
+   está activa; si lo olvidas, puedes confundirte.
 
-   Tan largo como se recuerda donde los valores son configurados, no habrá
-   problemas. En cualquier eventos, los valores son siempre configurados en
-   tu fichero de inicialización, que es normalmente llamado @f{.emacs}.
+   Siempre y cuando recuerde donde estan establecidos los valores, no habrá
+   ningun problema. En cualquier caso, los valores siempre se establecen en tu
+   fichero de inicialización, que suele llamarse @f{.emacs}.
 
-   Yo mismo hago un @c{customize} para cualquier cosa. Mayoritariamente,
-   escribo expresiones por mí mismo.
+   Yo mismo casi nunca uso @c{customize}. Mayoritariamente,
+   escribo las expresiones por mí mismo.
 
-   Incidentalmente, para ser una definición concerniente más completa:
-   @c{defsubst} define una función inline. La sintaxis es solo como esta de
-   @c{defun}. @c{defconst} define un símbolo como una constante. El intento
-   es que ningún programa o usuario cambiarían un valor asignado por
-   @c{defconst}. (Se puede cambiar; el valor asignado es una variable; pero
-   por favor no lo haga.)
+   Por cierto, para ser mas completo con respecto a las definiciones:
+   @c{defsubst} define una función inline. La sintaxis es igual a la de
+   @c{defun}. @c{defconst} define un símbolo como una constante. La intencion
+   es que ni los programa ni los usuarios cambien nunca un valor establecido por
+   @c{defconst}. (Puede cambiarse; el valor se asigna a una variable; pero
+   por favor no lo hagas.)
 
 ** Empieza por un fichero @f{.emacs}
 
-   Cuando se abre Emacs, se carga tu fichero @f{.emacs} a menos que se cuente
-   que no se especifique @'{-q} en la línea de comandos. (El comando @c{emacs
-   -q} tu da un Emacs plano, fuera.)
+   Cuando se abre Emacs, carga tu fichero @f{.emacs} a menos que se indique
+   que no lo haga especificando @'{-q} en la línea de comandos. (El comando @${emacs
+   -q} te da un Emacs limpio, salido de la caja.)
 
-   Un fichero @f{.emacs} contiene expresiones Lisp. Con frecuencia, no hay
-   más expresiones para configura valores; algunas veces esas son
+   Un fichero @f{.emacs} contiene expresiones Lisp. Con frecuencia, no son
+   más que expresiones para establecer valores; algunas veces son
    definiciones de funciones.
 
-   Vea la Seccion @l{info:emacs#Init File<>El Fichero de Inicio} @f{~/.emacs} en
-   @e(El Manual GNU Emacs), para una corta descripción de fichero de
+   Vea la Seccion @l{info:emacs#Init File<>El Fichero de Inicio @f{~/.emacs}} en
+   @e(El Manual GNU Emacs), para una breve descripción de los fichero de
    inicialización.
 
-   Este capítulo cubre algo del mismo suelo, pero es un paseo entre extractos
-   desde un completo, largamente usado fichero @f{.emacs}––por mí.
+   Este capítulo pasa por el mismo terreno, pero es un paseo entre extractos
+   de un fichero @f{.emacs} completo––el mio.
 
-   La primera parte del fichero consiste en comentario: me recuerdo a mí
-   mismo. Por ahora, yo recuerdo estas cosas, pero cuando empecé, no.
+   La primera parte del fichero consiste en comentarios: recondatorios a mí
+   mismo. Por ahora, por supuesto, recuerdo estas cosas, pero cuando empecé, no.
 
    ..src > elisp
      ;;;; fichero .emacs de Bob
@@ -12046,81 +12040,81 @@ and promoting software freedom.”
      ; 26 de Septiembre de 1985
    < src..
 
-   ¡Mira en esta fecha! Yo empecé este fichero hace mucho tiempo. Yo he
-   estado añadiendo cosas desde siempre.
+   ¡Mira en esta fecha! Empecé este fichero hace mucho tiempo. Lo he
+   estado extendiendo desde entonces.
 
    ..src > elisp
-     ; Cada sección en este fichero es introducido por una
+     ; Cada sección en este fichero se inicia por una
      ; línea empezando con cuatro puntos y comas y cada
-     ; entrada es introducida por una línea empezando con
+     ; entrada inicia por una línea empezando con
      ; tres puntos y comas.
    < src..
 
-   Esto describe las convenciones usuales para comentarios en Emacs
-   Lisp. Cada cosa en una línea que sigue un punto y coma es un
-   comentario. Dos, tres, y cuatro puntos y coma son usados como subsección y
-   marcas de sección. (Vea la Seccion @"{Comentarios} en @e(El Manual de
-   Referencia GNU Emacs Lisp), para más comentarios.)
+   Esto describe las convenciones habituales para comentarios en Emacs
+   Lisp. Todo lo que aparece en una línea despues de un punto y coma es un
+   comentario. Se utilizan dos, tres, y cuatro puntos y coma como marcadores de
+   subsección y sección. (Vea la Seccion @l{info:elisp#Comments<>Comentarios} en @e(El
+   Manual de Referencia GNU Emacs Lisp), para más informacion sobre los comentarios.)
 
    ..src > elisp
      ;;;; La Tecla de Ayuda
      ; Control-h es la tecla de ayuda;
-     ; después escribiendo control-h, escribe una letra a
-     ; indica el asunto acerca del que quieres ayuda.
-     ; Para una explicación de la facilidad de ayuda,
-     ; escribe control-h dos veces en una fila.
+     ; después de escribir control-h, escribe una letra
+     ; para indicar el asunto sobre el que quieres ayuda.
+     ; Para una explicación de la propia ayuda,
+     ; escribe control-h dos veces seguidas.
    < src..
 
-   Solo recuerda: escribe @k{C-h} dos veces para ayudar.
+   Solo recuerda: escribe @k{C-h} dos veces para pedir ayudar.
 
    ..src > elisp
-     ; Para informarse acerca de cualquier modo, escribe control-h m
-     ; mientras esté en este modo. Por ejemplo, para encontrar
-     ; acerca del modo correo, introduce el modo correo y entonces
-     ; escribe control-h m.
+     ; Para conocer cualquier modo, presiona control-h m
+     ; mientras estés en este modo. Por ejemplo, para conocer
+     ; sobre del modo correo, ingresa al modo correo y luego
+     ; presiona control-h m.
    < src..
 
-   ‘Modo ayuda’, como yo llamo a esto, es muy útil. Usualmente, se cuenta
-   todo lo que se necesita saber.
+   El ‘Modo ayuda’, como yo lo llamo, es muy útil. Usualmente, dice todo lo que
+   se necesita saber.
 
-   De acuerdo, no se necesitan incluir comentarios y ficheros como estos
-   @f{.emacs}. Yo los incluí en el mío porque se olvida el Modo ayuda o las
-   convenciones para comentarios––pero era capaz de recordar ver aquí
-   recordármelo a mí mismo.
+   Por supuesto, no necesitas incluir comentarios como estos en tu fichero
+   @f{.emacs}. Yo los incluí en el mío porque siempre me olvidaba del Modo ayuda
+   o las convenciones para comentarios––pero pude recordarlos recordármelo a mí
+   mismo.
 
 ** Modo texto y auto relleno
 
-   Ahora regresa a la parte que ‘vuelve’ al modo Texto y modo Auto Relleno.
+   Ahora llegamos a la parte que ‘activa’ al modo Texto y el modo Auto Relleno.
 
    ..src > elisp
-     ;;; Modo texto modo Auto Fill
-     ;; Las siguiente dos líneas puestas en Emacs dentro de
-     ;; modo Texto y en el modo Auto Fill, son para escritores que
-     ;; quieren empezar a escribir prosa en vez de código.
+     ;;; Modo texto y modo Auto Fill
+     ;; Las siguiente dos líneas ponen a en Emacs en modo Texto
+     ;; y en el modo Auto Fill, y son para escritores que
+     ;; quieren empezar a escribir en prosa en lugar de código.
      (setq-default major-mode 'text-mode)
      (add-hook 'text-mode-hook 'turn-on-auto-fill)
    < src..
 
-   ¡Aquí está la primera parte de este fichero @f{.emacs} que hace alguna
-   cosa bajo recuerdo de un humano olvidado!
+   ¡Aquí está la primera parte de este fichero @f{.emacs} que hace algo
+   ademas de ayudar a recordar a un humano olvidado!
 
-   La primera de las dos líneas entre paréntesis cuentan a Emacs a cambiar al
-   modo Texto que se encuentra un fichero, @e{a menos que} el fichero iría
-   dentro de algún otro modo, tal como el modo C.
+   La primera de las dos líneas entre paréntesis le indican a Emacs que active el
+   modo Texto cuando se encuentra un fichero, @e{a menos que} ese fichero
+   este en algún otro modo, por ejemplo, el modo C.
 
-   Cuando Emacs lee un fichero, eso parece la extensión al nombre del
-   fichero. (La extensión es la parte que viene después de un @'{.}.) Si el
-   fichero finaliza con una extensión @'{.c} o @'{.h} entonces Emacs cambia
-   al modo C. También, Emacs parece al principio una línea no blanca del
-   fichero; si la línea dice @'{-*- C -*-}, Emacs cambia al modo C. Emacs
-   posee una lista de extensiones y especificaciones que usa
-   automáticamente. Además, Emacs se ve cerca de la última página por buffer,
-   “lista variables locales”.
+   Cuando Emacs lee un fichero, examina la extensión del nombre del fichero. (La
+   extensión es la parte que esta después de un @'{.}.) Si el fichero finaliza
+   con una extensión @'{.c} o @'{.h} entonces Emacs activa el modo C. Ademas,
+   Emacs examina la primer línea no en blanco del fichero; si la línea dice
+   @'{-*- C -*-}, Emacs activa el modo C. Emacs posee una lista de extensiones y
+   especificaciones que usa automáticamente. Además, Emacs busca cerca de la
+   última página por buffer una “lista variables locales”, si la hay.
 
-   Mira las secciones “Cómo los Modos Mayores son Elegidos” y “Variables
-   Locales en Fichero” en @e{El Manual GNU Emacs}.
+   Consultar las secciones @l{info:emacs#Choosing Modes<>Cómo los Modos Mayores
+   son Elegidos} y @l{info:emacs#File Variables<>Variables Locales en Ficheros}
+   en @e{El Manual de GNU Emacs}.
 
-   Ahora, regresa al fichero @f{.emacs}.
+   Ahora, volvamos al fichero @f{.emacs}.
 
    Aquí está la línea de nuevo; ¿cómo funciona?
 
@@ -12128,16 +12122,16 @@ and promoting software freedom.”
      (setq major-mode 'text-mode)
    < src..
 
-   Esta línea es un resumen, pero completa la expresión Emacs Lisp.
+   Esta corta línea es una expresion Lisp.
 
-   Ya estamos familiarizados con @c{setq}. Eso asigna la siguiente variable,
-   @c{major-mode}, al subsiguiente valor, que es @c{text-mode}. La marca de
-   cita simple antes de @c{text-mode} cuenta a Emacs como tratar directamente
-   con el símbolo, no con cualquier cosa que pudiera existir. Vea la Seccion
-   @l{Configurando el Valor de una Variable}, por un recuerdo de como
-   @c{setq} funciona. El principal punto es que no hay diferencia entre el
-   procedimiento que se usa para asignar un valor en su fichero @f{.emacs} y
-   el procedimiento que se usa en cualquier lugar más en Emacs.
+   Ya estamos familiarizados con @c{setq}. Esto establece la siguiente variable,
+   @c{major-mode}, al valor subsiguiente, que es @c{text-mode}. La comilla
+   simple antes de @c{text-mode} le indica a Emacs que trate directamente con el
+   símbolo @c(text-mode), no con lo que pueda significar. Vea la Seccion
+   @l{#Configurando el Valor de una Variable}, para recordar como funciona @c{setq}.
+   El punto principal es que no hay diferencia entre el procedimiento
+   que se usa utiliza para establecer un valor en su fichero @f{.emacs} y el procedimiento
+   que se usa en cualquier otro lugar de Emacs.
 
    Aquí está la siguiente línea:
 
@@ -12145,40 +12139,40 @@ and promoting software freedom.”
      (add-hook 'text-mode-hook 'turn-on-auto-fill)
    < src..
 
-   En esta línea, el comando @c{add-hook} añade @c{turn-on-auto-fill} para la
+   En esta línea, el comando @c{add-hook} añade @c{turn-on-auto-fill} a la
    variable.
 
-   ¡@c{turn-on-auto-fill} es el nombre de un programa, que se adivina!,
-   cambia al modo Auto Fill.
+   ¡@c{turn-on-auto-fill} es el nombre de un programa, que lo adivinaste!,
+   activa el modo de Auto Relleno.
 
-   Cada vez que Emacs cambia al modo texto, Emacs ejecuta el comando ‘hooked’
-   dentro de modo Texto. Así que cada vez que Emacs cambia al modo Texto,
-   Emacs también cambia al modo de autoajuste.
+   Cada vez que Emacs activa el modo texto, Emacs ejecuta los comandos ‘hooked’
+   @%e(conectados) al modo Texto. Por lo tanto, cada vez que Emacs activa el
+   modo Texto, Emacs también activa el modo de Auto Relleno.
 
-   En breve, la primera línea causa a Emacs a entrar en modo Texto cuando se
-   edite un fichero, a menos que la extensión del nombre del fichero, una
-   línea no en blanco, variables locales para contar a Emacs de otro modo.
+   En resumen, la primera línea hace que Emacs entre en modo Texto cuando se
+   edita un fichero, a menos que la extensión del nombre del fichero, una
+   primer línea no en blanco o variables locales le indiquen lo contrario a Emacs.
 
-   El modo texto entre otras acciones, asigna la tabla de sintaxis para
-   trabajar adecuadamente a escritores. En modo texto, Emacs considera un
-   apóstrofe como parte de una palabra como una letra; pero Emacs no
-   considera un período o un espacio como parte de una palabra. De este modo,
-   @k{M-f} se mueve hacia tí a través de @'{eso}. Por otro lado, en modo C,
-   @k{M-f} para solo después del @'{t} de @'{eso}.
+   El modo texto entre otras acciones, establece la tabla de sintaxis para
+   trabajar adecuadamente a los escritores. En el modo Texto, Emacs considera un
+   apóstrofe como parte de una palabra como una palabra; pero Emacs no
+   considera un punto o un espacio como parte de una palabra. De este modo,
+   @k{M-f} se mueve a través de @'{d'Alcañiz}. Por otro lado, en el modo C,
+   @k{M-f} se detiene justo despues de la @'{d} de @'{d'Alcañiz}.
 
-   La segunda línea causa que Emacs active el modo Auto Fill cuando cambia al
-   modo Texto. En modo Auto Fill, Emacs automáticamente rompe una línea que
-   es demasiado amplio y trae la parte excesivamente amplia de la línea de
-   debajo a la siguiente línea. Emacs rompe líneas entre palabras con ellas.
+   La segunda línea hace que Emacs active el modo Auto Relleno cuando cambia al
+   modo Texto. En el modo Auto Relleno, Emacs rompe automáticamente una línea
+   que es demasiado ancha y mueve la parte exedente a la siguiente línea. Emacs
+   rompe las líneas entre palabras, no dentro de ellas.
 
-   Cuando el modo Auto Fill está desactivado, las líneas continúan a la
-   derecha como se escriben. Dependiendo de como configuras el valor de
-   @c{truncate-lines}, las palabras que se escribe si desaparecen al lado
-   derecho de la pantalla, o lo demás son mostradas, en un modo feo e
+   Cuando el modo de Auto Relleno está desactivado, las líneas continúan hacia la
+   derecha a medida que se escriben. Dependiendo de como se establece el valor de
+   @c{truncate-lines}, las palabras que escribas desaparecen del lado
+   derecho de la pantalla, o bien se mostraran, de un modo feo e
    ilegible, como una línea de continuación en la pantalla.
 
-   Además, en esta parte de mi fichero @f{.emacs}, yo cuento a Emacs el
-   ajuste de comandos para insertar dos espacios después de dos puntos:
+   Además, en esta parte de mi fichero @f{.emacs}, le digo a los comandos de
+   relleno que inserten dos espacios después de dos puntos:
 
    ..src > elisp
      (setq colon-double-space t)
@@ -12186,22 +12180,22 @@ and promoting software freedom.”
 
 ** Alias de correo
 
-   Aquí hay un @c{setq} que ‘activa’ el alias de correo, para más ocasiones.
+   Aquí hay un @c{setq} que ‘activa’ el alias de correo, junto con mas recordatorios.
 
    ..src > elisp
      ;;; Modo Correo
-     ; Para entrar en el modo correo, escribe ‘C-x m’
-     ; Para introducir RMAIL (para leer el correo),
-     ; escribe ‘M-x rmail’
+     ; Para entrar en el modo correo, presiona ‘C-x m’
+     ; Para entrar en RMAIL (para leer el correo),
+     ; pulsa ‘M-x rmail’
      (setq mail-aliases t)
    < src..
 
-   Este comando @c{setq} asigna el valor de la variable @c{mail-aliases} al
-   @c{t}. Desde que @c{t} significa verdadero, la línea dice, en efecto, “Sí uso
+   Este comando @c{setq} asigna el valor de la variable @c{mail-aliases} a
+   @c{t}. Ya que @c{t} significa verdadero, la línea dice, “Sí uso
    alias de correo.”
 
-   Los alias de correo son nombres cortos convenientes para largas
-   direcciones de correo o para listas de direcciones de correo. El fichero
+   Los alias de correo son nombres cortos convenientes para direcciones
+   de correo largas o para listas de direcciones de correo. El fichero
    donde guardar tus ‘aliases’ es @f{~/.mailrc}. Se escribe un alias como
    este:
 
@@ -12209,19 +12203,19 @@ and promoting software freedom.”
      alias geo george@@foobar.wiz.edu
    < example..
 
-   Cuando se escribe un mensaje a Jorge, la dirección a @'{geo}; el correo
+   Cuando escribas un mensaje a Jorge, envialo a la dirección @'{geo}; el correo
    automáticamente expandirá @'{geo} a la dirección completa.
 
-** Indentar modo de tabulaciones
+** Modo de Indentacion
 
-   Por defecto, Emacs inserta tabulaciones en lugar en múltiples espacios
-   cuando se formatea una región. (Por ejemplo, se podrían indentar muchas
-   líneas de texto todo a la vez con el comando @c{indent-region}.) Los
+   Por defecto, Emacs inserta tabulaciones en lugar en espacios múltiples
+   cuando se da formato a una región. (Por ejemplo, se podrían indentar muchas
+   líneas de texto a la vez con el comando @c{indent-region}.) Los
    tabuladores se ven bien en un terminal o con impresión ordinaria, pero
-   ellos producen mala salida de indentación cuando se usa T@_(E)X o Texinfo
-   puesto que T@_(E)X ignora tabuladores.
+   producen una salida mal indentada cuando se usa T@_(E)X o Texinfo
+   ya que T@_(E)X ignora los tabuladores.
 
-   Lo siguiente desactiva el modo de Indentar Tabulaciones:
+   Lo siguiente desactiva el modo de Indentar con Tabulaciones:
 
    ..src > elisp
      ;;; Prevenir Tabulaciones Extrañas
@@ -12232,209 +12226,210 @@ and promoting software freedom.”
    hemos visto antes. El comando @c{setq-default} asigna valores solo en
    búfers que no tienen sus propios valores locales para la variable.
 
-   Ver secciones “Tabuladores versus Espacios” y “Variables Locales en
-   Ficheros” en @e{El Manual de GNU Emacs}.
+   Ver las secciones @l{info:emacs#Just Spaces<>Tabuladores versus Espacios} y
+   @l{info:emacs#File Variables<>Variables Locales en Ficheros} en @e{El Manual
+   de GNU Emacs}.
 
-** Atajos de teclado
+** Algunos Atajos de teclado
 
-   Ahora para algunos atajos personales:
+   Ahora algunos atajos personales:
 
    ..src > elisp
      ;;; Compara ventanas
      (global-set-key "\C-cw" 'compare-windows)
    < src..
 
-   @c{compare-windows} es un comando excelente que compara el texto en tu
-   ventana actual con texto de la siguiente ventana. Eso hace la comparación
-   empezando al punto en cada ventana, moviendo a través del texto en cada
-   ventana tan lejos como ellos asocian. Yo uso este comando todo el tiempo.
+   @c{compare-windows} es un comando excelente que compara el texto de la
+   ventana actual con el texto de la siguiente ventana. Realiza la comparación
+   empezando en el punto en cada ventana, moviendo a través del texto en cada
+   ventana en la medida en que coincidan. Uso este comando todo el tiempo.
 
-   Esto también muestra como configurar una tecla globalmente, para todo los
+   Esto también muestra como configurar una atajo globalmente, para todo los
    modos
 
-   El comando es @c{global-set-key}. Es seguido por el atajo. En un fichero
-   @f{.emacs}, el atajo es escrito como se ve: @c{\C-c} que se asocia a
-   ‘control-c’, que significa ‘presionar la tecla de control y la tecla @k{c}
-   al mismo tiempo’. La @c{w} significa ‘presionar la tecla @k{w}’. El atajo
-   es rodeado por dobles comillas. En la documentación, se escribiría esto
-   como @k{C-c w}. (Si estuviera asociando una tecla @k{META}, tal como
-   @k{M-c}, en vez de una tecla de @k{CTRL}, se escribiría @c{\M-c} en su
-   fichero @f{.emacs}. Vea la Seccion @"{Reasociando Teclas en Su Fichero
-   Init} en @e(El Manual de GNU Emacs), para más detalles.)
+   El comando es @c{global-set-key}. Va seguido por el atajo. En un fichero
+   @f{.emacs}, el atajo se escribe como se muestrta: @c{\C-c} significa
+   ‘control-c’, lo que significa ‘presionar la tecla de control y la tecla @k{c}
+   al mismo tiempo’. La @c{w} significa ‘presionar la tecla @k{w}’. El atajo es
+   rodeado por comillas dobles. En el atajo, se presionaria esto como @k{C-c
+   w}. (Si estuvieras enlazando una tecla @k{META}, como @k{M-c}, en lugar de la
+   tecla @k{CTRL}, se escribiría @c{\M-c} en el fichero @f{.emacs}. Vea la
+   Seccion @l{info:emacs#Init Rebinding<>Teclas de atajos en tu fichero Init}
+   en @e(El Manual de GNU Emacs), para más detalles.)
 
-   El comando invocado por las teclas es @c{compare-windows}. Note que
+   El comando invocado por las teclas es @c{compare-windows}. Tenga en cuenta que
    @c{compare-windows} es precedido por una comilla simple; de otro modo,
-   Emacs primero intentaría evaluar el símbolo para determinar su valor.
+   Emacs intentaría primero evaluar el símbolo para determinar su valor.
 
-   Estas tres cosas, las marcas de dobles comillas, la barra invertida antes
-   de la @'{C}, y la marca de comilla simple son partes necesarias de atajos
+   Estas tres cosas, las dobles comillas, la barra invertida antes
+   de la @'{C}, y la comilla simple son partes necesarias en los atajos
    de teclado que tiendo a olvidar. Afortunadamente, he llegado a recordar
-   que miraría mi fichero @f{.emacs} existente, y lo adaptaría a lo que hay.
+   mirando mi fichero @f{.emacs}, y adaptando lo que hay alli.
 
-   Como para el atajo en sí: @k{C-c w}, combina la tecla prefija, @k{C-c},
+   En cuanto al atajo: @k{C-c w}, combina la tecla prefija, @k{C-c},
    con un caracter simple, en este caso, @k{w}. Este conjunto de teclas,
-   @k{C-c} seguido por un caracter simple, es estrictamente reservado para un
-   uso propio individual. (Esto se llama teclas ‘propias’, puesto que estas
-   son para su propio uso). Siempre sería capaz de crear tal atajo para el
-   uso propio sin pisar fuerte en algún atajo más. Si siempre se escribe una
-   extensión a Emacs, por favor, evite tomar cualquiera de estas teclas para
-   uso público. Se cree que una tecla como @k{C-c C-w} en vez de eso. De otra
-   manera, ejecutará sin sus ‘propias’ teclas.
+   @k{C-c} seguido por un solo caracter, esta estrictamente reservado para
+   el uso propio individual. (Llamo a estas teclas ‘propias’, ya que son
+   para mi propio uso). Siempre debes ser capaz de crear un atajo para el
+   uso propio sin pisar el atajo de otra persona. Si alguna vez escribes una
+   extensión a Emacs, por favor, evita tomar cualquiera de estos atajos para
+   uso público. Crea un combinacion @k{C-c C-w} en su lugar. De lo contrario,
+   nos quedaremos sin atajos ‘propios’.
 
    Aquí hay otro atajo, con un comentario:
 
    ..src > elisp
      ;;; Atajo para ‘occur’
-     ; Yo uso mucho occur, así permite asignarlo a una tecla:
+     ; Uso mucho occur, así que voy a asignarlo a una atajo:
      (global-set-key "\C-co" 'occur)
    < src..
 
    El comando @c{occur} muestra todas las líneas en el buffer actual que
-   contiene un emparejamiento para una expresión regular. Asociar las líneas
-   que se muestran en un búfer llamado @f{*Occur*}. Este buffer sirve como
-   un menu para saltar a ocurrencias.
+   contiene una coincidencia para una expresión regular. Las líneas que
+   coinciden se muestran en un búfer llamado @f{*Occur*}. Esse buffer sirve como
+   un menu para saltar a las ocurrencias.
 
-   Aquí se muestra como desasignar una tecla, así no funciona:
+   Aquí se muestra como desasignar un atajo, para que no funcione:
 
    ..src > elisp
      ;;; Desasociar ‘C-x f’
      (global-unset-key "\C-xf")
    < src..
 
-   Hay una razón para esta no asociación: Yo encontré inadvertidamente
-   escrito @k{C-x f} cuando significó escribir @k{C-x C-f}. En vez de
-   encontrar un fichero, como se pretende, accidentalmente asigna el ancho
-   para el fichero lleno, casi siempre a un tamaño que no quería. Puesto que
-   duramente se reseteó mi ancho por defecto, yo simplemente disocié la
-   tecla.
+   Hay una razón para esto: Encontro que inadvertidamente presiono @k{C-x f} en
+   lugar de @k{C-x C-f}. En lugar de encontrar un fichero, como pretendia,
+   accidentalmente asigno el ancho del modo de Auto Relleno, casi siempre a un
+   tamaño que no quería. Como casi nunca reseteó mi ancho por defecto,
+   simplemente desvinculo el atajo.
 
-   Lo siguiente reasocia una tecla existente:
+   Lo siguiente reasocia un atajo existente:
 
    ..src > elisp
-     ;;; Reasocia ‘C-x C-b’ al ‘buffer-menu’
+     ;;; Reasocia ‘C-x C-b’ a ‘buffer-menu’
      (global-set-key "\C-x\C-b" 'buffer-menu)
    < src..
 
-   Por defecto, @k{C-x C-b} ejecute el comando @c{list-buffers}. Este comando
-   lista sus buffers en @e{otra} ventana. Desde que casi siempre se quiere
-   hacer alguna cosa en esta ventana, se prefiere el comando @c{buffer-menu},
-   que no solo lista los buffers, pero mueve el punto dentro de esta ventana.
+   Por defecto, @k{C-x C-b} ejecuta el comando @c{list-buffers}. Este comando
+   lista sus buffers en @e{otra} ventana. Como casi siempre quiero hacer algo en
+   esa ventana, prefiere el comando @c{buffer-menu}, que no solo lista los
+   buffers, sino que tambien mueve el punto a esa ventana.
 
 ** Mapas de teclado
 
-   Emacs usa @:{keymaps} para grabar qué teclas llaman a qué comandos. Cuando
-   se use @c{global-set-key} para asignar los atajos de teclados a un simple
-   comando en todo @c{current-global-map}.
+   Emacs usa @:{keymaps} para registrar qué teclas llaman a qué comandos. Cuando
+   se usa @c{global-set-key} para asignar los atajos de teclado a un unico
+   comando en todas las partes de Emacs, se esta especificando el atajo a el
+   @c{current-global-map}.
 
-   Modos específicos, tales como modo C o modo Texto, tiene sus propios mapas
-   de teclado; mapas de teclado de modo específico sobreescribe el mapa
-   global que es compartido por todos los buffers.
+   Los Modos específicos, como el modo C o el modo Texto, tiene sus propios
+   mapas de teclado; los mapas de teclado específico del modo sobreescriben el
+   mapa global que comparten todos los buffers.
 
-   La función @c{global-set-key} asocia, o reasocia, el mapa de teclado
-   global. Por ejemplo, las siguientes asociaciones la tecla @k{C-x C-b} a la
+   La función @c{global-set-key} asocia, o reasocia, el mapa de teclas
+   global. Por ejemplo, lo siguiente asociaciones el atajo @k{C-x C-b} a la
    función @c{buffer-menu}:
 
    ..src > elisp
      (global-set-key "\C-x\C-b" 'buffer-menu)
    < src..
 
-   Mapas de teclado específico de modo son asociados usando la función
+   Los Mapas de teclado específicos de un modo se vinculan mediente la función
    @c{define-key}, que toma un mapa de teclado específico como un argumento,
-   tan bien como la tecla y el comando. Por ejemplo, mi fichero @f{.emacs}
-   contiene la siguiente expresión asociada al comando
-   @c{texinfo-insert-@@group} comando a @k{C-c C-c g}:
+   asi como el atajo y el comando. Por ejemplo, mi fichero @f{.emacs}
+   contiene la siguiente expresión para vincular el comando
+   @c{texinfo-insert-@@group} a @k{C-c C-c g}:
 
    ..src > elisp
-     (define-key texinfo-mode-map "\C-c\C-cg" 'texinfo-insert-@@group)
+     (define-key texinfo-mode-map "\C-c\C-cg" 'texinfo-insert-@group)
    < src..
 
-   La función @c{texinfo-insert-@@group} en sí es una pequeña extensión del
-   modo Texinfo que inserta @'{@@group} dentro de un fichero Texinfo. Se usa
-   este comando todo el tiempo y se prefieren escribir los tres atajos @k{C-c
-   C-c g} en vez de los seis atajos @k{@@ g r o u p}. (@'{@@group} y su
-   asociación @'{@@end group} son comandos que guarda todo el texto cerrado
-   junto a una página; muchos ejemplos multi-línea en este libro están
+   La función @c{texinfo-insert-@@group} en misma es una pequeña extensión del
+   modo Texinfo que inserta @'{@@group} dentro de un fichero Texinfo. Utilizo
+   este comando todo el tiempo y prefiero escribir los tres atajos @k{C-c
+   C-c g} en vez de los seis caracteres @k{@@ g r o u p}. (@'{@@group} y su
+   compañante @'{@@end group} son comandos que mantienen todo el texto que encierran
+   en una página; muchos ejemplos multi-línea en este libro están
    rodeados por @'{@@group … @@end group}.)
 
-   Aquí está la definición de función @c{texinfo-insert-@@group}:
+   Aquí está la definición de la función @c{texinfo-insert-@@group}:
 
    ..src > elisp
-     (defun texinfo-insert-@@group ()
-       "Inserta la cadena @@group en un búfer Texinfo."
+     (defun texinfo-insert-@group ()
+       "Inserta la cadena @group en un búfer Texinfo."
        (interactive)
        (beginning-of-line)
-       (insert "@@group\n"))
+       (insert "@group\n"))
    < src..
 
-   (De acuerdo, podría haber usado el modo Abbrev para dejar de escribir, en
-   vez de escribir una función para insertar una palabra; pero prefiero
-   atajos de teclado consitentes con otro modo Texinfo para atajos de
-   teclado.)
+   (Por supuesto, podría haber usado el modo Abbrev para evitar la fatiga de
+   escribir, en vez de crear una función para insertar una palabra; pero
+   prefiero tener atajos de teclado coherentes con otros atajos del modo Texinfo.)
 
-   Verá numerosas expresiones @c{define-key} en @f{loaddefs.el} tan bien como
-   en varios modos de librerías, tal como @f{cc-mode.el} y @f{lisp-mode.el}.
+   Verás numerosas expresiones @c{define-key} en @f{loaddefs.el} asi como en las
+   varios librerias de los modos, como @f{cc-mode.el} y @f{lisp-mode.el}.
 
-   Vea la Seccion @"{Personalizando Atajos de Teclado} en @e(El Manual GNU
-   Emacs), y @"{Mapas de Teclado} en @e(El Manual de Referencia GNU Emacs
-   Lisp), para más información acerca de mapas de teclado.
+   Para más información sobre los mapas de teclado, consulta la Seccion
+   @l{info:emacs#Key Bindings<>Personalizando Atajos de Teclado} en @e(El Manual
+   de GNU Emacs), y la Seccion @l{info:elisp#Keymaps<>Mapas de Teclado} en @e(El
+   Manual de Referencia de GNU Emacs Lisp).
 
 ** Cargando ficheros
 
-   Muchas personas en la comunidad de GNU Emacs han escrito extensiones a
-   Emacs. Hace tiempo, que estas extensiones son con frecuencia incluidas en
-   las nuevas entregas @e{releases}. Por ejemplo, los paquetes Calendario y
-   Diario son ahora parte del estándar GNU Emacs, como es Calc.
+   Muchas personas en la comunidad de GNU Emacs han escrito extensiones para
+   Emacs. Con el paso del tiempo, estas extensiones a menudo se incluiyen en
+   las nuevas versiones. Por ejemplo, los paquetes Calendario y
+   Diario son ahora parte del GNU Emacs estándar, como lo es Calc.
 
-   Se puede usar un comando @c{load} para evaluar un fichero completo que
-   significa instalar todas las funciones y variables en el fichero
-   Emacs. Por ejemplo:
+   Se puede usar el comando @c{load} para evaluar un fichero completo y, por lo
+   tanto, instalar todas las funciones y variables del fichero en Emacs. Por
+   ejemplo:
 
    ..src > elisp
      (load "~/emacs/slowsplit")
    < src..
 
    Esto evalúa, es decir, carga, el fichero @f{slowsplit.el} o si eso existe,
-   lo más rápido, el fichero compilado @f{slowsplit.elc} desde el
-   subdirectorio @f{emacs} del directorio home. El fichero contiene la
+   el fichero compilado mas rapido @f{slowsplit.elc}, desde el
+   subdirectorio @f{emacs} en el directorio home. El fichero contiene la
    función @c{split-window-quietly}, que John Robinson escribió en 1989.
 
    La función @c{split-window-quietly} divide una ventana con el mínimo de
-   redisplay. Yo lo instalé en 1989 porque trabajó bien con los terminales de
-   1200 baudios que entonces estaba usando. Ahora, ocasionalmente vengo a
-   través de una conexión lenta, pero continúa usando la función porque me
-   gusta el camino que deja arriba del búfer en el bajo de las nuevas
-   ventanas y arriba en la ventana superior.
+   redisplay. Lo instalé en 1989 porque funcionaba bien con los viejos
+   terminales de 1200 baudios que usaba entonces. Hoy en dia, solo de vez en
+   cuando me encuentro con una conexión tan lenta, pero sigo usando la función
+   porque me gusta la forma en que deja la mitad inferior de un búfer en la
+   parte inferior de la nueva ventana y la mitad superior en la ventana superior.
 
-   Para reemplazar el atajo de teclado por defecto
-   @c{split-window-vertically}, se debe también desasignar esta tecla y
-   asociar las teclas a @c{split-window-quietly}, como este:
+   Para reemplazar el atajo de teclado por defecto de
+   @c{split-window-vertically}, se debe desactivar ese atajo y
+   asociarlo de nuevo a @c{split-window-quietly}, asi:
 
    ..src > elisp
      (global-unset-key "\C-x2")
      (global-set-key "\C-x2" 'split-window-quietly)
    < src..
 
-   Si se cargan muchas extensiones, como yo hago, entonces en vez de
-   especificar la posición exacta del fichero, como se muestra arriba, se
-   puede especificar que directorio como parte del @c{load-path} de
-   Emacs. Entonces, cuando Emacs carga un fichero, buscará que directorio tan
-   bien como su lista por defecto de directorios. (La lista por defecto es
-   especificada en @f{paths.h} cuando Emacs se construye.)
+   Si cargas muchas extensiones, como yo, entonces en lugar de
+   especificar la ubicacion exacta del fichero de extencion, como se muestra arriba, se
+   puede especificar el directorio como la funcion @c{load-path} de
+   Emacs. En ese caso, cuando Emacs carga un fichero, buscará en ese directorio asi
+   como en la lista predeterminada de directorios. (La lista predeterminada se
+   especificada en @f{paths.h} cuando se construye Emacs.)
 
-   El comando siguiente añade tu directorio @f{~/emacs} a la ruta existente:
+   El siguiente comando añade tu directorio @f{~/emacs} a la ruta de carga existente:
 
    ..src > elisp
-     ;;; Ruta Emacs
+     ;;; Ruta de carga Emacs
      (setq load-path (cons "~/emacs" load-path))
    < src..
 
-   Incidentalmente, @c{load-library} es un interfaz interactivo a la función
-   @c{load}. La función se parece a esto:
+   Por cierto, @c{load-library} es una interfaz interactiva para la función
+   @c{load}. La función tiene el siguiente aspecto:
 
    ..src > elisp
      (defun load-library (library)
        "Carga la librería llamada LIBRARY.
-     Esto es una interfaz a la función ‘load’."
+     Esta es una interfaz para la función ‘load’."
        (interactive
         (list (completing-read "Carga la librería: "
                                (apply-partially 'locate-file-completion-table
@@ -12443,51 +12438,52 @@ and promoting software freedom.”
        (load library))
    < src..
 
-   El nombre de la función, @c{load-libray}, viene desde el uso de ‘library’
-   como un sinónimo para ‘file’. La fuente para el comando @c{load-library}
+   El nombre de la función, @c{load-libray}, proviene del uso de ‘library’
+   como un sinónimo convencional de ‘fichero’. El codigo del comando @c{load-library}
    está en la librería @f{files.el}.
 
    Otro comando interactivo que hace un trabajo ligeramente diferente es
-   @c{load-file}. Vea la Seccion @"{Librerías de Código Lisp para Emacs} en
-   @e(El Manual GNU Emacs), para información en la distinción entre
-   @c{load-library} y este comando.
+   @c{load-file}. Vea la Seccion @l{info:emacs#Lisp Libraries<>Librerías de
+   Código Lisp para Emacs} en @e(El Manual de GNU Emacs), para obtener
+   información sobre la diferencia entre @c{load-library} y este comando.
 
-** Autoloading
+** Autocarga
 
-   En vez de instalar una función cargando el fichero que lo contiene, o
-   evaluando la definición de función, se puede hacer la función disponible
-   pero actualmente no se instala hasta la primera vez llamada. Este proceso
-   se llama @:{autocarga} (@e{autoloading}).
+   En lugar de instalar una función cargando el fichero que lo contiene, o
+   evaluando la definición de función, puedes hacer que la función este disponible
+   pero no instalarla hasta que se le llame por primera vez. Este proceso
+   se llama @:{autocarga}.
 
    Cuando se ejecuta una función de autocarga, Emacs automáticamente evalúa
    el fichero que contiene la definición, y entonces llama a la función.
 
-   Emacs empieza rápido con funciones de autocarga, puesto que sus librerías
-   no se cargan bien; pero si necesita esperar un momento cuando su primer
-   uso tal como una función, mientras que el fichero que lo contiene se
-   evalúa.
+   Emacs inicia mas rápido con funciones de autocarga, ya que sus librerías no
+   se cargan de inmediato; pero es necesario esperar un momento cuando se
+   utiliza por primera vez una función de este tipo, mientras se evalua el
+   fichero que la contiene.
 
-   Raramente las funciones usadas son frecuentemente autocargadas. La
-   librería @f{loaddefs.el} coniene cientos de funciones autocargadas, desde
-   @c{bookmark-set} a @c{wordstar-mode}. Si se usa una función ‘rara’
-   frecuentemente, se debería cargar este fichero de función con una
-   expresión de @c{load} en tu fichero @f{.emacs}.
+   Las funciones poco utilizadas con frecuencia se autocargan. La librería
+   @f{loaddefs.el} coniene cientos de funciones autocargadas, desde el modo
+   @c{bookmark-set} hasta el modo @c{wordstar-mode}. Por supuesto, tu puedes
+   llegar a utilizar una función ‘rara’ con frecuencia, cuando sea asi deberías
+   cargar ese fichero de función con una expresión @c{load} en tu fichero
+   @f{.emacs}.
 
-   En mi fichero @f{.emacs}, se cargan 14 librerías que contienen funciones
-   que de otro modo serían autocargadas. (Actualmente, eso habría sido mejor
-   para incluir estos ficheros en mi Emacs ‘volcado’, pero se olvida. Véase
-   Sección @"{Construyendo Emacs} en @e(El Manual de Referencia GNU Emacs
-   Lisp), y el fichero @f{INSTALL} para más acerca de volcados.)
+   En mi fichero @f{.emacs}, cargo 14 librerías que contienen funciones que de
+   otro modo serían autocargadas. (En realidad, hubiera sido mejor incluir estos
+   ficheros en mi Emacs ‘volcado’, pero lo olvide. Véa la Sección
+   @l{info:elisp#Building Emacs<>Construyendo Emacs} en @e(El Manual de
+   Referencia de GNU Emacs Lisp), y el fichero @f{INSTALL} para más informacion
+   acerca del volcado.)
 
-   Se puede también querer incluir expresiones autocargadas en tu fichero
-   @f{.emacs}. @c{autoload} es una función construida que toma cinco
-   argumento, los tres finales de los que son opcionales. El primer argumento
-   es el nombre de la función para ser autocargada. El segundo es el nombre
-   del fichero para ser cargado. El tercer argumento es documentación para la
-   función, y el cuarto cuenta si la función puede ser llamada
-   interactivmente. El quinto argumento cuenta que tipo de
-   objeto––@c{autoload} puede manejar un mapa de teclado o macro tan bien
-   como una función (por defecto es una función).
+   Tambien puedes querer incluir expresiones de autocarga en tu fichero
+   @f{.emacs}. @c{autoload} es una función nativa que toma hasta cinco
+   argumentos, los tres ultimos son opcionales. El primer argumento es el nombre
+   de la función para autocargar. El segundo es el nombre del fichero a cargar.
+   El tercer argumento es la documentación de la función, y el cuarto dice si la
+   función puede llamarse de forma interactiva. El quinto argumento es el tipo
+   de objeto––@c{autoload} puede manejar un mapa de teclado o macro asi como una
+   función (el valor por defecto es una función).
 
    Aquí hay un ejemplo típico:
 
@@ -12499,95 +12495,95 @@ and promoting software freedom.”
    (@c{html-helper-mode} es una vieja alternativa a @c{html-mode}, que es una
    parte estándar de la distribución.)
 
-   Esta expresión autocarga la función @c{html-helper-mode}. Esto se toma
+   Esta expresión autocarga la función @c{html-helper-mode}. Se toma
    desde el fichero @f{html-helper-mode-el} (o desde la versión compilada
-   @f{html-helper-mode.elc}, si eso existe). El fichero debe ser localizado
-   en un directorio específico por @c{load-path}. La documentación dice que
+   @f{html-helper-mode.elc}, si existe). El fichero debe estar ubicado
+   en un directorio específicado por @c{load-path}. La documentación dice que
    esto es un modo para ayudar a editar documentos escritos en Lenguaje de
-   Marcas de Hiper Texto. Se puede llamar este modo interactivamente
-   escribiendo @k{M-x html-helper-mode}. (Se necesitan duplicar las funciones
-   regulares de documentación en la expresión de autocarga porque la función
-   regular no está todavía cargada, así su documentación no está disponible.)
+   Marcas de Hiper Texto. Puedes llamar a este modo interactivamente
+   escribiendo @k{M-x html-helper-mode}. (Se necesita duplicar la documentacion de
+   la funcion regular en la expresión de autocarga porque la función
+   regular todavia no está cargada, así que su documentación no está disponible.)
 
-   Vea la Seccion @"{Autocarga} en @e(El Manual de Referencia de GNU Emacs
-   Lisp), para más información.
+   Vea la Seccion @l{info:elisp#Autoload<>Autocarga} en @e(El Manual de
+   Referencia de GNU Emacs Lisp), para más información.
 
-** Una extensión simple: @c{line-to-top-of-window}
+** Una extensión simple: @c{linea-a-lo-alto-de-la-ventana}
 
-   Aquí hay una simple extensión a Emacs que mueve el punto de línea arriba
-   de la ventana. Yo uso esto todo el tiempo, para hacer fácil de leer el
-   texto.
+   Aquí esta una extensión simple para Emacs que mueve el punto de linea a la
+   parte superior de la ventana. Uso esto todo el tiempo, para hacer que el
+   texto sea mas fácil de leer.
 
-   Se puede poner el siguiente código dentro de un fichero separado y entonce
-   cargarlo desde tu fichero @f{.emacs}, o se puede incluir con tu fichero
+   Puedes poner el siguiente código dentro de un fichero separado y luego
+   cargarlo desde tu fichero @f{.emacs}, o tambien incluir en tu fichero
    @f{.emacs}.
 
    Aquí está la definición
 
    ..src > elisp
      ;;; Línea a lo alto de la ventana;
-     ;;; reemplaza tres secuencias de atajos de teclado  C-u 0 C-l
-     (defun line-to-top-of-window ()
-       "Mueve la línea que apunta a lo alto de la ventana."
+     ;;; Reemplaza tres pulsaciones de teclado C-u 0 C-l
+     (defun linea-a-lo-alto-de-la-ventana ()
+       "Mover la línea del punto a lo alto de la ventana."
        (interactive)
        (recenter 0))
    < src..
 
-   Ahora el atajo.
+   Ahora para el atajo.
 
-   En estos días, las teclas de función así como los eventos del ratón y
-   caracteres no @c{ascii} son escritos con corchetes, sin marcas de
-   citas. (En Emacs versión 18 y anteriores, se tenía que escribir diferentes
-   teclas de función asignadas por cada diferente creación del terminal.)
+   Hoy en día, las teclas de función, así como los eventos del ratón y los
+   caracteres no @c{ascii} se escriben entre con corchetes, sin comillas. (En la
+   versión 18 de Emacs y anteriores, se tenían que escribir diferentes
+   combinaciones de teclas de función para cada terminal.)
 
-   Se puede asociar @c{line-to-top-of-window} a la tecla de función @k{F6}
+   Vincule @c{linea-a-lo-alto-de-la-ventana} con mi tecla de función @k{F6}
    así:
 
    ..src > elisp
-     (global-set-key [f6] 'line-to-top-of-window)
+     (global-set-key [f6] 'linea-a-lo-alto-de-la-ventana)
    < src..
 
-   Para más información, mira @"{Reasociando Teclas en tu fichero init} en
-   @e{El Manual GNU Emacs}.
+   Para más información, mira @l{info:emacs#Init Rebinding<>Reasociando Teclas
+   en tu fichero init} en @e{El Manual de GNU Emacs}.
 
-   Si ejecutas dos versiones de GNU Emacs, tal como las versiones 22 y 23, y
-   usas un fichero @f{.emacs}, se puede seleccionar qué código evalúa el
+   Si ejecutas dos versiones de GNU Emacs, como las versiones 22 y 23, y
+   usas un fichero @f{.emacs}, puedes seleccionar qué código evalúar con el
    siguiente condicional:
 
    ..src > elisp
      (cond
       ((= 22 emacs-major-version)
-       ;; evalúa la version 22
+       ;; evalúa el codigo de la version 22
        ( … ))
       ((= 23 emacs-major-version)
-       ;; evalúa la version 23
+       ;; evalúa el codigo de la version 23
        ( … )))
    < src..
 
-   Por ejemplo, en versiones más recientes se ocultan los cursores por
-   defecto. Si se odia tal ocultación se escribe lo siguiente en mi fichero
-   @f{.emacs}@n{15}:
+   Por ejemplo, en las versiones recientes el cursor parpadea por defecto. Odio
+   este tipo de parpadeo, como tambien otras caracteristicas, asi que puse lo
+   siguiente en mi fichero @f{.emacs}@n{15}:
 
    ..src > elisp
      (when (>= emacs-major-version 21)
        (blink-cursor-mode 0)
-       ;; Inserta la nueva línea cuando se presiona ‘C-n’ (next-line)
+       ;; Insertar una nueva línea cuando se presiona ‘C-n’ (next-line)
        ;; al fin del búfer
        (setq next-line-add-newlines t)
-       ;; Cambia la imagen viendo
+       ;; Activar la visualizacion de imagenes
        (auto-image-file-mode t)
        ;; Activa la barra de menu (esta barra tiene texto)
        ;; (Usa un argumento numérico para activarlo)
        (menu-bar-mode 1)
-        ;; Desactiva la barra de herramientas (esta barra tiene iconos)
-        ;; (Usa argumentos numéricos para activarlo)
+        ;; Desactivar la barra de herramientas (esta barra tiene iconos)
+        ;; (Usa un argumento numérico para activarlo)
         (tool-bar-mode nil)
-       ;; Desactiva el modo tooltip para la tool bar
-       ;; (Este modo causa explicaciones de iconos al pop up)
-       ;; (Usa el argumento numérico para activarlo)
+       ;; Desactiva el modo de tips de informacion sobre la barra de herramientas
+       ;; (Este modo hace que aparezcan explicaciones emergentes en los iconos)
+       ;; (Usa un argumento numérico para activarlo)
        (tooltip-mode nil)
-       ;; Si los tooltips activados, crea consejos aparecen en el prompt
-       (setq tooltip-delay 0.1)  ; por defecto es de 0.7 segundos
+       ;; Si las sugerencias estan activadas, hace que aparezcan rapidamente
+       (setq tooltip-delay 0.1)  ; por defecto es 0.7 segundos
         )
    < src..
 
@@ -12596,10 +12592,9 @@ and promoting software freedom.”
    Se pueden especificar colores cuando se usa Emacs con el Sistema de
    Ventanas X del MIT.
 
-   Si disgustan los colores por defecto y especifica unos propios.
+   No me gustan los colores por defecto y especifico los mios propios.
 
-   Aquí están las expresiones en un fichero @f{.emacs} que establecen los
-   valores:
+   Aquí están las expresiones que establecen mis valores en mi fichero @f{.emacs}:
 
    ..src > elisp
      ;; Asigna el color del cursor
@@ -12608,11 +12603,11 @@ and promoting software freedom.”
      ;; Asigna el color del ratón
      (set-mouse-color "white")
 
-     ;; Asigna foreground y background
+     ;; Asigna el color del texto y del fondo
      (set-foreground-color "white")
      (set-background-color "darkblue")
 
-     ;;; Asigna colores para isearch y drag
+     ;;; Asigna colores para el resaltado de busqueda y registros
      (set-face-foreground 'highlight "white")
      (set-face-background 'highlight "blue")
 
@@ -12630,13 +12625,13 @@ and promoting software freedom.”
               (set-face-foreground 'holiday-face "white")))
    < src..
 
-   Las varias sombras de azul disparan mi ojo y me preveen de ver la ventana
-   desplegada.
+   Las diferentes tonalidades de azul me alivian la vista y me impiden ver el
+   parpadeo de la pantalla.
 
-   Alternativamente, se podrían haber configurado mis especificaciones en
-   varios ficheros inicialización de X. Por ejemplo, se podría asignar el
-   foreground, background, cursor y puntero (por ej., ratón) colores en mi
-   fichero @f{~/.Xresources} como esto:
+   Alternativamente, podría haber establecido mis especificaciones en
+   varios ficheros inicialización de X. Por ejemplo, podría establecer los
+   colores de primer plano, fondo, cursor y puntero (es cedir, ratón) en mi
+   fichero @f{~/.Xresources} de esta manera:
 
    ..example >
      Emacs*foreground:   white
@@ -12645,38 +12640,37 @@ and promoting software freedom.”
      Emacs*pointerColor: white
    < example..
 
-   En cualquier evento que no es parte de Emacs, se asigna el color raíz de
-   mi ventana X en mi fichero @f{~/.xinitrc}, como este@n{16}
+   En cualquier caso, dado que no forma parte de Emacs, asigno el color raíz de
+   mi ventana X en mi fichero @f{~/.xinitrc}, asi@n{16}
 
-   ..example >
+   ..src > sh
      xsetroot -solid Navy -fg white &
-   < example..
+   < src..
 
-** Configuraciones misceláneas para un fichero @f{.emacs}
+** Ajustes misceláneos para un fichero @f{.emacs}
 
-   Aquí hay unas pocas configuraciones misceláneas:
+   Aquí hay algunos ajustes misceláneas:
 
-
-   - Asigna la forma y color del ratón del cursor:
+   - Asigna la forma y color del cursor del ratón:
 
      ..src > elisp
-       ; Formas de Cursor están definidas en
+       ; Las formas de los cursores se definen en
        ; ‘/usr/include/X11/cursorfont.h’;
-       ; por ejemplo, el cursor ‘objetivo’ es número 128;
+       ; por ejemplo, el cursor ‘objetivo’ es el número 128;
        ; el cursor ‘top_left_arrow’ es el número 132.
 
        (let ((mpointer (x-get-resource "*mpointer"
                                        "*emacs*mpointer")))
-         ;; Si no se ha asignado tu puntero de ratón
-         ;; entonces asignalo, de otro modo, déjalo así:
+         ;; Si no se ha asignado el puntero del ratón
+         ;; se configura, de otro modo, se déja así:
          (if (eq mpointer nil)
              (setq mpointer "132")) ; top_left_arrow
          (setq x-pointer-shape (string-to-int mpointer))
          (set-mouse-color "white"))
      < src..
 
-   - O se pueden asignar los valores de una variedad de funcionalidades en
-     una alist, como esta:
+   - O se pueden asignar los valores de una variedad de caracteristicas en
+     una lista, como esta:
 
      ..src > elisp
        (setq-default
@@ -12696,10 +12690,9 @@ and promoting software freedom.”
           ))
      < src..
 
-   - Convierte @k{@k{CTRL}-h} dentro @k{DEL} y @k{DEL} dentro de
-     @k{@k{CTRL}-h}.
+   - Convierte @k{CTRL-h} en @k{DEL} y @k{DEL} en @k{CTRL-h}.
 
-     (Algunos viejos teclados lo necesitan, aunque yo no he visto el problema
+     (Algunos teclados viejos necesitan esto, aunque no he visto el problema
      recientemente.)
 
      ..src > elisp
@@ -12710,125 +12703,125 @@ and promoting software freedom.”
        (keyboard-translate ?\C-? ?\C-h)
      < src..
 
-   - ¡Desactiva un cursor oculto!
+   - ¡Desactiva el parpadeo del cursor!
 
      ..src > elisp
        (if (fboundp 'blink-cursor-mode)
            (blink-cursor-mode -1))
      < src..
 
-     o empieza GNU Emacs con el comando @c{emacs -nbc}.
+     o abrir GNU Emacs con el comando @${emacs -nbc}.
 
-   - Cuando se usa ‘grep’
+   - Cuando se utiliza ‘grep’
 
-     - @'{-i} :: Ignore distinciones de letras
+     - @'c{-i} :: Ignorar mayusculas o minusculas
 
-     - @'{-n} :: El prefijo de cada línea de la salida con el número de
-       líneas
+     - @'c{-n} :: Prefija cada línea de la salida con el número de línea
 
-     - @'{-H} :: Imprime el nombre de fichero para cada cadena encontrada.
+     - @'c{-H} :: Imprime el nombre del fichero para cada coincidencia.
 
-     - @'{-e} :: Protege patrones empezando con un caracter de guión, @'{-}
+     - @'c{-e} :: Protege los patrones que empiezan con un guión, @'c{-}
 
        ..src > elisp
          (setq grep-command "grep -i -nH -e ")
        < src..
 
-   - Encuentra un búfer existente, incluso si eso tiene un nombre diferente ::
+   - Encuentra un búfer existente, incluso si tiene un nombre diferente
 
-     Esto evita problemas con enlaces simbólicos.
+     Esto evita problemas con los enlaces simbólicos.
 
      ..src > elisp
        (setq find-file-existing-other-name t)
      < src..
 
-   - Configura tu entorno de lenguaje y el método de entrada por defecto
+   - Establece el idioma del entorno y el método de entrada por defecto
 
      ..src > elisp
        (set-language-environment "latin-1")
-       ;; Recuerda que se puede habilitar o deshabilitar el texto de lenguaje
-       ;; multilingüe con el comando @c{toggle-input-method'} (@k{C-\})
+       ;; Recuerda que se puede habilitar o deshabilitar la entrada de texto
+       ;; multilingüe con el comando @c{toggle-input-method} (C-\)
        (setq default-input-method "latin-1-prefix")
      < src..
 
-     Si se quiere escribir con el caracter Chino ‘GB’, asigna esto:
+     Si quiere escribir con caracteres Chinos ‘GB’, asignar esto:
 
      ..src > elisp
        (set-language-environment "Chinese-GB")
        (setq default-input-method "chinese-tonepy")
      < src..
 
-*** Arreglando Atajos de Teclados
+*** Corrigiendo Atajos de Teclados desagradables
 
-    Algunos sistemas asocian teclas de maneras no agradables. Algunas veces,
-    por ejemplo, la tecla @k{CTRL} en un modo perverso en vez de la lejanía a
-    la izquierda de la fila.
+    Algunos sistemas vinculan las teclas de forma desagradable. Algunas veces,
+    por ejemplo, la tecla @k{CTRL} aparece en un lugar incomodo en lugar de en
+    el extremo izquierdo de la fila de inicio.
 
-    Normalmente, cuando las personas arreglan estos atajos de teclado, no se
-    cambia su fichero @f{~/.emacs}. En vez de eso, se asocian las teclas
-    apropiadas en sus consolas con los comandos @c{loadkeys} o
-    @c{install-keymap} en su script de inicio y entonces incluyen comandos
-    @c{xmodmap} en su fichero @f{.xinitrc} o @f{.Xsession} para X Windows.
+    Normalmente, cuando las gente arregla este tipo de atajos, no
+    cambia su fichero @f{~/.emacs}. En su lugar, se asocian las teclas
+    apropiadas en sus consolas con los comandos @${loadkeys} o
+    @${install-keymap} en su script de inicio e incluyen comandos
+    @${xmodmap} en su fichero @f{.xinitrc} o @f{.Xsession} de X Windows.
 
     Para un script de inicio:
 
-    ..example >
+    ..src > sh
       loadkeys /usr/share/keymaps/i386/qwerty/emacs2.kmap.gz
+    < src..
 
-      or
+    o
 
+    ..src > sh
       install-keymap emacs2
-    < example..
+    < src..
 
     Para un fichero @f{.xinitrc} o un fichero @f{.Xsession} cuando la tecla
-    @k{Caps Lock} es que tan lejos de la fila del home:
+    @k{Bloq Mayus} esta en el extremo izquierdo de la fila de inicio:
 
-    ..example >
-      # Asocia la tecla etiquetada ‘Caps Lock’ a ‘Control’
-      # (Tal como un interfaz de usuario roto sugiere que el teclado hecho
-      # piensa que los ordenadores son máquinas de escribir desde 1885.)
+    ..src > sh
+      # Asocia la tecla ‘Bloq Mayus’ a ‘Control’
+      # (Una interfaz de usuario tan rota, sugiere que los fabricantes de teclados
+      # piensan que las computadoras son máquinas de escribir de 1885.)
 
       xmodmap -e "clear Lock"
       xmodmap -e "add Control = Caps_Lock"
-    < example..
+    < src..
 
-    En un @f{.xinitrc} o @f{.Xsession}, para convertir una tecla @k{ALT} a
+    En un fichero @f{.xinitrc} o @f{.Xsession}, para convertir una tecla @k{ALT} en
     una tecla @k{META}:
 
-    ..example >
+    ..src > sh
       # Algunos teclados mal diseñados tienen una tecla etiquetada ALT y no Meta
       xmodmap -e "keysym Alt_L = Meta_L Alt_L"
-    < example..
+    < src..
 
-** Una línea modificada
+** Una línea de Modo modificada
 
-   Finalmente, una funcionalidad que realmente me gusta: un mode line
-   modificado.
+   Finalmente, una caracteristica que realmente me gusta: una linea de modo
+   modificada.
 
-   Cuando se trabaja a través de una red, se olvida que máquina se está
-   usando. También, se tiende a perder la traza de donde se está, y a qué
-   línea se apunta.
+   Cuando trabajo a través de una red, olvido que máquina estoy usando.
+   También, tiendo a perder la nocion de donde estoy, y en que linea esta el punto.
 
-   Así se resetea mi mode line para que se parezca a esto:
+   Así se restableci mi linea de modo para que se viera asi:
 
    ..example >
      ::-- foo.texi   rattlesnake:/home/bob/  Line 1  (Texinfo Fill) Top
    < example..
 
    Estoy visitando un fichero llamado @f{foo.texi}, en mi máquina
-   @f{rattlesnake} en mi búfer @f{/home/bob}. Yo estoy en la línea 1, en
-   modo Texinfo, y estoy arriba del búfer.
+   @f{rattlesnake} en mi búfer @f{/home/bob}. Estoy en la línea 1, en
+   modo Texinfo, y en la parte superior del búfer.
 
    Mi fichero @f{.emacs} tiene una sección que se parece a esto:
 
    ..src > elisp
-     ;; Asigna un Mode Line que nos cuente que máquina, que directorio,
-     ;; y que línea estoy on, más la información de client.
+     ;; Configura una linea de modo que me dice en que máquina, directorio,
+     ;; y línea estoy, ademas de la información habitual.
      (setq-default mode-line-format
       (quote
        (#("-" 0 1
           (help-echo
-           "mouse-1: select window, mouse-2: delete others ..."))
+           "mouse-1: seleccionar ventana\nmouse-2: eliminar otras ..."))
         mode-line-mule-info
         mode-line-modified
         mode-line-frame-identification
@@ -12841,12 +12834,12 @@ and promoting software freedom.”
         default-directory
         #(" " 0 1
           (help-echo
-           "mouse-1: select window, mouse-2: delete others ..."))
+           "mouse-1: seleccionar ventana\nmouse-2: eliminar otras ..."))
         (line-number-mode " Line %l ")
         global-mode-string
         #("   %[(" 0 6
           (help-echo
-           "mouse-1: select window, mouse-2: delete others ..."))
+           "mouse-1: seleccionar ventana\nmouse-2: eliminar otras ..."))
         (:eval (mode-line-mode-name))
         mode-line-process
         minor-mode-alist
@@ -12857,56 +12850,60 @@ and promoting software freedom.”
         )))
    < src..
 
-   Aquí, se redefine el mode line por defecto. La mayoría de las partes son
-   desde el original; pero yo creo unos pocos cambios. Yo asigno el formato
-   de mode line @e{default} así como permitir varios modos, tales como Info,
-   para sobreescribirlo.
+   Aquí, redefino la linea de modo por defecto. La mayoría de las partes son del
+   original; pero hago algunos cambios. Estableci el formato de la linea de modo
+   por @e{defecto} para permitir que varios modos, como Info, lo sobreescriban.
 
-   Muchos elementos en la lista son auto-explicativos: @c{mode-line-modified}
-   es una variable que cuenta si el búfer ha sido modificado, @c{mode-name}
-   cuenta el nombre del modo, y así sucesivamente. Sin embargo, el formato parece
-   complicado porque las dos funcionalidades no han sido discutidas.
+   Muchos elementos de la lista se explican por si mismos: @c{mode-line-modified}
+   es una variable que indica si el búfer ha sido modificado, @c{mode-name}
+   indica el nombre del modo, y así sucesivamente. Sin embargo, el formato
+   parece complicado debido a dos caracteristicas que no hemos discutido.
 
+   La primera cadena en la línea de modo es un guión, @'(-). En los viejos tiempos,
+   se habría especificado simplemente como @c("-"). Pero hoy en día, Emacs puede
+   añadir propiedades a una cadena, como resaltado o, en este caso, una
+   función de ayuda. Si colocas el cursor del ratón sobre el guión, aparece
+   información de ayuda (de forma predeterminada, debe esperar siete décimas de
+   segundo antes de que aparezca la información). Puedes cambiar esa
+   temporización cambiando el valor de @c{tooltip-delay}.
 
-   La nueva cadena de formato tiene una sintaxis especial:
+   El nuevo formato de cadena tiene una sintaxis especial:
 
    ..src > elisp
-     #("-" 0 1 (help-echo "mouse-1: select window, ..."))
+     #("-" 0 1 (help-echo "mouse-1: seleccionar ventana\n..."))
    < src..
 
-   El @c{#(} empieza una lista. El primer elemento de la lista es la cadena
-   en sí, solo un @'{-}. El segundo y tercer elemento especifica el rango a
-   través del cuarto elemento aplicado. Un rango empieza @e{después} un
-   carácter, así un cero significa el rango que empieza solo después del
-   primer caracter; un 1 significa que el rango finaliza solo después del
-   primer caracter. El tercer elemento es la propiedad para el rango. Eso
-   consiste en una lista de propiedades, un nombre de propiedad, en este
-   caso, @'{help-echo}, seguido por un valor, en este caso, una cadena. El
-   segundo, tercer y cuarto elemento de este nuevo formato de cadena puede
-   ser repetido.
+   El @c{#(} inicia una lista. El primer elemento de la lista es la cadena en
+   sí, solo un @'{-}. El segundo y tercer elemento especifica el rango al que se
+   aplica el cuarto elemento. Un rango empieza @e{después} de un carácter, por
+   lo que un cero significa el rango empieza justo después del primer caracter;
+   un 1 significa que el rango termina justo después del primer caracter. El
+   tercer elemento es la propiedad del rango. Consiste en una lista de
+   propiedades, un nombre de propiedad, en este caso, @'{help-echo}, seguido por
+   un valor, en este caso, una cadena. El segundo, tercer y cuarto elemento de
+   este nuevo formato de cadena se pueden repetir.
 
-   Vea la Seccion @"{Propiedades de Texto} en @e{El Manual de Referencia de
-   GNU Emacs Lisp}, y ver @"{Formato Mode Line} en @e{El Manual de Referencia
-   de GNU Emacs Lisp}, para más información.
+   Para más información, vea las Secciones @l{info:elisp#Text
+   Properties<>Propiedades de Texto} y @l{info:elisp#Mode Line Format<>Formato
+   de Linea de Modo} en @e{El Manual de Referencia de GNU Emacs Lisp}.
 
-   @c{mode-line-buffer-identification} muestra el nombre del buffer. Eso es
-   una lista empezando por @c{(#("%12b" 0 4 …}. El @c{#(} empieza la lista.
+   @c{mode-line-buffer-identification} muestra el nombre del buffer. Es una
+   lista que inicia por @c{(#("%12b" 0 4 …}. El @c{#(} inicia la lista.
 
    El @'{"%12b"} muestra el nombre del actual búfer, usando la función
    @c{buffer-name} con la que estamos familiarizados; el ‘12’ especifica el
    número máximo de caracteres que serán mostrados. Cuando un nombre tiene
    pocos caracteres, el espacio en blanco se añade para rellenar este
-   número. (Los nombres del búfer puede y con frecuencia serán más largos de
-   12 caracteres; esta longitud funciona bien en la típica ventana de 80
+   número. (Los nombres del búfer pueden y con frecuencia tendran mas de
+   12 caracteres; esta longitud funciona bien en una típica ventana de 80
    columnas de ancho.)
 
-   @c{:eval} dice evaluar la siguiente forma y usa el resultado como una
-   cadena para mostrarse. En este caso, la expresión muestra el primer
-   componente del sistema completo. El fin del primer componente es un @'{.}
-   (‘periodo’), así se usa la función @c{string-match} para contar el tamaño
-   del primer componente. La subcadena desde el caracter cero a este tamaño
-   del primer componente. La subcadena desde el caracter cero a este tamaño
-   es el nombre de la máquina.
+   @c{:eval} dice que hay que evaluar la siguiente forma y usar el resultado
+   como una cadena para mostrar. En este caso, la expresión muestra el primer
+   componente del nombre completo del sistema. El fin del primer componente es
+   un @'{.}  (‘punto’), así que uso la función @c{string-match} para contar el
+   tamaño del primer componente. La subcadena desde el caracter cero a este
+   tamaño es el nombre de la máquina.
 
    Esta es la expresión:
 
@@ -12915,28 +12912,28 @@ and promoting software freedom.”
              (system-name) 0 (string-match "\\..+" (system-name))))
    < src..
 
-   @'{%[} y @'{%]} causa un par de corchetes que aparezcan por cada edición
-   nivel de edición recursiva editando el nivel. @'{%n} dice ‘Encoger’ cuando
-   esto puede hacerse. @'{%P} te cuenta el porcentaje del búfer que está
-   debajo de la ventana, o ‘arriba’, ‘abajo’, o ‘todo’. (Una minúscula @'{p}
-   cuenta el porcentaje bajo el alto de la ventana.) @'{%-} inserta
+   @'{%[} y @'{%]} hacen que aparezca un par de corchetes por cada nivel de
+   edición recursiva. @'{%n} indica ‘Reducido’ cuando la reduccion esta en
+   efecto. @'{%P} indica el porcentaje del búfer que está por encima de la
+   ventana, o ‘Top’, ‘Bottom’, o ‘All’. (Una @'{p} minúscula indica el
+   porcentaje por encima de la parte superior de la ventana.) @'{%-} inserta
    suficientes guiones para rellenar la línea.
 
-   Recuerda, “No tiene que gustarte Emacs para que le gustes”––Emacs puede
-   tener diferentes colores, diferentes comandos, y diferentes teclas que un
-   Emacs por defecto.
+   Recuerda, “No tiene que gustarte Emacs para que te guste”––Emacs puede tener
+   diferentes colores, diferentes comandos, y diferentes atajos al Emacs por
+   defecto.
 
-   Por otro lado, si se quiere traer un plano ‘fuera de la caja’ Emacs, sin
-   personalización, escribe:
+   Por otro lado, si quieres ‘sacar un Emacs de la caja’, sin
+   personalización alguna, ingresa:
 
-   ..example >
+   ..src > sh
      emacs -q
-   < example..
+   < src..
 
-   Esto inicializará un Emacs que @e{no} cargue tu @f{~/.emacs} fichero de
-   inicialización. Uno plano, el que trae Emacs por defecto. Nada más.
+   Esto iniciara un Emacs que @e{no} cargue tu fichero de inicializacion
+   @f{~/.emacs}. Un Emacs normal y corriente. Nada más.
 
-* Depurando
+* Depurancion
 
   GNU Emacs tiene dos depuradores, @c{debug} y @c{edebug}. El primero es
   construido dentro de las tripas de Emacs y está siempre contigo; el segundo
@@ -13450,7 +13447,7 @@ and promoting software freedom.”
    Referencia GNU Emacs Lisp}.)
 
    Se podrían intentar buscar caracteres duplicados pero no si el patrón
-   detecta dobles tales como las dos ocurrencias de ‘th’ en ‘with the’.
+   detecta dobles como las dos ocurrencias de ‘th’ en ‘with the’.
 
    Otro posible regexp busca caracteres constituyentes de palabras seguidos
    por caracteres de no palabras constituyentes, reduplicadas. Aquí, @'{\\w+}
@@ -13954,7 +13951,7 @@ and promoting software freedom.”
 
     De manera interesante, GNU Emacs posee un fichero llamado @f{ring.el} que
     provee muchas de las funcionalidades que ahora se discuten. Pero las
-    funciones tales como @c{kill-ring-yank-pointer} no usan esta librería,
+    funciones como @c{kill-ring-yank-pointer} no usan esta librería,
     posiblemente porque fueron escritas pronto.
 
 * Apéndice C <> Apéndice C Un grafico con ejes etiquetados
@@ -15881,22 +15878,26 @@ and promoting software freedom.”
     recursivos. La palabra ‘recursivo’ tiene significados diferentes en los dos
     contextos.
 
- :: @N{14} :: Tu puedes también añadir @f{.el} para @f{~/.emacs} y llama a un
-    fichero @f{~/.emacs}. En el pasado, fué prohibido escribir los atajos de
+ :: @N{14} :: Se puede añadir @f{.el} a @f{~/.emacs} y llamarlo
+    @f{~/.emacs.el}. En el pasado, se prohibia escribir los atajos de
     teclado extra que el nombre @f{~/.emacs.el} requiere, pero ahora
-    puedes. El nuevo formato es consistente con las conveniciones de nombre
-    del fichero Emacs Lisp; el viejo formato guarda la escritura.
+    se puede hacer. El nuevo formato es consistente con las conveniciones de nombres
+    de ficheros Emacs Lisp; el viejo formato mantiene la escritura.
 
- :: @N{15} :: Cuando se empiezan las instancias de Emacs que no cargan mi
-    fichero @f{.emacs} o cualquier fichero, también se puede deshabilitar la
-    ocultación:
+ :: @N{15} :: Cuando inicio instancias de Emacs que no cargan mi
+    fichero @f{.emacs} o cualquier fichero, también se puede deshabilitar
+    el parpadeo:
 
-    ..example >
-      emacs -q --no-site-file -eval
-      '(blink-cursor-mode nil)' @exdent O ahora, usando un conjunto más
-      sofisticado de opciones, emacs -Q - D
-    < example..
+    ..srci > sh
+      > emacs -q --no-site-file -eval '(blink-cursor-mode nil)'
+    < srci..
 
- :: @N{16} :: también se ejecutan gestores de ventanas más modernos, tales
-    como Enlightenment, Gnome, o KDE; en estos casos, con frecuencia se
-    especifica una imagen en vez de un color plano.
+    O tambien usando un conjunto más sofisticado de opciones,
+
+    ..srci > sh
+      > emacs -Q -D
+    < srci..
+
+ :: @N{16} :: También ejecuto gestores de ventanas más modernos,
+    como Enlightenment, Gnome, o KDE; en esos casos, a menudo
+    especifico una imagen en lugar de un color plano.

@@ -316,25 +316,25 @@
     </ul>
   <li><a class="h2" href="#tu-fichero-.emacs" >Tu fichero <span class="file" >.emacs</span></a></li>
     <ul>
-    <li><a class="h3" href="#fichero-de-inicialización-site-wide" >Fichero de inicialización site-wide</a></li>
+    <li><a class="h3" href="#ficheros-de-inicialización-site-wide" >Ficheros de inicialización site-wide</a></li>
     <li><a class="h3" href="#especificar-variables-usando-defcustom" >Especificar variables usando <code>defcustom</code></a></li>
     <li><a class="h3" href="#empieza-por-un-fichero-.emacs" >Empieza por un fichero <span class="file" >.emacs</span></a></li>
     <li><a class="h3" href="#modo-texto-y-auto-relleno" >Modo texto y auto relleno</a></li>
     <li><a class="h3" href="#alias-de-correo" >Alias de correo</a></li>
-    <li><a class="h3" href="#indentar-modo-de-tabulaciones" >Indentar modo de tabulaciones</a></li>
-    <li><a class="h3" href="#atajos-de-teclado" >Atajos de teclado</a></li>
+    <li><a class="h3" href="#modo-de-indentacion" >Modo de Indentacion</a></li>
+    <li><a class="h3" href="#algunos-atajos-de-teclado" >Algunos Atajos de teclado</a></li>
     <li><a class="h3" href="#mapas-de-teclado" >Mapas de teclado</a></li>
     <li><a class="h3" href="#cargando-ficheros" >Cargando ficheros</a></li>
-    <li><a class="h3" href="#autoloading" >Autoloading</a></li>
-    <li><a class="h3" href="#una-extensión-simple:-line-to-top-of-window" >Una extensión simple: <code>line-to-top-of-window</code></a></li>
+    <li><a class="h3" href="#autocarga" >Autocarga</a></li>
+    <li><a class="h3" href="#una-extensión-simple:-linea-a-lo-alto-de-la-ventana" >Una extensión simple: <code>linea-a-lo-alto-de-la-ventana</code></a></li>
     <li><a class="h3" href="#colores-x11" >Colores X11</a></li>
-    <li><a class="h3" href="#configuraciones-misceláneas-para-un-fichero-.emacs" >Configuraciones misceláneas para un fichero <span class="file" >.emacs</span></a></li>
+    <li><a class="h3" href="#ajustes-misceláneos-para-un-fichero-.emacs" >Ajustes misceláneos para un fichero <span class="file" >.emacs</span></a></li>
       <ul>
-      <li><a class="h4" href="#arreglando-atajos-de-teclados" >Arreglando Atajos de Teclados</a></li>
+      <li><a class="h4" href="#corrigiendo-atajos-de-teclados-desagradables" >Corrigiendo Atajos de Teclados desagradables</a></li>
       </ul>
-    <li><a class="h3" href="#una-línea-modificada" >Una línea modificada</a></li>
+    <li><a class="h3" href="#una-línea-de-modo-modificada" >Una línea de Modo modificada</a></li>
     </ul>
-  <li><a class="h2" href="#depurando" >Depurando</a></li>
+  <li><a class="h2" href="#depurancion" >Depurancion</a></li>
     <ul>
     <li><a class="h3" href="#depurar" ><code>depurar</code></a></li>
     <li><a class="h3" href="#debug-on-entry" ><code>debug-on-entry</code></a></li>
@@ -1088,7 +1088,7 @@ Multiplica NUMERO por siete.
 </li>
 </ol>
 <p>Ambos ejemplos operan de forma identica moviendo el punto hacia adelante tres oraciones. (Ya que <code>multiply-by-seven</code> no esta ligado a un atajo, no se puede utilizar como ejemplo.)</p>
-<p>(Vea la Seccion <a href="#atajos-de-teclado" >Atajos de teclado</a>, para aprender como vincular un comando a una atajo.)</p>
+<p>(Vea la Seccion <a href="#algunos-atajos-de-teclado" >Algunos Atajos de teclado</a>, para aprender como vincular un comando a una atajo.)</p>
 <p>Un argumento prefijo se pasa a una función interactiva pulsando la tecla <kbd>META</kbd> seguida de un número, por ejemplo, <kbd>M-3 M-e</kbd>, o con <kbd>C-u</kbd> y luego un número, por ejemplo, <kbd>C-u 3 M-e</kbd> (si presionas <kbd>C-u</kbd> sin ningun número, el valor por defecto es 4).</p>
 </div>
 <h4 id="multiplicar-por-siete-interactivo" ><code>multiplicar-por-siete</code> interactivo</h4>
@@ -5739,254 +5739,251 @@ superior y el punto en la esquina inferior derecha.
 </div>
 <h2 id="tu-fichero-.emacs" >Tu fichero <span class="file" >.emacs</span></h2>
 <div class="hBody-2" >
-<p>“No te tiene que gustar Emacs para lo que te gusta”––esto que parece una frase paradójica es el secreto de GNU Emacs. En realidad, Emacs es una herramienta genérica. La mayoría de la gente que usa Emacs, lo personaliza para ajustarlo a sus necesidades.</p>
-<p>GNU Emacs está mayoritariamente escrito en Emacs Lisp; esto significa que escribiendo expresiones en Emacs Lisp se puede modificar o extender Emacs.</p>
-<p>Hay quien aprecia la configuración por defecto de Emacs. Después de todo, Emacs empieza en modo C cuando se edita un fichero C, empieza en modo Fortran cuando se edita un fichero Fortran, y empieza en modo Fundamental cuando se edita un fichero no adornado. Esto tiene sentido, si no sabes quien está yendo a usar Emacs. ¿Quién sabe lo que una persona espera hacer con un fichero no adornado? El modo fundamental es el modo correcto por defecto para tal fichero, tal como el modo C es lo correcto para editar código C. (Suficientes lenguajes de programación tienen sintaxis que permiten compartir funcionalidades, tal como el modo C es ahora proporcionado por el modo CC, la ‘Colección C’.)</p>
-<p>Pero cuando se conoce quien está yendo a usar Emacs––tu, tu mismo––entonces eso tiene sentido para personalizar Emacs.</p>
-<p>Por ejemplo, yo raramente quiero el modo Fundamental cuando edito un fichero de otro modo no distinguido; yo quiero el modo Texto. Esto es por lo que yo personalizo Emacs: así eso se ajusta a mí.</p>
-<p>Se puede personalizar y extender Emacs escribiendo o adaptando un fichero <span class="file" >~/.emacs</span>. Esto es un fichero de inicialización personal; sus contenidos, escritos en Emacs Lisp, cuentan a Emacs qué hacer.<span class="note" ><sup><a href="#14" >14</a></sup></span></p>
-<p>Un fichero <span class="file" >~/.emacs</span> contiene código Emacs Lisp. Se puede escribir este código por uno mismo; o se puede usar la funcionalidad <code>customize</code> para escribir el código para ti. Se puede combinar tus propias expresiones y expresiones auto-escritas personalizadas en tu fichero <span class="file" >.emacs</span>.</p>
-<p>(Yo prefiero por mí mismo escribir mis propias expresiones, excepto para estas, fuentes particularmente, que se encuentran fáciles de manipular usando el comando <code>customize</code>. Yo combino los dos métodos.)</p>
-<p>La mayoría de este capítulo es acerca de escribir expresiones por uno mismo. Eso describe un fichero <span class="file" >.emacs</span> simple; para más información, mira <q>El Fichero de Inicio</q> en <em>El Manual GNU Emacs</em>, y la Seccion <q>El Fichero de Inicio</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>.</p>
+<p>“No te tiene que gustar Emacs para que te guste”––esta declaracion aparentemente paradójica es el secreto de GNU Emacs. En realidad, Emacs es una herramienta genérica. La mayoría de las personas que lo usan, lo personalizan para ajustarlo a sus necesidades.</p>
+<p>GNU Emacs está escrito principalmente en Emacs Lisp; esto significa que escribiendo expresiones en Emacs Lisp se puede modificar o extender Emacs.</p>
+<p>Hay quienes aprecian la configuración por defecto de Emacs. Después de todo, Emacs inicia en modo C cuando se edita un fichero C, inicia en modo Fortran cuando se edita un fichero Fortran, y en modo Fundamental cuando se edita un fichero sin adornos. Esto tiene sentido, si no sabes quien va a utilizar Emacs. ¿Quién sabe lo que una persona espera hacer con un fichero sin adornos? Para dicho fichero, el modo fundamental es el modo por defecto apropiado, de la misma manera C es el modo predeterminado correcto para editar código C. (Hay suficientes lenguajes de programación con sintaxis que permiten compartir funcionalidades, por lo que el modo C ahora se proporciona para el modo CC, la ‘Colección C’.)</p>
+<p>Pero cuando sabes quen va a utilizar Emacs––tu, tu mismo––entonces tiene sentido personalizar Emacs.</p>
+<p>Por ejemplo, rara vez quiero el modo Fundamental cuando edito un fichero de otro modo indistinguible; yo quiero el modo Texto. Por eso personalizo Emacs: para que se adapte a mí.</p>
+<p>Puede personalizar y ampliar Emacs escribiendo o adaptando un fichero <span class="file" >~/.emacs</span>. Este es tu fichero de inicialización personal; su contenido, escrito en Emacs Lisp, le indica a Emacs qué hacer.<span class="note" ><sup><a href="#14" >14</a></sup></span></p>
+<p>Un fichero <span class="file" >~/.emacs</span> contiene código Emacs Lisp. Puedes escribir este código por su cuenta; o usar la funcion de Emacs <code>customize</code> para que escriba el código por ti. Puedes combinar tus propias expresiones y expresiones personalizadas en tu fichero <span class="file" >.emacs</span>.</p>
+<p>(Yo prefiero escribir mis propias expresiones, excepto para estas, particularmente las fuentes, que encuentro mas fáciles de manipular usando el comando <code>customize</code>. Combino los dos métodos.)</p>
+<p>La mayor parte de este capítulo trata sobre como escribir expresiones por uno mismo. Describe un fichero <span class="file" >.emacs</span> simple; para más información, vea <a href="info:emacs#Init-File" >El fichero de inicio</a> en <em>El Manual de GNU Emacs</em>, y la Seccion <a href="info:elisp#Init-File" >El fichero de inicio</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>.</p>
 </div>
-<h3 id="fichero-de-inicialización-site-wide" >Fichero de inicialización site-wide</h3>
+<h3 id="ficheros-de-inicialización-site-wide" >Ficheros de inicialización site-wide</h3>
 <div class="hBody-3" >
-<p>Además de tu fichero de inicialización personal, Emacs automáticamente carga varios ficheros de inicialización amplios, si existen. Tienen la misma forma que tu fichero <span class="file" >.emacs</span>, pero se cargan por cualquiera.</p>
-<p>Dos ficheros de incialización, <span class="file" >site-load.el</span> y <span class="file" >site-init.el</span>, están cargados dentro de Emacs y volcados <em>dumped</em> sin una versión dumped de Emacs se creó, como es más común. (Las copias dumped de Emacs cargan más rápidamente. Sin embargo, puesto que un fichero se carga y compila, un cambio no llega a ser un cambio en Emacs a menos que se cargue por uno mismo o se recompile Emacs. Vea la Seccion <q>Construyendo Emacs</q> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, y el fichero <span class="file" >INSTALL</span>)</p>
-<p>Los otros tres ficheros de inicialización se cargan automáticamente cada vez que se inicia Emacs, si existen. Son <span class="file" >site-start.el</span>, que se carga <em>antes</em> que tu fichero <span class="file" >.emacs</span>, y <span class="file" >default.el</span>, y el tipo de fichero terminal, que se cargan <em>después</em> de tu fichero <span class="file" >.emacs</span>.</p>
-<p>Las configuraciones y definiciones en tu fichero <span class="file" >.emacs</span> sobreescribirán las configuraciones en conflicto y definiciones en un fichero <span class="file" >site-start.el</span>, si eso existe; pero las configuraciones y definiciones en un <span class="file" >default.el</span> o el tipo de fichero terminal sobreescribirá estos en tu fichero <span class="file" >.emacs</span>. (Se pueden prevenir interferencias desde un tipo de fichero terminal configurando <code>term-file-prefix</code> para <code>nil</code>. Vea la Seccion <a href="Una-extensión-simple:-line-to-top-of-window" >Una extensión simple: <code>line-to-top-of-window</code></a>.)</p>
-<p>El fichero <span class="file" >INSTALL</span> que viene en la distribución contiene descripciones de los fichero <span class="file" >site-init.el</span> y <span class="file" >site-load.el</span>.</p>
-<p>Los ficheros <span class="file" >loadup.el</span>, <span class="file" >startup.el</span>, y <span class="file" >loaddefs.el</span> controlan la carga. Estos ficheros están en el directorio <span class="file" >lisp</span> de la distribución Emacs y tiene valor de uso.</p>
-<p>El fichero <span class="file" >loaddefs.el</span> contiene buenas sugerencias como las que poner dentro de tu propio fichero <span class="file" >.emacs</span>, o dentro de un fichero de inicialización amplio.</p>
+<p>Además de tu fichero de inicialización personal, Emacs carga automáticamente varios ficheros de inicialización amplios, si existen. Estos tienen la misma forma que tu fichero <span class="file" >.emacs</span>, pero se cargan para todos.</p>
+<p>Dos ficheros de incialización para todos los usuarios, <span class="file" >site-load.el</span> y <span class="file" >site-init.el</span>, se cargan en Emacs y luego se <samp>vuelcan</samp> si se crea una version <samp>volcada</samp> de Emacs, como es más común. (Las copias volcadas de Emacs se cargan más rápidamente. Sin embargo, una vez que un fichero se carga y vuelca, un cambio en el no conduce a un cambio en Emacs a menos que lo cargues por tu cuenta. Consulta la Seccion <a href="info:elisp#Building-Emacs" >Construyendo Emacs</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, y el fichero <span class="file" >INSTALL)</span></p>
+<p>Otros tres ficheros de inicialización se cargan automáticamente cada vez que se inicia Emacs, si existen. Son <span class="file" >site-start.el</span>, que se carga <em>antes</em> que tu fichero <span class="file" >.emacs</span>, y <span class="file" >default.el</span>, y el tipo de fichero terminal, que se cargan <em>después</em> de <span class="file" >.emacs</span>.</p>
+<p>Las configuraciones y definiciones en tu fichero <span class="file" >.emacs</span> sobreescribirán las configuraciones y definiciones conflictivas del fichero <span class="file" >site-start.el</span>, si existe; pero las configuraciones y definiciones en <span class="file" >default.el</span> o el fichero de tipo de terminal sobreescribirán las de <span class="file" >.emacs</span>. (puede evitar las interferencias del fichero de tipo de terminal configurando <code>term-file-prefix</code> a <code>nil</code>. Vea la Seccion <a href="#una-extensión-simple:-linea-a-lo-alto-de-la-ventana" >Una extensión simple: <code>linea-a-lo-alto-de-la-ventana</code></a>.)</p>
+<p>El fichero <span class="file" >INSTALL</span> que viene en la distribución contiene descripciones de los ficheros <span class="file" >site-init.el</span> y <span class="file" >site-load.el</span>.</p>
+<p>Los ficheros <span class="file" >loadup.el</span>, <span class="file" >startup.el</span>, y <span class="file" >loaddefs.el</span> controlan la carga. Estos ficheros están en el directorio <span class="file" >lisp</span> de la distribución Emacs y vale la pena leerlos.</p>
+<p>El fichero <span class="file" >loaddefs.el</span> contiene muchas sugerencias sobre que poner en tu propio fichero <span class="file" >.emacs</span>, o dentro de un fichero de inicialización amplio.</p>
 </div>
 <h3 id="especificar-variables-usando-defcustom" >Especificar variables usando <code>defcustom</code></h3>
 <div class="hBody-3" >
-<p>Se pueden especificar variables usando <code>defcustom</code> así que la gente pueda usar la funcionalidad de Emacs <code>customize</code> para asignar sus valores. (No se puede usar <code>customize</code> para escribir definiciones de función; pero se pueden escribir <code>defuns</code> en tu fichero <span class="file" >.emacs</span>. En vez de eso, se puede escribir cualquier expresión Lisp en tu fichero <span class="file" >.emacs</span>).</p>
-<p>La funcionalidad <code>customize</code> depende de la forma especial <code>defcustom</code>. Aunque se puede usar <code>defvar</code> o <code>setq</code> para las variables que los usuarios asignan, la forma especial <code>defcustom</code> está diseñada para el trabajo.</p>
-<p>Se puede usar tu conocimiento de <code>defvar</code> para escribir los primeros tres argumentos para <code>defcustom</code>. El primer argumento para <code>defcustom</code> es el nombre de la variable. El segundo argumento es el valor inicial de la variable, cualquiera; y este valor es asignado solo si el valor no ha sido ya asignado. El tercer argumento es la documentación.</p>
-<p>El cuarto y subsiguientes argumentos para <code>defcustom</code> especifican los tipos y opciones; estos no son funcionales en <code>defvar</code>. (Estos argumentos son opcionales.)</p>
-<p>Cada uno de estos argumentos consiste de una palabra seguido de una palabra por un valor. Cada palabra clave empieza con los dos puntos <samp>:</samp>.</p>
-<p>Por ejemplo, la variable de opciones personalizable <code>text-mode-hook</code> se parece a esto:</p>
+<p>Puede especificar variables usando <code>defcustom</code> para que tu y otros puedan usar la caracteristica de Emacs <code>customize</code> para establecer sus valores. (No se puede usar <code>customize</code> para escribir definiciones de función; pero se pueden escribir <code>defuns</code> en el fichero <span class="file" >.emacs</span>. De hecho, se puede escribir cualquier expresión Lisp en el fichero <span class="file" >.emacs</span>).</p>
+<p>La caracteristica de configuracion ofrecida por <code>customize</code> depende de la forma especial <code>defcustom</code>. Aunque se puede usar <code>defvar</code> o <code>setq</code> para las variables que los usuarios establecen, la forma especial <code>defcustom</code> está diseñada para este trabajo.</p>
+<p>Puedes usar tu conocimiento de <code>defvar</code> para escribir los primeros tres argumentos de <code>defcustom</code>. El primer argumento de <code>defcustom</code> es el nombre de la variable. El segundo argumento es el valor inicial de la variable, si lo hay; y este valor se asigna solo si el valor no ha sido ya asignado. El tercer argumento es la documentación.</p>
+<p>El cuarto y subsiguientes argumentos de <code>defcustom</code> especifican tipos y opciones; estos no se presentan en <code>defvar</code>. (Estos argumentos son opcionales.)</p>
+<p>Cada uno de estos argumentos consiste de una palabra clave seguida de un valor. Cada palabra clave empieza con el caracter dos puntos <samp>:</samp>.</p>
+<p>Por ejemplo, la variable de opciones personalizable <code>text-mode-hook</code> tiene el siguiente aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defcustom</span> <span class="nv">text-mode-hook</span> <span class="no">nil</span>
-  <span class="s">&#34;El hook normal se ejecuta cuando se introduce en modo texto y
-</span><span class="s">  muchos modos relacionados.&#34;</span>
+  <span class="s">&#34;El hook normal se ejecuta cuando se ingresa en modo texto y en muchos modos relacionados.&#34;</span>
   <span class="nb">:type</span> <span class="ss">&#39;hook</span>
   <span class="nb">:options</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">turn-on-auto-fill</span> <span class="nv">flyspell-mode</span><span class="p">)</span>
-  <span class="nb">:group</span> <span class="ss">&#39;data</span><span class="p">)</span>
+  <span class="nb">:group</span> <span class="ss">&#39;wp</span><span class="p">)</span>
 </code></pre>
 <p>El nombre de la variable es <code>text-mode-hook</code>; no tiene valor por defecto; y su cadena de documentación cuenta lo que hace.</p>
-<p>La palabra clave <code>:type</code> le cuenta a Emacs el tipo de datos para los que <code>text-mode-hook</code> sería asignado y como muestra el valor en un búfer de Personalización.</p>
-<p>La palabra clave <code>:options</code> especifica una lista sugerida de valores para la variable. Normalmente, <code>:options</code> se asocia a un gancho (<em>hook</em>. La lista es solo una sugerencia; esa no es exclusiva; una persona quien asigna la variable puede asignarse a otros valores; la lista mostrada siguiendo la palabra clave <code>:options</code> se pretende ofrecer elecciones convenientes a un usuario.</p>
-<p>Finalmente, la palabra clave <code>:group</code> cuenta el comando de Personalización de Emacs en el que el grupo de la variable está localizado. Esto cuenta dónde encontralo.</p>
-<p>La función <code>defcustom</code> reconoce más de una docena de palabras clave. Para más información, mire <q>Escribiendo las Definiciones de Personalización</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>.</p>
+<p>La palabra clave <code>:type</code> le indica a Emacs el tipo de datos a los que <code>text-mode-hook</code> sera asignado y como mostrar el valor en un búfer de personalización.</p>
+<p>La palabra clave <code>:options</code> especifica una lista sugerida de valores para la variable. Normalmente, <code>:options</code> se asocia a un <q>gancho</q> <em>(hook)</em>. La lista es solo una sugerencia; no es excluyente; una persona que establece la variable puede establecerla en otros valores; la lista que se muestra despues de la palabra clave <code>:options</code> tiene la intencion de ofrecer opciones convenientes a un usuario.</p>
+<p>Finalmente, la palabra clave <code>:group</code> indica al comando de Personalización de Emacs en que el grupo se encuentra la variable. Esto dice dónde encontralo.</p>
+<p>La función <code>defcustom</code> reconoce más de una docena de palabras clave. Para obtener más información, consulte <a href="info:elips#Customization" >Escribir las Definiciones de Personalización</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>.</p>
 <p>Considere <code>text-mode-hook</code> como un ejemplo.</p>
-<p>Hay dos caminos para personalizar esta variable. Se puede usar el comando de personalización o escribir las expresiones apropiadas por uno mismo.</p>
-<p>Usando el comando de personalización, se puede escribir:</p>
+<p>Hay dos caminos de personalizar esta variable. Puedes utilizar el comando de personalización o escribir las expresiones apropiadas por tu cuenta.</p>
+<p>Utilizando el comando de personalización, puedes escribir:</p>
 <div class="example-block" >
 <pre class="example" >M-x customize
 </pre>
 </div>
-<p>y encuentre que el grupo para editar ficheros de datos se llama ‘datos’. Introduzca este grupo. El Hook <em>Disparador</em> es el primer miembro. Se puede hacer click en sus opciones varias, tal como <code>turn-on-auto-fill</code>, para asignar los valores. Después de hacer click en el botón.</p>
+<p>y encontrar que el grupo para editar ficheros de datos se llama ‘datos’. Introduce este grupo. El Gancho del Modo Texto es el primer miembro. Puedes hacer click en sus opciones varias, como <code>turn-on-auto-fill</code>, para establecer los valores. Después de hacer click en el botón.</p>
 <div class="example-block" >
-<pre class="example" >Guárdalo para Futuras Sesiones
+<pre class="example" >Guárdar para sesiones futuras
 </pre>
 </div>
-<p>Emacs escribirá una expresión en tu fichero <span class="file" >.emacs</span>. Se parecerá a esto:</p>
+<p>Emacs escribirá una expresión en tu fichero <span class="file" >.emacs</span>. Se vera asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">custom-set-variables</span>
   <span class="c1">;; custom-set-variables fué añadido por Custom.</span>
-  <span class="c1">;; Si se edita a mano, tu podrías liarte,</span>
-  <span class="c1">;; así que ten cuidado.</span>
-  <span class="c1">;; Tu fichero init contendría solo esta instancia.</span>
-  <span class="c1">;; Si hay más de uno, ellos no quieren trabajar.</span>
+  <span class="c1">;; Si lo editas a mano, podrías estropearlo, así que ten cuidado.</span>
+  <span class="c1">;; Tu fichero init deberia contener solo una de esta instancia.</span>
+  <span class="c1">;; Si hay más de uno, no funcionara bien.</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">text-mode-hook</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="nv">turn-on-auto-fill</span> <span class="nv">text-mode-hook-identify</span><span class="p">))))</span>
 </code></pre>
-<p>(La función <code>text-mode-hook-identify</code> cuenta <code>toggle-text-mode-auto-fill</code> que buffers hay en modo Texto. Eso viene automáticamente)</p>
-<p>La función <code>custom-set-variables</code> funciona de alguna manera diferente más de un <code>setq</code>. Mientras yo nunca he aprendido las diferencias, yo modifico las expresiones <code>custom-set-variable</code> en mi fichero <span class="file" >.emacs</span> a mano: yo creo los cambios en los que aparecen a mi para ser una manera razonable y no tener problemas. Otros prefieren usar el comando de Personalización y permitir a Emacs hacer el trabajo para ellos.</p>
-<p>Otra función <code>custom-set-…</code> es <code>custom-set-faces</code>. Esta función asigna varios tipos de fuentes. A través del tiempo, yo he asignado un considerable número de tipos. Algo de tiempo, yo las reseteo usando <code>customize</code>; otras veces, simplemente edito la expresión <code>custom-set-faces</code> en mi fichero <span class="file" >.emacs</span> en sí.</p>
-<p>El segundo modo de personalizar tu <code>text-mode-hook</code> es asignarte a tí mismo en tu fichero <span class="file" >.emacs</span> usando código que no tiene nada que hacer con las funciones <code>custom-set-…</code>.</p>
-<p>Cuando se hace esto, y después usa <code>customize</code>, se verá un mensaje que dice:</p>
+<p>(La función <code>text-mode-hook-identify</code> le indica a <code>toggle-text-mode-auto-fill</code> que buffers estan en modo Texto. Se encendera automáticamente)</p>
+<p>La función <code>custom-set-variables</code> funciona de una manera algo distinta a <code>setq</code>. Aunque nunca he aprendido las diferencias, modifico las expresiones <code>custom-set-variable</code> en mi fichero <span class="file" >.emacs</span> a mano: Hago los cambios de la forma que me parecen razonables y no he tenido ningun problema. Otros prefieren usar el comando de Personalización y dejar que Emacs haga el trabajo por ellos.</p>
+<p>Otra función de <code>custom-set-…</code> es <code>custom-set-faces</code>. Esta función establece varios tipos de fuentes. Con el tiempo, he asignado un considerable número de fuentes. Algunas veces, las reseteo usando <code>customize</code>; otras veces, simplemente edito la expresión <code>custom-set-faces</code> en mi fichero <span class="file" >.emacs</span>.</p>
+<p>La segunda forma de personalizar tu <code>text-mode-hook</code> es configurarlo directamente en tu fichero <span class="file" >.emacs</span> usando código que no tiene nada que hacer con las funciones <code>custom-set-…</code>.</p>
+<p>Al hacer esto, y mas tarde usar <code>customize</code>, verás un mensaje que dice:</p>
 <div class="example-block" >
-<pre class="example" >CHANGED fuera de Personalizar; operando dentro aquí
-puede ser no confiable.
+<pre class="example" >CAMBIADO fuera de Customize; operar con el aquí puede ser no confiable.
 </pre>
 </div>
-<p>Este mensaje es solo un aviso. Si se puede cliquear en el botón a</p>
+<p>Este mensaje es solo una advertencia. Si se cliquear en el botón</p>
 <div class="example-block" >
-<pre class="example" >Guárdalo para Futuras Sesiones
+<pre class="example" >Guárdar para sesiones futuras
 </pre>
 </div>
-<p>Emacs escribirá una expresión <code>custom-set-…</code> cerca del fin de tu fichero <span class="file" >.emacs</span> que será evaluado después de que tu expresión sea escrita a mano. Por esta razón, se sobreescribirá tu expresión escrita a mano. Ningún daño será hecho. Cuando se haga esto, sin embargo, ten cuidado para recordar que expresión está activa; si olvidas, puedes confundirte por tí mismo.</p>
-<p>Tan largo como se recuerda donde los valores son configurados, no habrá problemas. En cualquier eventos, los valores son siempre configurados en tu fichero de inicialización, que es normalmente llamado <span class="file" >.emacs</span>.</p>
-<p>Yo mismo hago un <code>customize</code> para cualquier cosa. Mayoritariamente, escribo expresiones por mí mismo.</p>
-<p>Incidentalmente, para ser una definición concerniente más completa: <code>defsubst</code> define una función inline. La sintaxis es solo como esta de <code>defun</code>. <code>defconst</code> define un símbolo como una constante. El intento es que ningún programa o usuario cambiarían un valor asignado por <code>defconst</code>. (Se puede cambiar; el valor asignado es una variable; pero por favor no lo haga.)</p>
+<p>Emacs escribirá una expresión <code>custom-set-…</code> cerca del fin de tu fichero <span class="file" >.emacs</span> que será evaluada después de que la expresión escrita a mano. Por lo tanto, invalidará tu expresión escrita a mano. Ningún daño será hecho. Sin embargo, cuando hagas esto, ten cuidado para recordar que expresión está activa; si lo olvidas, puedes confundirte.</p>
+<p>Siempre y cuando recuerde donde estan establecidos los valores, no habrá ningun problema. En cualquier caso, los valores siempre se establecen en tu fichero de inicialización, que suele llamarse <span class="file" >.emacs</span>.</p>
+<p>Yo mismo casi nunca uso <code>customize</code>. Mayoritariamente, escribo las expresiones por mí mismo.</p>
+<p>Por cierto, para ser mas completo con respecto a las definiciones: <code>defsubst</code> define una función inline. La sintaxis es igual a la de <code>defun</code>. <code>defconst</code> define un símbolo como una constante. La intencion es que ni los programa ni los usuarios cambien nunca un valor establecido por <code>defconst</code>. (Puede cambiarse; el valor se asigna a una variable; pero por favor no lo hagas.)</p>
 </div>
 <h3 id="empieza-por-un-fichero-.emacs" >Empieza por un fichero <span class="file" >.emacs</span></h3>
 <div class="hBody-3" >
-<p>Cuando se abre Emacs, se carga tu fichero <span class="file" >.emacs</span> a menos que se cuente que no se especifique <samp>-q</samp> en la línea de comandos. (El comando <code>emacs -q</code> tu da un Emacs plano, fuera.)</p>
-<p>Un fichero <span class="file" >.emacs</span> contiene expresiones Lisp. Con frecuencia, no hay más expresiones para configura valores; algunas veces esas son definiciones de funciones.</p>
-<p>Vea la Seccion <a href="info:emacs#Init-File" >El Fichero de Inicio</a> <span class="file" >~/.emacs</span> en <em>El Manual GNU Emacs</em>, para una corta descripción de fichero de inicialización.</p>
-<p>Este capítulo cubre algo del mismo suelo, pero es un paseo entre extractos desde un completo, largamente usado fichero <span class="file" >.emacs</span>––por mí.</p>
-<p>La primera parte del fichero consiste en comentario: me recuerdo a mí mismo. Por ahora, yo recuerdo estas cosas, pero cuando empecé, no.</p>
+<p>Cuando se abre Emacs, carga tu fichero <span class="file" >.emacs</span> a menos que se indique que no lo haga especificando <samp>-q</samp> en la línea de comandos. (El comando <code class="command" >emacs -q</code> te da un Emacs limpio, salido de la caja.)</p>
+<p>Un fichero <span class="file" >.emacs</span> contiene expresiones Lisp. Con frecuencia, no son más que expresiones para establecer valores; algunas veces son definiciones de funciones.</p>
+<p>Vea la Seccion <a href="info:emacs#Init-File" >El Fichero de Inicio <span class="file" >~/.emacs</span></a> en <em>El Manual GNU Emacs</em>, para una breve descripción de los fichero de inicialización.</p>
+<p>Este capítulo pasa por el mismo terreno, pero es un paseo entre extractos de un fichero <span class="file" >.emacs</span> completo––el mio.</p>
+<p>La primera parte del fichero consiste en comentarios: recondatorios a mí mismo. Por ahora, por supuesto, recuerdo estas cosas, pero cuando empecé, no.</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;;; fichero .emacs de Bob</span>
 <span class="c1">; Robert J. Chassell</span>
 <span class="c1">; 26 de Septiembre de 1985</span>
 </code></pre>
-<p>¡Mira en esta fecha! Yo empecé este fichero hace mucho tiempo. Yo he estado añadiendo cosas desde siempre.</p>
-<pre class="code" ><code class="chroma" ><span class="c1">; Cada sección en este fichero es introducido por una</span>
+<p>¡Mira en esta fecha! Empecé este fichero hace mucho tiempo. Lo he estado extendiendo desde entonces.</p>
+<pre class="code" ><code class="chroma" ><span class="c1">; Cada sección en este fichero se inicia por una</span>
 <span class="c1">; línea empezando con cuatro puntos y comas y cada</span>
-<span class="c1">; entrada es introducida por una línea empezando con</span>
+<span class="c1">; entrada inicia por una línea empezando con</span>
 <span class="c1">; tres puntos y comas.</span>
 </code></pre>
-<p>Esto describe las convenciones usuales para comentarios en Emacs Lisp. Cada cosa en una línea que sigue un punto y coma es un comentario. Dos, tres, y cuatro puntos y coma son usados como subsección y marcas de sección. (Vea la Seccion <q>Comentarios</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>, para más comentarios.)</p>
+<p>Esto describe las convenciones habituales para comentarios en Emacs Lisp. Todo lo que aparece en una línea despues de un punto y coma es un comentario. Se utilizan dos, tres, y cuatro puntos y coma como marcadores de subsección y sección. (Vea la Seccion <a href="info:elisp#Comments" >Comentarios</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>, para más informacion sobre los comentarios.)</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;;; La Tecla de Ayuda</span>
 <span class="c1">; Control-h es la tecla de ayuda;</span>
-<span class="c1">; después escribiendo control-h, escribe una letra a</span>
-<span class="c1">; indica el asunto acerca del que quieres ayuda.</span>
-<span class="c1">; Para una explicación de la facilidad de ayuda,</span>
-<span class="c1">; escribe control-h dos veces en una fila.</span>
+<span class="c1">; después de escribir control-h, escribe una letra</span>
+<span class="c1">; para indicar el asunto sobre el que quieres ayuda.</span>
+<span class="c1">; Para una explicación de la propia ayuda,</span>
+<span class="c1">; escribe control-h dos veces seguidas.</span>
 </code></pre>
-<p>Solo recuerda: escribe <kbd>C-h</kbd> dos veces para ayudar.</p>
-<pre class="code" ><code class="chroma" ><span class="c1">; Para informarse acerca de cualquier modo, escribe control-h m</span>
-<span class="c1">; mientras esté en este modo. Por ejemplo, para encontrar</span>
-<span class="c1">; acerca del modo correo, introduce el modo correo y entonces</span>
-<span class="c1">; escribe control-h m.</span>
+<p>Solo recuerda: escribe <kbd>C-h</kbd> dos veces para pedir ayudar.</p>
+<pre class="code" ><code class="chroma" ><span class="c1">; Para conocer cualquier modo, presiona control-h m</span>
+<span class="c1">; mientras estés en este modo. Por ejemplo, para conocer</span>
+<span class="c1">; sobre del modo correo, ingresa al modo correo y luego</span>
+<span class="c1">; presiona control-h m.</span>
 </code></pre>
-<p>‘Modo ayuda’, como yo llamo a esto, es muy útil. Usualmente, se cuenta todo lo que se necesita saber.</p>
-<p>De acuerdo, no se necesitan incluir comentarios y ficheros como estos <span class="file" >.emacs</span>. Yo los incluí en el mío porque se olvida el Modo ayuda o las convenciones para comentarios––pero era capaz de recordar ver aquí recordármelo a mí mismo.</p>
+<p>El ‘Modo ayuda’, como yo lo llamo, es muy útil. Usualmente, dice todo lo que se necesita saber.</p>
+<p>Por supuesto, no necesitas incluir comentarios como estos en tu fichero <span class="file" >.emacs</span>. Yo los incluí en el mío porque siempre me olvidaba del Modo ayuda o las convenciones para comentarios––pero pude recordarlos recordármelo a mí mismo.</p>
 </div>
 <h3 id="modo-texto-y-auto-relleno" >Modo texto y auto relleno</h3>
 <div class="hBody-3" >
-<p>Ahora regresa a la parte que ‘vuelve’ al modo Texto y modo Auto Relleno.</p>
-<pre class="code" ><code class="chroma" ><span class="c1">;;; Modo texto modo Auto Fill</span>
-<span class="c1">;; Las siguiente dos líneas puestas en Emacs dentro de</span>
-<span class="c1">;; modo Texto y en el modo Auto Fill, son para escritores que</span>
-<span class="c1">;; quieren empezar a escribir prosa en vez de código.</span>
+<p>Ahora llegamos a la parte que ‘activa’ al modo Texto y el modo Auto Relleno.</p>
+<pre class="code" ><code class="chroma" ><span class="c1">;;; Modo texto y modo Auto Fill</span>
+<span class="c1">;; Las siguiente dos líneas ponen a en Emacs en modo Texto</span>
+<span class="c1">;; y en el modo Auto Fill, y son para escritores que</span>
+<span class="c1">;; quieren empezar a escribir en prosa en lugar de código.</span>
 <span class="p">(</span><span class="nb">setq-default</span> <span class="nv">major-mode</span> <span class="ss">&#39;text-mode</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;text-mode-hook</span> <span class="ss">&#39;turn-on-auto-fill</span><span class="p">)</span>
 </code></pre>
-<p>¡Aquí está la primera parte de este fichero <span class="file" >.emacs</span> que hace alguna cosa bajo recuerdo de un humano olvidado!</p>
-<p>La primera de las dos líneas entre paréntesis cuentan a Emacs a cambiar al modo Texto que se encuentra un fichero, <em>a menos que</em> el fichero iría dentro de algún otro modo, tal como el modo C.</p>
-<p>Cuando Emacs lee un fichero, eso parece la extensión al nombre del fichero. (La extensión es la parte que viene después de un <samp>.</samp>.) Si el fichero finaliza con una extensión <samp>.c</samp> o <samp>.h</samp> entonces Emacs cambia al modo C. También, Emacs parece al principio una línea no blanca del fichero; si la línea dice <samp>-*- C -*-</samp>, Emacs cambia al modo C. Emacs posee una lista de extensiones y especificaciones que usa automáticamente. Además, Emacs se ve cerca de la última página por buffer, “lista variables locales”.</p>
-<p>Mira las secciones “Cómo los Modos Mayores son Elegidos” y “Variables Locales en Fichero” en <em>El Manual GNU Emacs</em>.</p>
-<p>Ahora, regresa al fichero <span class="file" >.emacs</span>.</p>
+<p>¡Aquí está la primera parte de este fichero <span class="file" >.emacs</span> que hace algo ademas de ayudar a recordar a un humano olvidado!</p>
+<p>La primera de las dos líneas entre paréntesis le indican a Emacs que active el modo Texto cuando se encuentra un fichero, <em>a menos que</em> ese fichero este en algún otro modo, por ejemplo, el modo C.</p>
+<p>Cuando Emacs lee un fichero, examina la extensión del nombre del fichero. (La extensión es la parte que esta después de un <samp>.</samp>.) Si el fichero finaliza con una extensión <samp>.c</samp> o <samp>.h</samp> entonces Emacs activa el modo C. Ademas, Emacs examina la primer línea no en blanco del fichero; si la línea dice <samp>-*- C -*-</samp>, Emacs activa el modo C. Emacs posee una lista de extensiones y especificaciones que usa automáticamente. Además, Emacs busca cerca de la última página por buffer una “lista variables locales”, si la hay.</p>
+<p>Consultar las secciones <a href="info:emacs#Choosing-Modes" >Cómo los Modos Mayores son Elegidos</a> y <a href="info:emacs#File-Variables" >Variables Locales en Ficheros</a> en <em>El Manual de GNU Emacs</em>.</p>
+<p>Ahora, volvamos al fichero <span class="file" >.emacs</span>.</p>
 <p>Aquí está la línea de nuevo; ¿cómo funciona?</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">major-mode</span> <span class="ss">&#39;text-mode</span><span class="p">)</span>
 </code></pre>
-<p>Esta línea es un resumen, pero completa la expresión Emacs Lisp.</p>
-<p>Ya estamos familiarizados con <code>setq</code>. Eso asigna la siguiente variable, <code>major-mode</code>, al subsiguiente valor, que es <code>text-mode</code>. La marca de cita simple antes de <code>text-mode</code> cuenta a Emacs como tratar directamente con el símbolo, no con cualquier cosa que pudiera existir. Vea la Seccion <a href="Configurando-el-Valor-de-una-Variable" >Configurando el Valor de una Variable</a>, por un recuerdo de como <code>setq</code> funciona. El principal punto es que no hay diferencia entre el procedimiento que se usa para asignar un valor en su fichero <span class="file" >.emacs</span> y el procedimiento que se usa en cualquier lugar más en Emacs.</p>
+<p>Esta corta línea es una expresion Lisp.</p>
+<p>Ya estamos familiarizados con <code>setq</code>. Esto establece la siguiente variable, <code>major-mode</code>, al valor subsiguiente, que es <code>text-mode</code>. La comilla simple antes de <code>text-mode</code> le indica a Emacs que trate directamente con el símbolo <code>text-mode</code>, no con lo que pueda significar. Vea la Seccion <a href="#configurando-el-valor-de-una-variable" >Configurando el Valor de una Variable</a>, para recordar como funciona <code>setq</code>. El punto principal es que no hay diferencia entre el procedimiento que se usa utiliza para establecer un valor en su fichero <span class="file" >.emacs</span> y el procedimiento que se usa en cualquier otro lugar de Emacs.</p>
 <p>Aquí está la siguiente línea:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;text-mode-hook</span> <span class="ss">&#39;turn-on-auto-fill</span><span class="p">)</span>
 </code></pre>
-<p>En esta línea, el comando <code>add-hook</code> añade <code>turn-on-auto-fill</code> para la variable.</p>
-<p>¡<code>turn-on-auto-fill</code> es el nombre de un programa, que se adivina!, cambia al modo Auto Fill.</p>
-<p>Cada vez que Emacs cambia al modo texto, Emacs ejecuta el comando ‘hooked’ dentro de modo Texto. Así que cada vez que Emacs cambia al modo Texto, Emacs también cambia al modo de autoajuste.</p>
-<p>En breve, la primera línea causa a Emacs a entrar en modo Texto cuando se edite un fichero, a menos que la extensión del nombre del fichero, una línea no en blanco, variables locales para contar a Emacs de otro modo.</p>
-<p>El modo texto entre otras acciones, asigna la tabla de sintaxis para trabajar adecuadamente a escritores. En modo texto, Emacs considera un apóstrofe como parte de una palabra como una letra; pero Emacs no considera un período o un espacio como parte de una palabra. De este modo, <kbd>M-f</kbd> se mueve hacia tí a través de <samp>eso</samp>. Por otro lado, en modo C, <kbd>M-f</kbd> para solo después del <samp>t</samp> de <samp>eso</samp>.</p>
-<p>La segunda línea causa que Emacs active el modo Auto Fill cuando cambia al modo Texto. En modo Auto Fill, Emacs automáticamente rompe una línea que es demasiado amplio y trae la parte excesivamente amplia de la línea de debajo a la siguiente línea. Emacs rompe líneas entre palabras con ellas.</p>
-<p>Cuando el modo Auto Fill está desactivado, las líneas continúan a la derecha como se escriben. Dependiendo de como configuras el valor de <code>truncate-lines</code>, las palabras que se escribe si desaparecen al lado derecho de la pantalla, o lo demás son mostradas, en un modo feo e ilegible, como una línea de continuación en la pantalla.</p>
-<p>Además, en esta parte de mi fichero <span class="file" >.emacs</span>, yo cuento a Emacs el ajuste de comandos para insertar dos espacios después de dos puntos:</p>
+<p>En esta línea, el comando <code>add-hook</code> añade <code>turn-on-auto-fill</code> a la variable.</p>
+<p>¡<code>turn-on-auto-fill</code> es el nombre de un programa, que lo adivinaste!, activa el modo de Auto Relleno.</p>
+<p>Cada vez que Emacs activa el modo texto, Emacs ejecuta los comandos ‘hooked’ (<em>conectados</em>) al modo Texto. Por lo tanto, cada vez que Emacs activa el modo Texto, Emacs también activa el modo de Auto Relleno.</p>
+<p>En resumen, la primera línea hace que Emacs entre en modo Texto cuando se edita un fichero, a menos que la extensión del nombre del fichero, una primer línea no en blanco o variables locales le indiquen lo contrario a Emacs.</p>
+<p>El modo texto entre otras acciones, establece la tabla de sintaxis para trabajar adecuadamente a los escritores. En el modo Texto, Emacs considera un apóstrofe como parte de una palabra como una palabra; pero Emacs no considera un punto o un espacio como parte de una palabra. De este modo, <kbd>M-f</kbd> se mueve a través de <samp>d&#39;Alcañiz</samp>. Por otro lado, en el modo C, <kbd>M-f</kbd> se detiene justo despues de la <samp>d</samp> de <samp>d&#39;Alcañiz</samp>.</p>
+<p>La segunda línea hace que Emacs active el modo Auto Relleno cuando cambia al modo Texto. En el modo Auto Relleno, Emacs rompe automáticamente una línea que es demasiado ancha y mueve la parte exedente a la siguiente línea. Emacs rompe las líneas entre palabras, no dentro de ellas.</p>
+<p>Cuando el modo de Auto Relleno está desactivado, las líneas continúan hacia la derecha a medida que se escriben. Dependiendo de como se establece el valor de <code>truncate-lines</code>, las palabras que escribas desaparecen del lado derecho de la pantalla, o bien se mostraran, de un modo feo e ilegible, como una línea de continuación en la pantalla.</p>
+<p>Además, en esta parte de mi fichero <span class="file" >.emacs</span>, le digo a los comandos de relleno que inserten dos espacios después de dos puntos:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">colon-double-space</span> <span class="no">t</span><span class="p">)</span>
 </code></pre>
 </div>
 <h3 id="alias-de-correo" >Alias de correo</h3>
 <div class="hBody-3" >
-<p>Aquí hay un <code>setq</code> que ‘activa’ el alias de correo, para más ocasiones.</p>
+<p>Aquí hay un <code>setq</code> que ‘activa’ el alias de correo, junto con mas recordatorios.</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Modo Correo</span>
-<span class="c1">; Para entrar en el modo correo, escribe ‘C-x m’</span>
-<span class="c1">; Para introducir RMAIL (para leer el correo),</span>
-<span class="c1">; escribe ‘M-x rmail’</span>
+<span class="c1">; Para entrar en el modo correo, presiona ‘C-x m’</span>
+<span class="c1">; Para entrar en RMAIL (para leer el correo),</span>
+<span class="c1">; pulsa ‘M-x rmail’</span>
 <span class="p">(</span><span class="nb">setq</span> <span class="nv">mail-aliases</span> <span class="no">t</span><span class="p">)</span>
 </code></pre>
-<p>Este comando <code>setq</code> asigna el valor de la variable <code>mail-aliases</code> al <code>t</code>. Desde que <code>t</code> significa verdadero, la línea dice, en efecto, “Sí uso alias de correo.”</p>
-<p>Los alias de correo son nombres cortos convenientes para largas direcciones de correo o para listas de direcciones de correo. El fichero donde guardar tus ‘aliases’ es <span class="file" >~/.mailrc</span>. Se escribe un alias como este:</p>
+<p>Este comando <code>setq</code> asigna el valor de la variable <code>mail-aliases</code> a <code>t</code>. Ya que <code>t</code> significa verdadero, la línea dice, “Sí uso alias de correo.”</p>
+<p>Los alias de correo son nombres cortos convenientes para direcciones de correo largas o para listas de direcciones de correo. El fichero donde guardar tus ‘aliases’ es <span class="file" >~/.mailrc</span>. Se escribe un alias como este:</p>
 <div class="example-block" >
 <pre class="example" >alias geo george@@foobar.wiz.edu
 </pre>
 </div>
-<p>Cuando se escribe un mensaje a Jorge, la dirección a <samp>geo</samp>; el correo automáticamente expandirá <samp>geo</samp> a la dirección completa.</p>
+<p>Cuando escribas un mensaje a Jorge, envialo a la dirección <samp>geo</samp>; el correo automáticamente expandirá <samp>geo</samp> a la dirección completa.</p>
 </div>
-<h3 id="indentar-modo-de-tabulaciones" >Indentar modo de tabulaciones</h3>
+<h3 id="modo-de-indentacion" >Modo de Indentacion</h3>
 <div class="hBody-3" >
-<p>Por defecto, Emacs inserta tabulaciones en lugar en múltiples espacios cuando se formatea una región. (Por ejemplo, se podrían indentar muchas líneas de texto todo a la vez con el comando <code>indent-region</code>.) Los tabuladores se ven bien en un terminal o con impresión ordinaria, pero ellos producen mala salida de indentación cuando se usa T<sub>E</sub>X o Texinfo puesto que T<sub>E</sub>X ignora tabuladores.</p>
-<p>Lo siguiente desactiva el modo de Indentar Tabulaciones:</p>
+<p>Por defecto, Emacs inserta tabulaciones en lugar en espacios múltiples cuando se da formato a una región. (Por ejemplo, se podrían indentar muchas líneas de texto a la vez con el comando <code>indent-region</code>.) Los tabuladores se ven bien en un terminal o con impresión ordinaria, pero producen una salida mal indentada cuando se usa T<sub>E</sub>X o Texinfo ya que T<sub>E</sub>X ignora los tabuladores.</p>
+<p>Lo siguiente desactiva el modo de Indentar con Tabulaciones:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Prevenir Tabulaciones Extrañas</span>
 <span class="p">(</span><span class="nb">setq-default</span> <span class="nv">indent-tabs-mode</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre>
 <p>Note que esta línea usa <code>setq-default</code> en vez de el comando <code>setq</code> que hemos visto antes. El comando <code>setq-default</code> asigna valores solo en búfers que no tienen sus propios valores locales para la variable.</p>
-<p>Ver secciones “Tabuladores versus Espacios” y “Variables Locales en Ficheros” en <em>El Manual de GNU Emacs</em>.</p>
+<p>Ver las secciones <a href="info:emacs#Just-Spaces" >Tabuladores versus Espacios</a> y <a href="info:emacs#File-Variables" >Variables Locales en Ficheros</a> en <em>El Manual de GNU Emacs</em>.</p>
 </div>
-<h3 id="atajos-de-teclado" >Atajos de teclado</h3>
+<h3 id="algunos-atajos-de-teclado" >Algunos Atajos de teclado</h3>
 <div class="hBody-3" >
-<p>Ahora para algunos atajos personales:</p>
+<p>Ahora algunos atajos personales:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Compara ventanas</span>
 <span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-cw&#34;</span> <span class="ss">&#39;compare-windows</span><span class="p">)</span>
 </code></pre>
-<p><code>compare-windows</code> es un comando excelente que compara el texto en tu ventana actual con texto de la siguiente ventana. Eso hace la comparación empezando al punto en cada ventana, moviendo a través del texto en cada ventana tan lejos como ellos asocian. Yo uso este comando todo el tiempo.</p>
-<p>Esto también muestra como configurar una tecla globalmente, para todo los modos</p>
-<p>El comando es <code>global-set-key</code>. Es seguido por el atajo. En un fichero <span class="file" >.emacs</span>, el atajo es escrito como se ve: <code>\C-c</code> que se asocia a ‘control-c’, que significa ‘presionar la tecla de control y la tecla <kbd>c</kbd> al mismo tiempo’. La <code>w</code> significa ‘presionar la tecla <kbd>w</kbd>’. El atajo es rodeado por dobles comillas. En la documentación, se escribiría esto como <kbd>C-c w</kbd>. (Si estuviera asociando una tecla <kbd>META</kbd>, tal como <kbd>M-c</kbd>, en vez de una tecla de <kbd>CTRL</kbd>, se escribiría <code>\M-c</code> en su fichero <span class="file" >.emacs</span>. Vea la Seccion <q>Reasociando Teclas en Su Fichero Init</q> en <em>El Manual de GNU Emacs</em>, para más detalles.)</p>
-<p>El comando invocado por las teclas es <code>compare-windows</code>. Note que <code>compare-windows</code> es precedido por una comilla simple; de otro modo, Emacs primero intentaría evaluar el símbolo para determinar su valor.</p>
-<p>Estas tres cosas, las marcas de dobles comillas, la barra invertida antes de la <samp>C</samp>, y la marca de comilla simple son partes necesarias de atajos de teclado que tiendo a olvidar. Afortunadamente, he llegado a recordar que miraría mi fichero <span class="file" >.emacs</span> existente, y lo adaptaría a lo que hay.</p>
-<p>Como para el atajo en sí: <kbd>C-c w</kbd>, combina la tecla prefija, <kbd>C-c</kbd>, con un caracter simple, en este caso, <kbd>w</kbd>. Este conjunto de teclas, <kbd>C-c</kbd> seguido por un caracter simple, es estrictamente reservado para un uso propio individual. (Esto se llama teclas ‘propias’, puesto que estas son para su propio uso). Siempre sería capaz de crear tal atajo para el uso propio sin pisar fuerte en algún atajo más. Si siempre se escribe una extensión a Emacs, por favor, evite tomar cualquiera de estas teclas para uso público. Se cree que una tecla como <kbd>C-c C-w</kbd> en vez de eso. De otra manera, ejecutará sin sus ‘propias’ teclas.</p>
+<p><code>compare-windows</code> es un comando excelente que compara el texto de la ventana actual con el texto de la siguiente ventana. Realiza la comparación empezando en el punto en cada ventana, moviendo a través del texto en cada ventana en la medida en que coincidan. Uso este comando todo el tiempo.</p>
+<p>Esto también muestra como configurar una atajo globalmente, para todo los modos</p>
+<p>El comando es <code>global-set-key</code>. Va seguido por el atajo. En un fichero <span class="file" >.emacs</span>, el atajo se escribe como se muestrta: <code>\C-c</code> significa ‘control-c’, lo que significa ‘presionar la tecla de control y la tecla <kbd>c</kbd> al mismo tiempo’. La <code>w</code> significa ‘presionar la tecla <kbd>w</kbd>’. El atajo es rodeado por comillas dobles. En el atajo, se presionaria esto como <kbd>C-c w</kbd>. (Si estuvieras enlazando una tecla <kbd>META</kbd>, como <kbd>M-c</kbd>, en lugar de la tecla <kbd>CTRL</kbd>, se escribiría <code>\M-c</code> en el fichero <span class="file" >.emacs</span>. Vea la Seccion <a href="info:emacs#Init-Rebinding" >Teclas de atajos en tu fichero Init</a> en <em>El Manual de GNU Emacs</em>, para más detalles.)</p>
+<p>El comando invocado por las teclas es <code>compare-windows</code>. Tenga en cuenta que <code>compare-windows</code> es precedido por una comilla simple; de otro modo, Emacs intentaría primero evaluar el símbolo para determinar su valor.</p>
+<p>Estas tres cosas, las dobles comillas, la barra invertida antes de la <samp>C</samp>, y la comilla simple son partes necesarias en los atajos de teclado que tiendo a olvidar. Afortunadamente, he llegado a recordar mirando mi fichero <span class="file" >.emacs</span>, y adaptando lo que hay alli.</p>
+<p>En cuanto al atajo: <kbd>C-c w</kbd>, combina la tecla prefija, <kbd>C-c</kbd>, con un caracter simple, en este caso, <kbd>w</kbd>. Este conjunto de teclas, <kbd>C-c</kbd> seguido por un solo caracter, esta estrictamente reservado para el uso propio individual. (Llamo a estas teclas ‘propias’, ya que son para mi propio uso). Siempre debes ser capaz de crear un atajo para el uso propio sin pisar el atajo de otra persona. Si alguna vez escribes una extensión a Emacs, por favor, evita tomar cualquiera de estos atajos para uso público. Crea un combinacion <kbd>C-c C-w</kbd> en su lugar. De lo contrario, nos quedaremos sin atajos ‘propios’.</p>
 <p>Aquí hay otro atajo, con un comentario:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Atajo para ‘occur’</span>
-<span class="c1">; Yo uso mucho occur, así permite asignarlo a una tecla:</span>
+<span class="c1">; Uso mucho occur, así que voy a asignarlo a una atajo:</span>
 <span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-co&#34;</span> <span class="ss">&#39;occur</span><span class="p">)</span>
 </code></pre>
-<p>El comando <code>occur</code> muestra todas las líneas en el buffer actual que contiene un emparejamiento para una expresión regular. Asociar las líneas que se muestran en un búfer llamado <span class="file" >*Occur*</span>. Este buffer sirve como un menu para saltar a ocurrencias.</p>
-<p>Aquí se muestra como desasignar una tecla, así no funciona:</p>
+<p>El comando <code>occur</code> muestra todas las líneas en el buffer actual que contiene una coincidencia para una expresión regular. Las líneas que coinciden se muestran en un búfer llamado <span class="file" >*Occur*</span>. Esse buffer sirve como un menu para saltar a las ocurrencias.</p>
+<p>Aquí se muestra como desasignar un atajo, para que no funcione:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Desasociar ‘C-x f’</span>
 <span class="p">(</span><span class="nv">global-unset-key</span> <span class="s">&#34;\C-xf&#34;</span><span class="p">)</span>
 </code></pre>
-<p>Hay una razón para esta no asociación: Yo encontré inadvertidamente escrito <kbd>C-x f</kbd> cuando significó escribir <kbd>C-x C-f</kbd>. En vez de encontrar un fichero, como se pretende, accidentalmente asigna el ancho para el fichero lleno, casi siempre a un tamaño que no quería. Puesto que duramente se reseteó mi ancho por defecto, yo simplemente disocié la tecla.</p>
-<p>Lo siguiente reasocia una tecla existente:</p>
-<pre class="code" ><code class="chroma" ><span class="c1">;;; Reasocia ‘C-x C-b’ al ‘buffer-menu’</span>
+<p>Hay una razón para esto: Encontro que inadvertidamente presiono <kbd>C-x f</kbd> en lugar de <kbd>C-x C-f</kbd>. En lugar de encontrar un fichero, como pretendia, accidentalmente asigno el ancho del modo de Auto Relleno, casi siempre a un tamaño que no quería. Como casi nunca reseteó mi ancho por defecto, simplemente desvinculo el atajo.</p>
+<p>Lo siguiente reasocia un atajo existente:</p>
+<pre class="code" ><code class="chroma" ><span class="c1">;;; Reasocia ‘C-x C-b’ a ‘buffer-menu’</span>
 <span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-x\C-b&#34;</span> <span class="ss">&#39;buffer-menu</span><span class="p">)</span>
 </code></pre>
-<p>Por defecto, <kbd>C-x C-b</kbd> ejecute el comando <code>list-buffers</code>. Este comando lista sus buffers en <em>otra</em> ventana. Desde que casi siempre se quiere hacer alguna cosa en esta ventana, se prefiere el comando <code>buffer-menu</code>, que no solo lista los buffers, pero mueve el punto dentro de esta ventana.</p>
+<p>Por defecto, <kbd>C-x C-b</kbd> ejecuta el comando <code>list-buffers</code>. Este comando lista sus buffers en <em>otra</em> ventana. Como casi siempre quiero hacer algo en esa ventana, prefiere el comando <code>buffer-menu</code>, que no solo lista los buffers, sino que tambien mueve el punto a esa ventana.</p>
 </div>
 <h3 id="mapas-de-teclado" >Mapas de teclado</h3>
 <div class="hBody-3" >
-<p>Emacs usa <dfn>keymaps</dfn> para grabar qué teclas llaman a qué comandos. Cuando se use <code>global-set-key</code> para asignar los atajos de teclados a un simple comando en todo <code>current-global-map</code>.</p>
-<p>Modos específicos, tales como modo C o modo Texto, tiene sus propios mapas de teclado; mapas de teclado de modo específico sobreescribe el mapa global que es compartido por todos los buffers.</p>
-<p>La función <code>global-set-key</code> asocia, o reasocia, el mapa de teclado global. Por ejemplo, las siguientes asociaciones la tecla <kbd>C-x C-b</kbd> a la función <code>buffer-menu</code>:</p>
+<p>Emacs usa <dfn>keymaps</dfn> para registrar qué teclas llaman a qué comandos. Cuando se usa <code>global-set-key</code> para asignar los atajos de teclado a un unico comando en todas las partes de Emacs, se esta especificando el atajo a el <code>current-global-map</code>.</p>
+<p>Los Modos específicos, como el modo C o el modo Texto, tiene sus propios mapas de teclado; los mapas de teclado específico del modo sobreescriben el mapa global que comparten todos los buffers.</p>
+<p>La función <code>global-set-key</code> asocia, o reasocia, el mapa de teclas global. Por ejemplo, lo siguiente asociaciones el atajo <kbd>C-x C-b</kbd> a la función <code>buffer-menu</code>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-x\C-b&#34;</span> <span class="ss">&#39;buffer-menu</span><span class="p">)</span>
 </code></pre>
-<p>Mapas de teclado específico de modo son asociados usando la función <code>define-key</code>, que toma un mapa de teclado específico como un argumento, tan bien como la tecla y el comando. Por ejemplo, mi fichero <span class="file" >.emacs</span> contiene la siguiente expresión asociada al comando <code>texinfo-insert-@group</code> comando a <kbd>C-c C-c g</kbd>:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">define-key</span> <span class="nv">texinfo-mode-map</span> <span class="s">&#34;\C-c\C-cg&#34;</span> <span class="ss">&#39;texinfo-insert-@@group</span><span class="p">)</span>
+<p>Los Mapas de teclado específicos de un modo se vinculan mediente la función <code>define-key</code>, que toma un mapa de teclado específico como un argumento, asi como el atajo y el comando. Por ejemplo, mi fichero <span class="file" >.emacs</span> contiene la siguiente expresión para vincular el comando <code>texinfo-insert-@group</code> a <kbd>C-c C-c g</kbd>:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">define-key</span> <span class="nv">texinfo-mode-map</span> <span class="s">&#34;\C-c\C-cg&#34;</span> <span class="ss">&#39;texinfo-insert-@group</span><span class="p">)</span>
 </code></pre>
-<p>La función <code>texinfo-insert-@group</code> en sí es una pequeña extensión del modo Texinfo que inserta <samp>@group</samp> dentro de un fichero Texinfo. Se usa este comando todo el tiempo y se prefieren escribir los tres atajos <kbd>C-c C-c g</kbd> en vez de los seis atajos <kbd>@ g r o u p</kbd>. (<samp>@group</samp> y su asociación <samp>@end group</samp> son comandos que guarda todo el texto cerrado junto a una página; muchos ejemplos multi-línea en este libro están rodeados por <samp>@group … @end group</samp>.)</p>
-<p>Aquí está la definición de función <code>texinfo-insert-@group</code>:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">texinfo-insert-@@group</span> <span class="p">()</span>
-  <span class="s">&#34;Inserta la cadena @@group en un búfer Texinfo.&#34;</span>
+<p>La función <code>texinfo-insert-@group</code> en misma es una pequeña extensión del modo Texinfo que inserta <samp>@group</samp> dentro de un fichero Texinfo. Utilizo este comando todo el tiempo y prefiero escribir los tres atajos <kbd>C-c C-c g</kbd> en vez de los seis caracteres <kbd>@ g r o u p</kbd>. (<samp>@group</samp> y su compañante <samp>@end group</samp> son comandos que mantienen todo el texto que encierran en una página; muchos ejemplos multi-línea en este libro están rodeados por <samp>@group … @end group</samp>.)</p>
+<p>Aquí está la definición de la función <code>texinfo-insert-@group</code>:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">texinfo-insert-@group</span> <span class="p">()</span>
+  <span class="s">&#34;Inserta la cadena @group en un búfer Texinfo.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">beginning-of-line</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">insert</span> <span class="s">&#34;@@group\n&#34;</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">insert</span> <span class="s">&#34;@group\n&#34;</span><span class="p">))</span>
 </code></pre>
-<p>(De acuerdo, podría haber usado el modo Abbrev para dejar de escribir, en vez de escribir una función para insertar una palabra; pero prefiero atajos de teclado consitentes con otro modo Texinfo para atajos de teclado.)</p>
-<p>Verá numerosas expresiones <code>define-key</code> en <span class="file" >loaddefs.el</span> tan bien como en varios modos de librerías, tal como <span class="file" >cc-mode.el</span> y <span class="file" >lisp-mode.el</span>.</p>
-<p>Vea la Seccion <q>Personalizando Atajos de Teclado</q> en <em>El Manual GNU Emacs</em>, y <q>Mapas de Teclado</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>, para más información acerca de mapas de teclado.</p>
+<p>(Por supuesto, podría haber usado el modo Abbrev para evitar la fatiga de escribir, en vez de crear una función para insertar una palabra; pero prefiero tener atajos de teclado coherentes con otros atajos del modo Texinfo.)</p>
+<p>Verás numerosas expresiones <code>define-key</code> en <span class="file" >loaddefs.el</span> asi como en las varios librerias de los modos, como <span class="file" >cc-mode.el</span> y <span class="file" >lisp-mode.el</span>.</p>
+<p>Para más información sobre los mapas de teclado, consulta la Seccion <a href="info:emacs#Key-Bindings" >Personalizando Atajos de Teclado</a> en <em>El Manual de GNU Emacs</em>, y la Seccion <a href="info:elisp#Keymaps" >Mapas de Teclado</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>.</p>
 </div>
 <h3 id="cargando-ficheros" >Cargando ficheros</h3>
 <div class="hBody-3" >
-<p>Muchas personas en la comunidad de GNU Emacs han escrito extensiones a Emacs. Hace tiempo, que estas extensiones son con frecuencia incluidas en las nuevas entregas <em>releases</em>. Por ejemplo, los paquetes Calendario y Diario son ahora parte del estándar GNU Emacs, como es Calc.</p>
-<p>Se puede usar un comando <code>load</code> para evaluar un fichero completo que significa instalar todas las funciones y variables en el fichero Emacs. Por ejemplo:</p>
+<p>Muchas personas en la comunidad de GNU Emacs han escrito extensiones para Emacs. Con el paso del tiempo, estas extensiones a menudo se incluiyen en las nuevas versiones. Por ejemplo, los paquetes Calendario y Diario son ahora parte del GNU Emacs estándar, como lo es Calc.</p>
+<p>Se puede usar el comando <code>load</code> para evaluar un fichero completo y, por lo tanto, instalar todas las funciones y variables del fichero en Emacs. Por ejemplo:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">load</span> <span class="s">&#34;~/emacs/slowsplit&#34;</span><span class="p">)</span>
 </code></pre>
-<p>Esto evalúa, es decir, carga, el fichero <span class="file" >slowsplit.el</span> o si eso existe, lo más rápido, el fichero compilado <span class="file" >slowsplit.elc</span> desde el subdirectorio <span class="file" >emacs</span> del directorio home. El fichero contiene la función <code>split-window-quietly</code>, que John Robinson escribió en 1989.</p>
-<p>La función <code>split-window-quietly</code> divide una ventana con el mínimo de redisplay. Yo lo instalé en 1989 porque trabajó bien con los terminales de 1200 baudios que entonces estaba usando. Ahora, ocasionalmente vengo a través de una conexión lenta, pero continúa usando la función porque me gusta el camino que deja arriba del búfer en el bajo de las nuevas ventanas y arriba en la ventana superior.</p>
-<p>Para reemplazar el atajo de teclado por defecto <code>split-window-vertically</code>, se debe también desasignar esta tecla y asociar las teclas a <code>split-window-quietly</code>, como este:</p>
+<p>Esto evalúa, es decir, carga, el fichero <span class="file" >slowsplit.el</span> o si eso existe, el fichero compilado mas rapido <span class="file" >slowsplit.elc</span>, desde el subdirectorio <span class="file" >emacs</span> en el directorio home. El fichero contiene la función <code>split-window-quietly</code>, que John Robinson escribió en 1989.</p>
+<p>La función <code>split-window-quietly</code> divide una ventana con el mínimo de redisplay. Lo instalé en 1989 porque funcionaba bien con los viejos terminales de 1200 baudios que usaba entonces. Hoy en dia, solo de vez en cuando me encuentro con una conexión tan lenta, pero sigo usando la función porque me gusta la forma en que deja la mitad inferior de un búfer en la parte inferior de la nueva ventana y la mitad superior en la ventana superior.</p>
+<p>Para reemplazar el atajo de teclado por defecto de <code>split-window-vertically</code>, se debe desactivar ese atajo y asociarlo de nuevo a <code>split-window-quietly</code>, asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">global-unset-key</span> <span class="s">&#34;\C-x2&#34;</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-x2&#34;</span> <span class="ss">&#39;split-window-quietly</span><span class="p">)</span>
 </code></pre>
-<p>Si se cargan muchas extensiones, como yo hago, entonces en vez de especificar la posición exacta del fichero, como se muestra arriba, se puede especificar que directorio como parte del <code>load-path</code> de Emacs. Entonces, cuando Emacs carga un fichero, buscará que directorio tan bien como su lista por defecto de directorios. (La lista por defecto es especificada en <span class="file" >paths.h</span> cuando Emacs se construye.)</p>
-<p>El comando siguiente añade tu directorio <span class="file" >~/emacs</span> a la ruta existente:</p>
-<pre class="code" ><code class="chroma" ><span class="c1">;;; Ruta Emacs</span>
+<p>Si cargas muchas extensiones, como yo, entonces en lugar de especificar la ubicacion exacta del fichero de extencion, como se muestra arriba, se puede especificar el directorio como la funcion <code>load-path</code> de Emacs. En ese caso, cuando Emacs carga un fichero, buscará en ese directorio asi como en la lista predeterminada de directorios. (La lista predeterminada se especificada en <span class="file" >paths.h</span> cuando se construye Emacs.)</p>
+<p>El siguiente comando añade tu directorio <span class="file" >~/emacs</span> a la ruta de carga existente:</p>
+<pre class="code" ><code class="chroma" ><span class="c1">;;; Ruta de carga Emacs</span>
 <span class="p">(</span><span class="nb">setq</span> <span class="nv">load-path</span> <span class="p">(</span><span class="nf">cons</span> <span class="s">&#34;~/emacs&#34;</span> <span class="nv">load-path</span><span class="p">))</span>
 </code></pre>
-<p>Incidentalmente, <code>load-library</code> es un interfaz interactivo a la función <code>load</code>. La función se parece a esto:</p>
+<p>Por cierto, <code>load-library</code> es una interfaz interactiva para la función <code>load</code>. La función tiene el siguiente aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">load-library</span> <span class="p">(</span><span class="nv">library</span><span class="p">)</span>
   <span class="s">&#34;Carga la librería llamada LIBRARY.
-</span><span class="s">Esto es una interfaz a la función ‘load’.&#34;</span>
+</span><span class="s">Esta es una interfaz para la función ‘load’.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span>
    <span class="p">(</span><span class="nf">list</span> <span class="p">(</span><span class="nf">completing-read</span> <span class="s">&#34;Carga la librería: &#34;</span>
                           <span class="p">(</span><span class="nv">apply-partially</span> <span class="ss">&#39;locate-file-completion-table</span>
@@ -5994,91 +5991,91 @@ puede ser no confiable.
                                            <span class="p">(</span><span class="nf">get-load-suffixes</span><span class="p">)))))</span>
   <span class="p">(</span><span class="nf">load</span> <span class="nv">library</span><span class="p">))</span>
 </code></pre>
-<p>El nombre de la función, <code>load-libray</code>, viene desde el uso de ‘library’ como un sinónimo para ‘file’. La fuente para el comando <code>load-library</code> está en la librería <span class="file" >files.el</span>.</p>
-<p>Otro comando interactivo que hace un trabajo ligeramente diferente es <code>load-file</code>. Vea la Seccion <q>Librerías de Código Lisp para Emacs</q> en <em>El Manual GNU Emacs</em>, para información en la distinción entre <code>load-library</code> y este comando.</p>
+<p>El nombre de la función, <code>load-libray</code>, proviene del uso de ‘library’ como un sinónimo convencional de ‘fichero’. El codigo del comando <code>load-library</code> está en la librería <span class="file" >files.el</span>.</p>
+<p>Otro comando interactivo que hace un trabajo ligeramente diferente es <code>load-file</code>. Vea la Seccion <a href="info:emacs#Lisp-Libraries" >Librerías de Código Lisp para Emacs</a> en <em>El Manual de GNU Emacs</em>, para obtener información sobre la diferencia entre <code>load-library</code> y este comando.</p>
 </div>
-<h3 id="autoloading" >Autoloading</h3>
+<h3 id="autocarga" >Autocarga</h3>
 <div class="hBody-3" >
-<p>En vez de instalar una función cargando el fichero que lo contiene, o evaluando la definición de función, se puede hacer la función disponible pero actualmente no se instala hasta la primera vez llamada. Este proceso se llama <dfn>autocarga</dfn> (<em>autoloading</em>).</p>
+<p>En lugar de instalar una función cargando el fichero que lo contiene, o evaluando la definición de función, puedes hacer que la función este disponible pero no instalarla hasta que se le llame por primera vez. Este proceso se llama <dfn>autocarga</dfn>.</p>
 <p>Cuando se ejecuta una función de autocarga, Emacs automáticamente evalúa el fichero que contiene la definición, y entonces llama a la función.</p>
-<p>Emacs empieza rápido con funciones de autocarga, puesto que sus librerías no se cargan bien; pero si necesita esperar un momento cuando su primer uso tal como una función, mientras que el fichero que lo contiene se evalúa.</p>
-<p>Raramente las funciones usadas son frecuentemente autocargadas. La librería <span class="file" >loaddefs.el</span> coniene cientos de funciones autocargadas, desde <code>bookmark-set</code> a <code>wordstar-mode</code>. Si se usa una función ‘rara’ frecuentemente, se debería cargar este fichero de función con una expresión de <code>load</code> en tu fichero <span class="file" >.emacs</span>.</p>
-<p>En mi fichero <span class="file" >.emacs</span>, se cargan 14 librerías que contienen funciones que de otro modo serían autocargadas. (Actualmente, eso habría sido mejor para incluir estos ficheros en mi Emacs ‘volcado’, pero se olvida. Véase Sección <q>Construyendo Emacs</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>, y el fichero <span class="file" >INSTALL</span> para más acerca de volcados.)</p>
-<p>Se puede también querer incluir expresiones autocargadas en tu fichero <span class="file" >.emacs</span>. <code>autoload</code> es una función construida que toma cinco argumento, los tres finales de los que son opcionales. El primer argumento es el nombre de la función para ser autocargada. El segundo es el nombre del fichero para ser cargado. El tercer argumento es documentación para la función, y el cuarto cuenta si la función puede ser llamada interactivmente. El quinto argumento cuenta que tipo de objeto––<code>autoload</code> puede manejar un mapa de teclado o macro tan bien como una función (por defecto es una función).</p>
+<p>Emacs inicia mas rápido con funciones de autocarga, ya que sus librerías no se cargan de inmediato; pero es necesario esperar un momento cuando se utiliza por primera vez una función de este tipo, mientras se evalua el fichero que la contiene.</p>
+<p>Las funciones poco utilizadas con frecuencia se autocargan. La librería <span class="file" >loaddefs.el</span> coniene cientos de funciones autocargadas, desde el modo <code>bookmark-set</code> hasta el modo <code>wordstar-mode</code>. Por supuesto, tu puedes llegar a utilizar una función ‘rara’ con frecuencia, cuando sea asi deberías cargar ese fichero de función con una expresión <code>load</code> en tu fichero <span class="file" >.emacs</span>.</p>
+<p>En mi fichero <span class="file" >.emacs</span>, cargo 14 librerías que contienen funciones que de otro modo serían autocargadas. (En realidad, hubiera sido mejor incluir estos ficheros en mi Emacs ‘volcado’, pero lo olvide. Véa la Sección <a href="info:elisp#Building-Emacs" >Construyendo Emacs</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, y el fichero <span class="file" >INSTALL</span> para más informacion acerca del volcado.)</p>
+<p>Tambien puedes querer incluir expresiones de autocarga en tu fichero <span class="file" >.emacs</span>. <code>autoload</code> es una función nativa que toma hasta cinco argumentos, los tres ultimos son opcionales. El primer argumento es el nombre de la función para autocargar. El segundo es el nombre del fichero a cargar. El tercer argumento es la documentación de la función, y el cuarto dice si la función puede llamarse de forma interactiva. El quinto argumento es el tipo de objeto––<code>autoload</code> puede manejar un mapa de teclado o macro asi como una función (el valor por defecto es una función).</p>
 <p>Aquí hay un ejemplo típico:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">autoload</span> <span class="ss">&#39;html-helper-mode</span>
   <span class="s">&#34;html-helper-mode&#34;</span> <span class="s">&#34;Editar documentos HTML&#34;</span> <span class="no">t</span><span class="p">)</span>
 </code></pre>
 <p>(<code>html-helper-mode</code> es una vieja alternativa a <code>html-mode</code>, que es una parte estándar de la distribución.)</p>
-<p>Esta expresión autocarga la función <code>html-helper-mode</code>. Esto se toma desde el fichero <span class="file" >html-helper-mode-el</span> (o desde la versión compilada <span class="file" >html-helper-mode.elc</span>, si eso existe). El fichero debe ser localizado en un directorio específico por <code>load-path</code>. La documentación dice que esto es un modo para ayudar a editar documentos escritos en Lenguaje de Marcas de Hiper Texto. Se puede llamar este modo interactivamente escribiendo <kbd>M-x html-helper-mode</kbd>. (Se necesitan duplicar las funciones regulares de documentación en la expresión de autocarga porque la función regular no está todavía cargada, así su documentación no está disponible.)</p>
-<p>Vea la Seccion <q>Autocarga</q> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para más información.</p>
+<p>Esta expresión autocarga la función <code>html-helper-mode</code>. Se toma desde el fichero <span class="file" >html-helper-mode-el</span> (o desde la versión compilada <span class="file" >html-helper-mode.elc</span>, si existe). El fichero debe estar ubicado en un directorio específicado por <code>load-path</code>. La documentación dice que esto es un modo para ayudar a editar documentos escritos en Lenguaje de Marcas de Hiper Texto. Puedes llamar a este modo interactivamente escribiendo <kbd>M-x html-helper-mode</kbd>. (Se necesita duplicar la documentacion de la funcion regular en la expresión de autocarga porque la función regular todavia no está cargada, así que su documentación no está disponible.)</p>
+<p>Vea la Seccion <a href="info:elisp#Autoload" >Autocarga</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para más información.</p>
 </div>
-<h3 id="una-extensión-simple:-line-to-top-of-window" >Una extensión simple: <code>line-to-top-of-window</code></h3>
+<h3 id="una-extensión-simple:-linea-a-lo-alto-de-la-ventana" >Una extensión simple: <code>linea-a-lo-alto-de-la-ventana</code></h3>
 <div class="hBody-3" >
-<p>Aquí hay una simple extensión a Emacs que mueve el punto de línea arriba de la ventana. Yo uso esto todo el tiempo, para hacer fácil de leer el texto.</p>
-<p>Se puede poner el siguiente código dentro de un fichero separado y entonce cargarlo desde tu fichero <span class="file" >.emacs</span>, o se puede incluir con tu fichero <span class="file" >.emacs</span>.</p>
+<p>Aquí esta una extensión simple para Emacs que mueve el punto de linea a la parte superior de la ventana. Uso esto todo el tiempo, para hacer que el texto sea mas fácil de leer.</p>
+<p>Puedes poner el siguiente código dentro de un fichero separado y luego cargarlo desde tu fichero <span class="file" >.emacs</span>, o tambien incluir en tu fichero <span class="file" >.emacs</span>.</p>
 <p>Aquí está la definición</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;; Línea a lo alto de la ventana;</span>
-<span class="c1">;;; reemplaza tres secuencias de atajos de teclado  C-u 0 C-l</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">line-to-top-of-window</span> <span class="p">()</span>
-  <span class="s">&#34;Mueve la línea que apunta a lo alto de la ventana.&#34;</span>
+<span class="c1">;;; Reemplaza tres pulsaciones de teclado C-u 0 C-l</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">linea-a-lo-alto-de-la-ventana</span> <span class="p">()</span>
+  <span class="s">&#34;Mover la línea del punto a lo alto de la ventana.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">recenter</span> <span class="mi">0</span><span class="p">))</span>
 </code></pre>
-<p>Ahora el atajo.</p>
-<p>En estos días, las teclas de función así como los eventos del ratón y caracteres no <code>ascii</code> son escritos con corchetes, sin marcas de citas. (En Emacs versión 18 y anteriores, se tenía que escribir diferentes teclas de función asignadas por cada diferente creación del terminal.)</p>
-<p>Se puede asociar <code>line-to-top-of-window</code> a la tecla de función <kbd>F6</kbd> así:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">[</span><span class="nv">f6</span><span class="p">]</span> <span class="ss">&#39;line-to-top-of-window</span><span class="p">)</span>
+<p>Ahora para el atajo.</p>
+<p>Hoy en día, las teclas de función, así como los eventos del ratón y los caracteres no <code>ascii</code> se escriben entre con corchetes, sin comillas. (En la versión 18 de Emacs y anteriores, se tenían que escribir diferentes combinaciones de teclas de función para cada terminal.)</p>
+<p>Vincule <code>linea-a-lo-alto-de-la-ventana</code> con mi tecla de función <kbd>F6</kbd> así:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">[</span><span class="nv">f6</span><span class="p">]</span> <span class="ss">&#39;linea-a-lo-alto-de-la-ventana</span><span class="p">)</span>
 </code></pre>
-<p>Para más información, mira <q>Reasociando Teclas en tu fichero init</q> en <em>El Manual GNU Emacs</em>.</p>
-<p>Si ejecutas dos versiones de GNU Emacs, tal como las versiones 22 y 23, y usas un fichero <span class="file" >.emacs</span>, se puede seleccionar qué código evalúa el siguiente condicional:</p>
+<p>Para más información, mira <a href="info:emacs#Init-Rebinding" >Reasociando Teclas en tu fichero init</a> en <em>El Manual de GNU Emacs</em>.</p>
+<p>Si ejecutas dos versiones de GNU Emacs, como las versiones 22 y 23, y usas un fichero <span class="file" >.emacs</span>, puedes seleccionar qué código evalúar con el siguiente condicional:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">cond</span>
  <span class="p">((</span><span class="nf">=</span> <span class="mi">22</span> <span class="nv">emacs-major-version</span><span class="p">)</span>
-  <span class="c1">;; evalúa la version 22</span>
+  <span class="c1">;; evalúa el codigo de la version 22</span>
   <span class="p">(</span> <span class="err">…</span> <span class="p">))</span>
  <span class="p">((</span><span class="nf">=</span> <span class="mi">23</span> <span class="nv">emacs-major-version</span><span class="p">)</span>
-  <span class="c1">;; evalúa la version 23</span>
+  <span class="c1">;; evalúa el codigo de la version 23</span>
   <span class="p">(</span> <span class="err">…</span> <span class="p">)))</span>
 </code></pre>
-<p>Por ejemplo, en versiones más recientes se ocultan los cursores por defecto. Si se odia tal ocultación se escribe lo siguiente en mi fichero <span class="file" >.emacs</span><span class="note" ><sup><a href="#15" >15</a></sup></span>:</p>
+<p>Por ejemplo, en las versiones recientes el cursor parpadea por defecto. Odio este tipo de parpadeo, como tambien otras caracteristicas, asi que puse lo siguiente en mi fichero <span class="file" >.emacs</span><span class="note" ><sup><a href="#15" >15</a></sup></span>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nf">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">21</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">blink-cursor-mode</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="c1">;; Inserta la nueva línea cuando se presiona ‘C-n’ (next-line)</span>
+  <span class="c1">;; Insertar una nueva línea cuando se presiona ‘C-n’ (next-line)</span>
   <span class="c1">;; al fin del búfer</span>
   <span class="p">(</span><span class="nb">setq</span> <span class="nv">next-line-add-newlines</span> <span class="no">t</span><span class="p">)</span>
-  <span class="c1">;; Cambia la imagen viendo</span>
+  <span class="c1">;; Activar la visualizacion de imagenes</span>
   <span class="p">(</span><span class="nv">auto-image-file-mode</span> <span class="no">t</span><span class="p">)</span>
   <span class="c1">;; Activa la barra de menu (esta barra tiene texto)</span>
   <span class="c1">;; (Usa un argumento numérico para activarlo)</span>
   <span class="p">(</span><span class="nv">menu-bar-mode</span> <span class="mi">1</span><span class="p">)</span>
-   <span class="c1">;; Desactiva la barra de herramientas (esta barra tiene iconos)</span>
-   <span class="c1">;; (Usa argumentos numéricos para activarlo)</span>
+   <span class="c1">;; Desactivar la barra de herramientas (esta barra tiene iconos)</span>
+   <span class="c1">;; (Usa un argumento numérico para activarlo)</span>
    <span class="p">(</span><span class="nv">tool-bar-mode</span> <span class="no">nil</span><span class="p">)</span>
-  <span class="c1">;; Desactiva el modo tooltip para la tool bar</span>
-  <span class="c1">;; (Este modo causa explicaciones de iconos al pop up)</span>
-  <span class="c1">;; (Usa el argumento numérico para activarlo)</span>
+  <span class="c1">;; Desactiva el modo de tips de informacion sobre la barra de herramientas</span>
+  <span class="c1">;; (Este modo hace que aparezcan explicaciones emergentes en los iconos)</span>
+  <span class="c1">;; (Usa un argumento numérico para activarlo)</span>
   <span class="p">(</span><span class="nv">tooltip-mode</span> <span class="no">nil</span><span class="p">)</span>
-  <span class="c1">;; Si los tooltips activados, crea consejos aparecen en el prompt</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">tooltip-delay</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1">; por defecto es de 0.7 segundos</span>
+  <span class="c1">;; Si las sugerencias estan activadas, hace que aparezcan rapidamente</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">tooltip-delay</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1">; por defecto es 0.7 segundos</span>
    <span class="p">)</span>
 </code></pre>
 </div>
 <h3 id="colores-x11" >Colores X11</h3>
 <div class="hBody-3" >
 <p>Se pueden especificar colores cuando se usa Emacs con el Sistema de Ventanas X del MIT.</p>
-<p>Si disgustan los colores por defecto y especifica unos propios.</p>
-<p>Aquí están las expresiones en un fichero <span class="file" >.emacs</span> que establecen los valores:</p>
+<p>No me gustan los colores por defecto y especifico los mios propios.</p>
+<p>Aquí están las expresiones que establecen mis valores en mi fichero <span class="file" >.emacs</span>:</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;; Asigna el color del cursor</span>
 <span class="p">(</span><span class="nv">set-cursor-color</span> <span class="s">&#34;white&#34;</span><span class="p">)</span>
 
 <span class="c1">;; Asigna el color del ratón</span>
 <span class="p">(</span><span class="nv">set-mouse-color</span> <span class="s">&#34;white&#34;</span><span class="p">)</span>
 
-<span class="c1">;; Asigna foreground y background</span>
+<span class="c1">;; Asigna el color del texto y del fondo</span>
 <span class="p">(</span><span class="nv">set-foreground-color</span> <span class="s">&#34;white&#34;</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">set-background-color</span> <span class="s">&#34;darkblue&#34;</span><span class="p">)</span>
 
-<span class="c1">;;; Asigna colores para isearch y drag</span>
+<span class="c1">;;; Asigna colores para el resaltado de busqueda y registros</span>
 <span class="p">(</span><span class="nv">set-face-foreground</span> <span class="ss">&#39;highlight</span> <span class="s">&#34;white&#34;</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">set-face-background</span> <span class="ss">&#39;highlight</span> <span class="s">&#34;blue&#34;</span><span class="p">)</span>
 
@@ -6095,8 +6092,8 @@ puede ser no confiable.
          <span class="p">(</span><span class="nv">set-face-background</span> <span class="ss">&#39;holiday-face</span> <span class="s">&#34;slate blue&#34;</span><span class="p">)</span>
          <span class="p">(</span><span class="nv">set-face-foreground</span> <span class="ss">&#39;holiday-face</span> <span class="s">&#34;white&#34;</span><span class="p">)))</span>
 </code></pre>
-<p>Las varias sombras de azul disparan mi ojo y me preveen de ver la ventana desplegada.</p>
-<p>Alternativamente, se podrían haber configurado mis especificaciones en varios ficheros inicialización de X. Por ejemplo, se podría asignar el foreground, background, cursor y puntero (por ej., ratón) colores en mi fichero <span class="file" >~/.Xresources</span> como esto:</p>
+<p>Las diferentes tonalidades de azul me alivian la vista y me impiden ver el parpadeo de la pantalla.</p>
+<p>Alternativamente, podría haber establecido mis especificaciones en varios ficheros inicialización de X. Por ejemplo, podría establecer los colores de primer plano, fondo, cursor y puntero (es cedir, ratón) en mi fichero <span class="file" >~/.Xresources</span> de esta manera:</p>
 <div class="example-block" >
 <pre class="example" >Emacs*foreground:   white
 Emacs*background:   darkblue
@@ -6104,27 +6101,25 @@ Emacs*cursorColor:  white
 Emacs*pointerColor: white
 </pre>
 </div>
-<p>En cualquier evento que no es parte de Emacs, se asigna el color raíz de mi ventana X en mi fichero <span class="file" >~/.xinitrc</span>, como este<span class="note" ><sup><a href="#16" >16</a></sup></span></p>
-<div class="example-block" >
-<pre class="example" >xsetroot -solid Navy -fg white &amp;
-</pre>
+<p>En cualquier caso, dado que no forma parte de Emacs, asigno el color raíz de mi ventana X en mi fichero <span class="file" >~/.xinitrc</span>, asi<span class="note" ><sup><a href="#16" >16</a></sup></span></p>
+<pre class="code" ><code class="chroma" >xsetroot -solid Navy -fg white <span class="p">&amp;</span>
+</code></pre>
 </div>
-</div>
-<h3 id="configuraciones-misceláneas-para-un-fichero-.emacs" >Configuraciones misceláneas para un fichero <span class="file" >.emacs</span></h3>
+<h3 id="ajustes-misceláneos-para-un-fichero-.emacs" >Ajustes misceláneos para un fichero <span class="file" >.emacs</span></h3>
 <div class="hBody-3" >
-<p>Aquí hay unas pocas configuraciones misceláneas:</p>
+<p>Aquí hay algunos ajustes misceláneas:</p>
 <ul>
 <li>
-<p>Asigna la forma y color del ratón del cursor:</p>
-<pre class="code" ><code class="chroma" ><span class="c1">; Formas de Cursor están definidas en</span>
+<p>Asigna la forma y color del cursor del ratón:</p>
+<pre class="code" ><code class="chroma" ><span class="c1">; Las formas de los cursores se definen en</span>
 <span class="c1">; ‘/usr/include/X11/cursorfont.h’;</span>
-<span class="c1">; por ejemplo, el cursor ‘objetivo’ es número 128;</span>
+<span class="c1">; por ejemplo, el cursor ‘objetivo’ es el número 128;</span>
 <span class="c1">; el cursor ‘top_left_arrow’ es el número 132.</span>
 
 <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">mpointer</span> <span class="p">(</span><span class="nf">x-get-resource</span> <span class="s">&#34;*mpointer&#34;</span>
                                 <span class="s">&#34;*emacs*mpointer&#34;</span><span class="p">)))</span>
-  <span class="c1">;; Si no se ha asignado tu puntero de ratón</span>
-  <span class="c1">;; entonces asignalo, de otro modo, déjalo así:</span>
+  <span class="c1">;; Si no se ha asignado el puntero del ratón</span>
+  <span class="c1">;; se configura, de otro modo, se déja así:</span>
   <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="nv">mpointer</span> <span class="no">nil</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">setq</span> <span class="nv">mpointer</span> <span class="s">&#34;132&#34;</span><span class="p">))</span> <span class="c1">; top_left_arrow</span>
   <span class="p">(</span><span class="nb">setq</span> <span class="nv">x-pointer-shape</span> <span class="p">(</span><span class="nv">string-to-int</span> <span class="nv">mpointer</span><span class="p">))</span>
@@ -6132,7 +6127,7 @@ Emacs*pointerColor: white
 </code></pre>
 </li>
 <li>
-<p>O se pueden asignar los valores de una variedad de funcionalidades en una alist, como esta:</p>
+<p>O se pueden asignar los valores de una variedad de caracteristicas en una lista, como esta:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq-default</span>
  <span class="nv">default-frame-alist</span>
  <span class="o">&#39;</span><span class="p">((</span><span class="nv">cursor-color</span> <span class="o">.</span> <span class="s">&#34;white&#34;</span><span class="p">)</span>
@@ -6151,8 +6146,8 @@ Emacs*pointerColor: white
 </code></pre>
 </li>
 <li>
-<p>Convierte <kbd><kbd>CTRL</kbd>-h</kbd> dentro <kbd>DEL</kbd> y <kbd>DEL</kbd> dentro de <kbd><kbd>CTRL</kbd>-h</kbd>.</p>
-<p>(Algunos viejos teclados lo necesitan, aunque yo no he visto el problema recientemente.)</p>
+<p>Convierte <kbd>CTRL-h</kbd> en <kbd>DEL</kbd> y <kbd>DEL</kbd> en <kbd>CTRL-h</kbd>.</p>
+<p>(Algunos teclados viejos necesitan esto, aunque no he visto el problema recientemente.)</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;; Traducir ‘C-h’ a &lt;DEL&gt;.</span>
 <span class="c1">; (keyboard-translate ?\C-h ?\C-?)</span>
 
@@ -6161,107 +6156,96 @@ Emacs*pointerColor: white
 </code></pre>
 </li>
 <li>
-<p>¡Desactiva un cursor oculto!</p>
+<p>¡Desactiva el parpadeo del cursor!</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">fboundp</span> <span class="ss">&#39;blink-cursor-mode</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">blink-cursor-mode</span> <span class="mi">-1</span><span class="p">))</span>
 </code></pre>
-<p>o empieza GNU Emacs con el comando <code>emacs -nbc</code>.</p>
+<p>o abrir GNU Emacs con el comando <code class="command" >emacs -nbc</code>.</p>
 </li>
 <li>
-<p>Cuando se usa ‘grep’</p>
+<p>Cuando se utiliza ‘grep’</p>
 <dl>
-<dt><samp>-i</samp></dt>
+<dt><samp><code>-i</code></samp></dt>
 <dd>
-<p>Ignore distinciones de letras</p>
+<p>Ignorar mayusculas o minusculas</p>
 </dd>
-<dt><samp>-n</samp></dt>
+<dt><samp><code>-n</code></samp></dt>
 <dd>
-<p>El prefijo de cada línea de la salida con el número de líneas</p>
+<p>Prefija cada línea de la salida con el número de línea</p>
 </dd>
-<dt><samp>-H</samp></dt>
+<dt><samp><code>-H</code></samp></dt>
 <dd>
-<p>Imprime el nombre de fichero para cada cadena encontrada.</p>
+<p>Imprime el nombre del fichero para cada coincidencia.</p>
 </dd>
-<dt><samp>-e</samp></dt>
+<dt><samp><code>-e</code></samp></dt>
 <dd>
-<p>Protege patrones empezando con un caracter de guión, <samp>-</samp></p>
+<p>Protege los patrones que empiezan con un guión, <samp><code>-</code></samp></p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">grep-command</span> <span class="s">&#34;grep -i -nH -e &#34;</span><span class="p">)</span>
 </code></pre>
 </dd>
 </dl>
 </li>
-</ul>
-<dl>
-<dt>Encuentra un búfer existente, incluso si eso tiene un nombre diferente</dt>
-<dd>
-<p>Esto evita problemas con enlaces simbólicos.</p>
+<li>
+<p>Encuentra un búfer existente, incluso si tiene un nombre diferente</p>
+<p>Esto evita problemas con los enlaces simbólicos.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">find-file-existing-other-name</span> <span class="no">t</span><span class="p">)</span>
 </code></pre>
-</dd>
-</dl>
-<ul>
+</li>
 <li>
-<p>Configura tu entorno de lenguaje y el método de entrada por defecto</p>
+<p>Establece el idioma del entorno y el método de entrada por defecto</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">set-language-environment</span> <span class="s">&#34;latin-1&#34;</span><span class="p">)</span>
-<span class="c1">;; Recuerda que se puede habilitar o deshabilitar el texto de lenguaje</span>
-<span class="c1">;; multilingüe con el comando @c{toggle-input-method&#39;} (@k{C-\})</span>
+<span class="c1">;; Recuerda que se puede habilitar o deshabilitar la entrada de texto</span>
+<span class="c1">;; multilingüe con el comando @c{toggle-input-method} (C-\)</span>
 <span class="p">(</span><span class="nb">setq</span> <span class="nv">default-input-method</span> <span class="s">&#34;latin-1-prefix&#34;</span><span class="p">)</span>
 </code></pre>
-<p>Si se quiere escribir con el caracter Chino ‘GB’, asigna esto:</p>
+<p>Si quiere escribir con caracteres Chinos ‘GB’, asignar esto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">set-language-environment</span> <span class="s">&#34;Chinese-GB&#34;</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">setq</span> <span class="nv">default-input-method</span> <span class="s">&#34;chinese-tonepy&#34;</span><span class="p">)</span>
 </code></pre>
 </li>
 </ul>
 </div>
-<h4 id="arreglando-atajos-de-teclados" >Arreglando Atajos de Teclados</h4>
+<h4 id="corrigiendo-atajos-de-teclados-desagradables" >Corrigiendo Atajos de Teclados desagradables</h4>
 <div class="hBody-4" >
-<p>Algunos sistemas asocian teclas de maneras no agradables. Algunas veces, por ejemplo, la tecla <kbd>CTRL</kbd> en un modo perverso en vez de la lejanía a la izquierda de la fila.</p>
-<p>Normalmente, cuando las personas arreglan estos atajos de teclado, no se cambia su fichero <span class="file" >~/.emacs</span>. En vez de eso, se asocian las teclas apropiadas en sus consolas con los comandos <code>loadkeys</code> o <code>install-keymap</code> en su script de inicio y entonces incluyen comandos <code>xmodmap</code> en su fichero <span class="file" >.xinitrc</span> o <span class="file" >.Xsession</span> para X Windows.</p>
+<p>Algunos sistemas vinculan las teclas de forma desagradable. Algunas veces, por ejemplo, la tecla <kbd>CTRL</kbd> aparece en un lugar incomodo en lugar de en el extremo izquierdo de la fila de inicio.</p>
+<p>Normalmente, cuando las gente arregla este tipo de atajos, no cambia su fichero <span class="file" >~/.emacs</span>. En su lugar, se asocian las teclas apropiadas en sus consolas con los comandos <code class="command" >loadkeys</code> o <code class="command" >install-keymap</code> en su script de inicio e incluyen comandos <code class="command" >xmodmap</code> en su fichero <span class="file" >.xinitrc</span> o <span class="file" >.Xsession</span> de X Windows.</p>
 <p>Para un script de inicio:</p>
-<div class="example-block" >
-<pre class="example" >loadkeys /usr/share/keymaps/i386/qwerty/emacs2.kmap.gz
-
-or
-
-install-keymap emacs2
-</pre>
+<pre class="code" ><code class="chroma" >loadkeys /usr/share/keymaps/i386/qwerty/emacs2.kmap.gz
+</code></pre>
+<p>o</p>
+<pre class="code" ><code class="chroma" >install-keymap emacs2
+</code></pre>
+<p>Para un fichero <span class="file" >.xinitrc</span> o un fichero <span class="file" >.Xsession</span> cuando la tecla <kbd>Bloq Mayus</kbd> esta en el extremo izquierdo de la fila de inicio:</p>
+<pre class="code" ><code class="chroma" ><span class="c1"># Asocia la tecla ‘Bloq Mayus’ a ‘Control’
+</span><span class="c1"># (Una interfaz de usuario tan rota, sugiere que los fabricantes de teclados
+</span><span class="c1"># piensan que las computadoras son máquinas de escribir de 1885.)
+</span><span class="c1"></span>
+xmodmap -e <span class="s2">&#34;clear Lock&#34;</span>
+xmodmap -e <span class="s2">&#34;add Control = Caps_Lock&#34;</span>
+</code></pre>
+<p>En un fichero <span class="file" >.xinitrc</span> o <span class="file" >.Xsession</span>, para convertir una tecla <kbd>ALT</kbd> en una tecla <kbd>META</kbd>:</p>
+<pre class="code" ><code class="chroma" ><span class="c1"># Algunos teclados mal diseñados tienen una tecla etiquetada ALT y no Meta
+</span><span class="c1"></span>xmodmap -e <span class="s2">&#34;keysym Alt_L = Meta_L Alt_L&#34;</span>
+</code></pre>
 </div>
-<p>Para un fichero <span class="file" >.xinitrc</span> o un fichero <span class="file" >.Xsession</span> cuando la tecla <kbd>Caps Lock</kbd> es que tan lejos de la fila del home:</p>
-<div class="example-block" >
-<pre class="example" ># Asocia la tecla etiquetada ‘Caps Lock’ a ‘Control’
-# (Tal como un interfaz de usuario roto sugiere que el teclado hecho
-# piensa que los ordenadores son máquinas de escribir desde 1885.)
-
-xmodmap -e &#34;clear Lock&#34;
-xmodmap -e &#34;add Control = Caps_Lock&#34;
-</pre>
-</div>
-<p>En un <span class="file" >.xinitrc</span> o <span class="file" >.Xsession</span>, para convertir una tecla <kbd>ALT</kbd> a una tecla <kbd>META</kbd>:</p>
-<div class="example-block" >
-<pre class="example" ># Algunos teclados mal diseñados tienen una tecla etiquetada ALT y no Meta
-xmodmap -e &#34;keysym Alt_L = Meta_L Alt_L&#34;
-</pre>
-</div>
-</div>
-<h3 id="una-línea-modificada" >Una línea modificada</h3>
+<h3 id="una-línea-de-modo-modificada" >Una línea de Modo modificada</h3>
 <div class="hBody-3" >
-<p>Finalmente, una funcionalidad que realmente me gusta: un mode line modificado.</p>
-<p>Cuando se trabaja a través de una red, se olvida que máquina se está usando. También, se tiende a perder la traza de donde se está, y a qué línea se apunta.</p>
-<p>Así se resetea mi mode line para que se parezca a esto:</p>
+<p>Finalmente, una caracteristica que realmente me gusta: una linea de modo modificada.</p>
+<p>Cuando trabajo a través de una red, olvido que máquina estoy usando. También, tiendo a perder la nocion de donde estoy, y en que linea esta el punto.</p>
+<p>Así se restableci mi linea de modo para que se viera asi:</p>
 <div class="example-block" >
 <pre class="example" >::-- foo.texi   rattlesnake:/home/bob/  Line 1  (Texinfo Fill) Top
 </pre>
 </div>
-<p>Estoy visitando un fichero llamado <span class="file" >foo.texi</span>, en mi máquina <span class="file" >rattlesnake</span> en mi búfer <span class="file" >/home/bob</span>. Yo estoy en la línea 1, en modo Texinfo, y estoy arriba del búfer.</p>
+<p>Estoy visitando un fichero llamado <span class="file" >foo.texi</span>, en mi máquina <span class="file" >rattlesnake</span> en mi búfer <span class="file" >/home/bob</span>. Estoy en la línea 1, en modo Texinfo, y en la parte superior del búfer.</p>
 <p>Mi fichero <span class="file" >.emacs</span> tiene una sección que se parece a esto:</p>
-<pre class="code" ><code class="chroma" ><span class="c1">;; Asigna un Mode Line que nos cuente que máquina, que directorio,</span>
-<span class="c1">;; y que línea estoy on, más la información de client.</span>
+<pre class="code" ><code class="chroma" ><span class="c1">;; Configura una linea de modo que me dice en que máquina, directorio,</span>
+<span class="c1">;; y línea estoy, ademas de la información habitual.</span>
 <span class="p">(</span><span class="nb">setq-default</span> <span class="nv">mode-line-format</span>
  <span class="p">(</span><span class="nb">quote</span>
   <span class="p">(</span><span class="o">#(</span><span class="s">&#34;-&#34;</span> <span class="mi">0</span> <span class="mi">1</span>
      <span class="p">(</span><span class="nv">help-echo</span>
-      <span class="s">&#34;mouse-1: select window, mouse-2: delete others ...&#34;</span><span class="p">))</span>
+      <span class="s">&#34;mouse-1: seleccionar ventana\nmouse-2: eliminar otras ...&#34;</span><span class="p">))</span>
    <span class="nv">mode-line-mule-info</span>
    <span class="nv">mode-line-modified</span>
    <span class="nv">mode-line-frame-identification</span>
@@ -6274,12 +6258,12 @@ xmodmap -e &#34;keysym Alt_L = Meta_L Alt_L&#34;
    <span class="nv">default-directory</span>
    <span class="o">#(</span><span class="s">&#34; &#34;</span> <span class="mi">0</span> <span class="mi">1</span>
      <span class="p">(</span><span class="nv">help-echo</span>
-      <span class="s">&#34;mouse-1: select window, mouse-2: delete others ...&#34;</span><span class="p">))</span>
+      <span class="s">&#34;mouse-1: seleccionar ventana\nmouse-2: eliminar otras ...&#34;</span><span class="p">))</span>
    <span class="p">(</span><span class="nv">line-number-mode</span> <span class="s">&#34; Line %l &#34;</span><span class="p">)</span>
    <span class="nv">global-mode-string</span>
    <span class="o">#(</span><span class="s">&#34;   %[(&#34;</span> <span class="mi">0</span> <span class="mi">6</span>
      <span class="p">(</span><span class="nv">help-echo</span>
-      <span class="s">&#34;mouse-1: select window, mouse-2: delete others ...&#34;</span><span class="p">))</span>
+      <span class="s">&#34;mouse-1: seleccionar ventana\nmouse-2: eliminar otras ...&#34;</span><span class="p">))</span>
    <span class="p">(</span><span class="nb">:eval</span> <span class="p">(</span><span class="nv">mode-line-mode-name</span><span class="p">))</span>
    <span class="nv">mode-line-process</span>
    <span class="nv">minor-mode-alist</span>
@@ -6289,30 +6273,29 @@ xmodmap -e &#34;keysym Alt_L = Meta_L Alt_L&#34;
    <span class="c1">;;   &#34;-%-&#34;</span>
    <span class="p">)))</span>
 </code></pre>
-<p>Aquí, se redefine el mode line por defecto. La mayoría de las partes son desde el original; pero yo creo unos pocos cambios. Yo asigno el formato de mode line <em>default</em> así como permitir varios modos, tales como Info, para sobreescribirlo.</p>
-<p>Muchos elementos en la lista son auto-explicativos: <code>mode-line-modified</code> es una variable que cuenta si el búfer ha sido modificado, <code>mode-name</code> cuenta el nombre del modo, y así sucesivamente. Sin embargo, el formato parece complicado porque las dos funcionalidades no han sido discutidas.</p>
-<p>La nueva cadena de formato tiene una sintaxis especial:</p>
-<pre class="code" ><code class="chroma" ><span class="o">#(</span><span class="s">&#34;-&#34;</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">help-echo</span> <span class="s">&#34;mouse-1: select window, ...&#34;</span><span class="p">))</span>
+<p>Aquí, redefino la linea de modo por defecto. La mayoría de las partes son del original; pero hago algunos cambios. Estableci el formato de la linea de modo por <em>defecto</em> para permitir que varios modos, como Info, lo sobreescriban.</p>
+<p>Muchos elementos de la lista se explican por si mismos: <code>mode-line-modified</code> es una variable que indica si el búfer ha sido modificado, <code>mode-name</code> indica el nombre del modo, y así sucesivamente. Sin embargo, el formato parece complicado debido a dos caracteristicas que no hemos discutido.</p>
+<p>La primera cadena en la línea de modo es un guión, <samp>-</samp>. En los viejos tiempos, se habría especificado simplemente como <code>&#34;-&#34;</code>. Pero hoy en día, Emacs puede añadir propiedades a una cadena, como resaltado o, en este caso, una función de ayuda. Si colocas el cursor del ratón sobre el guión, aparece información de ayuda (de forma predeterminada, debe esperar siete décimas de segundo antes de que aparezca la información). Puedes cambiar esa temporización cambiando el valor de <code>tooltip-delay</code>.</p>
+<p>El nuevo formato de cadena tiene una sintaxis especial:</p>
+<pre class="code" ><code class="chroma" ><span class="o">#(</span><span class="s">&#34;-&#34;</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">help-echo</span> <span class="s">&#34;mouse-1: seleccionar ventana\n...&#34;</span><span class="p">))</span>
 </code></pre>
-<p>El <code>#(</code> empieza una lista. El primer elemento de la lista es la cadena en sí, solo un <samp>-</samp>. El segundo y tercer elemento especifica el rango a través del cuarto elemento aplicado. Un rango empieza <em>después</em> un carácter, así un cero significa el rango que empieza solo después del primer caracter; un 1 significa que el rango finaliza solo después del primer caracter. El tercer elemento es la propiedad para el rango. Eso consiste en una lista de propiedades, un nombre de propiedad, en este caso, <samp>help-echo</samp>, seguido por un valor, en este caso, una cadena. El segundo, tercer y cuarto elemento de este nuevo formato de cadena puede ser repetido.</p>
-<p>Vea la Seccion <q>Propiedades de Texto</q> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, y ver <q>Formato Mode Line</q> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para más información.</p>
-<p><code>mode-line-buffer-identification</code> muestra el nombre del buffer. Eso es una lista empezando por <code>(#(&#34;%12b&#34; 0 4 …</code>. El <code>#(</code> empieza la lista.</p>
-<p>El <samp>&#34;%12b&#34;</samp> muestra el nombre del actual búfer, usando la función <code>buffer-name</code> con la que estamos familiarizados; el ‘12’ especifica el número máximo de caracteres que serán mostrados. Cuando un nombre tiene pocos caracteres, el espacio en blanco se añade para rellenar este número. (Los nombres del búfer puede y con frecuencia serán más largos de 12 caracteres; esta longitud funciona bien en la típica ventana de 80 columnas de ancho.)</p>
-<p><code>:eval</code> dice evaluar la siguiente forma y usa el resultado como una cadena para mostrarse. En este caso, la expresión muestra el primer componente del sistema completo. El fin del primer componente es un <samp>.</samp> (‘periodo’), así se usa la función <code>string-match</code> para contar el tamaño del primer componente. La subcadena desde el caracter cero a este tamaño del primer componente. La subcadena desde el caracter cero a este tamaño es el nombre de la máquina.</p>
+<p>El <code>#(</code> inicia una lista. El primer elemento de la lista es la cadena en sí, solo un <samp>-</samp>. El segundo y tercer elemento especifica el rango al que se aplica el cuarto elemento. Un rango empieza <em>después</em> de un carácter, por lo que un cero significa el rango empieza justo después del primer caracter; un 1 significa que el rango termina justo después del primer caracter. El tercer elemento es la propiedad del rango. Consiste en una lista de propiedades, un nombre de propiedad, en este caso, <samp>help-echo</samp>, seguido por un valor, en este caso, una cadena. El segundo, tercer y cuarto elemento de este nuevo formato de cadena se pueden repetir.</p>
+<p>Para más información, vea las Secciones <a href="info:elisp#Text-Properties" >Propiedades de Texto</a> y <a href="info:elisp#Mode-Line-Format" >Formato de Linea de Modo</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>.</p>
+<p><code>mode-line-buffer-identification</code> muestra el nombre del buffer. Es una lista que inicia por <code>(#(&#34;%12b&#34; 0 4 …</code>. El <code>#(</code> inicia la lista.</p>
+<p>El <samp>&#34;%12b&#34;</samp> muestra el nombre del actual búfer, usando la función <code>buffer-name</code> con la que estamos familiarizados; el ‘12’ especifica el número máximo de caracteres que serán mostrados. Cuando un nombre tiene pocos caracteres, el espacio en blanco se añade para rellenar este número. (Los nombres del búfer pueden y con frecuencia tendran mas de 12 caracteres; esta longitud funciona bien en una típica ventana de 80 columnas de ancho.)</p>
+<p><code>:eval</code> dice que hay que evaluar la siguiente forma y usar el resultado como una cadena para mostrar. En este caso, la expresión muestra el primer componente del nombre completo del sistema. El fin del primer componente es un <samp>.</samp>  (‘punto’), así que uso la función <code>string-match</code> para contar el tamaño del primer componente. La subcadena desde el caracter cero a este tamaño es el nombre de la máquina.</p>
 <p>Esta es la expresión:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">:eval</span> <span class="p">(</span><span class="nf">substring</span>
         <span class="p">(</span><span class="nf">system-name</span><span class="p">)</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">string-match</span> <span class="s">&#34;\\..+&#34;</span> <span class="p">(</span><span class="nf">system-name</span><span class="p">))))</span>
 </code></pre>
-<p><samp>%[</samp> y <samp>%]</samp> causa un par de corchetes que aparezcan por cada edición nivel de edición recursiva editando el nivel. <samp>%n</samp> dice ‘Encoger’ cuando esto puede hacerse. <samp>%P</samp> te cuenta el porcentaje del búfer que está debajo de la ventana, o ‘arriba’, ‘abajo’, o ‘todo’. (Una minúscula <samp>p</samp> cuenta el porcentaje bajo el alto de la ventana.) <samp>%-</samp> inserta suficientes guiones para rellenar la línea.</p>
-<p>Recuerda, “No tiene que gustarte Emacs para que le gustes”––Emacs puede tener diferentes colores, diferentes comandos, y diferentes teclas que un Emacs por defecto.</p>
-<p>Por otro lado, si se quiere traer un plano ‘fuera de la caja’ Emacs, sin personalización, escribe:</p>
-<div class="example-block" >
-<pre class="example" >emacs -q
-</pre>
+<p><samp>%[</samp> y <samp>%]</samp> hacen que aparezca un par de corchetes por cada nivel de edición recursiva. <samp>%n</samp> indica ‘Reducido’ cuando la reduccion esta en efecto. <samp>%P</samp> indica el porcentaje del búfer que está por encima de la ventana, o ‘Top’, ‘Bottom’, o ‘All’. (Una <samp>p</samp> minúscula indica el porcentaje por encima de la parte superior de la ventana.) <samp>%-</samp> inserta suficientes guiones para rellenar la línea.</p>
+<p>Recuerda, “No tiene que gustarte Emacs para que te guste”––Emacs puede tener diferentes colores, diferentes comandos, y diferentes atajos al Emacs por defecto.</p>
+<p>Por otro lado, si quieres ‘sacar un Emacs de la caja’, sin personalización alguna, ingresa:</p>
+<pre class="code" ><code class="chroma" >emacs -q
+</code></pre>
+<p>Esto iniciara un Emacs que <em>no</em> cargue tu fichero de inicializacion <span class="file" >~/.emacs</span>. Un Emacs normal y corriente. Nada más.</p>
 </div>
-<p>Esto inicializará un Emacs que <em>no</em> cargue tu <span class="file" >~/.emacs</span> fichero de inicialización. Uno plano, el que trae Emacs por defecto. Nada más.</p>
-</div>
-<h2 id="depurando" >Depurando</h2>
+<h2 id="depurancion" >Depurancion</h2>
 <div class="hBody-2" >
 <p>GNU Emacs tiene dos depuradores, <code>debug</code> y <code>edebug</code>. El primero es construido dentro de las tripas de Emacs y está siempre contigo; el segundo requiere que exista una función antes de que se pueda usar.</p>
 <p>Ambos depuradores son descritos extensivamente en Seccion <q>Depurando</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>. En este capítulo, se explicará un breve ejemplo de esto.</p>
@@ -6577,7 +6560,7 @@ Debugger entered--Lisp error: (void-function 1=)
 </pre>
 </div>
 <p>Este regexp asocia uno o más caracteres que constituyen palabras seguidas por uno o más espacios, tabuladores, o nuevas líneas. Sin embargo, eso no detecta palabras duplicadas en diferentes líneas, desde la finalización de la primera palabra, el fin de la línea, es diferente desde el fin de la segunda palabra, un espacio. (Para más información acerca de expresiones regulares, mira el Capitulo 12 <a href="Búsqueda-de-Expresiones-Regulares" >Búsqueda de Expresiones Regulares</a>, tan bien como la Seccion <q>Sintaxis de Expresiones Regulares</q> en <em>El Manual de GNU Emacs</em>, y la Seccion <q>Expresiones Regulares</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>.)</p>
-<p>Se podrían intentar buscar caracteres duplicados pero no si el patrón detecta dobles tales como las dos ocurrencias de ‘th’ en ‘with the’.</p>
+<p>Se podrían intentar buscar caracteres duplicados pero no si el patrón detecta dobles como las dos ocurrencias de ‘th’ en ‘with the’.</p>
 <p>Otro posible regexp busca caracteres constituyentes de palabras seguidos por caracteres de no palabras constituyentes, reduplicadas. Aquí, <samp>\\w+</samp> asocia a una o más caracteres de palabras constituyente y <samp>\\W*</samp> asocia cero o más caracteres que no constituyen palabras.</p>
 <div class="example-block" >
 <pre class="example" >\\(\\(\\w+\\)\\W*\\)\\1
@@ -6847,7 +6830,7 @@ quinto bit de texto
 </div>
 <h4 id="el-fichero-ring.el" >El fichero <span class="file" >ring.el</span></h4>
 <div class="hBody-4" >
-<p>De manera interesante, GNU Emacs posee un fichero llamado <span class="file" >ring.el</span> que provee muchas de las funcionalidades que ahora se discuten. Pero las funciones tales como <code>kill-ring-yank-pointer</code> no usan esta librería, posiblemente porque fueron escritas pronto.</p>
+<p>De manera interesante, GNU Emacs posee un fichero llamado <span class="file" >ring.el</span> que provee muchas de las funcionalidades que ahora se discuten. Pero las funciones como <code>kill-ring-yank-pointer</code> no usan esta librería, posiblemente porque fueron escritas pronto.</p>
 </div>
 <h2 id="apéndice-c" >Apéndice C Un grafico con ejes etiquetados</h2>
 <div class="hBody-2" >
@@ -7929,25 +7912,24 @@ Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
 <div class="about" >
 <div class="about-dt" ><span class="defnote" id="14" >14</span></div>
 <div class="about-dd" >
-<p>Tu puedes también añadir <span class="file" >.el</span> para <span class="file" >~/.emacs</span> y llama a un fichero <span class="file" >~/.emacs</span>. En el pasado, fué prohibido escribir los atajos de teclado extra que el nombre <span class="file" >~/.emacs.el</span> requiere, pero ahora puedes. El nuevo formato es consistente con las conveniciones de nombre del fichero Emacs Lisp; el viejo formato guarda la escritura.</p>
+<p>Se puede añadir <span class="file" >.el</span> a <span class="file" >~/.emacs</span> y llamarlo <span class="file" >~/.emacs.el</span>. En el pasado, se prohibia escribir los atajos de teclado extra que el nombre <span class="file" >~/.emacs.el</span> requiere, pero ahora se puede hacer. El nuevo formato es consistente con las conveniciones de nombres de ficheros Emacs Lisp; el viejo formato mantiene la escritura.</p>
 </div>
 </div>
 <div class="about" >
 <div class="about-dt" ><span class="defnote" id="15" >15</span></div>
 <div class="about-dd" >
-<p>Cuando se empiezan las instancias de Emacs que no cargan mi fichero <span class="file" >.emacs</span> o cualquier fichero, también se puede deshabilitar la ocultación:</p>
-<div class="example-block" >
-<pre class="example" >emacs -q --no-site-file -eval
-&#39;(blink-cursor-mode nil)&#39; @exdent O ahora, usando un conjunto más
-sofisticado de opciones, emacs -Q - D
-</pre>
-</div>
+<p>Cuando inicio instancias de Emacs que no cargan mi fichero <span class="file" >.emacs</span> o cualquier fichero, también se puede deshabilitar el parpadeo:</p>
+<pre class="srci" ><code class="sh" ><span class="in" ><span class="prompt" >&gt; </span>emacs -q --no-site-file -eval <span class="s1">&#39;(blink-cursor-mode nil)&#39;</span>
+</span></code></pre>
+<p>O tambien usando un conjunto más sofisticado de opciones,</p>
+<pre class="srci" ><code class="sh" ><span class="in" ><span class="prompt" >&gt; </span>emacs -Q -D
+</span></code></pre>
 </div>
 </div>
 <div class="about" >
 <div class="about-dt" ><span class="defnote" id="16" >16</span></div>
 <div class="about-dd" >
-<p>también se ejecutan gestores de ventanas más modernos, tales como Enlightenment, Gnome, o KDE; en estos casos, con frecuencia se especifica una imagen en vez de un color plano.</p>
+<p>También ejecuto gestores de ventanas más modernos, como Enlightenment, Gnome, o KDE; en esos casos, a menudo especifico una imagen en lugar de un color plano.</p>
 </div>
 </div>
 </div>
