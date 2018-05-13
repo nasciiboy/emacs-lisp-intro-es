@@ -339,7 +339,7 @@
     <li><a class="h3" href="#depurar" ><code>depurar</code></a></li>
     <li><a class="h3" href="#debug-on-entry" ><code>debug-on-entry</code></a></li>
     <li><a class="h3" href="#debug-on-quit-y-(debug)" ><code>debug-on-quit</code> y <code>(debug)</code></a></li>
-    <li><a class="h3" href="#el-depurador-de-nivel-de-fuentes-edebug" >El depurador de nivel de fuentes <code>edebug</code></a></li>
+    <li><a class="h3" href="#el-depurador-de-nivel-de-fuente-edebug" >El depurador de nivel de fuente <code>edebug</code></a></li>
     <li><a class="h3" href="#ejercicios-de-depuración" >Ejercicios de depuración</a></li>
     </ul>
   <li><a class="h2" href="#conclusión" >Conclusión</a></li>
@@ -6297,233 +6297,237 @@ xmodmap -e <span class="s2">&#34;add Control = Caps_Lock&#34;</span>
 </div>
 <h2 id="depurancion" >Depurancion</h2>
 <div class="hBody-2" >
-<p>GNU Emacs tiene dos depuradores, <code>debug</code> y <code>edebug</code>. El primero es construido dentro de las tripas de Emacs y está siempre contigo; el segundo requiere que exista una función antes de que se pueda usar.</p>
-<p>Ambos depuradores son descritos extensivamente en Seccion <q>Depurando</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>. En este capítulo, se explicará un breve ejemplo de esto.</p>
+<p>GNU Emacs tiene dos depuradores, <code>debug</code> y <code>edebug</code>. El primero esta incorporado nativamente dentro de Emacs y siempre está contigo; el segundo requiere que escribas una función antes de poderlo usar.</p>
+<p>Ambos depuradores se describen extensivamente en la Seccion <a href="info:emacs#Debugging" >Depurando Programas Lips</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>. En este capítulo, voy a explicar un breve ejemplo de cada uno de ellos.</p>
 </div>
 <h3 id="depurar" ><code>depurar</code></h3>
 <div class="hBody-3" >
-<p>Supón que se ha escrito una definición de función que se pretende devolver la suma de los números 1 a través de un número dado. (Esta es la función <code>triangle</code> discutida pronto. Vea la Seccion <a href="Ejemplo-de-Decremento,-,-Ejemplo-con-Contador-de-Decremento" >Ejemplo de Decremento, , Ejemplo con Contador de Decremento</a>, para una discusión.)</p>
-<p>Sin embargo, tu definición de función tiene un error. Se ha malescrito <samp>1=</samp> por <samp>1-</samp>. Aquí está la definición rota:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">triangle-bugged</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve suma de números 1 a través de NUMBER inclusive.&#34;</span>
+<p>Supón que has escrito una definición de función que pretende devolver la suma de los números números desde 1 a un número dado. (Esta es la función <code>triangulo</code> discutida anteriormente. Vea la Seccion <a href="#ejemplo-con-contador-decreciente" >Ejemplo con contador decreciente</a>, para mas información.)</p>
+<p>Sin embargo, tu definición de función tiene un error. Has escrito <code>1=</code> en lugar de <code>1-</code>. Aquí está la definición rota:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">triangulo-defectuoso</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO.&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">total</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">number</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">total</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">total</span> <span class="nv">number</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">number</span> <span class="p">(</span><span class="nv">1=</span> <span class="nv">number</span><span class="p">)))</span>      <span class="c1">; Error aquí.</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">numero</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">total</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">total</span> <span class="nv">numero</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">numero</span> <span class="p">(</span><span class="nv">1=</span> <span class="nv">numero</span><span class="p">)))</span>     <span class="c1">; Error aquí.</span>
     <span class="nv">total</span><span class="p">))</span>
 </code></pre>
-<p>Si se está leyendo esto en Info, se puede evaluar esta definición en el modo normal. Se verá que <code>triangle-bugged</code> aparece en el área de eco.</p>
-<p>Ahora evalúa la función <code>triangle-bugged</code> con un argumento de 4:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">triangle-bugged</span> <span class="mi">4</span><span class="p">)</span>
+<p>Si estas leyendo esto en Emacs, puedes evaluar la definición de la manera habitual. Veras aparecer <code>triangulo-defectuoso</code> en el área de eco.</p>
+<p>Ahora evalúa la función <code>triangulo-defectuoso</code> con un argumento de 4:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">triangulo-defectuoso</span> <span class="mi">4</span><span class="p">)</span>
 </code></pre>
-<p>En un GNU Emacs reciente, se creará e introducirá un búfer <span class="file" >*Backtrace*</span> que dice:</p>
+<p>En un GNU Emacs reciente, se creará e ingresara a un búfer <span class="file" >*Backtrace*</span> que dice:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--Lisp error: (void-function 1=)
-  (1= number)
-  (setq number (1= number))
-  (while (&gt; number 0) (setq total (+ total number))
-        (setq number (1= number)))
-  (let ((total 0)) (while (&gt; number 0) (setq total ...)
-    (setq number ...)) total)
-  triangle-bugged(4)
-  eval((triangle-bugged 4))
-  eval-last-sexp-1(nil)
+  (1= numero)
+  (setq numero (1= numero))
+  (while (&gt; numero 0)
+     (setq total (+ total numero))
+     (setq numero (1= numero)))
+  (let ((total 0))
+     (while (&gt; numero 0)
+       (setq total (+ total numero))
+       (setq numero (1= numero)))
+    total)
+  triangulo-defectuoso(4)
+  eval((triangulo-defectuoso 4) nil)
+  elisp--eval-last-sexp(nil)
   eval-last-sexp(nil)
   call-interactively(eval-last-sexp)
 ---------- Buffer: *Backtrace* ----------
 </pre>
 </div>
-<p>(Se ha reformateado este ejemplo ligeramente; el depurador no contiene muchas líneas. Así, se puede salir del depurador escribiendo <kbd>q</kbd> en el buffer <span class="file" >*Backtrace*</span>.)</p>
-<p>En la práctica, debido a un error tan simple como este, la línea de ‘error Lisp’ explica lo que se necesita saber para corregir la definición. La función <code>1=</code> está ‘vacía’.</p>
-<p>Sin embargo, si no se conoce con bastante certeza lo que está pasando, se puede leer la traza completa.</p>
-<p>En este caso, se necesita ejecutar una versión reciente de GNU Emacs, que automáticamente empieza el depurador que pone en el búfer <span class="file" >*Backtrace*</span>; o además, se necesita para empezar el depurador manualmente como se describe debajo.</p>
-<p>Lee el búfer <span class="file" >*Backtrace*</span> de abajo a arriba; eso cuenta lo que le hizo a Emacs tener un error. Emacs hace una llamada interactiva a <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>), que lleva a la evaluación de la expresión <code>triangle-bugged</code>. Cada línea de debajo cuenta lo que el intérprete Lisp evaluó.</p>
-<p>La tercera línea desde lo alto del búfer es</p>
+<p>(He reformateado ligeramente este ejemplo; el depurador corta las lineas largas. Como de costumbre, se puede salir del depurador escribiendo <kbd>q</kbd> en el buffer <span class="file" >*Backtrace*</span>.)</p>
+<p>En la práctica, para un error tan simple como este, la línea de ‘error Lisp’ dira lo que se necesita saber para corregir la definición. La función <code>1=</code> está ‘vacía’.</p>
+<p>Sin embargo, suponiendo que no estas seguro de lo que está pasando, puedes leer el registro completo.</p>
+<p>En este caso, se necesita ejecutar una versión reciente de GNU Emacs, que inicie automáticamente el depurador que te coloca en el búfer <span class="file" >*Backtrace*</span>; o bien, se necesitas iniciar manualmente el depurador como se describe a continuacion.</p>
+<p>Lee el búfer <span class="file" >*Backtrace*</span> de abajo hacia arriba; emacs te informa la causa que provoco el error. Emacs hizo una llamada interactiva a <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>), que evaluo la evaluación de la expresión <code>triangulo-defectuoso</code>. Cada línea anterior cuenta lo que el intérprete Lisp evaluó a continuacion.</p>
+<p>La tercera línea iniciando en la parte superior del búfer es</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">number</span> <span class="p">(</span><span class="nv">1=</span> <span class="nv">number</span><span class="p">))</span>
 </code></pre>
-<p>Emacs intentó evaluar esta expresión; para hacerlo así, se intentó evaluar la expresión interna para ser mostrada en la segunda línea desde arriba:</p>
+<p>Emacs intentó evaluar esta expresión; para ello, intentó evaluar la expresión interna mostrada en la segunda línea desde arriba:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">1=</span> <span class="nv">number</span><span class="p">)</span>
 </code></pre>
-<p>Aquí es donde el error ocurre; como se dice en la línea de arriba:</p>
+<p>Aquí es donde ocurrio el error; como dice en la línea superior:</p>
 <div class="example-block" >
 <pre class="example" >Debugger entered--Lisp error: (void-function 1=)
 </pre>
 </div>
-<p>Se puede corregir el error, reevalúa la definición de función, y entonces se puede testear de nuevo.</p>
+<p>Puedes corregir el error, reevalúar la definición de función, y a continuacion ejecutar de nuevo la prueba.</p>
 </div>
 <h3 id="debug-on-entry" ><code>debug-on-entry</code></h3>
 <div class="hBody-3" >
-<p>Un GNU Emacs actual abre el depurador automáticamente cuando la función tiene un error.</p>
-<p>Incidentalmente, se puede empezar el depurador manualmente para todas las versiones de Emacs; la ventaja es que el depurador se ejecuta incluso si no se tiene un error en su código. Algunas veces, ¡su código estará libre de errores!</p>
-<p>Se puede introducir el depurador cuando se llama a la función llamando <code>debug-on-entry</code>.</p>
-<p>Tipo:</p>
+<p>Un GNU Emacs actual inicia el depurador automáticamente cuando la función tiene un error.</p>
+<p>Incidentalmente, se puede iniciar el depurador manualmente para todas las versiones de Emacs; la ventaja es que el depurador se ejecuta incluso si no hay ningun error en el código. Algunas veces, ¡tu código estará libre de errores!</p>
+<p>Puedes entrar en el depurador llamando a la función <code>debug-on-entry</code>.</p>
+<p>Presiona:</p>
 <div class="example-block" >
-<pre class="example" >M-x debug-on-entry RET triangle-bugged RET
+<pre class="example" >M-x debug-on-entry RET triangulo-defectuoso RET
 </pre>
 </div>
 <p>Ahora, evalúa lo siguiente:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">triangle-bugged</span> <span class="mi">5</span><span class="p">)</span>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">triangulo-defectuoso</span> <span class="mi">5</span><span class="p">)</span>
 </code></pre>
-<p>Todas las versiones de Emacs crearán un búfer <span class="file" >*Backtrace*</span> y cuenta tu que eso es el principio para evaluar la función <code>triangle-bugged</code>:</p>
+<p>Todas las versiones de Emacs crearán un búfer <span class="file" >*Backtrace*</span> e informaran que estas iniciando la evaluacion de la función <code>triangulo-defectuoso</code>:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--entering a function:
-* triangle-bugged(5)
-  eval((triangle-bugged 5))
+* triangulo-defectuoso(5)
+  eval((triangulo-defectuoso 5))
   eval-last-sexp-1(nil)
   eval-last-sexp(nil)
   call-interactively(eval-last-sexp)
 ---------- Buffer: *Backtrace* ----------
 </pre>
 </div>
-<p>En el búfer <span class="file" >*Backtrace*</span>, escribe <kbd>d</kbd>. Emacs evaluará la primera expresión en <code>triangle-bugged</code>; el búfer se parece a esto:</p>
+<p>Ya en el búfer <span class="file" >*Backtrace*</span>, pulsa <kbd>d</kbd>. Emacs evaluará la primer expresión en <code>triangulo-defectuoso</code>; el búfer tendra este aspecto:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--beginning evaluation of function call form:
-* (let ((total 0)) (while (&gt; number 0) (setq total ...)
-        (setq number ...)) total)
-* triangle-bugged(5)
-  eval((triangle-bugged 5))
+* (let ((total 0)) (while (&gt; numero 0) (setq total ...)
+        (setq numero ...)) total)
+* triangulo-defectuoso(5)
+  eval((triangulo-defectuoso 5))
   eval-last-sexp-1(nil)
   eval-last-sexp(nil)
   call-interactively(eval-last-sexp)
 ---------- Buffer: *Backtrace* ----------
 </pre>
 </div>
-<p>Ahora, escribe <kbd>d</kbd> de nuevo, ocho veces, lentamente. Cada vez que se escribe <kbd>d</kbd> Emacs evaluará otra expresión en la definición de función.</p>
+<p>Ahora, presiona <kbd>d</kbd> de nuevo, ocho veces, lentamente. Cada vez que se escribes <kbd>d</kbd> Emacs evaluará otra expresión en la definición de función.</p>
 <p>Eventualmente, el búfer se parece a esto:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--beginning evaluation of function call form:
-* (setq number (1= number))
-* (while (&gt; number 0) (setq total (+ total number))
-        (setq number (1= number)))
-* (let ((total 0)) (while (&gt; number 0) (setq total ...)
-        (setq number ...)) total)
-* triangle-bugged(5)
-  eval((triangle-bugged 5))
+* (setq numero (1= numero))
+* (while (&gt; numero 0) (setq total (+ total numero))
+        (setq numero (1= numero)))
+* (let ((total 0)) (while (&gt; numero 0) (setq total ...)
+        (setq numero ...)) total)
+* triangulo-defectuoso(5)
+  eval((triangulo-defectuoso 5))
   eval-last-sexp-1(nil)
   eval-last-sexp(nil)
   call-interactively(eval-last-sexp)
 ---------- Buffer: *Backtrace* ----------
 </pre>
 </div>
-<p>Finalmente, después se escribe <kbd>d</kbd> dos veces más, Emacs logrará el error y las dos líneas superiores del buffer <span class="file" >*Backtrace*</span> se ve así:</p>
+<p>Finalmente, después de escribir <kbd>d</kbd> dos veces más, Emacs llegara al error y las dos líneas superiores del buffer <span class="file" >*Backtrace*</span> se veran así:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--Lisp error: (void-function 1=)
-* (1= number)
+* (1= numero)
 …
 ---------- Buffer: *Backtrace* ----------
 </pre>
 </div>
-<p>Escribiendo <kbd>d</kbd>, sería capaz de pasear a través de la función.</p>
-<p>Se puede salir de un buffer <span class="file" >*Backtrace*</span> escribiendo <kbd>q</kbd>; esto se sale de la traza, pero no cancela <code>debug-on-entry</code>.</p>
-<p>Para cancelar el efecto de <code>debug-on-entry</code>, llama a <code>cancel-debug-on-entry</code> y el nombre de la función, como esto:</p>
+<p>Escribiendo <kbd>d</kbd>, fuiste capaz de pasear a través de la función.</p>
+<p>Se puede salir de un buffer <span class="file" >*Backtrace*</span> pulsando <kbd>q</kbd>; esto cierra la traza, pero no cancela <code>debug-on-entry</code>.</p>
+<p>Para cancelar el efecto de <code>debug-on-entry</code>, llama a <code>cancel-debug-on-entry</code> y el nombre de la función, asi:</p>
 <div class="example-block" >
-<pre class="example" >M-x cancel-debug-on-entry RET triangle-bugged RET
+<pre class="example" >M-x cancel-debug-on-entry RET triangulo-defectuoso RET
 </pre>
 </div>
-<p>(Si está leyendo esto en Info, cancela <code>debug-on-entry</code> ahora.)</p>
+<p>(Si está leyendo esto en Emacs, cancela <code>debug-on-entry</code> ahora.)</p>
 </div>
 <h3 id="debug-on-quit-y-(debug)" ><code>debug-on-quit</code> y <code>(debug)</code></h3>
 <div class="hBody-3" >
-<p>Adición a la configuración <code>debug-on-error</code> o llamando <code>debug-on-entry</code>, hay otros dos caminos para empezar <code>debug</code>.</p>
-<p>Se puede empezar <code>debug</code> siempre y cuando se escribe <kbd>C-g</kbd> (<code>keyboard-quit</code>) se configura la variable <code>debug-on-quit</code> para <code>t</code>. Esto es útil para depurar bucles infinitos.</p>
-<p>O, se puede insertar un línea que dice <code>(debug)</code> dentro de tu código donde se quiere que el depurador empiece, así:</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">triangle-bugged</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve suma de números 1 a través de NUMERO inclusive.&#34;</span>
+<p>Ademas de configurar <code>debug-on-error</code> o llamar a <code>debug-on-entry</code>, hay otras dos maneras de iniciar <code>debug</code>.</p>
+<p>Puedes iniciar <code>debug</code> cada vez que presiones <kbd>C-g</kbd> (<code>keyboard-quit</code>) configurando la variable <code>debug-on-quit</code> en <code>t</code>. Esto es útil para depurar bucles infinitos.</p>
+<p>O bien, puedes insertar un línea que diga <code>(debug)</code> dentro de tu código donde quieras que inicie el depurador, así:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">triangulo-defectuoso</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO.&#34;</span>
   <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">total</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">number</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">setq</span> <span class="nv">total</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">total</span> <span class="nv">number</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">while</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">numero</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setq</span> <span class="nv">total</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">total</span> <span class="nv">numero</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">debug</span><span class="p">)</span>                         <span class="c1">; Empieza el depurador.</span>
       <span class="p">(</span><span class="nb">setq</span> <span class="nv">number</span> <span class="p">(</span><span class="nv">1=</span> <span class="nv">number</span><span class="p">)))</span>      <span class="c1">; Error aquí.</span>
     <span class="nv">total</span><span class="p">))</span>
 </code></pre>
-<p>La función <code>debug</code> se describe en detalle en <q>El Depurador Lisp</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>.</p>
+<p>La función <code>debug</code> se describe en detalle en <a href="info:emacs#Debugger" >El Depurador Lisp</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>.</p>
 </div>
-<h3 id="el-depurador-de-nivel-de-fuentes-edebug" >El depurador de nivel de fuentes <code>edebug</code></h3>
+<h3 id="el-depurador-de-nivel-de-fuente-edebug" >El depurador de nivel de fuente <code>edebug</code></h3>
 <div class="hBody-3" >
-<p>Edebug es un depurador a nivel de fuentes Edebug que normalmente muestra las fuentes del código que se está depurando, con una flecha a la izquierda que muestra que línea se está actualmente ejecutando.</p>
-<p>Se puede pasear a través de la ejecución de una función, línea a línea, o ejecutarse rápidamente hasta lograr un <dfn>punto de ruptura</dfn> donde la ejecución pare.</p>
-<p>Edebug se describe en Seccion <q>edebug</q> en <em>El Manual de Referencia de GNU Emacs Lisp</em>.</p>
-<p>Aquí hay una función con errores para <code>triangulo-recursivo</code>. Véase Sección <a href="Recursión-en-lugar-de-un-contador" >Recursión en lugar de un contador</a>, para una revisión de eso.</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">triangulo-recursivo-bugged</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span>
-  <span class="s">&#34;Devuelve la suma of números 1 a través de NUMBER inclusive.
-</span><span class="s">Usa recursión.&#34;</span>
-  <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">=</span> <span class="nv">number</span> <span class="mi">1</span><span class="p">)</span>
+<p>Edebug es un depurador a nivel de fuente. Edebug normalmente muestra el codigo fuente que estás depurando, con una flecha a la izquierda que muestra que línea se está ejecutando actualmente.</p>
+<p>Es posible desplazarse a través de la ejecución de una función, línea a línea, o ejecutarla rápidamente hasta alcanzar un <dfn>punto de ruptura</dfn> donde la ejecución se detenga.</p>
+<p>Edebug se describe en la Seccion <a href="info:elisp#edebug" >Edebug</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>.</p>
+<p>Aquí hay una función con errores para <code>triangulo-recursivo</code>. Véase Sección <a href="#recursión-en-lugar-de-un-contador" >Recursión en lugar de un contador</a>, para una revisión de eso.</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">triangulo-recursivo-defectuoso</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>
+  <span class="s">&#34;Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO.
+</span><span class="s">Usa recursion.&#34;</span>
+  <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">=</span> <span class="nv">numero</span> <span class="mi">1</span><span class="p">)</span>
       <span class="mi">1</span>
-    <span class="p">(</span><span class="nf">+</span> <span class="nv">number</span>
-       <span class="p">(</span><span class="nv">triangulo-recursivo-bugged</span>
-        <span class="p">(</span><span class="nv">1=</span> <span class="nv">number</span><span class="p">)))))</span>               <span class="c1">; Error aquí.</span>
+    <span class="p">(</span><span class="nf">+</span> <span class="nv">numero</span>
+       <span class="p">(</span><span class="nv">triangulo-recursivo-defectuoso</span>
+        <span class="p">(</span><span class="nv">1=</span> <span class="nv">numero</span><span class="p">)))))</span>                 <span class="c1">; Error aquí.</span>
 </code></pre>
-<p>Normalmente, se instalaría esta definición colocando su cursor después de la función cerrando paréntesis y escribiendo <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>) o lo demás colocando tu cursor con la definición y escribiendo <kbd>C-M-x</kbd> (<code>eval-defun</code>). (Por defecto, el comando <code>eval-defun</code> funciona solo en modo Emacs Lisp o en el modo de interacción de Lisp.)</p>
-<p>Sin embargo, para preparar esta definición de función para Edebug, se debe primero <dfn>instrumentar</dfn> el código usando un comando diferente. Se puede hacer esto coloca el cursor dentro o después de la definición y escribiendo</p>
+<p>Normalmente, se instalaría esta definición colocando el cursor después del parentesis que cirra la funcion y presionando <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>) o bien colocando el cursor dentro de la definición y escribiendo <kbd>C-M-x</kbd> (<code>eval-defun</code>). (Por defecto, el comando <code>eval-defun</code> solo funciona en modo Emacs Lisp o en el modo interactivo de Lisp.)</p>
+<p>Sin embargo, para preparar esta definición de función para Edebug, se debe primero <dfn>instrumentar</dfn> el código usando un comando diferente. Se puede hacer esto colocando el cursor dentro o justo después de la definición y escribiendo</p>
 <div class="example-block" >
 <pre class="example" >M-x edebug-defun RET
 </pre>
 </div>
-<p>Esto causará que Emacs cargue Edebug automáticamente si eso no está ya cargado y, apropiadamente prepara la función.</p>
-<p>Después de preparar la función, emplaza tu cursor después de la siguiente expresión y escribe <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>):</p>
-<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">triangulo-recursivo-bugged</span> <span class="mi">3</span><span class="p">)</span>
+<p>Esto hará que Emacs cargue Edebug automáticamente si aun no está cargado, y que intrumente correctamente la función.</p>
+<p>Después de instrumentar la función, coloca el cursor después de la siguiente expresión y escribe <kbd>C-x C-e</kbd> (<code>eval-last-sexp</code>):</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">triangulo-recursivo-defectuoso</span> <span class="mi">3</span><span class="p">)</span>
 </code></pre>
-<p>Se vuelve a las fuentes de <code>triangulo-recursivo-bugged</code> y el cursor se posiciona al principio del <code>if</code> de la línea de la función. También, se verá una flecha en la mano izquierda al lado de esta línea donde la función se está ejecutando. (En los siguientes ejemplos, se muestra la flecha con <samp>=&gt;</samp>; en un sistema de ventanas, se puede ver la flecha como un triángulo sólido en el ‘borde’ de la ventana.)</p>
+<p>Se saltara de nuevo al codigo fuent dee <code>triangulo-recursivo-defectuoso</code> y el cursor se posiciona al principio de la linea <code>if</code> de la función. Ademas, se verá la punta de una flecha a la izquierda de esa línea donde se está ejecutando la función. (En los siguientes ejemplos, se muestra la flecha con <samp>=&gt;</samp>; en un sistema de ventanas, se puede ver la flecha como un triángulo sólido (<samp>▸</samp>) en el <samp>borde</samp> de la ventana.)</p>
 <div class="example-block" >
-<pre class="example" >=&gt;★(if (= number 1)
+<pre class="example" >=&gt;★(if (= numero 1)
 </pre>
 </div>
-<p>En el ejemplo, la posición del punto es mostrado con una estrella, <samp>★</samp> (en Info, eso es mostrado como <samp>-!-</samp>).</p>
-<p>Si ahora se presiona <kbd>SPC</kbd>, el punto se moverá a la siguiente expresión para ejecutarse; la línea se parece a esto:</p>
+<p>En el ejemplo, la posición del punto se muestra con una estrella, <samp>★</samp>.</p>
+<p>Si ahora se presiona <kbd>SPC</kbd>, el punto se moverá a la siguiente expresión a ser ejecutada; la línea se vera asi:</p>
 <div class="example-block" >
-<pre class="example" >=&gt;(if ★(= number 1)
+<pre class="example" >=&gt;(if ★(= numero 1)
 </pre>
 </div>
-<p>Como se continua presionando <kbd>SPC</kbd>, el puntero se moverá desde la expresión a la expresión. Al mismo tiempo, siempre y cuando una expresión devuelva un valor, este valor será mostrado en el área de eco. Por ejemplo, después de mover el punto pasado <code>number</code>, se verá lo siguiente:</p>
+<p>Al continuar presionando <kbd>SPC</kbd>, el punto se moverá de una expresión a otra. Al mismo tiempo, siempre que una expresión devuelva un valor, este valor se mostrara en el área de eco. Por ejemplo, después de mover el punto pasado <code>numero</code>, se verá lo siguiente:</p>
 <div class="example-block" >
-<pre class="example" >Resultado: 3 (#o3, #x3, ?\C-c)
+<pre class="example" >Result: 3 (#o3, #x3, ?\C-c)
 </pre>
 </div>
-<p>Esto significa el valor de <code>number</code> es 3, que son tres octales, tres hexadecimales, y <code>ascii</code> ‘control-c’ (la tercera letra del alfabeto, en caso de que se necesite conocer esta información).</p>
-<p>Uno puede continuar moviéndose a través del código hasta que logre la línea con el error. Antes de la evaluación, esta línea se parece a esto:</p>
+<p>Esto significa que el valor de <code>numero</code> es 3, que es tres en octal, tres en hexadecimal, y ‘control-c’ en <code>ascii</code> (la tercer letra del alfabeto, en caso de que se necesite conocer esta información).</p>
+<p>Uno puede continuar moviéndose a través del código hasta que llegues a la línea con el error. Antes de la evaluación, esta línea se ve asi:</p>
 <div class="example-block" >
-<pre class="example" >=&gt;        ★(1= number)))))               ; Error aquí.
+<pre class="example" >=&gt;        ★(1= numero)))))               ; Error aquí.
 </pre>
 </div>
-<p>Cuando se presiona <kbd>SPC</kbd> una vez de nuevo, se producirá un mensaje de error que dice:</p>
+<p>Cuando se presione <kbd>SPC</kbd> de nuevo, aparecera un mensaje de error que dice:</p>
 <div class="example-block" >
-<pre class="example" >La definición de la función está vacío: 1=
+<pre class="example" >La definición de la función está vacía: 1=
 </pre>
 </div>
 <p>Este es el error.</p>
 <p>Presiona <kbd>q</kbd> para salir de Edebug.</p>
-<p>Para eliminar la instrumentación desde una definición de función, simplemente se reevalúa con un comando que no lo instrumente. Por ejemplo, se podría posicionar su cursor después de la definición cerrando paréntesis y escribiendo <kbd>C-x C-e</kbd>.</p>
-<p>Edebug hace un gran trato antes de entrar en una función. Se puede dirigir así mismo, parando solo en un error o en puntos específicos, se puede causar para mostrar los valores cambiantes de varias expresiones; se puede encontrar cuantas veces una función se llama, y más.</p>
-<p>Edebug se describe en <q>edebug</q> en <em>El Manual de Referencia de GNU Emacs Lisp</em>.</p>
+<p>Para eliminar la instrumentación de una definición de función, simplemente se reevalúa con un comando que no la instrumente. Por ejemplo, se podría colocar el cursor después del parentesis que cierra la definición y presionar <kbd>C-x C-e</kbd>.</p>
+<p>Edebug hace mucho mas que caminar atravez de una función. Se puede configurar para que corra por si solo, deteniendose solo en un error o en puntos específicos, se puede hacer que muestre los valores cambiantes de varias expresiones; encontrar cuantas veces se llama a una función, y mucho más.</p>
+<p>Edebug se describe en <a href="info:elisp#edebug" >Edebug</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>.</p>
 </div>
 <h3 id="ejercicios-de-depuración" >Ejercicios de depuración</h3>
 <div class="hBody-3" >
 <ul>
 <li>
-<p>Instale la función <code>count-words-example</code> y provoque que se introduzca el depurador construido cuando se llame. Ejecute el comando en una región conteniendo dos palabras. Se necesitará presionar <kbd>d</kbd> un número remarcable de veces. En el sistema, es un ‘hook’ llamado después que el comando se finaliza. (Para información sobre hooks, mira Seccion <q>Resumen del Comando Bucle</q> en <em>El Manual de Referencia GNU Emacs Lisp</em>.)</p>
+<p>Instala la función <code>count-words-example</code> y luego haz que entre en el depurador cuando se llame. Ejecute el comando en una región que contenga dos palabras. Se necesitará presionar <kbd>d</kbd> un número considerable de veces. En tu sistema, se llama un ‘hook’ cuando termina el comando. (Para mas información sobre hooks, mira la Seccion <a href="info:elisp#Command-Overview" >Command Overview</a> en <em>El Manual de Referencia GNU Emacs Lisp</em>.)</p>
 </li>
 <li>
-<p>Copie <code>count-words-example</code> dentro del búfer <span class="file" >*scratch*</span>, instrumente la función para Edebug, y navegue a través de su ejecución. La función no necesita tener un error, aunque se puede introducir uno si se desea. Si a la función le falta un error, el paseo se completa sin problemas.</p>
+<p>Copia <code>count-words-example</code> dentro del búfer <span class="file" >*scratch*</span>, instrumenta la función para Edebug, y navega a través de su ejecución. La función no necesita tener un error, aunque se puede introducir uno si se desea. Si la función carece de errores, el recorrido se completa sin problemas.</p>
 </li>
 <li>
-<p>Mientras se ejecuta Edebug, escriba <kbd>?</kbd> para ver una lista de todos los comandos Edebug. (El <code>global-edebug-prefix</code> normalmente es <kbd>C-x X</kbd>, por ej: <kbd>CTRL-x</kbd> seguido por una tecla mayúscula <kbd>X</kbd>; use este prefijo para comandos hechos fuera del búfer de depuración Edebug.)</p>
+<p>Mientras se ejecuta Edebug, presiona <kbd>?</kbd> para ver una lista de todos los comandos Edebug. (El <code>global-edebug-prefix</code> normalmente es <kbd>C-x X</kbd>, es decir: <kbd>CTRL-x</kbd> seguido por una tecla mayúscula <kbd>X</kbd>; utuliza este prefijo para realizar comandos fuera del búfer de depuración Edebug.)</p>
 </li>
 <li>
-<p>En el búfer de depuración Edebug, usa el comando <kbd>p</kbd> (<code>edebug-bounce-point</code>) para ver si <code>count-words-example</code> está funcionando.</p>
+<p>En el búfer de depuración Edebug, usa el comando <kbd>p</kbd> (<code>edebug-bounce-point</code>) para ver en que parte de la region esta trabajando <code>count-words-example</code>.</p>
 </li>
 <li>
-<p>Mueve el punto a algún sitio debajo de la función y entonces escribe el comando <kbd>h</kbd> (<code>edebug-goto-here</code>) para saltar a esta localización.</p>
+<p>Mueve el punto a algún sitio mas abajo en la función y luego utiliza el comando <kbd>h</kbd> (<code>edebug-goto-here</code>) para saltar a esa localización.</p>
 </li>
 <li>
-<p>Usa el comando <kbd>t</kbd> (<code>edebug-trace-mode</code>) para causar que Edebug pasee a través de la función en sí; usa una letra mayúscula <kbd>T</kbd> para <code>edebug-Trace-fast-mode</code>.</p>
+<p>Usa el comando <kbd>t</kbd> (<code>edebug-trace-mode</code>) para hacer que Edebug recorra la funcion por si mismo; usa una <kbd>T</kbd> mayúscula para <code>edebug-Trace-fast-mode</code>.</p>
 </li>
 <li>
-<p>Asigna un punto de ruptura, entonces ejecuta Edebug en modo Traza hasta que se logre el punto de parada.</p>
+<p>Asigna un punto de ruptura, luego ejecuta Edebug en modo Rastreo hasta que alcance el punto de parada.</p>
 </li>
 </ul>
 </div>

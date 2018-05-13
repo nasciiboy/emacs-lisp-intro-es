@@ -12935,386 +12935,390 @@ and promoting software freedom.”
 
 * Depurancion
 
-  GNU Emacs tiene dos depuradores, @c{debug} y @c{edebug}. El primero es
-  construido dentro de las tripas de Emacs y está siempre contigo; el segundo
-  requiere que exista una función antes de que se pueda usar.
+  GNU Emacs tiene dos depuradores, @c{debug} y @c{edebug}. El primero esta
+  incorporado nativamente dentro de Emacs y siempre está contigo; el segundo
+  requiere que escribas una función antes de poderlo usar.
 
-  Ambos depuradores son descritos extensivamente en Seccion @"{Depurando} en
-  @e{El Manual de Referencia GNU Emacs Lisp}. En este capítulo, se explicará
-  un breve ejemplo de esto.
+  Ambos depuradores se describen extensivamente en la Seccion
+  @l{info:emacs#Debugging<>Depurando Programas Lips} en @e{El Manual de
+  Referencia GNU Emacs Lisp}. En este capítulo, voy a explicar un breve ejemplo
+  de cada uno de ellos.
 
 ** @c{depurar}
 
-   Supón que se ha escrito una definición de función que se pretende devolver
-   la suma de los números 1 a través de un número dado. (Esta es la función
-   @c{triangle} discutida pronto. Vea la Seccion @l{Ejemplo de Decremento, ,
-   Ejemplo con Contador de Decremento}, para una discusión.)
+   Supón que has escrito una definición de función que pretende devolver la suma
+   de los números números desde 1 a un número dado. (Esta es la función
+   @c{triangulo} discutida anteriormente. Vea la Seccion @l{#Ejemplo con
+   contador decreciente}, para mas información.)
 
-   Sin embargo, tu definición de función tiene un error. Se ha malescrito
-   @'{1=} por @'{1-}. Aquí está la definición rota:
+   Sin embargo, tu definición de función tiene un error. Has escrito
+   @c{1=} en lugar de @c{1-}. Aquí está la definición rota:
 
    ..src > elisp
-     (defun triangle-bugged (number)
-       "Devuelve suma de números 1 a través de NUMBER inclusive."
+     (defun triangulo-defectuoso (numero)
+       "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO."
        (let ((total 0))
-         (while (> number 0)
-           (setq total (+ total number))
-           (setq number (1= number)))      ; Error aquí.
+         (while (> numero 0)
+           (setq total (+ total numero))
+           (setq numero (1= numero)))     ; Error aquí.
          total))
    < src..
 
-   Si se está leyendo esto en Info, se puede evaluar esta definición en el
-   modo normal. Se verá que @c{triangle-bugged} aparece en el área de eco.
+   Si estas leyendo esto en Emacs, puedes evaluar la definición de la manera
+   habitual. Veras aparecer @c{triangulo-defectuoso} en el área de eco.
 
-   Ahora evalúa la función @c{triangle-bugged} con un argumento de 4:
+   Ahora evalúa la función @c{triangulo-defectuoso} con un argumento de 4:
 
    ..src > elisp
-     (triangle-bugged 4)
+     (triangulo-defectuoso 4)
    < src..
 
-   En un GNU Emacs reciente, se creará e introducirá un búfer
+   En un GNU Emacs reciente, se creará e ingresara a un búfer
    @f{*Backtrace*} que dice:
 
    ..example >
      ---------- Buffer: *Backtrace* ----------
      Debugger entered--Lisp error: (void-function 1=)
-       (1= number)
-       (setq number (1= number))
-       (while (> number 0) (setq total (+ total number))
-             (setq number (1= number)))
-       (let ((total 0)) (while (> number 0) (setq total ...)
-         (setq number ...)) total)
-       triangle-bugged(4)
-       eval((triangle-bugged 4))
-       eval-last-sexp-1(nil)
+       (1= numero)
+       (setq numero (1= numero))
+       (while (> numero 0)
+          (setq total (+ total numero))
+          (setq numero (1= numero)))
+       (let ((total 0))
+          (while (> numero 0)
+            (setq total (+ total numero))
+            (setq numero (1= numero)))
+         total)
+       triangulo-defectuoso(4)
+       eval((triangulo-defectuoso 4) nil)
+       elisp--eval-last-sexp(nil)
        eval-last-sexp(nil)
        call-interactively(eval-last-sexp)
      ---------- Buffer: *Backtrace* ----------
    < example..
 
-   (Se ha reformateado este ejemplo ligeramente; el depurador no contiene
-   muchas líneas. Así, se puede salir del depurador escribiendo @k{q} en el
+   (He reformateado ligeramente este ejemplo; el depurador corta las lineas
+   largas. Como de costumbre, se puede salir del depurador escribiendo @k{q} en el
    buffer @f{*Backtrace*}.)
 
-   En la práctica, debido a un error tan simple como este, la línea de ‘error
-   Lisp’ explica lo que se necesita saber para corregir la definición. La
+   En la práctica, para un error tan simple como este, la línea de ‘error
+   Lisp’ dira lo que se necesita saber para corregir la definición. La
    función @c{1=} está ‘vacía’.
 
-   Sin embargo, si no se conoce con bastante certeza lo que está pasando, se
-   puede leer la traza completa.
+   Sin embargo, suponiendo que no estas seguro de lo que está pasando, puedes
+   leer el registro completo.
 
    En este caso, se necesita ejecutar una versión reciente de GNU Emacs, que
-   automáticamente empieza el depurador que pone en el búfer
-   @f{*Backtrace*}; o además, se necesita para empezar el depurador
-   manualmente como se describe debajo.
+   inicie automáticamente el depurador que te coloca en el búfer
+   @f{*Backtrace*}; o bien, se necesitas iniciar manualmente el depurador como
+   se describe a continuacion.
 
-   Lee el búfer @f{*Backtrace*} de abajo a arriba; eso cuenta lo que le hizo
-   a Emacs tener un error. Emacs hace una llamada interactiva a @k{C-x C-e} @%c(eval-last-sexp), que lleva a la evaluación de la expresión
-   @c{triangle-bugged}. Cada línea de debajo cuenta lo que el intérprete Lisp
-   evaluó.
+   Lee el búfer @f{*Backtrace*} de abajo hacia arriba; emacs te informa la causa
+   que provoco el error. Emacs hizo una llamada interactiva a @k{C-x C-e}
+   @%c(eval-last-sexp), que evaluo la evaluación de la expresión
+   @c{triangulo-defectuoso}. Cada línea anterior cuenta lo que el intérprete
+   Lisp evaluó a continuacion.
 
-   La tercera línea desde lo alto del búfer es
+   La tercera línea iniciando en la parte superior del búfer es
 
    ..src > elisp
      (setq number (1= number))
    < src..
 
-   Emacs intentó evaluar esta expresión; para hacerlo así, se intentó evaluar
-   la expresión interna para ser mostrada en la segunda línea desde arriba:
+   Emacs intentó evaluar esta expresión; para ello, intentó evaluar
+   la expresión interna mostrada en la segunda línea desde arriba:
 
    ..src > elisp
      (1= number)
    < src..
 
-   Aquí es donde el error ocurre; como se dice en la línea de arriba:
+   Aquí es donde ocurrio el error; como dice en la línea superior:
 
    ..example >
      Debugger entered--Lisp error: (void-function 1=)
    < example..
 
-   Se puede corregir el error, reevalúa la definición de función, y entonces
-   se puede testear de nuevo.
+   Puedes corregir el error, reevalúar la definición de función, y a continuacion
+   ejecutar de nuevo la prueba.
 
 ** @c{debug-on-entry}
 
-   Un GNU Emacs actual abre el depurador automáticamente cuando la función
+   Un GNU Emacs actual inicia el depurador automáticamente cuando la función
    tiene un error.
 
-   Incidentalmente, se puede empezar el depurador manualmente para todas las
+   Incidentalmente, se puede iniciar el depurador manualmente para todas las
    versiones de Emacs; la ventaja es que el depurador se ejecuta incluso si
-   no se tiene un error en su código. Algunas veces, ¡su código estará libre
+   no hay ningun error en el código. Algunas veces, ¡tu código estará libre
    de errores!
 
-   Se puede introducir el depurador cuando se llama a la función llamando
-   @c{debug-on-entry}.
+   Puedes entrar en el depurador llamando a la función @c{debug-on-entry}.
 
-   Tipo:
+   Presiona:
 
    ..example >
-     M-x debug-on-entry RET triangle-bugged RET
+     M-x debug-on-entry RET triangulo-defectuoso RET
    < example..
 
    Ahora, evalúa lo siguiente:
 
    ..src > elisp
-     (triangle-bugged 5)
+     (triangulo-defectuoso 5)
    < src..
 
-   Todas las versiones de Emacs crearán un búfer @f{*Backtrace*} y cuenta tu
-   que eso es el principio para evaluar la función @c{triangle-bugged}:
+   Todas las versiones de Emacs crearán un búfer @f{*Backtrace*} e informaran
+   que estas iniciando la evaluacion de la función @c{triangulo-defectuoso}:
 
    ..example >
      ---------- Buffer: *Backtrace* ----------
      Debugger entered--entering a function:
-     * triangle-bugged(5)
-       eval((triangle-bugged 5))
+     * triangulo-defectuoso(5)
+       eval((triangulo-defectuoso 5))
        eval-last-sexp-1(nil)
        eval-last-sexp(nil)
        call-interactively(eval-last-sexp)
      ---------- Buffer: *Backtrace* ----------
    < example..
 
-   En el búfer @f{*Backtrace*}, escribe @k{d}. Emacs evaluará la primera
-   expresión en @c{triangle-bugged}; el búfer se parece a esto:
+   Ya en el búfer @f{*Backtrace*}, pulsa @k{d}. Emacs evaluará la primer
+   expresión en @c{triangulo-defectuoso}; el búfer tendra este aspecto:
 
    ..example >
      ---------- Buffer: *Backtrace* ----------
      Debugger entered--beginning evaluation of function call form:
-     * (let ((total 0)) (while (> number 0) (setq total ...)
-             (setq number ...)) total)
-     * triangle-bugged(5)
-       eval((triangle-bugged 5))
+     * (let ((total 0)) (while (> numero 0) (setq total ...)
+             (setq numero ...)) total)
+     * triangulo-defectuoso(5)
+       eval((triangulo-defectuoso 5))
        eval-last-sexp-1(nil)
        eval-last-sexp(nil)
        call-interactively(eval-last-sexp)
      ---------- Buffer: *Backtrace* ----------
    < example..
 
-   Ahora, escribe @k{d} de nuevo, ocho veces, lentamente. Cada vez que se
-   escribe @k{d} Emacs evaluará otra expresión en la definición de función.
+   Ahora, presiona @k{d} de nuevo, ocho veces, lentamente. Cada vez que se
+   escribes @k{d} Emacs evaluará otra expresión en la definición de función.
 
    Eventualmente, el búfer se parece a esto:
 
    ..example >
      ---------- Buffer: *Backtrace* ----------
      Debugger entered--beginning evaluation of function call form:
-     * (setq number (1= number))
-     * (while (> number 0) (setq total (+ total number))
-             (setq number (1= number)))
-     * (let ((total 0)) (while (> number 0) (setq total ...)
-             (setq number ...)) total)
-     * triangle-bugged(5)
-       eval((triangle-bugged 5))
+     * (setq numero (1= numero))
+     * (while (> numero 0) (setq total (+ total numero))
+             (setq numero (1= numero)))
+     * (let ((total 0)) (while (> numero 0) (setq total ...)
+             (setq numero ...)) total)
+     * triangulo-defectuoso(5)
+       eval((triangulo-defectuoso 5))
        eval-last-sexp-1(nil)
        eval-last-sexp(nil)
        call-interactively(eval-last-sexp)
      ---------- Buffer: *Backtrace* ----------
    < example..
 
-   Finalmente, después se escribe @k{d} dos veces más, Emacs logrará el error
-   y las dos líneas superiores del buffer @f{*Backtrace*} se ve así:
+   Finalmente, después de escribir @k{d} dos veces más, Emacs llegara al error
+   y las dos líneas superiores del buffer @f{*Backtrace*} se veran así:
 
    ..example >
      ---------- Buffer: *Backtrace* ----------
      Debugger entered--Lisp error: (void-function 1=)
-     * (1= number)
+     * (1= numero)
      …
      ---------- Buffer: *Backtrace* ----------
    < example..
 
-   Escribiendo @k{d}, sería capaz de pasear a través de la función.
+   Escribiendo @k{d}, fuiste capaz de pasear a través de la función.
 
-   Se puede salir de un buffer @f{*Backtrace*} escribiendo @k{q}; esto se
-   sale de la traza, pero no cancela @c{debug-on-entry}.
+   Se puede salir de un buffer @f{*Backtrace*} pulsando @k{q}; esto cierra
+   la traza, pero no cancela @c{debug-on-entry}.
 
    Para cancelar el efecto de @c{debug-on-entry}, llama a
-   @c{cancel-debug-on-entry} y el nombre de la función, como esto:
+   @c{cancel-debug-on-entry} y el nombre de la función, asi:
 
    ..example >
-     M-x cancel-debug-on-entry RET triangle-bugged RET
+     M-x cancel-debug-on-entry RET triangulo-defectuoso RET
    < example..
 
-   (Si está leyendo esto en Info, cancela @c{debug-on-entry} ahora.)
+   (Si está leyendo esto en Emacs, cancela @c{debug-on-entry} ahora.)
 
 ** @c{debug-on-quit} y @c{(debug)}
 
-   Adición a la configuración @c{debug-on-error} o llamando
-   @c{debug-on-entry}, hay otros dos caminos para empezar @c{debug}.
+   Ademas de configurar @c{debug-on-error} o llamar a @c{debug-on-entry}, hay
+   otras dos maneras de iniciar @c{debug}.
 
-   Se puede empezar @c{debug} siempre y cuando se escribe
-   @k{C-g} @%c(keyboard-quit) se configura la variable @c{debug-on-quit} para
-   @c{t}. Esto es útil para depurar bucles infinitos.
+   Puedes iniciar @c{debug} cada vez que presiones @k{C-g} @%c(keyboard-quit)
+   configurando la variable @c{debug-on-quit} en @c{t}. Esto es útil para
+   depurar bucles infinitos.
 
-   O, se puede insertar un línea que dice @c{(debug)} dentro de tu código
-   donde se quiere que el depurador empiece, así:
+   O bien, puedes insertar un línea que diga @c{(debug)} dentro de tu código
+   donde quieras que inicie el depurador, así:
 
    ..src > elisp
-     (defun triangle-bugged (number)
-       "Devuelve suma de números 1 a través de NUMERO inclusive."
+     (defun triangulo-defectuoso (numero)
+       "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO."
        (let ((total 0))
-         (while (> number 0)
-           (setq total (+ total number))
+         (while (> numero 0)
+           (setq total (+ total numero))
            (debug)                         ; Empieza el depurador.
            (setq number (1= number)))      ; Error aquí.
          total))
    < src..
 
-   La función @c{debug} se describe en detalle en @"{El Depurador Lisp} en
-   @e{El Manual de Referencia GNU Emacs Lisp}.
+   La función @c{debug} se describe en detalle en @l{info:emacs#Debugger<>El
+   Depurador Lisp} en @e{El Manual de Referencia GNU Emacs Lisp}.
 
-** El depurador de nivel de fuentes @c{edebug}
+** El depurador de nivel de fuente @c{edebug}
 
-   Edebug es un depurador a nivel de fuentes Edebug que normalmente muestra
-   las fuentes del código que se está depurando, con una flecha a la
-   izquierda que muestra que línea se está actualmente ejecutando.
+   Edebug es un depurador a nivel de fuente. Edebug normalmente muestra
+   el codigo fuente que estás depurando, con una flecha a la
+   izquierda que muestra que línea se está ejecutando actualmente.
 
-   Se puede pasear a través de la ejecución de una función, línea a línea, o
-   ejecutarse rápidamente hasta lograr un @:{punto de ruptura} donde la
-   ejecución pare.
+   Es posible desplazarse a través de la ejecución de una función, línea a línea, o
+   ejecutarla rápidamente hasta alcanzar un @:{punto de ruptura} donde la
+   ejecución se detenga.
 
-   Edebug se describe en Seccion @"{edebug} en @e{El Manual de Referencia de
-   GNU Emacs Lisp}.
+   Edebug se describe en la Seccion @l{info:elisp#edebug<>Edebug} en @e{El
+   Manual de Referencia de GNU Emacs Lisp}.
 
    Aquí hay una función con errores para @c{triangulo-recursivo}. Véase
-   Sección @l{Recursión en lugar de un contador}, para una revisión de eso.
+   Sección @l{#Recursión en lugar de un contador}, para una revisión de eso.
 
    ..src > elisp
-     (defun triangulo-recursivo-bugged (number)
-       "Devuelve la suma of números 1 a través de NUMBER inclusive.
-     Usa recursión."
-       (if (= number 1)
+     (defun triangulo-recursivo-defectuoso (numero)
+       "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO.
+     Usa recursion."
+       (if (= numero 1)
            1
-         (+ number
-            (triangulo-recursivo-bugged
-             (1= number)))))               ; Error aquí.
+         (+ numero
+            (triangulo-recursivo-defectuoso
+             (1= numero)))))                 ; Error aquí.
    < src..
 
-   Normalmente, se instalaría esta definición colocando su cursor después
-   de la función cerrando paréntesis y escribiendo @k{C-x C-e}
-   (@c{eval-last-sexp}) o lo demás colocando tu cursor con la definición y
+   Normalmente, se instalaría esta definición colocando el cursor después
+   del parentesis que cirra la funcion y presionando @k{C-x C-e}
+   @%c(eval-last-sexp) o bien colocando el cursor dentro de la definición y
    escribiendo @k{C-M-x} @%c(eval-defun). (Por defecto, el comando
-   @c{eval-defun} funciona solo en modo Emacs Lisp o en el modo de
-   interacción de Lisp.)
+   @c{eval-defun} solo funciona en modo Emacs Lisp o en el modo
+   interactivo de Lisp.)
 
    Sin embargo, para preparar esta definición de función para Edebug, se debe
    primero @:{instrumentar} el código usando un comando diferente. Se puede
-   hacer esto coloca el cursor dentro o después de la definición y
+   hacer esto colocando el cursor dentro o justo después de la definición y
    escribiendo
 
    ..example >
      M-x edebug-defun RET
    < example..
 
-   Esto causará que Emacs cargue Edebug automáticamente si eso no está ya
-   cargado y, apropiadamente prepara la función.
+   Esto hará que Emacs cargue Edebug automáticamente si aun no está
+   cargado, y que intrumente correctamente la función.
 
-   Después de preparar la función, emplaza tu cursor después de la siguiente
+   Después de instrumentar la función, coloca el cursor después de la siguiente
    expresión y escribe @k{C-x C-e} @%c(eval-last-sexp):
 
    ..src > elisp
-     (triangulo-recursivo-bugged 3)
+     (triangulo-recursivo-defectuoso 3)
    < src..
 
-   Se vuelve a las fuentes de @c{triangulo-recursivo-bugged} y el cursor se
-   posiciona al principio del @c{if} de la línea de la función. También, se
-   verá una flecha en la mano izquierda al lado de esta línea donde la
-   función se está ejecutando. (En los siguientes ejemplos, se muestra la
-   flecha con @'{=>}; en un sistema de ventanas, se puede ver la flecha como
-   un triángulo sólido en el ‘borde’ de la ventana.)
+   Se saltara de nuevo al codigo fuent dee @c{triangulo-recursivo-defectuoso} y
+   el cursor se posiciona al principio de la linea @c{if} de la
+   función. Ademas, se verá la punta de una flecha a la izquierda de esa
+   línea donde se está ejecutando la función. (En los siguientes ejemplos, se
+   muestra la flecha con @'{=>}; en un sistema de ventanas, se puede ver la
+   flecha como un triángulo sólido @%'(▸) en el @'(borde) de la ventana.)
 
    ..example >
-     =>★(if (= number 1)
+     =>★(if (= numero 1)
    < example..
 
-   En el ejemplo, la posición del punto es mostrado con una estrella,
-   @'{★} (en Info, eso es mostrado como @'{-!-}).
+   En el ejemplo, la posición del punto se muestra con una estrella,
+   @'{★}.
 
    Si ahora se presiona @k{SPC}, el punto se moverá a la siguiente expresión
-   para ejecutarse; la línea se parece a esto:
+   a ser ejecutada; la línea se vera asi:
 
    ..example >
-     =>(if ★(= number 1)
+     =>(if ★(= numero 1)
    < example..
 
-   Como se continua presionando @k{SPC}, el puntero se moverá desde la
-   expresión a la expresión. Al mismo tiempo, siempre y cuando una expresión
-   devuelva un valor, este valor será mostrado en el área de eco. Por ejemplo,
-   después de mover el punto pasado @c{number}, se verá lo siguiente:
+   Al continuar presionando @k{SPC}, el punto se moverá de una
+   expresión a otra. Al mismo tiempo, siempre que una expresión
+   devuelva un valor, este valor se mostrara en el área de eco. Por ejemplo,
+   después de mover el punto pasado @c{numero}, se verá lo siguiente:
 
    ..example >
-     Resultado: 3 (#o3, #x3, ?\C-c)
+     Result: 3 (#o3, #x3, ?\C-c)
    < example..
 
-   Esto significa el valor de @c{number} es 3, que son tres octales, tres
-   hexadecimales, y @c{ascii} ‘control-c’ (la tercera letra del alfabeto, en
+   Esto significa que el valor de @c{numero} es 3, que es tres en octal, tres
+   en hexadecimal, y ‘control-c’ en @c{ascii} (la tercer letra del alfabeto, en
    caso de que se necesite conocer esta información).
 
-   Uno puede continuar moviéndose a través del código hasta que logre la
-   línea con el error. Antes de la evaluación, esta línea se parece a esto:
+   Uno puede continuar moviéndose a través del código hasta que llegues a la
+   línea con el error. Antes de la evaluación, esta línea se ve asi:
 
    ..example >
-     =>        ★(1= number)))))               ; Error aquí.
+     =>        ★(1= numero)))))               ; Error aquí.
    < example..
 
-   Cuando se presiona @k{SPC} una vez de nuevo, se producirá un mensaje de
+   Cuando se presione @k{SPC} de nuevo, aparecera un mensaje de
    error que dice:
 
    ..example >
-     La definición de la función está vacío: 1=
+     La definición de la función está vacía: 1=
    < example..
 
    Este es el error.
 
    Presiona @k{q} para salir de Edebug.
 
-   Para eliminar la instrumentación desde una definición de función,
-   simplemente se reevalúa con un comando que no lo instrumente. Por ejemplo,
-   se podría posicionar su cursor después de la definición cerrando
-   paréntesis y escribiendo @k{C-x C-e}.
+   Para eliminar la instrumentación de una definición de función,
+   simplemente se reevalúa con un comando que no la instrumente. Por ejemplo,
+   se podría colocar el cursor después del parentesis que cierra la definición
+   y presionar @k{C-x C-e}.
 
-   Edebug hace un gran trato antes de entrar en una función. Se puede dirigir
-   así mismo, parando solo en un error o en puntos específicos, se puede
-   causar para mostrar los valores cambiantes de varias expresiones; se puede
-   encontrar cuantas veces una función se llama, y más.
+   Edebug hace mucho mas que caminar atravez de una función. Se puede configurar
+   para que corra por si solo, deteniendose solo en un error o en puntos
+   específicos, se puede hacer que muestre los valores cambiantes de varias
+   expresiones; encontrar cuantas veces se llama a una función, y mucho más.
 
-   Edebug se describe en @"{edebug} en @e{El Manual de Referencia de GNU
-   Emacs Lisp}.
+   Edebug se describe en @l{info:elisp#edebug<>Edebug} en @e{El Manual de
+   Referencia de GNU Emacs Lisp}.
 
 ** Ejercicios de depuración
 
-   - Instale la función @c{count-words-example} y provoque que se introduzca el
-     depurador construido cuando se llame. Ejecute el comando en una región
-     conteniendo dos palabras. Se necesitará presionar @k{d} un número
-     remarcable de veces. En el sistema, es un ‘hook’ llamado después que el
-     comando se finaliza. (Para información sobre hooks, mira Seccion
-     @"{Resumen del Comando Bucle} en @e{El Manual de Referencia GNU Emacs
-     Lisp}.)
+   - Instala la función @c{count-words-example} y luego haz que entre en el
+     depurador cuando se llame. Ejecute el comando en una región que contenga
+     dos palabras. Se necesitará presionar @k{d} un número considerable de
+     veces. En tu sistema, se llama un ‘hook’ cuando termina el comando. (Para
+     mas información sobre hooks, mira la Seccion @l{info:elisp#Command
+     Overview<>Command Overview} en @e{El Manual de Referencia GNU Emacs Lisp}.)
 
-   - Copie @c{count-words-example} dentro del búfer @f{*scratch*}, instrumente
-     la función para Edebug, y navegue a través de su ejecución. La función
+   - Copia @c{count-words-example} dentro del búfer @f{*scratch*}, instrumenta
+     la función para Edebug, y navega a través de su ejecución. La función
      no necesita tener un error, aunque se puede introducir uno si se
-     desea. Si a la función le falta un error, el paseo se completa sin
+     desea. Si la función carece de errores, el recorrido se completa sin
      problemas.
 
-   - Mientras se ejecuta Edebug, escriba @k{?} para ver una lista de todos
+   - Mientras se ejecuta Edebug, presiona @k{?} para ver una lista de todos
      los comandos Edebug. (El @c{global-edebug-prefix} normalmente es @k{C-x
-     X}, por ej: @k{CTRL-x} seguido por una tecla mayúscula @k{X}; use
-     este prefijo para comandos hechos fuera del búfer de depuración
+     X}, es decir: @k{CTRL-x} seguido por una tecla mayúscula @k{X}; utuliza
+     este prefijo para realizar comandos fuera del búfer de depuración
      Edebug.)
 
-   - En el búfer de depuración Edebug, usa el comando
-     @k{p} @%c(edebug-bounce-point) para ver si @c{count-words-example} está
-     funcionando.
+   - En el búfer de depuración Edebug, usa el comando @k{p}
+     @%c(edebug-bounce-point) para ver en que parte de la region esta trabajando
+     @c{count-words-example}.
 
-   - Mueve el punto a algún sitio debajo de la función y entonces escribe el
-     comando @k{h} @%c(edebug-goto-here) para saltar a esta localización.
+   - Mueve el punto a algún sitio mas abajo en la función y luego utiliza el
+     comando @k{h} @%c(edebug-goto-here) para saltar a esa localización.
 
-   - Usa el comando @k{t} @%c(edebug-trace-mode) para causar que Edebug
-     pasee a través de la función en sí; usa una letra mayúscula @k{T} para
+   - Usa el comando @k{t} @%c(edebug-trace-mode) para hacer que Edebug
+     recorra la funcion por si mismo; usa una @k{T} mayúscula para
      @c{edebug-Trace-fast-mode}.
 
-   - Asigna un punto de ruptura, entonces ejecuta Edebug en modo Traza hasta
-     que se logre el punto de parada.
+   - Asigna un punto de ruptura, luego ejecuta Edebug en modo Rastreo hasta
+     que alcance el punto de parada.
 
 * Conclusión
 
