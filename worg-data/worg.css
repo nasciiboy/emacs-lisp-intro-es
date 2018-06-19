@@ -2,20 +2,20 @@
 :root {
                             /* COLOR VARS    */
     --FGCtitle  : #ffffff;  /* #+TITLE:      */
-    --FGCstart1 : #ffffff;  /* *             */
+    --FGCstart1 : #4B99D2;  /* *             */
     --FGCstart2 : #98fb98;  /* **            */
-    --FGCstart3 : #eedd82;  /* ***           */
-    --FGCstart4 : #4b99d2;  /* ****          */
-    --FGCstart5 : #ff4500;  /* *****         */
-    --FGCstart6 : #7fffd4;  /* ******        */
+    --FGCstart3 : #dd2300;  /* ***           */
+    --FGCstart4 : #b0c4de;  /* ****          */
+    --FGCstart5 : #7fffd4;  /* *****         */
+    --FGCstart6 : #00dddd;  /* ******        */
     --FGCstart7 : #db2e24;  /* *******       */
     --FGCstart8 : #ff4500;  /* ********      */
     --FGCtext   : #ffffff;
     --FGCemph   : #ffffff;  /* 4B99D2        */
-    --FGCtcode  : #ffffff;  /* code          */
+    --FGCtcode  : #bbdd99;  /* code          */
     --FGCbcode  : #ffffff;  /* block code    */
-    --FGCtcomm  : #ffffff;  /* command       */
-    --FGCfile   : #ffffff;  /* file          */
+    --FGCtcomm  : #7fffd4;  /* command       */
+    --FGCfile   : #ffd47f;  /* file          */
     --FGCmath   : #98fb98;  /* math          */
     --FGClink   : #aaaaaa;  /* link          */
     --BGClinkh  : #556b2f;  /* link bg hover */
@@ -56,26 +56,46 @@ html body { font-size: 1.1em; font-family: text; line-height: 1.8em;
           }
 
 /* ################# HEATLINES */
-h1 { color: var( --FGCtitle  ); font-size:   3em; font-family: title;    } /* TITLE    */
-h2 { background-color: #145; color: #3FF; padding: .7em }
-h2 {                            font-size: 1.4em; font-family: heatline; } /* *        */
-h3 { color: var( --FGCstart2 ); font-size: 1.5em; font-family: heatline; } /* **       */
-h4 { color: var( --FGCstart3 ); font-size: 1.5em; font-family: heatline; } /* ***      */
-h5 { color: var( --FGCstart4 ); font-size: 1.5em; font-family: heatline; } /* ****     */
-h6 { color: var( --FGCstart5 ); font-size: 1.5em; font-family: heatline; } /* *****    */
-h7 { color: var( --FGCstart6 ); font-size: 1.5em; font-family: heatline; } /* ******   */
-h8 { color: var( --FGCstart7 ); font-size: 1.5em; font-family: heatline; } /* *******  */
-h9 { color: var( --FGCstart8 ); font-size: 1.5em; font-family: heatline; } /* ******** */
 
-h1 { line-height: 1.5em; text-align: center;      } /* TITLE    */
-h2::before { content: "• ";                       } /* *        */
-h3::before { content: "•• ";                      } /* **       */
-h4::before { content: "••• ";                     } /* ***      */
-h5::before { content: "•••• ";                    } /* ****     */
-h6::before { content: "••••• ";                   } /* *****    */
-h7::before { content: "•••••• ";                  } /* ******   */
-h8::before { content: "••••••• ";                 } /* *******  */
-h9::before { content: "•••••••• "                 } /* ******** */
+                                                               /* TITLE    */
+h1 { font-size: 2.7em; font-family:    title; } /* *        */
+h2 { font-size: 1.7em; font-family: heatline; } /* **       */
+h3 { font-size: 1.6em; font-family: heatline; } /* ***      */
+h4 { font-size: 1.5em; font-family: heatline; } /* ****     */
+h5 { font-size: 1.5em; font-family: heatline; } /* *****    */
+h6 { font-size: 1.5em; font-family: heatline; } /* ******   */
+h7 { font-size: 1.5em; font-family: heatline; } /* *******  */
+h8 { font-size: 1.5em; font-family: heatline; } /* ******** */
+
+h2 { color: var( --FGCstart1 ); }
+h3 { color: var( --FGCstart2 ); }
+h4 { color: var( --FGCstart3 ); }
+h5 { color: var( --FGCstart4 ); }
+h6 { color: var( --FGCstart5 ); }
+h7 { color: var( --FGCstart6 ); }
+h8 { color: var( --FGCstart7 ); }
+h9 { color: var( --FGCstart8 ); }
+
+h1 { line-height: 1.5em; text-align: center;      }
+h2::before { content: "• ";                       }
+h3::before { content: "•• ";                      }
+h4::before { content: "••• ";                     }
+h5::before { content: "•••• ";                    }
+h6::before { content: "••••• ";                   }
+h7::before { content: "•••••• ";                  }
+h8::before { content: "••••••• ";                 }
+h9::before { content: "•••••••• "                 }
+
+h1 { line-height: 1.5em; text-align: center;
+     border: 7px solid  var( --FGCtitle  ); padding: .9em 1em; border-radius: 10px; }
+h2 { border: 4px solid  var( --FGCstart1 ); padding: .5em 1em; border-radius: 10px; }
+h3 { border: 3px solid  var( --FGCstart2 ); padding: .5em 1em; border-radius: 10px; }
+h4 { border: 2px solid  var( --FGCstart3 ); padding: .5em 1em; border-radius: 10px; }
+h5 { border: 1px dotted var( --FGCstart4 ); padding: .5em 1em; border-radius: 10px; }
+h6 { border: 1px solid  var( --FGCstart5 ); padding: .5em 1em; border-radius: 10px; }
+h7 { border: 1px solid  var( --FGCstart6 ); padding: .5em 1em; border-radius: 10px; }
+h8 { border: 1px solid  var( --FGCstart7 ); padding: .5em 1em; border-radius: 10px; }
+h9 { border: 1px solid  var( --FGCstart8 ); padding: .5em 1em; border-radius: 10px; }
 
 h1.subtitle { color: var( --FGCstart1 ); font-size:   2em; font-family: title;    }
 
@@ -106,7 +126,7 @@ h1.subtitle { color: var( --FGCstart1 ); font-size:   2em; font-family: title;  
 #toc:hover #toc-contents a { text-decoration: none; }
 #toc:hover #toc-contents a:hover { color: #ffffff; }
 #toc:hover #toc-contents a.h1 { color: white             ; } /* *        */
-#toc:hover #toc-contents a.h2 { color: #3FF              ; } /* **       */
+#toc:hover #toc-contents a.h2 { color: var( --FGCstart1 ); } /* **       */
 #toc:hover #toc-contents a.h3 { color: var( --FGCstart2 ); } /* ***      */
 #toc:hover #toc-contents a.h4 { color: var( --FGCstart3 ); } /* ****     */
 #toc:hover #toc-contents a.h5 { color: var( --FGCstart4 ); } /* *****    */
@@ -115,14 +135,13 @@ h1.subtitle { color: var( --FGCstart1 ); font-size:   2em; font-family: title;  
 #toc:hover #toc-contents a.h8 { color: var( --FGCstart7 ); }
 #toc:hover #toc-contents a.h9 { color: var( --FGCstart9 ); }
 
-
 /* ############### FONT STYLE */
 b       { font-family: text_bold; }
 i       { font-family: text_italic; }
 u       { text-decoration: underline; }
 em      { color: var( --FGCemph ); font-weight: 600; }
 cite    { font-family: text_verse; color: #a5b1fe; }
-code    { color: var( --FGCtcode ); font-family: codetext; padding: 0px 0.2em; }
+code    {      color: var( --FGCtcode ); font-family: codetext; padding: 0px 0.2em; }
 code.command { color: var( --FGCtcomm ); font-family: codetext; padding: 0px 0.2em; }
 .file   { color: var( --FGCfile ); font-family: codetext; }
 .math   { color: var( --FGCmath ); font-family: codetext; }
@@ -232,6 +251,9 @@ pre { overflow: auto;
 .pre-block,
 .example-block { line-height: 1em;
                  display: flex;
+                 color: black;
+                 background-color: #ccc;
+                 padding: .5em 1em; border-radius: 1.2em;
                }
 
 pre.art { font-size: .7em; line-height: 1em;
@@ -240,7 +262,11 @@ pre.art { font-size: .7em; line-height: 1em;
         }
 
 /* CODE */
-pre.code { font-size: 1.1em; line-height: 1.2em; }
+pre.code { font-size: 1.07em; line-height: 1.2em;
+           /* border-style: solid dashed; */
+           /* border-width: 2px; */
+           /* padding: 1em; */
+}
 pre.code code { padding: 0em; }
 
 /* CODE */

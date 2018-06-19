@@ -1192,7 +1192,7 @@ and promoting software freedom.”
     secundario si está diseñada para tener uno.)
 
     Después de evaluar la expresión @c{set}, se puede evaluar el símbolo
-    @c{flores} y ha de devolver el valor que acaba de establecer. Aquí está
+    @c{flores} y ha de volver el valor que acaba de establecer. Aquí está
     el símbolo. Coloca el cursor al final de este y presiona @k{C-x C-e}.
 
     ..src > elisp
@@ -2110,7 +2110,7 @@ and promoting software freedom.”
    @c{(interactive)}. La función @c{mark-whole-buffer} es asi.
 
    Alternativamente, si los códigos especiales de letras no son adecuados
-   para su aplicación, puedes pasar tus propios propios argumentos a
+   para su aplicación, puedes pasar tus propios argumentos a
    @c{interactive} como una lista.
 
    Vea la Seccion @l{#La Definición de @c{append-to-buffer}}, para un
@@ -2871,7 +2871,7 @@ and promoting software freedom.”
 
      Imprime un mensaje en el área de eco. El primer argumento es una cadena
      que puede contener, @'{%s}, @'{%d}, o @'{%c} para imprimir el valor de
-     los argumentos que siguen a la la cadena. El argumento utilizado por
+     los argumentos que siguen a la cadena. El argumento utilizado por
      @'{%s} debe ser una cadena o un simbolo, el argumeto utilizado por
      @'{%d} debe ser un número. El argumento usado por @'{%c} debe ser un
      codigo númerico @e{ASCII}; se imprimira como el caracter con este código
@@ -3969,7 +3969,7 @@ and promoting software freedom.”
     La función @c{insert-buffer-substring} copia el texto @e{dento} del búfer
     actual @e{desde} la región indicada por @c{start} y @c{end} en el
     @c{búfer}. Puesto que la totalidad del segundo búfer se encuentra entre
-    @c{start} y @c{end}, todo dentro del segundo búfer se copia el el bufer que
+    @c{start} y @c{end}, todo dentro del segundo búfer se copia el bufer que
     se esta editando. A continuacion, el valor del punto, que será al fin del
     texto insertado, se registra en la variable @c{newmark}.
 
@@ -6113,7 +6113,7 @@ and promoting software freedom.”
    Sin entrar en los detalles del proceso de escritura de la macro, permitame
    señalar que esta macro comienza con la palabra @c{DEFUN}. La palabra
    @c{DEFUN} fué elegida ya que el código tiene el mismo propósito que @c{defun}
-   en Lisp. (La macro C @c{DEFUN} se define en en @f{emacs/src/lisp.h}.)
+   en Lisp. (La macro C @c{DEFUN} se define en @f{emacs/src/lisp.h}.)
 
    La palabra @c{DEFUN} tiene siete partes dentro de los paréntesis:
 
@@ -6470,7 +6470,7 @@ and promoting software freedom.”
   caja es la dirección del siguiente par de cajas, la primera parte de las
   cuales que es la dirección de @'{violeta} y la segunda parte es la dirección
   del siguiente par. La última caja apunta al símbolo @c{nil}, que marca el fin
-  de la la lista.
+  de la lista.
 
   Cuando una variable se establece en una lista con una función como @c{setq},
   almacena la dirección de la primera caja en la variable. Asi pues, la
@@ -6666,7 +6666,7 @@ and promoting software freedom.”
   tercer, cuarto, o quinto elemento, y así sucesivamente. Cuando se alcanza el
   último elemento del anillo de la muerte, se reemplaza por el primer elemento y
   el ciclo se repite. (Por la tanto, el anillo de la muerte se llama un ‘anillo’
-  en lugar de solo una ‘lista’. Sin embargo, la estructura de de datos real que
+  en lugar de solo una ‘lista’. Sin embargo, la estructura de datos real que
   contiene el texto es una lista. Vea la Seccion @l{#Apéndice B Manejando el
   anillo de la muerte}, para los detalles de cómo se maneja la lista como un
   anillo.)
@@ -8365,7 +8365,7 @@ and promoting software freedom.”
   Manual de GNU Emacs}, asi como en la Seccion @l{info:elisp#Regular
   Expressions<>Expresiones Regulares} en @e{El Manual de Referencia de GNU Emacs
   Lisp}. Al escribir este capítulo, estoy suponiendo que tienes al menos un leve
-  conocimiento de esto. El punto principal a recordar es que que las expresiones
+  conocimiento de esto. El punto principal a recordar es que las expresiones
   regulares te permiten buscar patrones, asi como cadenas literales de
   caracteres. Por ejemplo, el código en @c{forward-sentence} busca el patrón de
   posibles caracteres que podrían marcar el final de una oracion, y mueve el
@@ -9634,7 +9634,7 @@ and promoting software freedom.”
     como un efecto secundario si encuentra el objetivo de la búsqueda. Después
     de que la expresión @c{re-search-forward} devuelve @c{nil}, se evalua la
     siguiente expresión en el bucle @c{while}. Esta expresión incrementa el
-    contador. Entonces el bucle se repite. La prueba prueba-verdadero-o-falso es
+    contador. Entonces el bucle se repite. La prueba-verdadero-o-falso es
     verdadera porque el valor del punto aun es menor al valor del final, ya que
     la expresión @c{re-search-forward} no movio el punto. … y el ciclo repite …
 
@@ -9799,7 +9799,7 @@ and promoting software freedom.”
    Además, la prueba-hazlo-de-nuevo también tiene que probar si la búsqueda encuentra una
    palabra. Si no lo hace, la función no deberia llamarse de nuevo.
 
-   La expresion-del-siguiente-paso cambia un valor de modo que cuando cuando se
+   La expresion-del-siguiente-paso cambia un valor de modo que cuando se
    supone que la función recursiva deja de llamarse así misma, se detiene. Más
    precisamente, la expresion-del-siguiente-paso cambia un valor
    en el momento adecuado, la prueba-hazlo-de-nuevo detiene la función recursiva de
@@ -9951,7 +9951,7 @@ and promoting software freedom.”
 
    Claramente, si hay dos palabras en la región, la primera llamada a
    @c{contar-palabras-recursivamente} devuelve uno mas el valor devuelto por
-   por @c{contar-palabras-recursivamente} en una región que contiene la palabra
+   @c{contar-palabras-recursivamente} en una región que contiene la palabra
    restante––es decir, suma uno a uno, produciendo dos, que es la
    cantidad correcta.
 
@@ -10568,7 +10568,7 @@ and promoting software freedom.”
    función para devolver una lista maestra de las longitudes de las definiciones
    en una lista de ficheros.
 
-   Trabajar en cada una de las listas de ficheros es es un acto repetitivo,
+   Trabajar en cada una de las listas de ficheros es un acto repetitivo,
    por lo que podemos usar un bucle @c{while} o recursión.
 
    El diseño utilizando un bucle @c{while} es rutinario. El argumento que se
@@ -10742,7 +10742,7 @@ and promoting software freedom.”
 
    La función @c{lista-de-longitudes-de-muchos-ficheros-recursiva} devuelve una
    lista de números. Cada número registra la longitud de una definición de
-   función. Lo que que tenemos que hacer ahora es transformar estos datos en una
+   función. Lo que tenemos que hacer ahora es transformar estos datos en una
    lista de números adecuados para generar un grafico. La nueva lista dira
    cuántas definiciones de funcion contienen menos de 10 palabras y símbolos,
    cuantas entre 10 y 19, cuántas entre 20 y 29, y así sucesivamente.
@@ -11014,7 +11014,7 @@ and promoting software freedom.”
     sucesivamente.
 
     Con una lista ordenada de números, es fácil: se cuentan cuantos elementos de
-    la lista son más pequeños de 10, luego, luego, despues de de haber pasado
+    la lista son más pequeños de 10, luego, luego, despues de haber pasado
     los numeros que se acaban de contar, se cuenta cuantos son más pequeños de
     20, luego, despues de haber pasado los numeros que se acaban de contar, los
     que son más pequeños de 30, y así sucesivamente. Cada uno de los números,
@@ -11576,7 +11576,7 @@ and promoting software freedom.”
 
    Después de nuestra preparación en la sección anterior, la función
    @c{imprimir-cuerpo-grafico} es sencilla. La función imprimirá columna tras
-   columna de de asteriscos y espacios en blanco, usando los elementos de la
+   columna de asteriscos y espacios en blanco, usando los elementos de la
    lista de números para especificar el número de asteriscos en cada columna.
    Este es un acto repetitivo, lo que significa que podemos utilizar un bucle
    @c{while} decreciente o una función recursiva para el trabajo. En esta
@@ -12714,13 +12714,13 @@ and promoting software freedom.”
 
    - Cuando se utiliza ‘grep’
 
-     - @'c{-i} :: Ignorar mayusculas o minusculas
+     - @'c{-i}: Ignorar mayusculas o minusculas
 
-     - @'c{-n} :: Prefija cada línea de la salida con el número de línea
+     - @'c{-n}: Prefija cada línea de la salida con el número de línea
 
-     - @'c{-H} :: Imprime el nombre del fichero para cada coincidencia.
+     - @'c{-H}: Imprime el nombre del fichero para cada coincidencia.
 
-     - @'c{-e} :: Protege los patrones que empiezan con un guión, @'c{-}
+     - @'c{-e}: Protege los patrones que empiezan con un guión, @'c{-}
 
        ..src > elisp
          (setq grep-command "grep -i -nH -e ")
@@ -13322,669 +13322,666 @@ and promoting software freedom.”
 
 * Conclusión
 
-  Ahora se ha llegado al fin de esta Introducción. Se ha aprendido lo
-  suficiente acerca de programación en Emacs Lisp para asignar valores, para
-  escribir ficheros @f{.emacs} para tí mismo y tus amigos, y escribir
-  personalizaciones simples y extensiones a Emacs.
+  Hemos llegado al fin de esta Introducción. Se ha aprendido lo suficiente sobre
+  programación en Emacs Lisp para establecer valores, escribir ficheros
+  @f{.emacs} para tí mismo y tus amigos, y escribir personalizaciones y
+  extensiones simples para Emacs.
 
-  Este es un lugar para parar. O, si se desea, se puede ir adelante, y
-  aprender más por uno mismo.
+  Este es un lugar para parar. O, si lo deseas, seguir adelante, y
+  aprender por ti mismo.
 
-  Se han aprendido algunas bases de programación. Pero solo algunas. Todavía
-  hay muchas cosas que son fáciles de usar que no se han tocado.
+  Se han aprendido algunos de los aspectos basicos de la programación. Pero solo
+  algunos. Todavía hay muchos conceptos que son fáciles de usar y que no hemos
+  tocado.
 
-  Otra idea para seguir es leer las fuentes de Emacs y en @e{El Manual de
-  Referencia de GNU Emacs}.
+  Otra ruta a seguir ahora mismo se encuentra entre el codigo fuente de Emacs y
+  en @e{El Manual de Referencia de GNU Emacs}.
 
-  Las fuentes de Emacs Lisp son una aventura. Cuando se leen las fuentes
-  vienen a través de una función o expresión que nos es familiar, se necesita
-  imaginar o encontrar qué se hace.
+  El codigo de Emacs Lisp es una aventura. Cuando se lee y te encuentras con una
+  función o expresión que no es familiar, se necesita imaginar o averiguar lo
+  qué hace.
 
-  Ir al Manual de Referencia. Eso está a través del completo, limpio y fácil
-  de leer descripción de Emacs Lisp. Está escrito no solo para expertos, pero
-  sí para gente que conoce lo que usted conoce. (El @e{Manual de Referencia}
-  viene con la distribución de GNU Emacs. Como esta introducción, viene como
-  un fichero fuente Texinfo, así se puede leer on-line como un libro
-  impreso.)
+  Consulta el Manual de Referencia. Es una descripcion completa y bastante fácil
+  de leer de Emacs Lisp. Está escrito no solo para expertos, sino tambien para
+  personas que saben lo que tu sabes. (El @e{Manual de Referencia} viene con la
+  distribución de GNU Emacs. Al igual que esta introducción, viene como un
+  fichero fuente de Texinfo, para que puedas leerlo en linea y como una
+  composicion tipografica, o como un libro impreso.)
 
-  Ir a otra ayuda on-line que sea parte de GNU Emacs: la documentación
-  on-line para todas las funciones y variables, y @c{find-tag}, el programa
-  que va a las fuentes.
+  Puedes acudir a la ayuda en linea que es parte de GNU Emacs: la documentación
+  en linea para todas las funciones y variables, y @c{find-tag}, el programa que
+  te lleva al codigo fuente.
 
-  Aquí hay un ejemplo de cómo explorar las fuentes. Porque su nombre,
-  @f{simple.el} es el fichero que se vió primero, hace tiempo. Como eso
-  ocurre alguna de las funciones en @f{simple.el} son complicadas, o al menos
-  parece complicado a primera vista. La función @c{open-line}, por ejemplo,
-  parece complicada.
+  He aquí un ejemplo de cómo exploro las fuentes. Por su nombre, @f{simple.el}
+  es el fichero que mire primero, hace mucho tiempo. Ocurre que algunas de las
+  funciones en @f{simple.el} son complicadas, o al menos parecen complicadas a
+  primera vista. La función @c{open-line}, por ejemplo, parece complicada.
 
-  Se puede querer pasear a través de esta función lentamente, como nosotros
-  hicimos la función @c{forward-sentence}. (Vea la Seccion @l{La función
-  @c{forward-sentence}}.) O se puede querer salir de esta función y mirar en
-  otra, tal como @c{split-line}. No se necesita leer todas las funciones. De
-  acuerdo a @c{contar-palabras-en-definicion}, la función @c{split-line} contiene 102
+  Es posible que desees explorar esta función lentamente, como
+  hicimos con la función @c{forward-sentence}. (Vea la Seccion @l{#La función
+  @c{forward-sentence}}.) O tal vez quieras saltarte esta función y mirar
+  otra, como @c{split-line}. No es necesario leer todas las funciones. Segun
+  @c{contar-palabras-en-definicion}, la función @c{split-line} contiene 102
   palabras y símbolos.
 
-  Incluso aunque sean pocas, @c{split-line} contiene expresiones que no se
-  han estudiado: @c{skip-chars-forward}, @c{indent-to}, @c{current-column} y
+  Aunque es pequeña, @c{split-line} contiene expresiones que no hemos
+  estudiado: @c{skip-chars-forward}, @c{indent-to}, @c{current-column} e
   @c{insert-and-inherit}.
 
-  Considera la función @c{skip-chars-forward}. (Eso es parte de la definición
-  de función para @c{back-to-indentation}, que muestra la @l(Repaso: Cómo
+  Considera la función @c{skip-chars-forward}. (Forma parte de la definición
+  de función para @c{back-to-indentation}, que se muestra en la Seccion de @l(#Repaso: Cómo
   escribir definiciones de funciones<>Repaso).)
 
-  En GNU Emacs, se puede encontrar más acerca de @c{skip-chars-forward}
-  escribiendo @k{C-h f} @%c(describe-function) y el nombre de la
-  función. Esto te da la documentación de función.
+  En GNU Emacs, puedes encontrar más informacion acerca de @c{skip-chars-forward}
+  presionando @k{C-h f} @%c(describe-function) y seguido del nombre de la
+  función. Esto te proporciana la documentación de la función.
 
-  Se puede ser capaz de adivinar que se hace por una función bien llamada tal
-  como @c{indent-to}; o se puede buscar, también. Incidentalmente, la función
-  @c{describe-function} en sí está en @f{help.el}; esta es una de estas
-  largas, pero descifrables funciones. ¡Se puede buscar @c{describe-function}
+  Puedes ser capaz de adivinar lo que hace una función con un buen nombre como
+  @c{indent-to}; o en su defecto puedes buscar su descripcion. Por cierto, la
+  función @c{describe-function} en sí misma está en @f{help.el}; es una de esas
+  funciones largas, pero descifrables. ¡Puedes buscar @c{describe-function}
   usando el comando @k{C-h f}!
 
-  En esta instancia, desde el código es Lisp, el búfer @f{*Help*} contiene
-  el nombre de la librería conteniendo las fuentes de la función. Se puede
-  poner el punto a través del nombre de la librería y presiona la tecla RET,
-  que está en esta situación está asociado a @c{help-follow}, y se toma
-  directamente de las fuentes, en el mismo camino que @k{M-.} @%c(find-tag).
+  En este caso, dado que el código es Lisp, el búfer @f{*Help*} contiene
+  el nombre de la librería que contiene el origen de la función. Puedes
+  colocar el punto sobre el nombre de la librería y pulsar la tecla RET,
+  que en está situación está asociado a @c{help-follow}, y ser llevado
+  directamente al codigo fuente, de la misma manera que con @k{M-.} @%c(find-tag).
 
   La definición para @c{describe-function} ilustra como personalizar las
-  expresiones @c{interactive} sin usar los códigos de caracter estándar y eso
+  expresiones @c{interactive} sin usar los códigos de caracter estándar y
   muestra como crear un búfer temporal.
 
-  (La función @c{indent-to} es escrita en C en vez de Emacs Lisp; eso es una
-  función ‘construida’. @c{help-follow} toma su fuente como @c{find-tag},
-  cuando se configura apropiadamente.)
+  (La función @c{indent-to} esta escrita en C en lugar de Emacs Lisp; es una
+  función ‘nativa’. @c{help-follow} te lleva a su fuente al igual que @c{find-tag},
+  cuando se configura correctamente.)
 
-  Se puede mirar en las fuentes de la función usando @c{find-tag}, que está
-  asociado a @k{M-.}. Finalmente, se puede encontrar que el Manual de
-  Referencia tiene que decir visitando el manual en Info, y escribiendo
+  Puedes mirar la fuente de una función usando @c{find-tag}, que está
+  vinculada a @k{M-.}. Finalmente, puedes encontrar lo que el Manual de
+  Referencia tiene que decir visitando el manual en Info, e ingresando
   @k{i} @%c(Info-index) y el nombre de la función, o buscando la función en el
   índice a una copia impresa del manual.
 
-  Similarmente, se puede encontrar que significa por @c{insert-and-inherit}.
+  Del mismo modo, puedes encontrar que significa por @c{insert-and-inherit}.
 
-  Otros ficheros fuente interesantes incluyen @f{paragraphs.el},
-  @f{loaddefs.el} y @f{loadup.el}. El fichero @f{paragraphs.el} incluye
-  ordenar, funciones fácilmente comprendidas tan bien como las largas. El
-  fichero @f{loaddefs.el} contiene muchos autoloads estándar y muchos mapas
-  de teclado. Nunca se ha buscado en todo; solo en las partes. @f{loadup.el}
-  es el fichero que carga las partes estándar de Emacs; eso cuenta un gran
-  trato acerca de cómo Emacs está construido. (Vea la Seccion @"{Construyendo
-  Emacs} en @e{El Manual de Referencia GNU Emacs Lisp}, para más acerca de
-  construcción.)
+  Otros ficheros fuente interesantes son @f{paragraphs.el}, @f{loaddefs.el} y
+  @f{loadup.el}. El fichero @f{paragraphs.el} incluye funciones cortas y faciles
+  de entender, asi como funciones mas largas. El fichero @f{loaddefs.el}
+  contiene muchos autoloads estándar y muchos mapas de teclado. Nunca he visto
+  todo; solo algunas partes. @f{loadup.el} es el fichero que carga las partes
+  estándar de Emacs; te dice mucho sobre como se construye Emacs. (Para mas
+  informacion, consulta la Seccion @l{info:elisp#Building Emacs<>Construyendo
+  Emacs} en @e{El Manual de Referencia GNU Emacs Lisp}.)
 
-  Como dije, se han aprendido algunas cosas; sin embargo, y de manera muy
-  importante, se han tocado fuertes aspectos de la programación; no se ha
-  dicho nada acerca de como ordenar la información, excepto para usar la
-  función predefinida @c{sort}; no se ha dicho nada acerca de cómo almacenar
-  la información, excepto para usar variables y listas; no se ha dicho nada
-  acerca de como escribir programas que escriben programas. Esto son asuntos
-  para otro tipo diferente de libro, un diferente tipo de aprendizaje.
+  Como he dicho, has aprendido algunos detalles; sin embargo, y muy
+  importante, apenas hemos tocado aspectos importantes de la programación; no se ha
+  dicho nada acerca de como clasificar la información, excepto para usar la
+  función predefinida @c{sort}; no he dicho nada acerca de cómo almacenar
+  la información, excepto para usar variables y listas; no he dicho nada
+  acerca de como escribir programas que escriben programas. Esto son temas
+  para otro tipo de libro, y otro tipo de aprendizaje.
 
-  Lo que se ha hecho es aprender lo suficiente para hacer mucho trabajo
-  práctico con GNU Emacs. Lo que se ha hecho es comenzar. Este es el fin del
-  principio de una gran amistad.
+  Lo que has hecho es aprender lo suficiente para hacer mucho trabajo práctico
+  con GNU Emacs. Lo que has hecho es comenzar. Este es el final de un comienzo.
 
-** Apéndice A La función @c{the-the}
+* Apéndice A La función @c{el-el}
 
-   Algunas veces cuando se se escribe texto, se duplican palabras––como con
-   “se se” cerca del principio de esta frase. Se encuentra que lo más
-   frecuente, es duplicar “el”; aquí, se llama a la función para detectar las
-   palabras duplicadas, @c{the-the}.
+   Algunas veces cuando se se escribe texto, se duplican palabras––como con “se
+   se” cerca del principio de esta frase. En mi caso, encuentro que lo más
+   frecuente, es duplicar “el”; por lo tanto, llamo a la función @c(el-el) para
+   detectar las palabras duplicadas.
 
-   Como primer paso, se podrían usar las siguientes expresiones regulares
+   Como primer paso, se puede utilizar la siguiente expresion regular
    para buscar duplicados:
 
    ..example >
      \\(\\w+[ \t\n]+\\)\\1
    < example..
 
-   Este regexp asocia uno o más caracteres que constituyen palabras seguidas
-   por uno o más espacios, tabuladores, o nuevas líneas. Sin embargo, eso no
-   detecta palabras duplicadas en diferentes líneas, desde la finalización de
-   la primera palabra, el fin de la línea, es diferente desde el fin de la
+   Este regexp coincide con uno o más caracteres que constituyen palabras seguidas
+   por uno o más espacios, tabuladores, o líneas nuevas. Sin embargo, no
+   detecta palabras duplicadas en líneas diferentes, ya que el final de la
+   la primera palabra, el final de la línea, es diferente del final de la
    segunda palabra, un espacio. (Para más información acerca de expresiones
-   regulares, mira el Capitulo 12 @l{Búsqueda de Expresiones Regulares}, tan
-   bien como la Seccion @"{Sintaxis de Expresiones Regulares} en @e{El Manual
-   de GNU Emacs}, y la Seccion @"{Expresiones Regulares} en @e{El Manual de
+   regulares, mira el Capitulo 12 @l{#Búsqueda de Expresiones Regulares}, asi
+   como la Seccion @l{info:emacs#Regexps<>Sintaxis de Expresiones Regulares} en @e{El Manual
+   de GNU Emacs}, y la Seccion @l{info:elisp#Regular Expressions<>Expresiones Regulares} en @e{El Manual de
    Referencia GNU Emacs Lisp}.)
 
-   Se podrían intentar buscar caracteres duplicados pero no si el patrón
-   detecta dobles como las dos ocurrencias de ‘th’ en ‘with the’.
+   Puedes intentar buscar solo duplicados para caracteres que constituyen
+   palabras, pero eso no funciona, ya que el detecta dobles como las dos
+   ocurrencias de ‘al’ en ‘igual al’.
 
-   Otro posible regexp busca caracteres constituyentes de palabras seguidos
-   por caracteres de no palabras constituyentes, reduplicadas. Aquí, @'{\\w+}
-   asocia a una o más caracteres de palabras constituyente y @'{\\W*} asocia
-   cero o más caracteres que no constituyen palabras.
+   Otra posible regexp busca caracteres que constituyen palabras, seguido por
+   caracteres que no constituyen palabras, reduplicadas. Aquí, @c{\\w+}
+   coincide con uno o más caracteres que forman palabras y @c{\\W*} con
+   cero o más caracteres que no forman palabras.
 
    ..example >
      \\(\\(\\w+\\)\\W*\\)\\1
    < example..
 
-   De nuevo, no útil.
+   De nuevo, no es útil.
 
-   Aquí está el patrón que uso. No es perfecto, pero suficientemente
-   bueno. @'{\\b} asocia la cadena vacía provista al principio o fin de una
-   palabra; @'{[^@@ \n\t]+} asocia una o más ocurrencias de qué caracteres
-   que @e{no} son un @@-signo, espacio, nueva línea, o tabulador.
+   Aquí está el patrón que uso. No es perfecto, pero es lo suficientemente
+   bueno. @c{\\b} coincide con la cadena vacía siempre y cuando este al
+   principio o al final de una palabra; @c{[^@@ \n\t]+} coincide con una o más
+   ocurrencias de cualquier caracter que @e{no} son sea el signo @@, un espacio, nueva
+   línea, o tabulador.
 
    ..example >
-     \\b\\([^@@ \n\t]+\\)[ \n\t]+\\1\\b
+     \\b\\([^@ \n\t]+\\)[ \n\t]+\\1\\b
    < example..
 
-   Uno puede escribir expresiones más complicadas, pero esta expresión es
-   suficientemente buena así.
+   Uno puede escribir expresiones más complicadas, pero encontre que esta
+   expresión es suficientemente buena, así que la uso.
 
-   Aquí está la función @c{the-the}, como se incluye en mi fichero
-   @f{.emacs}, a lo largo de un atajo global manejable:
+   Aquí está la función @c{el-el}, tal y como la incluyo en mi fichero
+   @f{.emacs}, junto con un practico atajo global:
 
    ..src > elisp
-     (defun the-the ()
-       "Busca hacia adelante para una palabra duplicada."
+     (defun el-el ()
+       "Busca hacia adelante una palabra duplicada."
        (interactive)
        (message "Buscando palabras duplicadas ...")
        (push-mark)
        ;; Este regexp no es perfecto
-       ;; pero es limpiamente bueno a pesar de todo:
+       ;; pero a pesar de todo, es bastante bueno:
        (if (re-search-forward
-            "\\b\\([^@@ \n\t]+\\)[ \n\t]+\\1\\b" nil 'move)
-           (message "Palabra encontrada duplicada.")
+            "\\b\\([^@ \n\t]+\\)[ \n\t]+\\1\\b" nil 'move)
+           (message "Palabra duplicada encontrada.")
          (message "Fin de búfer")))
 
-     ;; Asocia ‘the-the’ a  C-c \
-     (global-set-key "\C-c\\" 'the-the)
+     ;; Asocia ‘el-el’ a  C-c \
+     (global-set-key "\C-c\\" 'el-el)
    < src..
 
-   Aquí está la prueba del texto:
+   Aquí está el texto de prueba:
 
    ..example >
-     uno dos tres cuatro cinco
+     uno dos dos tres cuatro cinco
      cinco seis siete
    < example..
 
-   Se pueden sustituir las otras expresiones regulares mostradas debajo en la
-   definición de función y se prueba cada una de ellas en esta lista.
+   Puedes probar con las expresiones regulares mostradas anteriormente y probar
+   cada una de ellas en esta lista.
 
-** Apéndice B Manejando el anillo de la muerte
+* Apéndice B Manejando el anillo de la muerte
 
-   El anillo de la muerte es una lista que es transformada dentro de un
-   anillo que trabaja con la función @c{current-kill}. Los comandos @c{yank}
-   y @c{yank-pop} usan la función @c{current-kill}.
+   El anillo de la muerte es una lista que se transforma en un anillo por el
+   funcionamiento de la función @c{current-kill}. Los comandos @c{yank} y
+   @c{yank-pop} usan la función @c{current-kill}.
 
-   Este apéndice describe la función @c{current-kill} y los comandos @c{yank}
-   y @c{yank-pop}, pero primero, considere los trabajo del kill ring.
+   Este apéndice describe la función @c{current-kill} y asi como los comandos
+   @c{yank} y @c{yank-pop}, pero primero, considere el funcionamiento del anillo
+   de la muerte.
 
-   El anillo de la muerte tiene el tamaño máximo de sesenta
-   elementos; hacer una explicación con este número máximo quedaría demasiado
-   larga. En vez de eso, pensemos qué ocurre si se asígna a cuatro. Por
-   favor, evalúe lo siguiente:
+   El anillo de la muerte tiene una longitud maxima predeterminada de sesenta
+   elementos; hacer una explicación del porque de este número quedaría demasiado
+   extenso. En su lugar, pensemos qué ocurre si se establece en cuatro. Por favor,
+   evalúa lo siguiente:
 
    ..src > elisp
      (setq old-kill-ring-max kill-ring-max)
      (setq kill-ring-max 4)
    < src..
 
-   Entonces, por favor, copie cada línea del siguiente ejemplo indentado
+   Despues, por favor copia cada línea del siguiente ejemplo indentado
    dentro del anillo de la muerte. Se puede cortar cada línea
    con @k{C-k} o marcarla y copiarla con @k{M-w}.
 
-   (En un búfer de solo lectura, tal como el búfer @f{*info*}, el comando
-   kill, @k{C-k} @%c(kill-line), no eliminará el texto, solamente lo mueve
-   al anillo de la muerte. Sin embargo, el ordenador puede
-   avisar con un beep. Alternativamente, para silenciar, se puede copiar la
-   región de cada línea con el comando @k{M-w} @%c(kill-ring-save). Se debe
-   marcar cada línea de este comando para tener éxito, pero no importa si al
-   final se posiciona en el punto o la marca).
+   (En un búfer de solo lectura, como el búfer @f{*info*}, el comando kill,
+   @k{C-k} @%c(kill-line), no eliminará el texto, solamente lo copiara al anillo
+   de la muerte. Sin embargo, el ordenador puede emitir un beep. Alternativamente,
+   para evitarlo, se puede copiar la región de cada línea con el comando
+   @k{M-w} @%c(kill-ring-save). Se debe marcar cada línea para que este comando
+   tenga exito, pero no importa en que extremo se coloque el punto o la marca.)
 
-   Por favor, invoque las llamadas en orden, de modo que los cinco elementos
-   rellenen el anillo de la muerte.
+   Por favor, invoca las llamadas en orden, de modo que los cinco elementos
+   intenten llenar el anillo de la muerte.
 
    ..example >
      primero algo de texto
-     segunda pieza de texto
-     tercera línea
+     segundo fragmento de texto
+     tercer línea
      cuarta línea de texto
-     quinto bit de texto
+     quinta parte del texto
    < example..
 
-   Entonces encuentra el valor de @c{kill-ring} evaluando
+   Luego encuentra el valor de @c{kill-ring} evaluando
 
    ..example >
      kill-ring
    < example..
 
-   Eso es:
+   que es:
 
    ..src > elisp
-     ("quinto bit de texto" "cuarta línea de texto"
-     "tercera línea" "segunda pieza de texto")
+     ("quinta parte del texto" "cuarta línea de texto"
+      "tercer línea" "segundo fragmento de texto")
    < src..
 
-   El primer elemento, @'{primero algo de texto}, fué borrado.
+   El primer elemento, @'{primero algo de texto}, se descarto.
 
-   Para devolver el viejo valor para el tamaño del kill ring, evalúe:
+   Para volver al valor anterior del tamaño del kill ring, evalúa:
 
    ..src > elisp
      (setq kill-ring-max old-kill-ring-max)
    < src..
 
-*** La función @c{current-kill}
-
-    La función @c{current-kill} cambia el elemento en el anillo de la muerte
-    @e{kill ring} para el que el @c{kill-ring-yank-pointer} apunta. (También,
-    la función @c{kill-new} asigna @c{kill-ring-yank-pointer} para apuntar al
-    último elemento del anillo de la muerte. La función
-    @c{kill-new} se usa directamente o indirectamente por @c{kill-append},
-    @c{copy-region-as-kill}, @c{kill-ring-save}, @c{kill-line}, y
-    @c{kill-region}.)
-
-    La función @c{current-kill} es usada por @c{yank} y por
-    @c{yank-pop}. Aquí está el código para @c{current-kill}:
-
-    ..src > elisp
-      (defun current-kill (n &optional do-not-move)
-      "Rota el punto de pegue por N lugares, y entonces devuelve lo cortado.
-      Si N es cero, ‘interprogram-paste-function’ se asigna, y si se llama
-      devuelve una cadena, entonces esta cadena se añade al frente del
-      anillo de la muerte y devuelve el último corte.
-      Si el argumento opcional DO-NOT-MOVE es no nulo, entonces no muevas el
-      punto de pegue; solo devuelve el Nth corte hacia adelante.
-         (let ((interprogram-paste (and (= n 0)
-                                        interprogram-paste-function
-                                        (funcall interprogram-paste-function)))))
-          (if interprogram-paste
-              (progn
-                ;; Deshabilita el programa de la función de corte cuando se
-                ;; añade el nuevo texto al anillo de la muerte,
-                ;; así Emacs no intenta poseer la selección
-                ;; con idéntico texto.
-                (let ((interprogram-cut-function nil))
-                  (kill-new interprogram-paste))
-                interprogram-paste)
-            (or kill-ring (error "Kill ring is empty"))
-            (let ((ARGth-kill-element
-                   (nthcdr (mod (- n (length kill-ring-yank-pointer))
-                                (length kill-ring))
-                           kill-ring)))
-              (or do-not-move
-                  (setq kill-ring-yank-pointer ARGth-kill-element))
-              (car ARGth-kill-element)))))
-    < src..
-
-    Recuerde también que la función @c{kill-new} asigna
-    @c{kill-ring-yank-pointer} al último elemento del anillo de la muerte
-    @e{kill ring}, que significa que todas las funciones lo llaman y asigna
-    el valor de manera indirecta: @c{kill-append}, @c{copy-region-as-kill},
-    @c{kill-ring-save}, @c{kill-line} y @c{kill-region}.
-
-    Aquí está la línea en @c{kill-new}, que se explica en la @l{La función
-    @c{kill-new}}.
-
-    ..src > elisp
-      (setq kill-ring-yank-pointer kill-ring)
-    < src..
-
-    La función @c{current-kill} parece compleja, pero usual, eso puede ser
-    comprendido tomándolo aparte pieza por pieza. Primero míralo en la forma
-    esquelética:
-
-    ..src > elisp
-      (defun current-kill (n &optional do-not-move)
-        "Rota el punto a pegar por N lugares, y entonces devuelve el texto cortado."
-        (let varlist
-          body…)
-    < src..
-
-    Esta función tiene dos argumentos, uno es opcional. Hay una cadena de
-    documentación. @e{No} es una función interactiva.
-
-    El cuerpo de la definición de función es una expresión @c{let}, que por
-    sí misma tiene tanto un cuerpo como una @V{varlist}.
-
-    La expresión @c{let} declara una variable que será solo usable con las
-    asociaciones de esta función. Esta variable se llama
-    @c{interprogram-paste} y se copia a otro programa. No se copia con esta
-    instancia de GNU Emacs. La mayoría de los sistemas de ventanas proveen
-    una facilidad para pegar el interprograma. Tristemente, esta facilidad
-    normalmente provee solo el último elemento. La mayoría de los sistemas de
-    ventanas no han adoptado un anillo de muchas posibilidades, incluso
-    aunque Emacs haya provisto esto durante décadas.
-
-    La expresión @c{if} tiene dos partes, una si existe
-    @c{interprogram-paste} y otra si no.
-
-    Permítenos considerar el ‘si no’ o la parte else de la función
-    @c{current-kill}. (La parte then usa la función @c{kill-new}, que ya
-    hemos descrito. Vea la Seccion @l{La función @c{kill-new}.})
-
-    ..src > elisp
-      (or kill-ring (error "El Kill ring está vacío"))
-      (let ((ARGth-kill-element
-             (nthcdr (mod (- n (length kill-ring-yank-pointer))
-                          (length kill-ring))
-                     kill-ring)))
-        (or do-not-move
-            (setq kill-ring-yank-pointer ARGth-kill-element))
-        (car ARGth-kill-element))
-    < src..
-
-    El código primero chequea si el anillo de la muerte tiene
-    contenido; de otro modo señala un error.
-
-    Note que la expresión @c{or} es muy similar para testear el tamaño con un
-    @c{if}:
-
-    ..src > elisp
-      (if (zerop (length kill-ring))          ; parte-si
-          (error "Anillo de la muerte vacío"))       ; parte-entonces
-        ;; No hay parte-resto
-    < src..
-
-    Si no hay nada en el anillo de la muerte, su tamaño debe
-    ser cero y un mensaje de error se envía al usuario: @'{El kill ring está
-    vacío}. La función @c{current-kill} usa una expresión @c{or} que es
-    simple. Pero una expresión @c{if} recuerda lo que lleva.
-
-    Esta expresión @c{if} usa la función @c{zerop} que devuelve verdadero si el
-    valor que se chequea es cero. Cuando @c{zerop} chequea verdadero, la parte
-    then del @c{if} se evalúa. La parte then es una lista empezando con la
-    función @c{error}, que es una función que es similar a la función
-    @c{message} (Vease Sección @l{message, , La Función @c{message}}) que
-    imprime un mensaje de una línea en el área de eco. Sin embargo, además de
-    imprimir un mensaje, @c{error} también evalúa la función que está
-    embebida. Esto significa que el resto de la función no será evaluada si
-    el tamaño del anillo de la muerte es cero.
-
-    Entonces la función @c{current-kill} selecciona el elemento a
-    devolver. La selección depende del número de lugares que @c{current-kill}
-    rota y donde @c{kill-ring-yank-pointer} apunta.
-
-    Lo siguiente, si el argumento @c{do-not-move} opcional es verdadero o el
-    actual valor de @c{kill-ring-yank-pointer} se establece al punto de la
-    lista. Finalmente, otra expresión devuelve el primer elemento de la lista
-    incluso si el argumento @c{do-not-move} es verdadero.
-
-    En mi opinión, es ligeramente erróneo, al menos para humanos, usar el
-    término ‘error’ como el nombre de la función @c{error}. Un término mejor
-    sería ‘cancelar’. Estrictamente hablando, de acuerdo, no se puede
-    apuntar, mucho menos rotar un puntero a una lista que no tiene tamaño,
-    así desde el punto de vista del ordenador, la palabra ‘error’ es
-    correcta. Pero un humano espera intentar algo, si solo si se encuentra el
-    anillo de la muerte esté lleno o vacío. Esto es un acto de
-    exploración.
-
-    Desde el punto de vista humano, el acto de exploración y descubrimiento
-    no es necesariamente un error, y por esta razón no sería etiquetado como
-    tal, incluso las vocales de un ordenador. Como tal, el código en Emacs
-    implica que un humano que está actuando virtuosamente, explorando su
-    entorno, está teniendo un error. Esto está mal. Incluso aunque el
-    ordenador tome los mismos pasos como cuando hay ‘error’, un término tal
-    como ‘cancelar’ tendría una clara connotación.
-
-    Entre otras acciones, la else-part de la expresión @c{if} asigna el valor
-    de @c{kill-ring-yank-pointer} a @c{ARGth-kill-element} cuando el kill
-    ring @e{anillo de la muerte} tiene alguna cosa dentro y el valor de
-    @c{do-not-move} es @c{nil}.
-
-    El código se parece a esto:
-
-    ..src > elisp
-      (nthcdr (mod (- n (length kill-ring-yank-pointer))
-                   (length kill-ring))
-              kill-ring)))
-    < src..
-
-    Esto necesita algún examen. A menos que no se suponga mover el puntero, la
-    función @c{current-kill} cambia donde @c{kill-ring-yank-pointer}
-    apunta. Esto es lo que la expresión @c{(setq kill-ring-yank-pointer
-    ARGth-kill-element)} hace. También, claramente, @c{ARGth-kill-element}
-    está siendo asignado para ser igual a algún @c{cdr} del anillo de la
-    muerte, usando la función @c{nthcdr} que está descrita en
-    una sección temprana. (Vea la Seccion @l{copy-region-as-kill}.)  ¿Cómo se
-    hace?
-
-    Como se ha visto antes (Vease Sección @l{nthcdr}), la función @c{nthcdr}
-    funciona repetidamente tomando el @c{cdr} de una lista––eso toma el
-    @c{cdr}, del @c{cdr}, del @c{cdr}, …
-
-    Las siguientes dos expresiones producen el mismo resultado:
-
-    ..src > elisp
-      (setq kill-ring-yank-pointer (cdr kill-ring))
-
-      (setq kill-ring-yank-pointer (nthcdr 1 kill-ring))
-    < src..
-
-    Sin embargo, la expresión @c{nthcdr} es más complicada. Usa la función
-    @c{mod} para determinar que @c{cdr} para seleccionar.
-
-    (Se recordará buscar funciones propias primero, en vez de esto, tendremos
-    que ir dentro del @c{mod}.)
-
-    La función @c{mod} devuelve el valor de su primer argumento módulo el
-    segundo; que es decir, eso devuelve el resto después de dividir el primer
-    argumento por el segundo. El valor devuelto tiene el mismo signo que el
-    segundo argumento.
-
-    De este modo,
-
-    ..src > elisp
-      (mod 12 4)
-        ⇒ 0  ;; porque no hay resto
-      (mod 13 4)
-        ⇒ 1
-    < src..
-
-    En este caso, el primer argumento es con frecuencia pequeño que el
-    segundo. Que está bien.
-
-    ..src > elisp
-      (mod 0 4)
-        ⇒ 0
-      (mod 1 4)
-        ⇒ 1
-    < src..
-
-    Se puede adivinar lo que la función @c{-} hace. Eso es como @c{+} pero
-    sustrae en vez de añadir; la función @c{-} sustrae su segundo argumento
-    desde el primero. También, ya se sabe que la función @c{length} hace
-    (Vease Sección @l{#Descubrir la longitud de una lista: @c{length}}). Eso
-    devuelve el tamaño de una lista.
-
-    Y @c{n} es el nombre del argumento requerido a la función
-    @c{current-kill}.
-
-    Así cuando el primer argumento a @c{nthcdr} es cero, la expresión
-    @c{nthcdr} devuelve la lista entera, como se puede ver evaluando lo
-    siguiente:
-
-    ..src > elisp
-      ;; kill-ring-yank-pointer and kill-ring tener un tamaño de cuatro
-      ;; and (mod (- 0 4) 4) ⇒ 0
-      (nthcdr (mod (- 0 4) 4)
-              '("cuarta línea de texto"
-                "tercera línea"
-                "segunda pieza de texto"
-                "primero algo de texto"))
-    < src..
-
-    Cuando el primer argumento a la función @c{current-kill} es uno, la
-    expresión @c{nthcdr} devuelve la lista sin su primer elemento.
-
-    ..src > elisp
-      (nthcdr (mod (- 1 4) 4)
-              '("cuarta línea de texto"
-                "tercera línea"
-                "segunda pieza de texto"
-                "primero algo de texto"))
-    < src..
-
-    Incidentalmente, tanto @c{kill-ring} y @c{kill-ring-yank-pointer} son
-    @:{variables globales}. Esto significa que cualquier expresión en Emacs
-    Lisp puede acceder a ellas. Ellas no son como las variables locales
-    asignadas por @c{let} o como los símbolos en una lista de argumentos. Las
-    variables locales pueden solo ser accedidas con el @c{let} que los define
-    o la función que los especifica en una lista de argumentos (y con
-    expresiones llamadas por ellos).
-
-*** @c{pegar}
-
-    Después de aprender acerca de @c{current-kill}, el código para la función
-    @c{yank} es casi fácil.
-
-    La función @c{yank} no usa la variable @c{kill-ring-yank-pointer}
-    directamente. Eso llama a @c{insert-for-yank} que llama a @c{current-kill}
-    que asigna la variable @c{kill-ring-yank-pointer}.
-
-    El código se parece a esto:
-
-    ..src > elisp
-      (defun yank (&optional arg)
-        "Reinserta (\"pega\") el último logro del texto cortado.
-      Más precisamente, reinserta el texto cortado más recientemente.
-      Pon el punto al final, y asigna la marca al principio.
-      Solo con \\[universal-argument] como argumento, lo mismo pero pon el
-      punto al principio (y la marca al final). Con el argumento N, reinserta
-      el N más recientemente cortado.
-      Cuando este comando inserta texto cortado dentro del búfer, eso
-      honra a ‘yank-excluded-properties’ y ‘yank-handler’ como se describe
-      la cadena de documentación para ‘insert-for-yank-1’, que se ve.
-      Ver también el comando \\[yank-pop]."
-        (interactive "*P")
-        (setq yank-window-start (window-start))
-        ;; Si no tenemos todo el camino a través, crea last-command que
-        ;; indique esto para el siguiente comando.
-        (setq this-command t)
-        (push-mark (point))
-        (insert-for-yank (current-kill (cond
-                                        ((listp arg) 0)
-                                        ((eq arg '-) -2)
-                                        (t (1- arg)))))
-        (if (consp arg)
-            ;; Esto es como like exchange-point-and-mark,
-            ;;     pero no activa la marca.
-            ;; Es limpio evitar la activación, incluso aunque el comando
-            ;; loop would desactivaría la marca porque se
-            ;; insertara el texto.
-            (goto-char (prog1 (mark t)
-                         (set-marker (mark-marker) (point) (current-buffer)))))
-        ;; Si tenemos todo el camino, haz que this-command lo indique.
-        (if (eq this-command t)
-            (setq this-command 'yank))
-        nil)
-    < src..
-
-    La expresión clave es @c{insert-for-yank}, que inserta la cadena devuelta
-    por @c{current-kill}, pero elimina algo de propiedades de texto desde eso.
-
-    Sin embargo, antes de tener esta expresión, la función asigna el valor de
-    @c{yank-window-start} a la posición devuelta por la expresión
-    @c{(window-start)}, la posición que muestra lo que actualmente empieza. La
-    función @c{yank} también asigna @c{this-command} y empuja la marca.
-
-    Después de pegar el elemento apropiado, si el argumento opcional es un
-    @c{cons} en vez de un número o nada, se pone el punto al principio del
-    texto pegado y se marca al final.
-
-    (La función @c{prog1} es como @c{progn} pero devuelve el valor de su primer
-    argumento en vez del valor de su último argumento. Su primer argumento
-    fuerza devolver la marca del búfer como un entero. Se puede ver la
-    documentación para estas funciones emplazando el punto a través de ellas en
-    este búfer y entonces escribiendo @k{C-h f} @%c(describe-function) seguido
-    por un @k{RET}; por defecto es la función.)
-
-    La última parte de la función cuenta que hacer cuando eso sucede.
-
-*** @c{yank-pop}
-
-    Después de comprender @c{yank} y @c{current-kill}, se conoce como enfocar
-    la función @c{yank-pop}. Dejando fuera la documentación para guardar el
-    espacio, se parece a esto:
-
-    ..src > elisp
-      (defun yank-pop (&optional arg)
-        "…"
-        (interactive "*p")
-        (if (not (eq last-command 'yank))
-            (error "El comando previo no fué un corte"))
-        (setq this-command 'yank)
-        (unless arg (setq arg 1))
-        (let ((inhibit-read-only t)
-              (before (< (point) (mark t))))
-          (if before
-              (funcall (or yank-undo-function 'delete-region) (point) (mark t))
-            (funcall (or yank-undo-function 'delete-region) (mark t) (point)))
-          (setq yank-undo-function nil)
-          (set-marker (mark-marker) (point) (current-buffer))
-          (insert-for-yank (current-kill arg))
-          ;; Asigna la ventana a volver donde estaba el comando yank,
-          ;; si es posible
-          (set-window-start (selected-window) yank-window-start t)
-          (if before
-              ;; Esto es como exchange-point-and-mark,
-              ;; pero no activa la marca.
-              ;; Es limpio evitar la activación, incluso aunque el comando
-              ;; desactivase la marca porque se insertara el texto.
-              (goto-char (prog1 (mark t)
-                           (set-marker (mark-marker)
-                                       (point)
-                                       (current-buffer))))))
-        nil)
-    < src..
-
-    La función es interactive con una pequeña @'{p} así el argumento prefijo
-    es procesado y pasado a la función. El comando puede solo ser usado
-    después del yank previo; de otro modo un mensaje de error se envía. Este
-    chequeo usa la variable @c{last-command} que se asigna por @c{yank} y
-    discutida de algún modo. (Vea la Seccion @l{copy-region-as-kill}.)
-
-    La cláusula @c{let} asigna la variable @c{before} a verdadero o falso
-    dependiendo de si el punto está antes o después de la marca y entonce la
-    región entre punto y marca se borra. Esta es la región que fué insertada
-    por el yank previo y eso es este texto que será reemplazado.
-
-    @c{funcall} llama a su primer argumento como una función, pasando los
-    argumentos restantes. El primer argumento es el que la expresión
-    @c{or} devuelve. Los dos argumentos restantes son las posiciones de
-    punto y marca asignadas por el comando @c{yank} precedente.
-
-    Hay más, pero esta es la parte más dura.
-
-*** El fichero @f{ring.el}
-
-    De manera interesante, GNU Emacs posee un fichero llamado @f{ring.el} que
-    provee muchas de las funcionalidades que ahora se discuten. Pero las
-    funciones como @c{kill-ring-yank-pointer} no usan esta librería,
-    posiblemente porque fueron escritas pronto.
+** La función @c{current-kill}
+
+   La función @c{current-kill} cambia el elemento en el anillo de la muerte al
+   que apunta @c{kill-ring-yank-pointer}. (Ademas, la función @c{kill-new}
+   establece @c{kill-ring-yank-pointer} para que apunte al último elemento del
+   anillo de la muerte. La función @c{kill-new} se utiliza directamente o
+   indirectamente en las funciones @c{kill-append}, @c{copy-region-as-kill},
+   @c{kill-ring-save}, @c{kill-line}, y @c{kill-region}.)
+
+   La función @c{current-kill} es usada por @c{yank} y por
+   @c{yank-pop}. Aquí está el código para @c{current-kill}:
+
+   ..src > elisp
+     (defun current-kill (n &optional do-not-move)
+       "Rota el punto de pegado por N lugares, y entonces devuelve el corte.
+     Si N es cero, se establece ‘interprogram-paste-function’, y si se llama
+     devuelve una cadena, entonces esa cadena se añade al frente del
+     anillo de la muerte y devuelve el último corte.
+     Si el argumento opcional DO-NOT-MOVE no es nulo, entonces no mueve el
+     punto de pegado; solo devuelve el Nth corte hacia adelante.
+        (let ((interprogram-paste (and (= n 0)
+                                       interprogram-paste-function
+                                       (funcall interprogram-paste-function)))))
+         (if interprogram-paste
+             (progn
+               ;; Deshabilita la función de corte interprograma cuando se añade
+               ;; el nuevo texto al anillo de la muerte, para que Emacs no intente
+               ;; apropiarse de la selección con texto idéntico.
+               (let ((interprogram-cut-function nil))
+                 (kill-new interprogram-paste))
+               interprogram-paste)
+           (or kill-ring (error "El anillo de la muerte esta vacio"))
+           (let ((ARGth-kill-element
+                  (nthcdr (mod (- n (length kill-ring-yank-pointer))
+                               (length kill-ring))
+                          kill-ring)))
+             (or do-not-move
+                 (setq kill-ring-yank-pointer ARGth-kill-element))
+             (car ARGth-kill-element)))))
+   < src..
+
+   Recuerda también que la función @c{kill-new} asigna
+   @c{kill-ring-yank-pointer} al último elemento del anillo de la muerte,
+   lo que significa que todas las funciones que lo llaman y establecen
+   el valor de forma indirecta: @c{kill-append}, @c{copy-region-as-kill},
+   @c{kill-ring-save}, @c{kill-line} y @c{kill-region}.
+
+   Aquí está la línea en @c{kill-new}, que se explica en la Seccion
+   @l{#La función @c{kill-new}}.
+
+   ..src > elisp
+     (setq kill-ring-yank-pointer kill-ring)
+   < src..
+
+   La función @c{current-kill} parece compleja, pero como de costumbre, se puede
+   entender desmontandola pieza por pieza. Primero míralo en la forma de esqueleto:
+
+   ..src > elisp
+     (defun current-kill (n &optional do-not-move)
+       "Rota el punto de pegado por N lugares, y entonces devuelve el corte.
+       (let varlist
+         body…)
+   < src..
+
+   Esta función toma dos argumentos, uno de los cuales es opcional. Tiene una cadena de
+   documentación. @e{No} es una función interactiva.
+
+   El cuerpo de la definición de función es una expresión @c{let}, que a su vez
+   tiene un cuerpo asi como una @c{varlist}.
+
+   La expresión @c{let} declara una variable que será solo utilizable dentro de
+   los limites de esta función. Esta variable se llama @c{interprogram-paste} y
+   es para copiar a otro programa. No es para copiar dentro de esta instancia de
+   GNU Emacs. La mayoría de los sistemas de ventanas proveen una facilidad para
+   el pegado interprograma. Tristemente, esta facilidad normalmente solo provee
+   el último elemento. La mayoría de los sistemas de ventanas no han adoptado un
+   anillo de muchas posibilidades, a pesar de que Emacs lo ha proporcionado
+   durante décadas.
+
+   La expresión @c{if} tiene dos partes, una si existe
+   @c{interprogram-paste} y otra si no.
+
+   Consideremos la parte ‘si no’ o la parte-else de la función
+   @c{current-kill}. (La parte-else utiliza la función @c{kill-new}, que ya
+   hemos descrito. Vea la Seccion @l{#La función @c{kill-new}}.)
+
+   ..src > elisp
+     (or kill-ring (error "El anillo de la muerte esta vacio"))
+     (let ((ARGth-kill-element
+            (nthcdr (mod (- n (length kill-ring-yank-pointer))
+                         (length kill-ring))
+                    kill-ring)))
+       (or do-not-move
+           (setq kill-ring-yank-pointer ARGth-kill-element))
+       (car ARGth-kill-element))
+   < src..
+
+   El código primero comprueba si el anillo de la muerte tiene
+   contenido; de lo contrario, señala un error.
+
+   Note que la expresión @c{or} es muy similar en longitud a una prueba con un
+   @c{if}:
+
+   ..src > elisp
+     (if (zerop (length kill-ring))            ; parte-if
+         (error "El Kill ring está vacío"))    ; parte-then
+       ;; No hay parte-else
+   < src..
+
+   Si no hay nada en el anillo de la muerte, su tamaño debe
+   ser cero y un mensaje de error se envía al usuario: @'{El kill ring está
+   vacío}. La función @c{current-kill} usa una expresión @c{or} que es mas
+   simple. Pero una expresión @c{if} nos recuerda lo que ocurre.
+
+   Esta expresión @c{if} usa la función @c{zerop} que devuelve verdadero si el
+   valor que esta probando es cero. Cuando la prueba @c{zerop} es verdadera, se
+   evalúa la parte-then del @c{if}. La parte-then es una lista que comienza con
+   la función @c{error}, que es una función similar a la función @c{message}
+   (Vease Sección @l{#La Función @c{message}}) en el sentido que imprime un
+   mensaje de una línea en el área de eco. Sin embargo, además de imprimir un
+   mensaje, @c{error} también detiene la evaluacion de la funcion dentro de la
+   cual esta embebida. Esto significa que el resto de la función no se
+   evaluara si la longitud del anillo de la muerte es cero.
+
+   Entonces la función @c{current-kill} selecciona el elemento a
+   devolver. La selección depende del número de lugares en los que @c{current-kill}
+   rota y donde apunta @c{kill-ring-yank-pointer}.
+
+   A continuacion, si el argumento opcional @c{do-not-move} es verdadero o el
+   valor actual de @c{kill-ring-yank-pointer} se establece para apuntar a la
+   lista. Finalmente, otra expresión devuelve el primer elemento de la lista
+   incluso si el argumento @c{do-not-move} es verdadero.
+
+   En mi opinión, es ligeramente engañoso, al menos para humanos, usar el
+   término ‘error’ como el nombre de la función @c{error}. Un término mejor
+   sería ‘cancelar’. Estrictamente hablando, por supuesto, no se puede apuntar,
+   mucho menos rotar un puntero a una lista que no tiene longitud, por lo que
+   desde el punto de vista del ordenador, la palabra ‘error’ es correcta. Pero
+   un humano espera intentar este tipo de cosas, aunque solo sea para averiguar
+   si el anillo de la muerte esté lleno o vacío. Esto es un acto de exploración.
+
+   Desde el punto de vista humano, el acto de exploración y descubrimiento no es
+   necesariamente un error, y por lo tanto, no debe etiquetarse como tal, ni
+   siquiera en las entrañas de un ordenador. Tal como estan las cosas, el codigo
+   de Emacs implica que un humano que está actuando virtuosamente, explorando su
+   entorno, está cometiendo un error. Esto está mal. Incluso aunque el ordenador
+   tome los mismos pasos que cuando hay un ‘error’, un término como ‘cancelar’
+   tendría una connotación mas clara.
+
+   Entre otras acciones, la parte-else de la expresión @c{if} establece el valor
+   de @c{kill-ring-yank-pointer} a @c{ARGth-kill-element} cuando el
+   anillo de la muerte tiene alguna cosa dentro y el valor de
+   @c{do-not-move} es @c{nil}.
+
+   El código se ve asi:
+
+   ..src > elisp
+     (nthcdr (mod (- n (length kill-ring-yank-pointer))
+                  (length kill-ring))
+             kill-ring)))
+   < src..
+
+   Esto necesita algún examen. A menos que no se suponga mover el puntero, la
+   función @c{current-kill} cambia a donde apunta @c{kill-ring-yank-pointer}.
+   Esto es lo que hace la expresión @c{(setq kill-ring-yank-pointer
+   ARGth-kill-element)}. También, claramente, @c{ARGth-kill-element}
+   está siendo asignado para ser igual a algún @c{cdr} del anillo de la
+   muerte, usando la función @c{nthcdr} que se describio en
+   una sección anterior. (Vea la Seccion @l{#@c(copy-region-as-kill)}.)  ¿Cómo
+   hace esto?
+
+   Como vimos antes (en la Sección @l{#@c(nthcdr)}), la función @c{nthcdr}
+   funciona tomando repetidamente el @c{cdr} de una lista––toma el
+   @c{cdr}, del @c{cdr}, del @c{cdr} …
+
+   Las dos expresiones siguientes producen el mismo resultado:
+
+   ..src > elisp
+     (setq kill-ring-yank-pointer (cdr kill-ring))
+
+     (setq kill-ring-yank-pointer (nthcdr 1 kill-ring))
+   < src..
+
+   Sin embargo, la expresión @c{nthcdr} es más complicada. Utiliza la función
+   @c{mod} para determinar que @c{cdr} seleccionar.
+
+   (Recuerda mirar primero las funciones internas, de hecho, tendremos
+   que ir dentro del @c{mod}.)
+
+   La función @c{mod} devuelve el valor de su primer argumento módulo el
+   segundo; es decir, devuelve el resto después de dividir el primer
+   argumento por el segundo. El valor devuelto tiene el mismo signo que el
+   segundo argumento.
+
+   Por lo tanto,
+
+   ..srci > elisp
+     > (mod 12 4)
+     0  ;; porque no hay resto
+     > (mod 13 4)
+     1
+   < srci..
+
+   En este caso, el primer argumento es con frecuencia mas pequeño que el
+   segundo. Eso está bien.
+
+   ..srci > elisp
+     > (mod 0 4)
+     0
+     > (mod 1 4)
+     1
+   < srci..
+
+   Podemos adivinar lo que hace la función @c{-}. Eso es como @c{+} pero
+   resta en lugar de sumar; la función @c{-} sustrae su segundo argumento
+   del primero. Ademas, ya sabemos lo que hace la función @c{length}
+   (Ver la Sección @l{#Descubrir la longitud de una lista: @c{length}}).
+   Devuelve la longitud de una lista.
+
+   Y @c{n} es el nombre del argumento requerido para la función
+   @c{current-kill}.
+
+   Así que cuando el primer argumento de @c{nthcdr} es cero, la expresión
+   @c{nthcdr} devuelve la lista entera, como puedes ver evaluando lo
+   siguiente:
+
+   ..src > elisp
+     ;; kill-ring-yank-pointer y kill-ring tienen una longitud de cuatro
+     ;; and (mod (- 0 4) 4) ⇒ 0
+     (nthcdr (mod (- 0 4) 4)
+             '("cuarta línea de texto"
+               "tercer línea"
+               "segundo fragmento de texto"
+               "primero algo de texto"))
+   < src..
+
+   Cuando el primer argumento para la función @c{current-kill} es uno, la
+   expresión @c{nthcdr} devuelve la lista sin su primer elemento.
+
+   ..src > elisp
+     (nthcdr (mod (- 1 4) 4)
+             '("cuarta línea de texto"
+               "tercer línea"
+               "segundo fragmento de texto"
+               "primero algo de texto"))
+   < src..
+
+   Por cierto, tanto @c{kill-ring} y @c{kill-ring-yank-pointer} son
+   @:{variables globales}. Esto significa que cualquier expresión en Emacs
+   Lisp puede acceder a ellas. No son como las variables locales
+   establecidas por @c{let} o como los símbolos en una lista de argumentos. Solo
+   se puede acceder a las variables locales dentro del @c{let} que las define
+   o la función que las especifica en una lista de argumentos (y dentro de las
+   expresiones llamadas por estas).
+
+** @c{yank}
+
+   Después de aprender sobre @c{current-kill}, el código para la función
+   @c{yank} es casi fácil.
+
+   La función @c{yank} no utiliza directamente la variable @c{kill-ring-yank-pointer}.
+   Llama a @c{insert-for-yank} que llama a @c{current-kill}
+   que establece la variable @c{kill-ring-yank-pointer}.
+
+   El código se ve asi:
+
+   ..src > elisp
+     (defun yank (&optional arg)
+       "Reinserta (\"pega\") el último fragmento del texto cortado.
+     Más concretamente, vuelve a insertar el texto cortado o pegado más reciente.
+     Coloca el punto al final, y asigna la marca al principio.
+     Con solo \\[universal-argument] como argumento, realiza lo mismo pero coloca el
+     punto al principio (y la marca al final). Con el argumento N, reinserta
+     el N fragmento más recientemente cortado.
+
+     Cuando este comando inserta texto dentro del búfer, respeta
+     a ‘yank-excluded-properties’ y ‘yank-handler’ como describe
+     la cadena de documentación de ‘insert-for-yank-1’, que ve.
+
+     Ver también el comando \\[yank-pop]."
+       (interactive "*P")
+       (setq yank-window-start (window-start))
+       ;; Si no llegamos hasta el final, hace que last-command
+       ;; indique esto para el siguiente comando.
+       (setq this-command t)
+       (push-mark (point))
+       (insert-for-yank (current-kill (cond
+                                       ((listp arg) 0)
+                                       ((eq arg '-) -2)
+                                       (t (1- arg)))))
+       (if (consp arg)
+           ;; Esto es es como exchange-point-and-mark,
+           ;;     pero no activa la marca.
+           ;; Es mas limpio para evitar la activación, aunque el bucle de
+           ;; comandos desactivaría la marca porque insertamos texto.
+           (goto-char (prog1 (mark t)
+                        (set-marker (mark-marker) (point) (current-buffer)))))
+       ;; Si llegamos hasta el final, hace que this-command lo indique.
+       (if (eq this-command t)
+           (setq this-command 'yank))
+       nil)
+   < src..
+
+   La expresión clave es @c{insert-for-yank}, que inserta la cadena devuelta
+   por @c{current-kill}, pero elimina algunas propiedades de texto de la misma.
+
+   Sin embargo, antes de llegar a esa expresión, la función establece el valor de
+   @c{yank-window-start} a la posición devuelta por la expresión
+   @c{(window-start)}, la posición en la que la pantalla comienza actualmente. La
+   función @c{yank} también asigna @c{this-command} y añade la marca.
+
+   Después de pegar el elemento apropiado, si el argumento opcional es un
+   @c{cons} en vez de un número o nada, coloca el punto al principio del
+   texto pegado y la marca al final.
+
+   (La función @c{prog1} es como @c{progn} pero devuelve el valor de su primer
+   argumento en vez del valor de su último argumento. Su primer argumento
+   fuerza devolver la marca del búfer como un entero. Puede ver la
+   documentación para estas funciones colocando el punto sobre ellas en
+   este búfer y presionando @k{C-h f} @%c(describe-function) seguido
+   por un @k{RET}; la funcion por defecto es la función.)
+
+   La última parte de la función indica que hacer cuando tiene exito.
+
+** @c{yank-pop}
+
+   Después de entender @c{yank} y @c{current-kill}, ya sabes como acercarte
+   a la función @c{yank-pop}. Dejando fuera la documentación para ahorrar
+   espacio, se ve asi:
+
+   ..src > elisp
+     (defun yank-pop (&optional arg)
+       "…"
+       (interactive "*p")
+       (if (not (eq last-command 'yank))
+           (error "El comando previo no fué un yank"))
+       (setq this-command 'yank)
+       (unless arg (setq arg 1))
+       (let ((inhibit-read-only t)
+             (before (< (point) (mark t))))
+         (if before
+             (funcall (or yank-undo-function 'delete-region) (point) (mark t))
+           (funcall (or yank-undo-function 'delete-region) (mark t) (point)))
+         (setq yank-undo-function nil)
+         (set-marker (mark-marker) (point) (current-buffer))
+         (insert-for-yank (current-kill arg))
+         ;; Si es posible, vuelve a colocar el inicio de la ventana en el punto
+         ;; en el que se encontraba el comando yank.
+         (set-window-start (selected-window) yank-window-start t)
+         (if before
+             ;; Esto es es como exchange-point-and-mark,
+             ;;     pero no activa la marca.
+             ;; Es mas limpio para evitar la activación, aunque el bucle de
+             ;; comandos desactivaría la marca porque insertamos texto.
+             (goto-char (prog1 (mark t)
+                          (set-marker (mark-marker)
+                                      (point)
+                                      (current-buffer))))))
+       nil)
+   < src..
+
+   La función es interactiva con una pequeña @c{p} para que el argumento del
+   prefijo sea procesado y pasado a la función. El comando solo se puede
+   utilizar después del yank previo; de lo contrario, se envia un mensaje de
+   error. Esta comprobacion utiliza la variable @c{last-command} que se asigna
+   por @c{yank} y se discute en otra parte. (Vea la Seccion
+   @l{#@c(copy-region-as-killc)}.
+
+   La cláusula @c{let} asigna la variable @c{before} a verdadero o falso
+   dependiendo de si el punto está antes o después de la marca y luego se
+   elimina la región entre punto y marca. Esta es la región que acaba de ser
+   insertada por el yank previo y es este texto el que será reemplazado.
+
+   @c{funcall} llama a su primer argumento como una función, pasando los
+   argumentos restantes. El primer argumento es el que devuelve la expresión
+   @c{or}. Los dos argumentos restantes son las posiciones de
+   punto y marca establecidas por el comando @c{yank} anterior.
+
+   Hay más, pero esta es la parte más dificil.
+
+** El fichero @f{ring.el}
+
+   De manera interesante, GNU Emacs posee un fichero llamado @f{ring.el} que
+   proporciona muchas de las caracteristicas que acabamos de discutir. Sin embargo,
+   funciones como @c{kill-ring-yank-pointer} no utilizan esta librería,
+   posiblemente porque se escribieron antes.
 
 * Apéndice C <> Apéndice C Un grafico con ejes etiquetados
 
-   Los ejes impresos ayudan a comprender un grafico. Para crear escalas. En un
-   capítulo anterior (Vease Sección @l{Preparar un grafico, , Leyendo un
-   grafico}), se escribió el código para imprimir el cuerpo de un grafico. Aquí
-   se escribe el código para imprimir y etiquetar ejes horizontales y
-   verticales, a lo largo del cuerpo en sí.
+  Los ejes impresos ayudan a comprender un grafico. Para transmitir escalas. En
+  un capítulo anterior (Ver Sección @l{#Preparar un grafico}), escribimos código
+  para imprimir el cuerpo de un grafico. Aquí escribimos el código para imprimir
+  y etiquetar los ejes horizontales y verticales, a lo largo del
+  cuerpo en sí.
 
-   Puesto que las inserciones rellenan un búfer a la derecha y debajo del
-   punto, el nuevo grafico imprime la función que primero imprimiría el eje
-   vertical Y, después el cuerpo del grafico, y finalmente el eje horizontal
-   X. Esta secuencia nos da los contenidos de la función:
+  Puesto que las inserciones se colocan en búfer a la derecha y debajo del
+  punto, la nueva funcion de impresion de graficos debe imprimir primero el eje
+  vertical Y, luego el cuerpo del grafico, y finalmente el eje horizontal
+  X. Esta secuencia nos da el Contenido de la función:
 
-   1. Configura código.
+  1. Codigo de configuracion.
 
-   2. Imprime el eje Y.
+  2. Imprir el eje Y.
 
-   3. Imprime el cuerpo del grafico.
+  3. Imprir el cuerpo del grafico.
+
+  4. Imprir el eje X.
 
 
-   4. Imprime el eje X.
+  He aquí un ejemplo de como se ve un grafico terminado:
 
-
-   Aquí hay un ejemplo de como se ve un grafico finalizado:
-
-   ..example >
-     0 -
+  ..example >
+    10 -
                   *
                   *  *
                   *  **
@@ -13996,1347 +13993,1335 @@ and promoting software freedom.”
      1 - ****************
          |   |    |    |
          1   5   10   15
-   < example..
+  < example..
 
-   En este grafico, en ambos ejes vertical y horizontal se etiquetan con
-   números. Sin embargo, en algunos graficos, el eje horizontal es tiempo y
-   estaría mejor etiquetarlo con meses, así:
+  En este grafico, tanto el eje vertical como el horizontal se etiquetan con
+  números. Sin embargo, en algunos graficos, el eje horizontal es el tiempo y
+  estaría mejor etiquetarlo con meses, así:
 
-   ..example >
-     5 -      *
-            * ** *
-            *******
-          ********** **
-     1 - **************
-         |    ^      |
-       Enero Junio Enero
-   < example..
+  ..example >
+    5 -      *
+           * ** *
+           *******
+         ********** **
+    1 - **************
+        |    ^      |
+      Enero Junio Enero
+  < example..
 
-   Dentro, con un pequeño pensamiento, se puede fácilmente venir con una
-   variedad de esquemas de etiquetado verticales y horizontales. Nuestra
-   tarea podría llegar a ser complicada. Pero las complicaciones generan
-   confusión. En vez de permitir esto, es mejor elegir un simple esquema de
-   etiquetado para nuestro primer esfuerzo, y modificarlo o reemplazarlo
-   después.
+  De hecho, con un poco de reflexion, podemos encontrar fácilmente una
+  variedad de esquemas de etiquetado vertical y horizontal. Nuestra
+  tarea podría complicarse. Pero las complicaciones generan
+  confusión. En vez de permitir esto, es mejor elegir un esquema de etiquetado
+  simple para nuestro primer esfuerzo, y modificarlo o reemplazarlo
+  después.
 
-   Estas consideraciones sugieren el siguiente outline para la función
-   @c{print-graph}:
+  Estas consideraciones sugieren el siguiente esquema para la función
+  @c{imprimir-grafico}:
+
+  ..src > elisp
+    (defun imprimir-grafico (lista-de-numeros)
+      "documentacion…"
+      (let ((altura  …
+            …))
+        (imprimir-eje-Y altura … )
+        (imprimir-cuerpo-grafico lista-de-numeros)
+        (imprimir-eje-X … )))
+  < src..
+
+  Podemos a su vez trabajar en cada parte de la definición de la función
+  @c{imprimir-grafico}.
+
+** La varlist @c{imprimir-grafico}
+
+   Al escribir la función @c{imprimir-grafico}, la primera tarea es escribir la
+   varlist en la expresión @c{let}. (Por el momento dejaremos de lado cualquier
+   idea sobre hacer que la función sea interactiva o sobre los contenidos de su
+   cadena de documentación.)
+
+   La varlist debe establecer varios valores. Claramente, la parte superior de
+   la etiqueta para el eje vertical debe ser al menos la altura del grafico, lo
+   que significa que debemos obtener esta información aquí. Nota que la función
+   @c{imprimir-cuerpo-grafico} también requiere esta información. No hay ninguna
+   razón para calcular la altura del grafico en dos lugares diferentes, por lo que
+   debemos modificar @c{imprimir-cuerpo-grafico} para aprovechar el cálculo.
+
+   De manera similar, tanto la función para imprimir la etiqueta del eje X y la
+   función @c{imprimir-cuerpo-grafico} necesita aprender el valor del ancho de
+   cada símbolo. Podemos realizar el cálculo aquí y cambiar la definición de
+   @c{imprimir-cuerpo-grafico} que definimos en el capítulo anterior.
+
+   La longitud de la etiqueta para el eje horizontal debe ser al menos tan larga
+   como el grafico. Sin embargo, esta información solo se usa en la función que
+   imprime el eje horizontal, por lo que no es necesaria calcularla aqui.
+
+   Estos pensamientos nos llevan directamente a la siguiente forma para la
+   varlist en el @c{let} de @c{imprimir-grafico}:
 
    ..src > elisp
-     (defun print-graph (lista-de-numeros)
-       "documentacion…"
-       (let ((height  …
-             …))
-         (print-Y-axis height … )
-         (imprimir-cuerpo-grafico lista-de-numeros)
-         (print-X-axis … )))
+     (let ((altura (apply 'max lista-de-numeros)) ; Primera versión.
+           (ancho-del-simbolo (length simbolo-en-blanco)))
    < src..
 
-   Nosotros podemos trabajar en cada parte de la definición de función
-   @c{print-graph}.
+   Como veremos, esta expresión no es del todo correcta.
 
-** La varlist @c{print-graph}
+** La función @c{imprimir-eje-Y}
 
-    Para escribir la función @c{print-graph}, la primera tarea es escribir la
-    varlist en la expresión @c{let}. (Nosotros dejaremos por ahora cualquier
-    pensamiento acerca de hacer la función interactive o acerca de los
-    contenidos de su cadena de documentación.)
+   El trabajo de la función @c{imprimir-eje-Y} es imprimir una etiqueta para el
+   eje vertical que se ve asi:
 
-    La varlist asignaría varios valores. Claramente, la etiqueta superior del
-    eje vertical debe ser al menos la altura del grafico, que significa que
-    debe obtener esta información aquí. Note que la función
-    @c{print-graph-body} también requiere esta información. No hay razón para
-    calcular la altura del grafico en dos lugares diferentes, así cambiaría
-    @c{print-graph-body} desde el camino que definimos pronto para tomar
-    ventaja del cálculo.
-
-    De manera similar, tanto la función para imprimir la etiqueta del eje X y
-    la función @c{print-graph-body} se necesita aprender el valor del ancho
-    de cada símbolo. Se puede desarrollar el cálculo aquí y cambiar la
-    definición para @c{print-graph-body} desde el camino que se definió en el
-    capítulo previo.
-
-    El tamaño de la etiqueta para el eje horizontal debe ser al menos tan
-    largo como el grafico. Sin embargo, esta información es usada solo en la
-    función que imprime el eje horizontal, así no necesita calcularse aquí.
-
-    Estos pensamientos nos llevan directamente a la siguiente forma para la
-    varlist en el @c{let} para @c{print-graph}:
-
-    ..src > elisp
-      (let ((height (apply 'max lista-de-numeros)) ; Primera versión.
-            (ancho-del-simbolo (length simbolo-en-blanco)))
-    < src..
-
-    Como se verá, esta expresión no es bastante correcta.
-
-** La función @c{print-Y-axis}
-
-    El trabajo de la función @c{print-Y-axis} es imprimir una etiqueta para el
-    eje vertical que se parece a esto:
-
-    ..example >
-          10 -
+   ..example >
+     10 -
 
 
 
 
-           5 -
+      5 -
 
 
 
-           1 -
-    < example..
+      1 -
+   < example..
 
-    La función se pasaría a lo alto del grafico, y así construyen e insertan los
-    números y marcas apropiados.
+   La función debe pasarse a la altura del grafico, y luego debe construir e insertan los
+   números y marcas apropiados.
 
-    Es suficientemente fácil ver en la figura que la etiqueta del eje Y pero
-    se puede decir en palabras, y entonces escribir una definición de función
-    para hacer el trabajo es otra materia. No es bastante verdad decir que se
-    quiere un número y un tic cada cinco líneas: solo hay tres líneas entre el
-    @'{1} y el @'{5} (líneas 2, 3 y 4), pero cuatro líneas entre el @'{5} y el
-    @'{10} (líneas 6, 7, 8 y 9). Es mejor decir que se quiere un número y un
-    tic en la quinta línea desde abajo a cada línea que es un múltiplo de
-    cinco.
+   Es suficientemente fácil ver en la figura como deberia ser la etiqueta del
+   eje Y; pero decir con palabras, y luego escribir una definición de función
+   para hacer el trabajo es otro asunto. No es del todo cierto decir que
+   queremos un número y una marca cada cinco líneas: solo hay tres líneas entre
+   el @'{1} y el @'{5} (líneas 2, 3 y 4), pero cuatro líneas entre el @'{5} y el
+   @'{10} (líneas 6, 7, 8 y 9). Es mejor decir que se quiere un número y una
+   marca en la quinta línea desde la parte inferior y en cada línea que sea un
+   múltiplo de cinco.
 
-    La siguiente cuestión es a que altura se etiquetaría. Supón que la máxima
-    altura de la columna mayor del grafico es siete. La etiqueta superior en el
-    eje Y sería @'{5 -}, ¿y el grafico se pegaría debajo de la etiqueta?, ¿o la
-    etiqueta superior sería @'{7 -}, y marcar la vertical del grafico? ¿o sería
-    la etiqueta superior @c{10 -}, que es múltiplo de cinco, y es superior al
-    valor más alto del grafico?
+   La siguiente cuestión es que altura debe tener la etiqueta. Supóngamos que la
+   altura máxima de la columna mas alta del grafico es siete. Debe la etiqueta
+   mas alta en el eje Y ser @'{5 -}, ¿y el grafico sobresalir por encima de la
+   etiqueta?, ¿o la etiqueta mas alta ser @'{7 -}, y marcar el pico del grafico?
+   ¿o deberia ser @c{10 -}, que es un múltiplo de cinco, y ser mas alta que el
+   valor más alto del grafico?
 
-    La última forma es preferida. La mayoría de los graficos son rectángulos
-    cuyos lados son un número integral de pasos a lo largo––5, 10, 15, y así
-    para un paso a distancia de cinco. Pero tan pronto se decide usar un paso
-    alto para el eje vertical, se descubre que la expresión simple en la
-    varlist para la altura de la computación es errónea. La expresión es
-    @c{(apply 'max lista-de-numeros)}. Esto devuelve la altura precisa, no la
-    altura máxima más de lo que es necesario para redondear el múltiplo de
-    cinco. Una expresión más compleja es requerida.
+   Se prefiere esta última forma. La mayoría de los graficos se dibujan dentro
+   de rectángulos cuyos lados son un número integral de pasos a lo largo––5, 10,
+   15, y así sucesivamente para una distancia de paso de cinco. Pero tan pronto
+   como decidimos usar una altura de escalon para el eje vertical, descubrimos
+   que la expresión simple en la varlist para calcular la altura es incorrecta.
+   La expresión es @c{(apply 'max lista-de-numeros)}. Esto devuelve la altura
+   precisa, no la altura máxima más de lo que sea necesario para redondear al
+   múltiplo de cinco. Se requiere una expresión más compleja.
 
-    Como es normal en casos como este, un problema complejo llega a ser simple
-    si está dividido en varios problemas pequeños.
+   Como es habitual en casos como este, un problema complejo se simplifica
+   si se divide en varios problemas mas pequeños.
 
-    Primero, considere el caso cuando el valor superior del grafico es un
-    múltiplo integral de cinco––cuando eso es 5, 10, 15, o algún múltiplo de
-    cinco. Se puede usar este valor como la altura del eje Y.
+   Primero, considere el caso cuando el valor superior del grafico es un
+   múltiplo integral de cinco––cuando eso es 5, 10, 15, o algún múltiplo de
+   cinco. Podemos usar este valor como la altura del eje Y.
 
-    Un camino simple y limpio para determinar si un número es múltiplo de
-    cinco se divide por cinco y mira si la división devuelve resto. Si no hay
-    resto, el número es un múltiplo de cinco. De este modo, siete dividido
-    tiene un resto de dos, y siete no es un entero múltiplo de cinco. Dicho de
-    otra manera, recordando la escuela, cinco entre siete es uno y me llevo
-    dos. Sin embargo, diez entre dos, no tiene resto: diez es un múltiplo
-    entero de cinco.
+   Una manera bastante simple para determinar si un número es múltiplo de cinco
+   es dividirlo por cinco y ver si la división devuelve un resto. Si no hay
+   ningun resto, el número es un múltiplo de cinco. De este modo, siete dividido
+   por cinco tiene un resto de dos, y siete no es un múltiplo integral de
+   cinco. Dicho de otra manera, en un lenguaje que recuerde al de un salon de
+   clases, cinco se divide en siete una vez y el resto es dos. Sin embargo,
+   cinco se divide en diez dos veces y no tiene resto: diez es un múltiplo
+   integral de cinco.
 
 *** Viaje lateral: Calcula un resto
 
-     En Lisp, la función para calcular un resto es @c{%}. La función devuelve
-     el resto de su primer argumento dividido por su segundo argumento. Como
-     ocurre, @c{%} es una función en Emacs Lisp que no se puede implementar
-     usando @c{apropos}: no se puede encontrar nada si se escribe @k{M-x
-     apropos @k{RET} resto @k{RET}}. El único camino para aprender la
-     existencia de @c{%} es leer acerca de eso en un libro tal como este o en
-     las fuentes de Emacs Lisp.
+    En Lisp, la función para calcular un resto es @c{%}. La función devuelve el
+    resto de su primer argumento dividido por su segundo argumento. Da la
+    casualidad que @c{%} es una función en Emacs Lisp que no se puede
+    implementar usando @c{apropos}: no se encuentra nada al escribir @k{M-x
+    apropos RET resto RET}. La unica forma de conocer la existencia de @c{%} es
+    leer sobre ello en un libro como este o en las fuentes de Emacs Lisp.
 
-     Se puede probar la función @c{%} evaluando las siguientes dos
-     expresiones:
+    Se puede probar la función @c{%} evaluando las siguientes dos
+    expresiones:
 
-     ..src > elisp
-       (% 7 5)
+    ..src > elisp
+      (% 7 5)
 
-       (% 10 5)
-     < src..
+      (% 10 5)
+    < src..
 
-     La primera expresión devuelve 2 y la segunda expresión devuelve 0.
+    La primer expresión devuelve 2 y la segunda devuelve 0.
 
-     Para probar si el valor devuelto es cero o algún otro número, se puede
-     usar la función @c{zerop}. Esta función devuelve @c{t} si su argumento
-     debe ser un número, es cero.
+    Para probar si el valor devuelto es cero o algún otro número, podemos
+    usar la función @c{zerop}. Esta función devuelve @c{t} si su argumento
+    que debe ser un número, es cero.
 
-     ..src > elisp
-       (zerop (% 7 5))
-            ⇒ nil
+    ..srci > elisp
+      > (zerop (% 7 5))
+      nil
+      > (zerop (% 10 5))
+      t
+    < srci..
 
-       (zerop (% 10 5))
-            ⇒ t
-     < src..
+    Por lo tanto, la siguiente expresión devolverá @c{t} si la altura del
+    grafico es divisible por cinco:
 
-     De este modo, la siguiente expresión devolverá @c{t} si la altura del
-     grafico es divisible por cinco:
+    ..src > elisp
+      (zerop (% altura 5))
+    < src..
 
-     ..src > elisp
-       (zerop (% height 5))
-     < src..
+    (El valor de @c{altura}, por supuesto, se puede encontrar con
+    @c{(apply 'max lista-de-numeros)}.)
 
-     (El valor de @c{height}, de acuerdo, puede ser encontrado desde
-     @c{(apply 'max lista-de-numeros)}.)
+    Por otro lado, si el valor de @c{altura} no es un múltiplo de cinco,
+    queremos reajustar el valor al siguiente múltiplo de cinco. Esto
+    es aritmética sencilla que usa funciones con las que ya estamos
+    familiarizados. Primero, dividimos el valor de @c{altura} por cinco para
+    determinar cuantas veces cinco entra en el número. De este modo, cinco
+    entra en doce dos veces. Si agregamos uno a este cociente y lo multiplicamos
+    por cinco, obtendremos el valor del siguiente múltiplo de cinco que es
+    más grande que la altura. Cinco entra en doce dos veces. Se suma uno a
+    dos, y se multiplica por cinco; el resultado es quince, que es el siguiente
+    múltiplo de cinco que es mayor que doce. La expresión Lisp para esto es:
 
-     Por otro lado, si el valor de @c{height} no es un múltiplo de cinco,
-     nosotros queremos resetear el valor al siguiente múltiplo de cinco. Esta
-     es la aritmética sencilla usando funciones con las que ya se está
-     familiarizado. Primero, se divide el valor de @c{height} por cinco para
-     determinar cuantas veces cinco va dentro del número. De este modo, cinco
-     va dentro doce veces. Si se añade uno a este cociente y se multiplica
-     por cinco, obtendremos el valor del siguiente múltiplo de cinco que es
-     más largo que el mayor. Cinco va dentro de doce dos veces. Añade uno a
-     dos, y multiplica por cinco; el resultado es quince, que es el siguiente
-     múltiplo de cinco que es mayor de doce. La expresión Lisp para esto es:
+    ..src > elisp
+      (* (1+ (/ altura 5)) 5)
+    < src..
 
-     ..src > elisp
-       (* (1+ (/ height 5)) 5)
-     < src..
+    Por ejemplo, si se evalúa lo siguiente, el resultado es 15:
 
-     Por ejemplo, si se evalúa lo siguiente, el resultado es 15:
+    ..src > elisp
+      (* (1+ (/ 12 5)) 5)
+    < src..
 
-     ..src > elisp
-       (* (1+ (/ 12 5)) 5)
-     < src..
+    A lo largo de esta discusión, hemos estado usando ‘cinco’ como el valor para
+    las etiquetas de espaciado en el eje Y; pero es posible que queramos usar
+    algún otro valor. Generalmente, debemos reemplazar ‘cinco’ con una variable a la
+    que podamos asignar un valor. El mejor nombre que puedo pensar para esta
+    variable es @c{distancia-entre-etiquetas-del-eje-Y}.
 
-     Todo a través de esta discusión, se ha estado usando ‘cinco’ como el
-     valor para las etiquetas espaciadas en el eje Y; pero se puede querer
-     usar algún otro valor. Generalmente, reemplazaría ‘cinco’ con una
-     variable a la que poder asignar un valor. El mejor nombre que puedo
-     pensar para esta variable es @c{Y-axis-label-spacing}.
+    Usando este término, y una expresión @c{if}, producimos lo siguiente:
 
-     Usando este término, y una expresión @c{if}, se produce lo siguiente:
+    ..src > elisp
+      (if (zerop (% altura distancia-entre-etiquetas-del-eje-Y))
+          altura
+        ;; else
+        (* (1+ (/ altura distancia-entre-etiquetas-del-eje-Y))
+           distancia-entre-etiquetas-del-eje-Y))
+    < src..
 
-     ..src > elisp
-       (if (zerop (% height Y-axis-label-spacing))
-           height
-         ;; else
-         (* (1+ (/ height Y-axis-label-spacing))
-            Y-axis-label-spacing))
-     < src..
+    Esta expresión devuelve el valor de @c{altura} en sí si la altura es
+    un múltiplo del valor de la @c{distancia-entre-etiquetas-del-eje-Y} o
+    calcula y devuelve un valor de @c{altura} que es igual al siguiente
+    múltiplo superior del valor de la @c{distancia-entre-etiquetas-del-eje-Y}.
 
-     Esta expresión devuelve el valor de @c{height} en sí si la altura es
-     incluso un múltiplo del valor del @c{Y-axis-label-spacing} o lo demás
-     computa y devuelve un valor de @c{height} que es igual al siguiente
-     múltiplo mayor del valor del @c{Y-axis-label-spacing}.
+    Ahora podemos incluir esta expresión en la expresión @c{let} de la
+    función @c{imprimir-grafico} (después de la establecer el valor de la
+    @c{distancia-entre-etiquetas-del-eje-Y}):
 
-     Se puede ahora incluir esta expresión en la expresión @c{let} de la
-     función @c{print-graph} (después de la primera configuración del valor
-     de @c{Y-axis-label-spacing}):
+    ..src > elisp
+      (defvar distancia-entre-etiquetas-del-eje-Y 5
+        "Número de líneas desde una etiqueta del eje Y a la siguiente.")
 
-     ..src > elisp
-       (defvar Y-axis-label-spacing 5
-         "Número de líneas desde una etiqueta del eje Y al siguiente.")
+      …
+      (let* ((altura (apply 'max lista-de-numeros))
+             (altura-de-la-linea-superior
+              (if (zerop (% altura distancia-entre-etiquetas-del-eje-Y))
+                  altura
+                ;; else
+                (* (1+ (/ altura distancia-entre-etiquetas-del-eje-Y))
+                   distancia-entre-etiquetas-del-eje-Y)))
+             (ancho-del-simbolo (length simbolo-en-blanco))))
+      …
+    < src..
 
-       …
-       (let* ((height (apply 'max lista-de-numeros))
-              (height-of-top-line
-               (if (zerop (% height Y-axis-label-spacing))
-                   height
-                 ;; else
-                 (* (1+ (/ height Y-axis-label-spacing))
-                    Y-axis-label-spacing)))
-              (ancho-del-simbolo (length simbolo-en-blanco))))
-       …
-     < src..
+    (Observa el uso de la función @c{let*}: el valor inicial de la @c{altura} se
+    calcula una vez con la expresión @c{(apply 'max lista-de-numeros)} y luego
+    se usa el resultado para calcular su valor final. Consulta la Seccion @l{#La
+    expresión @c{let*}}, para conocer más sobre @c{let*}.)
 
-     (Note que el uso de la función @c{let*}: el valor inicial de la altura
-     es calculada una vez por la expresión @c{(apply 'max lista-de-numeros)} y
-     entonces el valor resultado de @c{height} es usado para computar su
-     valor final. Vea la Seccion @l{La expresión @c{let*}}, para más acerca de
-     @c{let*}.)
+*** Construir un elemento del eje Y
 
-*** Construye un elemento del eje Y
+    Cuando imprimimos el eje vertical, queremos insertar cadenas como @'{5 - } y
+    @'{10 - } cada cinco líneas. Además, queremos que los números y los guiones
+    se alineen, por lo que los numeros mas cortos se deben rellenar con espacios
+    en blanco. Si alguna de las cadenas utiliza numeros de dos dígitos, las
+    cadenas con numeros de un solo dígito deben incluir un espacio en blanco
+    delante del número.
 
-     Cuando se imprime el eje vertical, se quieren insertar cadenas tales
-     como @'{5 -} y @'{10 - } cada cinco líneas. Más allá, se quieren los
-     números agitados para alinear, así pocos números deben ser acuñados con
-     espacios de guía. Si alguna de las cadenas usan dos dígitos, las cadenas
-     con un simple dígito deben incluir una guía en blanco antes del número.
+    Para calcular la longitud del número, se usa la función @c{length}. Pero la
+    función @c{length} solo funciona con una cadena, no con un número. Así el
+    número tiene que ser convertido de un número a una cadena. Esto se hace
+    con la función @c{number-to-string}. Por ejemplo,
 
-     Para figurarse el tamaño del número, se usa la función @c{length}. Pero
-     la función @c{length} funciona solo con una cadena, no con un
-     número. Así el número tiene que ser convertido desde un número a una
-     cadena. Esto se hace con la función @c{number-to-string}. Por ejemplo,
+    ..srci > elisp
+      > (length (number-to-string 35))
+      2
+      > (length (number-to-string 100))
+      3
+    < srci..
 
-     ..src > elisp
-       (length (number-to-string 35))
-            ⇒ 2
+    (@c{number-to-string} tambien se llama @c{int-to-string}; verás este nombre
+    alternativo en varios ficheros fuente.)
 
-       (length (number-to-string 100))
-            ⇒ 3
-     < src..
+    Además, en cada etiqueta, cada número va seguido por una cadena @'{ - }, a
+    la que llamaremos @c{marca-del-eje-Y}. Esta variable es definida con
+    @c{defvar}:
 
-     (@c{number-to-string} se llama @c{int-to-string}; se verá este nombre
-     alternativo en varias fuentes.)
+    ..src > elisp
+      (defvar marca-del-eje-Y " - "
+         "La Cadena que sigue al número en una etiqueta del eje Y.")
+    < src..
 
-     Además, en cada etiqueta, cada número es seguido por una cadena tal como
-     @'{ - }, que llamará al marcador @c{Y-axis-tic}. Esta variable está
-     definida con @c{defvar}:
+    El tamaño de la etiqueta Y es la suma del tamaño de la marca del eje Y y el tamaño
+    del número de la parte superior del grafico.
 
-     ..src > elisp
-       (defvar Y-axis-tic " - "
-          "La Cadena que sigue el número en una etiqueta del eje Y.")
-     < src..
+    ..src > elisp
+      (length (concat (number-to-string altura) marca-del-eje-Y)))
+    < src..
 
-     El tamaño de la etiqueta Y es la suma del tamaño del eje Y y el tamaño
-     del número del alto del grafico.
+    Este valor será calculado por la función @c{imprimir-grafico} en su varlist
+    como @c{ancho-completo-de-la-etiqueta-Y} y luego se pasara. (Ten en cuenta que
+    no pensamos incluir esto en el varlist cuando se propuso por primera vez.)
 
-     ..src > elisp
-       (length (concat (number-to-string height) Y-axis-tic)))
-     < src..
+    Para hacer una etiqueta completa del eje vertical, se concatena la marca de
+    etiqueta con un número; y los dos juntos pueden estar precedidos por uno o
+    más espacios dependiendo de la longitud del número. La etiqueta consiste
+    de tres partes: los espacios iniciales (opcionales), el número, y la
+    marca. La función se pasa al valor del número para la fila específica, y
+    el valor del ancho de la línea superior, que se calcula (solo una vez)
+    por @c{imprimir-grafico}.
 
-     Este valor será calculado por la función @c{print-graph} en su varlist
-     como @c{full-Y-label-width} y se pasa dentro. (Note que no se pensaba en
-     incluir esto en el varlist cuando se propuso.)
+    ..src > elisp
+      (defun elemento-del-eje-Y (numero ancho-completo-de-la-etiqueta-Y)
+        "Construye una etiqueta NUMERADA
+      Un elemento numerado se parece a esto ‘ 5 - ’,
+      y se rellena segun sea necesario, de modo que todos se
+      alinean con el elemento para el número mas grande."
+        (let* ((espacios-de-relleno
+               (- ancho-completo-de-la-etiqueta-Y
+                  (length
+                   (concat (number-to-string numero)
+                           marca-del-eje-Y)))))
+          (concat
+           (make-string espacios-de-relleno ? )
+           (number-to-string numero)
+           marca-del-eje-Y)))
+    < src..
 
-     Para crear un eje vertical completo, una marca de tic es concatenada con
-     un número; y los dos juntos pueden ser precedidos por uno o más espacios
-     dependiendo de cómo de largo es el número. La etiqueta consiste de tres
-     partes: los espacios que se lideran (opcional), el número, y la marca
-     tic. La función se pasa al valor del número para la fila específica, y
-     el valor del ancho de la línea de arriba, que es calculada (solo una
-     vez) por @c{print-graph}.
+    La función @c{elemento-del-eje-Y} concatena juntos los espacios de relleno
+    que, si los hay; el número, como una cadena; y la marca de etiqueta.
 
-     ..src > elisp
-       (defun Y-axis-element (number full-Y-label-width)
-         "Construye una etiqueta NUMERADA
-       Un elemento numerado se parece a esto ‘ 5 - ’,
-       y está tan acuñado como se necesita así todo se
-       alinea con el elemento para el número mayor."
-         (let* ((leading-spaces
-                (- full-Y-label-width
-                   (length
-                    (concat (number-to-string number)
-                            Y-axis-tic)))))
-           (concat
-            (make-string leading-spaces ? )
-            (number-to-string number)
-            Y-axis-tic)))
-     < src..
+    Para calcular cuantos espacios de relleno necesita la etiqueta, la función
+    resta la longitud actual de la etiqueta––la longitud del numero más el tamaño de
+    la marca––del ancho deseado para la etiqueta.
 
-     La función @c{Y-axis-element} concatena junto los espacios que se
-     lideran si cualquiera; el número, como una cadena; y la marca tic.
+    Los espacios en blanco se insertan utilizando la función
+    @c{make-string}. Esta función tiene dos argumentos: el primero dice cuan
+    larga será la cadena y el segundo es un símbolo para el caracter a insertar,
+    en un formato espcial. El formato es una marca de pregunta seguida por un
+    espacio en blanco, como este, @'c{? }. Consulta la Seccion
+    @l{info:elisp#Character Type<>Tipo de Caracter} en @e{El Manual de
+    Referencia de Emacs Lisp}, para obtener una descripción de la sintaxis de
+    los caracteres. (Por supuesto, es posible que quieras reemplazar el espacio en
+    blanco por algún otro caracter…. Ya sabes qué hacer.)
 
-     Para imaginarnos cuantos espacios guía la etiqueta necesita, la función
-     sustrae el tamaño de la etiqueta––el tamaño del número más el tamaño de
-     la marca tic––desde el ancho de la etiqueta deseada.
+    La función @c{number-to-string} se utiliza en la expresión de
+    concatenación, para convertir el número en una cadena que se concatena
+    con los espacios de relleno y la marca de la etiqueta.
 
-     Los espacios en blanco se insertan usando la función
-     @c{make-string}. Esta función tiene dos argumentos: lo primero cuenta
-     como de larga será a cadena y el segundo es un símbolo para el caracter
-     a insertar, en un formato espcial. El formato es una marca de pregunta
-     seguida por un espacio en blanco, como este, @'{?}. Vea la Seccion
-     @"{Tipo de Caracter} en @e{El Manual de Referencia Emacs Lisp}, para una
-     descripción de la sintaxis para caracteres. (De acuerdo, se podría
-     querer reemplazar el espacio en blanco por algún otro caracter …. Tu
-     sabes qué hacer.)
+*** Construir una columna del eje Y
 
-     La función @c{number-to-string} es usada en la expresión de
-     concatenación, para convertir el número a una cadena que es concatenada
-     con los espacios que se lideran y la marca de tic.
+    Las funciones anteriores proporcionan todas las herramientas necesarias
+    para construir una función que genere una lista de cadenas enumeradas y
+    en blanco para inserta como la etiqueta para el eje vertical:
 
-*** Crea un eje de la columna Y
+    ..src > elisp
+      (defun columna-del-eje-Y (altura ancho-de-la-etiqueta)
+        "Construye la lista de etiquetadas y cadenas en blanco del eje Y.
+      Para la ALTURA de la línea sobre la base y ANCHO-DE-LA-ETIQUETA."
+        (let (eje-Y)
+          (while (> altura 1)
+            (if (zerop (% altura distancia-entre-etiquetas-del-eje-Y))
+                ;; Insertar etiqueta.
+                (setq eje-Y
+                      (cons
+                       (elemento-del-eje-Y altura ancho-de-la-etiqueta)
+                       eje-Y))
+              ;; de lo contrario, insertar espacios en blanco.
+              (setq eje-Y
+                    (cons
+                     (make-string ancho-de-la-etiqueta ? )
+                     eje-Y)))
+            (setq altura (1- altura)))
+          ;; Insertar línea base.
+          (setq eje-Y
+                (cons (elemento-del-eje-Y 1 ancho-de-la-etiqueta) eje-Y))
+          (nreverse eje-Y)))
+    < src..
 
-     Las funciones precedentes proporcionan todas las herramientas necesarias
-     para construir una función que genera una lista de cadenas enumeradas y
-     en blanco para inserta como la etiqueta para el eje vertical:
+    En esta función, empezamos con el valor de @c{altura} y restamos
+    repetitivamente uno desde su valor. Después de cada resta, comprobamos si el
+    valor es un multiplo integral de la @c{distancia-entre-etiquetas-del-eje-Y}.
 
-     ..src > elisp
-       (defun Y-axis-column (height width-of-label)
-         "Construye la lista de ejes Y etiquetadas y cadenas en blanco.
-       Para height la altura de la línea de debajo y width-of-label."
-         (let (Y-axis)
-           (while (> height 1)
-             (if (zerop (% height Y-axis-label-spacing))
-                 ;; Insertar etiqueta.
-                 (setq Y-axis
-                       (cons
-                        (Y-axis-element height width-of-label)
-                        Y-axis))
-               ;; Else, insertar blancos.
-               (setq Y-axis
-                     (cons
-                      (make-string width-of-label ? )
-                      Y-axis)))
-             (setq height (1- height)))
-           ;; Insertar la línea base.
-           (setq Y-axis
-                 (cons (Y-axis-element 1 width-of-label) Y-axis))
-           (nreverse Y-axis)))
-     < src..
+    Si lo es, construimos una
+    etiqueta numerada usando la función @c{elemento-del-eje-Y}; si no, construimos
+    una etiqueta en blanco usando la función @c{make-string}. La línea
+    base consiste en el número uno seguido por una marca de etiqueta.
 
-     En esta función, nosotros empezamos con el valor de @c{height} y
-     repetitivamente sustrae uno desde su valor. Después de cada sustración,
-     se chequea para ver si el valor es una integral múltiple del
-     @c{Y-axis-label-spacing}. Si eso es, se construye una etiqueta numerada
-     usando la función @c{Y-axis-element}; si no, se construye una etiqueta
-     blanca usando la función @c{make-string}. La línea base consiste del
-     número uno seguido por una marca tic.
+*** La versión no del todo definitiva de @c{imprimir-eje-Y}
 
-*** La versión no demasiado final de @c{print-Y-axis}
+    La lista construida por la función @c{columna-del-eje-Y} se pasa a la
+    función @c{imprimir-eje-Y}, que inserta la lista como una columna.
 
-     La lista construida por la función @c{Y-axis-column} está pasada a la
-     función @c{print-Y-axis}, que inserta la lista como una columna.
+    ..src > elisp
+      (defun imprimir-eje-Y (altura ancho-completo-de-la-etiqueta-Y)
+        "Inserta el eje Y usando ALTURA y ANCHO-COMPLETO-DE-LA-ETIQUETA-Y.
+      La altura debe ser la altura máxima del grafico.
+      El ancho completo es el ancho del mayor elemento de la
+      etiqueta"
+      ;; El valor del alto y ancho-completo-de-la-etiqueta-Y
+      ;; se pasan por ‘imprimir-grafico’.
+        (let ((inicio (point)))
+          (insert-rectangle
+           (columna-del-eje-Y altura ancho-completo-de-la-etiqueta-Y))
+          ;; Coloca el punto en posicion para inserta el grafico.
+          (goto-char inicio)
+          ;; Mueve el punto hacia adelante segun el valor de ancho-completo-de-la-etiqueta-Y
+          (forward-char ancho-completo-de-la-etiqueta-Y)))
+    < src..
 
-     ..src > elisp
-       (defun print-Y-axis (height full-Y-label-width)
-         "Inserta el eje Y usando HEIGHT y FULL-Y-LABEL-WIDTH.
-       La altura debe ser la máxima altura del grafico.
-       El ancho completo es el ancho del mayor elemento de la
-       etiqueta"
-       ;; El valor del alto y full-Y-label-width
-       ;; son pasadas por ‘print-graph’.
-         (let ((start (point)))
-           (insert-rectangle
-            (Y-axis-column height full-Y-label-width))
-           ;; Posiciona el punto listo para inserta el grafico.
-           (goto-char start)
-           ;; Mueve el punto hacia adelante por valor de full-Y-label-width
-           (forward-char full-Y-label-width)))
-     < src..
+    @c{imprimir-eje-Y} usa la función @c{insert-rectangle} para inserta el
+    eje Y creado por la función @c{columna-del-eje-Y}. Además, coloca el
+    punto en la posición correcta para imprimir el cuerpo del grafico.
 
-     El @c{print-Y-axis} usa la función @c{insert-rectangle} para inserta el
-     eje Y creado por la función @c{Y-axis-column}. Además, eso emplaza el
-     punto en la posición correcta para imprimir el cuerpo del grafico.
+    Se puede probar @c{imprimir-eje-Y}:
 
-     Se puede probar @c{print-Y-axis}:
-
-     - Instalar
+    1. Instala
 
        ..example >
-         Y-axis-label-spacing
-         Y-axis-tic
-         Y-axis-element
-         Y-axis-column
-         print-Y-axis
+         distancia-entre-etiquetas-del-eje-Y
+         marca-del-eje-Y
+         elemento-del-eje-Y
+         columna-del-eje-Y
+         imprimir-eje-Y
        < example..
 
-     - Copia la siguiente expresión:
+    2. Copia la siguiente expresión:
 
        ..src > elisp
-         (print-Y-axis 12 5)
+         (imprimir-eje-Y 12 5)
        < src..
 
-     - Cambia al búfer @f{*scratch*} y emplaza el cursor donde se quiere el
-       eje etiquetado para empezar.
+    3. Cambia al búfer @f{*scratch*} y coloca el cursor donde quieras que inicie
+       las etiquetas de los ejes.
 
-     - Escribe @k{M-:} @%c(eval-expression).
+    4. Presiona @k{M-:} @%c(eval-expression).
 
-     - Pega la expresión @c{imprimir-cuerpo-grafico} dentro del minibúfer con
+    5. coloca la expresión @c{imprimir-cuerpo-grafico} dentro del minibúfer con
        @k{C-y} @%c(yank).
 
+    6. Presiona @k{RET} para evaluar la expresión
 
-     - Presiona @k{RET} para evaluar la expresión
 
+    Emacs imprimirá las etiquetas verticalmente, siendo la parte superior @'c{10 - }.
+    (La función @c{imprimir-grafico} pasará el valor de
+    @c{altura-de-la-linea-superior}, que en este caso terminara en 15,
+    eliminando asi lo que podria aparecer como un error.)
 
-     Emacs imprimirá etiquetas verticalmente, el primero siendo @'{10 -
-     }. (La función @c{print-graph} pasará el valor de
-     @c{height-of-top-line}, que en este caso finalizará en 15, por esto lo
-     que se obtiene podría aparecer como un error.)
+** La función @c{imprimir-eje-X}
 
-** La función @c{print-X-axis}
+   Las etiquetas del eje X son muy parecidas a las etiquetas del eje Y, excepto
+   que las marcas estan una linea por encima de los números. Las etiquetas
+   deberian verse asi:
 
-    Las etiquetas del eje X son como las etiquetas del eje Y, excepto que los
-    ticks son un línea debajo de los números. Las etiquetas se parece como
-    esto:
+   ..example >
+     |   |    |    |
+     1   5   10   15
+   < example..
+
+   La primer marca está debajo de la primer columna del grafico y va precedida por
+   varios espacios en blanco. Estos espacios proporcionan espacio en las
+   filas para las etiquetas del eje Y. La segunda, tercer, cuarta,
+   y subsiguientes marcas estan todas espaciadas por igual, de acuerdo al valor
+   de @c{distancia-entre-etiquetas-del-eje-X}.
+
+   La segunda fila del eje X consiste en números, precedidos por varios
+   espacios en blanco y también separados de acuerdo al valor de la variable
+   @c{distancia-entre-etiquetas-del-eje-X}.
+
+   El valor de la variable @c{distancia-entre-etiquetas-del-eje-X} debe medirse
+   en unidades de @c{ancho-del-simbolo}, puesto que es posible que se desee cambiar el
+   ancho de los símbolos utilizados para imprimir el cuerpo del grafico
+   sin cambiar la forma en que el grafico está etiquetado.
+
+   La función @c{imprimir-eje-X} se constituye más o menos del mismo modo
+   que la función @c{imprimir-eje-Y} excepto que tiene dos líneas: la
+   línea de marcas y los números. Escribiremos una función
+   separada para imprimir cada línea y luego combinarlas con la función
+   @c{imprimir-eje-X}.
+
+   Este es un proceso de tres pasos:
+
+   1. Escribir una función para imprimir las marcas del eje X,
+      @c{imprimir-linea-de-marcas-del-eje-X}.
+
+   2. Escribir una función para imprime los números X,
+      @c{imprimir-linea-numerada-del-eje-X}.
+
+   3. Escribir una función para imprimir ambas líneas, la función
+      @c{imprimir-eje-X}, usando @c{imprimir-linea-de-marcas-del-eje-X} e
+      @c{imprimir-linea-numerada-del-eje-X}.
+
+*** Marcas del Eje X
+
+    La primera función debe imprimir las marcas de etiqueta del eje X. Debemos
+    especificar las marcas en sí y su espaciado:
+
+    ..src > elisp
+      (defvar distancia-entre-etiquetas-del-eje-X
+        (if (boundp 'simbolo-en-blanco)
+            (* 5 (length simbolo-en-blanco)) 5)
+        "Número de unidades de una etiqueta del eje X a la siguiente.")
+    < src..
+
+    (Ten en cuenta que el valor de @c{simbolo-en-blanco} lo establece otro
+    @c{defvar}. El predicado @c{boundp} comprueba si ya ha sido establecido;
+    @c{boundp} devuelve @c{nil} si no lo ha sido. Si @c{simbolo-en-blanco} no
+    hubiera sido enlazado y no usaramos esta construcción condicional,
+    estrariamos el depurador y veriamos un mensaje de error diciendo @'c{Debugger
+    entered--Lisp error: (void-variable simbolo-en-blanco)}
+
+    Aquí está el @c{defvar} para @c{marca-del-eje-X}:
+
+    ..src > elisp
+      (defvar marca-del-eje-X "|"
+        "Cadena a insertar para apuntar a una columna en el eje X.")
+    < src..
+
+    El objetivo es crear una línea que se vea asi:
 
     ..example >
-      |   |    |    |
-      1   5   10   15
+         |   |    |    |
     < example..
 
-    El primer tic está bajo la primera columna del grafico y está precedido por
-    varios espacios en blanco. Estos espacios proporcionan la habitación en
-    filas de debajo para las etiquetas del eje Y. El segundo, tercer, cuarto,
-    y subsiguientes ticks son todos espaciados igualmente, de acuerdo al valor
-    de @c{X-axis-label-spacing}.
+    La primer marca esta indentada de manera que quede debajo de la primera
+    columna, que se indenta para dejar espacio para las etiquetas del eje Y.
 
-    La segunda fila del eje X consiste de números, precedidos por varios
-    espacios en blanco y también separado de acuerdo al valor de la variable
-    @c{X-axis-label-spacing}.
+    Un elemento de marca consiste en espacios en blanco que se extienden desde
+    una marca a la siguiente más el símbolo de la propia marca. El número de
+    espacios en blanco se determinan por el ancho del símbolo de marca y la
+    @c{distancia-entre-etiquetas-del-eje-X}.
 
-    El valor de la variable @c{X-axis-label-spacing} sería medido en unidades
-    de @c{ancho-del-simbolo}, puesto que se puede querer cambiar el ancho de los
-    símbolos que estás usando para imprimir el cuerpo del grafico sin cambiar
-    los caminos del grafico que está etiquetado.
+    El código se ve asi:
 
-    La función @c{print-X-axis} está construida más o menos del mismo modo
-    como que la función @c{print-Y-axis} excepto que tiene dos líneas: la
-    línea de marcas tic y los números. Nosotros escribiremos una función
-    separado a imprimir cada línea y entonces combinarlo con la función
-    @c{print-X-axis}.
+    ..src > elisp
+      ;;; elemento-de-marca-del-eje-X
+      …
+      (concat
+       (make-string
+        ;; Crea una cadena de espacios en blanco.
+        (-  (* ancho-del-simbolo distancia-entre-etiquetas-del-eje-X)
+            (length marca-del-eje-X))
+        ? )
+       ;; Concatena los espacios en blanco con el símbolo de marca.
+       marca-del-eje-X)
+      …
+    < src..
 
-    Esto es un proceso de tres pasos:
+    A continuacion, determinamos cuantos espacios en blanco se necesitan para
+    indentar la primer marca en la primera columna del grafico. Utiliza el valor
+    de @c{ancho-completo-de-la-etiqueta-Y} pasado por la función @c{imprimir-grafico}.
 
-    1. Escribe una función para imprimir el eje X marca tic,
-       @c{print-X-axis-tic-line}.
+   El código para crear @c{espacios-iniciales-del-eje-X} se ve asi:
 
-    2. Escribe una función imprime los números X,
-       @c{print-X-axis-numbered-line}.
+    ..src > elisp
+      ;; espacios-de-relleno-del-eje-X
+      …
+      (make-string ancho-completo-de-la-etiqueta-Y ? )
+      …
+    < src..
 
-    3. Escribe una función para imprimir ambas líneas, la función
-       @c{print-X-axis}, usando @c{print-X-axis-tic-line} y
-       @c{print-X-axis-numbered-line}.
+    También necesitamos determinar la longitud del eje horizontal, que es el
+    tamaño de la lista de números, y el número de marcas del eje
+    horizontal:
 
-*** Eje X marca tic
+    ..src > elisp
+      ;; longitud-X
+      …
+      (length lista-de-numeros)
 
-     La primera función imprimiría las marcas de tic del eje X. Se deben
-     especificar las marcas en sí y su espacio:
+      ;; longitud-marca
+      …
+      (* ancho-del-simbolo distancia-entre-etiquetas-del-eje-X)
 
-     ..src > elisp
-       (defvar X-axis-label-spacing
-         (if (boundp 'simbolo-en-blanco)
-             (* 5 (length simbolo-en-blanco)) 5)
-         "Números de unidades desde un eje X al siguiente.")
-     < src..
+      ;; numero-de-marcas-X
+      (if (zerop (% (longitud-X longitud-marca)))
+          (/ (longitud-X longitud-marca))
+        (1+ (/ (longitud-X longitud-marca))))
 
-     (Note que el valor de @c{simbolo-en-blanco} est'a asignado por otro
-     @c{defvar}. El predicado @c{boundp} chequea si ya ha sido asignado;
-     @c{boundp} devuelve @c{nil} si no lo tiene. Si @c{simbolo-en-blanco} fuera
-     disociado y no usara esta construcción condicional, en un GNU Emacs
-     reciente, se introduciría el depurador y mirará un mensaje de error
-     diciendo @'{Debugger entered--Lisp error: (void-variable simbolo-en-blanco)}
+    < src..
 
-     Aquí está el @c{defvar} para @c{X-axis-tic-symbol}:
+    Todo esto nos lleva directamente a la función para imprimir la linea de
+    marcas del eje X:
 
-     ..src > elisp
-       (defvar X-axis-tic-symbol "|"
-         "Cadena para insertar para apuntar a una columna en el eje X.")
-     < src..
+    ..src > elisp
+      (defun imprimir-linea-de-marcas-del-eje-X
+        (numero-de-marcas-X espacios-de-relleno-del-eje-X elemento-de-marca-del-eje-X)
+        "Imprime marcas para el eje X."
+          (insert espacios-de-relleno-del-eje-X)
+          (insert marca-del-eje-X)  ; Debajo de la primera columna.
+          ;; Inserta la segunda marca en el lugar adecuado.
+          (insert (concat
+                   (make-string
+                    (-  (* ancho-del-simbolo distancia-entre-etiquetas-del-eje-X)
+                        ;; Inserta el espacio en blanco al segundo símbolo de marca.
+                        (* 2 (length marca-del-eje-X)))
+                    ? )
+                   marca-del-eje-X))
+          ;; Inserta los ticks restantes.
+          (while (> numero-de-marcas-X 1)
+            (insert elemento-de-marca-del-eje-X)
+            (setq numero-de-marcas-X (1- numero-de-marcas-X))))
+    < src..
 
-     El objetivo es crear una línea que se parece a esto:
+    La línea de números es igualmente sencilla:
 
-     ..example >
-       |   |    |    |
-     < example..
+    Primero, creamos un elemento numerado con espacios en blanco antes de
+    cada número:
 
-     El primer tic es indentado así que está bajo la primera columna, que es
-     indentado para proveer espacio para las etiquetas del eje Y.
+    ..src > elisp
+      (defun elemento-del-eje-X (numero)
+        "Construye un elemento numerado del eje X."
+        (let ((espacios-de-relleno
+               (-  (* ancho-del-simbolo distancia-entre-etiquetas-del-eje-X)
+                   (length (number-to-string numero)))))
+          (concat (make-string espacios-de-relleno ? )
+                  (number-to-string numero))))
+    < src..
 
-     Un elemento tic consiste en espacios en blanco que se extienden desde un
-     tic al siguiente más un símbolo tic. El número de espacios en blanco se
-     determinan por el ancho del símbolo tic y el @c{X-axis-label-spacing}.
+    A continuacion, creamos la función para imprimir la línea numerada,
+    empezando con el número “1” para la primer columna:
 
-     El código se parece a esto:
+    ..src > elisp
+      (defun imprimir-linea-numerada-del-eje-X
+        (numero-de-marcas-X espacios-de-relleno-del-eje-X)
+        "Imprime linea de números del eje X"
+        (let ((numero distancia-entre-etiquetas-del-eje-X))
+          (insert espacios-de-relleno-del-eje-X)
+          (insert "1")
+          (insert (concat
+                   (make-string
+                    ;; Inserta espacios en blanco hasta el siguiente número.
+                    (-  (* ancho-del-simbolo distancia-entre-etiquetas-del-eje-X) 2)
+                    ? )
+                   (number-to-string numero)))
+          ;; Inserta los números restantes.
+          (setq numero (+ numero distancia-entre-etiquetas-del-eje-X))
+          (while (> numero-de-marcas-X 1)
+            (insert (elemento-del-eje-X numero))
+            (setq numero (+ numero distancia-entre-etiquetas-del-eje-X))
+            (setq numero-de-marcas-X (1- numero-de-marcas-X)))))
+    < src..
 
-     ..src > elisp
-       ;;; X-axis-tic-element
-       …
-       (concat
-        (make-string
-         ;; Crea una cadena de blancos.
-         (-  (* ancho-del-simbolo X-axis-label-spacing)
-             (length X-axis-tic-symbol))
-         ? )
-        ;; Concatena blancos con símbolos.
-        X-axis-tic-symbol)
-       …
-     < src..
+    Finalmente, necesitamos escribir @c{imprimir-eje-X} para usar
+    @c{imprimir-linea-de-marcas-del-eje-X} e @c{imprimir-linea-numerada-del-eje-X}.
 
-     Lo siguiente, determina cuantos espacios en blanco son necesarios para
-     indentar la primera marca tic a la primera del grafico. Esto usa el valor
-     de @c{full-Y-label-width} pasaba por la función @c{print-graph}.
+    La función debe determinar los valores locales de las variables utilizadas
+    por @c{imprimir-linea-de-marcas-del-eje-X} e @c{imprimir-linea-numerada-del-eje-X}, y
+    luego debe llamarlas. Ademas, debe imprimir el retorno de carro
+    que separe las dos líneas.
 
-     El código para crear @c{X-axis-leading-spaces} se parece a esto:
+    La función consiste de una varlist que especifica cinco variables
+    locales, y llamadas a cada una de las dos funciones de impresion de líneas:
 
-     ..src > elisp
-       ;; X-axis-leading-spaces
-       …
-       (make-string full-Y-label-width ? )
-       …
-     < src..
-
-     También necesita determinar el tamaño del eje horizontal, que es el
-     tamaño de la lista de números, y el número de ticks en el eje
-     horizontal:
-
-     ..src > elisp
-       ;; X-length
-       …
-       (length lista-de-numeros)
-
-       ;; tic-width
-       …
-       (* ancho-del-simbolo X-axis-label-spacing)
-
-       ;; number-of-X-ticks
-       (if (zerop (% (X-length tic-width)))
-           (/ (X-length tic-width))
-         (1+ (/ (X-length tic-width))))
-     < src..
-
-     Todo esto lidera directamente a la función para imprimir el eje X:
-
-     ..src > elisp
-       (defun print-X-axis-tic-line
-         (number-of-X-tics X-axis-leading-spaces X-axis-tic-element)
-         "Imprime ticks para el eje X."
-           (insert X-axis-leading-spaces)
-           (insert X-axis-tic-symbol)  ; En la primera columna.
-           ;; Inserta el segundo tic en el lugar adecuado.
-           (insert (concat
-                    (make-string
-                     (-  (* ancho-del-simbolo X-axis-label-spacing)
-                         ;; Inserta el espacio en blanco al segundo símbolo tic.
-                         (* 2 (length X-axis-tic-symbol)))
-                     ? )
-                    X-axis-tic-symbol))
-           ;; Inserta los ticks restantes.
-           (while (> number-of-X-tics 1)
-             (insert X-axis-tic-element)
-             (setq number-of-X-tics (1- number-of-X-tics))))
-     < src..
-
-     La línea de números es igualmente simple:
-
-     Primero, creamos un elemento numerado con espacios en blanco antes de
-     cada número:
-
-     ..src > elisp
-       (defun X-axis-element (number)
-         "Construye un elemento del eje X numerado."
-         (let ((leading-spaces
-                (-  (* ancho-del-simbolo X-axis-label-spacing)
-                    (length (number-to-string number)))))
-           (concat (make-string leading-spaces ? )
-                   (number-to-string number))))
-     < src..
-
-     Lo siguiente, se crea la función para imprimir la línea numerada,
-     empezando con el número “1” para la primera columna:
-
-     ..src > elisp
-       (defun print-X-axis-numbered-line
-         (number-of-X-tics X-axis-leading-spaces)
-         "Imprime la líneas de números del eje X"
-         (let ((number X-axis-label-spacing))
-           (insert X-axis-leading-spaces)
-           (insert "1")
-           (insert (concat
-                    (make-string
-                     ;; Inserta espacios en blanco al siguiente número.
-                     (-  (* ancho-del-simbolo X-axis-label-spacing) 2)
-                     ? )
-                    (number-to-string number)))
-           ;; Insertar números.
-           (setq number (+ number X-axis-label-spacing))
-           (while (> number-of-X-tics 1)
-             (insert (X-axis-element number))
-             (setq number (+ number X-axis-label-spacing))
-             (setq number-of-X-tics (1- number-of-X-tics)))))
-     < src..
-
-     Finalmente, se necesita escribir lo que @c{print-X-axis} que usa
-     @c{print-X-axis-tic-line} y @c{print-X-axis-numbered-line}.
-
-     La función debe determinar los valores locales de las variables usadas
-     por @c{print-X-axis-tic-line} y @c{print-X-axis-numbered-line}, y
-     entonces eso debe llamarlas. También, debe imprimir el retorno de carro
-     que separe las dos líneas.
-
-     La función consiste de una varlist que especifica cinco variables
-     locales, y llama cada una de las dos líneas imprimiendo funciones:
-
-     ..src > elisp
-       (defun print-X-axis (lista-de-numeros)
-         "Imprime el eje X etique al tamaño de LISTA-DE-NUMEROS."
-         (let* ((leading-spaces
-                 (make-string full-Y-label-width ? ))
-              ;; ancho-del-simbolo se provee por imprimir-cuerpo-grafico
-              (tic-width (* ancho-del-simbolo X-axis-label-spacing))
-              (X-length (length lista-de-numeros))
-              (X-tic
-               (concat
-                (make-string
+    ..src > elisp
+      (defun imprimir-eje-X (lista-de-numeros)
+        "Imprime las etiquetas del eje al tamaño de LISTA-DE-NUMEROS."
+        (let* ((espacios-de-relleno
+                (make-string ancho-completo-de-la-etiqueta-Y ? ))
+              ;; ancho-del-simbolo es provisto por imprimir-cuerpo-grafico
+             (longitud-marca (* ancho-del-simbolo distancia-entre-etiquetas-del-eje-X))
+             (longitud-X (length lista-de-numeros))
+             (marca-X
+              (concat
+               (make-string
                  ;; Crea una cadena de espacios en blanco.
-                 (-  (* ancho-del-simbolo X-axis-label-spacing)
-                     (length X-axis-tic-symbol))
+                 (-  (* ancho-del-simbolo distancia-entre-etiquetas-del-eje-X)
+                     (length marca-del-eje-X))
                  ? )
-                ;; Concatena espacio en blanco con símbolos
-                tic.
-                X-axis-tic-symbol))
-              (tic-number
-               (if (zerop (% X-length tic-width))
-                   (/ X-length tic-width)
-                 (1+ (/ X-length tic-width)))))
-           (print-X-axis-tic-line tic-number leading-spaces X-tic)
+                ;; Concatena espacios en blanco con el símbolo de la marca.
+                marca-del-eje-X))
+             (numero-de-marcas
+              (if (zerop (% longitud-X longitud-marca))
+                  (/ longitud-X longitud-marca)
+                (1+ (/ longitud-X longitud-marca)))))
+           (imprimir-linea-de-marcas-del-eje-X numero-de-marcas espacios-de-relleno marca-X)
            (insert "\n")
-           (print-X-axis-numbered-line tic-number leading-spaces)))
-     < src..
+           (imprimir-linea-numerada-del-eje-X numero-de-marcas espacios-de-relleno)))
+    < src..
 
-     Se puede testear @c{print-X-axis}:
+    Para probar @c{imprimir-eje-X}:
 
-     - Instale @c{X-axis-tic-symbol}, @c{X-axis-label-spacing},
-       @c{print-X-axis-tic-line}, tanto como @c{X-axis-element},
-       @c{print-X-axis-numbered-line}, y @c{print-X-axis}.
+    1. Instala @c{marca-del-eje-X}, @c{distancia-entre-etiquetas-del-eje-X},
+       @c{imprimir-linea-de-marcas-del-eje-X}, tambien @c{elemento-del-eje-X},
+       @c{imprimir-linea-numerada-del-eje-X}, e @c{imprimir-eje-X}.
 
-     - Copia la siguiente expresión:
+    2. Copia la expresión siguiente:
 
-       ..src > elisp
-         (progn
-          (let ((full-Y-label-width 5)
-                (ancho-del-simbolo 1))
-            (print-X-axis
-             '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16))))
-       < src..
+      ..src > elisp
+        (progn
+         (let ((ancho-completo-de-la-etiqueta-Y 5)
+               (ancho-del-simbolo 1))
+           (imprimir-eje-X
+            '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16))))
+      < src..
 
-     - Cambia al búfer @f{*scratch*} y emplaza el cursor donde se quiere el
-       eje etiquetado para empezar.
+    3. Cambia al búfer @f{*scratch*} y coloca el cursor donde quieras que comiencen
+       las etiquetas del eje.
 
-     - Escribe @k{M-:} @%c(eval-expression).
+    4. Presiona @k{M-:} @%c(eval-expression).
 
-     - Pegue la expresión de test dentro del minibuffer con @k{C-y}
-       (@c{yank}).
+    5. Pegue la expresión de prueba dentro del minibuffer con @k{C-y} @%c(yank).
 
+    5. Presiona @k{RET} para evaluar la expresión
 
-     - Presiona @k{RET} para evaluar la expresión
+    Emacs imprimirá el eje horizontal así
 
-
-     Emacs imprimirá el eje horizontal así
-
-     ..example >
-       |   |    |    |    |
-       1   5   10   15   20
-     < example..
+    ..example >
+           |   |    |    |    |
+           1   5   10   15   20
+    < example..
 
 ** Imprimiendo el grafico completo
 
-   Ahora estamos listos para imprimir el grafico completo.
+   Ahora estamos casi listos para imprimir el grafico completo.
 
    La función para imprimir el grafico con las etiquetas apropiadas sigue el
-   esquema que creamos antes (Vease Sección @l{Un Grafico con Ejes
+   esquema que creamos anteriormente (Ver Sección @l{#Apéndice C<>Un Grafico con Ejes
    Etiquetados}), pero con adiciones.
 
    Aquí está el esquema:
 
    ..src > elisp
-     (defun print-graph (lista-de-numeros)
+     (defun imprimir-grafico (lista-de-numeros)
        "documentacion…"
-       (let ((height  …
+       (let ((altura  …
              …))
-         (print-Y-axis height … )
+         (imprimir-eje-Y altura … )
          (imprimir-cuerpo-grafico lista-de-numeros)
-         (print-X-axis … )))
+         (imprimir-eje-X … )))
    < src..
 
-   La versión final es diferente desde que se planea en dos caminos: primero,
-   contiene los valores adicionales calculadas una vez que en la varlist;
-   segundo, eso trae una opción para específicar las etiquetas se incrementa
-   la fila. Esta última funcionalidad cambia a ser esencial; de otro modo, un
-   grafico puede tener más filas que ajustarse en una muestra o en una hoja de
+   La versión final es diferente de lo que planeamos de dos maneras: primero,
+   contiene valores adicionales calculadas una vez en la varlist;
+   segundo, tiene una opción para específicar el encremento de las etiquetas por
+   fila. Esta última funcionalidad resulta esencial; de otro modo, un
+   grafico puede tener más filas de las que caben en una pantalla o en una hoja de
    papel.
 
    Esta nueva funcionalidad requiere un cambio a la función
-   @c{Y-axis-column}, para añadir @c{vertical-step} para eso. Esta función es
-   parece a esto:
+   @c{columna-del-eje-Y}, para añadir un @c{paso-vertical} para eso. Esta
+   función se ve asi:
 
    ..src > elisp
      ;;; Versión Final.
-     (defun Y-axis-column
-       (height width-of-label &optional vertical-step)
+     (defun columna-del-eje-Y
+       (altura ancho-de-la-etiqueta &optional paso-vertical)
        "Construye una lista de etiquetas para el eje Y.
-     HEIGHT es la máxima altura del grafico.
-     WIDTH-OF-LABEL es el máximo ancho de la etiqueta.
-     VERTICAL-STEP, una opción, es un entero positivo
-     que especifica cuanto una etiqueta de eje Y incrementa
-     cada línea. Por ejemplo, un paso de 5
-     significa que cada línea es cinco unidades
-     del grafico."
-       (let (Y-axis
-             (number-per-line (or vertical-step 1)))
-         (while (> height 1)
-           (if (zerop (% height Y-axis-label-spacing))
+     ALTURA es la altura máxima del grafico.
+     ANCHO-DE-LA-ETIQUETA es el ancho máximo de la etiqueta.
+     PASO-VERTICAL, una opción, es un entero positivo que
+     especifica cuanto se incrementa una etiqueta del eje Y en
+     cada línea. Por ejemplo, un paso de 5 significa que cada
+     línea es cinco unidades del grafico."
+       (let (eje-Y
+             (numero-por-linea (or paso-vertical 1)))
+         (while (> altura 1)
+           (if (zerop (% altura distancia-entre-etiquetas-del-eje-Y))
                ;; Inserta etiqueta.
-               (setq Y-axis
+               (setq eje-Y
                      (cons
-                      (Y-axis-element
-                       (* height number-per-line)
-                       width-of-label)
-                      Y-axis))
-             ;; Else, inserta espacios en blanco.
-             (setq Y-axis
+                      (elemento-del-eje-Y
+                       (* altura numero-por-linea)
+                       ancho-de-la-etiqueta)
+                      eje-Y))
+             ;; de otra forma, inserta espacios en blanco.
+             (setq eje-Y
                    (cons
-                    (make-string width-of-label ? )
-                    Y-axis)))
-           (setq height (1- height)))
+                    (make-string ancho-de-la-etiqueta ? )
+                    eje-Y)))
+           (setq altura (1- altura)))
          ;; Inserta línea base.
-         (setq Y-axis (cons (Y-axis-element
-                             (or vertical-step 1)
-                             width-of-label)
-                            Y-axis))
-         (nreverse Y-axis)))
+         (setq eje-Y (cons (elemento-del-eje-Y
+                             (or paso-vertical 1)
+                             ancho-de-la-etiqueta)
+                            eje-Y))
+         (nreverse eje-Y)))
    < src..
 
    Los valores para la máxima altura del grafico y el ancho de un símbolo se
-   computan por @c{print-graph} es su expresión @c{let}; así
-   @c{imprimir-cuerpo-grafico} debe ser cambiado para aceptarlos.
+   calculan por medio de @c{imprimir-grafico} es su expresión @c{let}; por lo tanto,
+   @c{imprimir-cuerpo-grafico} debe cambiarse para aceptarlos.
 
    ..src > elisp
      ;;; Versión Final.
-     (defun imprimir-cuerpo-grafico (lista-de-numeros height ancho-del-simbolo)
-       "Imprime una gráfica de barras del LISTA-DE-NUMEROS.
-     El lista-de-numeros consiste en los valores del eje Y.
-     HEIGHT es la máxisma altura del grafico.
+     (defun imprimir-cuerpo-grafico (lista-de-numeros altura ancho-del-simbolo)
+       "Imprime un gráfico de barras de la LISTA-DE-NUMEROS.
+     La lista-de-numeros consiste en los valores del eje Y.
+     ALTURA es la altura máxima del grafico.
      ANCHO-DEL-SIMBOLO es el número de cada columna."
        (let (desde-la-posicion)
          (while lista-de-numeros
            (setq desde-la-posicion (point))
            (insert-rectangle
-            (columna-del-grafico height (car lista-de-numeros)))
+            (columna-del-grafico altura (car lista-de-numeros)))
            (goto-char desde-la-posicion)
            (forward-char ancho-del-simbolo)
            ;; Dibuja el grafico columna por columna.
-           (sit-for 0)
-           (setq lista-de-numeros (cdr lista-de-numeros)))
-         ;; Posiciona el punto para las etiquetas del eje X.
-         (forward-line height)
+             (sit-for 0)
+             (setq lista-de-numeros (cdr lista-de-numeros)))
+         ;; Coloca el punto para las etiquetas del eje X.
+         (forward-line altura)
          (insert "\n")))
    < src..
 
-   Finalmente, el código para la función @c{print-graph}:
+   Finalmente, el código para la función @c{imprimir-grafico}:
 
    ..src > elisp
      ;;; Versión Final.
-     (defun print-graph
-       (lista-de-numeros &optional vertical-step)
-       "El gráfico de barras etiquetadas del LISTA-DE-NUMEROS.
-     El lista-de-numeros consiste en los valores de eje Y.
+     (defun imprimir-grafico
+       (lista-de-numeros &optional paso-vertical)
+       "El gráfico de barras etiquetado de la LISTA-DE-NUMEROS.
+     La lista-de-numeros consiste en los valores del eje Y.
 
-     Opcionalmente, VERTICAL-STEP, un entero positivo, especifica cuanto el
-     eje Y incrementa cada línea. Por ejemplo, un paso de 5
-     significa que cada fila es de cinco unidades.
+     Opcionalmente, PASO-VERTICAL, un entero positivo, especifica cuanto
+     se incrementa la etiqueta del eje Y en cada línea. Por ejemplo, un
+     paso de 5 significa que cada fila tiene cinco unidades."
        (let* ((ancho-del-simbolo (length simbolo-en-blanco))
-              ;; @c{height} en ambos es el número más largo
-              ;; y el número con la mayoría de los digitos.
-              (height (apply 'max lista-de-numeros))
-              (height-of-top-line
-               (if (zerop (% height Y-axis-label-spacing))
-                   height
+              ;; ALTURA es tanto el número más grande
+              ;; como el número con mas digitos.
+              (altura (apply 'max lista-de-numeros))
+              (altura-de-la-linea-superior
+               (if (zerop (% altura distancia-entre-etiquetas-del-eje-Y))
+                   altura
                  ;; else
-                 (* (1+ (/ height Y-axis-label-spacing))
-                    Y-axis-label-spacing)))
-              (vertical-step (or vertical-step 1))
-              (full-Y-label-width
+                 (* (1+ (/ altura distancia-entre-etiquetas-del-eje-Y))
+                    distancia-entre-etiquetas-del-eje-Y)))
+              (paso-vertical (or paso-vertical 1))
+              (ancho-completo-de-la-etiqueta-Y
                (length
                 (concat
                  (number-to-string
-                  (* height-of-top-line vertical-step))
-                 Y-axis-tic))))
+                  (* altura-de-la-linea-superior paso-vertical))
+                 marca-del-eje-Y))))
 
-         (print-Y-axis
-          height-of-top-line full-Y-label-width vertical-step)
+         (imprimir-eje-Y
+          altura-de-la-linea-superior ancho-completo-de-la-etiqueta-Y paso-vertical)
          (imprimir-cuerpo-grafico
-          lista-de-numeros height-of-top-line ancho-del-simbolo)
-         (print-X-axis lista-de-numeros)))
+          lista-de-numeros altura-de-la-linea-superior ancho-del-simbolo)
+         (imprimir-eje-X lista-de-numeros)))
    < src..
 
-*** Testeando @c{print-graph}
+*** Probando @c{imprimir-grafico}
 
-     Se puede probar la función @c{print-graph} con una lista ordenada de
-     números:
+    Podemos probar la función @c{imprimir-grafico} con una pequeña lista de
+    números:
 
-     - Instala las versiones finales de @c{Y-axis-column},
-       @c{imprimir-cuerpo-grafico}, y @c{print-graph} (además del resto del código.)
+    1. Instala las versiones finales de @c{columna-del-eje-Y},
+       @c{imprimir-cuerpo-grafico}, e @c{imprimir-grafico} (además del resto del código.)
 
-     - Copia la siguiente expresión:
+    2. Copia la siguiente expresión:
 
        ..src > elisp
-         (print-graph '(3 2 5 6 7 5 3 4 6 4 3 2 1))
+         (imprimir-grafico '(3 2 5 6 7 5 3 4 6 4 3 2 1))
        < src..
 
-     - Cambia al búfer @f{*scratch*} y emplaza el cursor donde se quiere el
-       eje etiquetado para empezar.
+    3. Cambia al búfer @f{*scratch*} y coloca el cursor donde quieras que inicien
+       las etiquetas de los ejes.
 
-     - Escribe @k{M-:} @%c(eval-expression).
+    4. presiona @k{M-:} @%c(eval-expression).
 
-     - Pegue la expresión de test dentro del minibuffer con @k{C-y}
-       (@c{yank}).
+    5. Pegua la expresión de prueba dentro del minibuffer con @k{C-y}
+       @%c(yank).
 
-
-     - Presiona @k{RET} para evaluar la expresión
-
-
-     Emacs imprimirá un grafico que se parece a:
-
-     ..example >
-       10 -
+    6. Presiona @k{RET} para evaluar la expresión
 
 
-                *
-               **   *
-        5 -   ****  *
-              **** ***
-            * *********
-            ************
-        1 - *************
+    Emacs imprimirá un grafico con este aspecto:
 
-            |   |    |    |
-            1   5   10   15
-     < example..
-
-     Por otro lado, si se pasa a @c{print-graph} un @c{vertical-step} valor
-     de 2, evaluando esta expresión:
-
-     ..src > elisp
-       (print-graph '(3 2 5 6 7 5 3 4 6 4 3 2 1) 2)
-     < src..
-
-     El grafico se parece a esto:
-
-     ..example >
-       20 -
+    ..example >
+      10 -
 
 
-                *
-               **   *
-       10 -   ****  *
-              **** ***
-            * *********
-            ************
-        2 - *************
+               *
+              **   *
+       5 -   ****  *
+             **** ***
+           * *********
+           ************
+       1 - *************
 
-            |   |    |    |
-            1   5   10   15
-     < example..
+           |   |    |    |
+           1   5   10   15
+    < example..
 
-     (Una pregunta: ¿es el ‘2’ debajo del eje vertical un error o una
-     funcionalidad? Si se piensa que es un error, y sería un ‘1’, (o incluso
-     un ‘0’), se pueden modificar las fuentes.)
 
-*** Creando gráficas de números de palabras y símbolos
 
-     Ahora para el gráfico para el que todo este código fué escrito: un
-     gráfico que muestra cuantas definiciones de función contienen unas pocas
-     10 palabras y símbolos, cuantas contienen entre 10 y 19 palabras y
-     símbolos, cuantos contienen entre 20 y 29 palabras y símbolos, y así sucesivamente.
+    Por otro lado, si se pasa a @c{imprimir-grafico} un valor de @c{paso-vertical}
+    de 2, evaluando esta expresión:
 
-     Esto es un proceso de múltiples pasos. Primero asegúrate que has cargado
-     todo el requisito del código.
+    ..src > elisp
+      (imprimir-grafico '(3 2 5 6 7 5 3 4 6 4 3 2 1) 2)
+    < src..
 
-     Eso es una buena idea para eliminar el valor de @c{cima-de-rangos} en
-     caso de que has asignado a algún valor diferente. Se puede evaluar lo
-     siguiente:
+    El grafico tiene el siguiente aspecto:
 
-     ..src > elisp
-       (setq cima-de-rangos
-        '(10  20  30  40  50
-          60  70  80  90 100
-         110 120 130 140 150
-         160 170 180 190 200
-         210 220 230 240 250
-         260 270 280 290 300)
-     < src..
+    ..example >
+      20 -
 
-     Lo siguiente crea una lista del número de palabras y símbolos en cada
-     rango.
 
-     Evalúa lo siguiente:
+               *
+              **   *
+      10 -   ****  *
+             **** ***
+           * *********
+           ************
+       2 - *************
 
-     ..src > elisp
-       (setq list-for-graph
-              (definiciones-por-rango
-                (sort
-                 (lista-de-longitudes-de-muchos-ficheros-recursiva
-                  (directory-files "/usr/local/emacs/lisp"
-                                   t ".+el$"))
-                 '<)
-                cima-de-rangos))
-     < src..
+           |   |    |    |
+           1   5   10   15
+    < example..
 
-     En mi vieja máquina, esto lleva como una hora. Se parece a 303 ficheros
-     Lisp en mi copia de Emacs version 19.23. Después de toda esta
-     computación, el @c{list-for-graph} tenía este valor:
+    (Una pregunta: ¿es el ‘2’ en la parte inferior del eje vertical un error o una
+    caracteristica? Si crees que es un error, y deberia ser un ‘1’, (o incluso
+    un ‘0’), puedes modificar el codigo.)
 
-     ..src > elisp
-       (537 1027 955 785 594 483 349 292 224 199 166 120 116 99
+*** Graficar números de palabras y símbolos
+
+    Ahora el gráfico para el que todo este código fué escrito: un gráfico que
+    muestra cuantas definiciones de función contienen menos de 10 palabras y
+    símbolos, cuantas contienen entre 10 y 19, cuantas entre 20 y 29 palabras,
+    y así sucesivamente.
+
+    Este es un proceso de varios pasos. Primero asegúrate que has cargado
+    todo el código requerido.
+
+    Eso es una buena idea restablecer el valor de @c{cima-de-rangos} en
+    caso de que lo hayas asignado a algún valor diferente. Puedes evaluar lo
+    siguiente:
+
+    ..src > elisp
+      (setq cima-de-rangos
+       '(10  20  30  40  50
+         60  70  80  90 100
+        110 120 130 140 150
+        160 170 180 190 200
+        210 220 230 240 250
+        260 270 280 290 300))
+    < src..
+
+    Luego crea una lista del número de palabras y símbolos en cada
+    rango.
+
+    Evalúa lo siguiente:
+
+    ..src > elisp
+      (setq lista-para-el-grafico
+             (definiciones-por-rango
+               (sort
+                (lista-de-longitudes-de-muchos-ficheros-recursiva
+                 (directory-files "/usr/local/emacs/lisp"
+                                  t ".+el$"))
+                '<)
+               cima-de-rangos))
+    < src..
+
+    En mi vieja máquina, esto tardaba una hora. Veia atraves de 303 ficheros
+    Lisp en mi copia de Emacs version 19.23. Después de toda esta
+    computación, @c{lista-para-el-grafico} tenía este valor:
+
+    ..src > elisp
+      (537 1027 955 785 594 483 349 292 224 199 166 120 116 99
        90 80 67 48 52 45 41 33 28 26 25 20 12 28 11 13 220)
-     < src..
+    < src..
 
-     Esto significa que mi copia de Emacs tiene 537 definiciones de funciones
-     con poco menos de 10 palabras o símbolos en sí, 1027 definiciones de
-     función con 10 a 19 palabras o símbolos dentro, 955 definiciones de
-     función con 20 a 29 palabras o símbolos dentro, y así sucesivamente.
+    Esto significa que mi copia de Emacs tiene 537 definiciones de funcion con
+    poco menos de 10 palabras o símbolos en ellas, 1027 definiciones con 10 a
+    19 palabras o símbolos, 955 con 20 a 29, etc.
 
-     Claramente, solo buscando esta lista se puede ver que la mayoría de
-     definiciones de función contienen de diez a treinta palabras y símbolos.
+    Claramente, con solo mirar esta lista se puede ver que la mayoría de
+    definiciones de función contienen de diez a treinta palabras y símbolos.
 
-     Ahora para imprimir. Nosotros no queremos imprimir un grafico que es
-     de 1030 líneas de alto …. En vez de eso, imprimiría un grafico que es
-     mejor que venticinco líneas de alto. Un grafico cuya altura puede ser
-     mostrada en casi cualquier monitor, y fácilmente impreso en una hoja de
-     papel.
+    Ahora a imprimirla. No queremos imprimir un grafico de 1030 líneas de alto
+    …. En su lugar, debemos imprimir un grafico que tenga menos de venticinco líneas
+    de alto. Un grafico cuya altura puede ser mostrada en casi cualquier
+    monitor, e imprimirse fácilmente en una hoja de papel.
 
-     Esto significa que cada valor en @c{list-for-graph} debe ser reducido a
-     un quinceavo de su valor presente.
+    Esto significa que cada valor en @c{lista-para-el-grafico} debe reducirse a
+    quincuagesimo de su valor actual.
 
-     Aquí hay una corta función para hacer esto, usando dos funciones que no
-     se han visto todavía, @c{mapcar} y @c{lambda}.
+    Aquí hay una breve función para hacer exactamente eso, usando dos funciones que no
+    hemos visto todavía, @c{mapcar} y @c{lambda}.
 
-     ..src > elisp
-       (defun one-fiftieth (full-range)
-         "Devuelve la lista, con el cincuenteavo de cada elemento."
-        (mapcar '(lambda (arg) (/ arg 50)) full-range))
-     < src..
+    ..src > elisp
+      (defun un-cincuentavo (rango-completo)
+        "Devuelve una lista con la quincuagesima parte de cada numero."
+       (mapcar '(lambda (arg) (/ arg 50)) rango-completo))
+    < src..
 
 *** Una expresión @c{lambda}: Anonimicidad útil
 
-     @c{lambda} es el símbolo para una función anónima, una función sin un
-     nombre. Cada vez que se use una función anónima, se necesita incluir su
-     cuerpo completo.
+    @c{lambda} es el símbolo para una función anónima, una función sin
+    nombre. Cada vez que se use una función anónima, es necesario incluir su
+    todo su cuerpo.
 
-     De este modo,
+    De este modo,
 
-     ..src > elisp
-       (lambda (arg) (/ arg 50))
-     < src..
+    ..src > elisp
+      (lambda (arg) (/ arg 50))
+    < src..
 
-     es una definición de función que dice ‘devuelve el valor resultante de
-     dividir cualquier cosa que es pasada como @c{arg} por 50’.
+    es una definición de función que dice ‘devuelve el valor resultante de
+    dividir lo que se pasa como @c{arg} por 50’.
 
-     Pronto, por ejemplo, se tenía una función @c{multiplicar-por-siete}; se
-     multiplica su argumento por 7. Esta función es similar, excepto que
-     divide su argumento por 50; y, no tiene nombre. El equivalente anónimo
-     de @c{multiplicar-por-siete} es:
+    Anteriormente, por ejemplo, teniamos una función @c{multiplicar-por-siete};
+    multiplica su argumento por 7. Esta función es similar, excepto que
+    divide su argumento por 50; y, no tiene nombre. El equivalente anónimo
+    de @c{multiplicar-por-siete} es:
 
-     ..src > elisp
-       (lambda (number) (* 7 number))
-     < src..
+    ..src > elisp
+      (lambda (numero) (* 7 numero))
+    < src..
 
-     (Vea la Seccion @l{La forma especial @c{defun}}.)
+    (Vea la Seccion @l{#La forma especial @c{defun}}.)
 
-     Si queremos multiplicar 3 por 7, podemos escribir:
+    Si queremos multiplicar 3 por 7, podemos escribir:
 
-     ..art >
-       (multiplicar-por-siete 3)
-        \_______________/ ^
-                |         |
-             función  argumento
-     < art..
+    ..art >
+      (multiplicar-por-siete 3)
+       \___________________/ ^
+                 |           |
+              función    argumento
+    < art..
 
-     Esta expresión devuelve 21.
+    Esta expresión devuelve 21.
 
-     De manera similar, se puede escribir:
+    De manera similar, podemos escribir:
 
-     ..art >
-       ((lambda (number) (* 7 number)) 3)
-        \____________________________/ ^
-                      |                |
+    ..art >
+      ((lambda (numero) (* 7 numero)) 3)
+       \____________________________/ ^
+                     |                |
              función anónima     argumento
-     < art..
+    < art..
 
-     Si queremos dividir 100 por 50, se puede escribir:
+    Si queremos dividir 100 por 50, podemos escribir:
 
-     ..art >
-       ((lambda (arg) (/ arg 50)) 100)
-        \______________________/  \_/
-                    |              |
-            función anónima   argumento
-     < art..
+    ..art >
+      ((lambda (arg) (/ arg 50)) 100)
+       \______________________/  \_/
+                   |              |
+           función anónima    argumento
+    < art..
 
-     Esta expresión devuelve 2. El 100 es pasado para la función, que divide
-     este número por 50.
+    Esta expresión devuelve 2. El 100 se pasa a la función, que divide
+    este número por 50.
 
-     Vea la Seccion @"{Expresiones Lambda} en @e{El Manual de Referencia GNU
-     Emacs Lisp}, para más acerca de @c{lambda}. Lisp y expresiones Lambda se
-     derivan del Cálculo Lambda.
+     Cosulta la Seccion @l{info:elisp#Lambda Expressions<>Expresiones Lambda} en
+     @e{El Manual de Referencia de GNU Emacs Lisp}, para más informacion acerca de
+     @c{lambda}. Lisp y las expresiones Lambda se derivan del Cálculo Lambda.
 
-** La función @c{mapcar}
+*** La función @c{mapcar}
 
     @c{mapcar} es una función que llama a su primer argumento con cada
     elemento de su segundo argumento. El segundo argumento debe ser una
     secuencia.
 
-    La parte @'{map} del nombre viene de la frase matemática, ‘mapeando a
-    través de un dominio’, significa hace apply a una función a cada uno de
-    los elementos en un dominio. La frase matemática está basada en la
-    metáfora de un superviviente paseando, un paso en un momento, a través de
-    un área él está mapeando. Y @'{car}, de acuerdo, viene desde la noción
-    Lisp del primero de una lista.
+    La parte @'{map} del nombre viene de la frase matemática, ‘mapeo sobre
+    un dominio’, lo que significa aplicar una función a cada uno de
+    los elementos en un dominio. La frase matemática se basa en la
+    metáfora de un topografo que camina, un paso a la vez, sobre
+    un área que está mapeando. Y @'{car}, por supuesto, proviene desde la noción
+    Lisp del primer elemento de una lista.
 
     Por ejemplo,
 
-    ..src > elisp
-      (mapcar '1+ '(2 4 6))
-           ⇒ (3 5 7)
-    < src..
+    ..srci > elisp
+      > (mapcar '1+ '(2 4 6))
+      (3 5 7)
+    < srci..
 
-    La función @c{1+} añade uno a su argumento, es ejecutada en @e{each} de
-    la lista, y una nueva lista es devuelta.
+    La función @c{1+} añade uno a su argumento, es ejecuta en @e{cada} elemento de
+    la lista, y se devuelve una nueva lista.
 
-    En contraste con esto @c{apply}, se aplica su primer argumento a todo lo
-    que permanece. (Vea la Seccion @l{Preparar un grafico}, para una explicación
+    En contraste con @c{apply}, que aplica su primer argumento a todos los
+    demas. (Consulta la Seccion @l{#Preparar un grafico}, para una explicación
     de @c{apply}.)
 
-    En la definición de @c{one-fiftieth}, el primer argumento es la función
+    En la definición de @c{un-cincuentavo}, el primer argumento es la función
     anónima:
 
     ..src > elisp
       (lambda (arg) (/ arg 50))
     < src..
 
-    y el segundo argumento es @c{full-range}, que será asociado para
-    @c{list-for-graph}.
+    y el segundo argumento es @c{rango-completo}, que será vinculado a
+    @c{lista-para-el-grafico}.
 
-    La expresión completa se parece a esto:
-
-    ..src > elisp
-      (mapcar (lambda (arg) (/ arg 50)) full-range))
-    < src..
-
-    Vea la Seccion @"{Mapeando Funciones} en @e{El Manual de Referencia de GNU
-    Emacs Lisp}, para más acerca de @c{mapcar}.
-
-    Usando la función @c{one-fiftieth}, se puede generar una lista en el que
-    cada elemento es un cincuenteavo del tamaño del correspondiente elemento
-    en @c{list-for-graph}.
+    La expresión completa se ve asi:
 
     ..src > elisp
-      (setq fiftieth-list-for-graph
-            (one-fiftieth list-for-graph))
+      (mapcar (lambda (arg) (/ arg 50)) rango-completo))
     < src..
 
-    La lista resultante se parece a esto:
+    Consulta la Seccion @l{#info:elisp#Mapping Functions<>Mapeando Funciones} en
+    @e{El Manual de Referencia de GNU Emacs Lisp}, para más informacion sobre
+    @c{mapcar}.
+
+    Usando la función @c{un-cincuentavo}, podemos generar una lista en la que
+    cada elemento es un cincuentavo del tamaño del elemento correspondiente
+    en la @c{lista-para-el-grafico}.
+
+    ..src > elisp
+      (setq cincuentavo-de-lista-para-el-grafico
+            (un-cincuentavo lista-para-el-grafico))
+    < src..
+
+    La lista resultante tiene este aspecto:
 
     ..src > elisp
       (10 20 19 15 11 9 6 5 4 3 3 2 2
-      1 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 4)
+       1 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 4)
     < src..
 
-    Así, ¡ya estamos casi listos para imprimir!  (También se notifica la
-    pérdida de información: muchos de los rangos superiores son 0, esto
-    significa que menos de 50 funciones tenían muchas palabras o
-    símbolos––pero no necesariamente significando que niguna tenía muchas
+    ¡ya estamos casi listos para imprimir!  (También notamos la
+    pérdida de información: muchos de los rangos mas altos son 0, lo que
+    significa que menos de 50 funciones tenían tantas palabras o
+    símbolos––pero no necesariamente significa que niguna tenía muchas
     palabras o símbolos.)
 
 *** Otro error … más insidioso
 
-     ¡Se dijo ‘casi listo para imprimir’! De acuerdo, hay un error en la
-     función @c{print-graph} …. Esta tiene una opción @c{vertical-step}, pero
-     no una opción @c{horizontal-step}. La escala @c{cima-de-rango} va desde
-     10 a 300 por decenas. Pero la función @c{print-graph} imprimirá solo uno
-     por uno.
+    ¡Dije ‘casi listos para imprimir’! De acuerdo, hay un error en la
+    función @c{imprimir-grafico} …. Tiene una opción @c{paso-vertical}, pero
+    no una opción @c{paso-horizontal}. La escala de @c{cima-de-rango} va desde
+    10 a 300 por decenas. Pero la función @c{imprimir-grafico} imprimirá solo
+    por unos.
 
-     Esto es un ejemplo clásico de lo que algunos consideramos el tipo más
-     insidioso de error, el error de omisión. Este no es el tipo de error que
-     se puede encontrar estudiando el código, para eso no es el código; es
-     una funcionalidad omitida. Tus mejores acciones son probar tu programa
-     pronto y con frecuencia; e intentar poner en orden, tanto como se pueda,
-     escribir código que sea fácil de comprender y fácil de cambiar. Intenta
-     ser consciente, siempre y cuando se pueda, esto es siempre que tengas
-     que escribir, @e{será} reescrito, si no pronto, eventualmente. Un máximo
-     duro de seguir.
+    Este es un ejemplo clásico de lo que algunos consideramos el tipo más
+    insidioso de error, el error de omisión. Este no es el tipo de error que se
+    puede encontrar estudiando el código, ya que no esta en el código; es una
+    caracteristica omitida. Tus mejores acciones son probar tu programa temprano
+    y con frecuencia; e intentar poner en orden, tanto como se pueda, escribir
+    código que sea fácil de comprender y fácil de cambiar. Intenta ser
+    consciente, siempre y cuando se pueda, de todo lo que has escrito, @e{será}
+    reescrito, si no pronto, eventualmente. Una dura máxima a seguir.
 
-     Esta es la función @c{print-X-axis-numbered-line} que necesita el
-     trabajo; y entonces el @c{print-X-axis} y la función @c{print-graph}
-     necesita ser adaptada. No se necesita mucho para ser hecho; hay uno
-     simpático: los números podrían alinearse con marcas de tic. Esto toma un
-     pequeño pensamiento.
+    Es la función @c{imprimir-linea-numerada-del-eje-X} la que necesita trabajo;
+    y luego hay que adaptar las funciones @c{imprimir-eje-X} e @c{imprimir-grafico}.
+    No hay mucho que hacer; hay una cosa buena: los números deben
+    alinearse con marcas de etiquetado. Esto requiere un poco de reflexion.
 
-     Aquí está el @c{print-X-axis-numbered-line} corregido:
+    Aquí está @c{imprimir-linea-numerada-del-eje-X} corregido:
 
-     ..src > elisp
-       (defun print-X-axis-numbered-line
-         (number-of-X-tics X-axis-leading-spaces
-          &optional horizontal-step)
-         "Imprime la líneas de números X-axis"
-         (let ((number X-axis-label-spacing)
-               (horizontal-step (or horizontal-step 1)))
-           (insert X-axis-leading-spaces)
-           ;; Elimina espacios extra de guía.
-           (delete-char
-            (- (1-
-                (length (number-to-string horizontal-step)))))
-           (insert (concat
-                    (make-string
-                     ;; Inserta espacio en blanco.
-                     (-  (* ancho-del-simbolo
-                            X-axis-label-spacing)
-                         (1-
-                          (length
-                           (number-to-string horizontal-step)))
-                         2)
-                     ? )
-                    (number-to-string
-                     (* number horizontal-step))))
-           ;; Insertar los números restantes.
-           (setq number (+ number X-axis-label-spacing))
-           (while (> number-of-X-tics 1)
-             (insert (X-axis-element
-                      (* number horizontal-step)))
-             (setq number (+ number X-axis-label-spacing))
-             (setq number-of-X-tics (1- number-of-X-tics)))))
-     < src..
+    ..src > elisp
+      (defun imprimir-linea-numerada-del-eje-X
+        (numero-de-marcas-X espacios-de-relleno-del-eje-X
+         &optional paso-horizontal)
+        "Imprime linea de números del eje X"
+        (let ((numero distancia-entre-etiquetas-del-eje-X)
+              (paso-horizontal (or paso-horizontal 1)))
+          (insert espacios-de-relleno-del-eje-X)
+          ;; Elimina espacios de relleno sobrantes.
+          (delete-char
+           (- (1-
+               (length (number-to-string paso-horizontal)))))
+          (insert (concat
+                   (make-string
+                    ;; Inserta espacio en blanco.
+                    (-  (* ancho-del-simbolo
+                           distancia-entre-etiquetas-del-eje-X)
+                        (1-
+                         (length
+                          (number-to-string paso-horizontal)))
+                        2)
+                    ? )
+                   (number-to-string
+                    (* numero paso-horizontal))))
+          ;; Inserta los números restantes.
+          (setq numero (+ numero distancia-entre-etiquetas-del-eje-X))
+          (while (> numero-de-marcas-X 1)
+            (insert (elemento-del-eje-X
+                     (* numero paso-horizontal)))
+            (setq numero (+ numero distancia-entre-etiquetas-del-eje-X))
+            (setq numero-de-marcas-X (1- numero-de-marcas-X)))))
+    < src..
 
-     Si se está leyendo esto en Info, se pueden ver las nuevas versiones
-     @c{print-X-axis} y @c{print-graph} y los evaluarlas. Si se está leyendo
-     esto en un libro impreso, se pueden ver las líneas cambiadas aquí (el
-     texto completo es mucho para imprimir).
+    A continuacion, las líneas que cambian en @c{imprimir-eje-X} e
+    @c{imprimir-grafico}.
 
-     ..src > elisp
-       (defun print-X-axis (lista-de-numeros horizontal-step)
-         …
-           (print-X-axis-numbered-line
-            tic-number leading-spaces horizontal-step))
-       (defun print-graph
-         (lista-de-numeros
-          &optional vertical-step horizontal-step)
-         …
-           (print-X-axis lista-de-numeros horizontal-step))
-     < src..
+    ..src > elisp
+      (defun imprimir-eje-X (lista-de-numeros paso-horizontal)
+        …
+          (imprimir-linea-numerada-del-eje-X
+           numero-de-marcas espacios-de-relleno paso-horizontal))
+
+      (defun imprimir-grafico
+        (lista-de-numeros
+         &optional paso-vertical paso-horizontal)
+        …
+          (imprimir-eje-X lista-de-numeros paso-horizontal))
+    < src..
 
 *** El gráfico impreso
 
-     Cuando esté hecho e instalado, se puede llamar al comando
-     @c{print-graph} como esto:
+    Cuando está hecho e instalado, puedes llamar al comando
+    @c{imprimir-grafico} asi:
 
-     ..src > elisp
-       (print-graph fiftieth-list-for-graph 50 10)
-     < src..
+    ..src > elisp
+      (imprimir-grafico cincuentavo-de-lista-para-el-grafico 50 10)
+    < src..
 
-     Aquí está el gráfico:
+    Aquí está el gráfico:
 
-     ..example >
-       1000 -  *
-               **
-               **
-               **
-               **
-        750 -  ***
-               ***
-               ***
-               ***
-               ****
-        500 - *****
-              ******
-              ******
-              ******
-              *******
-        250 - ********
-              *********                     *
-              ***********                   *
-              *************                 *
-         50 - ***************** *           *
-              |   |    |    |    |    |    |    |
-             10  50  100  150  200  250  300  350
-     < example..
+    ..example >
+      1000 -  *
+              **
+              **
+              **
+              **
+       750 -  ***
+              ***
+              ***
+              ***
+              ****
+       500 - *****
+             ******
+             ******
+             ******
+             *******
+       250 - ********
+             *********                     *
+             ***********                   *
+             *************                 *
+        50 - ***************** *           *
+             |   |    |    |    |    |    |    |
+            10  50  100  150  200  250  300  350
+    < example..
 
 
-     El grupo largo de funciones contienen de 10 a 19 palabras y símbolos.
+    El grupo mas grande de funciones contienen de 10 a 19 palabras y símbolos.
 
 * Apéndice D Software Libre y Manuales Libres @%b{por Richard M. Stallman}
 
-   La mayor deficiencia en sistemas operativos libres no está en el
-   software––es la falta de buenos manuales libres que se puedan incluir en
-   estos sistemas. Muchos de nuestros programas más importantes no vienen con
-   manuales completos. La documentación es una parte esencial de cualquier
-   paquete de software; cuando un paquete de software libre no viene con un
-   manual libre, es una brecha mayor. Nosotros tenemos muchas brechas hoy.
+  La mayor deficiencia de los sistemas operativos libres no está en el
+  software––sino en la falta de buenos manuales libres que podamos incluir en
+  estos sistemas. Muchos de nuestros programas más importantes no vienen con
+  manuales completos. La documentación es una parte esencial de cualquier
+  paquete de software; cuando un paquete de software libre no viene con un
+  manual libre, eso es un gran vacio. Hoy en dia tenemos muchos vacios de este tipo.
 
-   Érase una vez, hace muchos años, se piensa que aprendería Perl. Se tiene
-   una copia de un manual libre, pero se encontró difícil de leer. Cuando
-   pregunto a los usuarios de Perl acerca de alternativas, me contaron que
-   serían mejor los manuales introductorios––pero estos no eran libres.
+  Érase una vez, hace muchos años, que pense que aprendería Perl. Consegui
+  una copia de un manual libre, pero me resulto difícil de leer. Cuando
+  pregunte a los usuarios de Perl sobre alternativas, me dijeron que
+  habia mejores manuales introductorios––pero estos no eran libres.
 
-   ¿Por qué era esto? Los autores de los buenos manuales los habían escrito
-   para O'Reilly Associates, que los publicaron con términos restrictivos––no
-   copiando, no modificando, los ficheros fuentes están disponibles––que los
-   excluyen desde la comunidad de software libre.
+  ¿Por qué fue asi? Los autores de los buenos manuales los habían escrito
+  para O'Reilly Associates, que los publicaron con términos restrictivos––sin
+  copia, sin modificacion, sin ficheros fuente disponibles––que los
+  excluyen de la comunidad del software libre.
 
-   No era la primera vez que esto ocurría, y (para nuestra comunidad es una
-   gran pérdida) eso está lejos desde el último. Las editoriales de manuales
-   privativos han logrado que muchos autores restrinjan sus manuales desde
-   entonces. Muchas veces se ha oido que un usuario de GNU hábil me cuente
-   que un manual que está escribiendo, con el que él espera ayudar al
-   proyecto GNU––y entonces tenía mis esperanzas frustradas, como se ha
-   procedió a explicar que él tenía que haber firmado un contrato con una
-   editorial que restringiría eso, así que no puede usarlo.
+  No era la primera vez que ocurrían estas cosas, y para nuestra comunidad es
+  una gran pérdida que estaba lejos de ser la ultima. Las editoriales de
+  manuales privativos han logrado que muchos autores restrinjan sus manuales
+  desde entonces. Muchas veces he oido a un habil usuario de GNU hablarme con
+  entusiasmo de un manual que está escribiendo, con el que espera ayudar al
+  proyecto GNU––y luego mis esperanzas se vieron frustradas, mientras procedia
+  a explicarme que habia firmado un contrato con una editorial que
+  lo restringiría para que no pudieramos usarlo.
 
-   Debido a que escribir buen inglés es una habilidad rara entre
-   programadores, se pueden perder manuales por este motivo.
+  Debido a que escribir buen inglés es una habilidad poco comun entre los
+  programadores, no podemos darnos el lujo de perder manuales de esta manera.
 
-   La documentación, como el software, es una cuestión de libertad, no de
-   precio. El problema con estos manuales no eran que O'Reilly Associates
-   impusiera un precio por las copias impresas––que en sí estaban bien. La
-   Free Software Foundation @e{Fundación por el Software Libre}
-   @l{http://shop.fsf.org, vende copias impresas} de
-   @l{http://www.gnu.org/doc/doc.html, manuales libres de GNU}, también. Pero
-   los manuales de GNU están disponibles en forma de código fuente, mientras
-   que estos manuales están disponibles solo en papel. Los manuales de GNU
-   vienen con permiso para copiar y modificar; los manuales de Perl no. Estas
-   restricciones son un problema.
+  La documentación, como el software, es una cuestión de libertad, no de
+  precio. El problema con estos manuales no eran que O'Reilly Associates
+  impusiera un precio por las copias impresas––eso en si mismo esta bien. La
+  Free Software Foundation tambien @l{http://shop.fsf.org<>vende copias impresas} de los
+  @l{http://www.gnu.org/doc/doc.html<>manuales libres de GNU}. Pero los
+  manuales de GNU están disponibles en forma de código fuente, mientras que
+  estos manuales están disponibles solo en papel. Los manuales de GNU vienen con
+  permiso para copiar y modificar; los manuales de Perl no. Estas restricciones
+  son un problema.
 
-   El criterio para un manual libre es parecido al del software libre: es una
-   cuestión de dar a todos los usuarios ciertas libertades. La redistribución
-   (incluyendo redistribución comercial) debe ser permitida, así el manual
-   puede acompañar cada copia del programa, en líne o en papel. El permiso
-   para modificar es crucial también.
+  El criterio para un manual libre es practicamente el mismo que para el
+  software libre: es una cuestión de dar a todos los usuarios ciertas
+  libertades. Se debe permitir la redistribución (incluida la redistribución
+  comercial), de modo que el manual puede acompañar cada copia del programa, en linea o
+  en papel. El permiso para la modificacion tambien es crucial.
 
-   Como regla general, no se cree que sea esencial para la gente tener
-   permisos para modificar todas las partes de artículos y libro. Las
-   cuestiones para escritos no son necesariamente las mismas como estas para
-   el software. Por ejemplo, no se sabe si se está obligado a dar permisos
-   para modificar artículos como este, que describen nuestras acciones y
-   nuestras vistas.
+  Como regla general, no creo que sea esencial que la gente tenga permiso para
+  modificar todo tipo de artículos y libros. Las cuestiones relativa a los
+  escritos no son necesariamente las mismas que las del software. Por ejemplo,
+  no creo que usted o yo estemos obligados a dar permisos para modificar artículos como
+  este, que describen nuestras acciones y nuestros puntos de vista.
 
-   Pero hay una razón particular de por qué la libertad de modificar es
-   crucial para la documentación de software libre. Cuando las personas
-   ejercita su derecho a modificar el software, y añadir o cambiar sus
-   funcionalidades, si son consciente ellos cambiarán el manual también––así
-   se puede proveer documentación usable y cuidada con el programa
-   modificado. Un manual que prohibe a los programadores ser consciente y
-   finalizar el trabajo, o más precisamente requiere escribir un nuevo manual
-   desde cero si ellos cambian el programa, no se ajusta a las necesidades de
-   nuestra comunidad.
+  Pero hay una razón particular por la qué la libertad de modificar es
+  crucial para la documentación del software libre. Cuando las personas
+  ejercen su derecho a modificar el software, y añadir o cambiar sus
+  funcionalidades, si son concienzudos, tambien cambiarán el manual––de
+  modo que puedan proporcionar documentación precisa y usable con el programa
+  modificado. Un manual que prohibe a los programadores ser concienzudos y
+  terminar el trabajo, o más precisamente requiere que escriban un nuevo manual
+  desde cero si cambian el programa, no se ajusta a las necesidades de
+  nuestra comunidad.
 
-   Mientras una serie de prohibiciones en la modificación es inaceptable,
-   algunos tipos de límites en el método de modificar no tiene tanto
-   problema. Por ejemplo, los requisitos para preservar la noticia de autores
-   del copyright, los términos de distribución, o la lista de autores, estén
-   ok. Eso es también no da problemas para requerir versiones modificadas
-   para incluir notificar que fueron modificadas, incluso tienen secciones
-   enteras que puede no ser eliminadas o cambiadas, tan largo como estas
-   secciones tratan con asuntos no técnicos. (Algunos manuales de GNU los
-   tienen).
+  Si bien una prohibicion general de la modificación es inaceptable, algunos
+  tipos de límites sobre el método de modificacion no plantea ningun
+  problema. Por ejemplo, los requisitos para preservar el aviso de copyright del
+  autor original, los términos de distribución, o la lista de autores, estén
+  bien. Tampoco es un problemas requerir que las versiones modificadas
+  incluyan un aviso de que fueron modificadas, incluso para tener secciones enteras que
+  no pueden ser eliminadas o cambiadas, siempre y cuando estas secciones traten
+  asuntos no técnicos. (Algunos manuales de GNU los tienen.)
 
-   Estos tipos de restricciones no son un problema porque, como materia
-   práctica, no para al programador consciente desde la adaptación del manual
-   para ajustar el programa modificado. En otras palabras, no se bloquea la
-   comunidad del software libre haciendo el uso completo del manual.
+  Este tipo de restricciones no son un problema porque, en la
+  práctica, no impiden que el programador concienzudo adapte el manual
+  al programa modificado. En otras palabras, no impiden que la
+  comunidad del software libre haga pleno uso del manual.
 
-   Sin embargo, debe ser posible modificar todo el contenido técnico del
-   manual, y entonces se distribuye el resultado en todos los medios usuales,
-   a través de todos los canales usuales; de otro modo, las restricciones
-   bloquean la comunidad, el manual no es libre, y así no se necesita otro
-   manual.
+  Sin embargo, debe ser posible modificar todo el contenido técnico del
+  manual, y luego distribuir el resultado en todos los medios habituales,
+  a través de todos los canales; de otro modo, las restricciones
+  bloquean la comunidad, el manual no es libre, por lo que necesitamos otro
+  manual.
 
-   Desafortunadamente, con frecuencia es duro encontrar a alguien a escribir
-   otro manual cuando un manual privativo. El obstáculo es que muchos usuario
-   piensan que un manual privativo es suficientemente bueno––así ellos no ven
-   la necesidad de escribir un manual libre. Ellos no ven que el sistema
-   operativo tiene un gazapo que necesita se rellenado.
+  Desafortunadamente, con frecuencia es dificil encontrar a alguien que escriba
+  otro manual cuando existe el privativo. El obstáculo es que muchos usuarios
+  piensan que un manual privativo es lo suficientemente bueno––por lo que no ven
+  la necesidad de escribir un manual libre. Ellos no ven que el sistema
+  operativo tiene tiene un hueco que necesita se llenado.
 
-   ¿Por qué los usuarios piensan que los manuales privativos son
-   suficientemente buenos? Algunos no han considerado la cuestión. Espero que
-   este artículo hará alguna cosa para cambiar esto.
+  ¿Por qué los usuarios piensan que los manuales privativos son lo
+  suficientemente buenos? Algunos no han considerado el tema. Espero que
+  este artículo hará alguna cosa para cambiar esto.
 
-   Otros usuarios considera manuales privativos aceptables para la misma
-   razón así muchas personas software privativo aceptable: ellos judgan en
-   términos puramente prácticos, no usando la liberta como un criterio. Estas
-   personas son tituladas a sus opiniones, pero desde que estas opciones
-   crezcan desde valores que no incluyen libertad, ellas no están guiadas por
-   esto quienes valoran la libertad.
+  Otros usuarios considera que los manuales privativos son aceptables por la
+  misma razón que muchas personas consideran que el software privativo es
+  aceptable: juzgan en términos puramente prácticos, sin usar la libertad
+  como criterio. Estas personas tiene derecho a sus opiniones, pero como esas
+  opciones provienen de valores que no incluyen la libertad, no son una guia
+  para aquellos de nosotros que valoramos la libertad.
 
-   Por favor, populariza esta cuestión. Se continúa a perder manuales para
-   publicación privativa. Si se populariza que los manuales privativos no son
-   suficientes, quizás la siguiente persona que quiere ayudar a GNU
-   escribiendo documentación realizará, antes de que sea demasiado tarde, lo
-   que él debe que todo sea libre.
+  Por favor, haga correr la voz sobre este tema. Seguimos perdiendo manuales
+  debido a la publicacion privativa. Si hacemos correr la voz de que los manuales
+  privativos no son suficientes, quizás la siguiente persona que quiere ayudar a
+  GNU escribiendo documentación se dara cuenta, antes de que sea demasiado
+  tarde, que sobre todo debe hacorlo libre.
 
-   Se puede también animar editoriales comerciales a vender manuales libres o
-   con copyleft en vez de uno privativo. Un camino que se puede ayudar esto
-   chequea los términos de la distribución de un manual antes de que se
-   compre, y preferimos manuales copyleft a los no copyleft.
+  También podemos animar a las editoriales comerciales a vender manuales libres
+  o con copyleft en lugar de manuales privativos. Una forma de ayudar es
+  comprobar los términos de distribución de un manual antes de comprarlo, y
+  preferir manuales con copyleft a los no copyleft.
 
-   Note: La Fundación para el Software Libre mantiene una página en su sitio
-   Web que liste libros libres disponibles desde otras editoriales:
-   @l{http://www.gnu.org/doc/other-free-books.html}
+  Nota: La Free Software Foundation mantiene una página en su sitio
+  Web que lista libros libres disponibles en otras editoriales:
+  @l{http://www.gnu.org/doc/other-free-books.html}
 
 * Appendix E GNU Free Documentation License
 
@@ -15345,7 +15330,7 @@ and promoting software freedom.”
   < center..
 
   Copyright (C) 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
-  <http://fsf.org/>
+  <@l(http://fsf.org/)>
 
   Everyone is permitted to copy and distribute verbatim copies of this
   license document, but changing it is not allowed.
@@ -15711,7 +15696,7 @@ and promoting software freedom.”
    The Free Software Foundation may publish new, revised versions of the GNU
    Free Documentation License from time to time. Such new versions will be
    similar in spirit to the present version, but may differ in detail to
-   address new problems or concerns. See http://www.gnu.org/copyleft/.
+   address new problems or concerns. See @l(http://www.gnu.org/copyleft/).
 
    Each version of the License is given a distinguishing version number. If
    the Document specifies that a particular numbered version of this License
@@ -15788,13 +15773,13 @@ and promoting software freedom.”
 
 ** Acerca del Autor
 
-   Robert J. Chassell ha trabajado con GNU Emacs desde 1985. Él
-   escribe, edita y enseña Emacs y Emacs Lisp, y habla alrededor del
-   mundo acerca de la libertad del software. Chassell es Director
-   fundador y Tesorero de la Fundación por el Software Libre (FSF). Él
-   se graduó la Universidad de Cambridge, en Inglaterra. Él tiene un
-   interés contínuo en historia económica y social y vuela su
-   propio aeroplano
+   Robert J. Chassell ha trabajado con GNU Emacs desde 1985. Él escribe, edita y
+   enseña Emacs y Emacs Lisp, y habla alrededor del mundo soble la libertad del
+   software. Chassell fue Director fundador y Tesorero de la Free Software
+   Foundation, Inc. Es coautor del manual @q(Texinfo) y ha editado mas de una
+   docena de libros.  Se graduó la Universidad de Cambridge, en Inglaterra.
+   Tiene un interés contínuo en historia económica y social y vuela su propio
+   aeroplano
 
 * footnotes
 
