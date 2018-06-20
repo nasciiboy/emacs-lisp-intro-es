@@ -352,7 +352,7 @@ and promoting software freedom.”
 #    plain text by 6 spaces, mark the region, and then type @k{C-u 6 M-C-\}.
 #    (If you do not specify a number, Emacs either passes the number 4 to the
 #    command or otherwise runs the command differently than it would
-#    otherwise.)  See Section @l{info:emacs#Arguments, Numeric Arguments} in
+#    otherwise.)  See Section @l{info:emacs#Arguments<>Numeric Arguments} in
 #    @e(The GNU Emacs Manual).
    Además de pulsar una sola combinación de teclas, se puede prefijar lo que se
    escribe con @k{C-u}, que es llamado el ‘argumento universal’. El atajo
@@ -699,7 +699,7 @@ and promoting software freedom.”
 #     the cursor back to the matching opening parenthesis, so you can see which
 #     one it is. This is very useful, since every list you type in Lisp must
 #     have its closing parenthesis match its opening parenthesis.  (See Section
-#     @l{info:emacs#Major Modes, Major Modes} in @e(The GNU Emacs Manual), for
+#     @l{info:emacs#Major Modes<>Major Modes} in @e(The GNU Emacs Manual), for
 #     more information about Emacs's modes.)
     Además, cuando escribes un paréntesis de cierre, Emacs mueve momentáneamente
     el cursor hacia el parentesis de apertura correspondiente, para que puedas
@@ -1167,7 +1167,7 @@ and promoting software freedom.”
 
 #     As a practical matter, for most things you might do to customize or
 #     extend Emacs, you do not need to byte compile; and I will not discuss the
-#     topic here. See Section @l{info:emacs#Byte Compilation, Byte
+#     topic here. See Section @l{info:emacs#Byte Compilation<>Byte
 #     Compilation} in @e{The GNU Emacs Lisp Reference Manual}, for a full
 #     description of byte compilation.
     Como una cuestión práctica, para hacer la mayoría de las cosas como
@@ -7318,8 +7318,8 @@ and promoting software freedom.”
 #     Types} in @e{The GNU Emacs Lisp Reference Manual}.)
     (Puesto que no explico que es un @e(cons cell) en muchos capítulos, por
     favor, considera ignorar la función @c{consp}. Ve la Seccion @l{#Cómo se
-    implementan las listas}, y la Seccion @l{info:elisp#Cons Cell Type<>"Cons
-    Cell y Tipos de Listas"} en @e(El Manual de Referencia GNU Emacs Lisp)).
+    implementan las listas}, y la Seccion @"l{info:elisp#Cons Cell Type<>Cons
+    Cell y Tipos de Listas} en @e(El Manual de Referencia GNU Emacs Lisp)).
 
 #     The @c{"P"} in the @c{interactive} expression tells Emacs to pass a
 #     prefix argument, if there is one, to the function in raw form. A prefix
@@ -7722,7 +7722,7 @@ and promoting software freedom.”
 #     @'{\\} tells the Lisp interpreter to substitute whatever key is currently
 #     bound to the @'{[…]}. In the case of @c{universal-argument}, that is
 #     usually @k{C-u}, but it might be different.  (See Section
-#     @l{info:elisp#Documentation-Tips} in @e{The GNU Emacs Lisp Reference
+#     @l{info:elisp#Documentation Tips<>Documentation Tips} in @e{The GNU Emacs Lisp Reference
 #     Manual}, for more information.)
     Se usa Un @'{\\} antes del primer corchete de esta expresión. Este @'{\\} le
     indica al intérprete Lisp que sustituya cualquier clave qué se encuentre
@@ -8194,7 +8194,7 @@ and promoting software freedom.”
 #    investigate yourself; or perhaps you will have to use
 #    @c{buffer-substring-no-properties} or @c{filter-buffer-substring} …, yet
 #    other functions. Text properties are a feature otherwise not discussed
-#    here. See Section @l{info:elisp#Text Properties} in @e{The GNU Emacs Lisp
+#    here. See Section @l{info:elisp#Text Properties<>Text Properties} in @e{The GNU Emacs Lisp
 #    Reference Manual}.)
    (@c{buffer-substring} es una función que no aun no se menciona, tendrás que
    investigarla por tu cuenta; o quizás tengas que utilizar
@@ -11252,7 +11252,7 @@ and promoting software freedom.”
 #     more than 700 such variables, far too many to remember readily.
 #     Fortunately, you can press @k{TAB} after calling the @c{M-x set-variable}
 #     command to see the list of variables.  (See Section
-#     @l{info:emacs#Examining and Setting Variables} in @e(The GNU
+#     @l{info:emacs#Examining and Setting Variables<>Examining and Setting Variables} in @e(The GNU
 #     Emacs Manual).)
     Para mí, el mayor uso del comando @c{set-variable} es sugerir variables que
     se podría querer establecer en mi fichero @f{.emacs}. Ahora hay más de 700
@@ -11694,7 +11694,7 @@ and promoting software freedom.”
 #   A pair of address-boxes is called a @:{cons cell} or @:{dotted pair}. See
 #   Section @l{info:elisp#Cons Cell Type<>Cons Cell and List Types} in @e{The
 #   GNU Emacs Lisp Reference Manual}, and Section @l{info:elisp#Dotted Pair
-#   Notation} in @e{The GNU Emacs Lisp Reference Manual},
+#   Notation<>Dotted Pair Notation} in @e{The GNU Emacs Lisp Reference Manual},
 #   for more information about cons cells and dotted pairs.
   Un par de cajas-de-direcciones se denomina una @:{cons cell} o @:{par de
   puntos}. Consulte la Seccion @l{info:elisp#Cons Cell Type<>Cons Cell y Tipos
@@ -11812,7 +11812,7 @@ and promoting software freedom.”
 #    (In addition to its name, symbol definition, and variable value, a symbol
 #    has a ‘drawer’ for a @:{property list} which can be used to record other
 #    information. Property lists are not discussed here; see Section
-#    @l{info:elisp#Property Lists} in @e{The GNU Emacs Lisp Reference Manual}.)
+#    @l{info:elisp#Property Lists<>Property Lists} in @e{The GNU Emacs Lisp Reference Manual}.)
    (Además de su nombre, la definición del símbolo, y un valor de variable, un
    símbolo tiene un ‘cajón’ para una @:{lista de propiedades} que puede utilizar
    para registrar otra información. Las listas de propiedades no se discuten
@@ -13246,8 +13246,8 @@ and promoting software freedom.”
 
 #    In addition to @c{while}, both @c{dolist} and @c{dotimes} provide for
 #    looping. Sometimes these are quicker to write than the equivalent
-#    @c{while} loop. Both are Lisp macros.  (See Section @l{info:elisp#Macros,
-#    Macros} in @e{The GNU Emacs Lisp Reference Manual}. )
+#    @c{while} loop. Both are Lisp macros.  (See Section @l{info:elisp#Macros<>Macros}
+#    in @e{The GNU Emacs Lisp Reference Manual}. )
    Además de @c{while}, tanto @c{dolist} como @c{dotimes} proveen un
    bucle. Algunas veces estos son mas rápidos de escribir el bucle @c{while}
    equivalente. Ambos son macros Lisp. (Vea la Seccion
@@ -14903,7 +14903,7 @@ and promoting software freedom.”
 
 #   Regular expression searches are described in Section @l{info:emacs#Regexp
 #   Search<>Regular Expression Search} in @e(The GNU Emacs Manual), as well as
-#   in Section @l{info:elisp#Regular Expressions} in @e{The
+#   in Section @l{info:elisp#Regular Expressions<>Regular Expressions} in @e{The
 #   GNU Emacs Lisp Reference Manual}. In writing this chapter, I am presuming
 #   that you have at least a mild acquaintance with them. The major point to
 #   remember is that regular expressions permit you to search for patterns as
@@ -15616,13 +15616,13 @@ and promoting software freedom.”
 #    beginning of each line. For example, in Lisp code, it is a convention to
 #    start each line of a paragraph-long comment with @'{;;; }. In Text mode,
 #    four blank spaces make up another common fill prefix, creating an indented
-#    paragraph.  (See Section @l{info:emacs#Fill Prefix} in @e(The
+#    paragraph.  (See Section @l{info:emacs#Fill Prefix<>Fill Prefix} in @e(The
 #    GNU Emacs Manual), for more information about fill prefixes.)
    Un prefijo de relleno consiste en una cadena de caracteres que se repite al
    principio de cada línea. Por ejemplo, en el código Lisp, es una convención
    empezar cada línea de un comentario de un párrafo extenso con @'{;;; }. En el
    modo Texto, cuatro espacios en blanco forman otro prefijo común de relleno,
-   creando un párrafo indentado. (Véa la Sección @l{info:emacs#Fill Prefix} en
+   creando un párrafo indentado. (Véa la Sección @l{info:emacs#Fill Prefix<>Fill Prefix} en
    @e(El Manual de GNU Emacs) para más información acerca de los prefijos de
    relleno.)
 
@@ -16597,7 +16597,7 @@ and promoting software freedom.”
 #      function I use is described in an appendix, along with several regexps.
 #      See Section @l{#Appendix A The @c{the-the} Function}.
    - Escribe una función para buscar palabras duplicadas, como ‘el el’. Vea la
-     Seccion @l{info:emacs#Regexps} en @e(El Manual de GNU Emacs), para obtener
+     Seccion @l{info:emacs#Regexps<>Syntax of Regular Expressions} en @e(El Manual de GNU Emacs), para obtener
      información de cómo escribir una regexp (una expresión regular) para que
      coincida con una cadena compuesta de dos mitades idénticas. Puedes idear
      varias regexps; algunos son mejores que otras. La función que
@@ -16816,7 +16816,7 @@ and promoting software freedom.”
 
 #    The buffer's syntax table determines which characters are and are not word
 #    constituents. For more information about syntax, see Section
-#    @l{info:elisp#Syntax Tables} in @e{The GNU Emacs Lisp Reference Manual}.
+#    @l{info:elisp#Syntax Tables<>Syntax Tables} in @e{The GNU Emacs Lisp Reference Manual}.
    La tabla sintactica del búfer determina qué caracteres son o no
    constituyentes de palabras. Para más información sobre la sintaxis, Vea la
    Sección @l{info:elisp#Syntax Tables<>Tablas de Sintaxis} en @e(El Manual de
@@ -21114,7 +21114,7 @@ and promoting software freedom.”
 #    created, as is most common.  (Dumped copies of Emacs load more quickly.
 #    However, once a file is loaded and dumped, a change to it does not lead to
 #    a change in Emacs unless you load it yourself or re-dump Emacs. See
-#    Section @l{info:elips#Building Emacs} in @e{The GNU Emacs
+#    Section @l{info:elips#Building Emacs<>Building Emacs} in @e{The GNU Emacs
 #    Lisp Reference Manual}, and the @f{INSTALL} file.)
    Dos ficheros de incialización para todos los usuarios, @f{site-load.el} y
    @f{site-init.el}, se cargan en Emacs y luego se @'(vuelcan) si se crea una
@@ -21435,7 +21435,7 @@ and promoting software freedom.”
    más que expresiones para establecer valores; algunas veces son
    definiciones de funciones.
 
-#    See Section @l{info:emacs#Init File}<>The Init File @f{~/.emacs}} in @e(The
+#    See Section @l{info:emacs#Init File<>The Init File @f{~/.emacs}} in @e(The
 #    GNU Emacs Manual), for a short description of initialization files.
    Vea la Seccion @l{info:emacs#Init File<>El Fichero de Inicio @f{~/.emacs}} en
    @e(El Manual GNU Emacs), para una breve descripción de los fichero de
@@ -21483,7 +21483,7 @@ and promoting software freedom.”
 #    This describes the usual conventions for comments in Emacs Lisp.
 #    Everything on a line that follows a semicolon is a comment. Two, three,
 #    and four semicolons are used as subsection and section markers.  (See
-#    Section @l{info:elisp#Comments} in @e{The GNU Emacs Lisp
+#    Section @l{info:elisp#Comments<>Comments} in @e{The GNU Emacs Lisp
 #    Reference Manual}, for more about comments.)
    Esto describe las convenciones habituales para comentarios en Emacs
    Lisp. Todo lo que aparece en una línea despues de un punto y coma es un
