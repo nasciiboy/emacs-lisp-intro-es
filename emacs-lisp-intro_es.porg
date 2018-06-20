@@ -334,7 +334,7 @@ and promoting software freedom.”
    nombre del comando entre paréntesis, de la siguiente manera: @k{M-C-\}
    (@c{indent-region}). Esto significa invocar el comando @c{indent-region}
    presionando @k{M-C-\}. (Puede, Si lo desea, cambiar las teclas que se
-   presionan para invocar el comando; esto se denomina @:{rebinding}. Véa la
+   presionan para invocar el comando; esto se denomina @:{rebinding}. Consulta la
    Sección @l{#Mapas de teclado}.)  La abreviatura @k{M-C-\} significa que usted
    presiona la tecla @k{META}, @k{CTRL}, y @k{\} todo al mismo tiempo. (En
    muchos teclados modernos la tecla @k{META} es etiquetada con @k{ALT}.)
@@ -359,7 +359,7 @@ and promoting software freedom.”
    @k{C-u} pasa a ser un argumento para el comando subsiguiente. Asi, para
    indentar una región de texto plano a 6 espacios, se marca la región, y
    entonces presione @k{C-u 6 M-C-\}. (Si no se especifica un número, Emacs pasa
-   el número 4 al comando o ejecuta el comando de forma diferente). Véa la
+   el número 4 al comando o ejecuta el comando de forma diferente). Consulta la
    Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Arguments<>Argumentos Numéricos} en @e{El Manual de GNU
    Emacs}.
 
@@ -506,7 +506,7 @@ and promoting software freedom.”
     que hemos estado usando en las listas no se pueden dividir en partes mas
     pequeñas, sin perder su significado dentro del programa; lo mismo ocurre con
     números y símbolos de un caracterer como @'{+}. Por otro lado, a diferencia
-    de un átomo antiguo, una lista puede dividirse en partes. Vea la seccion
+    de un átomo antiguo, una lista puede dividirse en partes. Consulta la seccion
     @l(#@c{car}, @c{cdr}, @c{cons}: Funciones fundamentales).
 
 #     In a list, atoms are separated from each other by whitespace. They can
@@ -704,7 +704,7 @@ and promoting software freedom.”
     Además, cuando escribes un paréntesis de cierre, Emacs mueve momentáneamente
     el cursor hacia el parentesis de apertura correspondiente, para que puedas
     ver cual es. Esto es muy útil, ya que cada lista que se escribe en Lisp debe
-    tener sus paréntesis emparejados con sus paréntesis de apertura. (Vea la
+    tener sus paréntesis emparejados con sus paréntesis de apertura. (Consulta la
     Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Major Modes<>Modos Mayores} en @e{El Manual de GNU
     Emacs}, para más información sobre los modos de Emacs.)
 
@@ -1049,7 +1049,7 @@ and promoting software freedom.”
    vez. De lo contrario, el ordenador estaría confundido acerca de qué
    definición usar. Si este fuera el caso entre las gente, solo una persona en
    el mundo podría llamarse @'{Bob}. Sin embargo, la definición de función a la
-   que el nombre hace referencia puede cambiarse fácilmente. (Vea la Sección
+   que el nombre hace referencia puede cambiarse fácilmente. (Consulta la Sección
    @l{#Instalar una Definición de Función}.)
 
 #    Since Emacs Lisp is large, it is customary to name symbols in a way that
@@ -1099,7 +1099,7 @@ and promoting software freedom.”
    Ahora, una primera complicación. Además de las listas, el intérprete Lisp
    puede evaluar un símbolo no citado y sin paréntesis en torno a el. El
    intérprete intentará determinar el valor del símbolo como una @:{variable}.
-   Esta situación se descrita en el apartado de las variables. (Vea la Seccion
+   Esta situación se descrita en el apartado de las variables. (Consulta la Seccion
    @l{#Variables}.)
 
 #    The second complication occurs because some functions are unusual and do
@@ -1172,7 +1172,7 @@ and promoting software freedom.”
 #     description of byte compilation.
     Como una cuestión práctica, para hacer la mayoría de las cosas como
     personalizar o extender Emacs, no necesitas compilar codigo; y no
-    comentare el asunto aquí. Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Byte
+    comentare el asunto aquí. Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Byte
     Compilation<>Código Compilado} en @e(El Manual de Referencia de GNU
     Emacs Lisp), para una descripción completa de la compilacion de código.
 
@@ -1414,7 +1414,7 @@ and promoting software freedom.”
 
 #    A symbol can be bound to a value in several ways. See Section @l{#Setting
 #    the Value of a Variable}, for information about one way to do this.
-   Un símbolo puede vincularse a un valor de varias maneras. Vea la Sección
+   Un símbolo puede vincularse a un valor de varias maneras. Consulta la Sección
    @l{#Configurando el valor de una variable}, para obtener información sobre
    como hacerlo.
 
@@ -1956,7 +1956,7 @@ and promoting software freedom.”
     en el área de eco entre comillas dobles; esto se debe a que ves el valor
     devuelto por la función @c{message}. En la mayoría de programas que
     escribiras, el texto se imprimira en el área de eco como un efecto
-    secundario de @c{message}, sin las comillas. Vea la Sección @l{#Un
+    secundario de @c{message}, sin las comillas. Consulta la Sección @l{#Un
     @c{multiply-by-seven} interactivo} en detalle, para un ejemplo de esto.)
 
 #     However, if there is a @'{%s} in the quoted string of characters, the
@@ -2093,7 +2093,7 @@ and promoting software freedom.”
 #    this process is to @:{bind} a variable to a value.)
    Hay varias formas de asignar un valor a una variable. Una de ellas es
    utilizar la función @c{set} o la función @c{setq}. Otra forma es utilizar
-   @c{let} (Vea la Seccion @l{#@c(let)}). (La jerga para este proceso es @:{ligar}
+   @c{let} (Consulta la Seccion @l{#@c(let)}). (La jerga para este proceso es @:{ligar}
    @%e(bind) una variable a un valor.)
 
 #    The following sections not only describe how @c{set} and @c{setq} work but
@@ -2320,7 +2320,7 @@ and promoting software freedom.”
 
 #     (The text following the @'{;} are comments. See Section @l{#Change a
 #     Function Definition}.)
-    (El texto que sigue al @'{;} son los comentarios. Vea la Seccion
+    (El texto que sigue al @'{;} son los comentarios. Consulta la Seccion
     @l{#Cambiar una definición de función}.)
 
 #     If you evaluate the first of these expressions, the initializer, @c{(setq
@@ -2494,7 +2494,7 @@ and promoting software freedom.”
   Las funciones que se evalúan presionando atajos de teclado se llaman funciones
   @:{interactivas}, o @:{comandos}; la forma de hacer que una funcion sea
   interactiva se ilustrara en el capítulo sobre cómo escribir definiciones de
-  funciones. Vea la Seccion @l{#Crear una Función Interactiva}.
+  funciones. Consulta la Seccion @l{#Crear una Función Interactiva}.
 
 #   In addition to typing keyboard commands, we have seen a second way to
 #   evaluate an expression: by positioning the cursor after a list and typing
@@ -2614,7 +2614,7 @@ and promoting software freedom.”
 #    variables. See Section @l{#Variables}.)
    (En las expresiones, los paréntesis le indican al intérprete Lisp que trate a
    @c{buffer-name} y @c{buffer-file-name} como funciones; sin los paréntesis, el
-   intérprete intentaría evaluar los símbolos como variables. Vea la Sección
+   intérprete intentaría evaluar los símbolos como variables. Consulta la Sección
    @l{#Variables}.)
 
 #    In spite of the distinction between files and buffers, you will often find
@@ -3013,7 +3013,7 @@ and promoting software freedom.”
    mínimo permisible del punto en el búfer actual. Este es el numero 1 a menos
    que @:{narrowing} esté en efecto. (Narrowing @%e{Reduccion} es un mecanismo
    mediante el cual puedes restringirte a ti mismo, o un programa, a operar solo
-   en un parte de un búfer. Vea la Sección @l{#Reducir y Extender}.)  Del mismo
+   en un parte de un búfer. Consulta la Sección @l{#Reducir y Extender}.)  Del mismo
    modo, la función @c{point-max} devuelve el valor máximo permisible del punto
    en el búfer actual.
 
@@ -3162,7 +3162,7 @@ and promoting software freedom.”
 #    argument by 7.  (This example is not interactive. See Section @l{#Make a
 #    Function Interactive}, for that information.)
    A modo de ejemplo, aquí está el código de una función que multiplica su
-   argumento por 7. (Este ejemplo no es interactivo. Vea la Sección @l{#Crear una
+   argumento por 7. (Este ejemplo no es interactivo. Consulta la Sección @l{#Crear una
    Función Interactiva}, para obtener esa información.)
 
 #    ..src > elisp
@@ -3235,7 +3235,7 @@ and promoting software freedom.”
    argumentos es privado para la definición de la función, se puede cambiar
    el valor de un símbolo dentro del cuerpo de una función sin cambiar su
    valor fuera de la función. El efecto es similar al producido por la
-   expresión @c{let}. (Vea la sección @l{#@c(let)}.)
+   expresión @c{let}. (Consulta la sección @l{#@c(let)}.)
 
 #    The argument list is followed by the documentation string that describes
 #    the function. This is what you see when you type @k{C-h f} and the name
@@ -3557,7 +3557,7 @@ and promoting software freedom.”
 
 #    (See Section @l{#Some Keybindings}, to learn how to bind a command to a
 #    key.)
-   (Vea la Seccion @l{#Algunos Atajos de teclado}, para aprender como vincular un
+   (Consulta la Seccion @l{#Algunos Atajos de teclado}, para aprender como vincular un
    comando a una atajo.)
 
 #    A prefix argument is passed to an interactive function by typing the
@@ -3644,7 +3644,7 @@ and promoting software freedom.”
 #     subsequent arguments and prints the value of the argument in the location
 #     in the string where the control sequence is located.
     Como hemos visto, @c{message} es una función Emacs Lisp especialmente
-    diseñada para enviar un mensaje de una línea al usuario. (Vea la Seccion
+    diseñada para enviar un mensaje de una línea al usuario. (Consulta la Seccion
     @l{#La función @c{message}}.) En resumen, la función @c{message} imprime su
     primer argumento en el área de eco tal cual, excepto para las apariciones de
     @'{%d}, o @'{%s} (y varias otras secuencias de control que no hemos
@@ -3692,7 +3692,7 @@ and promoting software freedom.”
    @k{META} como un numero que sera el argumento a pasar a la funcion. Emacs
    tiene más de veinte caracteres predefinidos para usar con @c{interactive}.
    En casi todos los casos, una de estas opciones te permitira pasar la
-   información correcta de forma interactiva a una función. (Vea la Seccion
+   información correcta de forma interactiva a una función. (Consulta la Seccion
    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Codigo de Caracteres para @c{interactive}} en @e(El
    Manual de Referencia GNU Emacs Lisp)).
 
@@ -3769,7 +3769,7 @@ and promoting software freedom.”
 #    prompted. See Section @l{#The Definition of @c{copy-to-buffer}}, for an
 #    example.)
    (El espacio después de los dos puntos en el prompt hace que se vea
-   mejor. Vea la Seccion @l{#La Definición de @c{copy-to-buffer}}, para un
+   mejor. Consulta la Seccion @l{#La Definición de @c{copy-to-buffer}}, para un
    ejemplo.)
 
 #    When a function does not take arguments, @c{interactive} does not require
@@ -3789,8 +3789,8 @@ and promoting software freedom.”
 #    See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using Interactive<>Using @c{Interactive}} in the
 #    @e{The GNU Emacs Lisp Reference Manual}, for a more complete explanation
 #    about this technique.
-   Vea la Seccion @l{#La Definición de @c{append-to-buffer}}, para un
-   ejemplo. Vea la Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using Interactive<>Usando
+   Consulta la Seccion @l{#La Definición de @c{append-to-buffer}}, para un
+   ejemplo. Consulta la Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using Interactive<>Usando
    @c{interactive}} en @e(El Manual de GNU Emacs Lisp), para una explicación más
    completa sobre esta técnica.
 
@@ -3829,7 +3829,7 @@ and promoting software freedom.”
 #      functions in the files. See Section @l{#Loading Files}.
    - Como Alternativa, puedes poner las definiciones de función en uno o más
      ficheros y usar la función @c{load} para hacer que Emacs evalue y con
-     ello instale cada una de las funciones en los ficheros. Vea la Seccion
+     ello instale cada una de las funciones en los ficheros. Consulta la Seccion
      @l{#Cargando ficheros}.
 
 #    - Thirdly, if you have code that your whole site will use, it is usual to
@@ -3911,7 +3911,7 @@ and promoting software freedom.”
    una @:{variable local} que eclipsa cualquier uso del mismo nombre fuera de
    la expresión @c{let}. Esto es como entender que cuando tu anfitrion
    se refiera a ‘la casa’, el quiere decir su casa, no la tuya. (Los símbolos
-   usados en las listas de argumentos funcionan de la misma manera. Véa la
+   usados en las listas de argumentos funcionan de la misma manera. Consulta la
    Sección @l{#La Forma Especial @c{defun}}.)
 
 #    Local variables created by a @c{let} expression retain their value
@@ -4496,7 +4496,7 @@ and promoting software freedom.”
 #    Emacs Helps You Type Lists}.)
    Tenga en cuenta que los diferentes niveles de indentación hacen fácil
    distinguir la parte-entonces de la parte-de-otro-modo. (GNU Emacs tiene
-   varios comandos que indentan expresiones @c{if} automáticamente. Vea la
+   varios comandos que indentan expresiones @c{if} automáticamente. Consulta la
    Seccion @l{#GNU Emacs te ayuda a escribir listas}.)
 
 #    We can extend the @c{type-of-animal} function to include an else-part by
@@ -4790,7 +4790,7 @@ and promoting software freedom.”
    registra el buffer actual, y lo restaura. Esto significa que puedes escribir
    código que cambie de bufer y @c{save-excursion} debe volver al bufer
    original. Asi es como se utiliza @c{save-excursion} en @c{append-to-buffer}.
-   (Vea la Seccion @l{#La Definición de @c{append-to-buffer}}.)
+   (Consulta la Seccion @l{#La Definición de @c{append-to-buffer}}.)
 
 # *** Template for a @c{save-excursion} Expression
 *** Plantilla para una Expresión @c{save-excursion}
@@ -4960,7 +4960,7 @@ and promoting software freedom.”
 #      See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Code Characters for
 #      @'{interactive}} in @e{The GNU Emacs Lisp Reference Manual}, for a
 #      complete list of code characters.
-     Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Codigo de caracteres para
+     Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Codigo de caracteres para
      @'{interactive}} en @e(El Manual de Referencia de GNU Emacs Lisp), para
      obtener una lista completa de los codigos de caracteres.
 
@@ -5424,7 +5424,7 @@ and promoting software freedom.”
    En esta sección, vamos a hablar de una versión reducida de la función que
    muestra como se utiliza con mayor frecuencia. Esta función reducida
    funciona como esta escrita, pero no contiene código para una opcion
-   compleja. En otra sección, describiremos la función entera. (Vea la Seccion
+   compleja. En otra sección, describiremos la función entera. (Consulta la Seccion
    @l(#Definición completa de @c{beginning-of-buffer}).
 
 #    Before looking at the code, let's consider what the function definition
@@ -5525,7 +5525,7 @@ and promoting software freedom.”
    La siguiente línea es @c{(goto-char (point-min))}. Esta expresión hace
    saltar el cursor hasta el punto mínimo en el búfer, es decir, al inicio
    del búfer (o al inicio de la porción accesible del búfer si narrowed
-   esta activo. Vea la Seccion @l{#Reducir y Extender}.)
+   esta activo. Consulta la Seccion @l{#Reducir y Extender}.)
 
 #    The @c{push-mark} command sets a mark at the place where the cursor was
 #    located before it was moved to the beginning of the buffer by the
@@ -5728,7 +5728,7 @@ and promoting software freedom.”
     @c{mark-whole-buffer} era @c{(push-mark (point-max))}. Esta expresión
     establece una marca en el punto del búfer que tiene el número más alto. Este
     será el final del búfer (o, si el búfer tiene activo narrowing, el final de
-    la porción accesible del búfer. Vea la Seccion @l{#Reducir y Extender}, para
+    la porción accesible del búfer. Consulta la Seccion @l{#Reducir y Extender}, para
     más informacion sobre norrowing). Después de colocar esta marca, la marca
     anterior, la establecida en el punto, ya no esta configurada, pero Emacs
     recuerda su posición, al igual que todas las otras marcas recientes. Esto
@@ -6226,7 +6226,7 @@ and promoting software freedom.”
 #     Section @l{#The @c{let*} expression}.
     Su caracteristica fundamental es que las siguientes variables en la
     varlist puedan hacer uso de los valores establecidos por Emacs
-    antes en la varlist. Vea la Seccion @l{#La expresión @c{let*}}.
+    antes en la varlist. Consulta la Seccion @l{#La expresión @c{let*}}.
 
 #     We will skip functions like @c{let*} and focus on two: the @c{set-buffer}
 #     function and the @c{insert-buffer-substring} function.
@@ -6610,7 +6610,7 @@ and promoting software freedom.”
 
 #    (See Section @l{#New Body for @c{insert-buffer}}, to see a discussion of
 #    the new body.)
-   (Vea la Seccion @l{#Nuevo Cuerpo para @c{insert-buffer}}, para ver una
+   (Consulta la Seccion @l{#Nuevo Cuerpo para @c{insert-buffer}}, para ver una
    discusión del nuevo cuerpo.)
 
 #    In addition, this code illustrates the use of @c{interactive} with a
@@ -6716,7 +6716,7 @@ and promoting software freedom.”
 #      that says “No match”; your terminal may beep at you as well.
      El siguiente argumento de la expresión interactiva inicia con una letra
      @'{b} minúscula. (Esto es diferente del código para @c{append-to-buffer},
-     que utiliza una @'{B} mayúscula. Vea la Seccion @l{#La Definición de
+     que utiliza una @'{B} mayúscula. Consulta la Seccion @l{#La Definición de
      @c{append-to-buffer}}.) La @'{b} minúscula le indica al intérprete Lisp que
      el argumento de @c{insert-buffer} debe ser un buffer existente o su
      nombre. (La opcion @'{B} mayúscula permite la posibilidad que el búfer no
@@ -6853,7 +6853,7 @@ and promoting software freedom.”
     carácter del nombre de la función @c{bufferp} es el carácter @'{p}; como
     vimos anteriormente, tal uso de @'{p} es una convención que indica que la
     función es un predicado, que es un término que significa que la función
-    determinará si alguna propiedad es verdadera o falsa. Vea la Seccion
+    determinará si alguna propiedad es verdadera o falsa. Consulta la Seccion
     @l(#Usando el tipo incorrecto de objeto como un argumento).)
 
 #     The function @c{not} precedes the expression @c{(bufferp buffer)}, so the
@@ -7199,7 +7199,7 @@ and promoting software freedom.”
 #    been discussed. (See Section @l{#A Simplified @c{beginning-of-buffer}
 #    Definition}.) This section describes the complex part of the definition.
    Ya se ha discutido la estructura básica de la función @c{beginning-of-buffer}.
-   (Vea la Seccion @l{#Una definición simplificada de @c{beginning-of-buffer}}).
+   (Consulta la Seccion @l{#Una definición simplificada de @c{beginning-of-buffer}}).
    Esta sección describe la parte compleja de la definición.
 
 #    As previously described, when invoked without an argument,
@@ -7457,7 +7457,7 @@ and promoting software freedom.”
      En los viejos tiempos, se utilizaba la función @c{buffer-size}. No solo se
      llamo varias ocaciones esa funcion, sino que die el tamaño completo del
      búfer, no la parte accesible. El calculo tiene mucho más sentido cuando se
-     maneja solo la parte accesible. (Vea la Seccion @l{#Reducir y Extender},
+     maneja solo la parte accesible. (Consulta la Seccion @l{#Reducir y Extender},
      para obtener más información sobre como centrar la atención en una parte
      ‘accesible’.)
 
@@ -7727,7 +7727,7 @@ and promoting software freedom.”
     Se usa Un @'{\\} antes del primer corchete de esta expresión. Este @'{\\} le
     indica al intérprete Lisp que sustituya cualquier clave qué se encuentre
     dentro de @'{[…]} por su convinacion de teclado actual. En el caso de
-    @c{universal-argument}, suele ser @k{C-u}, pero podría ser distinta. (Véa la
+    @c{universal-argument}, suele ser @k{C-u}, pero podría ser distinta. (Consulta la
     Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Documentation Tips<>Consejos para Cadenas de
     Documentación} en @e(El Manual de Referencia de GNU Emacs Lisp), para más
     información.)
@@ -8200,7 +8200,7 @@ and promoting software freedom.”
    investigarla por tu cuenta; o quizás tengas que utilizar
    @c{buffer-substring-no-properties} o @c{filter-buffer-substring} …, u otras
    funciones. Las propiedades de texto son una funcionalidad que no sera
-   discutida aquí. Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Text Properties<>Propiedades de
+   discutida aquí. Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Text Properties<>Propiedades de
    Texto} en @e(El Manual de Referencia de Emacs Lisp).)
 
 #    Additionally, do you really need @c{goto-char} or @c{point-min}?  Or can
@@ -8222,7 +8222,7 @@ and promoting software freedom.”
 #   @c{cons} as well as two variants on @c{cdr}, namely, @c{setcdr} and
 #   @c{nthcdr}.  (See Section @l{#@c{copy-region-as-kill}}.)
   En el recorrido a través de la función @c{copy-region-as-kill}, veremos @c{cons},
-  asi como dos variantes de @c{cdr}, llamadas @c{setcdr} y @c{nthcdr}. (Véa la
+  asi como dos variantes de @c{cdr}, llamadas @c{setcdr} y @c{nthcdr}. (Consulta la
   Sección @l{#@c{copy-region-as-kill}}.)
 
 #   The name of the @c{cons} function is not unreasonable: it is an
@@ -8429,13 +8429,13 @@ and promoting software freedom.”
    En el primer capítulo, en la discusión sobre los átomos, dije que en Lisp,
    “ciertos tipos de átomos, como un arreglo, pueden ser separados en partes;
    pero el mecanismo para hacer esto es diferente del mecanismo para separar una
-   lista. Para Lisp, los átomos de una lista son indivisibles.” (Vea la Seccion
+   lista. Para Lisp, los átomos de una lista son indivisibles.” (Consulta la Seccion
    @l{#Átomos Lisp}.) Las funciones @c{car} y @c{cdr} se utilizan para dividir
    listas y se consideran fundamentales en Lisp. Ya que no se puede dividir o
    tener acceso a las partes de un arreglo, un arreglo se considera un
    átomo. Por otro lado, la otra función fundamental, @c{cons}, puede armar o
    construir una lista, pero no un arreglo. (Los arreglos se manejan mediante
-   funciones especificas de arreglos. Vea la Seccion
+   funciones especificas de arreglos. Consulta la Seccion
    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Arrays<>Arreglos} en el @e(El Manual de Referencia de GNU Emacs
    Lisp).)
 
@@ -9351,7 +9351,7 @@ and promoting software freedom.”
     @c{zap-to-char} a uno de ellos, si ese carácter existe, o al carácter en
     sí. (Esto es importante para ciertos caracteres en lenguas no Europeas. La
     función @c{aref} extrae un elemento desde un arreglo. Esta funcion es
-    específica para arreglos y no sera descrita en este documento. Vea la Seccion
+    específica para arreglos y no sera descrita en este documento. Consulta la Seccion
     @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Arrays<>Arreglos} en @e(El Manual de Referencia de GNU Emacs
     Lisp).)
 
@@ -10671,7 +10671,7 @@ and promoting software freedom.”
 #      this @m{N} times and returns the results.  (See Section @l{#@c(nthcdr)}).
      La función @c{nthcdr} funciona tomando repetidamente el @c{cdr} de una
      lista––toma el @c{cdr} del @c{cdr} del @c{cdr} …. hace esto @m{N} veces y
-     devuelve los resultados. (Vea la Seccion @l{#@c{nthcdr}}.)
+     devuelve los resultados. (Consulta la Seccion @l{#@c{nthcdr}}.)
 
 #      Thus, if we had a four element list that was supposed to be three
 #      elements long, we could set the @c{cdr} of the next to last element to
@@ -10682,7 +10682,7 @@ and promoting software freedom.”
      debia tener tres elementos de longitud, podriamos asignar el @c{cdr} del
      elemento siguiente al último a @c{nil}, y asi acortar la lista. (Si se
      asigna el último elemento en algún otro valor distinto a @c{nil}, que se
-     podría hacer, entonces no se habría acortado la lista. Véase Sección
+     podría hacer, entonces no se habría acortado la lista. Consulta la Sección
      @l{#@c{setcdr}}.)
 
 #      You can see shortening by evaluating the following three expressions in
@@ -10799,7 +10799,7 @@ and promoting software freedom.”
      devuelve una valor @c{nil}, se devuelve el resultado de la evaluación del
      último argumento. (Dado que tal valor no es @c{nil}, en Emacs Lisp se
      considera verdadero.) En otras palabras, una expresión @c{and} devuelve un
-     valor cierto solo si todos sus argumentos son verdaderos. (Vea la Seccion
+     valor cierto solo si todos sus argumentos son verdaderos. (Consulta la Seccion
      @l{#Repaso: Algunas Funciones Más Complejas<>Revisar el segundo búfer
      relacionado}.)
 
@@ -11120,7 +11120,7 @@ and promoting software freedom.”
 #    people customize. It has more features than @c{defvar}.  (See Section
 #    @l{#Specifying Variables using @c{defcustom}}.)
    (Otra forma especial, @c{defcustom}, está diseñada para variables que la
-   gente personaliza. Tiene más funcionalidades que @c{defvar}. (Véase
+   gente personaliza. Tiene más funcionalidades que @c{defvar}. (Consulta la
    Sección @l{#Especificar variables usando @c{defcustom}}.)
 
 #    You can see the current value of a variable, any variable, by using the
@@ -11208,7 +11208,7 @@ and promoting software freedom.”
     esperaban cambios de parte del usuario. Aunque todavía se puede usar
     @c{defvar} para variables personalizadas, por favor, usa @c{defcustom} en
     su lugar, ya que esa forma especial proporciona una ruta a los comando de
-    personalización. (Vea la Seccion @l{#Especificar variables usando
+    personalización. (Consulta la Seccion @l{#Especificar variables usando
     @c{defcustom}}.)
 
 #     When you specified a variable using the @c{defvar} special form, you
@@ -11244,7 +11244,7 @@ and promoting software freedom.”
     establecen por la duración de tu sesión actual. Los nuevos valores no se
     guardan entre sesiones. Cada vez que Emacs inicia, lee el valor original, a
     menos que cambie el valor dentro de su fichero @f{.emacs}, ya sea configurándolo
-    manualmente o utilizando @c{customize}. Vea la Seccion @l{#Tu Fichero
+    manualmente o utilizando @c{customize}. Consulta la Seccion @l{#Tu Fichero
     @f{.emacs}}.
 
 #     For me, the major use of the @c{set-variable} command is to suggest
@@ -11258,7 +11258,7 @@ and promoting software freedom.”
     se podría querer establecer en mi fichero @f{.emacs}. Ahora hay más de 700
     variables, demasiadas para recordarlas fácilmente. Afortunadamente, se puede
     presionar @k{TAB} después de llamar al comando @c{M-x set-variable} para ver
-    la lista de variables. (Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Examining and Setting
+    la lista de variables. (Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Examining and Setting
     Variables<>Examinando y Configurando Variables} en @e(El Manual de GNU
     Emacs).)
 
@@ -11411,7 +11411,7 @@ and promoting software freedom.”
 #      @l{#Regular Expression Searches}, for an explanation of regular
 #      expression patterns and searches.)
      Busca una cadena y, si se encuentra, mueve el punto. De manera similar,
-     para una expresión regular utiliza @c{re-search-forward}. (Véase Sección
+     para una expresión regular utiliza @c{re-search-forward}. (Consulta la Sección
      @l{#Búsqueda de Expresiones Regulares}, para obtener una explicación de los
      patrones y busquedas de expresiones regulares.)
 
@@ -11913,7 +11913,7 @@ and promoting software freedom.”
   último elemento del anillo de la muerte, se reemplaza por el primer elemento y
   el ciclo se repite. (Por la tanto, el anillo de la muerte se llama un ‘anillo’
   en lugar de solo una ‘lista’. Sin embargo, la estructura de datos real que
-  contiene el texto es una lista. Vea la Seccion @l{#Apéndice B Manejando el
+  contiene el texto es una lista. Consulta la Seccion @l{#Apéndice B Manejando el
   anillo de la muerte}, para los detalles de cómo se maneja la lista como un
   anillo.)
 
@@ -12024,7 +12024,7 @@ and promoting software freedom.”
 #    @c{kill-ring-yank-pointer}. The words “a different piece of text” and
 #    “yet more text” are not duplicated. Instead, the two Lisp variables point
 #    to the same pieces of text. Here is a diagram:
-   Como se explico en el capítulo anterior (Vea la Seccion @l{#Cómo se
+   Como se explico en el capítulo anterior (Consulta la Seccion @l{#Cómo se
    implementan las listas}), el ordenador no guarda dos copias diferentes del
    texto apuntadas tanto por @c{kill-ring} como por @c{kill-ring-yank-pointer}.
    Las palabras “un texto diferente” y “aún más texto” no están duplicadas. En
@@ -13250,7 +13250,7 @@ and promoting software freedom.”
 #    in @e{The GNU Emacs Lisp Reference Manual}. )
    Además de @c{while}, tanto @c{dolist} como @c{dotimes} proveen un
    bucle. Algunas veces estos son mas rápidos de escribir el bucle @c{while}
-   equivalente. Ambos son macros Lisp. (Vea la Seccion
+   equivalente. Ambos son macros Lisp. (Consulta la Seccion
    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Macros<>Macros} en @e(El Manual de Referencia GNU Emacs Lisp).)
 
 #    @c{dolist} works like a @c{while} loop that ‘@c{cdr}s down a list’:
@@ -15114,7 +15114,7 @@ and promoting software freedom.”
 #    The @c{re-search-forward} function is very like the @c{search-forward}
 #    function.  (See Section @l{#The @c{search-forward} Function}.)
    La función @c{re-search-forward} es similar a la función
-   @c{search-forward}. (Vea la Seccion @l{#La Función @c{search-forward}}.)
+   @c{search-forward}. (Consulta la Seccion @l{#La Función @c{search-forward}}.)
 
 #    @c{re-search-forward} searches for a regular expression. If the search is
 #    successful, it leaves point immediately after the last character in the
@@ -15408,7 +15408,7 @@ and promoting software freedom.”
 #     true so long as the counter (in this case, the variable @c{arg}) is
 #     greater than zero; and it has a decrementer that subtracts 1 from the
 #     value of the counter every time the loop repeats.
-    El bucle @c{while} es de tipo decreciente. (Vea la Seccion @l{#Bucle con
+    El bucle @c{while} es de tipo decreciente. (Consulta la Seccion @l{#Bucle con
     contador decreciente}.) Tiene una prueba-verdadero-o-falso que regresa
     verdadero siempre y cuando el contador (en este caso, la variable @c{arg})
     sea mayor que cero; y tiene un decremento que resta 1 del valor del contador
@@ -15622,7 +15622,7 @@ and promoting software freedom.”
    principio de cada línea. Por ejemplo, en el código Lisp, es una convención
    empezar cada línea de un comentario de un párrafo extenso con @'{;;; }. En el
    modo Texto, cuatro espacios en blanco forman otro prefijo común de relleno,
-   creando un párrafo indentado. (Véa la Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Fill
+   creando un párrafo indentado. (Consulta la Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Fill
    Prefix<>Prefijo de relleno} en @e(El Manual de GNU Emacs) para más
    información acerca de los prefijos de relleno.)
 
@@ -15698,7 +15698,7 @@ and promoting software freedom.”
    punto. La expresión @c{or} en la siguiente línea maneja el caso común cuando
    no se pasa ningun argumento a la función, esto ocurre si la función se
    llama desde otro código en lugar de interactivamente. Este caso fue descrito
-   anteriormente. (Vea la Seccion @l{#La Función @c{forward-sentence}}.) Ahora
+   anteriormente. (Consulta la Seccion @l{#La Función @c{forward-sentence}}.) Ahora
    llegamos al final de la parte familiar de esta función.
 
 # *** The @c{let*} expression
@@ -16596,12 +16596,12 @@ and promoting software freedom.”
 #      You can devise several regexps; some are better than others. The
 #      function I use is described in an appendix, along with several regexps.
 #      See Section @l{#Appendix A The @c{the-the} Function}.
-   - Escribe una función para buscar palabras duplicadas, como ‘el el’. Vea la
+   - Escribe una función para buscar palabras duplicadas, como ‘el el’. Consulta la
      Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Regexps<>Syntax of Regular Expressions} en @e(El Manual de GNU Emacs), para obtener
      información de cómo escribir una regexp (una expresión regular) para que
      coincida con una cadena compuesta de dos mitades idénticas. Puedes idear
      varias regexps; algunos son mejores que otras. La función que
-     yo utilizo se describe en un apéndice, junto con varias regexps. Vea la
+     yo utilizo se describe en un apéndice, junto con varias regexps. Consulta la
      Seccion @l{#Apéndice A La función @c{the-the}}.
 
 # * Counting: Repetition and Regexps
@@ -16818,7 +16818,7 @@ and promoting software freedom.”
 #    constituents. For more information about syntax, see Section
 #    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Syntax Tables<>Syntax Tables} in @e{The GNU Emacs Lisp Reference Manual}.
    La tabla sintactica del búfer determina qué caracteres son o no
-   constituyentes de palabras. Para más información sobre la sintaxis, Vea la
+   constituyentes de palabras. Para más información sobre la sintaxis, Consulta la
    Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Syntax Tables<>Tablas de Sintaxis} en @e(El Manual de
    Referencia de GNU Emacs Lisp).
 
@@ -17544,7 +17544,7 @@ and promoting software freedom.”
 #    of how @c{re-search-forward} works.)
    Ten en cuenta que la expresión de búsqueda es parte de la prueba-hazlo-de-nuevo––la
    función devuelve @c{t} si su búsqueda tiene éxito y @c{nil} si
-   falla. (Vea la Seccion @l{#El error de espacio en blanco en @c{count-words-example}},
+   falla. (Consulta la Seccion @l{#El error de espacio en blanco en @c{count-words-example}},
    para una explicación de cómo funciona @c{re-search-forward}.)
 
 #    The do-again-test is the true-or-false test of an @c{if} clause. Clearly,
@@ -17856,7 +17856,7 @@ and promoting software freedom.”
 #   @c{count-words-example}.
   Nuestro siguiente proyecto es contar el número de palabras en una definición
   de función. Claramente, esto se puede hacer usando alguna variante de
-  @c{count-words-example}. Vea la Seccion @l{#Conteo: repetición y regexps}.
+  @c{count-words-example}. Consulta la Seccion @l{#Conteo: repetición y regexps}.
   Si solo vamos a contar las palabras en una definición, es
   bastante fácil marcar la definición con el comando @k{C-M-h}
   @%c(mark-defun), y luego llamar a @c{count-words-example}.
@@ -18582,7 +18582,7 @@ and promoting software freedom.”
    usas @c{find-file-noselect}) al búfer seleccionado. Esto es lo que hace
    @c{switch-to-buffer}: cambia el búfer al que se dirige la
    atención de Emacs; y cambia el búfer mostrado en la ventana al nuevo
-   búfer. Hemos discutido el cambiando de búfer en otra parte. (Vea la Seccion
+   búfer. Hemos discutido el cambiando de búfer en otra parte. (Consulta la Seccion
    @l{#Cambiando búfers}.)
 
 #    In this histogram project, we do not need to display each file on the
@@ -18785,7 +18785,7 @@ and promoting software freedom.”
 
 #    (See Section @l{#Specifying Variables using @c{defcustom}}. Then evaluate
 #    the @c{lengths-list-file} expression.)
-   (Vea la Seccion @l{#Especificar variables usando @c{defcustom}}. A contituacion
+   (Consulta la Seccion @l{#Especificar variables usando @c{defcustom}}. A contituacion
    evalúa la expresión @c{lista-de-longitudes-en-fichero}.)
 
 #    The lengths' list for @f{debug.el} takes less than a second to produce and
@@ -18888,7 +18888,7 @@ and promoting software freedom.”
    longitudes es parte del cuerpo––y ese el valor que queremos que devuelva
    la función como un todo. Para hacer esto, rodeamos el bucle @c{while} con
    una expresión @c{let}, y arreglamos que el último elemento de la
-   expresión @c{let} contiene el valor de lista de longitudes. (Vea la Seccion
+   expresión @c{let} contiene el valor de lista de longitudes. (Consulta la Seccion
    @l{#Ejemplo con contador incremental}.)
 
 #    These considerations lead us directly to the function itself:
@@ -19787,7 +19787,7 @@ and promoting software freedom.”
 #      purpose.  (See Section @l{#@c{cons}}.)
     Además, en cada iteracion del bucle exterior, Emacs debe registrar el número de
     definiciones dentro de ese rango (el valor de @c{numero-dentro-del-rango}) en una
-    lista. Podemos usar @c{cons} para este propósito. (Vea la Seccion
+    lista. Podemos usar @c{cons} para este propósito. (Consulta la Seccion
     @l{#@c{cons}}.)
 
 #      The @c{cons} function works fine, except that the list it constructs
@@ -21145,7 +21145,7 @@ and promoting software freedom.”
    si existe; pero las configuraciones y definiciones en @f{default.el} o el
    fichero de tipo de terminal sobreescribirán las de @f{.emacs}. (puede
    evitar las interferencias del fichero de tipo de terminal configurando
-   @c{term-file-prefix} a @c{nil}. Vea la Seccion @l{#Una extensión simple:
+   @c{term-file-prefix} a @c{nil}. Consulta la Seccion @l{#Una extensión simple:
    @c{linea-a-lo-alto-de-la-ventana}}.)
 
 #    The @f{INSTALL} file that comes in the distribution contains descriptions
@@ -21437,7 +21437,7 @@ and promoting software freedom.”
 
 #    See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init File<>The Init File @f{~/.emacs}} in @e(The
 #    GNU Emacs Manual), for a short description of initialization files.
-   Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init File<>El Fichero de Inicio @f{~/.emacs}} en
+   Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init File<>El Fichero de Inicio @f{~/.emacs}} en
    @e(El Manual GNU Emacs), para una breve descripción de los fichero de
    inicialización.
 
@@ -21488,7 +21488,7 @@ and promoting software freedom.”
    Esto describe las convenciones habituales para comentarios en Emacs
    Lisp. Todo lo que aparece en una línea despues de un punto y coma es un
    comentario. Se utilizan dos, tres, y cuatro puntos y coma como marcadores de
-   subsección y sección. (Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments<>Comentarios} en @e(El
+   subsección y sección. (Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments<>Comentarios} en @e(El
    Manual de Referencia GNU Emacs Lisp), para más informacion sobre los comentarios.)
 
 #    ..src > elisp
@@ -21622,7 +21622,7 @@ and promoting software freedom.”
    Ya estamos familiarizados con @c{setq}. Esto establece la siguiente variable,
    @c{major-mode}, al valor subsiguiente, que es @c{text-mode}. La comilla
    simple antes de @c{text-mode} le indica a Emacs que trate directamente con el
-   símbolo @c(text-mode), no con lo que pueda significar. Vea la Seccion
+   símbolo @c(text-mode), no con lo que pueda significar. Consulta la Seccion
    @l{#Configurando el Valor de una Variable}, para recordar como funciona @c{setq}.
    El punto principal es que no hay diferencia entre el procedimiento
    que se usa utiliza para establecer un valor en su fichero @f{.emacs} y el procedimiento
@@ -21839,7 +21839,7 @@ and promoting software freedom.”
    al mismo tiempo’. La @c{w} significa ‘presionar la tecla @k{w}’. El atajo es
    rodeado por comillas dobles. En el atajo, se presionaria esto como @k{C-c
    w}. (Si estuvieras enlazando una tecla @k{META}, como @k{M-c}, en lugar de la
-   tecla @k{CTRL}, se escribiría @c{\M-c} en el fichero @f{.emacs}. Vea la
+   tecla @k{CTRL}, se escribiría @c{\M-c} en el fichero @f{.emacs}. Consulta la
    Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init Rebinding<>Teclas de atajos en tu fichero Init}
    en @e(El Manual de GNU Emacs), para más detalles.)
 
@@ -22181,7 +22181,7 @@ and promoting software freedom.”
 #    Lisp Code for Emacs} in @e(The GNU Emacs Manual), for information on the
 #    distinction between @c{load-library} and this command.
    Otro comando interactivo que hace un trabajo ligeramente diferente es
-   @c{load-file}. Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Lisp Libraries<>Librerías de
+   @c{load-file}. Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Lisp Libraries<>Librerías de
    Código Lisp para Emacs} en @e(El Manual de GNU Emacs), para obtener
    información sobre la diferencia entre @c{load-library} y este comando.
 
@@ -22229,7 +22229,7 @@ and promoting software freedom.”
 #    Reference Manual}, and the @f{INSTALL} file for more about dumping.)
    En mi fichero @f{.emacs}, cargo 14 librerías que contienen funciones que de
    otro modo serían autocargadas. (En realidad, hubiera sido mejor incluir estos
-   ficheros en mi Emacs ‘volcado’, pero lo olvide. Véa la Sección
+   ficheros en mi Emacs ‘volcado’, pero lo olvide. Consulta la Sección
    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Building Emacs<>Construyendo Emacs} en @e(El Manual de
    Referencia de GNU Emacs Lisp), y el fichero @f{INSTALL} para más informacion
    acerca del volcado.)
@@ -22289,7 +22289,7 @@ and promoting software freedom.”
 
 #    See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Autoload<>Autoload} in @e{The GNU Emacs Lisp
 #    Reference Manual}, for more information.
-   Vea la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Autoload<>Autocarga} en @e(El Manual de
+   Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Autoload<>Autocarga} en @e(El Manual de
    Referencia de GNU Emacs Lisp), para más información.
 
 # ** A Simple Extension: @c{line-to-top-of-window}
@@ -23070,7 +23070,7 @@ and promoting software freedom.”
 #    Decrementing Counter}, for a discussion.)
    Supón que has escrito una definición de función que pretende devolver la suma
    de los números números desde 1 a un número dado. (Esta es la función
-   @c{triangulo} discutida anteriormente. Vea la Seccion @l{#Ejemplo con
+   @c{triangulo} discutida anteriormente. Consulta la Seccion @l{#Ejemplo con
    contador decreciente}, para mas información.)
 
 #    However, your function definition has a bug. You have mistyped @c{1=} for
@@ -23477,7 +23477,7 @@ and promoting software freedom.”
 
 #    Here is a bugged function definition for @c{triangle-recursively}. See
 #    Section @l{#Recursion in place of a counter}, for a review of it.
-   Aquí hay una función con errores para @c{triangulo-recursivo}. Véase
+   Aquí hay una función con errores para @c{triangulo-recursivo}. Consulta la
    Sección @l{#Recursión en lugar de un contador}, para una revisión de eso.
 
 #    ..src > elisp
@@ -23793,7 +23793,7 @@ and promoting software freedom.”
 #   @c{count-words-in-defun}, the @c{split-line} function contains 102 words
 #   and symbols.
   Es posible que desees explorar esta función lentamente, como
-  hicimos con la función @c{forward-sentence}. (Vea la Seccion @l{#La función
+  hicimos con la función @c{forward-sentence}. (Consulta la Seccion @l{#La función
   @c{forward-sentence}}.) O tal vez quieras saltarte esta función y mirar
   otra, como @c{split-line}. No es necesario leer todas las funciones. Segun
   @c{contar-palabras-en-definicion}, la función @c{split-line} contiene 102
@@ -24318,7 +24318,7 @@ and promoting software freedom.”
 #    already described. See Section @l{#The @c{kill-new} function}.)
    Consideremos la parte ‘si no’ o la parte-else de la función
    @c{current-kill}. (La parte-else utiliza la función @c{kill-new}, que ya
-   hemos descrito. Vea la Seccion @l{#La función @c{kill-new}}.)
+   hemos descrito. Consulta la Seccion @l{#La función @c{kill-new}}.)
 
 #    ..src > elisp
 #      (or kill-ring (error "Kill ring is empty"))
@@ -24472,7 +24472,7 @@ and promoting software freedom.”
    ARGth-kill-element)}. También, claramente, @c{ARGth-kill-element}
    está siendo asignado para ser igual a algún @c{cdr} del anillo de la
    muerte, usando la función @c{nthcdr} que se describio en
-   una sección anterior. (Vea la Seccion @l{#@c(copy-region-as-kill)}.)  ¿Cómo
+   una sección anterior. (Consulta la Seccion @l{#@c(copy-region-as-kill)}.)  ¿Cómo
    hace esto?
 
 #    As we have seen before (see Section @l{#@c{nthcdr}}), the @c{nthcdr}
@@ -24830,7 +24830,7 @@ and promoting software freedom.”
    prefijo sea procesado y pasado a la función. El comando solo se puede
    utilizar después del yank previo; de lo contrario, se envia un mensaje de
    error. Esta comprobacion utiliza la variable @c{last-command} que se asigna
-   por @c{yank} y se discute en otra parte. (Vea la Seccion
+   por @c{yank} y se discute en otra parte. (Consulta la Seccion
    @l{#@c(copy-region-as-killc)}.
 
 #    The @c{let} clause sets the variable @c{before} to true or false depending
@@ -26708,7 +26708,7 @@ and promoting software freedom.”
     < src..
 
 #     (See Section @l{#The @c{defun} Special Form}.)
-    (Vea la Seccion @l{#La forma especial @c{defun}}.)
+    (Consulta la Seccion @l{#La forma especial @c{defun}}.)
 
 #     If we want to multiply 3 by 7, we can write:
     Si queremos multiplicar 3 por 7, podemos escribir:
