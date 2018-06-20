@@ -454,7 +454,7 @@ Boston, MA 02110-1301 USA
 <div class="hBody-3" >
 <p>If you don&#39;t know GNU Emacs, you can still read this document profitably. However, I recommend you learn Emacs, if only to learn to move around your computer screen. You can teach yourself how to use Emacs with the on-line tutorial. To use it, type <kbd>C-h t</kbd>.  (This means you press and release the <kbd>CTRL</kbd> key and the <kbd>h</kbd> at the same time, and then press and release <kbd>t</kbd>.)</p>
 <p>Also, I often refer to one of Emacs&#39;s standard commands by listing the keys which you press to invoke the command and then giving the name of the command in parentheses, like this: <kbd>M-C-\</kbd> (<code>indent-region</code>). What this means is that the <code>indent-region</code> command is customarily invoked by typing <kbd>M-C-\</kbd>.  (You can, if you wish, change the keys that are typed to invoke the command; this is called <dfn>rebinding</dfn>. See Section <a href="#keymaps" >Keymaps</a>.)  The abbreviation <kbd>M-C-\</kbd> means that you type your <kbd>META</kbd> key, <kbd>CTRL</kbd> key and <kbd>\</kbd> key all at the same time.  (On many modern keyboards the <kbd>META</kbd> key is labeled <kbd>ALT</kbd>.)  Sometimes a combination like this is called a keychord, since it is similar to the way you play a chord on a piano. If your keyboard does not have a <kbd>META</kbd> key, the <kbd>ESC</kbd> key prefix is used in place of it. In this case, <kbd>M-C-\</kbd> means that you press and release your <kbd>ESC</kbd> key and then type the <kbd>CTRL</kbd> key and the <kbd>\</kbd> key at the same time. But usually <kbd>M-C-\</kbd> means press the <kbd>CTRL</kbd> key along with the key that is labeled <kbd>ALT</kbd> and, at the same time, press the <kbd>\</kbd> key.</p>
-<p>In addition to typing a lone keychord, you can prefix what you type with <kbd>C-u</kbd>, which is called the ‘universal argument’. The <kbd>C-u</kbd> keychord passes an argument to the subsequent command. Thus, to indent a region of plain text by 6 spaces, mark the region, and then type <kbd>C-u 6 M-C-\</kbd>. (If you do not specify a number, Emacs either passes the number 4 to the command or otherwise runs the command differently than it would otherwise.)  See Section <a href="info:emacs#Arguments,-Numeric-Arguments" >info:emacs#Arguments, Numeric Arguments</a> in <em>The GNU Emacs Manual</em>.</p>
+<p>In addition to typing a lone keychord, you can prefix what you type with <kbd>C-u</kbd>, which is called the ‘universal argument’. The <kbd>C-u</kbd> keychord passes an argument to the subsequent command. Thus, to indent a region of plain text by 6 spaces, mark the region, and then type <kbd>C-u 6 M-C-\</kbd>. (If you do not specify a number, Emacs either passes the number 4 to the command or otherwise runs the command differently than it would otherwise.)  See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Arguments" >Numeric Arguments</a> in <em>The GNU Emacs Manual</em>.</p>
 <p>If you are reading this in Info using GNU Emacs, you can read through this whole document just by pressing the space bar, <kbd>SPC</kbd>.  (To learn about Info, type <kbd>C-h i</kbd> and then select Info.)</p>
 <p>A note on terminology: when I use the word Lisp alone, I often am referring to the various dialects of Lisp in general, but when I speak of Emacs Lisp, I am referring to GNU Emacs Lisp in particular.</p>
 </div>
@@ -515,7 +515,7 @@ Boston, MA 02110-1301 USA
 <h4 id="gnu-emacs-helps-you-type-lists" >GNU Emacs Helps You Type Lists</h4>
 <div class="hBody-4" >
 <p>When you type a Lisp expression in GNU Emacs using either Lisp Interaction mode or Emacs Lisp mode, you have available to you several commands to format the Lisp expression so it is easy to read. For example, pressing the <kbd>TAB</kbd> key automatically indents the line the cursor is on by the right amount. A command to properly indent the code in a region is customarily bound to <kbd>M-C-\</kbd>. Indentation is designed so that you can see which elements of a list belong to which list––elements of a sub-list are indented more than the elements of the enclosing list.</p>
-<p>In addition, when you type a closing parenthesis, Emacs momentarily jumps the cursor back to the matching opening parenthesis, so you can see which one it is. This is very useful, since every list you type in Lisp must have its closing parenthesis match its opening parenthesis.  (See Section <a href="info:emacs#Major-Modes,-Major-Modes" >info:emacs#Major Modes, Major Modes</a> in <em>The GNU Emacs Manual</em>, for more information about Emacs&#39;s modes.)</p>
+<p>In addition, when you type a closing parenthesis, Emacs momentarily jumps the cursor back to the matching opening parenthesis, so you can see which one it is. This is very useful, since every list you type in Lisp must have its closing parenthesis match its opening parenthesis.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Major-Modes" >Major Modes</a> in <em>The GNU Emacs Manual</em>, for more information about Emacs&#39;s modes.)</p>
 </div>
 <h3 id="run-a-program" >Run a Program</h3>
 <div class="hBody-3" >
@@ -597,7 +597,7 @@ Debugger entered--Lisp error: (void-function this)
 <div class="hBody-4" >
 <p>One other aspect of interpreting: the Lisp interpreter is able to interpret two kinds of entity: humanly readable code, on which we will focus exclusively, and specially processed code, called <dfn>byte compiled</dfn> code, which is not humanly readable. Byte compiled code runs faster than humanly readable code.</p>
 <p>You can transform humanly readable code into byte compiled code by running one of the compile commands such as <code>byte-compile-file</code>. Byte compiled code is usually stored in a file that ends with a <span class="file" >.elc</span> extension rather than a <span class="file" >.el</span> extension. You will see both kinds of file in the <span class="file" >emacs/lisp</span> directory; the files to read are those with <span class="file" >.el</span> extensions.</p>
-<p>As a practical matter, for most things you might do to customize or extend Emacs, you do not need to byte compile; and I will not discuss the topic here. See Section <a href="info:emacs#Byte-Compilation,-Byte-Compilation" >info:emacs#Byte Compilation, Byte Compilation</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for a full description of byte compilation.</p>
+<p>As a practical matter, for most things you might do to customize or extend Emacs, you do not need to byte compile; and I will not discuss the topic here. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Byte-Compilation" >Byte Compilation</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for a full description of byte compilation.</p>
 </div>
 <h3 id="evaluation" >Evaluation</h3>
 <div class="hBody-3" >
@@ -1061,7 +1061,7 @@ Multiply NUMBER by seven.
   <span class="p">(</span><span class="nf">+</span> <span class="nv">number</span> <span class="nv">number</span> <span class="nv">number</span> <span class="nv">number</span> <span class="nv">number</span> <span class="nv">number</span> <span class="nv">number</span><span class="p">))</span>
 </code></pre>
 <p>The comment follows a semicolon, ‘;’. In Lisp, everything on a line that follows a semicolon is a comment. The end of the line is the end of the comment. To stretch a comment over two or more lines, begin each line with a semicolon.</p>
-<p>See Section <a href="#beginning-a-.emacs-file" >Beginning a <span class="file" >.emacs</span> File</a>, and Section <a href="info:emacs#Comments" >Comments</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about comments.</p>
+<p>See Section <a href="#beginning-a-.emacs-file" >Beginning a <span class="file" >.emacs</span> File</a>, and Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments" >Comments</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about comments.</p>
 <p>You can install this version of the <code>multiply-by-seven</code> function by evaluating it in the same way you evaluated the first function: place the cursor after the last parenthesis and type <kbd>C-x C-e</kbd>.</p>
 <p>In summary, this is how you write code in Emacs Lisp: you write a function; install it; test it; and then make fixes or enhancements and install it again.</p>
 </div>
@@ -1112,7 +1112,7 @@ Multiply NUMBER by seven.
 </div>
 <h3 id="different-options-for-interactive" >Different Options for <code>interactive</code></h3>
 <div class="hBody-3" >
-<p>In the example, <code>multiply-by-seven</code> used <code>&#34;p&#34;</code> as the argument to <code>interactive</code>. This argument told Emacs to interpret your typing either <kbd>C-u</kbd> followed by a number or <kbd>META</kbd> followed by a number as a command to pass that number to the function as its argument. Emacs has more than twenty characters predefined for use with <code>interactive</code>. In almost every case, one of these options will enable you to pass the right information interactively to a function.  (See Section <a href="info:elisp#Interactive" >Code Characters for <code>interactive</code></a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>In the example, <code>multiply-by-seven</code> used <code>&#34;p&#34;</code> as the argument to <code>interactive</code>. This argument told Emacs to interpret your typing either <kbd>C-u</kbd> followed by a number or <kbd>META</kbd> followed by a number as a command to pass that number to the function as its argument. Emacs has more than twenty characters predefined for use with <code>interactive</code>. In almost every case, one of these options will enable you to pass the right information interactively to a function.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive-Codes" >Code Characters for <code>interactive</code></a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 <p>Consider the function <code>zap-to-char</code>. Its interactive expression is</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p\ncZap to char: &#34;</span><span class="p">)</span>
 </code></pre>
@@ -1128,7 +1128,7 @@ Multiply NUMBER by seven.
 <p>(The space after the colon in the prompt makes it look better when you are prompted. See Section <a href="#the-definition-of-copy-to-buffer" >The Definition of <code>copy-to-buffer</code></a>, for an example.)</p>
 <p>When a function does not take arguments, <code>interactive</code> does not require any. Such a function contains the simple expression <code>(interactive)</code>. The <code>mark-whole-buffer</code> function is like this.</p>
 <p>Alternatively, if the special letter-codes are not right for your application, you can pass your own arguments to <code>interactive</code> as a list.</p>
-<p>See Section <a href="#the-definition-of-append-to-buffer" >The Definition of <code>append-to-buffer</code></a>, for an example. See Section <a href="info:elisp#Using-Interactive" >Using <code>Interactive</code></a> in the <em>The GNU Emacs Lisp Reference Manual</em>, for a more complete explanation about this technique.</p>
+<p>See Section <a href="#the-definition-of-append-to-buffer" >The Definition of <code>append-to-buffer</code></a>, for an example. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using-Interactive" >Using <code>Interactive</code></a> in the <em>The GNU Emacs Lisp Reference Manual</em>, for a more complete explanation about this technique.</p>
 </div>
 <h3 id="install-code-permanently" >Install Code Permanently</h3>
 <div class="hBody-3" >
@@ -1403,7 +1403,7 @@ Multiply NUMBER by seven.
 <p>Point and the mark, as two numeric arguments, smallest first. This is the only code letter that specifies two successive arguments rather than one.</p>
 </dd>
 </dl>
-<p>See Section <a href="info:elips#Interactive-Codes" >Code Characters for ‘interactive’</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for a complete list of code characters.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive-Codes" >Code Characters for ‘interactive’</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for a complete list of code characters.</p>
 </dd>
 <dt><code>let</code></dt>
 <dd>
@@ -2045,7 +2045,7 @@ Beginning of buffer is position (point-min), end is (point-max).
    <span class="nv">do-nicety</span>
 </code></pre>
 <p>The function is similar to the <code>simplified-beginning-of-buffer</code> function except that the <code>interactive</code> expression has <code>&#34;P&#34;</code> as an argument and the <code>goto-char</code> function is followed by an if-then-else expression that figures out where to put the cursor if there is an argument that is not a cons cell.</p>
-<p>(Since I do not explain a cons cell for many more chapters, please consider ignoring the function <code>consp</code>. See Section <a href="#how-lists-are-implemented" >How Lists are Implemented</a>, and Section <a href="info:elisp#Cons-Cell-Type" >Cons Cell and List Types</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>(Since I do not explain a cons cell for many more chapters, please consider ignoring the function <code>consp</code>. See Section <a href="#how-lists-are-implemented" >How Lists are Implemented</a>, and Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Cons-Cell-Type" >Cons Cell and List Types</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 <p>The <code>&#34;P&#34;</code> in the <code>interactive</code> expression tells Emacs to pass a prefix argument, if there is one, to the function in raw form. A prefix argument is made by typing the <kbd>META</kbd> key followed by a number, or by typing <kbd>C-u</kbd> and then a number.  (If you don&#39;t type a number, <kbd>C-u</kbd> defaults to a cons cell with a 4. A lowercase <code>&#34;p&#34;</code> in the <code>interactive</code> expression causes the function to convert a prefix arg to a number.)</p>
 <p>The true-or-false-test of the <code>if</code> expression looks complex, but it is not: it checks whether <code>arg</code> has a value that is not <code>nil</code> and whether it is a cons cell.  (That is what <code>consp</code> does; it checks whether its argument is a cons cell.)  If <code>arg</code> has a value that is not <code>nil</code> (and is not a cons cell), which will be the case if <code>beginning-of-buffer</code> is called with a numeric argument, then this true-or-false-test will return true and the then-part of the <code>if</code> expression will be evaluated. On the other hand, if <code>beginning-of-buffer</code> is not called with an argument, the value of <code>arg</code> will be <code>nil</code> and the else-part of the <code>if</code> expression will be evaluated. The else-part is simply <code>point-min</code>, and when this is the outcome, the whole <code>goto-char</code> expression is <code>(goto-char (point-min))</code>, which is how we saw the <code>beginning-of-buffer</code> function in its simplified form.</p>
 </div>
@@ -2154,7 +2154,7 @@ Beginning of buffer is position (point-min), end is (point-max).
 <pre class="example" >\\[universal-argument]
 </pre>
 </div>
-<p>A ‘\\’ is used before the first square bracket of this expression.  This ‘\\’ tells the Lisp interpreter to substitute whatever key is currently bound to the ‘[…]’. In the case of <code>universal-argument</code>, that is usually <kbd>C-u</kbd>, but it might be different.  (See Section <a href="info:elisp#Documentation-Tips" >info:elisp#Documentation-Tips</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information.)</p>
+<p>A ‘\\’ is used before the first square bracket of this expression.  This ‘\\’ tells the Lisp interpreter to substitute whatever key is currently bound to the ‘[…]’. In the case of <code>universal-argument</code>, that is usually <kbd>C-u</kbd>, but it might be different.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Documentation-Tips" >Documentation Tips</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information.)</p>
 <p>Finally, the last line of the <code>beginning-of-buffer</code> command says to move point to the beginning of the next line if the command is invoked with an argument:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="nv">arg</span> <span class="p">(</span><span class="nf">forward-line</span> <span class="mi">1</span><span class="p">)))</span>
 </code></pre>
@@ -2173,7 +2173,7 @@ Beginning of buffer is position (point-min), end is (point-max).
 <dd>
 <p>Evaluate each argument in sequence, and if any are <code>nil</code>, return <code>nil</code>; if none are <code>nil</code>, return the value of the last argument. In brief, return a true value only if all the arguments are true; return a true value if one <em>and</em> each of the others is true.</p>
 </dd>
-<dt>&amp;optional</dt>
+<dt><code>&amp;optional</code></dt>
 <dd>
 <p>A keyword used to indicate that an argument to a function definition is optional; this means that the function can be evaluated without the argument, if desired.</p>
 </dd>
@@ -2261,7 +2261,7 @@ Beginning of buffer is position (point-min), end is (point-max).
 <h3 id="exercise-with-narrowing" >Exercise with Narrowing</h3>
 <div class="hBody-3" >
 <p>Write a function that will display the first 60 characters of the current buffer, even if you have narrowed the buffer to its latter half so that the first line is inaccessible. Restore point, mark, and narrowing. For this exercise, you need to use a whole potpourri of functions, including <code>save-restriction</code>, <code>widen</code>, <code>goto-char</code>, <code>point-min</code>, <code>message</code>, and <code>buffer-substring</code>.</p>
-<p>(<code>buffer-substring</code> is a previously unmentioned function you will have to investigate yourself; or perhaps you will have to use <code>buffer-substring-no-properties</code> or <code>filter-buffer-substring</code> …, yet other functions. Text properties are a feature otherwise not discussed here. See Section <a href="info:elisp#Text-Properties" >info:elisp#Text Properties</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>(<code>buffer-substring</code> is a previously unmentioned function you will have to investigate yourself; or perhaps you will have to use <code>buffer-substring-no-properties</code> or <code>filter-buffer-substring</code> …, yet other functions. Text properties are a feature otherwise not discussed here. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Text-Properties" >Text Properties</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 <p>Additionally, do you really need <code>goto-char</code> or <code>point-min</code>?  Or can you write the function without them?</p>
 </div>
 <h2 id="car,-cdr,-cons:-fundamental-functions" ><code>car</code>, <code>cdr</code>, <code>cons</code>: Fundamental Functions</h2>
@@ -2304,7 +2304,7 @@ Beginning of buffer is position (point-min), end is (point-max).
        <span class="p">(</span><span class="nv">whale</span> <span class="nv">dolphin</span> <span class="nv">seal</span><span class="p">)))</span>
 </code></pre>
 <p>It is worth saying again that <code>car</code> and <code>cdr</code> are non-destructive––that is, they do not modify or change lists to which they are applied. This is very important for how they are used.</p>
-<p>Also, in the first chapter, in the discussion about atoms, I said that in Lisp, “certain kinds of atom, such as an array, can be separated into parts; but the mechanism for doing this is different from the mechanism for splitting a list. As far as Lisp is concerned, the atoms of a list are unsplittable.”  (See Section <a href="#lisp-atoms" >Lisp Atoms</a>.)  The <code>car</code> and <code>cdr</code> functions are used for splitting lists and are considered fundamental to Lisp. Since they cannot split or gain access to the parts of an array, an array is considered an atom. Conversely, the other fundamental function, <code>cons</code>, can put together or construct a list, but not an array.  (Arrays are handled by array-specific functions. See Section <a href="info:elisp#Arrays" >Arrays</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>Also, in the first chapter, in the discussion about atoms, I said that in Lisp, “certain kinds of atom, such as an array, can be separated into parts; but the mechanism for doing this is different from the mechanism for splitting a list. As far as Lisp is concerned, the atoms of a list are unsplittable.”  (See Section <a href="#lisp-atoms" >Lisp Atoms</a>.)  The <code>car</code> and <code>cdr</code> functions are used for splitting lists and are considered fundamental to Lisp. Since they cannot split or gain access to the parts of an array, an array is considered an atom. Conversely, the other fundamental function, <code>cons</code>, can put together or construct a list, but not an array.  (Arrays are handled by array-specific functions. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Arrays" >Arrays</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 </div>
 <h3 id="cons" ><code>cons</code></h3>
 <div class="hBody-3" >
@@ -2539,7 +2539,7 @@ Beginning of buffer is position (point-min), end is (point-max).
                        <span class="p">(</span><span class="nf">search-forward</span> <span class="p">(</span><span class="nf">char-to-string</span> <span class="nv">char</span><span class="p">)</span> <span class="no">nil</span> <span class="no">nil</span> <span class="nv">arg</span><span class="p">)</span>
                        <span class="p">(</span><span class="nf">point</span><span class="p">)))</span>
 </code></pre>
-<p><code>char-table-p</code> is an hitherto unseen function. It determines whether its argument is a character table. When it is, it sets the character passed to <code>zap-to-char</code> to one of them, if that character exists, or to the character itself.  (This becomes important for certain characters in non-European languages. The <code>aref</code> function extracts an element from an array. It is an array-specific function that is not described in this document. See Section <a href="info:elisp#Arrays" >Arrays</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p><code>char-table-p</code> is an hitherto unseen function. It determines whether its argument is a character table. When it is, it sets the character passed to <code>zap-to-char</code> to one of them, if that character exists, or to the character itself.  (This becomes important for certain characters in non-European languages. The <code>aref</code> function extracts an element from an array. It is an array-specific function that is not described in this document. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Arrays" >Arrays</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 <p><code>(point)</code> is the current position of the cursor.</p>
 <p>The next part of the code is an expression using <code>progn</code>. The body of the <code>progn</code> consists of calls to <code>search-forward</code> and <code>point</code>.</p>
 <p>It is easier to understand how <code>progn</code> works after learning about <code>search-forward</code>, so we will look at <code>search-forward</code> and then at <code>progn</code>.</p>
@@ -2702,7 +2702,7 @@ Beginning of buffer is position (point-min), end is (point-max).
 <p>A <code>when</code> expression is simply a programmers&#39; convenience. It is an <code>if</code> without the possibility of an else clause. In your mind, you can replace <code>when</code> with <code>if</code> and understand what goes on. That is what the Lisp interpreter does.</p>
 <p>Technically speaking, <code>when</code> is a Lisp macro. A Lisp <dfn>macro</dfn> enables you to define new control constructs and other language features. It tells the interpreter how to compute another Lisp expression which will in turn compute the value. In this case, the ‘other expression’ is an <code>if</code> expression.</p>
 <p>The <code>kill-region</code> function definition also has an <code>unless</code> macro; it is the converse of <code>when</code>. The <code>unless</code> macro is an <code>if</code> without a then clause</p>
-<p>For more about Lisp macros, see Section <a href="info:elisp#Macros" >Macros</a>, in <em>The GNU Emacs Lisp Reference Manual</em>. The C programming language also provides macros. These are different, but also useful.</p>
+<p>For more about Lisp macros, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Macros" >Macros</a>, in <em>The GNU Emacs Lisp Reference Manual</em>. The C programming language also provides macros. These are different, but also useful.</p>
 <p>Regarding the <code>when</code> macro, in the <code>condition-case</code> expression, when the string has content, then another conditional expression is executed. This is an <code>if</code> with both a then-part and an else-part.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="nv">last-command</span> <span class="ss">&#39;kill-region</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">kill-append</span> <span class="nf">string</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="nv">end</span> <span class="nv">beg</span><span class="p">)</span> <span class="nv">yank-handler</span><span class="p">)</span>
@@ -2925,7 +2925,7 @@ Beginning of buffer is position (point-min), end is (point-max).
        <span class="p">(</span><span class="nv">menu-bar-update-yank-menu</span> <span class="nf">string</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">replace</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">kill-ring</span><span class="p">))))</span>
 </code></pre>
 <p>It starts with an <code>if</code> expression</p>
-<p>In this case, the expression tests first to see whether <code>menu-bar-update-yank-menu</code> exists as a function, and if so, calls it. The <code>fboundp</code> function returns true if the symbol it is testing has a function definition that ‘is not void’. If the symbol&#39;s function definition were void, we would receive an error message, as we did when we created errors intentionally (see Section <a href="Generate-an-Error-Message" >Generate an Error Message</a>).</p>
+<p>In this case, the expression tests first to see whether <code>menu-bar-update-yank-menu</code> exists as a function, and if so, calls it. The <code>fboundp</code> function returns true if the symbol it is testing has a function definition that ‘is not void’. If the symbol&#39;s function definition were void, we would receive an error message, as we did when we created errors intentionally (see Section <a href="#generate-an-error-message" >Generate an Error Message</a>).</p>
 <p>The then-part contains an expression whose first element is the function <code>and</code>.</p>
 <p>The <code>and</code> special form evaluates each of its arguments until one of the arguments returns a value of <code>nil</code>, in which case the <code>and</code> expression returns <code>nil</code>; however, if none of the arguments returns a value of <code>nil</code>, the value resulting from evaluating the last argument is returned.  (Since such a value is not <code>nil</code>, it is considered true in Emacs Lisp.)  In other words, an <code>and</code> expression returns a true value only if all its arguments are true.  (See Section <a href="#A-Few-More-Complex-Functions-Review" >Second Buffer Related Review</a>.)</p>
 <p>The expression determines whether the second argument to <code>menu-bar-update-yank-menu</code> is true or not.</p>
@@ -3031,7 +3031,7 @@ ring directly.
 </span><span class="s">… &#34;</span><span class="p">)</span>
 </code></pre>
 <p>You could (and still can) use the <code>set-variable</code> command to change the value of <code>shell-command-default-error-buffer</code> temporarily. However, options set using <code>set-variable</code> are set only for the duration of your editing session. The new values are not saved between sessions. Each time Emacs starts, it reads the original value, unless you change the value within your <span class="file" >.emacs</span> file, either by setting it manually or by using <code>customize</code>. See Section <a href="#your-.emacs-file" >Your <span class="file" >.emacs</span> File</a>.</p>
-<p>For me, the major use of the <code>set-variable</code> command is to suggest variables that I might want to set in my <span class="file" >.emacs</span> file. There are now more than 700 such variables, far too many to remember readily. Fortunately, you can press <kbd>TAB</kbd> after calling the <code>M-x set-variable</code> command to see the list of variables.  (See Section <a href="info:emacs#Examining-and-Setting-Variables" >info:emacs#Examining and Setting Variables</a> in <em>The GNU Emacs Manual</em>.)</p>
+<p>For me, the major use of the <code>set-variable</code> command is to suggest variables that I might want to set in my <span class="file" >.emacs</span> file. There are now more than 700 such variables, far too many to remember readily. Fortunately, you can press <kbd>TAB</kbd> after calling the <code>M-x set-variable</code> command to see the list of variables.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Examining-and-Setting-Variables" >Examining and Setting Variables</a> in <em>The GNU Emacs Manual</em>.)</p>
 </div>
 <h3 id="review" >Review</h3>
 <div class="hBody-3" >
@@ -3192,7 +3192,7 @@ ring directly.
 </pre>
 </div>
 <p>The value of <code>flowers</code> is <code>(violet buttercup)</code>, which is to say, the symbol <code>flowers</code> holds the address of the pair of address-boxes, the first of which holds the address of <code>violet</code>, and the second of which holds the address of <code>buttercup</code>.</p>
-<p>A pair of address-boxes is called a <dfn>cons cell</dfn> or <dfn>dotted pair</dfn>. See Section <a href="info:elisp#Cons-Cell-Type" >Cons Cell and List Types</a> in <em>The GNU Emacs Lisp Reference Manual</em>, and Section <a href="info:elisp#Dotted-Pair-Notation" >info:elisp#Dotted Pair Notation</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information about cons cells and dotted pairs.</p>
+<p>A pair of address-boxes is called a <dfn>cons cell</dfn> or <dfn>dotted pair</dfn>. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Cons-Cell-Type" >Cons Cell and List Types</a> in <em>The GNU Emacs Lisp Reference Manual</em>, and Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Dotted-Pair-Notation" >Dotted Pair Notation</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information about cons cells and dotted pairs.</p>
 <p>The function <code>cons</code> adds a new pair of addresses to the front of a series of addresses like that shown above. For example, evaluating the expression</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">bouquet</span> <span class="p">(</span><span class="nf">cons</span> <span class="ss">&#39;lily</span> <span class="nv">bouquet</span><span class="p">))</span>
 </code></pre>
@@ -3221,7 +3221,7 @@ ring directly.
 <div class="hBody-3" >
 <p>In an earlier section, I suggested that you might imagine a symbol as being a chest of drawers. The function definition is put in one drawer, the value in another, and so on. What is put in the drawer holding the value can be changed without affecting the contents of the drawer holding the function definition, and vice-verse.</p>
 <p>Actually, what is put in each drawer is the address of the value or function definition. It is as if you found an old chest in the attic, and in one of its drawers you found a map giving you directions to where the buried treasure lies.</p>
-<p>(In addition to its name, symbol definition, and variable value, a symbol has a ‘drawer’ for a <dfn>property list</dfn> which can be used to record other information. Property lists are not discussed here; see Section <a href="info:elisp#Property-Lists" >info:elisp#Property Lists</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>(In addition to its name, symbol definition, and variable value, a symbol has a ‘drawer’ for a <dfn>property list</dfn> which can be used to record other information. Property lists are not discussed here; see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Property-Lists" >Property Lists</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 <p>Here is a fanciful representation:</p>
 <div class="art-block" >
 <pre class="art" >            Chest of Drawers            Contents of Drawers
@@ -3570,7 +3570,7 @@ nil
 </div>
 <h3 id="save-your-time:-dolist-and-dotimes" >Save your time: <code>dolist</code> and <code>dotimes</code></h3>
 <div class="hBody-3" >
-<p>In addition to <code>while</code>, both <code>dolist</code> and <code>dotimes</code> provide for looping. Sometimes these are quicker to write than the equivalent <code>while</code> loop. Both are Lisp macros.  (See Section <a href="info:elisp#Macros,-Macros" >info:elisp#Macros, Macros</a> in <em>The GNU Emacs Lisp Reference Manual</em>. )</p>
+<p>In addition to <code>while</code>, both <code>dolist</code> and <code>dotimes</code> provide for looping. Sometimes these are quicker to write than the equivalent <code>while</code> loop. Both are Lisp macros.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Macros" >Macros</a> in <em>The GNU Emacs Lisp Reference Manual</em>. )</p>
 <p><code>dolist</code> works like a <code>while</code> loop that ‘<code>cdr</code>s down a list’: <code>dolist</code> automatically shortens the list each time it loops––takes the <code>cdr</code> of the list––and binds the <code>car</code> of each shorter version of the list to the first of its arguments.</p>
 <p><code>dotimes</code> loops a specific number of times: you specify the number.</p>
 </div>
@@ -4110,7 +4110,7 @@ nil
 <h2 id="regular-expression-searches" >Regular Expression Searches</h2>
 <div class="hBody-2" >
 <p>Regular expression searches are used extensively in GNU Emacs. The two functions, <code>forward-sentence</code> and <code>forward-paragraph</code>, illustrate these searches well. They use regular expressions to find where to move point. The phrase ‘regular expression’ is often written as ‘regexp’.</p>
-<p>Regular expression searches are described in Section <a href="info:emacs#Regexp-Search" >Regular Expression Search</a> in <em>The GNU Emacs Manual</em>, as well as in Section <a href="info:elisp#Regular-Expressions" >info:elisp#Regular Expressions</a> in <em>The GNU Emacs Lisp Reference Manual</em>. In writing this chapter, I am presuming that you have at least a mild acquaintance with them. The major point to remember is that regular expressions permit you to search for patterns as well as for literal strings of characters. For example, the code in <code>forward-sentence</code> searches for the pattern of possible characters that could mark the end of a sentence, and moves point to that spot.</p>
+<p>Regular expression searches are described in Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Regexp-Search" >Regular Expression Search</a> in <em>The GNU Emacs Manual</em>, as well as in Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Regular-Expressions" >Regular Expressions</a> in <em>The GNU Emacs Lisp Reference Manual</em>. In writing this chapter, I am presuming that you have at least a mild acquaintance with them. The major point to remember is that regular expressions permit you to search for patterns as well as for literal strings of characters. For example, the code in <code>forward-sentence</code> searches for the pattern of possible characters that could mark the end of a sentence, and moves point to that spot.</p>
 <p>Before looking at the code for the <code>forward-sentence</code> function, it is worth considering what the pattern that marks the end of a sentence must be. The pattern is discussed in the next section; following that is a description of the regular expression search function, <code>re-search-forward</code>. The <code>forward-sentence</code> function is described in the section following. Finally, the <code>forward-paragraph</code> function is described in the last section of this chapter.  <code>forward-paragraph</code> is a complex function that introduces several new features.</p>
 </div>
 <h3 id="the-regular-expression-for-sentence-end" >The Regular Expression for <code>sentence-end</code></h3>
@@ -4295,7 +4295,7 @@ nil
 <div class="hBody-3" >
 <p>The <code>forward-paragraph</code> function moves point forward to the end of the paragraph. It is usually bound to <kbd>M-}</kbd> and makes use of a number of functions that are important in themselves, including <code>let*</code>, <code>match-beginning</code>, and <code>looking-at</code>.</p>
 <p>The function definition for <code>forward-paragraph</code> is considerably longer than the function definition for <code>forward-sentence</code> because it works with a paragraph, each line of which may begin with a fill prefix.</p>
-<p>A fill prefix consists of a string of characters that are repeated at the beginning of each line. For example, in Lisp code, it is a convention to start each line of a paragraph-long comment with ‘;;; ’. In Text mode, four blank spaces make up another common fill prefix, creating an indented paragraph.  (See Section <a href="info:emacs#Fill-Prefix" >info:emacs#Fill Prefix</a> in <em>The GNU Emacs Manual</em>, for more information about fill prefixes.)</p>
+<p>A fill prefix consists of a string of characters that are repeated at the beginning of each line. For example, in Lisp code, it is a convention to start each line of a paragraph-long comment with ‘;;; ’. In Text mode, four blank spaces make up another common fill prefix, creating an indented paragraph.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Fill-Prefix" >Fill Prefix</a> in <em>The GNU Emacs Manual</em>, for more information about fill prefixes.)</p>
 <p>The existence of a fill prefix means that in addition to being able to find the end of a paragraph whose lines begin on the left-most column, the <code>forward-paragraph</code> function must be able to find the end of a paragraph when all or many of the lines in the buffer begin with the fill prefix.</p>
 <p>Moreover, it is sometimes practical to ignore a fill prefix that exists, especially when blank lines separate paragraphs. This is an added complication.</p>
 <p>Rather than print all of the <code>forward-paragraph</code> function, we will only print parts of it. Read without preparation, the function can be daunting!</p>
@@ -4508,7 +4508,7 @@ nil
 </pre>
 </div>
 <p>(The <code class="command" >make tags</code> command works well with the GNU Emacs sources, as well as with some other source packages.)</p>
-<p>For more information, see Section <a href="info:emacs#Tags" >Tag Tables</a> in <em>The GNU Emacs Manual</em>.</p>
+<p>For more information, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Tags" >Tag Tables</a> in <em>The GNU Emacs Manual</em>.</p>
 </div>
 <h3 id="review" >Review</h3>
 <div class="hBody-3" >
@@ -4578,7 +4578,7 @@ nil
 <p>Write a function to search for a regular expression that matches two or more blank lines in sequence.</p>
 </li>
 <li>
-<p>Write a function to search for duplicated words, such as ‘the the’. See Section <a href="info:emacs#Regexps" >Syntax of Regular Expressions</a> in <em>The GNU Emacs Manual</em>, for information on how to write a regexp (a regular expression) to match a string that is composed of two identical halves. You can devise several regexps; some are better than others. The function I use is described in an appendix, along with several regexps. See Section <a href="#appendix-a-the-the-the-function" >Appendix A The <code>the-the</code> Function</a>.</p>
+<p>Write a function to search for duplicated words, such as ‘the the’. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Regexps" >Syntax of Regular Expressions</a> in <em>The GNU Emacs Manual</em>, for information on how to write a regexp (a regular expression) to match a string that is composed of two identical halves. You can devise several regexps; some are better than others. The function I use is described in an appendix, along with several regexps. See Section <a href="#appendix-a-the-the-the-function" >Appendix A The <code>the-the</code> Function</a>.</p>
 </li>
 </ul>
 </div>
@@ -4614,7 +4614,7 @@ nil
 <pre class="example" >\w+\W*
 </pre>
 </div>
-<p>The buffer&#39;s syntax table determines which characters are and are not word constituents. For more information about syntax, see Section <a href="info:elisp#Syntax-Tables" >info:elisp#Syntax Tables</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
+<p>The buffer&#39;s syntax table determines which characters are and are not word constituents. For more information about syntax, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Syntax-Tables" >Syntax Tables</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
 <p>The search expression looks like this:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&#34;\\w+\\W*&#34;</span><span class="p">)</span>
 </code></pre>
@@ -4928,7 +4928,7 @@ nil
 </div>
 <h3 id="what-constitutes-a-word-or-symbol?" >What Constitutes a Word or Symbol?</h3>
 <div class="hBody-3" >
-<p>Emacs treats different characters as belonging to different <dfn>syntax categories</dfn>. For example, the regular expression, ‘\\w+’, is a pattern specifying one or more <em>word constituent</em> characters. Word constituent characters are members of one syntax category. Other syntax categories include the class of punctuation characters, such as the period and the comma, and the class of whitespace characters, such as the blank space and the tab character.  (For more information, see Section <a href="info:emacs#Syntax-Tables" >Syntax Tables</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>Emacs treats different characters as belonging to different <dfn>syntax categories</dfn>. For example, the regular expression, ‘\\w+’, is a pattern specifying one or more <em>word constituent</em> characters. Word constituent characters are members of one syntax category. Other syntax categories include the class of punctuation characters, such as the period and the comma, and the class of whitespace characters, such as the blank space and the tab character.  (For more information, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Syntax-Tables" >Syntax Tables</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 <p>Syntax tables specify which characters belong to which categories. Usually, a hyphen is not specified as a ‘word constituent character’. Instead, it is specified as being in the ‘class of characters that are part of symbol names but not words.’  This means that the <code>count-words-example</code> function treats it in the same way it treats an interword white space, which is why <code>count-words-example</code> counts ‘multiply-by-seven’ as three words.</p>
 <p>There are two ways to cause Emacs to count ‘multiply-by-seven’ as one symbol: modify the syntax table or modify the regular expression.</p>
 <p>We could redefine a hyphen as a word constituent character by modifying the syntax table that Emacs keeps for each mode. This action would serve our purpose, except that a hyphen is merely the most common character within symbols that is not typically a word constituent character; there are others, too.</p>
@@ -5294,7 +5294,7 @@ nil
 </ul>
 </li>
 </ul>
-<p>Let&#39;s write a function definition to do these tasks. We will use a <code>while</code> loop to move from one filename to another within a directory, checking what needs to be done; and we will use a recursive call to repeat the actions on each sub-directory. The recursive pattern is ‘accumulate’ (see Section <a href="Recursive-Pattern:-accumulate" >Recursive Pattern: <em>accumulate</em></a>), using <code>append</code> as the combiner.</p>
+<p>Let&#39;s write a function definition to do these tasks. We will use a <code>while</code> loop to move from one filename to another within a directory, checking what needs to be done; and we will use a recursive call to repeat the actions on each sub-directory. The recursive pattern is ‘accumulate’ (see Section <a href="#recursive-pattern:-accumulate" >Recursive Pattern: <em>accumulate</em></a>), using <code>append</code> as the combiner.</p>
 <p>Here is the function:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">files-in-below-directory</span> <span class="p">(</span><span class="nv">directory</span><span class="p">)</span>
   <span class="s">&#34;List the .el files in DIRECTORY and in its sub-directories.&#34;</span>
@@ -5647,7 +5647,7 @@ and point is at the lower right corner.
 <p>We can test <code>graph-body-print</code> with a short list of numbers.</p>
 <ol class="num" >
 <li>
-<p>Install <code>graph-symbol</code>, <code>graph-blank</code>, <code>column-of-graph</code>, which are in Section <a href="#readying-a-graph" >Readying a Graph</a>, and <a href="The-graph-body-print-Function" >The <code>graph-body-print</code> Function</a>.</p>
+<p>Install <code>graph-symbol</code>, <code>graph-blank</code>, <code>column-of-graph</code>, which are in Section <a href="#readying-a-graph" >Readying a Graph</a>, and <a href="#the-graph-body-print-function" >The <code>graph-body-print</code> Function</a>.</p>
 </li>
 <li>
 <p>Copy the following expression:</p>
@@ -5745,12 +5745,12 @@ and point is at the lower right corner.
 <p>You can customize and extend Emacs by writing or adapting a <span class="file" >~/.emacs</span> file. This is your personal initialization file; its contents, written in Emacs Lisp, tell Emacs what to do.<span class="note" ><sup><a href="#14" >14</a></sup></span></p>
 <p>A <span class="file" >~/.emacs</span> file contains Emacs Lisp code. You can write this code yourself; or you can use Emacs&#39;s <code>customize</code> feature to write the code for you. You can combine your own expressions and auto-written Customize expressions in your <span class="file" >.emacs</span> file.</p>
 <p>(I myself prefer to write my own expressions, except for those, particularly fonts, that I find easier to manipulate using the <code>customize</code> command. I combine the two methods.)</p>
-<p>Most of this chapter is about writing expressions yourself. It describes a simple <span class="file" >.emacs</span> file; for more information, see Section <a href="info:emacs#Init-File" >The Init File</a> in <em>The GNU Emacs Manual</em>, and Section <a href="info:elisp#Init-File" >The Init File</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
+<p>Most of this chapter is about writing expressions yourself. It describes a simple <span class="file" >.emacs</span> file; for more information, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init-File" >The Init File</a> in <em>The GNU Emacs Manual</em>, and Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Init-File" >The Init File</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
 </div>
 <h3 id="site-wide-initialization-files" >Site-wide Initialization Files</h3>
 <div class="hBody-3" >
 <p>In addition to your personal initialization file, Emacs automatically loads various site-wide initialization files, if they exist. These have the same form as your <span class="file" >.emacs</span> file, but are loaded by everyone.</p>
-<p>Two site-wide initialization files, <span class="file" >site-load.el</span> and <span class="file" >site-init.el</span>, are loaded into Emacs and then ‘dumped’ if a ‘dumped’ version of Emacs is created, as is most common.  (Dumped copies of Emacs load more quickly. However, once a file is loaded and dumped, a change to it does not lead to a change in Emacs unless you load it yourself or re-dump Emacs. See Section <a href="info:elips#Building-Emacs" >info:elips#Building Emacs</a> in <em>The GNU Emacs Lisp Reference Manual</em>, and the <span class="file" >INSTALL</span> file.)</p>
+<p>Two site-wide initialization files, <span class="file" >site-load.el</span> and <span class="file" >site-init.el</span>, are loaded into Emacs and then ‘dumped’ if a ‘dumped’ version of Emacs is created, as is most common.  (Dumped copies of Emacs load more quickly. However, once a file is loaded and dumped, a change to it does not lead to a change in Emacs unless you load it yourself or re-dump Emacs. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Building-Emacs" >Building Emacs</a> in <em>The GNU Emacs Lisp Reference Manual</em>, and the <span class="file" >INSTALL</span> file.)</p>
 <p>Three other site-wide initialization files are loaded automatically each time you start Emacs, if they exist. These are <span class="file" >site-start.el</span>, which is loaded <em>before</em> your <span class="file" >.emacs</span> file, and <span class="file" >default.el</span>, and the terminal type file, which are both loaded <em>after</em> your <span class="file" >.emacs</span> file.</p>
 <p>Settings and definitions in your <span class="file" >.emacs</span> file will overwrite conflicting settings and definitions in a <span class="file" >site-start.el</span> file, if it exists; but the settings and definitions in a <span class="file" >default.el</span> or terminal type file will overwrite those in your <span class="file" >.emacs</span> file.  (You can prevent interference from a terminal type file by setting <code>term-file-prefix</code> to <code>nil</code>. See Section <a href="#a-simple-extension:-line-to-top-of-window" >A Simple Extension: <code>line-to-top-of-window</code></a>.)</p>
 <p>The <span class="file" >INSTALL</span> file that comes in the distribution contains descriptions of the <span class="file" >site-init.el</span> and <span class="file" >site-load.el</span> files.</p>
@@ -5775,7 +5775,7 @@ and point is at the lower right corner.
 <p>The <code>:type</code> keyword tells Emacs the kind of data to which <code>text-mode-hook</code> should be set and how to display the value in a Customization buffer.</p>
 <p>The <code>:options</code> keyword specifies a suggested list of values for the variable. Usually, <code>:options</code> applies to a hook. The list is only a suggestion; it is not exclusive; a person who sets the variable may set it to other values; the list shown following the <code>:options</code> keyword is intended to offer convenient choices to a user.</p>
 <p>Finally, the <code>:group</code> keyword tells the Emacs Customization command in which group the variable is located. This tells where to find it.</p>
-<p>The <code>defcustom</code> function recognizes more than a dozen keywords. For more information, see Section <a href="info:elips#Customization" >Writing Customization Definitions</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
+<p>The <code>defcustom</code> function recognizes more than a dozen keywords. For more information, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Customization" >Writing Customization Definitions</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
 <p>Consider <code>text-mode-hook</code> as an example.</p>
 <p>There are two ways to customize this variable. You can use the customization command or write the appropriate expressions yourself.</p>
 <p>Using the customization command, you can type:</p>
@@ -5819,7 +5819,7 @@ and point is at the lower right corner.
 <div class="hBody-3" >
 <p>When you start Emacs, it loads your <span class="file" >.emacs</span> file unless you tell it not to by specifying ‘-q’ on the command line.  (The <code class="command" >emacs -q</code> command gives you a plain, out-of-the-box Emacs.)</p>
 <p>A <span class="file" >.emacs</span> file contains Lisp expressions. Often, these are no more than expressions to set values; sometimes they are function definitions.</p>
-<p>See Section <a href="info:emacs#Init-File" >info:emacs#Init File</a>&lt;&gt;The Init File <span class="file" >~/.emacs</span>} in <em>The GNU Emacs Manual</em>, for a short description of initialization files.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init-File" >The Init File <span class="file" >~/.emacs</span></a> in <em>The GNU Emacs Manual</em>, for a short description of initialization files.</p>
 <p>This chapter goes over some of the same ground, but is a walk among extracts from a complete, long-used <span class="file" >.emacs</span> file––my own.</p>
 <p>The first part of the file consists of comments: reminders to myself. By now, of course, I remember these things, but when I started, I did not.</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;;; Bob&#39;s .emacs file</span>
@@ -5832,7 +5832,7 @@ and point is at the lower right corner.
 <span class="c1">; entry is introduced by a line beginning with</span>
 <span class="c1">; three semicolons.</span>
 </code></pre>
-<p>This describes the usual conventions for comments in Emacs Lisp. Everything on a line that follows a semicolon is a comment. Two, three, and four semicolons are used as subsection and section markers.  (See Section <a href="info:elisp#Comments" >info:elisp#Comments</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about comments.)</p>
+<p>This describes the usual conventions for comments in Emacs Lisp. Everything on a line that follows a semicolon is a comment. Two, three, and four semicolons are used as subsection and section markers.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments" >Comments</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about comments.)</p>
 <pre class="code" ><code class="chroma" ><span class="c1">;;;; The Help Key</span>
 <span class="c1">; Control-h is the help key;</span>
 <span class="c1">; after typing control-h, type a letter to</span>
@@ -5862,7 +5862,7 @@ and point is at the lower right corner.
 <p>Here is the first part of this <span class="file" >.emacs</span> file that does something besides remind a forgetful human!</p>
 <p>The first of the two lines in parentheses tells Emacs to turn on Text mode when you find a file, <em>unless</em> that file should go into some other mode, such as C mode.</p>
 <p>When Emacs reads a file, it looks at the extension to the file name, if any.  (The extension is the part that comes after a ‘.’.)  If the file ends with a ‘.c’ or ‘.h’ extension then Emacs turns on C mode. Also, Emacs looks at first nonblank line of the file; if the line says ‘-*- C -*-’, Emacs turns on C mode. Emacs possesses a list of extensions and specifications that it uses automatically. In addition, Emacs looks near the last page for a per-buffer, “local variables list”, if any.</p>
-<p>See Section <a href="info:emacs#Choosing-Modes" >How Major Modes are Chosen</a> and <a href="info:emacs#File-Variables" >Local Variables in Files</a> in <em>The GNU Emacs Manual</em>.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Choosing-Modes" >How Major Modes are Chosen</a> and <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Variables" >Local Variables in Files</a> in <em>The GNU Emacs Manual</em>.</p>
 <p>Now, back to the <span class="file" >.emacs</span> file.</p>
 <p>Here is the line again; how does it work?</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">major-mode</span> <span class="ss">&#39;text-mode</span><span class="p">)</span>
@@ -5908,7 +5908,7 @@ and point is at the lower right corner.
 <span class="p">(</span><span class="nb">setq-default</span> <span class="nv">indent-tabs-mode</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre>
 <p>Note that this line uses <code>setq-default</code> rather than the <code>setq</code> command that we have seen before. The <code>setq-default</code> command sets values only in buffers that do not have their own local values for the variable.</p>
-<p>See Section <a href="info:emacs#Just-Spaces" >Tabs vs. Spaces</a> and <a href="info:emacs#File-Variables" >Local Variables in Files</a> in <em>The GNU Emacs Manual</em>.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Just-Spaces" >Tabs vs. Spaces</a> and <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Variables" >Local Variables in Files</a> in <em>The GNU Emacs Manual</em>.</p>
 </div>
 <h3 id="some-keybindings" >Some Keybindings</h3>
 <div class="hBody-3" >
@@ -5918,7 +5918,7 @@ and point is at the lower right corner.
 </code></pre>
 <p><code>compare-windows</code> is a nifty command that compares the text in your current window with text in the next window. It makes the comparison by starting at point in each window, moving over text in each window as far as they match. I use this command all the time.</p>
 <p>This also shows how to set a key globally, for all modes.</p>
-<p>The command is <code>global-set-key</code>. It is followed by the keybinding. In a <span class="file" >.emacs</span> file, the keybinding is written as shown: <code>\C-c</code> stands for ‘control-c’, which means ‘press the control key and the <kbd>c</kbd> key at the same time’. The <code>w</code> means ‘press the <kbd>w</kbd> key’. The keybinding is surrounded by double quotation marks. In documentation, you would write this as <kbd>C-c w</kbd>.  (If you were binding a <kbd>META</kbd> key, such as <kbd>M-c</kbd>, rather than a <kbd>CTRL</kbd> key, you would write <code>\M-c</code> in your <span class="file" >.emacs</span> file. See Section <a href="info:emacs#Init-Rebinding" >Rebinding Keys in Your Init File</a> in <em>The GNU Emacs Manual</em>, for details.)</p>
+<p>The command is <code>global-set-key</code>. It is followed by the keybinding. In a <span class="file" >.emacs</span> file, the keybinding is written as shown: <code>\C-c</code> stands for ‘control-c’, which means ‘press the control key and the <kbd>c</kbd> key at the same time’. The <code>w</code> means ‘press the <kbd>w</kbd> key’. The keybinding is surrounded by double quotation marks. In documentation, you would write this as <kbd>C-c w</kbd>.  (If you were binding a <kbd>META</kbd> key, such as <kbd>M-c</kbd>, rather than a <kbd>CTRL</kbd> key, you would write <code>\M-c</code> in your <span class="file" >.emacs</span> file. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init-Rebinding" >Rebinding Keys in Your Init File</a> in <em>The GNU Emacs Manual</em>, for details.)</p>
 <p>The command invoked by the keys is <code>compare-windows</code>. Note that <code>compare-windows</code> is preceded by a single quote; otherwise, Emacs would first try to evaluate the symbol to determine its value.</p>
 <p>These three things, the double quotation marks, the backslash before the ‘C’, and the single quote mark are necessary parts of keybinding that I tend to forget. Fortunately, I have come to remember that I should look at my existing <span class="file" >.emacs</span> file, and adapt what is there.</p>
 <p>As for the keybinding itself: <kbd>C-c w</kbd>. This combines the prefix key, <kbd>C-c</kbd>, with a single character, in this case, <kbd>w</kbd>. This set of keys, <kbd>C-c</kbd> followed by a single character, is strictly reserved for individuals&#39; own use.  (I call these ‘own’ keys, since these are for my own use.)  You should always be able to create such a keybinding for your own use without stomping on someone else&#39;s keybinding. If you ever write an extension to Emacs, please avoid taking any of these keys for public use. Create a key like <kbd>C-c C-w</kbd> instead. Otherwise, we will run out of ‘own’ keys.</p>
@@ -5959,7 +5959,7 @@ and point is at the lower right corner.
 </code></pre>
 <p>(Of course, I could have used Abbrev mode to save typing, rather than write a function to insert a word; but I prefer key strokes consistent with other Texinfo mode key bindings.)</p>
 <p>You will see numerous <code>define-key</code> expressions in <span class="file" >loaddefs.el</span> as well as in the various mode libraries, such as <span class="file" >cc-mode.el</span> and <span class="file" >lisp-mode.el</span>.</p>
-<p>See Section <a href="info:emacs#Key-Bindings" >Customizing Key Bindings</a> in <em>The GNU Emacs Manual</em>, and Section <a href="info:elisp#Keymaps" >Keymaps</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information about keymaps.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Key-Bindings" >Customizing Key Bindings</a> in <em>The GNU Emacs Manual</em>, and Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Keymaps" >Keymaps</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information about keymaps.</p>
 </div>
 <h3 id="loading-files" >Loading Files</h3>
 <div class="hBody-3" >
@@ -5990,7 +5990,7 @@ and point is at the lower right corner.
   <span class="p">(</span><span class="nf">load</span> <span class="nv">library</span><span class="p">))</span>
 </code></pre>
 <p>The name of the function, <code>load-library</code>, comes from the use of ‘library’ as a conventional synonym for ‘file’. The source for the <code>load-library</code> command is in the <span class="file" >files.el</span> library.</p>
-<p>Another interactive command that does a slightly different job is <code>load-file</code>. See Section <a href="info:emacs#Lisp-Libraries" >Libraries of Lisp Code for Emacs</a> in <em>The GNU Emacs Manual</em>, for information on the distinction between <code>load-library</code> and this command.</p>
+<p>Another interactive command that does a slightly different job is <code>load-file</code>. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Lisp-Libraries" >Libraries of Lisp Code for Emacs</a> in <em>The GNU Emacs Manual</em>, for information on the distinction between <code>load-library</code> and this command.</p>
 </div>
 <h3 id="autoloading" >Autoloading</h3>
 <div class="hBody-3" >
@@ -5998,7 +5998,7 @@ and point is at the lower right corner.
 <p>When you execute an autoloaded function, Emacs automatically evaluates the file that contains the definition, and then calls the function.</p>
 <p>Emacs starts quicker with autoloaded functions, since their libraries are not loaded right away; but you need to wait a moment when you first use such a function, while its containing file is evaluated.</p>
 <p>Rarely used functions are frequently autoloaded. The <span class="file" >loaddefs.el</span> library contains hundreds of autoloaded functions, from <code>bookmark-set</code> to <code>wordstar-mode</code>. Of course, you may come to use a ‘rare’ function frequently. When you do, you should load that function&#39;s file with a <code>load</code> expression in your <span class="file" >.emacs</span> file.</p>
-<p>In my <span class="file" >.emacs</span> file, I load 14 libraries that contain functions that would otherwise be autoloaded.  (Actually, it would have been better to include these files in my ‘dumped’ Emacs, but I forgot. See Section <a href="info:elisp#Building-Emacs" >Building Emacs</a> in <em>The GNU Emacs Lisp Reference Manual</em>, and the <span class="file" >INSTALL</span> file for more about dumping.)</p>
+<p>In my <span class="file" >.emacs</span> file, I load 14 libraries that contain functions that would otherwise be autoloaded.  (Actually, it would have been better to include these files in my ‘dumped’ Emacs, but I forgot. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Building-Emacs" >Building Emacs</a> in <em>The GNU Emacs Lisp Reference Manual</em>, and the <span class="file" >INSTALL</span> file for more about dumping.)</p>
 <p>You may also want to include autoloaded expressions in your <span class="file" >.emacs</span> file.  <code>autoload</code> is a built-in function that takes up to five arguments, the final three of which are optional. The first argument is the name of the function to be autoloaded; the second is the name of the file to be loaded. The third argument is documentation for the function, and the fourth tells whether the function can be called interactively. The fifth argument tells what type of object––<code>autoload</code> can handle a keymap or macro as well as a function (the default is a function).</p>
 <p>Here is a typical example:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">autoload</span> <span class="ss">&#39;html-helper-mode</span>
@@ -6006,7 +6006,7 @@ and point is at the lower right corner.
 </code></pre>
 <p>(<code>html-helper-mode</code> is an older alternative to <code>html-mode</code>, which is a standard part of the distribution.)</p>
 <p>This expression autoloads the <code>html-helper-mode</code> function. It takes it from the <span class="file" >html-helper-mode.el</span> file (or from the byte compiled version <span class="file" >html-helper-mode.elc</span>, if that exists.)  The file must be located in a directory specified by <code>load-path</code>. The documentation says that this is a mode to help you edit documents written in the HyperText Markup Language. You can call this mode interactively by typing <kbd>M-x html-helper-mode</kbd>.  (You need to duplicate the function&#39;s regular documentation in the autoload expression because the regular function is not yet loaded, so its documentation is not available.)</p>
-<p>See Section <a href="info:elisp#Autoload" >Autoload</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Autoload" >Autoload</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information.</p>
 </div>
 <h3 id="a-simple-extension:-line-to-top-of-window" >A Simple Extension: <code>line-to-top-of-window</code></h3>
 <div class="hBody-3" >
@@ -6025,7 +6025,7 @@ and point is at the lower right corner.
 <p>I bind <code>line-to-top-of-window</code> to my <kbd>F6</kbd> function key like this:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">[</span><span class="nv">f6</span><span class="p">]</span> <span class="ss">&#39;line-to-top-of-window</span><span class="p">)</span>
 </code></pre>
-<p>For more information, see Section <a href="info:emacs#Init-Rebinding" >Rebinding Keys in Your Init File</a> in <em>The GNU Emacs Manual</em>.</p>
+<p>For more information, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init-Rebinding" >Rebinding Keys in Your Init File</a> in <em>The GNU Emacs Manual</em>.</p>
 <p>If you run two versions of GNU Emacs, such as versions 22 and 23, and use one <span class="file" >.emacs</span> file, you can select which code to evaluate with the following conditional:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">cond</span>
  <span class="p">((</span><span class="nf">=</span> <span class="mi">22</span> <span class="nv">emacs-major-version</span><span class="p">)</span>
@@ -6274,7 +6274,7 @@ xmodmap -e <span class="s2">&#34;add Control = Caps_Lock&#34;</span>
 <pre class="code" ><code class="chroma" ><span class="o">#(</span><span class="s">&#34;-&#34;</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">help-echo</span> <span class="s">&#34;mouse-1: select window, ...&#34;</span><span class="p">))</span>
 </code></pre>
 <p>The <code>#(</code> begins a list. The first element of the list is the string itself, just one ‘-’. The second and third elements specify the range over which the fourth element applies. A range starts <em>after</em> a character, so a zero means the range starts just before the first character; a 1 means that the range ends just after the first character. The third element is the property for the range. It consists of a property list, a property name, in this case, ‘help-echo’, followed by a value, in this case, a string. The second, third, and fourth elements of this new string format can be repeated.</p>
-<p>See Sections <a href="info:elisp#Text-Properties" >Text Properties</a>, and <a href="info:elisp#Mode-Line-Format" >Mode Line Format</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information.</p>
+<p>See Sections <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Text-Properties" >Text Properties</a>, and <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Mode-Line-Format" >Mode Line Format</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more information.</p>
 <p><code>mode-line-buffer-identification</code> displays the current buffer name. It is a list beginning <code>(#(&#34;%12b&#34; 0 4 …</code>. The <code>#(</code> begins the list.</p>
 <p>The ‘&#34;%12b&#34;’ displays the current buffer name, using the <code>buffer-name</code> function with which we are familiar; the ‘12’ specifies the maximum number of characters that will be displayed. When a name has fewer characters, whitespace is added to fill out to this number.  (Buffer names can and often should be longer than 12 characters; this length works well in a typical 80 column wide window.)</p>
 <p><code>:eval</code> says to evaluate the following form and use the result as a string to display. In this case, the expression displays the first component of the full system name. The end of the first component is a ‘.’ (‘period’), so I use the <code>string-match</code> function to tell me the length of the first component. The substring from the zeroth character to that length is the name of the machine.</p>
@@ -6292,7 +6292,7 @@ xmodmap -e <span class="s2">&#34;add Control = Caps_Lock&#34;</span>
 <h2 id="debugging" >Debugging</h2>
 <div class="hBody-2" >
 <p>GNU Emacs has two debuggers, <code>debug</code> and <code>edebug</code>. The first is built into the internals of Emacs and is always with you; the second requires that you instrument a function before you can use it.</p>
-<p>Both debuggers are described extensively in Section <a href="info:emacs#Debugging" >Debugging Lisp Programs</a> in <em>The GNU Emacs Lisp Reference Manual</em>. In this chapter, I will walk through a short example of each.</p>
+<p>Both debuggers are described extensively in Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Debugging" >Debugging Lisp Programs</a> in <em>The GNU Emacs Lisp Reference Manual</em>. In this chapter, I will walk through a short example of each.</p>
 </div>
 <h3 id="debug" ><code>debug</code></h3>
 <div class="hBody-3" >
@@ -6435,13 +6435,13 @@ Debugger entered--Lisp error: (void-function 1=)
       <span class="p">(</span><span class="nb">setq</span> <span class="nv">number</span> <span class="p">(</span><span class="nv">1=</span> <span class="nv">number</span><span class="p">)))</span>      <span class="c1">; Error here.</span>
     <span class="nv">total</span><span class="p">))</span>
 </code></pre>
-<p>The <code>debug</code> function is described in detail in Section <a href="info:emacs#Debugger" >The Lisp Debugger</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
+<p>The <code>debug</code> function is described in detail in Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Debugger" >The Lisp Debugger</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
 </div>
 <h3 id="the-edebug-source-level-debugger" >The <code>edebug</code> Source Level Debugger</h3>
 <div class="hBody-3" >
 <p>Edebug is a source level debugger. Edebug normally displays the source of the code you are debugging, with an arrow at the left that shows which line you are currently executing.</p>
 <p>You can walk through the execution of a function, line by line, or run quickly until reaching a <dfn>breakpoint</dfn> where execution stops.</p>
-<p>Edebug is described in Section <a href="info:elisp#edebug" >Edebug</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
+<p>Edebug is described in Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#edebug" >Edebug</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
 <p>Here is a bugged function definition for <code>triangle-recursively</code>. See Section <a href="#recursion-in-place-of-a-counter" >Recursion in place of a counter</a>, for a review of it.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">triangle-recursively-bugged</span> <span class="p">(</span><span class="nv">number</span><span class="p">)</span>
   <span class="s">&#34;Return sum of numbers 1 through NUMBER inclusive.
@@ -6493,13 +6493,13 @@ Debugger entered--Lisp error: (void-function 1=)
 <p>Press <kbd>q</kbd> to quit Edebug.</p>
 <p>To remove instrumentation from a function definition, simply re-evaluate it with a command that does not instrument it. For example, you could place your cursor after the definition&#39;s closing parenthesis and type <kbd>C-x C-e</kbd>.</p>
 <p>Edebug does a great deal more than walk with you through a function. You can set it so it races through on its own, stopping only at an error or at specified stopping points; you can cause it to display the changing values of various expressions; you can find out how many times a function is called, and more.</p>
-<p>Edebug is described in Section <a href="info:elisp#edebug" >Edebug</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
+<p>Edebug is described in Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#edebug" >Edebug</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
 </div>
 <h3 id="debugging-exercises" >Debugging Exercises</h3>
 <div class="hBody-3" >
 <ul>
 <li>
-<p>Install the <code>count-words-example</code> function and then cause it to enter the built-in debugger when you call it. Run the command on a region containing two words. You will need to press <kbd>d</kbd> a remarkable number of times. On your system, is a ‘hook’ called after the command finishes?  (For information on hooks, see Section <a href="info:elisp#Command-Overview" >Command Loop Overview</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>Install the <code>count-words-example</code> function and then cause it to enter the built-in debugger when you call it. Run the command on a region containing two words. You will need to press <kbd>d</kbd> a remarkable number of times. On your system, is a ‘hook’ called after the command finishes?  (For information on hooks, see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Command-Overview" >Command Loop Overview</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 </li>
 <li>
 <p>Copy <code>count-words-example</code> into the <span class="file" >*scratch*</span> buffer, instrument the function for Edebug, and walk through its execution. The function does not need to have a bug, although you can introduce one if you wish. If the function lacks a bug, the walk-through completes without problems.</p>
@@ -6541,7 +6541,7 @@ Debugger entered--Lisp error: (void-function 1=)
 <p>(The <code>indent-to</code> function is written in C rather than Emacs Lisp; it is a ‘built-in’ function.  <code>help-follow</code> takes you to its source as does <code>find-tag</code>, when properly set up.)</p>
 <p>You can look at a function&#39;s source using <code>find-tag</code>, which is bound to <kbd>M-.</kbd>  Finally, you can find out what the Reference Manual has to say by visiting the manual in Info, and typing <kbd>i</kbd> (<code>Info-index</code>) and the name of the function, or by looking up the function in the index to a printed copy of the manual.</p>
 <p>Similarly, you can find out what is meant by <code>insert-and-inherit</code>.</p>
-<p>Other interesting source files include <span class="file" >paragraphs.el</span>, <span class="file" >loaddefs.el</span>, and <span class="file" >loadup.el</span>. The <span class="file" >paragraphs.el</span> file includes short, easily understood functions as well as longer ones. The <span class="file" >loaddefs.el</span> file contains the many standard autoloads and many keymaps. I have never looked at it all; only at parts.  <span class="file" >loadup.el</span> is the file that loads the standard parts of Emacs; it tells you a great deal about how Emacs is built.  (See Section <a href="info:elisp#Building-Emacs" >Building Emacs</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about building.)</p>
+<p>Other interesting source files include <span class="file" >paragraphs.el</span>, <span class="file" >loaddefs.el</span>, and <span class="file" >loadup.el</span>. The <span class="file" >paragraphs.el</span> file includes short, easily understood functions as well as longer ones. The <span class="file" >loaddefs.el</span> file contains the many standard autoloads and many keymaps. I have never looked at it all; only at parts.  <span class="file" >loadup.el</span> is the file that loads the standard parts of Emacs; it tells you a great deal about how Emacs is built.  (See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Building-Emacs" >Building Emacs</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about building.)</p>
 <p>As I said, you have learned some nuts and bolts; however, and very importantly, we have hardly touched major aspects of programming; I have said nothing about how to sort information, except to use the predefined <code>sort</code> function; I have said nothing about how to store information, except to use variables and lists; I have said nothing about how to write programs that write programs. These are topics for another, and different kind of book, a different kind of learning.</p>
 <p>What you have done is learn enough for much practical work with GNU Emacs. What you have done is get started. This is the end of a beginning.</p>
 </div>
@@ -6553,7 +6553,7 @@ Debugger entered--Lisp error: (void-function 1=)
 <pre class="example" >\\(\\w+[ \t\n]+\\)\\1
 </pre>
 </div>
-<p>This regexp matches one or more word-constituent characters followed by one or more spaces, tabs, or newlines. However, it does not detect duplicated words on different lines, since the ending of the first word, the end of the line, is different from the ending of the second word, a space.  (For more information about regular expressions, see Section <a href="#regular-expression-searches" >Regular Expression Searches</a>, as well as Section <a href="info:emacs#Regexps" >Syntax of Regular Expressions</a> in <em>The GNU Emacs Manual</em>, and Section <a href="info:elisp#Regular-Expressions" >Regular Expressions</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
+<p>This regexp matches one or more word-constituent characters followed by one or more spaces, tabs, or newlines. However, it does not detect duplicated words on different lines, since the ending of the first word, the end of the line, is different from the ending of the second word, a space.  (For more information about regular expressions, see Section <a href="#regular-expression-searches" >Regular Expression Searches</a>, as well as Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Regexps" >Syntax of Regular Expressions</a> in <em>The GNU Emacs Manual</em>, and Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Regular-Expressions" >Regular Expressions</a> in <em>The GNU Emacs Lisp Reference Manual</em>.)</p>
 <p>You might try searching just for duplicated word-constituent characters but that does not work since the pattern detects doubles such as the two occurrences of ‘th’ in ‘with the’.</p>
 <p>Another possible regexp searches for word-constituent characters followed by non-word-constituent characters, reduplicated. Here, <code>\\w+</code> matches one or more word-constituent characters and <code>\\W*</code> matches zero or more non-word-constituent characters.</p>
 <div class="example-block" >
@@ -7006,7 +7006,7 @@ fifth bit of text
 </code></pre>
 <p>The <code>Y-axis-element</code> function concatenates together the leading spaces, if any; the number, as a string; and the tic mark.</p>
 <p>To figure out how many leading spaces the label will need, the function subtracts the actual length of the label––the length of the number plus the length of the tic mark––from the desired label width.</p>
-<p>Blank spaces are inserted using the <code>make-string</code> function. This function takes two arguments: the first tells it how long the string will be and the second is a symbol for the character to insert, in a special format. The format is a question mark followed by a blank space, like this, ‘<code>? </code>’. See Section <a href="info:elisp#Character-Type" >Character Type</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for a description of the syntax for characters.  (Of course, you might want to replace the blank space by some other character…  You know what to do.)</p>
+<p>Blank spaces are inserted using the <code>make-string</code> function. This function takes two arguments: the first tells it how long the string will be and the second is a symbol for the character to insert, in a special format. The format is a question mark followed by a blank space, like this, ‘<code>? </code>’. See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Character-Type" >Character Type</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for a description of the syntax for characters.  (Of course, you might want to replace the blank space by some other character…  You know what to do.)</p>
 <p>The <code>number-to-string</code> function is used in the concatenation expression, to convert the number to a string that is concatenated with the leading spaces and the tic mark.</p>
 </div>
 <h4 id="create-a-y-axis-column" >Create a Y Axis Column</h4>
@@ -7521,7 +7521,7 @@ print-Y-axis
 </pre>
 </div>
 <p>This expression returns 2. The 100 is passed to the function, which divides that number by 50.</p>
-<p>See Section <a href="info:elisp#Lambda-Expressions" >Lambda Expressions</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about <code>lambda</code>. Lisp and lambda expressions derive from the Lambda Calculus.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Lambda-Expressions" >Lambda Expressions</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about <code>lambda</code>. Lisp and lambda expressions derive from the Lambda Calculus.</p>
 </div>
 <h4 id="the-mapcar-function" >The <code>mapcar</code> Function</h4>
 <div class="hBody-4" >
@@ -7540,7 +7540,7 @@ print-Y-axis
 <p>The whole expression looks like this:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">mapcar</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">arg</span><span class="p">)</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">arg</span> <span class="mi">50</span><span class="p">))</span> <span class="nv">full-range</span><span class="p">))</span>
 </code></pre>
-<p>See Section <a href="info:elisp#Mapping-Functions" >Mapping Functions</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about <code>mapcar</code>.</p>
+<p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Mapping-Functions" >Mapping Functions</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for more about <code>mapcar</code>.</p>
 <p>Using the <code>one-fiftieth</code> function, we can generate a list in which each element is one-fiftieth the size of the corresponding element in <code>list-for-graph</code>.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">setq</span> <span class="nv">fiftieth-list-for-graph</span>
       <span class="p">(</span><span class="nv">one-fiftieth</span> <span class="nv">list-for-graph</span><span class="p">))</span>
@@ -7822,7 +7822,7 @@ Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
 <div class="about" >
 <div class="about-dt" ><span class="defnote" id="1" >1</span></div>
 <div class="about-dd" >
-<p>The single apostrophe or quotation mark is an abbreviation for the function <code>quote</code>; you need not think about functions now; functions are defined in Section <a href="Generate-an-Error-Message" >Generate an Error Message</a>.</p>
+<p>The single apostrophe or quotation mark is an abbreviation for the function <code>quote</code>; you need not think about functions now; functions are defined in Section <a href="#generate-an-error-message" >Generate an Error Message</a>.</p>
 </div>
 </div>
 <div class="about" >
@@ -7873,7 +7873,7 @@ Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
 <div class="about" >
 <div class="about-dt" ><span class="defnote" id="9" >9</span></div>
 <div class="about-dd" >
-<p>Actually, you can <code>cons</code> an element to an atom to produce a dotted pair. Dotted pairs are not discussed here; see Section <a href="Dotted-Pair-Notation,-,-Dotted-Pair-Notation" >Dotted Pair Notation, , Dotted Pair Notation</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
+<p>Actually, you can <code>cons</code> an element to an atom to produce a dotted pair. Dotted pairs are not discussed here; see Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Dotted-Pair-Notation" >Dotted Pair Notation</a> in <em>The GNU Emacs Lisp Reference Manual</em>.</p>
 </div>
 </div>
 <div class="about" >

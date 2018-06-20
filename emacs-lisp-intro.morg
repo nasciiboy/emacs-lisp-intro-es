@@ -197,7 +197,7 @@ promoting software freedom.”
    plain text by 6 spaces, mark the region, and then type @k{C-u 6 M-C-\}.
    (If you do not specify a number, Emacs either passes the number 4 to the
    command or otherwise runs the command differently than it would
-   otherwise.)  See Section @l{info:emacs#Arguments, Numeric Arguments} in
+   otherwise.)  See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Arguments<>Numeric Arguments} in
    @e(The GNU Emacs Manual).
 
    If you are reading this in Info using GNU Emacs, you can read through this
@@ -387,7 +387,7 @@ promoting software freedom.”
     the cursor back to the matching opening parenthesis, so you can see which
     one it is. This is very useful, since every list you type in Lisp must
     have its closing parenthesis match its opening parenthesis.  (See Section
-    @l{info:emacs#Major Modes, Major Modes} in @e(The GNU Emacs Manual), for
+    @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Major Modes<>Major Modes} in @e(The GNU Emacs Manual), for
     more information about Emacs's modes.)
 
 ** Run a Program
@@ -644,7 +644,7 @@ promoting software freedom.”
 
     As a practical matter, for most things you might do to customize or
     extend Emacs, you do not need to byte compile; and I will not discuss the
-    topic here. See Section @l{info:emacs#Byte Compilation, Byte
+    topic here. See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Byte Compilation<>Byte
     Compilation} in @e{The GNU Emacs Lisp Reference Manual}, for a full
     description of byte compilation.
 
@@ -1909,7 +1909,7 @@ promoting software freedom.”
     line with a semicolon.
 
     See Section @l{#Beginning a @f{.emacs} File}, and Section
-    @l{info:emacs#Comments<>Comments} in @e{The GNU Emacs Lisp Reference Manual}, for
+    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments<>Comments} in @e{The GNU Emacs Lisp Reference Manual}, for
     more about comments.
 
     You can install this version of the @c{multiply-by-seven} function by
@@ -2043,7 +2043,7 @@ promoting software freedom.”
    twenty characters predefined for use with @c{interactive}. In almost
    every case, one of these options will enable you to pass the right
    information interactively to a function.  (See Section
-   @l{info:elisp#Interactive<>Code Characters for @c{interactive}} in @e{The
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Code Characters for @c{interactive}} in @e{The
    GNU Emacs Lisp Reference Manual}.)
 
    Consider the function @c{zap-to-char}. Its interactive expression is
@@ -2096,7 +2096,7 @@ promoting software freedom.”
    application, you can pass your own arguments to @c{interactive} as a list.
 
    See Section @l{#The Definition of @c{append-to-buffer}}, for an example.
-   See Section @l{info:elisp#Using Interactive<>Using @c{Interactive}} in the
+   See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using Interactive<>Using @c{Interactive}} in the
    @e{The GNU Emacs Lisp Reference Manual}, for a more complete explanation
    about this technique.
 
@@ -2749,7 +2749,7 @@ promoting software freedom.”
          rather than one.
 
 
-     See Section @l{info:elips#Interactive Codes<>Code Characters for
+     See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Code Characters for
      @'{interactive}} in @e{The GNU Emacs Lisp Reference Manual}, for a
      complete list of code characters.
 
@@ -4084,7 +4084,7 @@ promoting software freedom.”
 
     (Since I do not explain a cons cell for many more chapters, please
     consider ignoring the function @c{consp}. See Section @l{#How Lists are
-    Implemented}, and Section @l{info:elisp#Cons Cell Type<>Cons Cell and List
+    Implemented}, and Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Cons Cell Type<>Cons Cell and List
     Types} in @e{The GNU Emacs Lisp Reference Manual}.)
 
     The @c{"P"} in the @c{interactive} expression tells Emacs to pass a
@@ -4312,7 +4312,7 @@ promoting software freedom.”
     @'{\\} tells the Lisp interpreter to substitute whatever key is currently
     bound to the @'{[…]}. In the case of @c{universal-argument}, that is
     usually @k{C-u}, but it might be different.  (See Section
-    @l{info:elisp#Documentation-Tips} in @e{The GNU Emacs Lisp Reference
+    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Documentation Tips<>Documentation Tips} in @e{The GNU Emacs Lisp Reference
     Manual}, for more information.)
 
     Finally, the last line of the @c{beginning-of-buffer} command says to
@@ -4355,7 +4355,7 @@ promoting software freedom.”
      brief, return a true value only if all the arguments are true; return a
      true value if one @e{and} each of the others is true.
 
-   - &optional ::
+   - @c(&optional) ::
 
      A keyword used to indicate that an argument to a function definition is
      optional; this means that the function can be evaluated without the
@@ -4579,7 +4579,7 @@ promoting software freedom.”
    investigate yourself; or perhaps you will have to use
    @c{buffer-substring-no-properties} or @c{filter-buffer-substring} …, yet
    other functions. Text properties are a feature otherwise not discussed
-   here. See Section @l{info:elisp#Text Properties} in @e{The GNU Emacs Lisp
+   here. See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Text Properties<>Text Properties} in @e{The GNU Emacs Lisp
    Reference Manual}.)
 
    Additionally, do you really need @c{goto-char} or @c{point-min}?  Or can
@@ -4712,7 +4712,7 @@ promoting software freedom.”
    array is considered an atom. Conversely, the other fundamental function,
    @c{cons}, can put together or construct a list, but not an array.  (Arrays
    are handled by array-specific functions. See Section
-   @l{info:elisp#Arrays<>Arrays} in @e{The GNU Emacs Lisp Reference Manual}.)
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Arrays<>Arrays} in @e{The GNU Emacs Lisp Reference Manual}.)
 
 ** @c{cons}
 
@@ -5228,7 +5228,7 @@ promoting software freedom.”
     the character itself.  (This becomes important for certain characters in
     non-European languages. The @c{aref} function extracts an element from
     an array. It is an array-specific function that is not described in this
-    document. See Section @l{info:elisp#Arrays<>Arrays} in @e{The GNU Emacs
+    document. See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Arrays<>Arrays} in @e{The GNU Emacs
     Lisp Reference Manual}.)
 
     @c{(point)} is the current position of the cursor.
@@ -5534,7 +5534,7 @@ promoting software freedom.”
     is the converse of @c{when}. The @c{unless} macro is an @c{if} without a
     then clause
 
-    For more about Lisp macros, see Section @l{info:elisp#Macros<>Macros}, in
+    For more about Lisp macros, see Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Macros<>Macros}, in
     @e{The GNU Emacs Lisp Reference Manual}. The C programming language also
     provides macros. These are different, but also useful.
 
@@ -6031,7 +6031,7 @@ promoting software freedom.”
      The @c{fboundp} function returns true if the symbol it is testing has a
      function definition that ‘is not void’. If the symbol's function
      definition were void, we would receive an error message, as we did when
-     we created errors intentionally (see Section @l{Generate an Error
+     we created errors intentionally (see Section @l{#Generate an Error
      Message}).
 
      The then-part contains an expression whose first element is the function
@@ -6299,7 +6299,7 @@ promoting software freedom.”
     more than 700 such variables, far too many to remember readily.
     Fortunately, you can press @k{TAB} after calling the @c{M-x set-variable}
     command to see the list of variables.  (See Section
-    @l{info:emacs#Examining and Setting Variables} in @e(The GNU
+    @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Examining and Setting Variables<>Examining and Setting Variables} in @e(The GNU
     Emacs Manual).)
 
 ** Review
@@ -6548,9 +6548,9 @@ promoting software freedom.”
   holds the address of @c{buttercup}.
 
   A pair of address-boxes is called a @:{cons cell} or @:{dotted pair}. See
-  Section @l{info:elisp#Cons Cell Type<>Cons Cell and List Types} in @e{The
-  GNU Emacs Lisp Reference Manual}, and Section @l{info:elisp#Dotted Pair
-  Notation} in @e{The GNU Emacs Lisp Reference Manual},
+  Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Cons Cell Type<>Cons Cell and List Types} in @e{The
+  GNU Emacs Lisp Reference Manual}, and Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Dotted Pair
+  Notation<>Dotted Pair Notation} in @e{The GNU Emacs Lisp Reference Manual},
   for more information about cons cells and dotted pairs.
 
   The function @c{cons} adds a new pair of addresses to the front of a series
@@ -6615,7 +6615,7 @@ promoting software freedom.”
    (In addition to its name, symbol definition, and variable value, a symbol
    has a ‘drawer’ for a @:{property list} which can be used to record other
    information. Property lists are not discussed here; see Section
-   @l{info:elisp#Property Lists} in @e{The GNU Emacs Lisp Reference Manual}.)
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Property Lists<>Property Lists} in @e{The GNU Emacs Lisp Reference Manual}.)
 
    Here is a fanciful representation:
 
@@ -7423,8 +7423,8 @@ promoting software freedom.”
 
    In addition to @c{while}, both @c{dolist} and @c{dotimes} provide for
    looping. Sometimes these are quicker to write than the equivalent
-   @c{while} loop. Both are Lisp macros.  (See Section @l{info:elisp#Macros,
-   Macros} in @e{The GNU Emacs Lisp Reference Manual}. )
+   @c{while} loop. Both are Lisp macros.  (See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Macros<>Macros}
+   in @e{The GNU Emacs Lisp Reference Manual}. )
 
    @c{dolist} works like a @c{while} loop that ‘@c{cdr}s down a list’:
    @c{dolist} automatically shortens the list each time it loops––takes the
@@ -8379,9 +8379,9 @@ promoting software freedom.”
   searches well. They use regular expressions to find where to move point.
   The phrase ‘regular expression’ is often written as ‘regexp’.
 
-  Regular expression searches are described in Section @l{info:emacs#Regexp
+  Regular expression searches are described in Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Regexp
   Search<>Regular Expression Search} in @e(The GNU Emacs Manual), as well as
-  in Section @l{info:elisp#Regular Expressions} in @e{The
+  in Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Regular Expressions<>Regular Expressions} in @e{The
   GNU Emacs Lisp Reference Manual}. In writing this chapter, I am presuming
   that you have at least a mild acquaintance with them. The major point to
   remember is that regular expressions permit you to search for patterns as
@@ -8777,7 +8777,7 @@ promoting software freedom.”
    beginning of each line. For example, in Lisp code, it is a convention to
    start each line of a paragraph-long comment with @'{;;; }. In Text mode,
    four blank spaces make up another common fill prefix, creating an indented
-   paragraph.  (See Section @l{info:emacs#Fill Prefix} in @e(The
+   paragraph.  (See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Fill Prefix<>Fill Prefix} in @e(The
    GNU Emacs Manual), for more information about fill prefixes.)
 
    The existence of a fill prefix means that in addition to being able to
@@ -9240,7 +9240,7 @@ promoting software freedom.”
     (The @${make tags} command works well with the GNU Emacs sources, as well
     as with some other source packages.)
 
-    For more information, see Section @l{info:emacs#Tags<>Tag Tables} in
+    For more information, see Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Tags<>Tag Tables} in
     @e(The GNU Emacs Manual).
 
 ** Review
@@ -9327,7 +9327,7 @@ promoting software freedom.”
      more blank lines in sequence.
 
    - Write a function to search for duplicated words, such as ‘the the’. See
-     Section @l{info:emacs#Regexps<>Syntax of Regular Expressions} in @e(The
+     Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Regexps<>Syntax of Regular Expressions} in @e(The
      GNU Emacs Manual), for information on how to write a regexp (a regular
      expression) to match a string that is composed of two identical halves.
      You can devise several regexps; some are better than others. The
@@ -9449,7 +9449,7 @@ promoting software freedom.”
 
    The buffer's syntax table determines which characters are and are not word
    constituents. For more information about syntax, see Section
-   @l{info:elisp#Syntax Tables} in @e{The GNU Emacs Lisp Reference Manual}.
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Syntax Tables<>Syntax Tables} in @e{The GNU Emacs Lisp Reference Manual}.
 
    The search expression looks like this:
 
@@ -10111,7 +10111,7 @@ promoting software freedom.”
    include the class of punctuation characters, such as the period and the
    comma, and the class of whitespace characters, such as the blank space and
    the tab character.  (For more information, see Section
-   @l{info:emacs#Syntax Tables<>Syntax Tables} in @e{The GNU Emacs Lisp
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Syntax Tables<>Syntax Tables} in @e{The GNU Emacs Lisp
    Reference Manual}.)
 
    Syntax tables specify which characters belong to which categories.
@@ -10933,7 +10933,7 @@ promoting software freedom.”
      @c{while} loop to move from one filename to another within a directory,
      checking what needs to be done; and we will use a recursive call to
      repeat the actions on each sub-directory. The recursive pattern is
-     ‘accumulate’ (see Section @l{Recursive Pattern: @e{accumulate}}), using
+     ‘accumulate’ (see Section @l{#Recursive Pattern: @e{accumulate}}), using
      @c{append} as the combiner.
 
      Here is the function:
@@ -11661,7 +11661,7 @@ promoting software freedom.”
    We can test @c{graph-body-print} with a short list of numbers.
 
    1. Install @c{graph-symbol}, @c{graph-blank}, @c{column-of-graph}, which
-      are in Section @l{#Readying a Graph}, and @l{The @c{graph-body-print} Function}.
+      are in Section @l{#Readying a Graph}, and @l{#The @c{graph-body-print} Function}.
 
    2. Copy the following expression:
 
@@ -11819,8 +11819,8 @@ promoting software freedom.”
 
   Most of this chapter is about writing expressions yourself. It describes a
   simple @f{.emacs} file; for more information, see Section
-  @l{info:emacs#Init File<>The Init File} in @e(The GNU Emacs Manual), and
-  Section @l{info:elisp#Init File<>The Init File} in @e{The GNU Emacs Lisp
+  @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init File<>The Init File} in @e(The GNU Emacs Manual), and
+  Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Init File<>The Init File} in @e{The GNU Emacs Lisp
   Reference Manual}.
 
 ** Site-wide Initialization Files
@@ -11834,7 +11834,7 @@ promoting software freedom.”
    created, as is most common.  (Dumped copies of Emacs load more quickly.
    However, once a file is loaded and dumped, a change to it does not lead to
    a change in Emacs unless you load it yourself or re-dump Emacs. See
-   Section @l{info:elips#Building Emacs} in @e{The GNU Emacs
+   Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Building Emacs<>Building Emacs} in @e{The GNU Emacs
    Lisp Reference Manual}, and the @f{INSTALL} file.)
 
    Three other site-wide initialization files are loaded automatically each
@@ -11913,7 +11913,7 @@ promoting software freedom.”
    which group the variable is located. This tells where to find it.
 
    The @c{defcustom} function recognizes more than a dozen keywords. For
-   more information, see Section @l{info:elips#Customization<>Writing
+   more information, see Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Customization<>Writing
    Customization Definitions} in @e{The GNU Emacs Lisp Reference Manual}.
 
    Consider @c{text-mode-hook} as an example.
@@ -12010,7 +12010,7 @@ promoting software freedom.”
    A @f{.emacs} file contains Lisp expressions. Often, these are no more
    than expressions to set values; sometimes they are function definitions.
 
-   See Section @l{info:emacs#Init File}<>The Init File @f{~/.emacs}} in @e(The
+   See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init File<>The Init File @f{~/.emacs}} in @e(The
    GNU Emacs Manual), for a short description of initialization files.
 
    This chapter goes over some of the same ground, but is a walk among
@@ -12038,7 +12038,7 @@ promoting software freedom.”
    This describes the usual conventions for comments in Emacs Lisp.
    Everything on a line that follows a semicolon is a comment. Two, three,
    and four semicolons are used as subsection and section markers.  (See
-   Section @l{info:elisp#Comments} in @e{The GNU Emacs Lisp
+   Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments<>Comments} in @e{The GNU Emacs Lisp
    Reference Manual}, for more about comments.)
 
    ..src > elisp
@@ -12095,8 +12095,8 @@ promoting software freedom.”
    specifications that it uses automatically. In addition, Emacs looks near
    the last page for a per-buffer, “local variables list”, if any.
 
-   See Section @l{info:emacs#Choosing Modes<>How Major Modes are Chosen} and
-   @l{info:emacs#File Variables<>Local Variables in Files} in @e(The GNU Emacs
+   See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Choosing Modes<>How Major Modes are Chosen} and
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File Variables<>Local Variables in Files} in @e(The GNU Emacs
    Manual).
 
    Now, back to the @f{.emacs} file.
@@ -12209,8 +12209,8 @@ promoting software freedom.”
    that we have seen before. The @c{setq-default} command sets values only
    in buffers that do not have their own local values for the variable.
 
-   See Section @l{info:emacs#Just Spaces<>Tabs vs. Spaces} and
-   @l{info:emacs#File Variables<>Local Variables in Files}
+   See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Just Spaces<>Tabs vs. Spaces} and
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File Variables<>Local Variables in Files}
    in @e(The GNU Emacs Manual).
 
 ** Some Keybindings
@@ -12236,7 +12236,7 @@ promoting software freedom.”
    surrounded by double quotation marks. In documentation, you would write
    this as @k{C-c w}.  (If you were binding a @k{META} key, such as @k{M-c},
    rather than a @k{CTRL} key, you would write @c{\M-c} in your @f{.emacs}
-   file. See Section @l{info:emacs#Init Rebinding<>Rebinding Keys in Your
+   file. See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init Rebinding<>Rebinding Keys in Your
    Init File} in @e(The GNU Emacs Manual), for details.)
 
    The command invoked by the keys is @c{compare-windows}. Note that
@@ -12351,8 +12351,8 @@ promoting software freedom.”
    well as in the various mode libraries, such as @f{cc-mode.el} and
    @f{lisp-mode.el}.
 
-   See Section @l{info:emacs#Key Bindings<>Customizing Key Bindings} in
-   @e(The GNU Emacs Manual), and Section @l{info:elisp#Keymaps<>Keymaps} in
+   See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Key Bindings<>Customizing Key Bindings} in
+   @e(The GNU Emacs Manual), and Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Keymaps<>Keymaps} in
    @e{The GNU Emacs Lisp Reference Manual}, for more information about
    keymaps.
 
@@ -12427,7 +12427,7 @@ promoting software freedom.”
    @c{load-library} command is in the @f{files.el} library.
 
    Another interactive command that does a slightly different job is
-   @c{load-file}. See Section @l{info:emacs#Lisp Libraries<>Libraries of
+   @c{load-file}. See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Lisp Libraries<>Libraries of
    Lisp Code for Emacs} in @e(The GNU Emacs Manual), for information on the
    distinction between @c{load-library} and this command.
 
@@ -12454,7 +12454,7 @@ promoting software freedom.”
    In my @f{.emacs} file, I load 14 libraries that contain functions that
    would otherwise be autoloaded.  (Actually, it would have been better to
    include these files in my ‘dumped’ Emacs, but I forgot. See Section
-   @l{info:elisp#Building Emacs<>Building Emacs} in @e{The GNU Emacs Lisp
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Building Emacs<>Building Emacs} in @e{The GNU Emacs Lisp
    Reference Manual}, and the @f{INSTALL} file for more about dumping.)
 
    You may also want to include autoloaded expressions in your @f{.emacs}
@@ -12486,7 +12486,7 @@ promoting software freedom.”
    documentation in the autoload expression because the regular function is
    not yet loaded, so its documentation is not available.)
 
-   See Section @l{info:elisp#Autoload<>Autoload} in @e{The GNU Emacs Lisp
+   See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Autoload<>Autoload} in @e{The GNU Emacs Lisp
    Reference Manual}, for more information.
 
 ** A Simple Extension: @c{line-to-top-of-window}
@@ -12521,7 +12521,7 @@ promoting software freedom.”
      (global-set-key [f6] 'line-to-top-of-window)
    < src..
 
-   For more information, see Section @l{info:emacs#Init Rebinding<>Rebinding
+   For more information, see Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Init Rebinding<>Rebinding
    Keys in Your Init File} in @e(The GNU Emacs Manual).
 
    If you run two versions of GNU Emacs, such as versions 22 and 23, and use
@@ -12859,8 +12859,8 @@ promoting software freedom.”
    value, in this case, a string. The second, third, and fourth elements of
    this new string format can be repeated.
 
-   See Sections @l{info:elisp#Text Properties<>Text Properties}, and
-   @l{info:elisp#Mode Line Format<>Mode Line Format} in @e{The GNU Emacs Lisp
+   See Sections @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Text Properties<>Text Properties}, and
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Mode Line Format<>Mode Line Format} in @e{The GNU Emacs Lisp
    Reference Manual}, for more information.
 
    @c{mode-line-buffer-identification} displays the current buffer name. It
@@ -12915,7 +12915,7 @@ promoting software freedom.”
   that you instrument a function before you can use it.
 
   Both debuggers are described extensively in Section
-  @l{info:emacs#Debugging<>Debugging Lisp Programs} in @e{The GNU Emacs Lisp
+  @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Debugging<>Debugging Lisp Programs} in @e{The GNU Emacs Lisp
   Reference Manual}. In this chapter, I will walk through a short example of
   each.
 
@@ -13135,7 +13135,7 @@ promoting software freedom.”
    < src..
 
    The @c{debug} function is described in detail in Section
-   @l{info:emacs#Debugger<>The Lisp Debugger} in @e{The GNU Emacs Lisp
+   @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Debugger<>The Lisp Debugger} in @e{The GNU Emacs Lisp
    Reference Manual}.
 
 ** The @c{edebug} Source Level Debugger
@@ -13147,7 +13147,7 @@ promoting software freedom.”
    You can walk through the execution of a function, line by line, or run
    quickly until reaching a @:{breakpoint} where execution stops.
 
-   Edebug is described in Section @l{info:elisp#edebug<>Edebug} in @e{The GNU
+   Edebug is described in Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#edebug<>Edebug} in @e{The GNU
    Emacs Lisp Reference Manual}.
 
    Here is a bugged function definition for @c{triangle-recursively}. See
@@ -13252,7 +13252,7 @@ promoting software freedom.”
    of various expressions; you can find out how many times a function is
    called, and more.
 
-   Edebug is described in Section @l{info:elisp#edebug<>Edebug} in @e{The GNU
+   Edebug is described in Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#edebug<>Edebug} in @e{The GNU
    Emacs Lisp Reference Manual}.
 
 ** Debugging Exercises
@@ -13261,7 +13261,7 @@ promoting software freedom.”
      built-in debugger when you call it. Run the command on a region
      containing two words. You will need to press @k{d} a remarkable number
      of times. On your system, is a ‘hook’ called after the command
-     finishes?  (For information on hooks, see Section @l{info:elisp#Command
+     finishes?  (For information on hooks, see Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Command
      Overview<>Command Loop Overview} in @e{The GNU Emacs Lisp Reference
      Manual}.)
 
@@ -13379,7 +13379,7 @@ promoting software freedom.”
   contains the many standard autoloads and many keymaps. I have never looked
   at it all; only at parts.  @f{loadup.el} is the file that loads the
   standard parts of Emacs; it tells you a great deal about how Emacs is
-  built.  (See Section @l{info:elisp#Building Emacs<>Building Emacs} in
+  built.  (See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Building Emacs<>Building Emacs} in
   @e{The GNU Emacs Lisp Reference Manual}, for more about building.)
 
   As I said, you have learned some nuts and bolts; however, and very
@@ -13412,9 +13412,9 @@ promoting software freedom.”
   words on different lines, since the ending of the first word, the end of
   the line, is different from the ending of the second word, a space.  (For
   more information about regular expressions, see Section @l{#Regular
-  Expression Searches}, as well as Section @l{info:emacs#Regexps<>Syntax of
+  Expression Searches}, as well as Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Regexps<>Syntax of
   Regular Expressions} in @e(The GNU Emacs Manual), and Section
-  @l{info:elisp#Regular Expressions<>Regular Expressions} in @e{The GNU Emacs
+  @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Regular Expressions<>Regular Expressions} in @e{The GNU Emacs
   Lisp Reference Manual}.)
 
   You might try searching just for duplicated word-constituent characters but
@@ -14280,7 +14280,7 @@ promoting software freedom.”
     function takes two arguments: the first tells it how long the string will
     be and the second is a symbol for the character to insert, in a special
     format. The format is a question mark followed by a blank space, like
-    this, @'c{? }. See Section @l{info:elisp#Character Type<>Character Type}
+    this, @'c{? }. See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Character Type<>Character Type}
     in @e{The GNU Emacs Lisp Reference Manual}, for a description of the
     syntax for characters.  (Of course, you might want to replace the blank
     space by some other character…  You know what to do.)
@@ -14977,7 +14977,7 @@ promoting software freedom.”
     This expression returns 2. The 100 is passed to the function, which
     divides that number by 50.
 
-    See Section @l{info:elisp#Lambda Expressions<>Lambda Expressions} in
+    See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Lambda Expressions<>Lambda Expressions} in
     @e{The GNU Emacs Lisp Reference Manual}, for more about @c{lambda}. Lisp
     and lambda expressions derive from the Lambda Calculus.
 
@@ -15022,7 +15022,7 @@ promoting software freedom.”
       (mapcar (lambda (arg) (/ arg 50)) full-range))
     < src..
 
-    See Section @l{info:elisp#Mapping Functions<>Mapping Functions} in @e{The
+    See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Mapping Functions<>Mapping Functions} in @e{The
     GNU Emacs Lisp Reference Manual}, for more about @c{mapcar}.
 
     Using the @c{one-fiftieth} function, we can generate a list in which each
@@ -15733,7 +15733,7 @@ promoting software freedom.”
 
  :: @N{1} :: The single apostrophe or quotation mark is an abbreviation for
     the function @c{quote}; you need not think about functions now; functions
-    are defined in Section @l{Generate an Error Message}.
+    are defined in Section @l{#Generate an Error Message}.
 
  :: @N{2} :: It is curious to track the path by which the word ‘argument’
     came to have two different meanings, one in mathematics and the other in
@@ -15788,8 +15788,8 @@ promoting software freedom.”
     171)
 
  :: @N{9} :: Actually, you can @c{cons} an element to an atom to produce a
-    dotted pair. Dotted pairs are not discussed here; see Section @l{Dotted
-    Pair Notation, , Dotted Pair Notation} in @e{The GNU Emacs Lisp Reference
+    dotted pair. Dotted pairs are not discussed here; see Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Dotted
+    Pair Notation<>Dotted Pair Notation} in @e{The GNU Emacs Lisp Reference
     Manual}.
 
  :: @N{10} :: More precisely, and requiring more expert knowledge to
