@@ -6,7 +6,6 @@
 ..id       > ISBN 1-882114-43-4
 ..options  > fancyCode toc
 
-
 This is an @e(Introduction to Programming in Emacs Lisp), for people who are
 not programmers.
 
@@ -162,7 +161,7 @@ promoting software freedom.”
    GNU Emacs Lisp is largely inspired by Maclisp, which was written at MIT in
    the 1960s. It is somewhat inspired by Common Lisp, which became a
    standard in the 1980s. However, Emacs Lisp is much simpler than Common
-   Lisp.  (The standard Emacs distribution contains an optional extensions
+   Lisp. (The standard Emacs distribution contains an optional extensions
    file, @f{cl.el}, that adds many Common Lisp features to Emacs Lisp.)
 
 ** Note for Novices
@@ -170,7 +169,7 @@ promoting software freedom.”
    If you don't know GNU Emacs, you can still read this document profitably.
    However, I recommend you learn Emacs, if only to learn to move around your
    computer screen. You can teach yourself how to use Emacs with the on-line
-   tutorial. To use it, type @k{C-h t}.  (This means you press and release
+   tutorial. To use it, type @k{C-h t}. (This means you press and release
    the @k{CTRL} key and the @k{h} at the same time, and then press and
    release @k{t}.)
 
@@ -178,9 +177,9 @@ promoting software freedom.”
    keys which you press to invoke the command and then giving the name of the
    command in parentheses, like this: @k{M-C-\} @%c(indent-region). What
    this means is that the @c{indent-region} command is customarily invoked by
-   typing @k{M-C-\}.  (You can, if you wish, change the keys that are typed
+   typing @k{M-C-\}. (You can, if you wish, change the keys that are typed
    to invoke the command; this is called @:{rebinding}. See Section
-   @l{#Keymaps}.)  The abbreviation @k{M-C-\} means that you type your
+   @l{#Keymaps}.) The abbreviation @k{M-C-\} means that you type your
    @k{META} key, @k{CTRL} key and @k{\} key all at the same time.  (On many
    modern keyboards the @k{META} key is labeled @k{ALT}.)  Sometimes a
    combination like this is called a keychord, since it is similar to the way
@@ -227,7 +226,7 @@ promoting software freedom.”
   unwarranted. Lisp stands for LISt Processing, and the programming language
   handles @e{lists} (and lists of lists) by putting them between parentheses.
   The parentheses mark the boundaries of the list. Sometimes a list is
-  preceded by a single apostrophe or quotation mark, @'{'}@n{1} Lists are the
+  preceded by a single apostrophe or quotation mark, @'{'}@n{1}. Lists are the
   basis of Lisp.
 
 ** Lisp Lists
@@ -266,9 +265,9 @@ promoting software freedom.”
      '(this list has (a list inside of it))
    < src..
 
-   The components of this list are the words @'{this}, @'{list}, @'{has}, and
-   the list @'{(a list inside of it)}. The interior list is made up of the
-   words @'{a}, @'{list}, @'{inside}, @'{of}, @'{it}.
+   The components of this list are the words @'c{this}, @'c{list}, @'c{has}, and
+   the list @'c{(a list inside of it)}. The interior list is made up of the
+   words @'c{a}, @'c{list}, @'c{inside}, @'c{of}, @'c{it}.
 
 *** Lisp Atoms
 
@@ -355,7 +354,7 @@ promoting software freedom.”
     < src..
 
     Both examples show what to Lisp is the same list, the list made up of the
-    symbols @'{this}, @'{list}, @'{looks}, @'{like}, and @'{this} in that
+    symbols @'c{this}, @'c{list}, @'c{looks}, @'c{like}, and @'c{this} in that
     order.
 
     Extra whitespace and newlines are designed to make a list more readable
@@ -413,6 +412,9 @@ promoting software freedom.”
    evaluate such a list: place your cursor immediately after the right hand
    parenthesis of the following list and then type @k{C-x C-e}:
 
+   ..src > elisp
+     (+ 2 2)
+   < src..
 
    You will see the number @c{4} appear in the echo area.  (In the jargon,
    what you have just done is “evaluate the list.”  The echo area is the line
@@ -435,7 +437,7 @@ promoting software freedom.”
    You can also evaluate an atom that is not part of a list––one that is not
    surrounded by parentheses; again, the Lisp interpreter translates from the
    humanly readable expression to the language of the computer. But before
-   discussing this (@l{#Variables}), we will discuss what the Lisp
+   discussing this (see Section @l{#Variables}), we will discuss what the Lisp
    interpreter does when you make an error.
 
 ** Generate an Error Message
@@ -477,11 +479,7 @@ promoting software freedom.”
 
    Your cursor will be in this window (you may have to wait a few seconds
    before it becomes visible). To quit the debugger and make the debugger
-   window go away, type:
-
-   ..example >
-     q
-   < example..
+   window go away, type: @k(q)
 
    Please type @k{q} right now, so you become confident that you can get out
    of the debugger. Then, type @k{C-x C-e} again to re-enter it.
@@ -582,8 +580,8 @@ promoting software freedom.”
 
    Since Emacs Lisp is large, it is customary to name symbols in a way that
    identifies the part of Emacs to which the function belongs. Thus, all the
-   names for functions that deal with Texinfo start with @'{texinfo-} and
-   those for functions that deal with reading mail start with @'{rmail-}.
+   names for functions that deal with Texinfo start with @'c{texinfo-} and
+   those for functions that deal with reading mail start with @'c{rmail-}.
 
 ** The Lisp Interpreter
 
@@ -818,8 +816,11 @@ promoting software freedom.”
     with our 2 plus 2 addition. In the following expression, put your cursor
     right after the @c{+}, before the first number 2, type @k{C-x C-e}:
 
+    ..src > elisp
+      (+ 2 2)
+    < src..
 
-    In GNU Emacs 22, you will create a @f{*Backtrace*} buffer that says:
+    In GNU Emacs 26, you will create a @f{*Backtrace*} buffer that says:
 
     ..example >
       ---------- Buffer: *Backtrace* ----------
@@ -837,7 +838,7 @@ promoting software freedom.”
     buffer.)
 
     This backtrace is different from the very first error message we saw,
-    which said, @'{Debugger entered--Lisp error: (void-function this)}. In
+    which said, @'c{Debugger entered--Lisp error: (void-function this)}. In
     this case, the function does not have a value as a variable; while in the
     other error message, the function (the word ‘this’) did not have a
     definition.
@@ -1081,10 +1082,10 @@ promoting software freedom.”
     echo area as a side-effect, without the quotes. See Section @l{#An
     Interactive @c{multiply-by-seven}} in detail, for an example of this.)
 
-    However, if there is a @'{%s} in the quoted string of characters, the
-    @c{message} function does not print the @'{%s} as such, but looks to the
+    However, if there is a @'c{%s} in the quoted string of characters, the
+    @c{message} function does not print the @'c{%s} as such, but looks to the
     argument that follows the string. It evaluates the second argument and
-    prints the value at the location in the string where the @'{%s} is.
+    prints the value at the location in the string where the @'c{%s} is.
 
     You can see this by positioning the cursor after the following expression
     and typing @k{C-x C-e}:
@@ -1124,14 +1125,14 @@ promoting software freedom.”
     it says, @c{"There are 58 pink elephants in the office!"}.
 
     The expression @c{(- fill-column 14)} is evaluated and the resulting
-    number is inserted in place of the @'{%d}; and the string in double
+    number is inserted in place of the @'c{%d}; and the string in double
     quotes, @c{"pink elephants"}, is treated as a single argument and
-    inserted in place of the @'{%s}.  (That is to say, a string between
+    inserted in place of the @'c{%s}.  (That is to say, a string between
     double quotes evaluates to itself, like a number.)
 
     Finally, here is a somewhat complex example that not only illustrates the
     computation of a number, but also shows how you can use an expression
-    within an expression to generate the text that is substituted for @'{%s}:
+    within an expression to generate the text that is substituted for @'c{%s}:
 
     ..src > elisp
       (message "He saw %d %s"

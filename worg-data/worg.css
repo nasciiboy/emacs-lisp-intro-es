@@ -15,12 +15,14 @@
     --FGCtcode  : #bbdd99;  /* code          */
     --FGCbcode  : #ffffff;  /* block code    */
     --FGCtcomm  : #7fffd4;  /* command       */
+    --FGCtkbd   : #000000;  /* kbd           */
+    --FGCtbkbd  : #ffffff;  /* kbd           */
     --FGCfile   : #ffd47f;  /* file          */
     --FGCmath   : #98fb98;  /* math          */
     --FGClink   : #aaaaaa;  /* link          */
     --BGClinkh  : #556b2f;  /* link bg hover */
     --FGClinkh  : #ffffff;  /* link fg hover */
-    --FGCbquot  : #ffffff;  /* blockquote    */
+    --FGCbquot  : #bbddbb;  /* blockquote    */
     --FGCaquot  : #ffffff;  /* author quote  */
     --FGCdtabout: #6fb336;  /* about title   */
     --FGCfigure : #ffffff;  /* about title   */
@@ -143,6 +145,8 @@ em      { color: var( --FGCemph ); font-weight: 600; }
 cite    { font-family: text_verse; color: #a5b1fe; }
 code    {      color: var( --FGCtcode ); font-family: codetext; padding: 0px 0.2em; }
 code.command { color: var( --FGCtcomm ); font-family: codetext; padding: 0px 0.2em; }
+kbd     {      color: var( --FGCtkbd  ); background-color: var( --FGCtbkbd  ); font-family: codetext; padding: 0.3em 0.2em 0.2em 0.2em; }
+
 .file   { color: var( --FGCfile ); font-family: codetext; }
 .math   { color: var( --FGCmath ); font-family: codetext; }
 .acronym { color: var( --FGCstart8 ); font-weight: 600; }
@@ -221,7 +225,7 @@ div.figure h1.figure a { color: #777; }
 .about div.about-dd { order: 2; padding-left: 1em; font-family: description_dd;  overflow: auto; }
 
 /* BLOCKQUOTE */
-blockquote { font-family: text_verse; color: var( --FGCbquot ); }
+blockquote { font-family: text_verse; color: var( --FGCbquot ); font-style: italic; }
 div.quote-author { }
 div.quote-author p { text-align: right; padding-right: 2%; color: var( --FGCaquot ); }
 

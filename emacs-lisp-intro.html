@@ -448,12 +448,12 @@ Boston, MA 02110-1301 USA
 <h3 id="lisp-history" >Lisp History</h3>
 <div class="hBody-3" >
 <p>Lisp was first developed in the late 1950s at the Massachusetts Institute of Technology for research in artificial intelligence. The great power of the Lisp language makes it superior for other purposes as well, such as writing editor commands and integrated environments.</p>
-<p>GNU Emacs Lisp is largely inspired by Maclisp, which was written at MIT in the 1960s. It is somewhat inspired by Common Lisp, which became a standard in the 1980s. However, Emacs Lisp is much simpler than Common Lisp.  (The standard Emacs distribution contains an optional extensions file, <span class="file" >cl.el</span>, that adds many Common Lisp features to Emacs Lisp.)</p>
+<p>GNU Emacs Lisp is largely inspired by Maclisp, which was written at MIT in the 1960s. It is somewhat inspired by Common Lisp, which became a standard in the 1980s. However, Emacs Lisp is much simpler than Common Lisp. (The standard Emacs distribution contains an optional extensions file, <span class="file" >cl.el</span>, that adds many Common Lisp features to Emacs Lisp.)</p>
 </div>
 <h3 id="note-for-novices" >Note for Novices</h3>
 <div class="hBody-3" >
-<p>If you don&#39;t know GNU Emacs, you can still read this document profitably. However, I recommend you learn Emacs, if only to learn to move around your computer screen. You can teach yourself how to use Emacs with the on-line tutorial. To use it, type <kbd>C-h t</kbd>.  (This means you press and release the <kbd>CTRL</kbd> key and the <kbd>h</kbd> at the same time, and then press and release <kbd>t</kbd>.)</p>
-<p>Also, I often refer to one of Emacs&#39;s standard commands by listing the keys which you press to invoke the command and then giving the name of the command in parentheses, like this: <kbd>M-C-\</kbd> (<code>indent-region</code>). What this means is that the <code>indent-region</code> command is customarily invoked by typing <kbd>M-C-\</kbd>.  (You can, if you wish, change the keys that are typed to invoke the command; this is called <dfn>rebinding</dfn>. See Section <a href="#keymaps" >Keymaps</a>.)  The abbreviation <kbd>M-C-\</kbd> means that you type your <kbd>META</kbd> key, <kbd>CTRL</kbd> key and <kbd>\</kbd> key all at the same time.  (On many modern keyboards the <kbd>META</kbd> key is labeled <kbd>ALT</kbd>.)  Sometimes a combination like this is called a keychord, since it is similar to the way you play a chord on a piano. If your keyboard does not have a <kbd>META</kbd> key, the <kbd>ESC</kbd> key prefix is used in place of it. In this case, <kbd>M-C-\</kbd> means that you press and release your <kbd>ESC</kbd> key and then type the <kbd>CTRL</kbd> key and the <kbd>\</kbd> key at the same time. But usually <kbd>M-C-\</kbd> means press the <kbd>CTRL</kbd> key along with the key that is labeled <kbd>ALT</kbd> and, at the same time, press the <kbd>\</kbd> key.</p>
+<p>If you don&#39;t know GNU Emacs, you can still read this document profitably. However, I recommend you learn Emacs, if only to learn to move around your computer screen. You can teach yourself how to use Emacs with the on-line tutorial. To use it, type <kbd>C-h t</kbd>. (This means you press and release the <kbd>CTRL</kbd> key and the <kbd>h</kbd> at the same time, and then press and release <kbd>t</kbd>.)</p>
+<p>Also, I often refer to one of Emacs&#39;s standard commands by listing the keys which you press to invoke the command and then giving the name of the command in parentheses, like this: <kbd>M-C-\</kbd> (<code>indent-region</code>). What this means is that the <code>indent-region</code> command is customarily invoked by typing <kbd>M-C-\</kbd>. (You can, if you wish, change the keys that are typed to invoke the command; this is called <dfn>rebinding</dfn>. See Section <a href="#keymaps" >Keymaps</a>.) The abbreviation <kbd>M-C-\</kbd> means that you type your <kbd>META</kbd> key, <kbd>CTRL</kbd> key and <kbd>\</kbd> key all at the same time.  (On many modern keyboards the <kbd>META</kbd> key is labeled <kbd>ALT</kbd>.)  Sometimes a combination like this is called a keychord, since it is similar to the way you play a chord on a piano. If your keyboard does not have a <kbd>META</kbd> key, the <kbd>ESC</kbd> key prefix is used in place of it. In this case, <kbd>M-C-\</kbd> means that you press and release your <kbd>ESC</kbd> key and then type the <kbd>CTRL</kbd> key and the <kbd>\</kbd> key at the same time. But usually <kbd>M-C-\</kbd> means press the <kbd>CTRL</kbd> key along with the key that is labeled <kbd>ALT</kbd> and, at the same time, press the <kbd>\</kbd> key.</p>
 <p>In addition to typing a lone keychord, you can prefix what you type with <kbd>C-u</kbd>, which is called the ‘universal argument’. The <kbd>C-u</kbd> keychord passes an argument to the subsequent command. Thus, to indent a region of plain text by 6 spaces, mark the region, and then type <kbd>C-u 6 M-C-\</kbd>. (If you do not specify a number, Emacs either passes the number 4 to the command or otherwise runs the command differently than it would otherwise.)  See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Arguments" >Numeric Arguments</a> in <em>The GNU Emacs Manual</em>.</p>
 <p>If you are reading this in Info using GNU Emacs, you can read through this whole document just by pressing the space bar, <kbd>SPC</kbd>.  (To learn about Info, type <kbd>C-h i</kbd> and then select Info.)</p>
 <p>A note on terminology: when I use the word Lisp alone, I often am referring to the various dialects of Lisp in general, but when I speak of Emacs Lisp, I am referring to GNU Emacs Lisp in particular.</p>
@@ -467,7 +467,7 @@ Boston, MA 02110-1301 USA
 </div>
 <h2 id="list-processing" >List Processing</h2>
 <div class="hBody-2" >
-<p>To the untutored eye, Lisp is a strange programming language. In Lisp code there are parentheses everywhere. Some people even claim that the name stands for ‘Lots of Isolated Silly Parentheses’. But the claim is unwarranted. Lisp stands for LISt Processing, and the programming language handles <em>lists</em> (and lists of lists) by putting them between parentheses. The parentheses mark the boundaries of the list. Sometimes a list is preceded by a single apostrophe or quotation mark, ‘&#39;’<span class="note" ><sup><a href="#1" >1</a></sup></span> Lists are the basis of Lisp.</p>
+<p>To the untutored eye, Lisp is a strange programming language. In Lisp code there are parentheses everywhere. Some people even claim that the name stands for ‘Lots of Isolated Silly Parentheses’. But the claim is unwarranted. Lisp stands for LISt Processing, and the programming language handles <em>lists</em> (and lists of lists) by putting them between parentheses. The parentheses mark the boundaries of the list. Sometimes a list is preceded by a single apostrophe or quotation mark, ‘&#39;’<span class="note" ><sup><a href="#1" >1</a></sup></span>. Lists are the basis of Lisp.</p>
 </div>
 <h3 id="lisp-lists" >Lisp Lists</h3>
 <div class="hBody-3" >
@@ -483,7 +483,7 @@ Boston, MA 02110-1301 USA
 <p>Here is another list, this time with a list inside of it:</p>
 <pre class="code" ><code class="chroma" ><span class="o">&#39;</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">has</span> <span class="p">(</span><span class="nv">a</span> <span class="nf">list</span> <span class="nv">inside</span> <span class="nv">of</span> <span class="nv">it</span><span class="p">))</span>
 </code></pre>
-<p>The components of this list are the words ‘this’, ‘list’, ‘has’, and the list ‘(a list inside of it)’. The interior list is made up of the words ‘a’, ‘list’, ‘inside’, ‘of’, ‘it’.</p>
+<p>The components of this list are the words ‘<code>this</code>’, ‘<code>list</code>’, ‘<code>has</code>’, and the list ‘<code>(a list inside of it)</code>’. The interior list is made up of the words ‘<code>a</code>’, ‘<code>list</code>’, ‘<code>inside</code>’, ‘<code>of</code>’, ‘<code>it</code>’.</p>
 </div>
 <h4 id="lisp-atoms" >Lisp Atoms</h4>
 <div class="hBody-4" >
@@ -508,7 +508,7 @@ Boston, MA 02110-1301 USA
 <p>is exactly the same as this:</p>
 <pre class="code" ><code class="chroma" ><span class="o">&#39;</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span>
 </code></pre>
-<p>Both examples show what to Lisp is the same list, the list made up of the symbols ‘this’, ‘list’, ‘looks’, ‘like’, and ‘this’ in that order.</p>
+<p>Both examples show what to Lisp is the same list, the list made up of the symbols ‘<code>this</code>’, ‘<code>list</code>’, ‘<code>looks</code>’, ‘<code>like</code>’, and ‘<code>this</code>’ in that order.</p>
 <p>Extra whitespace and newlines are designed to make a list more readable by humans. When Lisp reads the expression, it gets rid of all the extra whitespace (but it needs to have at least one space between atoms in order to tell them apart.)</p>
 <p>Odd as it seems, the examples we have seen cover almost all of what Lisp lists look like!  Every other list in Lisp looks more or less like one of these examples, except that the list may be longer and more complex. In brief, a list is between parentheses, a string is between quotation marks, a symbol looks like a word, and a number looks like a number. (For certain situations, square brackets, dots and a few other special characters may be used; however, we will go quite far without them.)</p>
 </div>
@@ -522,12 +522,14 @@ Boston, MA 02110-1301 USA
 <p>A list in Lisp––any list––is a program ready to run. If you run it (for which the Lisp jargon is <dfn>evaluate</dfn>), the computer will do one of three things: do nothing except return to you the list itself; send you an error message; or, treat the first symbol in the list as a command to do something.  (Usually, of course, it is the last of these three things that you really want!)</p>
 <p>The single apostrophe, <code>&#39;</code>, that I put in front of some of the example lists in preceding sections is called a <dfn>quote</dfn>; when it precedes a list, it tells Lisp to do nothing with the list, other than take it as it is written. But if there is no quote preceding a list, the first item of the list is special: it is a command for the computer to obey.  (In Lisp, these commands are called <em>functions</em>.)  The list <code>(+ 2 2)</code> shown above did not have a quote in front of it, so Lisp understands that the <code>+</code> is an instruction to do something with the rest of the list: add the numbers that follow.</p>
 <p>If you are reading this inside of GNU Emacs in Info, here is how you can evaluate such a list: place your cursor immediately after the right hand parenthesis of the following list and then type <kbd>C-x C-e</kbd>:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre>
 <p>You will see the number <code>4</code> appear in the echo area.  (In the jargon, what you have just done is “evaluate the list.”  The echo area is the line at the bottom of the screen that displays or “echoes” text.)  Now try the same thing with a quoted list: place the cursor right after the following list and type <kbd>C-x C-e</kbd>:</p>
 <pre class="code" ><code class="chroma" ><span class="o">&#39;</span><span class="p">(</span><span class="nv">this</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">quoted</span> <span class="nf">list</span><span class="p">)</span>
 </code></pre>
 <p>You will see <code>(this is a quoted list)</code> appear in the echo area.</p>
 <p>In both cases, what you are doing is giving a command to the program inside of GNU Emacs called the <dfn>Lisp interpreter</dfn>––giving the interpreter a command to evaluate the expression. The name of the Lisp interpreter comes from the word for the task done by a human who comes up with the meaning of an expression––who “interprets” it.</p>
-<p>You can also evaluate an atom that is not part of a list––one that is not surrounded by parentheses; again, the Lisp interpreter translates from the humanly readable expression to the language of the computer. But before discussing this (<a href="#variables" >Variables</a>), we will discuss what the Lisp interpreter does when you make an error.</p>
+<p>You can also evaluate an atom that is not part of a list––one that is not surrounded by parentheses; again, the Lisp interpreter translates from the humanly readable expression to the language of the computer. But before discussing this (see Section <a href="#variables" >Variables</a>), we will discuss what the Lisp interpreter does when you make an error.</p>
 </div>
 <h3 id="generate-an-error-message" >Generate an Error Message</h3>
 <div class="hBody-3" >
@@ -548,11 +550,7 @@ Debugger entered--Lisp error: (void-function this)
 ---------- Buffer: *Backtrace* ----------
 </pre>
 </div>
-<p>Your cursor will be in this window (you may have to wait a few seconds before it becomes visible). To quit the debugger and make the debugger window go away, type:</p>
-<div class="example-block" >
-<pre class="example" >q
-</pre>
-</div>
+<p>Your cursor will be in this window (you may have to wait a few seconds before it becomes visible). To quit the debugger and make the debugger window go away, type: <kbd>q</kbd></p>
 <p>Please type <kbd>q</kbd> right now, so you become confident that you can get out of the debugger. Then, type <kbd>C-x C-e</kbd> again to re-enter it.</p>
 <p>Based on what we already know, we can almost read this error message.</p>
 <p>You read the <span class="file" >*Backtrace*</span> buffer from the bottom up; it tells you what Emacs did. When you typed <kbd>C-x C-e</kbd>, you made an interactive call to the command <code>eval-last-sexp</code>.  <code>eval</code> is an abbreviation for ‘evaluate’ and <code>sexp</code> is an abbreviation for ‘symbolic expression’. The command means ‘evaluate last symbolic expression’, which is the expression just before your cursor.</p>
@@ -582,7 +580,7 @@ Debugger entered--Lisp error: (void-function this)
 <p>We can articulate another characteristic of Lisp based on what we have discussed so far––an important characteristic: a symbol, like <code>+</code>, is not itself the set of instructions for the computer to carry out. Instead, the symbol is used, perhaps temporarily, as a way of locating the definition or set of instructions. What we see is the name through which the instructions can be found. Names of people work the same way. I can be referred to as ‘Bob’; however, I am not the letters ‘B’, ‘o’, ‘b’ but am, or was, the consciousness consistently associated with a particular life-form. The name is not me, but it can be used to refer to me.</p>
 <p>In Lisp, one set of instructions can be attached to several names. For example, the computer instructions for adding numbers can be linked to the symbol <code>plus</code> as well as to the symbol <code>+</code> (and are in some dialects of Lisp). Among humans, I can be referred to as ‘Robert’ as well as ‘Bob’ and by other words as well.</p>
 <p>On the other hand, a symbol can have only one function definition attached to it at a time. Otherwise, the computer would be confused as to which definition to use. If this were the case among people, only one person in the world could be named ‘Bob’. However, the function definition to which the name refers can be changed readily.  (See Section <a href="#install-a-function-definition" >Install a Function Definition</a>.)</p>
-<p>Since Emacs Lisp is large, it is customary to name symbols in a way that identifies the part of Emacs to which the function belongs. Thus, all the names for functions that deal with Texinfo start with ‘texinfo-’ and those for functions that deal with reading mail start with ‘rmail-’.</p>
+<p>Since Emacs Lisp is large, it is customary to name symbols in a way that identifies the part of Emacs to which the function belongs. Thus, all the names for functions that deal with Texinfo start with ‘<code>texinfo-</code>’ and those for functions that deal with reading mail start with ‘<code>rmail-</code>’.</p>
 </div>
 <h3 id="the-lisp-interpreter" >The Lisp Interpreter</h3>
 <div class="hBody-3" >
@@ -657,7 +655,9 @@ Debugger entered--Lisp error: (void-function fill-column)
 <h4 id="error-message-for-a-symbol-without-a-value" >Error Message for a Symbol Without a Value</h4>
 <div class="hBody-4" >
 <p>If you attempt to evaluate a symbol that does not have a value bound to it, you will receive an error message. You can see this by experimenting with our 2 plus 2 addition. In the following expression, put your cursor right after the <code>+</code>, before the first number 2, type <kbd>C-x C-e</kbd>:</p>
-<p>In GNU Emacs 22, you will create a <span class="file" >*Backtrace*</span> buffer that says:</p>
+<pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre>
+<p>In GNU Emacs 26, you will create a <span class="file" >*Backtrace*</span> buffer that says:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--Lisp error: (void-variable +)
@@ -671,7 +671,7 @@ Debugger entered--Lisp error: (void-variable +)
 </pre>
 </div>
 <p>(Again, you can quit the debugger by typing <kbd>q</kbd> in the <span class="file" >*Backtrace*</span> buffer.)</p>
-<p>This backtrace is different from the very first error message we saw, which said, ‘Debugger entered--Lisp error: (void-function this)’. In this case, the function does not have a value as a variable; while in the other error message, the function (the word ‘this’) did not have a definition.</p>
+<p>This backtrace is different from the very first error message we saw, which said, ‘<code>Debugger entered--Lisp error: (void-function this)</code>’. In this case, the function does not have a value as a variable; while in the other error message, the function (the word ‘this’) did not have a definition.</p>
 <p>In this experiment with the <code>+</code>, what we did was cause the Lisp interpreter to evaluate the <code>+</code> and look for the value of the variable instead of the function definition. We did this by placing the cursor right after the symbol rather than after the parenthesis of the enclosing list as we did before. As a consequence, the Lisp interpreter evaluated the preceding s-expression, which in this case was <code>+</code> by itself.</p>
 <p>Since <code>+</code> does not have a value bound to it, just the function definition, the error message reported that the symbol&#39;s value as a variable was void.</p>
 </div>
@@ -764,7 +764,7 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hello)
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;This message appears in the echo area!&#34;</span><span class="p">)</span>
 </code></pre>
 <p>The whole string between double quotation marks is a single argument and is printed <i>in toto</i>. (Note that in this example, the message itself will appear in the echo area within double quotes; that is because you see the value returned by the <code>message</code> function. In most uses of <code>message</code> in programs that you write, the text will be printed in the echo area as a side-effect, without the quotes. See Section <a href="#an-interactive-multiply-by-seven" >An Interactive <code>multiply-by-seven</code></a> in detail, for an example of this.)</p>
-<p>However, if there is a ‘%s’ in the quoted string of characters, the <code>message</code> function does not print the ‘%s’ as such, but looks to the argument that follows the string. It evaluates the second argument and prints the value at the location in the string where the ‘%s’ is.</p>
+<p>However, if there is a ‘<code>%s</code>’ in the quoted string of characters, the <code>message</code> function does not print the ‘<code>%s</code>’ as such, but looks to the argument that follows the string. It evaluates the second argument and prints the value at the location in the string where the ‘<code>%s</code>’ is.</p>
 <p>You can see this by positioning the cursor after the following expression and typing <kbd>C-x C-e</kbd>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;The name of this buffer is: %s.&#34;</span> <span class="p">(</span><span class="nf">buffer-name</span><span class="p">))</span>
 </code></pre>
@@ -779,8 +779,8 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hello)
          <span class="p">(</span><span class="nf">-</span> <span class="nv">fill-column</span> <span class="mi">14</span><span class="p">)</span> <span class="s">&#34;pink elephants&#34;</span><span class="p">)</span>
 </code></pre>
 <p>a rather whimsical message will appear in your echo area. On my system it says, <code>&#34;There are 58 pink elephants in the office!&#34;</code>.</p>
-<p>The expression <code>(- fill-column 14)</code> is evaluated and the resulting number is inserted in place of the ‘%d’; and the string in double quotes, <code>&#34;pink elephants&#34;</code>, is treated as a single argument and inserted in place of the ‘%s’.  (That is to say, a string between double quotes evaluates to itself, like a number.)</p>
-<p>Finally, here is a somewhat complex example that not only illustrates the computation of a number, but also shows how you can use an expression within an expression to generate the text that is substituted for ‘%s’:</p>
+<p>The expression <code>(- fill-column 14)</code> is evaluated and the resulting number is inserted in place of the ‘<code>%d</code>’; and the string in double quotes, <code>&#34;pink elephants&#34;</code>, is treated as a single argument and inserted in place of the ‘<code>%s</code>’.  (That is to say, a string between double quotes evaluates to itself, like a number.)</p>
+<p>Finally, here is a somewhat complex example that not only illustrates the computation of a number, but also shows how you can use an expression within an expression to generate the text that is substituted for ‘<code>%s</code>’:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;He saw %d %s&#34;</span>
          <span class="p">(</span><span class="nf">-</span> <span class="nv">fill-column</span> <span class="mi">32</span><span class="p">)</span>
          <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;red &#34;</span>

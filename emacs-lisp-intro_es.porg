@@ -14,6 +14,7 @@
 # ..options  > fancyCode toc
 ..options    > fancyCode toc
 
+# @ keep-lines ^$\|^#
 @ ‘’ ^[^#^j].+^j @[^[<({]+[[<({][^]>})]+[]>})]
 
 # This is an @e(Introduction to Programming in Emacs Lisp), for people who are
@@ -71,7 +72,7 @@ and promoting software freedom.”
   programación llamado Emacs Lisp. El código escrito en este lenguaje de
   programación es el software––el conjunto de instrucciones––que le indican al
   ordenador qué hacer cuando se le dan comandos. Emacs está diseñado de forma
-  que se puede escribir nuevo código en Emacs Lisp e instalarlo fácilmente como
+  que se pueda escribir nuevo código en Emacs Lisp e instalarlo fácilmente como
   una extensión al editor.
 
 #   (GNU Emacs is sometimes called an “extensible editor”, but it does much
@@ -84,12 +85,12 @@ and promoting software freedom.”
 #   of the word.)
   (GNU Emacs se define muchas veces como un “editor extensible”, pero hace
   mucho más que proporcionar capacidad de edición. Es mejor referirse a Emacs
-  como un “entorno de computación extensible”. Sin embargo, esta frase es un
+  como un “entorno de computación extensible”. Sin embargo, esa frase es un
   poco pretenciosa. Es más fácil referirse a Emacs simplemente como un
   editor. De hecho, cada cosa que se hace en Emacs––encontrar la fecha Maya y
   fases de la luna, simplificar polinomios, depurar código, administrar
   ficheros, leer cartas, escribir libros––todas estas actividades son maneras
-  de editar en un sentido amplio de la palabra.)
+  de editar en un sentido mas amplio de la palabra.)
 
 #   Although Emacs Lisp is usually thought of in association only with Emacs,
 #   it is a full computer programming language. You can use Emacs Lisp as you
@@ -103,8 +104,8 @@ and promoting software freedom.”
 #   Emacs Lisp is designed to get you started: to guide you in learning the
 #   fundamentals of programming, and more importantly, to show you how you can
 #   teach yourself to go further.
-  Quizás quiera comprender la programación; quizás quiera extender Emacs; o
-  quizás quiera llegar a ser un programador. Esta introducción a Emacs Lisp está
+  Quizás quieras entender la programación; quizás quieras extender Emacs; o
+  tal vez quieras convertirte en un programador. Esta introducción a Emacs Lisp está
   diseñada para que empieces: para guiarte en el aprendizaje de los fundamentos
   de la programación y, lo que es más importante, para mostrarte como puedes
   aprender a ir mas más allá.
@@ -121,16 +122,16 @@ and promoting software freedom.”
 #    don't have a running Emacs beside you, you can still read this book, but
 #    in this case, it is best to treat it as a novel or as a travel guide to a
 #    country not yet visited: interesting, but not the same as being there.
-   A lo largo de este documento, verá pequeños programas de ejemplo que se
-   pueden ejecutar dentro de Emacs. Si se lee este documento dentro de GNU
-   Emacs, puede ejecutar los programas tal y como aparecen. (Esto es fácil de
-   hacer y se explica cuando se presentan los ejemplos). Alternativamente, puede
-   leer esta introducción como un libro impreso mientras se está sentando con un
+   A lo largo de este documento, verás pequeños programas de ejemplo que se
+   pueden ejecutar dentro de Emacs. Si lees este documento dentro de GNU Emacs,
+   puedes ejecutar los programas tal y como aparecen. (Esto es fácil de hacer y
+   se explica cuando se presentan los ejemplos). Alternativamente, puedes leer
+   esta introducción como un libro impreso mientras se está sentando frente a un
    ordenador ejecutando Emacs. (Esto es lo que me gusta hacer; me gustan los
-   libros impresos.) Si usted no se está ejecutando Emacs, todavía se puede leer
-   este libro, pero en este caso, lo mejor es tratarlo como una novela, o como
-   una guía de viaje a un país que aún no visitado: interesante, pero no es lo
-   mismo que estar allí.
+   libros impresos.) Si no tienes un Emacs funcionando a tu lado, todavía
+   puedes leer este libro, pero en este caso, lo mejor es tratarlo como una
+   novela, o como una guía de viaje a un país que aún no visitas: interesante,
+   pero no es lo mismo que estar allí.
 
 #    Much of this introduction is dedicated to walkthroughs or guided tours of
 #    code used in GNU Emacs. These tours are designed for two purposes: first,
@@ -140,14 +141,15 @@ and promoting software freedom.”
 #    that you will pick up the habit of browsing through source code. You can
 #    learn from it and mine it for ideas. Having GNU Emacs is like having a
 #    dragon's cave of treasures.
-   Gran parte de esta introducción se dedica a paseos guiados de código usado en
-   GNU Emacs. Estos paseos están diseñados para dos propósitos: primero,
-   familiarizarse con código real que funciona (código que se usa cada día); y,
-   segundo, familiarizarse con cómo funciona Emacs. Es interesante ver cómo se
-   implementa un entorno completamente operativo. También, espero que aprenda el
-   hábito de navegar a través del código fuente. Puedes aprender mucho
-   comparando código de otros con el propio y extraer nuevas ideas. Tener GNU
-   Emacs es como tener la cueva del dragón de los tesoros.
+   Gran parte de esta introducción esta dedicada a recorridos o visitas guiadas
+   del código usado en GNU Emacs. Estos recorridos están diseñados para dos
+   propósitos: primero, para que te familiarices con el código de trabajo real
+   (código que se usa cada día); y, segundo, para que te familiarices con el
+   funcionamiento de Emacs. Es interesante ver cómo se implementa un entorno de
+   trabajo completamente operativo. Ademas, espero que adquieras el hábito de
+   navegar a través del código fuente. Puedes aprender mucho comparando código
+   de otros con el propio y extraer nuevas ideas. Tener GNU Emacs es como tener
+   la cueva del dragón de los tesoros.
 
 #    In addition to learning about Emacs as an editor and Emacs Lisp as a
 #    programming language, the examples and guided tours will give you an
@@ -158,21 +160,21 @@ and promoting software freedom.”
 #    other objects that are part of the environment. Learning about these
 #    features of Emacs is like learning new routes around your home town.
    Además de aprender sobre Emacs como editor y Emacs Lisp como lenguaje de
-   programación, los ejemplos y visitas guiadas le darán una oportunidad para
-   familiarizarse con Emacs como un entorno de programación Lisp. GNU Emacs
-   soporta programación y provee herramientas que llegara a sentirse comodo
+   programación, los ejemplos y visitas guiadas te darán una oportunidad para
+   familiarizarte con Emacs como entorno de programación Lisp. GNU Emacs
+   soporta programación y provee herramientas que llegaras a sentirte comodo
    usando, como @k{M-.} (el atajo que invoca el comando @c{find-tag}). También
-   aprendera sobre búfers y otros objetos que forman parte del entorno.
-   Aprender estas funcionalidades de Emacs es como aprender nuevas rutas
+   aprenderas sobre los búfers y otros objetos que forman parte del entorno.
+   Aprender estas caracteristicas de Emacs es como aprender nuevas rutas
    alrededor de tu ciudad natal.
 
 #    Finally, I hope to convey some of the skills for using Emacs to learn
 #    aspects of programming that you don't know. You can often use Emacs to
 #    help you understand what puzzles you or to find out how to do something
 #    new. This self-reliance is not only a pleasure, but an advantage.
-   Finalmente, espero poder transmitir algunas habilidades para utilizar
-   Emacs para aprender aspectos de programación que no conoces. Con
-   frecuencia se puede usar Emacs para ayudarte a entender un rompecabezas o
+   Finalmente, espero poder transmitirte algunas habilidades para utilizar
+   Emacs con el fin de aprender aspectos de programación que no conoces. Con
+   frecuencia se puede usar Emacs como ayuda para entender un rompecabezas o
    para encontrar la manera de hacer algo nuevo. Este auto-descubrimiento no
    es solo un placer, también es una ventaja.
 
@@ -184,7 +186,7 @@ and promoting software freedom.”
 #    primer. The reason is that you may have become expert at reading
 #    reference manuals and be put off by the way this text is organized.
    Este texto está escrito como una introducción elemental para personas que no
-   son programadoras. Si usted es un programador, es posible que no este
+   son programadoras. Si eres es un programador, es posible que no estes
    satisfecho con este manual. La razón es que un programador puede tener que
    convertirse en experto leyendo manuales de referencia y este texto no está
    organizado como un manual de referencia.
@@ -207,7 +209,7 @@ and promoting software freedom.”
 #      the (one) place where the information I want is.
      Cuando llego al fin de un párrafo, asumo que este asunto está hecho,
      terminado, que sé todo lo que necesito (con la posible excepción del caso
-     cuando el siguiente párrafo empiece a hablar de el con más detalle). Espero
+     en que el siguiente párrafo empiece a hablar de ello con más detalle). Espero
      que un manual de referencia bien escrito no tenga mucha redundancia, y que
      tenga excelentes indicadores del (unico) lugar donde está la información
      que quiero.
@@ -222,7 +224,7 @@ and promoting software freedom.”
 #    context, or to review it.
    En primer lugar, intento decir cada cosa al menos tres veces: primero, para
    introducirlo; segundo, para mostrarlo en contexto; y tercero, para mostrarlo
-   en un contexto diferente, o para revisarlo.
+   en un contexto diferente, o revisarlo.
 
 #    Secondly, I hardly ever put all the information about a subject in one
 #    place, much less in one paragraph. To my way of thinking, that imposes
@@ -232,21 +234,21 @@ and promoting software freedom.”
 #    formally introduced.)
    En segundo lugar, casi nunca pongo toda la información sobre un tema en un
    solo lugar, y mucho menos en un párrafo. A mi manera de pensar, eso impone
-   una carga bastante pesada al lector. En vez de eso intento explicarte solo lo
-   que se necesitas saber en ese momento. (Algunas veces incluyo una pequeña
+   una carga bastante pesada al lector. En cambio, trato de explicar solo lo
+   que necesitas saber en ese momento. (Algunas veces incluyo una pequeña
    información extra, para que no haya sorpresas más tarde cuando la información
-   adicional sea introducida formalmente.)
+   adicional sea presentada formalmente.)
 
 #    When you read this text, you are not expected to learn everything the
 #    first time. Frequently, you need only make, as it were, a ‘nodding
 #    acquaintance’ with some of the items mentioned. My hope is that I have
 #    structured the text and given you enough hints that you will be alert to
 #    what is important, and concentrate on it.
-   Cuando usted lee este texto, no espera aprender todo la primera vez.
-   Frecuentemente, solo necesita hacer, por asi decirlo, un ‘reconocimiento’ con
-   alguno de los articulos mencionados. Mi esperanza es haber estructurado el
+   Cuando leas este texto, no se esperes aprender todo la primera vez.
+   Frecuentemente, solo necesitas, por asi decirlo, un ‘asentir con la cabeza’
+   en alguno de los articulos mencionados. Mi esperanza es haber estructurado el
    texto y dar suficientes pistas para indicar lo que es importante y
-   concentrarse en ello.
+   te concentres en ello.
 
 #    You will need to “dive into” some paragraphs; there is no other way to
 #    read them. But I have tried to keep down the number of such paragraphs.
@@ -263,14 +265,14 @@ and promoting software freedom.”
 #    to it if you are like the programmer quoted above. And, of course, after
 #    you have read this @e{Introduction}, you will find the @e{Reference
 #    Manual} useful when you are writing your own programs.
-   Esta introducción a @e{Programación en Emacs Lisp} viene acompañada de un
-   documento complementario. @e{El Manual de Referencia de GNU Emacs Lisp}. El
-   manual de referencia tiene más detalles que esta introducción. En el manual
-   de referencia, toda la información sobre un asunto está concentrada en un
-   solo lugar. Usted debe recurrir a ella si es como el programador citado
+   Esta introducción a la @e{Programación en Emacs Lisp} tiene un documento
+   complementario. @e{El Manual de Referencia de GNU Emacs Lisp}. El manual de
+   referencia tiene más detalles que esta introducción. En el manual de
+   referencia, toda la información sobre un tema se concentra en un solo
+   lugar. Deberias recurrir a el si eres como el programador citado
    anteriormente. Y, por supuesto, después de haber leido esta @e{Introducción},
-   encontrara el @e{Manual de Referencia} util cuando este escribiendo sus
-   propios programas.
+   encontraras el @e{Manual de Referencia} util cuando escribas tus propios
+   programas.
 
 # ** Lisp History
 ** Historia de Lisp
@@ -281,14 +283,14 @@ and promoting software freedom.”
 #    writing editor commands and integrated environments.
    Lisp fué originariamente desarrollado a finales de los años 50 en el
    Instituto Tecnológico de Massachusetts para la investigacion en inteligencia
-   artificial. El gran poder del lenguaje Lisp lo hace superior para otros
-   propósitos también, como la escritura de comandos de edición y entornos
+   artificial. El gran poder del lenguaje Lisp lo hace superior también para
+   otros propósitos, como la escritura de comandos de edición y entornos
    integrados.
 
 #    GNU Emacs Lisp is largely inspired by Maclisp, which was written at MIT in
 #    the 1960s. It is somewhat inspired by Common Lisp, which became a
 #    standard in the 1980s. However, Emacs Lisp is much simpler than Common
-#    Lisp.  (The standard Emacs distribution contains an optional extensions
+#    Lisp. (The standard Emacs distribution contains an optional extensions
 #    file, @f{cl.el}, that adds many Common Lisp features to Emacs Lisp.)
    GNU Emacs Lisp está fuertemente inspirado en Maclisp, que fue escrito en el
    MIT en la decada de 1960. Está en cierto modo inspirado en Common Lisp, que
@@ -298,28 +300,28 @@ and promoting software freedom.”
    de Common Lisp a Emacs Lisp.)
 
 # ** Note for Novices
-** Nota para principiantes
+** Nota para los principiantes
 
 #    If you don't know GNU Emacs, you can still read this document profitably.
 #    However, I recommend you learn Emacs, if only to learn to move around your
 #    computer screen. You can teach yourself how to use Emacs with the on-line
-#    tutorial. To use it, type @k{C-h t}.  (This means you press and release
+#    tutorial. To use it, type @k{C-h t}. (This means you press and release
 #    the @k{CTRL} key and the @k{h} at the same time, and then press and
 #    release @k{t}.)
-   Si usted no conoce GNU Emacs, todavia puede leer este documento
+   Si no conoces GNU Emacs, todavia puedes leer este documento
    provechosamente. Sin embargo, te recomiendo que aprendas Emacs, al menos
-   aprender a moverse alrededor de la pantalla del ordenador. Uno puede aprender
-   de manera autodidacta cómo usar Emacs con el tutorial incluido. Para usarlo,
-   escriba @k{C-h t}. (Esto significa que debe presionar la tecla @k{CTRL}
+   aprender a moverte alrededor de la pantalla del ordenador. Puedes aprender
+   por ti mismo como usar Emacs con el tutorial incorporado. Para usarlo,
+   escribe @k{C-h t}. (Esto significa que debes presionar la tecla @k{CTRL}
    y la @k{h} al mismo tiempo, y luego presionar y soltar @k{t}).
 
 #    Also, I often refer to one of Emacs's standard commands by listing the
 #    keys which you press to invoke the command and then giving the name of the
 #    command in parentheses, like this: @k{M-C-\} @%c(indent-region). What
 #    this means is that the @c{indent-region} command is customarily invoked by
-#    typing @k{M-C-\}.  (You can, if you wish, change the keys that are typed
+#    typing @k{M-C-\}. (You can, if you wish, change the keys that are typed
 #    to invoke the command; this is called @:{rebinding}. See Section
-#    @l{#Keymaps}.)  The abbreviation @k{M-C-\} means that you type your
+#    @l{#Keymaps}.) The abbreviation @k{M-C-\} means that you type your
 #    @k{META} key, @k{CTRL} key and @k{\} key all at the same time.  (On many
 #    modern keyboards the @k{META} key is labeled @k{ALT}.)  Sometimes a
 #    combination like this is called a keychord, since it is similar to the way
@@ -329,22 +331,22 @@ and promoting software freedom.”
 #    the @k{CTRL} key and the @k{\} key at the same time. But usually
 #    @k{M-C-\} means press the @k{CTRL} key along with the key that is labeled
 #    @k{ALT} and, at the same time, press the @k{\} key.
-   Con frecuencia, también me refiero a uno de los comandos estándar de Emacs
-   listando las teclas que se presionan para invocar el comando y, luego doi el
-   nombre del comando entre paréntesis, de la siguiente manera: @k{M-C-\}
-   (@c{indent-region}). Esto significa invocar el comando @c{indent-region}
-   presionando @k{M-C-\}. (Puede, Si lo desea, cambiar las teclas que se
-   presionan para invocar el comando; esto se denomina @:{rebinding}. Consulta la
-   Sección @l{#Mapas de teclado}.)  La abreviatura @k{M-C-\} significa que usted
-   presiona la tecla @k{META}, @k{CTRL}, y @k{\} todo al mismo tiempo. (En
-   muchos teclados modernos la tecla @k{META} es etiquetada con @k{ALT}.)
-   Algunas veces una combinación como esta se llama @e{keychord}, puesto que es
-   similar a tocar un acorde en un piano. Si el teclado no tiene una tecla
-   @k{META}, en su lugar se usa la tecla @k{ESC} como prefijo. En este caso
-   @k{M-C-\} significa que se presiona y libera @k{ESC} y luego presiona la
-   tecla @k{CTRL} y la tecla @k{\} al mismo tiempo. Pero normalmente @k{M-C-\}
-   significa presionar la tecla @k{CTRL} junto a la tecla que está marcada como
-   @k{ALT} y, al mismo tiempo, presionar la tecla @k{\}.
+   Ademas, a menudo me refiero a uno de los comandos estándar de Emacs listando
+   las teclas que se presionan para invocar el comando y, luego dando el nombre
+   del comando entre paréntesis, asi: @k{M-C-\} (@c{indent-region}). Esto
+   significa invocar el comando @c{indent-region} presionando @k{M-C-\}. (Puedes,
+   Si lo deseas, cambiar las teclas que se presionan para invocar el comando;
+   esto se denomina @:{rebinding}. Consulta la Sección @l{#Mapas de teclado}.)
+   La abreviatura @k{M-C-\} significa que debes presionar la tecla @k{META},
+   @k{CTRL}, y @k{\} al mismo tiempo. (En muchos teclados modernos la tecla
+   @k{META} se llama @k{ALT}.)  Algunas veces una combinación como esta
+   se llama un @e{acorde de teclas}, puesto que es similar a tocar un acorde en un
+   piano. Si el teclado no tiene una tecla @k{META}, en su lugar se usa la tecla
+   @k{ESC} como prefijo. En este caso @k{M-C-\} significa que se presiona y
+   libera @k{ESC} y luego se presionan la tecla @k{CTRL} y la tecla @k{\} al mismo
+   tiempo. Pero normalmente @k{M-C-\} significa presionar la tecla @k{CTRL}
+   junto a la tecla que está marcada como @k{ALT} y, al mismo tiempo, presionar
+   la tecla @k{\}.
 
 #    In addition to typing a lone keychord, you can prefix what you type with
 #    @k{C-u}, which is called the ‘universal argument’. The @k{C-u} keychord
@@ -354,20 +356,20 @@ and promoting software freedom.”
 #    command or otherwise runs the command differently than it would
 #    otherwise.)  See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Arguments<>Numeric Arguments} in
 #    @e(The GNU Emacs Manual).
-   Además de pulsar una sola combinación de teclas, se puede prefijar lo que se
-   escribe con @k{C-u}, que es llamado el ‘argumento universal’. El atajo
-   @k{C-u} pasa a ser un argumento para el comando subsiguiente. Asi, para
-   indentar una región de texto plano a 6 espacios, se marca la región, y
-   entonces presione @k{C-u 6 M-C-\}. (Si no se especifica un número, Emacs pasa
-   el número 4 al comando o ejecuta el comando de forma diferente). Consulta la
-   Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Arguments<>Argumentos Numéricos} en @e{El Manual de GNU
-   Emacs}.
+   Además de pulsar una sola combinación de teclas, puedes prefijar lo que
+   escribes con @k{C-u}, que se llama el ‘argumento universal’. El atajo @k{C-u}
+   pasa un argumento al siguiente comando. Por lo tanto, para indentar una
+   región de texto plano por 6 espacios, marca la región, y lugo presiona @k{C-u
+   6 M-C-\}. (Si no se especifica un número, Emacs pasa el número 4 al comando o
+   ejecuta el comando de forma diferente a como lo haria de otro modo). Consulta
+   la Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Arguments<>Argumentos
+   Numéricos} en @e{El Manual de GNU Emacs}.
 
 #    If you are reading this in Info using GNU Emacs, you can read through this
 #    whole document just by pressing the space bar, @k{SPC}.  (To learn about
 #    Info, type @k{C-h i} and then select Info.)
-   Si se está leyendo esto en Info usando GNU Emacs, puedes avanzar a través de
-   todo este documento presionando la barra de espacio, @k{SPC}. (Para
+   Si estás leyendo esto en Info usando GNU Emacs, puedes avanzar a través de
+   todo este documento presionando la barra espaciadora, @k{SPC}. (Para
    aprender acerca de Info, presiona @k{C-h i} y luego selecciona Info.)
 
 #    A note on terminology: when I use the word Lisp alone, I often am
@@ -386,10 +388,10 @@ and promoting software freedom.”
 #    both Philip Johnson and David Stampe for their patient encouragement. My
 #    mistakes are my own.
    Estoy agradecido a todos los que me ayudaron con este libro. Mi
-   agradecimiento especial a Jim Blandy, Noah Friedman, Jim Kingdon, Roland
+   especial agradecimiento a Jim Blandy, Noah Friedman, Jim Kingdon, Roland
    McGrath, Frank Ritter, Randy Smith, Richard M. Stallman, y Melissa
-   Weisshaus. Gracias también a Philip Johnson y David Stampe por su ánimo
-   paciente. Mis errores son míos.
+   Weisshaus. Gracias también a Philip Johnson y David Stampe por su paciente
+   aliento. Mis errores son míos.
 
 #    ..right >
 #      Robert J. Chassell @l{mailto:bob@@gnu.org}
@@ -405,17 +407,17 @@ and promoting software freedom.”
 #   unwarranted. Lisp stands for LISt Processing, and the programming language
 #   handles @e{lists} (and lists of lists) by putting them between parentheses.
 #   The parentheses mark the boundaries of the list. Sometimes a list is
-#   preceded by a single apostrophe or quotation mark, @'{'}@n{1} Lists are the
+#   preceded by a single apostrophe or quotation mark, @'{'}@n{1}. Lists are the
 #   basis of Lisp.
   Para el ojo inexperto, Lisp es un lenguaje de programación extraño. En
   código Lisp hay paréntesis por todas partes. Algunas personas incluso
   afirman que el nombre signfica ‘Lots of Isolated Silly Parentheses’
-  (‘Montones de Paréntesis Aislados Estúpidos’). Pero la protesta no tiene
-  fundamento. Lisp significa LISt Processing, y el lenguaje de
+  (‘Montones de Paréntesis Aislados Estúpidos’). Pero el reclamo es
+  injustificado. Lisp significa LISt Processing, y el lenguaje de
   programación maneja @e{listas} (y listas de listas) poniéndolas entre
   paréntesis. Los paréntesis marcan los límites de la lista. Algunas veces
   una lista va precedida por un apóstrofe simple o una marca de cita,
-  @'{'}@n{1} Las listas son el fundamento de Lisp.
+  @'{'}@n{1}. Las listas son el fundamento de Lisp.
 
 # ** Lisp Lists
 ** Listas Lisp
@@ -424,10 +426,10 @@ and promoting software freedom.”
 #    list is preceded by a single apostrophe. It could just as well be written
 #    as follows, which looks more like the kind of list you are likely to be
 #    familiar with:
-   En Lisp, una lista tiene el siguiente aspecto: @c{'(rosa violeta margarita tulipan)}.
-   Esta lista es precedida por una comilla. Bien, podría estar escrita de la
-   siguiende manera, que se parece mas al tipo de lista con la que se está
-   familiarizado:
+   En Lisp, una lista tiene el siguiente aspecto: @c{'(rosa violeta margarita
+   tulipan)}.  Esta lista es precedida por una comilla. Bien, podría estar
+   escrita de la siguiende manera, que se parece mas al tipo de lista con la que
+   probablemente estes familiarizado:
 
 #    ..src > elisp
 #      '(rose
@@ -447,12 +449,12 @@ and promoting software freedom.”
 #    like flowers in a field with a stone wall around them.
    Los elementos de esta lista son los nombres de 4 flores diferentes,
    separados por espacios en blanco y rodeados de paréntesis, como flores en
-   un campo con un muro de piedras alrededor de ellas.
+   un campo con un muro de piedras a su alrededor.
 
 #    Lists can also have numbers in them, as in this list: @c{(+ 2 2)}. This
 #    list has a plus-sign, @'{+}, followed by two @'{2}s, each separated by
 #    whitespace.
-   Las listas pueden también tener números dentro, como en esta lista: @c{(+
+   Las listas también pueden tener números, como en esta lista: @c{(+
    2 2)}. Esta lista tiene un signo más, @'{+}, seguido por dos @'{2}, cada
    uno separado por espacios en blanco.
 
@@ -465,14 +467,14 @@ and promoting software freedom.”
 #    punctuation marks.)
    En Lisp, tanto datos como programas se representan de la misma manera; es
    decir, son a la vez listas de palabras, números, u otras listas, separadas
-   por espacios en blanco y rodeadas de paréntesis. (Puesto que un programa son
-   datos, un programa puede servir fácilmente como datos para otros; esta es un
-   caracteristica muy poderosa de Lisp.)  (A proposito, estas dos marcas de
-   paréntesis @e{no} son listas Lisp, porque contienen @'{;} y @'{.} como marcas
-   de puntuación.)
+   por espacios en blanco y rodeadas de paréntesis. (Puesto que un programa se
+   parece a los datos, un programa puede servir fácilmente como datos para
+   otros; esta es un caracteristica muy poderosa de Lisp.)  (A proposito, estas
+   dos marcas de paréntesis @e{no} son listas Lisp, porque contienen @'{;} y
+   @'{.} como signos de puntuación.)
 
 #    Here is another list, this time with a list inside of it:
-   Aquí hay otra lista, esta vez con una lista dentro:
+   Aquí hay otra lista, esta vez con una lista dentro de ella:
 
 #    ..src > elisp
 #      '(this list has (a list inside of it))
@@ -481,13 +483,13 @@ and promoting software freedom.”
      '(esta lista tiene (una lista dentro de ella))
    < src..
 
-#    The components of this list are the words @'{this}, @'{list}, @'{has}, and
-#    the list @'{(a list inside of it)}. The interior list is made up of the
-#    words @'{a}, @'{list}, @'{inside}, @'{of}, @'{it}.
-   Los componentes de esta lista son las palabras @'{esta}, @'{lista},
-   @'{tiene}, y la lista @'{(una lista dentro de ella)}. La lista interior se
-   construye con las palabras @'{una}, @'{lista}, @'{dentro}, @'{de},
-   @'{ella}.
+#    The components of this list are the words @'c{this}, @'c{list}, @'c{has}, and
+#    the list @'c{(a list inside of it)}. The interior list is made up of the
+#    words @'c{a}, @'c{list}, @'c{inside}, @'c{of}, @'c{it}.
+   Los componentes de esta lista son las palabras @'c{esta}, @'c{lista},
+   @'c{tiene}, y la lista @'c{(una lista dentro de ella)}. La lista interior se
+   construye con las palabras @'c{una}, @'c{lista}, @'c{dentro}, @'c{de},
+   @'c{ella}.
 
 # *** Lisp Atoms
 *** Átomos Lisp
@@ -512,7 +514,7 @@ and promoting software freedom.”
 #     In a list, atoms are separated from each other by whitespace. They can
 #     be right next to a parenthesis.
     En una lista, los átomos se separan unos de otros por espacios en blanco.
-    Pueden ir pegados a un paréntesis.
+    Pueden estar justo al lado de un paréntesis.
 
 #     Technically speaking, a list in Lisp consists of parentheses surrounding
 #     atoms separated by whitespace or surrounding other lists or surrounding
@@ -535,10 +537,10 @@ and promoting software freedom.”
 #     texts, the word @:{form} is used as a synonym for expression.)
     La representación impresa de átomos y listas se llaman @:{expresiones
     simbólicas} o, más concisamente, @:{expresiones-s}. La palabra @:{expresión}
-    por sí misma puede referir o bien a la representación impresa, o al átomo o
+    por sí misma puede referirse o bien a la representación impresa, o al átomo o
     a la lista tal como se encuentra internamente en el ordenador. Con
-    frecuencia, las personas usan el término @:{expresión} indiscriminadamente.
-    (También, en muchos textos, la palabra @:{forma} se usa como un sinónimo de
+    frecuencia, la gente usan el término @:{expresión} indiscriminadamente.
+    (Ademas, en muchos textos, la palabra @:{forma} se usa como un sinónimo de
     expresión.)
 
 #     Incidentally, the atoms that make up our universe were named such when
@@ -551,7 +553,7 @@ and promoting software freedom.”
 #     far as list operations are concerned, the atoms of a list are
 #     unsplittable.
     Por cierto, los átomos que componen nuestro universo fueron nombrados asi
-    cuando se pensaba que eran indivisibles; pero se ha encontrado que los
+    cuando se pensaba que eran indivisibles; pero se ha descubierto que los
     átomos fisicos no son indivisibles. Las partes pueden dividir un átomo o
     puede fisionarse en 2 partes de igual tamaño. Los átomos físicos se
     nombraron prematuramente, antes de que su verdadera naturaleza fuese
@@ -583,7 +585,7 @@ and promoting software freedom.”
     Hay muchos tipos de átomos en la naturaleza, pero solo unos pocos en Lisp:
     por ejemplo, los @:{números}, como 37, 511, o 1729, y los @:{símbolos}, como
     @'{+}, @'{foo}, o @'{forward-line}. Las palabras que hemos listado en los
-    ejemplos anteriores son todos símbolos. En una conversacion cotidiana de
+    ejemplos anteriores son todos símbolos. En las conversaciones cotidianas de
     Lisp, la palabra “átomo” no se usa con frecuencia, porque los programadores
     normalmente intentan ser más específicos acerca del tipo de átomo que están
     tratando. La programación Lisp es mayormente sobre símbolos (y algunas veces
@@ -609,15 +611,15 @@ and promoting software freedom.”
 #     (for ‘string of characters’) and is the sort of thing that is used for
 #     messages that a computer can print for a human to read. Strings are a
 #     different kind of atom than numbers or symbols and are used differently.
-    En Lisp, todo el texto citado incluyendo la marca de puntuación y los
-    espacios en blanco son un solo átomo. Este tipo de átomo es llamado
-    @:{string} (@e(cadena), por ‘cadena de caracteres’) y es el tipo de cosa que
-    se utiliza para los mensajes que un ordenador puede imprimir para que un
-    humano lea. Las cadenas son un tipo de átomo diferente a los números, o
-    símbolos y se utilizan de manera diferente.
+    En Lisp, todo el texto entre comillas, incluyendo la marca de puntuación y los
+    espacios en blanco, son un unico átomo. Este tipo de átomo se llama
+    @:{string} @%i(cadena), por ‘cadena de caracteres’) y es el tipo de cosa que
+    se utiliza para los mensajes que un ordenador puede imprimir para que los
+    lea un humano. Las cadenas son un tipo de átomo diferente a los números, o
+    símbolos y se usan de manera diferente.
 
 # *** Whitespace in Lists
-*** Espacios en blanco en listas
+*** Espacios en blanco en las listas
 
 #     The amount of whitespace in a list does not matter. From the point of
 #     view of the Lisp language,
@@ -644,10 +646,10 @@ and promoting software freedom.”
     < src..
 
 #     Both examples show what to Lisp is the same list, the list made up of the
-#     symbols @'{this}, @'{list}, @'{looks}, @'{like}, and @'{this} in that
+#     symbols @'c{this}, @'c{list}, @'c{looks}, @'c{like}, and @'c{this} in that
 #     order.
-    Ambos ejemplos muestran que en Lisp es la misma lista, la lista hecha de
-    los símbolos @'{esta}, @'{lista}, @'{se}, @'{ve}, y @'{asi} en ese orden.
+    Ambos ejemplos muestran lo que para Lisp es la misma lista, la lista compuesta
+    por los símbolos @'c{esta}, @'c{lista}, @'c{se}, @'c{ve}, y @'c{asi} en ese orden.
 
 #     Extra whitespace and newlines are designed to make a list more readable
 #     by humans. When Lisp reads the expression, it gets rid of all the extra
@@ -655,8 +657,8 @@ and promoting software freedom.”
 #     order to tell them apart.)
     Los espacios en blanco adicionales y los saltos de línea están diseñados
     para crear una lista más legible para los humanos. Cuando Lisp lee la
-    expresión, se deshace de los espacios en blanco extra (pero necesita tener
-    al menos un espacio entre los átomos para distinguirlos.)
+    expresión, se deshace de todos los espacios en blanco adicionales (pero necesita tener
+    al menos un espacio entre los átomos para poder distinguirlos.)
 
 #     Odd as it seems, the examples we have seen cover almost all of what Lisp
 #     lists look like!  Every other list in Lisp looks more or less like one of
@@ -665,13 +667,13 @@ and promoting software freedom.”
 #     marks, a symbol looks like a word, and a number looks like a number.
 #     (For certain situations, square brackets, dots and a few other special
 #     characters may be used; however, we will go quite far without them.)
-    Aunque parezca raro, los ejemplos que hemos visto cubren casi todas las
-    listas en Lisp. Cualquier otra lista en Lisp se ve más o menos igual a uno
-    de estos ejemplos, excepto que la lista puede ser más larga y compleja. En
-    resumen, una lista está entre paréntesis, una cadena está entre comillas, un
-    símbolo se parece a una palabra, y un número a un número. (Para ciertas
-    situaciones, es pueden utilizar corchetes, puntos y otros caracteres
-    especiales; sin embargo; iremos bastante lejos sin ellos.)
+    Por extraño que parezca, los ejemplos que hemos visto cubren casi todos los
+    aspectos de las listas de Lisp. Cualquier otra lista en Lisp se ve más o
+    menos igual a uno de estos ejemplos, excepto que la lista puede ser más
+    larga y compleja. En resumen, una lista está entre paréntesis, una cadena
+    entre comillas, un símbolo se parece a una palabra, y un número a un
+    número. (Para ciertas situaciones, es pueden utilizar corchetes, puntos y
+    otros caracteres especiales; sin embargo; iremos bastante lejos sin ellos.)
 
 # *** GNU Emacs Helps You Type Lists
 *** GNU Emacs te ayuda a escribir listas
@@ -690,8 +692,8 @@ and promoting software freedom.”
     para formatear la expresión Lisp, de modo que sea fácil de leer. Por
     ejemplo, presionando la tecla @k{TAB} automáticamente se indenta la línea
     donde se encuetra el cursor a la cantidad correcta. Un comando para indentar
-    apropiadamente el código en una región está asociado a @k{M-C-\}. La
-    indentación está diseñada de modo que se pueda ver qué elementos percecen a
+    apropiadamente el código en una región suele vincularse a @k{M-C-\}. La
+    indentación está diseñada de modo que se pueda ver qué elementos pertenecen a
     cada lista––los elementos de una sublista están más indentados que los
     elementos de la lista adjunta.
 
@@ -701,12 +703,13 @@ and promoting software freedom.”
 #     have its closing parenthesis match its opening parenthesis.  (See Section
 #     @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Major Modes<>Major Modes} in @e(The GNU Emacs Manual), for
 #     more information about Emacs's modes.)
-    Además, cuando escribes un paréntesis de cierre, Emacs mueve momentáneamente
-    el cursor hacia el parentesis de apertura correspondiente, para que puedas
-    ver cual es. Esto es muy útil, ya que cada lista que se escribe en Lisp debe
-    tener sus paréntesis emparejados con sus paréntesis de apertura. (Consulta la
-    Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Major Modes<>Modos Mayores} en @e{El Manual de GNU
-    Emacs}, para más información sobre los modos de Emacs.)
+    Además, al escribir un paréntesis de cierre, Emacs mueve el cursor
+    momentáneamente hacia el parentesis de apertura correspondiente, para que
+    puedas ver cual es. Esto es muy útil, ya que cada lista que escribas en
+    Lisp debe tener su paréntesis de cierre que coincida con su paréntesis de
+    apertura. (Consulta la Seccion @l{https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Major
+    Modes<>Modos Mayores} en @e{El Manual de GNU Emacs}, para más información
+    sobre los modos de Emacs.)
 
 # ** Run a Program
 ** Ejecutar un programa
@@ -733,13 +736,13 @@ and promoting software freedom.”
 #    above did not have a quote in front of it, so Lisp understands that the
 #    @c{+} is an instruction to do something with the rest of the list: add the
 #    numbers that follow.
-   El apóstrofe, @c{'}, que pongo delante de algunas de las listas de ejemplo en
+   El apóstrofe, @c{'}, que puse delante de algunas de las listas de ejemplo en
    las secciones anteriores se llama @:{quote} (citar); cuando precede a una
-   lista, le dice a Lisp que no haga nada con la lista, ademas de tomarla tal
+   lista, le dice a Lisp que no haga nada con la lista, mas que tomarla tal
    como está escrita. Pero si no hay una cita precediendo la lista, el primer
    elemento de la lista es especial: es un comando que el ordenador debe
    obedecer. (En Lisp, estos comandos se llaman @e{funciones}.) La lista @c[(+ 2
-   2)] montrada a continuación no tiene una cita delante de ella, por lo que
+   2)] mostrada a continuación no tiene una cita delante de ella, por lo que
    Lisp comprende que @c{+} es una instrucción para hacer alguna cosa con el
    resto de la lista: sumar los números que siguen.
 
@@ -750,6 +753,9 @@ and promoting software freedom.”
    tal lista: coloca tu cursor justo después del paréntesis derecho de la
    siguiente lista y presiona @k{C-x C-e}:
 
+#    ..src > elisp
+#      (+ 2 2)
+#    < src..
    ..src > elisp
      (+ 2 2)
    < src..
@@ -762,7 +768,7 @@ and promoting software freedom.”
    Verás que el número @c{4} aparece en el área eco. (En la jerga, lo que
    acabas de hacer es “evaluar la lista.” El área de eco es la línea en la
    parte inferior de la pantalla que muestra o hace “eco” del texto.) Ahora
-   intenta lo mismo con una lista citada: posiciona el cursor
+   intenta lo mismo con una lista con cita: coloca el cursor
    justo después de la siguiente lista y presiona @k{C-x C-e}:
 
 #    ..src > elisp
@@ -783,19 +789,19 @@ and promoting software freedom.”
    En ambos casos, lo que estás haciendo es dar un comando al programa dentro
    de GNU Emacs llamado @:{intérprete Lisp}––dando al intérprete un comando
    para evaluar la expresión. El nombre del intérprete Lisp viene de la
-   palabra para la tarea hecha por un humano que viene con el significado de
+   palabra para la tarea realizada por un humano que viene con el significado de
    una expresión––quien lo “interpreta”.
 
 #    You can also evaluate an atom that is not part of a list––one that is not
 #    surrounded by parentheses; again, the Lisp interpreter translates from the
 #    humanly readable expression to the language of the computer. But before
-#    discussing this (@l{#Variables}), we will discuss what the Lisp
+#    discussing this (see Section @l{#Variables}), we will discuss what the Lisp
 #    interpreter does when you make an error.
-   También se puede evaluar un átomo que no es parte de una lista––uno que no
-   está rodeado por paréntesis; de nuevo, el intérprete Lisp traduce desde la
-   expresión legible humanamente al lenguaje del ordenador. Pero antes de
-   discutir esto (vea la Seccion @l{#Variables}), vamos a discutir lo que el
-   intérprete de Lisp hace cuando cometes un el error.
+   También puedes evaluar un átomo que no es parte de una lista––uno que no
+   está rodeado por paréntesis; una vez mas, el intérprete Lisp traduce desde la
+   expresión humanamente legible al lenguaje del ordenador. Pero antes de
+   discutir esto (consulta la Seccion @l{#Variables}), veremos lo que hace
+   intérprete de Lisp cuando cometes un el error.
 
 # ** Generate an Error Message
 ** Generar un mensaje de error
@@ -808,29 +814,29 @@ and promoting software freedom.”
 #    be called “help” messages. They are like signposts to a traveler in a
 #    strange country; deciphering them can be hard, but once understood, they
 #    can point the way.
-   No te preocupes si generas un mensaje de error de manera accidental, ahora
-   daremos un comando al intérprete de Lisp que genara un mensaje de error.
-   Esta es una accion inofensiva; y de hecho, a menudo se intenta generar
-   mensajes de error de manera intencional. Una vez se comprende la jerga,
-   los mensajes de error pueden ser informativos. En vez de ser llamados
-   mensajes de “error”, deberían ser llamados mensajes de “ayuda”. Son como
-   letreros para un viajero en un país extraño; descifrarlos puede ser duro,
-   pero una vez comprendidos, pueden señalar el camino.
+   En parte para que no te preocupes si generas un mensaje de error de manera
+   accidental, ahora daremos un comando al intérprete de Lisp que genera un
+   mensaje de error.  Esta es una accion inofensiva; y de hecho, a menudo
+   intentaremos generar mensajes de error de manera intencional. Una vez se entiende
+   la jerga, los mensajes de error pueden ser informativos. En lugar de
+   llamarse mensajes de “error”, deberían llamarse mensajes de “ayuda”. Son
+   como señales para un viajero en un país extraño; descifrarlas puede ser
+   dificil, pero una vez se comprenden, pueden señalar el camino.
 
 #    The error message is generated by a built-in GNU Emacs debugger. We will
 #    ‘enter the debugger’. You get out of the debugger by typing @c{q}.
    El mensaje de error es generado por un depurador de codigo incorporado dentro
-   de GNU Emacs. Vamos a ‘entrar al depurador’. Se sale del depurador pulsando
+   de GNU Emacs. Vamos a ‘entrar al depurador’. Para salir del depurador, presiona
    @c{q}.
 
 #    What we will do is evaluate a list that is not quoted and does not have a
 #    meaningful command as its first element. Here is a list almost exactly
 #    the same as the one we just used, but without the single-quote in front of
 #    it. Position the cursor right after it and type @k{C-x C-e}:
-   Lo que vamos a hacer es evaluar una lista que no tiene cita y ni un
-   comando con significado como su primer elemento. Aquí hay una lista casi
+   Lo que vamos a hacer es evaluar una lista que no tiene cita y que no tiene un
+   comando con significado como primer elemento. Aquí hay una lista casi
    exactamente igual a la que acabamos de usar, pero sin la cita al inicio.
-   Coloque el cursor a la derecha donde esta finaliza y presione @k{C-x C-e}:
+   Coloca el cursor a la derecha donde esta finaliza y presiona @k{C-x C-e}:
 
 #    ..src > elisp
 #      (this is an unquoted list)
@@ -841,7 +847,7 @@ and promoting software freedom.”
 
 #    A @f{*Backtrace*} window will open up and you should see the following in
 #    it:
-   Se abrirá una ventana @f{*Backtrace*} y se verá lo siguiente:
+   Se abrirá una ventana @f{*Backtrace*} y deberias ver lo siguiente:
 
 #    ..example >
 #      ---------- Buffer: *Backtrace* ----------
@@ -867,26 +873,19 @@ and promoting software freedom.”
 
 #    Your cursor will be in this window (you may have to wait a few seconds
 #    before it becomes visible). To quit the debugger and make the debugger
-#    window go away, type:
-   Tu cursor estará en esta ventana (es posible que tenga que esperar unos pocos
-   segundos antes de que sea visible). Para salir del depurador y de su
-   ventana, presione:
-
-#    ..example >
-#      q
-#    < example..
-   ..example >
-     q
-   < example..
+#    window go away, type: @k(q)
+   Tu cursor estará en esta ventana (es posible que tengas que esperar unos
+   pocos segundos antes de que se haga visible). Para salir del depurador y
+   hacer que su ventana desaparezca, presiona: @k(q)
 
 #    Please type @k{q} right now, so you become confident that you can get out
 #    of the debugger. Then, type @k{C-x C-e} again to re-enter it.
-   Por favor, ahora presiona @kbd{q}, para que puedas comprobar que se puede
-   salir del depurador. A continuacion, presiona @{C-x C-e} una vez mas para
+   Por favor, ahora presiona @k{q}, para que puedas comprobar que se puede
+   salir del depurador. A continuacion, presiona @k{C-x C-e} una vez mas para
    re-entrar.
 
 #    Based on what we already know, we can almost read this error message.
-   Basandones en lo que ya sabemos, casi podemos leer este mensaje de error.
+   Basandonos en lo que ya sabemos, casi podemos leer este mensaje de error.
 
 #    You read the @f{*Backtrace*} buffer from the bottom up; it tells you what
 #    Emacs did. When you typed @k{C-x C-e}, you made an interactive call to
@@ -894,8 +893,8 @@ and promoting software freedom.”
 #    ‘evaluate’ and @c{sexp} is an abbreviation for ‘symbolic expression’. The
 #    command means ‘evaluate last symbolic expression’, which is the expression
 #    just before your cursor.
-   Lees el búfer @f{*Backtrace*} desde abajo hacia arriba; te dice lo que hizo
-   Emacs. Cuando se presionaste @k{C-x C-e}, se hace una llamada interactiva al
+   Leyendo el búfer @f{*Backtrace*} desde abajo hacia arriba; dice lo que hizo
+   Emacs. Cuando presionaste @k{C-x C-e}, se hiso una llamada interactiva al
    comando @c{eval-last-sexp}. @c{eval} es una abreviatura para ‘evaluar’ y
    @c{sexp} es una abreviatura para ‘expresión simbólica’. El comando significa
    ‘evalúa la última expresión simbólica’, que es la expresión inmediatamente
@@ -904,12 +903,12 @@ and promoting software freedom.”
 #    Each line above tells you what the Lisp interpreter evaluated next. The
 #    most recent action is at the top. The buffer is called the
 #    @f{*Backtrace*} buffer because it enables you to track Emacs backwards.
-   Cada linea sober esta cuenta lo que el intérprete Lisp evaluo después. La
+   Cada linea sobre esta cuenta lo que el intérprete Lisp evaluo a continuacion. La
    acción más reciente está en la parte superior. El búfer se llama
-   @f{*Backtrace*} ya que permite realizar un seguimiento de Emacs hacia atrás.
+   @f{*Backtrace*} por que permite realizar un seguimiento de Emacs hacia atrás.
 
 #    At the top of the @f{*Backtrace*} buffer, you see the line:
-   En la parte superior del búfer @f{*Backtrace*}, verá la línea:
+   En la parte superior del búfer @f{*Backtrace*}, verás la línea:
 
 #    ..example >
 #      Debugger entered--Lisp error: (void-function this)
@@ -922,7 +921,7 @@ and promoting software freedom.”
 #    word @'{this}. It is this action that generated the error message
 #    @'{void-function this}.
    El intérprete Lisp intentó evaluar el primer átomo de la lista, la palabra
-   @'{esto}. Esta es la acción que ha generado el mensaje de error @'{void-function
+   @'{esto}. Es esta acción la que genero el mensaje de error @'{void-function
    esto}.
 
 #    The message contains the words @'{void-function} and @'{this}.
@@ -932,9 +931,9 @@ and promoting software freedom.”
 #    word. For our purposes, we can define it by saying that a @:{function} is
 #    a set of instructions to the computer that tell the computer to do
 #    something.
-   La palabra @'{function} fué mencionada antes. Es una palabra muy
+   La palabra @'{function} @%i(función) fué mencionada antes. Es una palabra muy
    importante. Para nuestros propósitos, podemos definirla diciendo que una
-   @:{función} (@e{function}) es un conjunto de instrucciones para decirle al
+   @:{función} es un conjunto de instrucciones para decirle al
    ordenador que haga alguna cosa.
 
 #    Now we can begin to understand the error message: @'{void-function this}.
@@ -951,7 +950,7 @@ and promoting software freedom.”
    La palabra ligeramente extraña, @'{void-function}, está diseñada para cubrir
    la forma en que Emacs Lisp lo implementa, que es cuando un símbolo no tiene
    una definición de función adjunta, el sitio que contiene la instruccion esta
-   ‘vacio’ (@'(void)).
+   ‘vacio’ @%i(void).
 
 #    On the other hand, since we were able to add 2 plus 2 successfully, by
 #    evaluating @c{(+ 2 2)}, we can infer that the symbol @c{+} must have a set
@@ -969,10 +968,10 @@ and promoting software freedom.”
 #    only one line of error message; it will appear in the echo area and look
 #    like this:
    Es posible evitar que Emacs entre en el depurador en casos como este. No se
-   explicará cómo hacer esto aquí, pero se mencionará como se ve el resultado,
+   explicará cómo hacer esto aquí, pero mencionamos como se ve el resultado,
    porque puede que te encuentres con una situación similar si hay un error en
    algún código de Emacs que estes usando. En tales casos, solo verá una línea
-   de mensaje de error; aparecer en el área eco con el siguente aspecto:
+   de mensaje de error; aparecera en el área de eco con el siguente aspecto:
 
 #    ..example >
 #      Symbol's function definition is void: this
@@ -992,7 +991,7 @@ and promoting software freedom.”
 #    tells the computer where to find the instructions, but this is a
 #    complication we can ignore for the moment.)
    Conocemos el significado de la palabra @'{Symbol}. Se refiere al primer
-   átomo de la lista, la palabra @'{este}. La palabra @'{function} se refiere
+   átomo de la lista, la palabra @'{esto}. La palabra @'{function} se refiere
    a las instrucciones que indican al ordenador que hacer. (Técnicamente, el
    símbolo le indica al ordenador donde encontrar las instrucciones, pero esta
    es una complicación que podemos ignorar por el momento.)
@@ -1001,11 +1000,11 @@ and promoting software freedom.”
 #    void: this}. The symbol (that is, the word @'{this}) lacks instructions
 #    for the computer to carry out.
    El mensaje de error es comprensible: @'{La definición del símbolo
-   está vacía: este}. El símbolo (que es, la palabra @'{este}) carece de
-   instrucciones para que el ordenador lo lleve a cabo.
+   está vacía: esto}. El símbolo (que es, la palabra @'{esto}) carece de
+   instrucciones para que el ordenador las lleve a cabo.
 
 # ** Symbol Names and Function Definitions
-** Nombres de símbolos y definiciones de funciones
+** Nombres de símbolos y definiciones de funcion
 
 #    We can articulate another characteristic of Lisp based on what we have
 #    discussed so far––an important characteristic: a symbol, like @c{+}, is
@@ -1017,15 +1016,15 @@ and promoting software freedom.”
 #    @'{b} but am, or was, the consciousness consistently associated with a
 #    particular life-form. The name is not me, but it can be used to refer to
 #    me.
-   Se puede articular otra característica de Lisp basada en lo que hemos
+   Podemos articular otra característica de Lisp basada en lo que hemos
    discutido hasta ahora––una característica importante: un símbolo, como @c{+},
    no es en sí mismo el conjunto de instrucciones que el ordenador lleva a cabo. En
    su lugar, el símbolo se utiliza, quizás temporalmente, como una forma de
    localizar la definición o conjunto de instrucciones. Lo que vemos es el
    nombre con el cual se pueden encontrar las instrucciones. Los nombres de las
-   personas funcionan de la misma manera. Por ejemplo puede referirse a mi como
+   personas funcionan de la misma manera. Por ejemplo puedo ser referido como
    @'{Bob}; sin embargo, no soy las letras @'{B}, @'{o}, @'{b} pero soy, o fuí,
-   conscientemente asociado con una forma de vida particular. El nombre no soy
+   conscientemente asociado con una forma de vida en particular. El nombre no soy
    yo, pero puede ser usado para referirse a mi.
 
 #    In Lisp, one set of instructions can be attached to several names. For
@@ -1034,8 +1033,8 @@ and promoting software freedom.”
 #    of Lisp). Among humans, I can be referred to as @'{Robert} as well as
 #    @'{Bob} and by other words as well.
    En Lisp, un conjunto de instrucciones puede ligarse a varios nombres. Por
-   ejemplo, las instrucciones para sumar números pueden ligarse al símbolo
-   @c{mas} asi como a el símbolo @c{+} (y se encuentran en algunos dialectos de
+   ejemplo, las instrucciones para sumar números se pueden ligar al símbolo
+   @c{mas} asi como al símbolo @c{+} (y se encuentran en algunos dialectos de
    Lisp). Entre los humanos, puede referirse a @'{Robert} tan bien como @'{Bob} y
    con otras palabras también.
 
@@ -1045,22 +1044,22 @@ and promoting software freedom.”
 #    the world could be named @'{Bob}. However, the function definition to
 #    which the name refers can be changed readily.  (See Section @l{#Install a
 #    Function Definition}.)
-   Por otra parte, un símbolo solo puede estar ligado con una función a la
-   vez. De lo contrario, el ordenador estaría confundido acerca de qué
-   definición usar. Si este fuera el caso entre las gente, solo una persona en
-   el mundo podría llamarse @'{Bob}. Sin embargo, la definición de función a la
-   que el nombre hace referencia puede cambiarse fácilmente. (Consulta la Sección
-   @l{#Instalar una Definición de Función}.)
+   Por otra parte, un símbolo solo puede estar ligado con una definicion de
+   función a la vez. De lo contrario, el ordenador estaría confundido en cuanto a
+   qué definición usar. Si este fuera el caso entre las gente, solo una persona
+   en el mundo podría llamarse @'{Bob}. Sin embargo, la definición de función a
+   la que el nombre hace referencia puede cambiarse fácilmente. (Consulta la
+   Sección @l{#Instalar una Definición de Función}.)
 
 #    Since Emacs Lisp is large, it is customary to name symbols in a way that
 #    identifies the part of Emacs to which the function belongs. Thus, all the
-#    names for functions that deal with Texinfo start with @'{texinfo-} and
-#    those for functions that deal with reading mail start with @'{rmail-}.
+#    names for functions that deal with Texinfo start with @'c{texinfo-} and
+#    those for functions that deal with reading mail start with @'c{rmail-}.
    Ya que Emacs Lisp es extenso, se acostumbra nombrar los símbolos de una
-   manera que identifique la parte de Emacs a la que pertenece la función. En
+   forma que identifique la parte de Emacs a la que pertenece la función. En
    consecuencia, todos los nombres de funciones relacionadas con Texinfo
-   comienzan con @'{texinfo-} y aquellas relacionadas con la lectura de correo
-   empiezan con @'{rmail-}.
+   comienzan con @'c{texinfo-} y aquellas relacionadas con la lectura de correo
+   empiezan con @'c{rmail-}.
 
 # ** The Lisp Interpreter
 ** El intérprete Lisp
@@ -1075,7 +1074,7 @@ and promoting software freedom.”
 #    interpreter prints an error message.
    Basado en lo que hemos visto, ahora podemos empezar a entender lo que hace el
    intéprete Lisp cuando le ordenamos que evalue una lista. Primero, examina si
-   hay un símbolo cita antes de la lista; si lo hay, el intérprete solo nos da
+   hay un símbolo de cita antes de la lista; si lo hay, el intérprete solo nos da
    la lista. Por otra parte, si no hay cita, el intéprete mira si el primer
    elemento de la lista tiene una definición de función. De lo contrario, el
    intérprete imprime un mensaje de error.
@@ -1086,7 +1085,7 @@ and promoting software freedom.”
 #    and attach them to names, and how to do this without confusing either
 #    yourself or the computer.
    Así es como funciona Lisp. Simple. Hay complicaciones añadidas a las que
-   llegaremos en un minuto, pero estos son los fundamentos. Claro está, para
+   llegaremos en un minuto, pero estos son los fundamentos. Por supuesto, para
    escribir programas Lisp, se necesita saber como escribir definiciones de
    función y vincularlas a nombres, y como hacer esto sin confundirnos a
    nosotros mismos o al ordenador.
@@ -1097,9 +1096,9 @@ and promoting software freedom.”
 #    symbol's value as a @:{variable}. This situation is described in the
 #    section on variables.  (See Section @l{#Variables}.)
    Ahora, una primera complicación. Además de las listas, el intérprete Lisp
-   puede evaluar un símbolo no citado y sin paréntesis en torno a el. El
+   puede evaluar un símbolo sin citar y que no tiene paréntesis en torno a el. El
    intérprete intentará determinar el valor del símbolo como una @:{variable}.
-   Esta situación se descrita en el apartado de las variables. (Consulta la Seccion
+   Esta situación se describe en el apartado de las variables. (Consulta la Seccion
    @l{#Variables}.)
 
 #    The second complication occurs because some functions are unusual and do
@@ -1108,9 +1107,9 @@ and promoting software freedom.”
 #    there are not many of them. In the next few chapters, you will be
 #    introduced to several of the more important special forms.
    La segunda complicación ocurre debido a que algunas funciones son inusuales y
-   no funcionan de la manera habitual. Estas son llamadas @:{formas especiales}
-   @%e(special forms). Son usadas para trabajos especiales, como definir una
-   función, y no son muchas de ellas. En los siguientes capítulos, se
+   no funcionan de la manera habitual. Estas se llaman @:{formas especiales}
+   @%i(special forms). Se utilizan para trabajos especiales, como definir una
+   función, y no hay muchas de ellas. En los siguientes capítulos, se
    presentaran varias de las formas especiales más importantes.
 
 #    The third and final complication is this: if the function that the Lisp
@@ -1125,12 +1124,12 @@ and promoting software freedom.”
    La tercera y ultima complicación es la siguiente: si la función que el
    intérprete Lisp está examinando no es una forma especial, y si es parte de
    una lista, el intérprete Lisp mira si la lista tiene una lista dentro de
-   ella. Si hay una lista interna, el intérprete Lisp primero calcula lo qué
+   ella. Si existe una lista interna, el intérprete Lisp primero determina lo qué
    debe hacer con la lista interna, y luego trabaja en la lista externa. Si
-   hay otra lista embebida dentro de la lista interna, trabaja en esta
-   primero, y así. Siempre se trabaja en la lista mas interna primero. El
+   hay otra lista incrustada dentro de la lista interna, trabaja en esta
+   primero, y así sucesivamente. Siempre se trabaja en la lista mas interna primero. El
    interprete trabaja primero en la lista más interana, para evaluar el
-   resultado de esta lista. El resultado puede ser usado por la expresión
+   resultado de esa lista. El resultado puede ser usado por la expresión
    entre paréntesis.
 
 #    Otherwise, the interpreter works left to right, from one expression to the
@@ -1147,10 +1146,10 @@ and promoting software freedom.”
 #     code, which is not humanly readable. Byte compiled code runs faster than
 #     humanly readable code.
     Otro aspecto de la interpretación: el intérprete Lisp es capaz de
-    interpretar dos tipos de entidades: código legible humanamente, en el que
+    interpretar dos tipos de entidades: código humanamente legible, en el que
     nos centraremos exclusivamente, y código especialmente procesado, llamado
-    @:{compilado}, que no es humanamente legible. El código máquina compilado se
-    ejecuta más rápido que el código humanamente legible.
+    @:{compilado}, que no es humanamente legible. El código compilado se
+    ejecuta más rápido que el código legible humanamente.
 
 #     You can transform humanly readable code into byte compiled code by
 #     running one of the compile commands such as @c{byte-compile-file}. Byte
@@ -1161,9 +1160,9 @@ and promoting software freedom.”
     Tu puedes transformar código legible por humanos en código compilado
     ejecutando uno de los comandos de compilación como @c{byte-compile-file}.
     El código compilado se almacena normalmente en un fichero que finaliza
-    con una extensión @f{.elc} en vez de una extensión @f{.el}. Verás ambos
+    con una extensión @f{.elc} en lugar de una extensión @f{.el}. Verás ambos
     tipos de ficheros en el directorio @f{emacs/lisp}; los ficheros para leer
-    estos tinen la extensión @f{.el}.
+    son aquellos con la extensión @f{.el}.
 
 #     As a practical matter, for most things you might do to customize or
 #     extend Emacs, you do not need to byte compile; and I will not discuss the
@@ -1185,10 +1184,10 @@ and promoting software freedom.”
 #    comes from its use in everyday language, ‘to ascertain the value or amount
 #    of; to appraise’, according to @q{Webster's New Collegiate Dictionary}.
    Cuando el intérprete Lisp trabaja en una expresión, el término para la
-   actividad es llamada @:{evaluación}. Decimos que el intérprete ‘evalúa la
-   expresión’. Yo he usado este término varias veces antes. La palabra proviene
+   esa actividad se llama @:{evaluación}. Decimos que el intérprete ‘evalúa la
+   expresión’. He usado este término varias veces antes. La palabra proviene
    de su uso en el lenguaje cotidiano, ‘para determinar el valor o la cantidad de;
-   para estimar’ segun el @e{Webster's New Collegiate Dictionary}.
+   para evaluar’ segun el @e{Webster's New Collegiate Dictionary}.
 
 #    After evaluating an expression, the Lisp interpreter will most likely
 #    @:{return} the value that the computer produces by carrying out the
@@ -1198,14 +1197,14 @@ and promoting software freedom.”
 #    attempt to repeat continually what it is doing for ever and ever in what
 #    is called an ‘infinite loop’. These actions are less common; and we can
 #    ignore them.)  Most frequently, the interpreter returns a value.
-   Después de evaluar una expresión, lo mas probable es que el intérprete Lisp
+   Después de evaluar una expresión, es muy probable que el intérprete Lisp
    @:{devuelva} el valor que el ordenador produce al ejecutar las instrucciones
    que encuentra en la definición de la función, o quizás se de por vencido con
    en esa función y produzca un mensaje de error. (El intérprete también puede
    quedarse colgado, por así decirlo, a una función diferente o puede intentar
-   repetir continuamente lo que está haciendo por siempre  en lo que
-   se llama un ‘bucle infinito’. Estas acciones son menos comunes; y podemos
-   ignorarlas). Con mayor frecuencia, el intérprete devuelve un valor.
+   repetir continuamente lo que está haciendo por siempre en lo que se llama un
+   ‘bucle infinito’. Estas acciones son menos comunes; y podemos
+   ignorarlas). Con mas frecuencia, el intérprete devuelve un valor.
 
 #    At the same time the interpreter returns a value, it may do something else      ¤
 #    as well, such as move a cursor or copy a file; this other kind of action
@@ -1217,7 +1216,7 @@ and promoting software freedom.”
    cualquier otra cosa, como mover un cursor o copiar un fichero; este otro tipo
    de acción se denomina @:{efecto secundario}. Acciones que los humanos
    pensamos que son importantes, como imprimir resultados, con frecuencia son,
-   “efectos secundarios” del intérprete Lisp. La jerga puede sonar peculiar,
+   “efectos secundarios” para el intérprete Lisp. La jerga puede sonar peculiar,
    pero resulta que es bastante fácil aprender a utilizar los efectos
    secundarios.
 
@@ -1275,9 +1274,9 @@ and promoting software freedom.”
 #     symbolic expression’.
     Ahora es fácil comprender el nombre del comando invocado por el atajo @k{C-x
     C-e}: el nombre es @c{eval-last-sexp}. Las letras @c{sexp} son una
-    abreviatura para ‘expresión simbólica’, y @c{eval} es una abreviatura para
-    ‘evaluar’ @%e(evaluate). El comando significa ‘evaluar la última expresión
-    simbólica’.
+    abreviatura de ‘expresión simbólica’ @%i(symbolic expression), y @c{eval} es
+    una abreviatura de ‘evaluar’ @%i(evaluate). El comando significa ‘evaluar
+    la última expresión simbólica’.
 
 #     As an experiment, you can try evaluating the expression by putting the
 #     cursor at the beginning of the next line immediately following the
@@ -1304,11 +1303,11 @@ and promoting software freedom.”
 #     will get a 6 printed in the echo area!  This is because the command
 #     evaluates the expression @c{(+ 3 3)}.
     Si colocas el cursor al principio de la línea en blanco que sigue
-    inmediatamente a la expresión y presionas @k{C-x C-e}, aún se obtendrá el
+    inmediatamente a la expresión y presionas @k{C-x C-e}, aún obtendrás el
     valor 8 impreso en el área eco. Ahora coloca el cursor dentro de la
     expresión. Si lo pones justo después del penúltimo paréntesis (de modo que
-    parezca estar sobre el último paréntesis), ¡obtendrá un 6 impreso en el área
-    de eco! Esto es porque el comando evalúa la expresión @c{(+ 3 3)}.
+    parezca estar sobre el último paréntesis), ¡obtendrás un 6 impreso en el área
+    de eco! Esto se debe a que el comando evalúa la expresión @c{(+ 3 3)}.
 
 #     Now put the cursor immediately after a number. Type @k{C-x C-e} and you
 #     will get the number itself. In Lisp, if you evaluate a number, you get
@@ -1320,8 +1319,8 @@ and promoting software freedom.”
 #     section.
     Ahora coloca el cursor inmediatamente después de un número. Presiona @k{C-x
     C-e} y obtendras el número en sí. En Lisp, si evalúas un número, obtienes el
-    número en sí––así es cómo los números difieren de los símbolos. Si se evalúa
-    una lista que inicia con un símbolo como @c{+}, se optiene un valor devuelto
+    número en sí––así es cómo los números difieren de los símbolos. Si evalúas
+    una lista que inicia con un símbolo como @c{+}, obtendras un valor devuelto
     que es el resultado del ordenador tras ejecutar las instrucciones que
     aparecen en la definición de la función ligada a ese nombre. Si se evalua un
     símbolo por sí mismo, sucede algo diferente, como veremos en la siguiente
@@ -1338,34 +1337,34 @@ and promoting software freedom.”
 #    symbol can be any expression in Lisp, such as a symbol, number, list, or
 #    string. A symbol that has a value is often called a @:{variable}.
    En Emacs Lisp, un símbolo puede estar ligado a un valor como a una definición
-   de función. Las dos son diferentes. La definición de función es un conjunto
-   de instrucciones que el ordenador ejecuta. Por otro lado, un valor, es algo,
-   como un número o un nombre, que puede variar (es por ello, que tal símbolo se
-   llama variable). El valor de un símbolo puede ser cualquier expresión en
-   Lisp, por ejemplo un símbolo, número, lista, o cadena. Un símbolo que tiene
-   un valor con frecuencia se llama @:{variable}.
+   de función. Los dos son diferentes. La definición de función es un conjunto
+   de instrucciones que el ordenador ejecuta. Un valor, por otro lado, es algo,
+   como un número o un nombre, que puede variar (razon por la cual tal símbolo
+   se llama variable). El valor de un símbolo puede ser cualquier expresión de
+   Lisp, por ejemplo un símbolo, un número, una lista, o una cadena. Un símbolo
+   que tiene un valor con frecuencia se llama @:{variable}.
 
 #    A symbol can have both a function definition and a value attached to it at
 #    the same time. Or it can have just one or the other. The two are
 #    separate. This is somewhat similar to the way the name Cambridge can
 #    refer to the city in Massachusetts and have some information attached to
 #    the name as well, such as “great programming center”.
-   Un símbolo puede tanto una definición de función como un valor asociado a el
-   al mismo tiempo. O puede tener solo uno u otro. Los dos son independientes.
+   Un símbolo puede ser tanto una definición de función como un valor asociado a el
+   al mismo tiempo. O puede tener uno u otro. Los dos son independientes.
    Esto es algo similar a la forma en que el nombre Cambridge puede referirse a
    la ciudad en Massachusetts y tener alguna información ligada al nombre, por
-   ejemplo, un “gran centro de programación”.
+   ejemplo, como “gran centro de programación”.
 
 #    Another way to think about this is to imagine a symbol as being a chest of
 #    drawers. The function definition is put in one drawer, the value in
 #    another, and so on. What is put in the drawer holding the value can be
 #    changed without affecting the contents of the drawer holding the function
 #    definition, and vice-verse.
-   Otra forma de pensar en esto es imaginar un símbolo como un mueble con
-   cajones. La definición de función se pone en un cajón, el valor en otro, y
-   asi sucesivamente. Lo que se pone en el cajón que contiene el valor se puede
-   cambiar sin afectar los contenidos del cajón que almacena la definición de
-   función, y viceversa.
+   Otra manera de pensar en esto es imaginar un símbolo como un mueble con
+   cajones. La definición de función se coloca en un cajón, el valor en otro,
+   etcetera. Lo que se pone en el cajón que contiene el valor
+   se puede cambiar sin afectar el contenido del cajón que almacena la
+   definición de función, y viceversa.
 
 #    The variable @c{fill-column} illustrates a symbol with a value attached to
 #    it: in every GNU Emacs buffer, this symbol is set to some value, usually
@@ -1378,7 +1377,7 @@ and promoting software freedom.”
    normalmente 72 o 70, pero algunas veces en algún otro valor. Para encontrar
    el valor de este símbolo, evalúalo por sí mismo. Si estás leyendo esto
    dentro de GNU Emacs, puedes hacerlo poniendo el cursor después del
-   símbolo y pulsar @k{C-x C-e}:
+   símbolo y pulsando @k{C-x C-e}:
 
 #    ..src > elisp
 #      fill-column
@@ -1400,7 +1399,7 @@ and promoting software freedom.”
    como una variable se imprime exactamente de la misma forma que el valor
    devuelto por una función tras ejecutar sus instrucciones. Desde el punto de
    vista del intérprete Lisp, un valor devuelto es un valor devuelto. La clase
-   de expresion de la que proviene deja de importar una vez que se conoce el
+   de expresion de la que proviene deja de importar una vez se conoce el
    valor.
 
 #    A symbol can have any value attached to it or, to use the jargon, we can
@@ -1415,7 +1414,7 @@ and promoting software freedom.”
 #    A symbol can be bound to a value in several ways. See Section @l{#Setting
 #    the Value of a Variable}, for information about one way to do this.
    Un símbolo puede vincularse a un valor de varias maneras. Consulta la Sección
-   @l{#Configurando el valor de una variable}, para obtener información sobre
+   @l{#Establecer el valor de una variable}, para obtener información sobre
    como hacerlo.
 
 # *** Error Message for a Symbol Without a Function
@@ -1426,14 +1425,14 @@ and promoting software freedom.”
 #     to use it as a function name.
     Cuando evaluamos @c{fill-column} para encontrar su valor como una
     variable, no pusimos paréntesis alrededor de la palabra. Esto se debe a
-    que no pretendiamos usarla como un nombre de función.
+    que no pretendiamos usarla como nombre de función.
 
 #     If @c{fill-column} were the first or only element of a list, the Lisp
 #     interpreter would attempt to find the function definition attached to it.
 #     But @c{fill-column} has no function definition. Try evaluating this:
     Si @c{fill-column} fuese el primer o único elemento de una lista, el
     intérprete Lisp intentaría encontrar la definición de función adjunta.
-    Pero @c{fill-column} no tiene una definición de función. Trata de evaluar
+    Pero @c{fill-column} no tiene una definición de función. Intenta evaluar
     esto:
 
 #     ..src > elisp
@@ -1479,17 +1478,20 @@ and promoting software freedom.”
 #     it, you will receive an error message. You can see this by experimenting
 #     with our 2 plus 2 addition. In the following expression, put your cursor
 #     right after the @c{+}, before the first number 2, type @k{C-x C-e}:
-    Si intenta evaluar un símbolo que no tiene un valor asociado, recibirá un
+    Si intentas evaluar un símbolo que no tiene un valor asociado, recibirás un
     mensaje de error. Esto se puede ver experimentando con nuestra suma 2
-    más 2. En la siguiente expresión, pon el cursor justo después del
+    más 2. En la siguiente expresión, coloca el cursor justo después del
     @c{+}, antes del primer número 2, presiona @k{C-x C-e}:
 
+#     ..src > elisp
+#       (+ 2 2)
+#     < src..
     ..src > elisp
       (+ 2 2)
     < src..
 
-#     In GNU Emacs 22, you will create a @f{*Backtrace*} buffer that says:
-    En GNU Emacs 22, se creará un buffer @f{*Backtrace*} que dice:
+#     In GNU Emacs 26, you will create a @f{*Backtrace*} buffer that says:
+    En GNU Emacs 26, se creará un buffer @f{*Backtrace*} que dice:
 
 #     ..example >
 #       ---------- Buffer: *Backtrace* ----------
@@ -1520,14 +1522,14 @@ and promoting software freedom.”
     @f{*Backtrace*}.)
 
 #     This backtrace is different from the very first error message we saw,
-#     which said, @'{Debugger entered--Lisp error: (void-function this)}. In
+#     which said, @'c{Debugger entered--Lisp error: (void-function this)}. In
 #     this case, the function does not have a value as a variable; while in the
 #     other error message, the function (the word ‘this’) did not have a
 #     definition.
     Esta traza inversa es diferente del primer mensaje de error que vimos,
-    que decia, @'{Debugger entered--Lisp error: (void-function esto)}. En
+    que decia, @'c{Debugger entered--Lisp error: (void-function esto)}. En
     este caso, la función no tiene una valor como variable; mientras en
-    el otro mensaje de error, la función (la palabra ‘esto’) no tuvo una
+    el otro mensaje de error, la función (la palabra ‘esto’) no tenia una
     definición.
 
 #     In this experiment with the @c{+}, what we did was cause the Lisp
@@ -1541,14 +1543,14 @@ and promoting software freedom.”
     de la definición de la función. Hicimos esto colocando el cursor justo
     después del símbolo en lugar de ponerlo al final de los parentesis que
     cierran la lista como hicimos antes. Como consecuencia, el intérprete
-    Lisp evaluó la expresión-s anterior, que en este caso fué el @c{+} en sí.
+    Lisp evaluó la expresión-s precedente, que en este caso era el @c{+} en sí.
 
 #     Since @c{+} does not have a value bound to it, just the function
 #     definition, the error message reported that the symbol's value as a
 #     variable was void.
     Ya que @c{+} no tiene un valor asociado, solo la definición de función,
     el mensaje de error informaba que el valor del símbolo como una variable
-    estaba vacío.
+    esta vacío.
 
 # ** Arguments
 ** Argumentos
@@ -1556,7 +1558,7 @@ and promoting software freedom.”
 #    To see how information is passed to functions, let's look again at our old
 #    standby, the addition of two plus two. In Lisp, this is written as
 #    follows:
-   Para ver cómo la información se pasa a las funciones, veamos de nuevo
+   Para ver cómo se pasa la información a las funciones, veamos de nuevo
    nuestro viejo recurso, la suma de dos más dos. En Lisp, esto se escribe
    de la siguiente manera:
 
@@ -1577,7 +1579,7 @@ and promoting software freedom.”
 #    @c{+}. These numbers are the information that is given to or @:{passed}
 #    to the function.
    Los números sumados por @c{+} se llaman @:{argumentos} de la función
-   @c{+}. Estos números son la información que se da o @:{pasa} a la función.
+   @c{+}. Estos números son la información que se da o se @:{pasa} a la función.
 
 #    The word ‘argument’ comes from the way it is used in mathematics and does
 #    not refer to a disputation between two people; instead it refers to the
@@ -1587,7 +1589,7 @@ and promoting software freedom.”
 #    are passed to the function. Different functions require different numbers
 #    of arguments; some functions require none at all.@n{2}
    La palabra ‘argumento’ proviene de la forma en que se usa en
-   matemáticas y no se refiere a una disputa entre 2 personas, En su lugar,
+   matemáticas y no se refiere a una disputa entre dos personas, En su lugar,
    se refiere a la información entregada a la función, en este caso, al
    @c{+}. En Lisp, los argumentos de una función son los átomos o listas que
    siguen a la función. Los valores devueltos por la evaluación de estos
@@ -1602,8 +1604,8 @@ and promoting software freedom.”
 #     of information it uses. The arguments to a function such as @c{+} must
 #     have values that are numbers, since @c{+} adds numbers. Other functions
 #     use different kinds of data for their arguments.
-    El tipo de dato que deben transmitirse a una función dependen de que tipo de
-    información se utilice. Los argumentos de una función como @c{+} deben
+    El tipo de datos que deben pasarse a una función dependen del tipo de
+    información que utilice. Los argumentos de una función como @c{+} deben
     tener valores númericos, ya que @c{+} suma números. Otras funciones
     utilizan diferentes tipos de datos para sus argumentos.
 
@@ -1614,7 +1616,7 @@ and promoting software freedom.”
     Por ejemplo, la función @c{concat} concatena o une dos o más cadenas de
     texto para producir una cadena. Los argumentos son cadenas. Concatenar
     las cadenas de caracteres @c{abc}, @c{def} produce una cadena @c{abcdef}.
-    Esto puede verse evaluando lo siguiente:
+    Esto se puede ver evaluando lo siguiente:
 
 #     ..src > elisp
 #       (concat "abc" "def")
@@ -1633,16 +1635,16 @@ and promoting software freedom.”
 #     that indicate the beginning and end of the substring. The numbers are a
 #     count of the number of characters (including spaces and punctuation) from
 #     the beginning of the string.
-    Una función como @c{substring} utiliza una cadena y numeros como
+    Una función como @c{substring} utiliza tanto una cadena como numeros como
     argumentos. La función devuelve una parte de la cadena, una subcadena del
     primer argumento. Esta función toma tres argumentos. Su primer argumento
     es la cadena de caracteres, el segundo y tercer argumento son números que
-    indican el principio y el fin de la subcadena. Los números son un conteo
-    del número de caracteres (incluyendo espacios y puntuaciones) desde el
+    indican el principio y el fin de la subcadena. Los números son un recuento
+    del número de caracteres (incluyendo espacios y si signos de puntuacion) desde el
     principio de la cadena.
 
 #     For example, if you evaluate the following:
-    Por ejemplo, si evalúa lo siguiente:
+    Por ejemplo, si evalúas lo siguiente:
 
 #     ..src > elisp
 #       (substring "The quick brown fox jumped." 16 19)
@@ -1653,7 +1655,7 @@ and promoting software freedom.”
 
 #     you will see @c{"fox"} appear in the echo area. The arguments are the
 #     string and the two numbers.
-    Verá aparecer @c{"zorro"} en el área de eco. Los argumentos son la cadena y
+    Veras aparecer @c{"zorro"} en el área de eco. Los argumentos son la cadena y
     los dos números.
 
 #     Note that the string passed to @c{substring} is a single atom even though
@@ -1664,10 +1666,10 @@ and promoting software freedom.”
 #     extracts a part. However, @c{substring} is only able to extract a
 #     substring from an argument that is a string, not from another type of
 #     atom such as a number or symbol.
-    Tenga en cuenta que la cadena pasada a @c{substring} es un solo átomo a
+    Ten en cuenta que la cadena pasada a @c{substring} es un unico átomo a
     pesar de estar compuesto de varias palabras separadas por espacios. Lisp
     considera todo entre las dos comillas como parte de la cadena, incluyendo
-    los espacios. Se puede pensar en la función @c{substring} como una especie
+    los espacios. Puedes pensar en la función @c{substring} como una especie
     de ‘acelerador de particulas’ ya que toma un átomo de otro modo indivisible
     y extrae una parte. Sin embargo, @c{substring} solo es capaz de extraer una
     subcadena de un argumento que es una cadena, no de otro tipo de átomo por
@@ -1680,12 +1682,11 @@ and promoting software freedom.”
 #     For example, when the symbol @c{fill-column} by itself is evaluated, it
 #     returns a number. This number can be used in an addition.
     Un argumento puede ser un símbolo que devuelve un valor cuando se evalua.
-    Por ejemplo, evaluar el símbolo @c{fill-column} en si, devuelve un
+    Por ejemplo, evaluar el símbolo @c{fill-column} en si mismo, devuelve un
     número. Este número se puede utilizar en una suma.
 
 #     Position the cursor after the following expression and type @k{C-x C-e}:
-    Coloca el cursor después de la siguiente expresión y presiona @k{C-x
-    C-e}:
+    Coloca el cursor después de la siguiente expresión y presiona @k{C-x C-e}:
 
 #     ..src > elisp
 #       (+ 2 fill-column)
@@ -1697,9 +1698,8 @@ and promoting software freedom.”
 #     The value will be a number two more than what you get by evaluating
 #     @c{fill-column} alone. For me, this is 74, because my value of
 #     @c{fill-column} is 72.
-    El valor será dos, mas el número que se obtiene al evaluar solamente
-    @c{fill-column}. En mí caso, es 74, porque mi valor de @c{fill-column}
-    es 72.
+    El valor será dos mas el número que se obtiene evaluando @c{fill-column}.
+    En mí caso, es 74, porque mi valor de @c{fill-column} es 72.
 
 #     As we have just seen, an argument can be a symbol that returns a value
 #     when evaluated. In addition, an argument can be a list that returns a
@@ -1729,20 +1729,20 @@ and promoting software freedom.”
     Si evaluas esta expresión––y si, como con mi Emacs, @c{fill-column} se
     evalúa a 72––aparecerá @c{"Los 74 zorros rojos."} en el área de eco.
     (Ten en cuenta que debes poner espacios después de la palabra @'{Los} y
-    antes de la palabra @'{zorros} que aparece en la cadena final. La
+    antes de la palabra @'{zorros} para que aparezcan en la cadena final. La
     función @c{number-to-string} convierte el entero que devuelve la función
     suma a una cadena. @c{number-to-string} también se conoce como
     @c{int-to-string}.)
 
 # *** Variable Number of Arguments
-*** Número variable de argumentos
+*** Número de argumentos variable
 
 #     Some functions, such as @c{concat}, @c{+} or @c{*}, take any number of
 #     arguments.  (The @c{*} is the symbol for multiplication.)  This can be
 #     seen by evaluating each of the following expressions in the usual way.
     Algunas funciones, como @c{concat}, @c{+}, o @c{*}, toman cualquier
     número de argumentos. (@c{*} es el símbolo para la multiplicacion.)
-    Esto puede verse evaluando cada una de las siguientes expresiones de la
+    Esto se puede ver evaluando cada una de las siguientes expresiones de la
     forma habitual.
 
 #     In the first set, the functions have no arguments:
@@ -1794,7 +1794,7 @@ and promoting software freedom.”
     < srci..
 
 # *** Using the Wrong Type Object as an Argument
-*** Usando el tipo incorrecto de objeto como un argumento
+*** Usando el tipo incorrecto de objeto como argumento
 
 #     When a function is passed an argument of the wrong type, the Lisp
 #     interpreter produces an error message. For example, the @c{+} function
@@ -1802,7 +1802,7 @@ and promoting software freedom.”
 #     can pass it the quoted symbol @c{hello} instead of a number. Position
 #     the cursor after the following expression and type @k{C-x C-e}:
     Cuando a una función se le pasa un argumento del tipo incorrecto, el
-    interpréte Lisp genera un mensaje de error. Por ejemplo, la función
+    interpréte Lisp produce un mensaje de error. Por ejemplo, la función
     @c{+} espera que los valores de sus argumentos sean números. Como un
     experimento podemos pasar el símbolo citado @c{hola} en lugar de un
     número. Coloca el cursor después de la siguiente expresión y presiona
@@ -1827,7 +1827,7 @@ and promoting software freedom.”
     suma.
 
 #     You will create and enter a @f{*Backtrace*} buffer that says:
-    Se creará e ingresara a un búfer @f{*Backtrace*} que diga:
+    Se creará e ingresara a un búfer @f{*Backtrace*} que dice:
 
 #     ..example >
 #       ---------- Buffer: *Backtrace* ----------
@@ -1855,14 +1855,14 @@ and promoting software freedom.”
 #     As usual, the error message tries to be helpful and makes sense after you
 #     learn how to read it.@n{3}
     Como de costumbre, el mensaje de error intenta ser útil y tiene sentido
-    después de aprender cómo leerlo.@n{3}
+    después de aprender a leerlo.@n{3}
 
 #     The first part of the error message is straightforward; it says @'{wrong
 #     type argument}. Next comes the mysterious jargon word
 #     @'{number-or-marker-p}. This word is trying to tell you what kind of
 #     argument the @c{+} expected.
     La primer parte del mensaje de error es sencilla; dice @'{wrong type
-    argument} (tipo de argumento incorrecto). A continuación viene la
+    argument} @%i(tipo de argumento incorrecto). A continuación viene la
     misteriosa jerga tecnica @'{number-or-marker-p}. Esta palabra está
     intentando decirte qué tipo de argumento espera @c{+}.
 
@@ -1882,12 +1882,12 @@ and promoting software freedom.”
     intentando determinar si la información presentada (el valor del argumento)
     es un número o una marca (un objeto especial que representa una posición de
     buffer). Lo que hace es probar si se le estan dando numeros a sumar a
-    @c{+}. También prueba si el argumento es algo llamado marcador, que es una
+    @c{+}. También comprueba si el argumento es algo llamado marcador, que es una
     caracteristica específica de Emacs Lisp. (En Emacs, las ubicaciones en un
     búfer se registran como marcadores. Cuando se establece la marca con el
     comando @k{C-@@} o @k{C-SPC}, su posición se guarda como un marcador. La
     marca se puede consider un número––el número de caracteres es la ubicacion
-    desde el comienzo del búfer.)  En Emacs Lisp, @c{+} se puede utilizar para
+    desde el principio del búfer.)  En Emacs Lisp, @c{+} se puede utilizar para
     sumar el valor numérico de los marcadores como números.
 
 #     The @'{p} of @c{number-or-marker-p} is the embodiment of a practice
@@ -1906,7 +1906,7 @@ and promoting software freedom.”
     un predicado se refiere a una función para determinar si alguna propiedad
     es verdadera o falsa. Entonces la @'{p} nos dice que @c{number-or-marker-p}
     es el nombre de una función que determina si el argumento dado es un
-    número o una marca. Otros símbolos Lisp que finalizan en @'{p} incluyen
+    número o un marcador. Otros símbolos Lisp que finalizan en @'{p} incluyen
     @c{zerop}, una función que comprueba si su argumento tiene el valor de
     cero, y @c{listp}, una función que comprueba si su argumento es una
     lista.
@@ -1917,10 +1917,10 @@ and promoting software freedom.”
 #     would have been a number, such as 37, rather than a symbol like
 #     @c{hello}. But then you would not have got the error message.
     Finalmente, la última parte del mensaje de error es el símbolo @c{hola}.
-    Este es el valor del argumento que se paso a @c{+}. Si a la suma se le hubiese
-    pasado el tipo de objeto correcto, el valor habría sido un número, como
+    Este es el valor del argumento que se paso a @c{+}. Si a la suma se le hubiera
+    pasado el tipo correcto de objeto, el valor habría sido un número, como
     37, en lugar de un símbolo como @c{hola}. Pero entonces no habrías
-    obtenido el mensaje de error.
+    recibido el mensaje de error.
 
 # *** The @c{message} Function
 *** La función @c{message}
@@ -1928,14 +1928,14 @@ and promoting software freedom.”
 #     Like @c{+}, the @c{message} function takes a variable number of
 #     arguments. It is used to send messages to the user and is so useful that
 #     we will describe it here.
-    Al igual que @c{+}, la función @c{message} toma un número variable de
-    argumentos. Se utiliza para enviar mensajes al usuario y es tan útil que
-    vamos la describiremos aqui.
+    Al igual que @c{+}, la función @c{message} toma un número de argumentos
+    variable. Se utiliza para enviar mensajes al usuario y es tan útil que
+    la describiremos aqui.
 
 #     A message is printed in the echo area. For example, you can print a
 #     message in your echo area by evaluating the following list:
-    Se imprime un mensaje en el área de eco. Por ejemplo, puede imprimir un
-    mensaje en su área de eco evaluando la siguiente lista:
+    Se imprime un mensaje en el área de eco. Por ejemplo, puedes imprimir un
+    mensaje en tu área de eco evaluando la siguiente lista:
 
 #     ..src > elisp
 #       (message "This message appears in the echo area!")
@@ -1952,25 +1952,26 @@ and promoting software freedom.”
 #     echo area as a side-effect, without the quotes. See Section @l{#An
 #     Interactive @c{multiply-by-seven}} in detail, for an example of this.)
     Toda la cadena entre comillas dobles es un unico argumento y se imprime
-    @i{en su totalidad}. (Note que en este ejemplo, el mensaje en sí aparece
+    @i{en su totalidad}. (Obseva que en este ejemplo, el mensaje mismo aparece
     en el área de eco entre comillas dobles; esto se debe a que ves el valor
     devuelto por la función @c{message}. En la mayoría de programas que
     escribiras, el texto se imprimira en el área de eco como un efecto
-    secundario de @c{message}, sin las comillas. Consulta la Sección @l{#Un
-    @c{multiply-by-seven} interactivo} en detalle, para un ejemplo de esto.)
+    secundario de @c{message}, sin las comillas. Consulta la Sección
+    @l{#@c{multiplicar-por-siete} interactivo}, para ver en detalle un ejemplo
+    de esto.)
 
-#     However, if there is a @'{%s} in the quoted string of characters, the
-#     @c{message} function does not print the @'{%s} as such, but looks to the
+#     However, if there is a @'c{%s} in the quoted string of characters, the
+#     @c{message} function does not print the @'c{%s} as such, but looks to the
 #     argument that follows the string. It evaluates the second argument and
-#     prints the value at the location in the string where the @'{%s} is.
-    Sin embargo, si hay un @'{%s} en la cadena de caracteres citada, la
-    función @c{message} no imprime el @'{%s} como tal, si no que busca el siguente
+#     prints the value at the location in the string where the @'c{%s} is.
+    Sin embargo, si hay un @'c{%s} en la cadena de caracteres entre comillas, la
+    función @c{message} no imprime el @'c{%s} como tal, si no que mira el siguente
     argumento a continuacion de la cadena. Evalúa el segundo argumento e
-    imprime el valor en la ubicación de la cadena donde está el @'{%s}.
+    imprime el valor en la ubicación de la cadena donde está el @'c{%s}.
 
 #     You can see this by positioning the cursor after the following expression
 #     and typing @k{C-x C-e}:
-    Puede ver esto colocando el cursor después de la siguiente expresión y
+    Puedes ver esto colocando el cursor después de la siguiente expresión y
     presionar @k{C-x C-e}:
 
 #     ..src > elisp
@@ -2010,13 +2011,13 @@ and promoting software freedom.”
 #     first argument following the quoted string is printed at the location of
 #     the first @'{%s} and the value of the second argument is printed at the
 #     location of the second @'{%s}, and so on.
-    Si hay más de un @'{%s} en la cadena citada, el valor del primer
-    argumento después de la cadena citada se imprime en la posición del
+    Si hay más de un @'{%s} en la cadena entre comillas, el valor del primer
+    argumento después de la cadena se imprime en la posición del
     primer @'{%s} y el valor del segundo argumento se imprime en la posición
     del segundo @'{%s}, y así sucesivamente.
 
 #     For example, if you evaluate the following,
-    Por ejemplo, si evalúa lo siguiente,
+    Por ejemplo, si evalúas lo siguiente,
 
 #     ..src > elisp
 #       (message "There are %d %s in the office!"
@@ -2029,26 +2030,26 @@ and promoting software freedom.”
 
 #     a rather whimsical message will appear in your echo area. On my system
 #     it says, @c{"There are 58 pink elephants in the office!"}.
-    Un mensaje un poco caprichoso aparecerán en el área de eco. En mi sistema
-    dice @c{"¿Hay 58 elefantes rosas en la oficina!"}
+    aparecerán un mensaje un poco caprichoso en el área de eco. En mi sistema
+    dice @c{"¡Hay 58 elefantes rosas en la oficina!"}
 
 #     The expression @c{(- fill-column 14)} is evaluated and the resulting
-#     number is inserted in place of the @'{%d}; and the string in double
+#     number is inserted in place of the @'c{%d}; and the string in double
 #     quotes, @c{"pink elephants"}, is treated as a single argument and
-#     inserted in place of the @'{%s}.  (That is to say, a string between
+#     inserted in place of the @'c{%s}.  (That is to say, a string between
 #     double quotes evaluates to itself, like a number.)
     Se evalúa la expresión @c{(- fill-column 14)} y el número resultante
-    se inserta en lugar del @'{%d}; y la cadena entre comillas dobles,
-    @c{"elefantes rosas"}, se trata como un argumento unico y se inserta
-    en lugar del @'{%s}. (Es decir, una cadena entre comillas dobles se
+    se inserta en lugar del @'c{%d}; y la cadena entre comillas dobles,
+    @c{"elefantes rosas"}, se trata como un unico argumento y se inserta
+    en lugar del @'c{%s}. (Es decir, una cadena entre comillas dobles se
     evalúa así misma, como un número.)
 
 #     Finally, here is a somewhat complex example that not only illustrates the
 #     computation of a number, but also shows how you can use an expression
-#     within an expression to generate the text that is substituted for @'{%s}:
+#     within an expression to generate the text that is substituted for @'c{%s}:
     Por último, aquí está un ejemplo algo complejo que no solo ilustra el
-    cálculo de un número, también muestra como se puede usar una expresión
-    dentro de una expresión para generar el texto que sustituira el @'{%s}:
+    cálculo de un número, sino que también muestra como se puede usar una expresión
+    dentro de una expresión para generar el texto que sustituira el @'c{%s}:
 
 #     ..src > elisp
 #       (message "He saw %d %s"
@@ -2061,9 +2062,9 @@ and promoting software freedom.”
     ..src > elisp
       (message "Él vió %d %s"
                (- fill-column 36)
-               (concat "rojos "
-                       (substring
+               (concat (substring
                         "Los rápidos zorros marrones saltaron." 12 18)
+                       " rojos"
                        " saltando."))
     < src..
 
@@ -2082,10 +2083,10 @@ and promoting software freedom.”
 #     When your @c(fill-column) is 70 and you evaluate the expression, the message
 #     @c{"He saw 38 red foxes leaping."} appears in your echo area.
     Cuando @c(fill-column) es 70 y evaluas la expresión, aparecera el
-    mensaje @c{"Él vió 38 rojos zorros saltando."} en tu área de eco.
+    mensaje @c{"Él vió 38 zorros rojos saltando."} en tu área de eco.
 
 # ** Setting the Value of a Variable
-** Configurando el valor de una variable
+** Establecer el valor de una variable
 
 #    There are several ways by which a variable can be given a value. One of
 #    the ways is to use either the function @c{set} or the function @c{setq}.
@@ -2094,7 +2095,7 @@ and promoting software freedom.”
    Hay varias formas de asignar un valor a una variable. Una de ellas es
    utilizar la función @c{set} o la función @c{setq}. Otra forma es utilizar
    @c{let} (Consulta la Seccion @l{#@c(let)}). (La jerga para este proceso es @:{ligar}
-   @%e(bind) una variable a un valor.)
+   @%i(bind) una variable a un valor.)
 
 #    The following sections not only describe how @c{set} and @c{setq} work but
 #    also illustrate how arguments are passed.
@@ -2131,17 +2132,17 @@ and promoting software freedom.”
     eco. Esto es la que @e{devuelve} la función @c{set}. Como efecto secundario,
     el símbolo @c{flores} esta ligado a la lista; es decir, el símbolo
     @c{flores}, puede verse como una variable, que entrega la lista como su
-    valor. (Por cierto, este proceso, ilustra como un efecto secundario al
-    intérprete Lisp, estableciendo el valor, puede ser el principal efecto que
+    valor. (Por cierto, este proceso, ilustra como un efecto secundario del
+    intérprete Lisp, al establecer el valor, puede ser el principal efecto que
     nos interesa a los humanos. Esto se debe a que cada función Lisp debe
     devolver un valor si no obtiene un error, pero solo tendrá un efecto
-    secundario si está diseñada para tener uno.)
+    secundario si está diseñada para tenerlo.)
 
 #     After evaluating the @c{set} expression, you can evaluate the symbol
 #     @c{flowers} and it will return the value you just set. Here is the
 #     symbol. Place your cursor after it and type @k{C-x C-e}.
     Después de evaluar la expresión @c{set}, se puede evaluar el símbolo
-    @c{flores} y ha de volver el valor que acaba de establecer. Aquí está
+    @c{flores} y devolvera el valor que se acaba de establecer. Aquí está
     el símbolo. Coloca el cursor al final de este y presiona @k{C-x C-e}.
 
 #     ..src > elisp
@@ -2160,7 +2161,7 @@ and promoting software freedom.”
 #     front of it, what you will see in the echo area is the symbol itself,
 #     @c{flowers}. Here is the quoted symbol, so you can try this:
     Por cierto, si se evalúa @c{'flores}, la variable con una cita frente a
-    ella, lo que verá en el área de eco es el símbolo en sí mismo, @c{flores}.
+    ella, lo que verás en el área de eco es el símbolo en sí mismo, @c{flores}.
     Aquí está el símbolo citado, asi que puedes intentarlo:
 
 #     ..src > elisp
@@ -2181,17 +2182,17 @@ and promoting software freedom.”
 #     did return a value after it was evaluated, the @c{set} would attempt to
 #     set the value that was returned. There are situations where this is the
 #     right thing for the function to do; but such situations are rare.)
-    Tenga en cuenta también, que cuando se utiliza @c{set}, es necesario
-    citar ambos argumentos para @c{set}, a menos que los quiera evaluar.
-    Puesto que no queremos evaluar, ni la variable @c{flores}, ni la lista
-    @c{(rosa violeta margarita tulipan)}, ambos se citan. (Cuando se utiliza
-    @c{set} sin citar su primer argumento, el primer argumento se evalúa
-    antes de realizar cualquier otra cosa. Si hizo esto y @c{flores} no tenía
-    ya un valor, otendria un mensaje de error con el @'{Valor de símbolo como
-    variable esta vacío}; por otro lado, si @c{flores} regreso un valor después de
-    ser evaluado, @c{set} intentaría establecer el valor que fue devuelto.
-    Hay situaciones donde esto es justo lo que la función a de hacer, pero
-    estas situaciones son poco frecuentes.)
+    Ten en cuenta también, que cuando se utiliza @c{set}, es necesario citar
+    ambos argumentos, a menos que quieras que sean avaluados. Como no queremos
+    que se evalue ninguno de los dos argumentos, se citan tanto la variable
+    @c{flores}, como la lista @c{(rosa violeta margarita tulipan)}. (Cuando se
+    utiliza @c{set} sin citar su primer argumento, el primer argumento se evalúa
+    antes de realizar cualquier otra cosa. Si se hace esto y @c{flores} no tenía ya
+    un valor, obtendras un mensaje de error de tipo, @'{El valor de símbolo como
+    variable esta vacío}; por otro lado, si @c{flores} regresa un valor después
+    de ser evaluada, @c{set} intentaría establecer el valor que fue devuelto.
+    Hay situaciones donde esto es justo lo que la función a de hacer, pero estas
+    situaciones son poco frecuentes.)
 
 # *** Using @c{setq}
 *** Usando @c{setq}
@@ -2205,11 +2206,11 @@ and promoting software freedom.”
 #     variables to different values, all in one expression.
     Como una cuestión práctica, casi siempre se cita el primer argumento de
     @c{set}. La combinación de @c{set} y un primer argumento citado es tan
-    común que tiene nombre propio: la forma especial @c{setq}. Esta forma
-    especial es similar a @c{set} excepto que el primer argumento es citado
-    automáticamente, por lo que no necesita escribir la marca de cita.
-    También, para mayor comodidad, @c{setq} permite asignar varias variables
-    diferentes a diferentes valores, todo en una sola expresión.
+    común que tiene su propio nombre: la forma especial @c{setq}. Esta forma
+    especial es similar a @c{set} excepto que el primer argumento se citado
+    automáticamente, por lo que no es necesario escribir la marca de cita.
+    Ademas, como una conveniencia adicional, @c{setq} permite asignar varias
+    variables diferentes a diferentes valores, todo en una sola expresión.
 
 #     To set the value of the variable @c{carnivores} to the list @c{'(lion
 #     tiger leopard)} using @c{setq}, the following expression is used:
@@ -2228,11 +2229,11 @@ and promoting software freedom.”
 #     automatically quoted by @c{setq}.  (The @'{q} in @c{setq} means
 #     @c{quote}.)
     Esto es exactamente igual que usar @c{set} excepto que el primer
-    argumento es citado automáticamente por @c{setq}. (La @'{q} en @c{setq}
-    significa @c{quote} @%e(cita).)
+    argumento se cita automáticamente por @c{setq}. (La @'{q} en @c{setq}
+    significa @c{quote} @%i(cita).)
 
 #     With @c{set}, the expression would look like this:
-    Con @c{set}, la expresión que se vería es:
+    Con @c{set}, la expresión se vería asi:
 
 #     ..src > elisp
 #       (set 'carnivores '(lion tiger leopard))
@@ -2266,7 +2267,7 @@ and promoting software freedom.”
 #     (The expression could just as well have been on one line, but it might
 #     not have fit on a page; and humans find it easier to read nicely
 #     formatted lists.)
-    (La expresión podría también haber estado en una sola línea, pero podría
+    (La expresión podría también haber estado en una unica línea, pero podría
     no caber en una página; y a los humanos les resulta más fácil leer listas
     con un formato agradable.)
 
@@ -2280,12 +2281,12 @@ and promoting software freedom.”
 #     “point” to the list.
     Aunque he estado usando el término ‘asignar’, hay otra forma de pensar
     respecto a el funcionamiento de @c{set} y @c{setq}; y consiste en decir
-    que @c{set} y @c{setq} crean un símbolo que @e{apunta} a la lista. Esta
-    ultima forma de pensar es muy común y en los proximos capítulos
-    encontraremos por lo menos un símbolo con un ‘puntero’ como parte de
+    que @c{set} y @c{setq} hacen que el símbolo @e{apunte} a la lista. Esta
+    ultima forma de pensar es muy común y en los proximos capítulos nos
+    encontraremos con al menos un símbolo que tiene ‘puntero’ como parte de
     su nombre. El nombre se elige porque el símbolo tiene un valor,
     específicamente una lista, unida a el; o, expresado de otra manera, el
-    símbolo se fija para “apuntar” a la lista.
+    símbolo se establece como “puntero” a la lista.
 
 # *** Counting
 *** Conteo
@@ -2298,12 +2299,12 @@ and promoting software freedom.”
 #     that sets the counter variable to zero; and a second @c{setq} expression
 #     that increments the counter each time it is evaluated.
     He aquí un ejemplo que muestra cómo utilizar @c{setq} en un contador. Es
-    posible usar esto para contar cuantas veces una parte de un programa se
-    repite. En primer lugar establesca una variable a cero; luego
-    sume uno al número cada vez que el programa se repita. Para ello, se
-    necesita una variable que sirva como un contador, y dos expresiones: una
-    expresión @c{setq} inicial que asigna la variable contador a cero; y una
-    segunda expresión @c{setq} que incrementa el contador cada vez se evalue.
+    posible usar esto para contar cuantas veces se repite una parte de un
+    programa. En primer lugar se necesita establecer una variable a cero; luego
+    sumar uno al número cada vez que el programa se repita. Para hacer esto, se
+    requiere una variable que sirva como contador, y dos expresiones: una
+    expresión @c{setq} inicial que asigne la variable contador a cero; y una
+    segunda expresión @c{setq} que incremente el contador cada vez se evalue.
 
 #     ..src > elisp
     ..src > elisp
@@ -2352,7 +2353,7 @@ and promoting software freedom.”
     esta lista, se debe evaluar la variable @c{contador} y el número @c{1}.
     Cuando evalúa la variable @c{contador}, recibe su valor actual. Se pasa
     este valor y el número @c{1} a @c{+} que los suma. La suma se devuelve como
-    el valor de la list interior y pasa a @c{setq} que establece la variable
+    el valor de la lista interior y pasa a @c{setq} que establece la variable
     @c{contador} a este nuevo valor. Por lo tanto, el valor de la variable
     @c{contador}, cambia.
 
@@ -2394,7 +2395,7 @@ and promoting software freedom.”
    - Una cadena entre comillas dobles también se evalúa a sí misma.
 
 #    - When you evaluate a symbol by itself, its value is returned.
-   - Cuando se evalúa un símbolo a sí mismo, se devuelve su valor.
+   - Cuando se evalúa un símbolo en si, se devuelve su valor.
 
 #    - When you evaluate a list, the Lisp interpreter looks at the first symbol
 #      in the list and then at the function definition bound to that symbol.
@@ -2407,7 +2408,7 @@ and promoting software freedom.”
 #      should return the following expression as written, and not evaluate it
 #      as it would if the quote were not there.
    - Una marca de cita, @c{'}, le indica al intérprete Lisp que devuelva la
-     siguiente expresión tal como esta escrita, y no la evalúa como lo haria si
+     siguiente expresión tal como esta escrita, y no evaluarla como lo haria si
      la cita no estuviera alli.
 
 #    - Arguments are the information passed to a function. The arguments to a
@@ -2422,7 +2423,7 @@ and promoting software freedom.”
 #      effect”. In many cases, a function's primary purpose is to create a
 #      side effect.
    - Una función siempre devuelve un valor cuando se evalúa (a menos que
-     obtenga un error); además, también se puede llevar a cabo alguna
+     se produzca un error); además, también se puede llevar a cabo alguna
      acción llamada “efecto secundario”. En muchos casos, el propósito
      principal de una función es crear un efecto secundario.
 
@@ -2430,20 +2431,20 @@ and promoting software freedom.”
 ** Ejercicios
 
 #    A few simple exercises:
-   Unos pocos ejercicios simples:
+   Unos cuantos ejercicios simples:
 
 #    - Generate an error message by evaluating an appropriate symbol that is
 #      not within parentheses.
-   - Generar un mensaje de error evaluando un símbolo apropiado que no este
+   - Genera un mensaje de error evaluando un símbolo apropiado que no este
      entre paréntesis.
 
 #    - Generate an error message by evaluating an appropriate symbol that is
 #      between parentheses.
-   - Generar un mensaje de error evaluando un símbolo apropiado situado
+   - Genera un mensaje de error evaluando un símbolo apropiado que se encuentre
      entre paréntesis.
 
 #    - Create a counter that increments by two rather than one.
-   - Crear un contador que se incrementa en dos en lugar de uno.
+   - Crea un contador que se incrementa en dos en lugar de en uno.
 
 #    - Write an expression that prints a message in the echo area when
 #      evaluated.
@@ -3011,7 +3012,7 @@ and promoting software freedom.”
 #    maximum permissible value of point in the current buffer.
    La función @c{point-min} es similar a @c{point}, pero devuelve el valor
    mínimo permisible del punto en el búfer actual. Este es el numero 1 a menos
-   que @:{narrowing} esté en efecto. (Narrowing @%e{Reduccion} es un mecanismo
+   que @:{narrowing} esté en efecto. (Narrowing @%i{Reduccion} es un mecanismo
    mediante el cual puedes restringirte a ti mismo, o un programa, a operar solo
    en un parte de un búfer. Consulta la Sección @l{#Reducir y Extender}.)  Del mismo
    modo, la función @c{point-max} devuelve el valor máximo permisible del punto
@@ -3088,7 +3089,7 @@ and promoting software freedom.”
    dice al ordenador que hacer cuando se invoca la función. Este código se
    denomina la @:{definición de función} y se crea evaluando una expresión Lisp
    que comienza con el símbolo @c{defun} (que es una abreviatura para @e{define
-   function} @%e(definir función)). Debido a que @c{defun} no evalúa sus
+   function} @%i(definir función)). Debido a que @c{defun} no evalúa sus
    argumentos en la manera habitual, se le llama una @:{forma especial}.
 
 #    In subsequent sections, we will look at function definitions from the
@@ -4188,7 +4189,7 @@ and promoting software freedom.”
 #    an expression is evaluated.”  If the test is not true, the expression is
 #    not evaluated. For example, you might make a decision such as, “if it is
 #    warm and sunny, then go to the beach!”
-   La idea básica detras de @c{if}, es que “@e{si} @%e(if) una prueba es verdadera
+   La idea básica detras de @c{if}, es que “@e{si} @%i(if) una prueba es verdadera
    @e{entonces} se evalua la expresión”. Si la prueba no es verdadera, la
    expresión no se evalua. Por ejemplo, podría tomar una decisión como, “si
    hace sol y calor, ve a la playa!”
@@ -6854,7 +6855,7 @@ and promoting software freedom.”
     vimos anteriormente, tal uso de @'{p} es una convención que indica que la
     función es un predicado, que es un término que significa que la función
     determinará si alguna propiedad es verdadera o falsa. Consulta la Seccion
-    @l(#Usando el tipo incorrecto de objeto como un argumento).)
+    @l(#Usando el tipo incorrecto de objeto como argumento).)
 
 #     The function @c{not} precedes the expression @c{(bufferp buffer)}, so the
 #     true-or-false-test looks like this:
@@ -10870,7 +10871,7 @@ and promoting software freedom.”
      Este código para colocar texto en el anillo de la muerte, concatenandolo
      con un elemento existente o como un nuevo, nos brinda la habilidad para
      traer texto que ha sido cortado del búfer––los comandos de corte
-     @%e(yank). Sin embargo, antes de discutir los comandos de corte, es mejor
+     @%i(yank). Sin embargo, antes de discutir los comandos de corte, es mejor
      aprender cómo se implementan las listas en un ordenador. Esto pondra de
      manifiesto misterios como el uso del término ‘puntero’. Pero antes de eso,
      nos desviaremos a C.
@@ -11399,7 +11400,7 @@ and promoting software freedom.”
 
 #      Record whatever narrowing is in effect in the current buffer, if any,
 #      and restore that narrowing after evaluating the arguments.
-     Graba cualquier reduccion @%e(narrowing) que esté en efecto en el búfer
+     Graba cualquier reduccion @%i(narrowing) que esté en efecto en el búfer
      actual, si lo hay, y restablece esa reduccion despues de evaluar los
      argumentos.
 
@@ -19204,7 +19205,7 @@ and promoting software freedom.”
 #      @c{sort} can be used to sort non-numeric lists by non-numeric
 #      criteria––it can, for example, alphabetize a list.
     Como vimos anteriormente (Ver Sección @l{#Usando el tipo incorrecto de objeto
-    como un argumento}), un predicado es una función que determina si alguna
+    como argumento}), un predicado es una función que determina si alguna
     propiedad es verdadera o falsa. La función @c{sort} reordenará una lista de
     acuerdo a cualquier propiedad que use el predicado; esto significa que
     @c{sort} puede usarse para ordenar listas no numéricas por un criterio no
@@ -21623,7 +21624,7 @@ and promoting software freedom.”
    @c{major-mode}, al valor subsiguiente, que es @c{text-mode}. La comilla
    simple antes de @c{text-mode} le indica a Emacs que trate directamente con el
    símbolo @c(text-mode), no con lo que pueda significar. Consulta la Seccion
-   @l{#Configurando el Valor de una Variable}, para recordar como funciona @c{setq}.
+   @l{#Establecer el Valor de una Variable}, para recordar como funciona @c{setq}.
    El punto principal es que no hay diferencia entre el procedimiento
    que se usa utiliza para establecer un valor en su fichero @f{.emacs} y el procedimiento
    que se usa en cualquier otro lugar de Emacs.
@@ -21652,7 +21653,7 @@ and promoting software freedom.”
 #    Text mode. So every time Emacs turns on Text mode, Emacs also turns on
 #    Auto Fill mode.
    Cada vez que Emacs activa el modo texto, Emacs ejecuta los comandos ‘hooked’
-   @%e(conectados) al modo Texto. Por lo tanto, cada vez que Emacs activa el
+   @%i(conectados) al modo Texto. Por lo tanto, cada vez que Emacs activa el
    modo Texto, Emacs también activa el modo de Auto Relleno.
 
 #    In brief, the first line causes Emacs to enter Text mode when you edit a
@@ -23057,7 +23058,7 @@ and promoting software freedom.”
 #   Reference Manual}. In this chapter, I will walk through a short example of
 #   each.
   Ambos depuradores se describen extensivamente en la Seccion
-  @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Debugging<>Depurando Programas Lips} en @e{El Manual de
+  @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Debugging<>Depurando Programas Lisp} en @e{El Manual de
   Referencia GNU Emacs Lisp}. En este capítulo, voy a explicar un breve ejemplo
   de cada uno de ellos.
 
@@ -28158,18 +28159,18 @@ and promoting software freedom.”
 #     word has two different definitions attached to it at the same time. By
 #     contrast, in Emacs Lisp, a symbol cannot have two different function
 #     definitions at the same time.)
- :: @N{2} :: Es curioso seguir el camino por el que la palabra ‘argumento’
-    llego a tener dos significados distintos, uno en matemáticas y otro en el
-    inglés cotidiano. De acuerdo al @e{Oxford English Dictionary}, la palabra
-    deriva del Latín para @'{dejar claro, probar}; por lo tanto, paso a
-    significar, por un hilo de derivación, ‘la evidencia ofrecida como prueba’,
-    es decir ‘la informacion que se ofrece’, que conduce a su significado en
-    Lisp. Pero en el otro hilo de la derivación, paso a significar ‘afirmar de
-    una manera contra la cual otros pueden hacer afirmaciones contrarias’, lo
-    que llevó al significado de la palabra como disputa. (Tenga en cuenta que la
-    palabra Inglésa tiene dos definiciones distintas al mismo tiempo. En
-    contraste, en Emacs Lisp, un símbolo no puede tener dos definiciones de
-    funcion diferentes al mismo tiempo.)
+ :: @N{2} :: Es curioso seguir el camino por el que la palabra ‘argumento’ llego
+    a tener dos significados distintos, uno en matemáticas y otro en el inglés
+    cotidiano. De acuerdo al @e{Oxford English Dictionary}, la palabra deriva
+    del Latín para @'{dejar claro, probar}; asi llego a significar, por un hilo
+    de derivación, ‘la evidencia ofrecida como prueba’, es decir ‘la informacion
+    que se ofrece’, lo que conduce a su significado en Lisp. Pero en el otro hilo
+    de la derivación, paso a significar ‘afirmar de una manera contra la cual
+    otros pueden hacer afirmaciones contrarias’, lo que llevó al significado de
+    la palabra como disputa. (Notese aqui que la palabra Inglésa tiene dos
+    definiciones distintas al mismo tiempo. En contraste, en Emacs Lisp, un
+    símbolo no puede tener dos definiciones de funcion diferentes al mismo
+    tiempo.)
 
 #  :: @N{3} :: @c{(quote hello)} is an expansion of the abbreviation
 #     @c{'hello}.
@@ -28178,7 +28179,7 @@ and promoting software freedom.”
 #  :: @N{4} :: Actually, you can use @c{%s} to print a number. It is
 #     non-specific.  @c{%d} prints only the part of a number left of a decimal
 #     point, and not anything that is not a number.
- :: @N{4} :: En realidad, puede utilizar @c{%s} para imprimir un número. No
+ :: @N{4} :: En realidad, se puede utilizar @c{%s} para imprimir un número. No
     es específico. @c{%d} solo imprime la parte de un número a la izquierda
     del punto decimal, excluyendo cualquier cosa que no sea un número.
 
