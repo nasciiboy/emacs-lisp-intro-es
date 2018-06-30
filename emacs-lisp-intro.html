@@ -601,7 +601,7 @@ Debugger entered--Lisp error: (void-function this)
 <div class="hBody-3" >
 <p>When the Lisp interpreter works on an expression, the term for the activity is called <dfn>evaluation</dfn>. We say that the interpreter ‘evaluates the expression’. I&#39;ve used this term several times before. The word comes from its use in everyday language, ‘to ascertain the value or amount of; to appraise’, according to <q>Webster&#39;s New Collegiate Dictionary</q>.</p>
 <p>After evaluating an expression, the Lisp interpreter will most likely <dfn>return</dfn> the value that the computer produces by carrying out the instructions it found in the function definition, or perhaps it will give up on that function and produce an error message.  (The interpreter may also find itself tossed, so to speak, to a different function or it may attempt to repeat continually what it is doing for ever and ever in what is called an ‘infinite loop’. These actions are less common; and we can ignore them.)  Most frequently, the interpreter returns a value.</p>
-<p>At the same time the interpreter returns a value, it may do something else      ¤ as well, such as move a cursor or copy a file; this other kind of action is called a <dfn>side effect</dfn>. Actions that we humans think are important, such as printing results, are often “side effects” to the Lisp interpreter. The jargon can sound peculiar, but it turns out that it is fairly easy to learn to use side effects.</p>
+<p>At the same time the interpreter returns a value, it may do something else as well, such as move a cursor or copy a file; this other kind of action is called a <dfn>side effect</dfn>. Actions that we humans think are important, such as printing results, are often “side effects” to the Lisp interpreter. The jargon can sound peculiar, but it turns out that it is fairly easy to learn to use side effects.</p>
 <p>In summary, evaluating a symbolic expression most commonly causes the Lisp interpreter to return a value and perhaps carry out a side effect; or else produce an error.</p>
 </div>
 <h4 id="evaluating-inner-lists" >Evaluating Inner Lists</h4>
@@ -657,7 +657,7 @@ Debugger entered--Lisp error: (void-function fill-column)
 <p>If you attempt to evaluate a symbol that does not have a value bound to it, you will receive an error message. You can see this by experimenting with our 2 plus 2 addition. In the following expression, put your cursor right after the <code>+</code>, before the first number 2, type <kbd>C-x C-e</kbd>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre>
-<p>In GNU Emacs 26, you will create a <span class="file" >*Backtrace*</span> buffer that says:</p>
+<p>In GNU Emacs 22, you will create a <span class="file" >*Backtrace*</span> buffer that says:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--Lisp error: (void-variable +)
@@ -1106,8 +1106,8 @@ Multiply NUMBER by seven.
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;The result is %d&#34;</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="mi">5</span><span class="p">))</span>
 </code></pre>
 <p>(If you are reading this in GNU Emacs, you can evaluate this expression yourself.)  First, the interpreter will evaluate the inner list, which is <code>(* 7 5)</code>. This returns a value of 35. Next, it will evaluate the outer list, passing the values of the second and subsequent elements of the list to the function <code>message</code>.</p>
-<p>As we have seen, <code>message</code> is an Emacs Lisp function especially designed for sending a one line message to a user.  (See Section <a href="#the-message-function" >The <code>message</code> function</a>.)  In summary, the <code>message</code> function prints its first argument in the echo area as is, except for occurrences of ‘%d’ or ‘%s’ (and various other %-sequences which we have not mentioned). When it sees a control sequence, the function looks to the second or subsequent arguments and prints the value of the argument in the location in the string where the control sequence is located.</p>
-<p>In the interactive <code>multiply-by-seven</code> function, the control string is ‘%d’, which requires a number, and the value returned by evaluating <code>(* 7 5)</code> is the number 35. Consequently, the number 35 is printed in place of the ‘%d’ and the message is ‘The result is 35’.</p>
+<p>As we have seen, <code>message</code> is an Emacs Lisp function especially designed for sending a one line message to a user.  (See Section <a href="#the-message-function" >The <code>message</code> function</a>.)  In summary, the <code>message</code> function prints its first argument in the echo area as is, except for occurrences of ‘<code>%d</code>’ or ‘<code>%s</code>’ (and various other %-sequences which we have not mentioned). When it sees a control sequence, the function looks to the second or subsequent arguments and prints the value of the argument in the location in the string where the control sequence is located.</p>
+<p>In the interactive <code>multiply-by-seven</code> function, the control string is ‘<code>%d</code>’, which requires a number, and the value returned by evaluating <code>(* 7 5)</code> is the number 35. Consequently, the number 35 is printed in place of the ‘<code>%d</code>’ and the message is ‘The result is 35’.</p>
 <p>(Note that when you call the function <code>multiply-by-seven</code>, the message is printed without quotes, but when you call <code>message</code>, the text is printed in double quotes. This is because the value returned by <code>message</code> is what appears in the echo area when you evaluate an expression whose first element is <code>message</code>; but when embedded in a function, <code>message</code> prints the text as a side effect without quotes.)</p>
 </div>
 <h3 id="different-options-for-interactive" >Different Options for <code>interactive</code></h3>
@@ -1196,9 +1196,8 @@ Multiply NUMBER by seven.
       <span class="nv">pine</span>
       <span class="nv">fir</span>
       <span class="p">(</span><span class="nv">oak</span> <span class="ss">&#39;some</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">message</span>
-   <span class="s">&#34;Here are %d variables with %s, %s, and %s value.&#34;</span>
-   <span class="nv">birch</span> <span class="nv">pine</span> <span class="nv">fir</span> <span class="nv">oak</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Here are %d variables with %s, %s, and %s value.&#34;</span>
+           <span class="nv">birch</span> <span class="nv">pine</span> <span class="nv">fir</span> <span class="nv">oak</span><span class="p">))</span>
 </code></pre>
 <p>Here, the varlist is <code>((birch 3) pine fir (oak &#39;some))</code>.</p>
 <p>If you evaluate this expression in the usual way, the following will appear in your echo area:</p>
@@ -1207,7 +1206,7 @@ Multiply NUMBER by seven.
 </pre>
 </div>
 <p>In this example, Emacs binds the symbol <code>birch</code> to the number 3, binds the symbols <code>pine</code> and <code>fir</code> to <code>nil</code>, and binds the symbol <code>oak</code> to the value <code>some</code>.</p>
-<p>Note that in the first part of the <code>let</code>, the variables <code>pine</code> and <code>fir</code> stand alone as atoms that are not surrounded by parentheses; this is because they are being bound to <code>nil</code>, the empty list. But <code>oak</code> is bound to <code>some</code> and so is a part of the list <code>(oak &#39;some)</code>. Similarly, <code>birch</code> is bound to the number 3 and so is in a list with that number.  (Since a number evaluates to itself, the number does not need to be quoted. Also, the number is printed in the message using a ‘%d’ rather than a ‘%s’.)  The four variables as a group are put into a list to delimit them from the body of the <code>let</code>.</p>
+<p>Note that in the first part of the <code>let</code>, the variables <code>pine</code> and <code>fir</code> stand alone as atoms that are not surrounded by parentheses; this is because they are being bound to <code>nil</code>, the empty list. But <code>oak</code> is bound to <code>some</code> and so is a part of the list <code>(oak &#39;some)</code>. Similarly, <code>birch</code> is bound to the number 3 and so is in a list with that number.  (Since a number evaluates to itself, the number does not need to be quoted. Also, the number is printed in the message using a ‘<code>%d</code>’ rather than a ‘<code>%s</code>’.)  The four variables as a group are put into a list to delimit them from the body of the <code>let</code>.</p>
 </div>
 <h3 id="the-if-special-form" >The <code>if</code> Special Form</h3>
 <div class="hBody-3" >
@@ -1385,24 +1384,20 @@ Multiply NUMBER by seven.
 <dd>
 <p>Declare to the interpreter that the function can be used interactively. This special form may be followed by a string with one or more parts that pass the information to the arguments of the function, in sequence. These parts may also tell the interpreter to prompt for information. Parts of the string are separated by newlines, ‘\n’.</p>
 <p>Common code characters are:</p>
-<dl>
-<dt><code>b</code></dt>
-<dd>
-<p>The name of an existing buffer.</p>
-</dd>
-<dt><code>f</code></dt>
-<dd>
-<p>The name of an existing file.</p>
-</dd>
-<dt><code>p</code></dt>
-<dd>
-<p>The numeric prefix argument.  (Note that this ‘p’ is lower case.)</p>
-</dd>
-<dt><code>r</code></dt>
-<dd>
-<p>Point and the mark, as two numeric arguments, smallest first. This is the only code letter that specifies two successive arguments rather than one.</p>
-</dd>
-</dl>
+<ul>
+<li>
+<p><code>b</code>: The name of an existing buffer.</p>
+</li>
+<li>
+<p><code>f</code>: The name of an existing file.</p>
+</li>
+<li>
+<p><code>p</code>: The numeric prefix argument.  (Note that this ‘p’ is lower case.)</p>
+</li>
+<li>
+<p><code>r</code>: Point and the mark, as two numeric arguments, smallest first. This is the only code letter that specifies two successive arguments rather than one.</p>
+</li>
+</ul>
 <p>See Section <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive-Codes" >Code Characters for ‘interactive’</a> in <em>The GNU Emacs Lisp Reference Manual</em>, for a complete list of code characters.</p>
 </dd>
 <dt><code>let</code></dt>
@@ -1411,9 +1406,8 @@ Multiply NUMBER by seven.
 <p>For example,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">foo</span> <span class="p">(</span><span class="nf">buffer-name</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">bar</span> <span class="p">(</span><span class="nf">buffer-size</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">message</span>
-   <span class="s">&#34;This buffer is %s and has %d characters.&#34;</span>
-   <span class="nv">foo</span> <span class="nv">bar</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;This buffer is %s and has %d characters.&#34;</span>
+           <span class="nv">foo</span> <span class="nv">bar</span><span class="p">))</span>
 </code></pre>
 </dd>
 <dt><code>save-excursion</code></dt>
@@ -1423,7 +1417,8 @@ Multiply NUMBER by seven.
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;We are %d characters into this buffer.&#34;</span>
          <span class="p">(</span><span class="nf">-</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span>
             <span class="p">(</span><span class="nb">save-excursion</span>
-              <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
+              <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
+              <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
 </code></pre>
 </dd>
 <dt><code>if</code></dt>
@@ -1452,12 +1447,12 @@ Multiply NUMBER by seven.
 <dd>
 <p>The <code>string-lessp</code> function tests whether its first argument is smaller than the second argument. A shorter, alternative name for the same function (a <code>defalias</code>) is <code>string&lt;</code>.</p>
 <p>The arguments to <code>string-lessp</code> must be strings or symbols; the ordering is lexicographic, so case is significant. The print names of symbols are used instead of the symbols themselves.</p>
-<p>An empty string, ‘&#34;&#34;’, a string with no characters in it, is smaller than any string of characters.</p>
+<p>An empty string, ‘<code>&#34;&#34;</code>’, a string with no characters in it, is smaller than any string of characters.</p>
 <p><code>string-equal</code> provides the corresponding test for equality. Its shorter, alternative name is <code>string=</code>. There are no string test functions that correspond to <code>&gt;</code>, <code>&gt;=</code>, or <code>&lt;=</code>.</p>
 </dd>
 <dt><code>message</code></dt>
 <dd>
-<p>Print a message in the echo area. The first argument is a string that can contain ‘%s’, ‘%d’, or ‘%c’ to print the value of arguments that follow the string. The argument used by ‘%s’ must be a string or a symbol; the argument used by ‘%d’ must be a number. The argument used by ‘%c’ must be an <em>ascii</em> code number; it will be printed as the character with that <em>ASCII</em> code.  (Various other %-sequences have not been mentioned.)</p>
+<p>Print a message in the echo area. The first argument is a string that can contain ‘<code>%s</code>’, ‘<code>%d</code>’, or ‘<code>%c</code>’ to print the value of arguments that follow the string. The argument used by ‘<code>%s</code>’ must be a string or a symbol; the argument used by ‘<code>%d</code>’ must be a number. The argument used by ‘<code>%c</code>’ must be an <span class="acronym" >ASCII</span> code number; it will be printed as the character with that <span class="acronym" >ASCII</span> code.  (Various other %-sequences have not been mentioned.)</p>
 </dd>
 <dt><code>setq</code>, <code>set</code></dt>
 <dd>

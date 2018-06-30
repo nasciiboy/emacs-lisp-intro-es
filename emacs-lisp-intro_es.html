@@ -70,10 +70,10 @@
     <li><a class="h3" href="#nombres-de-búfer" >Nombres de búfer</a></li>
     <li><a class="h3" href="#obtención-de-búfers" >Obtención de Búfers</a></li>
     <li><a class="h3" href="#cambiando-búfers" >Cambiando búfers</a></li>
-    <li><a class="h3" href="#tamaño-del-búfer-y-la-ubicación-del-punto" >Tamaño del búfer y la ubicación del punto</a></li>
+    <li><a class="h3" href="#tamaño-del-búfer-y-ubicación-del-punto" >Tamaño del búfer y ubicación del punto</a></li>
     <li><a class="h3" href="#ejercicio" >Ejercicio</a></li>
     </ul>
-  <li><a class="h2" href="#cómo-escribir-definiciones-de-funciones" >Cómo escribir definiciones de funciones</a></li>
+  <li><a class="h2" href="#cómo-escribir-definiciones-de-funcion" >Cómo escribir definiciones de funcion</a></li>
     <ul>
     <li><a class="h3" href="#la-forma-especial-defun" >La forma especial <code>defun</code></a></li>
     <li><a class="h3" href="#instalar-una-definición-de-función" >Instalar una definición de función</a></li>
@@ -102,10 +102,10 @@
       <ul>
       <li><a class="h4" href="#plantilla-para-una-expresión-save-excursion" >Plantilla para una Expresión <code>save-excursion</code></a></li>
       </ul>
-    <li><a class="h3" href="#repaso:-cómo-escribir-definiciones-de-funciones" >Repaso</a></li>
+    <li><a class="h3" href="#repaso:-cómo-escribir-definiciones-de-funcion" >Repaso</a></li>
     <li><a class="h3" href="#ejercicios" >Ejercicios</a></li>
     </ul>
-  <li><a class="h2" href="#algunas-funciones-relacionadas-al-bufer" >Algunas funciones relacionadas al bufer</a></li>
+  <li><a class="h2" href="#algunas-funciones-relacionadas-al-búfer" >Algunas funciones relacionadas al búfer</a></li>
     <ul>
     <li><a class="h3" href="#encontrar-más-información" >Encontrar Más información</a></li>
     <li><a class="h3" href="#una-definición-simplificada-de-beginning-of-buffer" >Una definición simplificada de <code>beginning-of-buffer</code></a></li>
@@ -650,7 +650,7 @@ Debugger entered--Lisp error: (void-function fill-column)
 <p>Si intentas evaluar un símbolo que no tiene un valor asociado, recibirás un mensaje de error. Esto se puede ver experimentando con nuestra suma 2 más 2. En la siguiente expresión, coloca el cursor justo después del <code>+</code>, antes del primer número 2, presiona <kbd>C-x C-e</kbd>:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre>
-<p>En GNU Emacs 26, se creará un buffer <span class="file" >*Backtrace*</span> que dice:</p>
+<p>En GNU Emacs 22, se creará un buffer <span class="file" >*Backtrace*</span> que dice:</p>
 <div class="example-block" >
 <pre class="example" >---------- Buffer: *Backtrace* ----------
 Debugger entered--Lisp error: (void-variable +)
@@ -891,30 +891,30 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
 </div>
 <h2 id="practicando-la-evaluación" >Practicando la Evaluación</h2>
 <div class="hBody-2" >
-<p>Antes de aprender como escribir una definición de función en Emacs Lisp, es útil pasar un poco de tiempo evaluando varias expresiones que ya han sido escritas. Estas expresiones serán listas con funciones como su primer (y con frecuencia único) elemento. Dado que algunas de las funciones asociadas con búfers son a la vez simples e interesantes, empezaremos por ellas. En esta sección, vamos a evaluar algunas. En otra sección, estudiaremos el código de varias otras funciones relacionadas con búfers, para ver la forma cómo fueron escritas.</p>
-<p><i>Siempre que proporciona un comando de edición</i> a Emacs Lisp, como el comando para mover el cursor o para desplazar por la pantalla, <i>se está evaluando una expresión</i>, cuyo primer elemento es una función. <i>Así es cómo funciona Emacs</i>.</p>
-<p>Al presionar las teclas, haces que el interprete Lisp evalue una expresion y asi es como obtienes tus resultados. Incluso escribir texto plano implica evalúar una función de Emacs Lisp, en este caso, se utiliza <code>self-insert-command</code>, que simplemente inserta el caracter que escribiste. Las funciones que se evalúan presionando atajos de teclado se llaman funciones <dfn>interactivas</dfn>, o <dfn>comandos</dfn>; la forma de hacer que una funcion sea interactiva se ilustrara en el capítulo sobre cómo escribir definiciones de funciones. Consulta la Seccion <a href="#crear-una-función-interactiva" >Crear una Función Interactiva</a>.</p>
-<p>Además de presionar comandos de teclado, hemos visto una segunda manera de evaluar una expresión: colocar el cursor después de una lista y presionar <kbd>C-x C-e</kbd>. Esto es lo que haremos en el resto de esta sección. Hay otras maneras de evaluar una expresión; que serán descritas a medida que llegemos a ellas.</p>
-<p>Ademas de utilizarce para prácticar la evaluación, las funciones que se muestran en las siguientes secciones son importantes por derecho propio. Un estudio de estas funciones deja claro la distinción entre búfers y ficheros, cómo cambiar a un búfer, y como determinar una ubicación dentro de el.</p>
+<p>Antes de aprender a escribir una definición de función en Emacs Lisp, es útil dedicar un poco de tiempo a evaluar varias expresiones que ya han sido escritas. Estas expresiones serán listas con funciones como su primer (y con frecuencia único) elemento. Dado que algunas de las funciones asociadas con búfers son a la vez simples e interesantes, empezaremos por ellas. En esta sección, vamos a evaluar algunas. En otra sección, estudiaremos el código de varias otras funciones relacionadas con búfers, para ver la forma cómo fueron escritas.</p>
+<p><i>Siempre que se le da un comando de edición</i> a Emacs Lisp, como el comando para mover el cursor o para desplazarse por la pantalla, <i>se está evaluando una expresión</i>, cuyo primer elemento es una función. <i>Así es cómo funciona Emacs</i>.</p>
+<p>Al presionar las teclas, haces que el interprete Lisp evalue una expresion y asi es como obtienes resultados. Incluso escribir texto plano implica evalúar una función de Emacs Lisp, en este caso, se utiliza <code>self-insert-command</code>, que simplemente inserta el caracter que has escrito. Las funciones que se evalúan presionando atajos de teclado se llaman funciones <dfn>interactivas</dfn>, o <dfn>comandos</dfn>; la forma de hacer que una funcion sea interactiva se ilustrara en el capítulo sobre cómo escribir definiciones de funcion. Consulta la Seccion <a href="#crear-una-función-interactiva" >Crear una Función Interactiva</a>.</p>
+<p>Además de presionar comandos de teclado, hemos visto una segunda manera de evaluar una expresión: colocar el cursor después de una lista y presionar <kbd>C-x C-e</kbd>. Esto es lo que haremos en el resto de esta sección. Hay otras maneras de evaluar una expresión; estas serán descritas a medida que llegemos a ellas.</p>
+<p>Ademas de utilizarlas para prácticar la evaluación, las funciones que se muestran en las siguientes secciones son importantes por derecho propio. Un estudio de estas funciones deja claro la distinción entre búfers y ficheros, cómo cambiar a un búfer, y como determinar una ubicación dentro de el.</p>
 </div>
 <h3 id="nombres-de-búfer" >Nombres de búfer</h3>
 <div class="hBody-3" >
-<p>Las dos funciones, <code>buffer-name</code> y <code>buffer-file-name</code>, muestran la diferencia entre un fichero y un búfer. Cuando se evalúa la siguiente expresión, <code>(buffer-name)</code>, el nombre del buffer aparece en el area eco. Al evaluar <code>(buffer-file-name)</code>, el nombre del fichero al que se relaciona el búfer aparece en el área de eco. Por lo general, el nombre devuelto por <code>(buffer-name)</code> es el mismo que el nombre del fichero al que hace referencia, y el nombre devuelto por <code>(buffer-file-name)</code> es la ruta completa del fichero.</p>
-<p>Un fichero y un búfer son dos entidades diferentes. Un fichero es la información grabada de manera permanente en el ordenador (a menos que se elimine). Un búfer, por otro lado, es la información dentro de Emacs que desaparecerá al final de la sesión de edición (o cuando matas el búfer). Por lo general, un búfer contiene información que se ha copiado desde un fichero; decimos que el búfer está <dfn>visitando</dfn> ese fichero. Esta copia es en la que se trabaja y modifica. Los cambios al búfer no cambian el fichero, hasta ser guardados. Al guardar el búfer, el búfer se copia en el fichero y por lo tanto se guarda de forma permanente.</p>
-<p>Si está leyendo esto dentro de GNU Emacs, puede evaluar cada una de las siguientes expresiones colocando el cursor después de estas y pulsando <kbd>C-x C-e</kbd>.</p>
+<p>Las dos funciones, <code>buffer-name</code> y <code>buffer-file-name</code>, muestran la diferencia entre un fichero y un búfer. Cuando se evalúa la siguiente expresión, <code>(buffer-name)</code>, el nombre del buffer aparece en el area eco. Al evaluar <code>(buffer-file-name)</code>, el nombre del fichero al que hace referencia el búfer aparece en el área de eco. Por lo general, el nombre devuelto por <code>(buffer-name)</code> es el mismo que el nombre del fichero al que hace referencia, y el nombre devuelto por <code>(buffer-file-name)</code> es la ruta completa del fichero.</p>
+<p>Un fichero y un búfer son dos entidades diferentes. Un fichero es la información grabada de manera permanente en el ordenador (a menos que se elimine). Un búfer, por otro lado, es información dentro de Emacs que desaparecerá al final de la sesión de edición (o cuando mates el búfer). Por lo general, un búfer contiene información que se ha copiado desde un fichero; decimos que el búfer está <dfn>visitando</dfn> ese fichero. Esta copia es en la que se trabaja y modifica. Los cambios en el búfer no modifican el fichero, hasta guardar el búfer. Al guardar el búfer, el búfer se copia en el fichero y por lo tanto se guarda de forma permanente.</p>
+<p>Si está leyendo esto dentro de GNU Emacs, puedes evaluar cada una de las siguientes expresiones colocando el cursor después de estas y pulsando <kbd>C-x C-e</kbd>.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">buffer-name</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nf">buffer-file-name</span><span class="p">)</span>
 </code></pre>
 <p>Cuando hago esto en el búfer <span class="file" >*info*</span>, el valor devuelto evaluando <code>(buffer-name)</code> es <span class="file" >&#34;*info*&#34;</span>, y el valor devuelto evaluando <code>(buffer-file-name)</code> es <span class="file" >nil</span>.</p>
-<p>Por otro lado, mientras escribo este documento, el valor devuelto por la evaluación de <code>(buffer-name)</code> es <code>&#34;introduction.texinfo&#34;</code>, y el valor devuelto por la evaluación de <code>(buffer-file-name)</code> es <code>&#34;/gnu/work/intro/introduction.texinfo&#34;</code>.</p>
+<p>Por otro lado, mientras escribo este documento, el valor devuelto por la evaluación de <code>(buffer-name)</code> es <code>&#34;introduction.texinfo&#34;</code>, y el valor evaluando <code>(buffer-file-name)</code> es <code>&#34;/gnu/work/intro/introduction.texinfo&#34;</code>.</p>
 <p>El primero es el nombre del búfer y el segundo es el nombre del fichero. En Info, el nombre del búfer es <span class="file" >&#34;*info*&#34;</span>. Info no apunta a ningún fichero, por lo que el resultado de evaluar <code>(buffer-file-name)</code>] es <span class="file" >nil</span>. El símbolo <code>nil</code> proviene del latin, significa ‘nada’; en este caso, significa que el búfer no está asociado con ningun fichero. (En Lisp, <code>nil</code> también se utiliza con el significado de ‘falso’ y es sinómino para la lista vacía, <code>()</code>.)</p>
 <p>Al escribir esto, el nombre de mi búfer es <code>&#34;introduction.texinfo&#34;</code>. El nombre del fichero al que apunta es <code>&#34;/gnu/work/intro/introduction.texinfo&#34;</code>.</p>
 <p>(En las expresiones, los paréntesis le indican al intérprete Lisp que trate a <code>buffer-name</code> y <code>buffer-file-name</code> como funciones; sin los paréntesis, el intérprete intentaría evaluar los símbolos como variables. Consulta la Sección <a href="#variables" >Variables</a>.)</p>
-<p>A pesar de la distinción entre ficheros y búfers, con frecuencia encontrara personas referirse a un fichero cuando quieren un búfer y viceversa. De hecho, la mayoría de la gente dice, “Estoy editando un fichero”, en lugar de decir, “Estoy editando un búfer que pronto voy a guardar en un fichero”. Esto casi siempre queda claro a partir del contexto de lo que la gente dice. No obstante, Al tratar con programas de ordenador, es importante mantener la distinción en mente, ya que el ordenador no es tan inteligente como una persona.</p>
-<p>Por cierto, la palabra ‘búfer’, viene del significado de la palabra como un cojín que amortigua la fuerza de una colisión. En los primeros ordenadores, un búfer amortiguaba la interacción entre los ficheros y la unidad central de procesamiento del ordenador. Los tambores o cintas que contenian un fichero y la unidad de procesamiento eran piezas de equipamiento muy diferentes entre si, que trabajaban a sus propias velocidades, por rafagas. El búfer hizo posible que ambos trabajaran juntos de manera efectiva. Con el tiempo, el búfer pasó de ser un intermediario, un lugar de almacenamiento temporal, a ser el lugar donde se realiza el trabajo. Esta transformación se parace bastante a la de un pequeño puerto que se convierte en una gran ciudad: una vez fué simplemente el lugar donde la carga era depositada temporalmente antes de ser cargada en los barcos; despues se convirtio en un centro comercial y cultural por derecho propio.</p>
+<p>A pesar de la distinción entre ficheros y búfers, con frecuencia encontraras personas referirse a un fichero cuando se refieren a un búfer y viceversa. De hecho, la mayoría de la gente dice, “Estoy editando un fichero”, en lugar de decir, “Estoy editando un búfer que pronto voy a guardar en un fichero”. Esto casi siempre queda claro a partir del contexto de lo que la gente quiere decir. No obstante, al tratar con programas de ordenador, es importante tener en cuenta la distinción, ya que el ordenador no es tan inteligente como una persona.</p>
+<p>Por cierto, la palabra ‘búfer’, viene del significado de la palabra como un cojín que amortigua la fuerza de una colisión. En los primeros ordenadores, un búfer amortiguaba la interacción entre los ficheros y la unidad central de procesamiento del ordenador. Los tambores o cintas que contenian un fichero y la unidad de procesamiento eran equipos muy diferentes entre si, que trabajaban a su propia velocidad, por rafagas. El búfer hizo posible que ambos trabajaran juntos de manera efectiva. Con el tiempo, el búfer pasó de ser un intermediario, un lugar de almacenamiento temporal, a ser el lugar donde se realiza el trabajo. Esta transformación se parace bastante a la de un pequeño puerto que se convierte en una gran ciudad: una vez fué simplemente el lugar donde la carga se almacenaba temporalmente antes de ser cargada en los barcos; despues se convirtio en un centro comercial y cultural por derecho propio.</p>
 <p>No todos los búfers están asociados con ficheros. Por ejemplo, el búfer <span class="file" >*scratch*</span> no visita ningun fichero. Del mismo modo, un búfer <span class="file" >*Help*</span> no está asociado a ningun fichero.</p>
-<p>En los viejos tiempos, cuando se carecia de un fichero <span class="file" >~/.emacs</span> y se iniciava una sesión Emacs escribiendo unicamente el comando <code>emacs</code>, sin nombrar ningun fichero, Emacs iniciaba con el búfer <span class="file" >*scratch*</span> visible. Hoy en día, vera una pantalla de bienvenida. Puede seguir uno de los comandos sugeridos en dicha pantalla, visitar un fichero, o presionar la barra espaciadora para acceder al búfer <span class="file" >*scratch*</span>.</p>
+<p>En los viejos tiempos, cuando se carecia de un fichero <span class="file" >~/.emacs</span> y se iniciaba una sesión Emacs escribiendo unicamente el comando <code>emacs</code>, sin nombrar ningun fichero, Emacs iniciaba con el búfer <span class="file" >*scratch*</span> visible. Hoy en día, veras una pantalla de bienvenida. Puedes seguir uno de los comandos sugeridos en dicha pantalla, visitar un fichero, o presionar la barra de espacio para acceder al búfer <span class="file" >*scratch*</span>.</p>
 <p>Si cambias al búfer <span class="file" >*scratch*</span>, escribe <code>(buffer-name)</code>, coloca el cursor al final de la expresión, y presiona <kbd>C-x C-e</kbd> para evaluar la expresión. El nombre <code>*scratch*</code> será devuelto y aparecerá en el área de eco. <code>*scratch*</code> es el nombre del búfer. Al escribir y evaluar <code>(buffer-file-name)</code> en el búfer <span class="file" >*scratch*</span>, aparecerá <code>nil</code> en el área de eco, igual que cuando evalúas <code>(buffer-file-name)</code> en Info.</p>
 <p>Por cierto, si estas en el búfer <span class="file" >*scratch*</span> y quieres que el valor devuelto por una expresión aparezca en el búfer en sí y no en el área de eco, presiona <kbd>C-u C-x C-e</kbd> en lugar de <kbd>C-x C-e</kbd>. Esto hace que el valor devuelto aparezca después de la expresión. El búfer se verá así:</p>
 <div class="example-block" >
@@ -925,40 +925,40 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
 </div>
 <h3 id="obtención-de-búfers" >Obtención de Búfers</h3>
 <div class="hBody-3" >
-<p>La función <code>buffer-name</code> devuelve el <em>nombre</em> del búfer; para obtener el búfer <em>en sí</em>, se necesita una función diferente: la función <code>current-buffer</code>. Si utiliza esta función en el código, lo que se obtiene es el búfer en sí.</p>
-<p>Un nombre y el objeto o entidad al que se refiere el nombre son diferentes entre si. Tu no eres tu nombre, eres una persona a la que se refieren los demas por tu nombre. Si pides hablar con Jorge y alguien te entrega una tarjeta con las letras ‘J’, ‘o’, ‘r’, ‘g’, y ‘e’ estritas, podrias divertirte, pero no estarías satisfecho. No quieres hablar con el nombre, sino con la persona a la que se refiere el nombre. Un búfer es similar: el nombre del búfer scratch es <span class="file" >*scratch*</span>, pero el nombre no es el búfer. Para obtener un búfer en sí, es necesario utilizar una función como <code>current-buffer</code>.</p>
-<p>Sin embargo, hay una ligera complicación: si evalúas <code>current-buffer</code> en una expresión por sí sola, como haremos aquí, lo que se ve es una representación impresa del nombre del búfer sin el contenido del búfer. Emacs funciona de esta forma por dos razones: el búfer puede contener miles de líneas––demasiado largo para ser mostrado convenientemente; y, otro búfer puede tener el mismo contenido pero un nombre diferente, y es importante distinguir entre ellos.</p>
+<p>La función <code>buffer-name</code> devuelve el <em>nombre</em> del búfer; para obtener el búfer <em>en sí</em>, se necesita una función diferente: la función <code>current-buffer</code>. Si utilizas esta función en el código, lo que se obtiene es el búfer en sí.</p>
+<p>Un nombre y el objeto o entidad al que se refiere el nombre son diferentes entre si. Tu no eres tu nombre, eres una persona a la que se refieren los demas por tu nombre. Si pides hablar con Jorge y alguien te entrega una tarjeta con las letras ‘J’, ‘o’, ‘r’, ‘g’, y ‘e’ escritas, podrias divertirte, pero no estarías satisfecho. No quieres hablar con el nombre, sino con la persona a la que se refiere el nombre. Un búfer es similar: el nombre del búfer scratch es <span class="file" >*scratch*</span>, pero el nombre no es el búfer. Para obtener un búfer en sí, es necesario utilizar una función como <code>current-buffer</code>.</p>
+<p>Sin embargo, hay una ligera complicación: si evalúas <code>current-buffer</code> en una expresión por sí sola, como haremos aquí, lo que se ve es una representación impresa del nombre del búfer sin el contenido del búfer. Emacs funciona de esta forma por dos razones: el búfer puede contener miles de líneas––demasiado largo para mostrarse convenientemente; y, otro búfer puede tener el mismo contenido pero un nombre diferente, y es importante distinguir entre ellos.</p>
 <p>Aquí hay una expresión que contiene la función:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">current-buffer</span><span class="p">)</span>
 </code></pre>
-<p>Si evalúa esta expresión en Info de la manera habitual, aparecerá <span class="file" >#&lt;buffer *info*&gt;</span> en el área de eco. El formato especial indica que el búfer en sí está siendo devuelto, en lugar de solo su nombre.</p>
+<p>Si evalúas esta expresión en Info de la manera habitual, aparecerá <span class="file" >#&lt;buffer *info*&gt;</span> en el área de eco. El formato especial indica que se está devuendo el búfer en sí, en lugar de solo su nombre.</p>
 <p>Por cierto, si bien puedes escribir un número o símbolo en un programa, no se puede hacer esto con la representación impresa del búfer: la única manera de optener un búfer en sí mismo es con una función como <code>current-buffer</code>.</p>
-<p>Un función relacionada es <code>other-buffer</code>. Esta devuelve el último bufer seleccionado distinto al que te encuentras actualmente, no una representación impresa de su nombre. Si recientemente has ido y vuelto del búfer <span class="file" >*scratch*</span>, <code>other-buffer</code> devolverá ese búfer.</p>
+<p>Una función relacionada es <code>other-buffer</code>. Esta devuelve el último bufer seleccionado distinto al que te encuentras actualmente, no una representación impresa de su nombre. Si recientemente has ido y vuelto del búfer <span class="file" >*scratch*</span>, <code>other-buffer</code> devolverá ese búfer.</p>
 <p>Puedes ver esto evaluando la expresión:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">other-buffer</span><span class="p">)</span>
 </code></pre>
-<p>Verás que <code>#&lt;buffer *scratch*&gt;</code> aparece en el área de eco, o el nombre de cualquier otro búfer al que allas cambiado anteriormente a partir del más reciente<span class="note" ><sup><a href="#5" >5</a></sup></span></p>
+<p>Verás que <code>#&lt;buffer *scratch*&gt;</code> aparece en el área de eco, o el nombre de cualquier otro búfer al que allas cambiado anteriormente reciente<span class="note" ><sup><a href="#5" >5</a></sup></span></p>
 </div>
 <h3 id="cambiando-búfers" >Cambiando búfers</h3>
 <div class="hBody-3" >
 <p>La función <code>other-buffer</code> realmente proporciona un búfer cuando se utiliza como argumento de una función que requiera uno. Podemos ver esto usando <code>other-buffer</code> y <code>switch-to-buffer</code> para cambiar a un búfer diferente.</p>
-<p>Pero primero, una breve introducción a la función <code>switch-to-buffer</code>. Cuando cambias de ida y vuelta de Info al búfer <span class="file" >*scratch*</span> para evaluar <code>(buffer-name)</code>, normalmente se presiona <kbd>C-x b</kbd> y luego se pasa <span class="file" >*scratch*</span><span class="note" ><sup><a href="#6" >6</a></sup></span> en el minibuffer cuando se le solicita el nombre del buffer al que quieres cambiar. El atajo, <kbd>C-x b</kbd>, hace que el intérprete Lisp evalúe la función interactiva <code>switch-to-buffer</code>. Como hemos dicho anteriormente, así es como funciona Emacs: diferentes atajos de teclado llaman o ejecutan diferentes funciones. Por ejemplo, <kbd>C-f</kbd> llama a <code>forward-char</code>, <kbd>M-e</kbd> llama a <code>forward-sentence</code>, etcétera.</p>
-<p>Al escribir <code>switch-to-buffer</code> en una expresión, y darle un búfer al que cambiar, podemos cambiar de búfer tal y como hace <kbd>C-x b</kbd>.</p>
+<p>Pero primero, una breve introducción a la función <code>switch-to-buffer</code>. Cuando cambiaste de ida y vuelta de Info al búfer <span class="file" >*scratch*</span> para evaluar <code>(buffer-name)</code>, probablemente pulsaste <kbd>C-x b</kbd> y luego escribiste <span class="file" >*scratch*</span><span class="note" ><sup><a href="#6" >6</a></sup></span> en el minibuffer cuando se solicito el nombre del buffer al que querias cambiar. El atajo, <kbd>C-x b</kbd>, hace que el intérprete Lisp evalúe la función interactiva <code>switch-to-buffer</code>. Como hemos dicho anteriormente, así es como funciona Emacs: diferentes atajos de teclado llaman o ejecutan diferentes funciones. Por ejemplo, <kbd>C-f</kbd> llama a <code>forward-char</code>, <kbd>M-e</kbd> llama a <code>forward-sentence</code>, etcétera.</p>
+<p>Al escribir <code>switch-to-buffer</code> en una expresión, y darle un búfer al que cambiar, podemos cambiar de búfer tal y como lo hace <kbd>C-x b</kbd>.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">switch-to-buffer</span> <span class="p">(</span><span class="nf">other-buffer</span><span class="p">))</span>
 </code></pre>
 <p>El símbolo <code>switch-to-buffer</code> es el primer elemento de la lista, por lo que el intérprete Lisp lo tratará como una función y llevara a cabo las instrucciones adjuntas al mismo. Pero antes de hacer esto, el intérprete observara que <code>other-buffer</code> está dentro de paréntesis y trabajara en este símbolo primero. <code>other-buffer</code> es el primer (y en este caso, el único) elemento de esta lista, por lo que el intérprete llama o ejecuta la función. Esto devuelve un búfer distinto al actual. A continuación, el intérprete ejecuta <code>switch-to-buffer</code>, pasando, como argumento, el búfer devuelto, que es al que Emacs cambiara. Si estás leyendo esto en Emacs, prueba ahora. Evalúa la expresión. (Para regresar, presiona <kbd>C-x b RET</kbd>.)<span class="note" ><sup><a href="#7" >7</a></sup></span></p>
-<p>En los ejemplos de las secciones siguentes, veras con más frecuencia la función <code>set-buffer</code> que <code>switch-to-buffer</code>. Esto se debe a la diferencia entre programas de ordenador y los humanos: los humanos tienen ojos y esperan ver el búfer en el que están trabajando en la terminal de su ordenador. Esto es tan evidente, que se sobreentiende. Sin embargo, los programas no tienen ojos. Cuando un programa de ordenador trabaja en un búfer, el búfer no necesita ser visible en la pantalla.</p>
-<p><code>switch-to-buffer</code> está diseñado para los humanos y hace dos cosas diferentes: cambia el búfer a el que Emacs dirige la atención; y cambia el búfer mostrado en la ventana al nuevo búfer. <code>set-buffer</code>, por otro lado, solo hace una cosa: cambia la atención del programa del ordenador a un búfer diferente. El búfer en la pantalla permanece sin cambios (por supuesto, normalmente no pasa nada hasta que el comando termina de ejecutarse).</p>
-<p>Además, acabamos introduciendo otro termino tecnico, la palabra <dfn>llamada</dfn>. Cuando se evalúa una lista en la que el primer símbolo es una función, se llama a esa función. El uso del término viene de la noción de la función como una entidad que puede algo hacer por ti cuando la ‘llamas’––al igual que un fontanero es una entidad que puede arreglar una fuga si lo llamas.</p>
+<p>En los ejemplos de las secciones siguentes, veras con más frecuencia la función <code>set-buffer</code> que <code>switch-to-buffer</code>. Esto se debe a la diferencia entre los programas de ordenador y los seres humanos: los humanos tienen ojos y esperan ver el búfer en el que están trabajando en la terminal de su ordenador. Esto es tan evidente, que casi no hace falta decirlo. Sin embargo, los programas no tienen ojos. Cuando un programa de ordenador trabaja en un búfer, el búfer no necesita ser visible en la pantalla.</p>
+<p><code>switch-to-buffer</code> está diseñado para humanos y hace dos cosas diferentes: cambia el búfer a el que Emacs dirige la atención; y cambia el búfer mostrado en la ventana al nuevo búfer. <code>set-buffer</code>, por otro lado, solo hace una cosa: cambia la atención del programa de ordenador a un búfer diferente. El búfer en la pantalla permanece sin cambios (por supuesto, normalmente no pasa nada hasta que el comando termina de ejecutarse).</p>
+<p>Además, acabamos introduciendo otro termino tecnico, la palabra <dfn>llamada</dfn>. Cuando se evalúa una lista en la que el primer símbolo es una función, se llama a esa función. El uso del término viene de la noción de la función como una entidad que puede algo hacer por ti si la ‘llamas’––al igual que un fontanero es una entidad que puede arreglar una fuga si lo llamas.</p>
 </div>
-<h3 id="tamaño-del-búfer-y-la-ubicación-del-punto" >Tamaño del búfer y la ubicación del punto</h3>
+<h3 id="tamaño-del-búfer-y-ubicación-del-punto" >Tamaño del búfer y ubicación del punto</h3>
 <div class="hBody-3" >
-<p>Por último, vamos a ver varias funciones bastante sencillas, <code>buffer-size</code>, <code>point</code>, <code>point-min</code>, y <code>point-max</code>. Estas proporcionan información sobre el tamaño de un búfer y la ubicación del punto dentro de el.</p>
+<p>Finalmente, veamos algunas funciones bastante simples, como <code>buffer-size</code>, <code>point</code>, <code>point-min</code>, y <code>point-max</code>. Estas proporcionan información sobre el tamaño de un búfer y la ubicación del punto dentro de el.</p>
 <p>La función <code>buffer-size</code> te dice el tamaño del búfer actual; es decir, la función devuelve un conteo del número de caracteres en el buffer.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">buffer-size</span><span class="p">)</span>
 </code></pre>
 <p>Puedes evaluar esto de la forma habitual, coloca el cursor después de la expresión y presiona <kbd>C-x C-e</kbd>.</p>
-<p>En Emacs, la posición actual del cursor se denomina <dfn>punto</dfn>. La expresión <code>(point)</code> devuelve un número que indica donde esta situado el cursor como un conteo del número de caracteres desde el principio del búfer hasta el punto.</p>
+<p>En Emacs, la posición actual del cursor se llama <dfn>punto</dfn>. La expresión <code>(point)</code> devuelve un número que indica donde esta situado el cursor como un conteo del número de caracteres desde el principio del búfer hasta el punto.</p>
 <p>Puedes ver el conteo de caracteres del punto para este búfer evaluando la siguiente expresión de la forma habitual:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">point</span><span class="p">)</span>
 </code></pre>
@@ -967,26 +967,26 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">point</span><span class="p">)</span>
 </code></pre>
 <p>Para mí, el valor del punto en esta posición es 66043, lo que significa que hay 319 caracteres (incluyendo espacios) entre las dos expresiones.  (Sin duda, verás números diferentes, ya que lo habré editado desde que evalue el punto por primera vez.)</p>
-<p>La función <code>point-min</code> es similar a <code>point</code>, pero devuelve el valor mínimo permisible del punto en el búfer actual. Este es el numero 1 a menos que <dfn>narrowing</dfn> esté en efecto. (Narrowing (<i>Reduccion</i>) es un mecanismo mediante el cual puedes restringirte a ti mismo, o un programa, a operar solo en un parte de un búfer. Consulta la Sección <a href="#reducir-y-extender" >Reducir y Extender</a>.)  Del mismo modo, la función <code>point-max</code> devuelve el valor máximo permisible del punto en el búfer actual.</p>
+<p>La función <code>point-min</code> es similar a <code>point</code>, pero devuelve el valor mínimo permitido del punto en el búfer actual. Este es el numero 1 a menos que <dfn>narrowing</dfn> esté en efecto. (Narrowing (<i>Reduccion</i>) es un mecanismo mediante el cual puedes restringirte a ti mismo, o a un programa, a operar solo en un parte de un búfer. Consulta la Sección <a href="#reducir-y-extender" >Reducir y Extender</a>.)  Del mismo modo, la función <code>point-max</code> devuelve el valor máximo permitido del punto en el búfer actual.</p>
 </div>
 <h3 id="ejercicio" >Ejercicio</h3>
 <div class="hBody-3" >
-<p>Busca un fichero en el que trabarjar y avanza hasta la mitad. Encuentra el nombre de búfer, el nombre del fichero, su tamaño, y la posición en el fichero.</p>
+<p>Busca un fichero en el que trabarjar y avanza hasta su mitad. Encuentra el nombre de búfer, el nombre del fichero, su tamaño, y la posición en el fichero.</p>
 </div>
-<h2 id="cómo-escribir-definiciones-de-funciones" >Cómo escribir definiciones de funciones</h2>
+<h2 id="cómo-escribir-definiciones-de-funcion" >Cómo escribir definiciones de funcion</h2>
 <div class="hBody-2" >
-<p>Cuando el intérprete Lisp evalúa una lista, mira si el primer símbolo tiene una definición de funcion adjunta; o, dicho de otro modo, si el símbolo apunta a una definición de función. Si lo hace, el ordenador lleva a cabo las instrucciones que aparecen en la definición. Un símbolo que tiene una definición de función se llamada, simplemente, una función (aunque hablando con propiedad, la definición es la función y el símbolo se refiere a ella.)</p>
-<p>Todas las funciones se defininen en términos de otras funciones, a excepción de algunas <dfn>primitivas</dfn> que estan escritas en el lenguaje de programación C. Cuando escribas definiciones de funciones, debes escribirlas en Emacs Lisp y utilizar otras funciones como bloques de construcción. Algunas de las funciones a utilizar estaran a su vez escritas en Emacs Lisp (quizás por tí) y otras serán primitivas escritas en C. Las funciones primitivas se usan exactamente igual que las escritas en Emacs Lisp y se comportan de igual forma. Están escritas en C para que podamos ejecutar facilmente GNU Emacs en cualquier ordenador que tenga la potencia suficiente y pueda ejecutar C.</p>
-<p>Permíteme volver a enfatizar esto: cuando se escribe código en Emacs Lisp, no se distinge entre el uso de funciones escritas en C y el uso de funciones escritas en Emacs Lisp. La diferencia es irrevelante. Mencioné la distinción solo porque es interesante conocerla. De hecho, a menos de que investigues, no sabras si una función ya estrita esta en Emacs Lisp o en C.</p>
+<p>Cuando el intérprete Lisp evalúa una lista, mira si el primer símbolo tiene una definición de funcion adjunta; o, dicho de otro modo, si el símbolo apunta a una definición de función. Si lo hace, el ordenador ejecuta las instrucciones de la definición. Un símbolo que tiene una definición de función se llamada, simplemente, una función (aunque hablando con propiedad, la definición es la función y el símbolo hace referencia a ella.)</p>
+<p>Todas las funciones se defininen en términos de otras funciones, a excepción de algunas funciones <dfn>primitivas</dfn> que estan escritas en el lenguaje de programación C. Cuando escribas definiciones de funcion, debes escribirlas en Emacs Lisp y utilizar otras funciones como bloques de construcción. Algunas de las funciones que utilizaras estaran a su vez escritas en Emacs Lisp (quizás por tí) y otras serán primitivas escritas en C. Las funciones primitivas se usan exactamente igual que las escritas en Emacs Lisp y se comportan de igual forma. Están escritas en C para que podamos ejecutar facilmente GNU Emacs en cualquier ordenador que tenga la potencia suficiente y pueda ejecutar C.</p>
+<p>Permíteme volver a enfatizar esto: cuando se escribe código en Emacs Lisp, no se distinge entre el uso de funciones escritas en C y el uso de funciones escritas en Emacs Lisp. La diferencia es irrevelante. Menciono la distinción solo porque es interesante conocerla. De hecho, a menos de que investigues, no sabras si una función ya escrita esta en Emacs Lisp o en C.</p>
 </div>
 <h3 id="la-forma-especial-defun" >La forma especial <code>defun</code></h3>
 <div class="hBody-3" >
-<p>En Lisp, un símbolo como <code>mark-whole-buffer</code> tiene un código adjunto que le dice al ordenador que hacer cuando se invoca la función. Este código se denomina la <dfn>definición de función</dfn> y se crea evaluando una expresión Lisp que comienza con el símbolo <code>defun</code> (que es una abreviatura para <em>define function</em> (<i>definir función</i>)). Debido a que <code>defun</code> no evalúa sus argumentos en la manera habitual, se le llama una <dfn>forma especial</dfn>.</p>
-<p>En las siguientes secciones, vamos a ver las definiciones de función partiendo del código fuente de Emacs, como <code>mark-whole-buffer</code>. En esta sección, describiremos una definición de función sencilla para que puedas ver su aspecto. Esta definición de función usa aritmética porque es un ejemplo simple. A algunas personas les disgustan los ejemplos que usan aritmética; sin embargo, si usted es tal persona, no se desespere. Casi ningun codigo a estudiar en el resto de esta introducción implica aritmética o matemáticas. Los ejemplos involucran principalmente texto en una forma u otra.</p>
-<p>Una definición de función tiene un máximo de cinco partes despues de la palabra <code>defun</code>:</p>
+<p>En Lisp, un símbolo como <code>mark-whole-buffer</code> tiene un código adjunto que le dice al ordenador que hacer cuando se invoca la función. Este código se denomina la <dfn>definición de función</dfn> y se crea evaluando una expresión Lisp que comienza con el símbolo <code>defun</code> (que es una abreviatura para <em>define function</em> (<i>definir función</i>)). Debido a que <code>defun</code> no evalúa sus argumentos de la manera habitual, se le llama una <dfn>forma especial</dfn>.</p>
+<p>En las siguientes secciones, veremos algunas definiciones de función presentes dentro del código fuente de Emacs, como <code>mark-whole-buffer</code>. En esta sección, describiremos una definición de función sencilla para que puedas ver su aspecto. Esta definición de función usa aritmética porque es un ejemplo simple. A algunas personas les disgustan los ejemplos que usan aritmética; sin embargo, si eres una persona asi, no te desesperes. Casi ningun codigo a estudiar en el resto de esta introducción implica aritmética o matemáticas. Los ejemplos involucran principalmente texto de una forma u otra.</p>
+<p>Una definición de función tiene hasta cinco partes despues de la palabra <code>defun</code>:</p>
 <ol class="num" >
 <li>
-<p>El nombre del símbolo al que debe vincularse la definición de función.</p>
+<p>El nombre del símbolo al se debe vincular la definición de función.</p>
 </li>
 <li>
 <p>Una lista de los argumentos que se pasan a la función. Si no hay argumentos que pasar a la función, tendremos una lista vacía, <code>()</code>.</p>
@@ -995,7 +995,7 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
 <p>Documentación que describe la función. (Técnicamente opcional, pero muy recomendable.)</p>
 </li>
 <li>
-<p>Opcionalmente, una expresión para hacer que la función sea interactiva, de manera que puede utilizarla presionando <kbd>M-x</kbd> seguido del nombre de la función; o pulsando una tecla o atajo de teclado.</p>
+<p>Opcionalmente, una expresión para hacer que la función sea interactiva, de manera que se puede utilizarla presionando <kbd>M-x</kbd> seguido del nombre de la función; o pulsando una tecla o atajo de teclado.</p>
 </li>
 <li>
 <p>El código que indica a el ordenador qué hacer: el <dfn>cuerpo</dfn> de la definición de función.</p>
@@ -1004,7 +1004,7 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
 <p>Es útil pensar que las cinco partes de una definición de función estan organizadas como en una plantilla, con ranuras para cada parte:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">nombre-de-función</span> <span class="p">(</span><span class="nv">argumentos</span><span class="err">…</span><span class="p">)</span>
   <span class="s">&#34;documentación-opcional…&#34;</span>
-  <span class="p">(</span><span class="nb">interactive</span> <span class="nv">argument-passing-info</span><span class="p">)</span>     <span class="c1">; opcional</span>
+  <span class="p">(</span><span class="nb">interactive</span> <span class="nv">informacion-de-paso-de-argumentos</span><span class="p">)</span>     <span class="c1">; opcional</span>
   <span class="nv">cuerpo</span><span class="err">…</span><span class="p">)</span>
 </code></pre>
 <p>A modo de ejemplo, aquí está el código de una función que multiplica su argumento por 7. (Este ejemplo no es interactivo. Consulta la Sección <a href="#crear-una-función-interactiva" >Crear una Función Interactiva</a>, para obtener esa información.)</p>
@@ -1013,29 +1013,29 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
   <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">numero</span><span class="p">))</span>
 </code></pre>
 <p>Esta definición comienza con un paréntesis y el símbolo <code>defun</code> seguido por el nombre de la función.</p>
-<p>El nombre de la función es seguido por una lista que contiene los argumentos que se pasaran a la función. Esta lista se llama <dfn>lista de argumentos</dfn>. En este ejemplo, la lista solo tiene un elemento, el símbolo <code>numero</code>. Cuando se utiliza la función, el símbolo sera asociado al valor que se utiliza como argumento de la función.</p>
+<p>El nombre de la función es seguido por una lista que contiene los argumentos que seran pasados a la función. Esta lista se llama <dfn>lista de argumentos</dfn>. En este ejemplo, la lista solo tiene un elemento, el símbolo <code>numero</code>. Cuando se utiliza la función, el símbolo sera asociado al valor que se utiliza como argumento de la función.</p>
 <p>En lugar de elegir la palabra <code>numero</code> para el nombre del argumento, podría haber escogido cualquier otro nombre. Por ejemplo, la palabra <code>multiplicando</code>. Escogi la palabra ‘numero’ porque indica qué tipo de valor se pretende para este espacio; pero podría haber elegido ‘multiplicando’ para indicar el papel que jugara el valor en el funcionamiento de la función. Podría haberlo llamado <code>foogle</code>, pero habría sido una mala elección, ya que no comunicaria a los humanos qué significa. La elección del nombre es responsabilidad del programador y debe elegirse para hacer que el significado de la función quede claro.</p>
-<p>De hecho, puedes elegir cualquier nombre que desees para un símbolo en una lista de argumentos, incluso el nombre de un símbolo utilizado en alguna otra función: el nombre que utilices en una lista de argumentos es privado para esta definición particular. En esta definición, el nombre hace referenecia a una entidad diferente a cualquiera que utilice el mismo nombre fuera de la definición de función. Supón que tu familia te apoda ‘Enano’; cuando tus familiares digan ‘Enano’, queren hacer referencia a ti. Pero fuera de tu familia, en una película, por ejemplo, el nombre ‘Enano’ se refiere a alguien más. Debido a que el nombre en una lista de argumentos es privado para la definición de la función, se puede cambiar el valor de un símbolo dentro del cuerpo de una función sin cambiar su valor fuera de la función. El efecto es similar al producido por la expresión <code>let</code>. (Consulta la sección <a href="#let" ><code>let</code></a>.)</p>
-<p>La lista de argumentos es seguida por la cadena de documentación que describe la función. Esto es lo ves cuando presionas <kbd>C-h f</kbd> y escribes el nombre de una función. Por cierto, cuando escribas una cadena de documentación como esta, debes confeccionar la primera linea como una frace completa ya que algunos comandos, como <code>apropos</code>, solo imprimen la primera línea de una cadena de documentación de varias líneas. Ademas, no debes indentar la segunda línea de la cadena de documentación, si tienes una, porque se ve extraño al utilizar <kbd>C-h f</kbd> (<code>describe-function</code>). La cadena de documentación es opcional, pero es tan útil, que debería incluirse en casi cualquier función que escribas.</p>
-<p>La tercera línea del ejemplo consiste en el cuerpo de la definición de función. (La mayoría de las definiciones de funcion, claro esta, son más extensas que esta.) En esta función, el cuerpo es la lista, <code>(* 7 numero)</code>, que indica multiplicar el valor de <code>numero</code> por 7. (En Emacs Lisp, <code>*</code> es la función para la multiplicación, al igual que <code>+</code> es la función de suma.</p>
-<p>Cuando se utiliza la función <code>multiplicar-por-siete</code>, el argumento <code>numero</code> se evalúa al número que desees usar. He aquí un ejemplo que muestra como utilizar <code>multiplicar-por-siete</code>; pero ¡no intentes evaluar esto primero!.</p>
+<p>De hecho, puedes elegir cualquier nombre que desees para un símbolo en una lista de argumentos, incluso el nombre de un símbolo utilizado en alguna otra función: el nombre que utilices en una lista de argumentos es privado para esa definición particular. En esta definición, el nombre hace referenecia a una entidad diferente a cualquiera que utilice el mismo nombre fuera de la definición de función. Supón que tu familia te apodan ‘Enano’; cuando tus familiares digan ‘Enano’, queren hacer referencia a ti. Pero fuera de tu familia, en una película, por ejemplo, el nombre ‘Enano’ se refiere a alguien más. Debido a que el nombre en una lista de argumentos es privado de la definición de la función, se puede cambiar el valor de un símbolo dentro del cuerpo de una función sin cambiar su valor fuera de la función. El efecto es similar al producido por la expresión <code>let</code>. (Consulta la sección <a href="#let" ><code>let</code></a>.)</p>
+<p>La lista de argumentos es seguida por la cadena de documentación que describe la función. Esto es lo ves cuando presionas <kbd>C-h f</kbd> y escribes el nombre de una función. Por cierto, cuando escribas una cadena de documentación como esta, debes confeccionar la primera linea como una frace completa ya que algunos comandos, como <code>apropos</code>, solo imprimen la primer línea de una cadena de documentación de varias líneas. Ademas, no debes indentar la segunda línea de la cadena de documentación, si tienes una, porque se ve extraño al utilizar <kbd>C-h f</kbd> (<code>describe-function</code>). La cadena de documentación es opcional, pero es tan útil, que debería incluirse en casi cualquier función que escribas.</p>
+<p>La tercer línea del ejemplo consiste en el cuerpo de la definición de función. (La mayoría de las definiciones de funcion, claro esta, son más extensas que esto.) En esta función, el cuerpo es la lista, <code>(* 7 numero)</code>, que indica multiplicar el valor de <code>numero</code> por 7. (En Emacs Lisp, <code>*</code> es la función para multiplicar, al igual que <code>+</code> es la función para sumar.</p>
+<p>Cuando se utiliza la función <code>multiplicar-por-siete</code>, el argumento <code>numero</code> se evalúa al número que desees usar. He aquí un ejemplo que muestra como utilizar <code>multiplicar-por-siete</code>; ¡pero no trates de evaluar esto primero!.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">multiplicar-por-siete</span> <span class="mi">3</span><span class="p">)</span>
 </code></pre>
-<p>El símbolo <code>numero</code>, especificado en la definición de función en la siguiente sección, se da o “une a” el valor 3 en el actual uso de la función. Note que aunque <code>numero</code> estaba dentro de paréntesis en la definición de función, el argumento pasado a la función <code>multiplicar-por-siete</code> no está entre paréntesis. Los paréntesis se escriben en la definición de función para que el ordenador pueda averiguar donde termina la lista de argumentos e inicia el resto de la definición de función.</p>
-<p>Si evalúas este ejemplo, es probable que obtengas un mensaje de error. (¡adelante, intentalo!) Esto se debe a que hemos escrito la definición de función, pero aún no se ha comunicado al ordenador sobre la definición––no hemos instalado (o ‘cargado’) la definición de función en Emacs. Instalar una función es el proceso de comunicar al intérprete Lisp la definición de la función. La instalación se describe en la siguiente sección.</p>
+<p>El símbolo <code>numero</code>, especificado en la definición de función en la siguiente sección, se da o “une a” el valor 3 en el uso real de la función. Observa que aunque <code>numero</code> estaba dentro de paréntesis en la definición de función, el argumento pasado a la función <code>multiplicar-por-siete</code> no está entre paréntesis. Los paréntesis se escriben en la definición de función para que el ordenador pueda averiguar donde termina la lista de argumentos y donde inicia el resto de la definición de función.</p>
+<p>Si evalúas este ejemplo, es probable que obtengas un mensaje de error. (¡adelante, intentalo!) Esto se debe a que hemos escrito la definición de función, pero aún no se ha comunicado al ordenador sobre la definición––aun no hemos instalado (o ‘cargado’) la definición de función en Emacs. Instalar una función es el proceso de comunicar al intérprete Lisp la definición de la función. La instalación se describe en la siguiente sección.</p>
 </div>
 <h3 id="instalar-una-definición-de-función" >Instalar una definición de función</h3>
 <div class="hBody-3" >
-<p>Si estás leyendo esto dentro en Emacs, puedes probar la función <code>multiplicar-por-siete</code> evaluando en primer lugar la definición de función y luego evaluando <code>(multiplicar-por-siete 3)</code>. Hay una copia de la definición a continuación. Coloca el cursor después del último paréntesis de la definición de función y presiona <kbd>C-x C-e</kbd>. Al hacer esto, <code>multiplicar-por-siete</code> aparecerá en el área de eco. (Esto significa que cuando una se evalua una definición de función, el valor devuelto es el nombre de la función definida.) Al mismo tiempo, esta acción instala la definición de función.</p>
+<p>Si estás leyendo esto dentro en Emacs, puedes probar la función <code>multiplicar-por-siete</code> evaluando en primer lugar la definición de función y luego evaluando <code>(multiplicar-por-siete 3)</code>. Hay una copia de la definición a continuación. Coloca el cursor después del último paréntesis de la definición de función y presiona <kbd>C-x C-e</kbd>. Al hacer esto, <code>multiplicar-por-siete</code> aparecerá en el área de eco. (Esto significa que cuando se evalua una definición de función, el valor devuelto es el nombre de la función definida.) Al mismo tiempo, esta acción instala la definición de función.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiplicar-por-siete</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>
   <span class="s">&#34;Multiplica NUMERO por siete.&#34;</span>
   <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">numero</span><span class="p">))</span>
 </code></pre>
-<p>Al evaluar este <code>defun</code>, estas instanlado <code>multiplicar-por-siete</code> en Emacs. La función ahora es una parte de Emacs tanto como <code>forward-word</code> o cualquier otra función de edición que utilices. (<code>multiplicar-por-siete</code> permanecera instalado hasta que salgas de Emacs. Para volver a cargar el código automáticamente cada vez que Emacs inicie, revisa la sección <a href="#instalar-código-permanentemente" >Instalar Código Permanentemente</a>.)</p>
-<p>Puedes ver el efecto de instalar <code>multiplicar-por-siete</code> evaluando el siguiente ejemplo. Coloca el cursor después de la siguiente expresión y presiona <kbd>C-x C-e</kbd>. Aparacerá el número 21 en el área de eco.</p>
+<p>Al evaluar este <code>defun</code>, estas instanlado <code>multiplicar-por-siete</code> en Emacs. La función ahora es una parte de Emacs tanto como <code>forward-word</code> o cualquier otra función de edición que utilices. (<code>multiplicar-por-siete</code> permanecera instalado hasta que salgas de Emacs. Para volver a cargar el código automáticamente cada vez que inicie Emacs, revisa la sección <a href="#instalar-código-permanentemente" >Instalar Código Permanentemente</a>.)</p>
+<p>Puedes ver el efecto de instalar <code>multiplicar-por-siete</code> evaluando el siguiente ejemplo. Coloca el cursor después de la siguiente expresión y presiona <kbd>C-x C-e</kbd>. El número 21 aparacerá en el área de eco.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">multiplicar-por-siete</span> <span class="mi">3</span><span class="p">)</span>
 </code></pre>
-<p>Si lo deseas, puedes leer la documentación de la función presiona <kbd>C-h f</kbd> (<code>describe-function</code>) y luego escribe el nombre de la función, <code>multiplicar-por-siete</code>. Al hacer esto, una ventana <span class="file" >*Help*</span> aparecerá en tu pantalla diciendo:</p>
+<p>Si lo deseas, puedes leer la documentación de la función presiona <kbd>C-h f</kbd> (<code>describe-function</code>) y luego escribe el nombre de la función, <code>multiplicar-por-siete</code>. Al hacer esto, aparecerá una ventana <span class="file" >*Help*</span> en tu pantalla diciendo:</p>
 <div class="example-block" >
 <pre class="example" >multiplicar-por-siete is a Lisp function.
 (multiplicar-por-siete NUMERO)
@@ -1043,40 +1043,40 @@ Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p hola)
 Multiplica NUMERO por siete.
 </pre>
 </div>
-<p>(Para volver a una unica ventana en la pantalla, presiona <kbd>C-x 1</kbd>.)</p>
+<p>(Para volver a una sola ventana en tu pantalla, presiona <kbd>C-x 1</kbd>.)</p>
 </div>
 <h4 id="cambiar-una-definición-de-función" >Cambiar una definición de función</h4>
 <div class="hBody-4" >
-<p>Si deseas modificar el código de <code>multiplicar-por-siete</code>, simplemente vuelve a escribirlo. Para instalar la nueva versión en lugar de la anterior, evalúa nuevamente la definición de la función. Esta, es la forma de modificar el código en Emacs. Es muy simple,</p>
+<p>Si quieres modificar el código de <code>multiplicar-por-siete</code>, simplemente reescribelo. Para instalar la nueva versión en lugar de la anterior, evalúa nuevamente la definición de la función. Esta, es la forma de modificar el código en Emacs. Es muy sencillo,</p>
 <p>A modo de ejemplo, puedes cambiar la función <code>multiplicar-por-siete</code> para sumar el número a sí mismo siete veces en lugar de multiplicar el número por siete. Esto produce el mismo resultado, pero por una ruta diferente. Al mismo tiempo, añadiremos un comentario al codigo; un comentario es texto que el intérprete Lisp ignora, pero un lector humano puede encontrar útil o esclarecedor. El comentario es, que esta es la “segunda versión”.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiplicar-por-siete</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>       <span class="c1">; Segunda versión.</span>
   <span class="s">&#34;Multiplica NUMERO por siete.&#34;</span>
   <span class="p">(</span><span class="nf">+</span> <span class="nv">numero</span> <span class="nv">numero</span> <span class="nv">numero</span> <span class="nv">numero</span> <span class="nv">numero</span> <span class="nv">numero</span> <span class="nv">numero</span><span class="p">))</span>
 </code></pre>
 <p>El comentario sigue a un punto y coma, ‘;’. En Lisp cualquier cosa en una línea despues de un punto y coma es un comentario. El fin de la línea es el fin del comentario. Para extender un comentario por dos o más líneas, inicia cada línea con un punto y coma.</p>
-<p>Vé las Secciónes <a href="#empieza-por-un-fichero-.emacs" >Empieza por un fichero <span class="file" >.emacs</span></a> y <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments" >Comentarios</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para más informacion sobre los comentarios.</p>
-<p>Puedes instalar esta versión de <code>multiplicar-por-siete</code> evaluándo esta del misma modo en que evaluaste la primer función: coloca el cursor después del último paréntesis y presiona <kbd>C-x C-e</kbd>.</p>
+<p>Consulta las Secciónes <a href="#empieza-por-un-fichero-.emacs" >Empieza por un fichero <span class="file" >.emacs</span></a> y <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments" >Comentarios</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para más informacion sobre los comentarios.</p>
+<p>Puedes instalar esta versión de <code>multiplicar-por-siete</code> evaluándo esta del mismo modo en que evaluaste la primer función: coloca el cursor después del último paréntesis y presiona <kbd>C-x C-e</kbd>.</p>
 <p>En resumen, asi es como puedes escribir código en Emacs Lisp: escribes una función; la instalas; la pruebas; luego haces correcciones o mejoras y la vuelves a instalar.</p>
 </div>
 <h3 id="crear-una-función-interactiva" >Crear una función interactiva</h3>
 <div class="hBody-3" >
 <p>Puedes hacer a una función interactiva colocando una lista que inicia con la forma especial <code>interactive</code> inmediatamente después de la documentación. Un usuario puede invocar una función interactiva con <kbd>M-x</kbd> seguido del nombre de la función; o con un atajo de teclado ligado a esta, por ejemplo, presionando <kbd>C-n</kbd> para <code>next-line</code> o <kbd>C-x h</kbd> para <code>mark-whole-buffer</code>.</p>
-<p>Cusionamente, cuando llamas a una función interactiva interactivamente, el valor devuelto no se muestra automáticamente en el área de eco. Esto se debe a que a menudo se llama a una función interactiva por sus efectos secundarios, como avanzar hacia adelante una palabra o una línea, y no por el valor devuelto. Si el valor devuelto se mostrara en el área de eco cada vez que presionas una tecla, seria muy molesto.</p>
-<p>Tanto el uso de la forma especial <code>interactive</code> y la forma de mostrar un valor en el área de eco pueden ilustrarse creando una versión interactiva de <code>multiplicar-por-siete</code>.</p>
+<p>Cusionamente, cuando se llama a una función interactiva interactivamente, el valor devuelto no se muestra automáticamente en el área de eco. Esto se debe a que a menudo se llama a una función interactiva por sus efectos secundarios, como avanzar hacia adelante una palabra o una línea, y no por el valor devuelto. Si el valor devuelto se mostrara en el área de eco cada vez que presionas una tecla, seria muy molesto.</p>
+<p>Tanto el uso de la forma especial <code>interactive</code> y la forma de mostrar un valor en el área de eco se pueden ilustrar creando una versión interactiva de <code>multiplicar-por-siete</code>.</p>
 <p>Aquí está el código:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiplicar-por-siete</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>       <span class="c1">; Versión Interactiva.</span>
   <span class="s">&#34;Multiplica NUMERO por siete.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p&#34;</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;El resultado es %d&#34;</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="nv">numero</span><span class="p">)))</span>
 </code></pre>
-<p>Para instalar este código coloca el cursor después del ultimo parentesis y presiona <kbd>C-x C-e</kbd>. El nombre de la función aparecerá en el área de eco. Despues, puedes utilizar este código al presionar <kbd>C-u</kbd> segudo de un número, luego <kbd>M-x multiplicar-por-siete</kbd> y finalmente <kbd>RET</kbd>. La frase ‘El resultado es …’ seguida por el producto, aparecerá en el área de eco.</p>
+<p>Para instalar este código, coloca el cursor después del ultimo parentesis y presiona <kbd>C-x C-e</kbd>. El nombre de la función aparecerá en el área de eco.  A continuacion, puedes utilizar este código al presionar <kbd>C-u</kbd> segudo de un número, luego <kbd>M-x multiplicar-por-siete</kbd> y finalmente <kbd>RET</kbd>. En el área de eco aparecerá la frase ‘El resultado es …’ seguida por el producto.</p>
 <p>Hablando en terminos mas generales, puedes invocar una función como ésta de dos maneras:</p>
 <ol class="num" >
 <li>
-<p>Al escribir un argumento prefijo que contiene el número a pasar, y a continuación presionar <kbd>M-x</kbd> y escribir el nombre de la función, como ocurre con <kbd>C-u 3 M-x forward-sentence</kbd>; o,</p>
+<p>Escribiendo un argumento prefijo que contenga el número a pasar, y luego presionar <kbd>M-x</kbd> y el nombre de la función, como ocurre con <kbd>C-u 3 M-x forward-sentence</kbd>; o,</p>
 </li>
 <li>
-<p>Escribir cualquier tecla o atajo de teclado ligado a la función, como ocurre con <kbd>C-u 3 M-e</kbd>.</p>
+<p>Pulsando cualquier tecla o atajo de teclado ligado a la función, como ocurre con <kbd>C-u 3 M-e</kbd>.</p>
 </li>
 </ol>
 <p>Ambos ejemplos operan de forma identica moviendo el punto hacia adelante tres oraciones. (Ya que <code>multiply-by-seven</code> no esta ligado a un atajo, no se puede utilizar como ejemplo.)</p>
@@ -1085,7 +1085,7 @@ Multiplica NUMERO por siete.
 </div>
 <h4 id="multiplicar-por-siete-interactivo" ><code>multiplicar-por-siete</code> interactivo</h4>
 <div class="hBody-4" >
-<p>Veamos es uso de la forma especial <code>interactive</code> y luego la función <code>message</code> en la versión interactiva de <code>multiplicar-por-siete</code>. Recordaras que la definición de función tiene este aspecto:</p>
+<p>Veamos es uso de la forma especial <code>interactive</code> y luego la función <code>message</code> en la versión interactiva de <code>multiplicar-por-siete</code>. Recordaras que la definición de función tiene el siguiente aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiplicar-por-siete</span> <span class="p">(</span><span class="nv">numero</span><span class="p">)</span>       <span class="c1">; Versión Interactiva.</span>
   <span class="s">&#34;Multiplica NUMERO por siete.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p&#34;</span><span class="p">)</span>
@@ -1099,37 +1099,37 @@ Multiplica NUMERO por siete.
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;El resultado es %d&#34;</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">7</span> <span class="mi">5</span><span class="p">))</span>
 </code></pre>
 <p>(Si estás leyendo esto en GNU Emacs, puedes evaluar esta expresión por ti mismo.) Primero, el intérprete evaluará la lista interna, que es <code>(* 7 5)</code>. Esto devuelve un valor de 35. A continuación, se evaluará la lista externa, pasando los valores del segundo y posteriores elementos de la lista a la función <code>message</code>.</p>
-<p>Como hemos visto, <code>message</code> es una función Emacs Lisp especialmente diseñada para enviar un mensaje de una línea al usuario. (Consulta la Seccion <a href="#la-función-message" >La función <code>message</code></a>.) En resumen, la función <code>message</code> imprime su primer argumento en el área de eco tal cual, excepto para las apariciones de ‘%d’, o ‘%s’ (y varias otras secuencias de control que no hemos mencionado). Cuando aparece una secuencia de control, la función busca el segundo o posteriores argumentos e imprime el valor del argumento en la ubicación donde se encuartra la secuencia de control.</p>
-<p>En la función interactiva <code>multiplicar-por-siete</code>, la cadena de control es ‘%d’, que requiere un número, y el valor devuelto por la evaluación de <code>(* 7 5)</code> es el número 35. Por consiguiente, el número 35 se imprime en lugar de ‘%d’ y el mensaje es ‘El resultado es 35’.</p>
-<p>(Observa que cuando llamas a la función <code>multiplicar-por-siete</code>, el mensaje se imprime sin comillas, pero cuando llamas a <code>message</code>, el texto se imprime entre comillas. Esto se debe a que el valor devuelto por <code>message</code> aparece en el área de eco cuando evalúas una expresión cuyo primer elemento es <code>message</code>; pero si se integra en una función, <code>message</code> imprime el texto como un efecto secundario sin comillas.)</p>
+<p>Como hemos visto, <code>message</code> es una función Emacs Lisp especialmente diseñada para enviar un mensaje de una línea al usuario. (Consulta la Seccion <a href="#la-función-message" >La función <code>message</code></a>.) En resumen, la función <code>message</code> imprime su primer argumento en el área de eco tal cual, excepto para las ocurrencias de ‘<code>%d</code>’, o ‘<code>%s</code>’ (y varias otras secuencias de control que no hemos mencionado). Cuando aparece una secuencia de control, la función busca el segundo argumento o los siguientes e imprime el valor del argumento en la ubicación donde se encuartra la secuencia de control.</p>
+<p>En la función interactiva <code>multiplicar-por-siete</code>, la cadena de control es ‘<code>%d</code>’, que requiere un número, y el valor devuelto por la evaluación de <code>(* 7 5)</code> es el número 35. Por consiguiente, el número 35 se imprime en lugar de ‘<code>%d</code>’ y el mensaje es ‘El resultado es 35’.</p>
+<p>(Observa que cuando llamas a la función <code>multiplicar-por-siete</code>, el mensaje se imprime sin comillas, pero cuando llamas a <code>message</code>, el texto se imprime entre comillas. Esto se debe a que el valor devuelto por <code>message</code> aparece en el área de eco cuando se evalúa una expresión cuyo primer elemento es <code>message</code>; pero si se integra en una función, <code>message</code> imprime el texto como un efecto secundario sin las comillas.)</p>
 </div>
 <h3 id="diferentes-opciones-para-interactive" >Diferentes opciones para <code>interactive</code></h3>
 <div class="hBody-3" >
-<p>En el ejemplo, <code>multiplicar-por-siete</code> utilizo <code>&#34;p&#34;</code> como el argumento para <code>interactive</code>. Este argumento indica a Emacs que interprete cualquer cosa que escriba despues de <kbd>C-u</kbd> o del comando <kbd>META</kbd> como un numero que sera el argumento a pasar a la funcion. Emacs tiene más de veinte caracteres predefinidos para usar con <code>interactive</code>. En casi todos los casos, una de estas opciones te permitira pasar la información correcta de forma interactiva a una función. (Consulta la Seccion <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive-Codes" >Codigo de Caracteres para <code>interactive</code></a> en <em>El Manual de Referencia GNU Emacs Lisp</em>).</p>
+<p>En el ejemplo, <code>multiplicar-por-siete</code> utilizo <code>&#34;p&#34;</code> como el argumento para <code>interactive</code>. Este argumento le indica a Emacs que interpretara cualquer cosa que escribas despues de <kbd>C-u</kbd> o del comando <kbd>META</kbd> como un numero que sera el argumento a pasar a la funcion. Emacs tiene más de veinte caracteres predefinidos para usar con <code>interactive</code>. En casi todos los casos, una de estas opciones te permitira pasar la información correcta de forma interactiva a una función. (Consulta la Seccion <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive-Codes" >Codigo de Caracteres para <code>interactive</code></a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>).</p>
 <p>Considera la función <code>zap-to-char</code>. Su expresión interactiva es</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p\ncZap to char: &#34;</span><span class="p">)</span>
 </code></pre>
-<p>La primer parte del argumento de <code>interactive</code> es ‘p’, con el que ya estás familiarizado. Este argumento le indica a Emacs intepretar un ‘prefijo’, como un número que se pasa a la función. Puedes especificar un prefijo presionando <kbd>C-u</kbd> seguido de un número o igualmente con <kbd>META</kbd> seguido por un número. El prefijo es un número de caracteres especifico. De este modo, si el prefijo es tres y el caracter especificado es ‘x’, entonces se borrará todo el texto hasta e incluido el tercer ‘x’ siguiente. Si no se establece un prefijo, entonces borras todo el texto hasta e incluido el carácter establecido, pero no más.</p>
-<p>La ‘c’ indica a la función el nombre del carácter que va a eliminar.</p>
-<p>Más formalmente, una función con dos o más argumentos puede tener información que pasa a cada argumento añadiendo partes en la cadena que a continuacion de <code>interactive</code>. Al hacer esto, la información se pasa a cada argumento en el mismo orden que se especifica en la lista <code>interactive</code>. En la cadena, cada parte está separada de la siguente parte por un ‘\n’, que significa nueva línea. Por ejemplo, a ‘p’ puede continuar un ‘\n’ y un ‘cZap to char: ’. Esto hace que Emacs pase el valor del argumento prefijo (si lo hay) y el carácter.</p>
-<p>En este caso, la definición de función se parece a la siguiente, donde <code>arg</code> y <code>char</code> son los símbolos que <code>interactive</code> vincula el argumento prefijo y el caracter especificado:</p>
+<p>La primer parte del argumento de <code>interactive</code> es ‘p’, con el que ya estás familiarizado. Este argumento le dice a Emacs que interprete un ‘prefijo’, como un número que se pasa a la función. Puedes especificar un prefijo presionando <kbd>C-u</kbd> seguido de un número o igualmente con <kbd>META</kbd> seguido por un número. El prefijo es un número de caracteres especifico. De este modo, si el prefijo es tres y el caracter especificado es ‘x’, entonces se borrará todo el texto hasta e incluido el tercer ‘x’ siguiente. Si no se establece un prefijo, entonces borras todo el texto hasta e incluido el carácter especificado, pero no más.</p>
+<p>La ‘c’ le dice a la función el nombre del carácter que va a eliminar.</p>
+<p>Más formalmente, una función con dos o más argumentos puede tener información que pasa a cada argumento añadiendo partes a la cadena que sigue a <code>interactive</code>. Al hacer esto, la información se pasa a cada argumento en el mismo orden que se especifica en la lista <code>interactive</code>. En la cadena, cada parte está separada de la siguente parte por un ‘\n’, que significa nueva línea. Por ejemplo, a ‘p’ puede continuar un ‘\n’ y un ‘cZap to char: ’. Esto hace que Emacs pase el valor del argumento prefijo (si lo hay) y el carácter.</p>
+<p>En este caso, la definición de función se parece a la siguiente, donde <code>arg</code> y <code>char</code> son los símbolos que <code>interactive</code> vincula al argumento prefijo y el caracter especificado:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">nombre-de-funcion</span> <span class="p">(</span><span class="nv">arg</span> <span class="nv">char</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;p\ncZap to char: &#34;</span><span class="p">)</span>
   <span class="nv">cuerpo-de-funcion</span><span class="err">…</span><span class="p">)</span>
 </code></pre>
-<p>(El espacio después de los dos puntos en el prompt hace que se vea mejor. Consulta la Seccion <a href="#la-definición-de-copy-to-buffer" >La Definición de <code>copy-to-buffer</code></a>, para un ejemplo.)</p>
+<p>(El espacio después de los dos puntos en el prompt hace que se vea mejor. Consulta la Seccion <a href="#la-definición-de-copy-to-buffer" >La Definición de <code>copy-to-buffer</code></a>, para ver un ejemplo.)</p>
 <p>Cuando una función no toma argumentos, <code>interactive</code> no requiere ninguno. Una función asi contiene unicamente la expresión <code>(interactive)</code>. La función <code>mark-whole-buffer</code> es asi.</p>
-<p>Alternativamente, si los códigos especiales de letras no son adecuados para su aplicación, puedes pasar tus propios argumentos a <code>interactive</code> como una lista.</p>
-<p>Consulta la Seccion <a href="#la-definición-de-append-to-buffer" >La Definición de <code>append-to-buffer</code></a>, para un ejemplo. Consulta la Sección <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using-Interactive" >Usando <code>interactive</code></a> en <em>El Manual de GNU Emacs Lisp</em>, para una explicación más completa sobre esta técnica.</p>
+<p>Alternativamente, si los códigos de letras especiales no son adecuados para tu aplicación, puedes pasar tus propios argumentos a <code>interactive</code> como una lista.</p>
+<p>Consulta la Seccion <a href="#la-definición-de-append-to-buffer" >La Definición de <code>append-to-buffer</code></a>, para ver un ejemplo. Consulta la Sección <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using-Interactive" >Usando <code>interactive</code></a> en <em>El Manual de GNU Emacs Lisp</em>, para una explicación más completa sobre esta técnica.</p>
 </div>
 <h3 id="instalar-código-permanentemente" >Instalar Código Permanentemente</h3>
 <div class="hBody-3" >
-<p>Cuando instalas una definición de función evaluandola, permanecera instalada hasta que salgas de Emacs. La proxima vez que inicies una nueva sesión de Emacs, la función no sera instalada a menos que evalúes la definición de nuevo.</p>
+<p>Cuando instalas una definición de función evaluandola, permanecera instalada hasta que salgas de Emacs. La proxima vez que inicies una nueva sesión de Emacs, la función no sera instalada a menos que evalúes de nuevo la definición.</p>
 <p>En algún momento, podrias necesitar que el código se instale automáticamente cada vez que inicies una nueva sesión de Emacs. Hay varias formas de hacer esto:</p>
 <ul>
 <li>
-<p>Si tienes código solo para tu uso, puedes poner el código de la definición de función en el fichero de inicialización <span class="file" >.emacs</span>. Cuando se inicia Emacs, el fichero <span class="file" >.emacs</span> se evalúa automática y se instalan todas sus definiciones de función. Vér la Sección <a href="#tu-fichero-.emacs" >Tu Fichero <span class="file" >.emacs</span></a>.</p>
+<p>Si tienes código solo para tu personal, puedes poner el código de la definición de función en el fichero de inicialización <span class="file" >.emacs</span>. Cuando se inicia Emacs, el fichero <span class="file" >.emacs</span> se evalúa automáticamente y se instalan todas las definiciones de función que contiene. Consulta la Sección <a href="#tu-fichero-.emacs" >Tu Fichero <span class="file" >.emacs</span></a>.</p>
 </li>
 <li>
 <p>Como Alternativa, puedes poner las definiciones de función en uno o más ficheros y usar la función <code>load</code> para hacer que Emacs evalue y con ello instale cada una de las funciones en los ficheros. Consulta la Seccion <a href="#cargando-ficheros" >Cargando ficheros</a>.</p>
@@ -1138,29 +1138,29 @@ Multiplica NUMERO por siete.
 <p>En Tercer lugar, si tienes código que todo tu sitio va a utilizar, es normal ponerlo en un fichero llamado <span class="file" >site-init.el</span> que se carga cuando se construye Emacs. Esto hace que el código este disponible para todos los usuarios de tu máquina. (Mira el fichero <span class="file" >INSTALL</span> que forma parte de la distribución Emacs.)</p>
 </li>
 </ul>
-<p>Finalmente, si tienes código que cualquier usuario de Emacs pueda querer, puedes publicarlo en una red de informatica o enviar una copia a la Free Software Foundation. (Al hacer esto, por favor licencia el código y su documentación bajo una licencia que permita a otras personas ejecutar, copiar, estudiar, modificar, y redistribuir el código y te protege de quien tome tu trabajo.) Si envias una copia de tu código a la Free Software Foundation, y lo proteges apropiadamente de ti mismo y otros, puede ser incluido en la siguiente version de Emacs. En gran parte, esta es la forma como ha crecido Emacs a través de los años, a traves de donaciones.</p>
+<p>Finalmente, si tienes código que cualquier usuario de Emacs pueda querer, puedes publicarlo en una red de computadores o enviar una copia a la Free Software Foundation. (Al hacer esto, por favor licencia el código y su documentación bajo una licencia que permita a otras personas ejecutar, copiar, estudiar, modificar, y redistribuir el código y te proteja de quien tome tu trabajo.) Si envias una copia de tu código a la Free Software Foundation, y te proteges apropiadamente a ti mismo y a los demas, puede ser incluido en la siguiente version de Emacs. En gran parte, esta es la forma como ha crecido Emacs a través de los años, gracias a las de donaciones.</p>
 </div>
 <h3 id="let" ><code>let</code></h3>
 <div class="hBody-3" >
-<p>La expresión <code>let</code> es una forma especial en Lisp que tendras que utilizar en la mayoría de las definiciones de función.</p>
+<p>La expresión <code>let</code> es una forma especial de Lisp que tendras que utilizar en la mayoría de las definiciones de función.</p>
 <p><code>let</code> se utiliza para unir o enlazar un símbolo a un valor de tal manera que el intérprete no confunda la variable con otra variable del mismo nombre que no forme parte de la función.</p>
 <p>Para entender por qué la forma especial <code>let</code> es necesaria, considera la situación donde eres dueño de una casa que generalmente vinculas con ‘la casa’, como en la frase, “La casa necesita pintura”. Si visitas a un amigo y tu anfitrion hace referencia a ‘la casa’, es probable que se refiera a <em>su</em> casa, no a la tuya, es decir, a una casa diferente.</p>
-<p>Si tu amigo se refiere a su casa y tu crees que el se esta refiriendo a tu casa, puedes tener cierta confusión. Lo mismo podría suceder en Lisp si una variable que se usa dentro de una función tiene el mismo nombre que una variable usada dentro de otra función, y las dos no tienen la intencion de referirse al mismo valor. La forma especial <code>let</code> permite evitar este tipo de confusión.</p>
-<p>La forma especial <code>let</code> evita confusiones. <code>let</code> crea un nombre para una <dfn>variable local</dfn> que eclipsa cualquier uso del mismo nombre fuera de la expresión <code>let</code>. Esto es como entender que cuando tu anfitrion se refiera a ‘la casa’, el quiere decir su casa, no la tuya. (Los símbolos usados en las listas de argumentos funcionan de la misma manera. Consulta la Sección <a href="#la-forma-especial-defun" >La Forma Especial <code>defun</code></a>.)</p>
-<p>Las variable locales creadas por una expresión <code>let</code> retienen su valor <em>solo</em> dentro de la expresión <code>let</code> (y dentro de expresiones llamadas dentro de la expresión <code>let</code>); las variables locales no tiene efecto fuera de la expresión <code>let</code>.</p>
-<p>Otra forma de persar sobre <code>let</code> es que es como un <code>setq</code> que es temporal y local. Los valores establecidos por <code>let</code> se deshacen automáticamente cuando <code>let</code> finaliza. La configuración solo afecta a las expresiones que se encuentran dentro de los limites de la expresión <code>let</code>. En jerga informatica, diríamos que “la union de un simbolo es visible solo en las funciones llamadas en la forma <code>let</code>; en Emacs Lisp, el alcance es dinámico, no léxico.”</p>
-<p><code>let</code> puede crear más de una variable a la vez. Ademas, <code>let</code> da a cada variable que crea un valor inicial, ya sea un valor especificado por tí, o <code>nil</code>. (En la jerga, eso se llama ‘enlazar la variable al valor’.)  Después de que <code>let</code> ha creado y enlazado las variables, ejecuta el código en el cuerpo del <code>let</code> y devuelve el valor de la última expresión en el cuerpo, como el valor de toda la expresión <code>let</code>. (‘Ejecutar’ es un término tecnico que significa evaluar una lista; proviene del significando de la palabra ‘llevar a la practica’ (<em>Oxford English Dictionary</em>). Ya que evalúas una expresión para realizar una acción, ‘ejecutar’ ha evolucionado como un sinónimo para ‘evaluar’.)</p>
+<p>Si tu amigo se refiere a su casa y tu crees que el se esta refiriendo a tu casa, puedes encontrarte en una situacion confusa. Lo mismo podría suceder en Lisp si una variable que se usa dentro de una función tiene el mismo nombre que una variable que se utiliza dentro de otra función, y no se pretende que ambas se refieran al mismo valor. La forma especial <code>let</code> permite evitar este tipo de confusión.</p>
+<p>La forma especial <code>let</code> evita confusiones. <code>let</code> crea un nombre para una <dfn>variable local</dfn> que eclipsa cualquier uso del mismo nombre fuera de la expresión <code>let</code>. Esto es como entender que cuando tu anfitrion haga referencia a ‘la casa’, el quiere referirse a su casa, no la tuya. (Los símbolos usados en las listas de argumentos funcionan de la misma manera. Consulta la Sección <a href="#la-forma-especial-defun" >La Forma Especial <code>defun</code></a>.)</p>
+<p>Las variable locales creadas por una expresión <code>let</code> retienen su valor <em>solo</em> dentro de la expresión <code>let</code> (y dentro de las expresiones llamadas dentro de la expresión <code>let</code>); las variables locales no tiene efecto fuera de la expresión <code>let</code>.</p>
+<p>Otra forma de persar sobre <code>let</code> es que es como un <code>setq</code> que es temporal y local. Los valores establecidos por <code>let</code> se deshacen automáticamente cuando <code>let</code> finaliza. La configuración solo afecta a las expresiones que se encuentran dentro de los limites de la expresión <code>let</code>. En la jerga informatica, diríamos que “la union de un simbolo solo es visible en las funciones llamadas en la forma <code>let</code>; en Emacs Lisp, el alcance es dinámico, no léxico.”</p>
+<p><code>let</code> puede crear más de una variable a la vez. Ademas, <code>let</code> da a cada variable que crea un valor inicial, ya sea un valor especificado por tí, o <code>nil</code>. (En la jerga, eso se llama ‘enlazar la variable al valor’.)  Después de que <code>let</code> ha creado y enlazado las variables, ejecuta el código en el cuerpo del <code>let</code> y devuelve el valor de la última expresión en el cuerpo, como el valor de toda la expresión <code>let</code>. (‘Ejecutar’ es un término tecnico que significa evaluar una lista; proviene del significando de la palabra ‘llevar a la practica’ (<em>Oxford English Dictionary</em>). Puesto que se evalua una expresión para realizar una acción, ‘ejecutar’ ha evolucionado como un sinónimo para ‘evaluar’.)</p>
 </div>
 <h4 id="partes-de-una-expresión-let" >Partes de una expresión <code>let</code></h4>
 <div class="hBody-4" >
-<p>Una expresión <code>let</code> es una lista de tres partes. La primer parte es el símbolo <code>let</code>. La segunda parte es una lista, llamada <dfn>varlist</dfn> (lista de variables), cada uno de cuyos elementos es un símbolo por sí mismo o una lista de dos elementos, cuyo primer elemento es un símbolo. La tercera parte de la expresión <code>let</code> es el cuerpo de <code>let</code>. El cuerpo normalmente consiste de una o más listas.</p>
-<p>Una plantilla para una expresión <code>let</code> tiene el siguente aspecto:</p>
+<p>Una expresión <code>let</code> es una lista de tres partes. La primer parte es el símbolo <code>let</code>. La segunda parte es una lista, llamada <dfn>varlist</dfn> (<i>lista de variables</i>), cada uno de cuyos elementos es un símbolo por sí mismo o una lista de dos elementos, cuyo primer elemento es un símbolo. La tercer parte de la expresión <code>let</code> es el cuerpo de <code>let</code>. El cuerpo normalmente consiste de una o más listas.</p>
+<p>Una plantilla de la expresión <code>let</code> se veria asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="nv">varlist</span> <span class="nv">cuerpo</span><span class="err">…</span><span class="p">)</span>
 </code></pre>
-<p>Los símbolos de la lista de varibles (<code>varlist</code>) son las variables a las que la forma especial <code>let</code> da valores de inicio. Los símbolos por si solos reciven el valor de inicio <code>nil</code>; y cada símbolo que sea el primer elemento de una lista de dos elementos se vincula al valor que se devuelve cuando el interprete Lisp evalúa el segundo elemento.</p>
-<p>Por lo tanto, una varlist podria verse asi: <code>(thread (needles 3))</code>. En este caso, en una expresión <code>let</code>, Emacs une el símbolo <code>thread</code> a un valor inicial de <code>nil</code>, y une el símbolo <code>needles</code> a un valor inicial de 3.</p>
-<p>Cuando escribes una expresión <code>let</code>, lo que haces es poner las expresiones apropiadas en los espacios de la plantilla de expresión <code>let</code>.</p>
-<p>Si la varlist está compuesta de listas de 2 elementos, como suele ser el caso, la plantilla de la expresión <code>let</code> es la sigiente:</p>
+<p>Los símbolos de la lista de varibles (<code>varlist</code>) son las variables a las que la forma especial <code>let</code> da valores de inicio. A los símbolos por si mismos se les da el valor inicial <code>nil</code>; y cada símbolo que sea el primer elemento de una lista de dos elementos se vincula al valor que se devuelve cuando el interprete Lisp evalúa el segundo elemento.</p>
+<p>Por lo tanto, una varlist podria verse asi: <code>(hilo (agujas 3))</code>. En este caso, en una expresión <code>let</code>, Emacs une el símbolo <code>hilo</code> a un valor inicial de <code>nil</code>, y une el símbolo <code>agujas</code> a un valor inicial de 3.</p>
+<p>Cuando escribes una expresión <code>let</code>, lo que haces es poner las expresiones apropiadas en los espacios de la plantilla de la expresión <code>let</code>.</p>
+<p>Si la varlist está compuesta de listas de 2 elementos, como suele ser el caso, la plantilla de la expresión <code>let</code> se ve asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">variable</span> <span class="nv">valor</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">variable</span> <span class="nv">valor</span><span class="p">)</span>
       <span class="err">…</span><span class="p">)</span>
@@ -1169,7 +1169,7 @@ Multiplica NUMERO por siete.
 </div>
 <h4 id="ejemplo-de-expresión-let" >Ejemplo de Expresión <code>let</code></h4>
 <div class="hBody-4" >
-<p>La siguiente expresión crea y da valores los iniciales a las dos variables <code>cebra</code> y <code>tigre</code>. El cuerpo de la expresión <code>let</code> es una lista que llama a la función <code>message</code>.</p>
+<p>La siguiente expresión crea y da valores iniciales a las dos variables <code>cebra</code> y <code>tigre</code>. El cuerpo de la expresión <code>let</code> es una lista que llama a la función <code>message</code>.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">cebra</span> <span class="ss">&#39;rayas</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">tigre</span> <span class="ss">&#39;fiero</span><span class="p">))</span>
   <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Un tipo de animal tiene %s y otro es %s.&#34;</span>
@@ -1177,21 +1177,20 @@ Multiplica NUMERO por siete.
 </code></pre>
 <p>Aquí, la varlist es <code>((cebra &#39;rayas) (tigre &#39;fiero))</code>.</p>
 <p>Las dos variables son <code>cebra</code> y <code>tigre</code>. Cada variable es el primer elemento de una lista de dos elementos y cada valor es el segundo elemento de su lista de dos elementos. En la varlist, Emacs une la variable <code>cebra</code> al valor <code>rayas</code><span class="note" ><sup><a href="#8" >8</a></sup></span>, y la variable <code>tigre</code> al valor <code>fiero</code>. En este ejemplo, ambos valores son símbolos precedidos por una cita. Los valores podrían muy bien haber sido otra lista o una cadena. El cuerpo de <code>let</code> sigue después de la lista que contiene las variables. En este ejemplo, el cuerpo es una lista que usa la función <code>message</code> para imprimir una cadena en el área de eco.</p>
-<p>Puedes evaluar el ejemplo de la forma habitual, coloca el cursor después del último paréntesis y presiona <kbd>C-x C-e</kbd>. Al hacer esto, aparecerá lo siguiente en el área de eco:</p>
+<p>Puedes evaluar el ejemplo de la forma habitual, colocando el cursor después del último paréntesis y presionando <kbd>C-x C-e</kbd>. Al hacer esto, aparecerá lo siguiente en el área de eco:</p>
 <pre class="code" ><code class="chroma" ><span class="s">&#34;Un tipo de animal tiene rayas y otro es fiero.&#34;</span>
 </code></pre>
 <p>Como hemos visto anteriormente, la función <code>message</code> imprime su primer argumento, excepto ‘%s’. En este ejemplo, el valor de la variable <code>cebra</code> se imprime en la ubicacion del primer ‘%s’ y el valor de la variable <code>tigre</code> se imprime en la ubicacion del segundo ‘%s’.</p>
 </div>
 <h4 id="variables-sin-inicializar-en-un-sentencia-let" >Variables sin inicializar en un sentencia <code>let</code></h4>
 <div class="hBody-4" >
-<p>Si no se unen las variables en una sentencia <code>let</code> con valores de inicio específicos, automáticamente seran unidos a un valor de inicio <code>nil</code>, como en la siguiente expresión:</p>
+<p>Si no se unen las variables en una sentencia <code>let</code> con valores de inicio específicos, automáticamente seran enlazados a un valor de inicio <code>nil</code>, como en la siguiente expresión:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">abedul</span> <span class="mi">3</span><span class="p">)</span>
       <span class="nv">pino</span>
       <span class="nv">abeto</span>
       <span class="p">(</span><span class="nv">roble</span> <span class="ss">&#39;algunos</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">message</span>
-   <span class="s">&#34;Aquí están %d variables con %s, %s, y el valor %s.&#34;</span>
-   <span class="nv">abedul</span> <span class="nv">pino</span> <span class="nv">abeto</span> <span class="nv">roble</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Aquí están %d variables con %s, %s, y el valor %s.&#34;</span>
+           <span class="nv">abedul</span> <span class="nv">pino</span> <span class="nv">abeto</span> <span class="nv">roble</span><span class="p">))</span>
 </code></pre>
 <p>Aquí, la varlist es <code>((abedul 3) pino abeto (roble &#39;algunos))</code>.</p>
 <p>Si evalúas esta expresión de la forma habitual, aparecerá lo siguiente en el área de eco:</p>
@@ -1200,24 +1199,24 @@ Multiplica NUMERO por siete.
 </pre>
 </div>
 <p>En este ejemplo, Emacs une el símbolo <code>abedul</code> al número 3, une los símbolos <code>pino</code> y <code>abeto</code> a <code>nil</code>, y el símbolo <code>roble</code> al valor <code>algunos</code>.</p>
-<p>Observe que en la primera parte de <code>let</code>, las variables <code>pino</code> y <code>abeto</code> son unicamente átomos que no están rodeados por paréntesis; esto es porque estan siendo unidos a <code>nil</code>, la lista vacía. Pero <code>roble</code> su une a <code>algunos</code> por que es parte de la lista <code>(roble &#39;algunos)</code>. De manera similar, <code>abedul</code> se une al número 3 en una lista con este número. (Ya que un número se evalúa a sí mismo, el número no necesita ser citado. Ademas, el número se imprime en el mensaje utilizando un ‘%d’ en lugar de un ‘%s’.) Las cuatro variables como grupo son puestas dentro de una lista para delimitarla del cuerpo de <code>let</code>.</p>
+<p>Observa que en la primer parte de <code>let</code>, las variables <code>pino</code> y <code>abeto</code> son unicamente átomos que no están rodeados por paréntesis; esto es porque estan siendo ligados a <code>nil</code>, la lista vacía. Pero <code>roble</code> su une a <code>algunos</code> por que es parte de la lista <code>(roble &#39;algunos)</code>. De manera similar, <code>abedul</code> se une al número 3 en una lista con este número. (Ya que un número se evalúa a sí mismo, no es necesario citar el numero. Ademas, el número se imprime en el mensaje utilizando un ‘<code>%d</code>’ en lugar de un ‘<code>%s</code>’.) Las cuatro variables como grupo se ponen en una lista para delimitarlas del cuerpo de <code>let</code>.</p>
 </div>
 <h3 id="la-forma-especial-if" >La forma especial <code>if</code></h3>
 <div class="hBody-3" >
-<p>Además de <code>let</code> y <code>defun</code>, esta la forma especial condicional <code>if</code>. Esta forma se utiliza para indicar al ordenador que tome decisiones. Puedes escribir definiciones de función sin necesidad de utilizar <code>if</code>, pero se usa con bastante frecuencia, y es lo suficientemente importante como para incluirse aquí. Se utiliza, por ejemplo, en el código de la función <code>beginning-of-buffer</code>.</p>
-<p>La idea básica detras de <code>if</code>, es que “<em>si</em> (<i>if</i>) una prueba es verdadera <em>entonces</em> se evalua la expresión”. Si la prueba no es verdadera, la expresión no se evalua. Por ejemplo, podría tomar una decisión como, “si hace sol y calor, ve a la playa!”</p>
-<p>Al escribir una expresión <code>if</code> en Lisp no se utiliza la palabra ‘then’; la prueba y la acción son los elementos segundo y tercero de la lista cuyo primer elemento es <code>if</code>. No obstante, la parte de la prueba en una expresión <code>if</code> a menudo se llamada <dfn>parte-si</dfn> (if-part) y el segundo argumento a menudo se llamada <dfn>parte-entonces</dfn> (then-part).</p>
+<p>Además de <code>let</code> y <code>defun</code>, esta la forma especial condicional <code>if</code>. Esta forma se utiliza para indicar al ordenador que tome decisiones. Puedes escribir definiciones de función sin necesidad de utilizar <code>if</code>, pero se usa con bastante frecuencia, y es lo suficientemente importante como para incluirla aquí. Se utiliza, por ejemplo, en el código de la función <code>beginning-of-buffer</code>.</p>
+<p>La idea básica detras de <code>if</code>, es que “<em>si</em> (<i>if</i>) una prueba es verdadera <em>entonces</em> (<i>then</i>) se evalua la expresión”. Si la prueba no es verdadera, la expresión no se evalua. Por ejemplo, podrías tomar una decisión como, “si hace sol y calor, entonces ve a la playa!”</p>
+<p>Al escribir una expresión <code>if</code> en Lisp no se utiliza la palabra ‘entonces’; la prueba y la acción son los elementos segundo y tercero de la lista cuyo primer elemento es <code>if</code>. No obstante, la parte de la prueba en una expresión <code>if</code> a menudo se llamada <dfn>parte-si</dfn> (<i>if-part</i>) y el segundo argumento a menudo se llamada <dfn>parte-entonces</dfn> (<i>then-part</i>).</p>
 <p>Ademas, cuando se escribe una expresión <code>if</code>, la prueba-verdadero-o-falso normalmente se escribe en la misma línea que el símbolo <code>if</code>, pero la acción a llevar a cabo si la prueba es verdadera, “parte-entonces”, se escribe en la segunda y suguientes líneas. Esto hace que la expresión <code>if</code> sea mas fácil de leer.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="nv">prueba-verdadero-o-falso</span>
-    <span class="nv">accion-a-realizar-si-el-test-es-cierto</span><span class="p">)</span>
+    <span class="nv">accion-a-realizar-si-la-prueba-es-verdadera</span><span class="p">)</span>
 </code></pre>
 <p>La prueba-verdadero-o-falso es una expresión que evalua el intérprete Lisp.</p>
-<p>Aquí hay un ejemplo que puedes evaluar. La prueba consiste en si el número 5 es mayor que el número 4. Ya que es asi, se imprime el mensaje ‘¡5 es mayor que 4!’.</p>
+<p>Aquí hay un ejemplo que puedes evaluar. La prueba consiste en si el número 5 es mayor que el número 4. Puesto que es asi, se imprime el mensaje ‘¡5 es mayor que 4!’.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="mi">5</span> <span class="mi">4</span><span class="p">)</span>                           <span class="c1">; parte-si</span>
     <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;¡5 es mayor que 4!&#34;</span><span class="p">))</span>   <span class="c1">; parte-entonces</span>
 </code></pre>
 <p>(La función <code>&gt;</code> comprueba si su primer argumento es mayor que su segundo argumento y devuelve verdadero si lo es.)</p>
-<p>Por supuesto, en un caso real, la prueba en una expresión <code>if</code> no será siempre la misma, como en la expresión <code>(&gt; 5 4)</code>. En su lugar, al menos una de las variables utilizadas en la prueba estara unida a un valor de antemano desconocido. (Si el valor se conociera de antemano, ¡no necesitariamos realizar la prueba!)</p>
+<p>Por supuesto, en un caso real, la prueba en una expresión <code>if</code> no será fija eternamente, como en la expresión <code>(&gt; 5 4)</code>. En su lugar, al menos una de las variables utilizadas en la prueba estara unida a un valor de antemano desconocido. (Si el valor se conociera de antemano, ¡no necesitariamos realizar la prueba!)</p>
 <p>Por ejemplo, el valor puede estar unido a un argumento de una definición de función. En la siguiente definición de función, el tipo de animal es un valor que se pasa a la función. Si el valor unido a <code>caracteristica</code> es <code>fiero</code>, entonces se imprime el mensaje, ‘¡Es un tigre!’; de otro modo, se devolvera <code>nil</code>.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">tipo-de-animal</span> <span class="p">(</span><span class="nv">caracteristica</span><span class="p">)</span>
   <span class="s">&#34;Imprime el mensaje en el área de eco dependiendo de CARACTERISTICA.
@@ -1226,35 +1225,35 @@ Multiplica NUMERO por siete.
   <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">equal</span> <span class="nv">caracteristica</span> <span class="ss">&#39;fiero</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;¡Es un tigre!&#34;</span><span class="p">)))</span>
 </code></pre>
-<p>Si estás leyendo esto dentro de GNU Emacs, puedes evaluar la definición de función de la forma habitual para instalarlo en Emacs, y luego puedes evaluar las dos expresiones siguientes para ver los resultados:</p>
+<p>Si estás leyendo esto dentro de GNU Emacs, puedes evaluar la definición de función de la forma habitual para instalarla en Emacs, y luego puedes evaluar las siguientes dos expresiones para ver los resultados:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nv">tipo-de-animal</span> <span class="ss">&#39;fiero</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nv">tipo-de-animal</span> <span class="ss">&#39;cebra</span><span class="p">)</span>
 </code></pre>
-<p>Al evaluar <code>(tipo-de-animal &#39;fiero)</code>, veras el siguiente mensaje impreso en el área eco: <code>&#34;¡Es un tigre!&#34;</code>; y cuando se evalúa <code>(tipo-de-animal &#39;cebra)</code> verás <code>nil</code> impreso en el área de eco.</p>
+<p>Al evaluar <code>(tipo-de-animal &#39;fiero)</code>, veras el siguiente mensaje impreso en el área de eco: <code>&#34;¡Es un tigre!&#34;</code>; y cuando se evalúa <code>(tipo-de-animal &#39;cebra)</code> verás <code>nil</code> impreso en el área de eco.</p>
 </div>
 <h4 id="la-función-tipo-de-animal-en-detalle" >La función <code>tipo-de-animal</code> en detalle</h4>
 <div class="hBody-4" >
-<p>Veamos la función <code>tipo-de-animal</code> en detalle.</p>
-<p>La definición de función <code>tipo-de-animal</code> se escribio llenando los espacios de dos plantillas, la primera para la definición de función como un todo, y la segunda para una expresión <code>if</code>.</p>
-<p>La plantilla para cada función no interactiva es:</p>
+<p>Veamos en detalle la función <code>tipo-de-animal</code>.</p>
+<p>La definición de función <code>tipo-de-animal</code> se escribio llenando los espacios de dos plantillas, una para la definición de función como un todo, y otra para una expresión <code>if</code>.</p>
+<p>La plantilla para toda función no interactiva es:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">nombre-de-funcion</span> <span class="p">(</span><span class="nv">lista-de-argumentos</span><span class="p">)</span>
   <span class="s">&#34;documentacion…&#34;</span>
   <span class="nv">cuerpo</span><span class="err">…</span><span class="p">)</span>
 </code></pre>
-<p>Las partes de la función que coinciden con esta plantilla tienen este aspecto:</p>
+<p>Las partes de la función que coinciden con esta plantilla tienen el siguiente aspecto:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">tipo-de-animal</span> <span class="p">(</span><span class="nv">caracteristica</span><span class="p">)</span>
   <span class="s">&#34;Imprime el mensaje en el área de eco dependiendo de CARACTERISTICA.
-</span><span class="s">     Si la CARACTERISTICA es el símbolo ‘fiero’,
-</span><span class="s">     entonces advierte que es un tigre.&#34;</span>
+</span><span class="s">Si la CARACTERISTICA es el símbolo ‘fiero’,
+</span><span class="s">entonces advierte que es un tigre.&#34;</span>
   <span class="nv">cuerpo:</span> <span class="nv">la</span> <span class="nv">expresion</span> <span class="nb">if</span><span class="p">)</span>
 </code></pre>
-<p>El nombre de función es <code>tipo-de-animal</code>; se pasa al valor de un argumento. A la lista de argumentos le sigue una cadena de documentación multilínea. La cadena de documentación se incluiye en el ejemplo porque es un buen hábito escribir un cadena de documentación para cada definición de función. El cuerpo de la definición de función consiste en la expresión <code>if</code>.</p>
-<p>La plantilla para una expresión <code>if</code> se ve así:</p>
+<p>El nombre de función es <code>tipo-de-animal</code>; se le pasa el valor de un argumento. A la lista de argumentos le sigue una cadena de documentación multilínea. La cadena de documentación se incluiye en el ejemplo porque es un buen hábito escribir un cadena de documentación para cada definición de función. El cuerpo de la definición de función consiste en la expresión <code>if</code>.</p>
+<p>La plantilla de una expresión <code>if</code> se ve así:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="nv">prueba-verdadero-o-falso</span>
     <span class="nv">accion-a-realizar-si-la-prueba-devuelve-verdadero</span><span class="p">)</span>
 </code></pre>
-<p>En la función <code>tipo-de-animal</code>, el código para <code>if</code> se ve así:</p>
+<p>En la función <code>tipo-de-animal</code>, el código para el <code>if</code> se ve así:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">equal</span> <span class="nv">caracteristica</span> <span class="ss">&#39;fiero</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;¡Es un tigre!&#34;</span><span class="p">)))</span>
 </code></pre>
@@ -1267,25 +1266,25 @@ Multiplica NUMERO por siete.
 </div>
 <h3 id="expresiones-if–then–else" >Expresiones if–then–else</h3>
 <div class="hBody-3" >
-<p>Una expresión <code>if</code> puede tener un tercer argumento opcional, llamado <dfn>else-part</dfn> (parte-de-otro-modo), en caso de que la prueba-verdadero-o-falso devuelva falso. Cuando esto sucede, el segundo argumento o parte-entonces de la expresión <code>if</code> global <em>no</em> se evalúa, pero el tercer argumento o parte-de-otro-modo <em>se</em> evalúa. Podría pensar en esto como la alternativa del día nublado para la decisión “si es cálido y soleado, entonces ir a la playa!, de otro modo leer un libro!”</p>
-<p>La palabra “else” (de otro modo) no se escribe en el código Lisp; la parte-de-otro-modo de una expresión <code>if</code> viene después de la parte-entonces. En Lisp, la parte-de-otro-modo suele escribirse al inicio de una nueva linea y se indenta menos que la parte-entonces:</p>
+<p>Una expresión <code>if</code> puede tener un tercer argumento opcional, llamado <dfn>parte-de-otro-modo</dfn> (<i>else-part</i>), en caso de que la prueba-verdadero-o-falso devuelva falso. Cuando esto sucede, el segundo argumento o parte-entonces de la expresión <code>if</code> global <em>no</em> se evalúa, pero el tercer argumento o parte-de-otro-modo <em>se</em> evalúa. Podrías pensar en esto como la alternativa del día nublado para la decisión “si es cálido y soleado, entonces ir a la playa!, de otro modo leer un libro!”</p>
+<p>La palabra “else” (<i>de otro modo</i>) no se escribe en el código Lisp; la parte-de-otro-modo de una expresión <code>if</code> viene después de la parte-entonces. En Lisp, la parte-de-otro-modo suele escribirse al inicio de una nueva linea y tiene menos indentacion que la parte-entonces:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="nv">prueba-verdadero-o-falso</span>
     <span class="nv">accion-a-realizar-si-la-prueba-devuelve-verdadero</span>
   <span class="nv">accion-a-realizar-si-la-prueba-devuelve-falso</span><span class="p">)</span>
 </code></pre>
-<p>Por ejemplo, la siguiente expresión <code>if</code> imprime el mensaje ‘¡4 no es mayor que 5!’ al evaluarse en la forma habitual:</p>
+<p>Por ejemplo, evaluar la siguiente expresión <code>if</code> imprime el mensaje ‘¡4 no es mayor que 5!’:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>                                   <span class="c1">; parte-if</span>
     <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;¡4 falsamente es mayor que 5!&#34;</span><span class="p">)</span> <span class="c1">; parte-then</span>
   <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;¡4 no es mayor que 5!&#34;</span><span class="p">))</span>          <span class="c1">; parte-else</span>
 </code></pre>
-<p>Tenga en cuenta que los diferentes niveles de indentación hacen fácil distinguir la parte-entonces de la parte-de-otro-modo. (GNU Emacs tiene varios comandos que indentan expresiones <code>if</code> automáticamente. Consulta la Seccion <a href="#gnu-emacs-te-ayuda-a-escribir-listas" >GNU Emacs te ayuda a escribir listas</a>.)</p>
-<p>Podemos ampliar la función <code>tipo-de-animal</code> para incluir una parte-else simplemente incorporando una parte adicional para la expresión <code>if</code>.</p>
-<p>Puedes ver las consecuencias de hacer esto si evalúas la siguiente versión de la definición de función <code>tipo-de-animal</code> y luego evaluas las dos expresiones siguientes que pasan diferentes argumentos a la función.</p>
+<p>Observa que los diferentes niveles de indentación hacen fácil distinguir la parte-entonces (por brevedad, y mezclando ingles con español, apartir de ahora (<i>parte-then</i>)) de la parte-de-otro-modo (por brevedad, y mezclando ingles con español, apartir de ahora (<i>parte-else</i>)). (GNU Emacs tiene varios comandos que indentan expresiones <code>if</code> automáticamente. Consulta la Seccion <a href="#gnu-emacs-te-ayuda-a-escribir-listas" >GNU Emacs te ayuda a escribir listas</a>.)</p>
+<p>Podemos ampliar la función <code>tipo-de-animal</code> para incluir una parte-else simplemente incorporando una parte adicional a la expresión <code>if</code>.</p>
+<p>Puedes ver las consecuencias de hacer esto si evalúas la siguiente versión de la función <code>tipo-de-animal</code> y luego evaluas las dos expresiones siguientes que pasan argumentos diferentes a la función.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">tipo-de-animal</span> <span class="p">(</span><span class="nv">caracteristica</span><span class="p">)</span>
-  <span class="s">&#34;Imprime el mensaje en el área de eco dependiendo de CARACTERISTICA.
+  <span class="s">&#34;Imprime un mensaje en el área de eco dependiendo de la CARACTERISTICA.
 </span><span class="s">Si la CARACTERISTICA es el símbolo ‘fiero’,
 </span><span class="s">entonces advierte que es un tigre.
-</span><span class="s">de otro modo decir que no es fiero&#34;</span>
+</span><span class="s">de otro modo dice que no es fiero&#34;</span>
   <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">equal</span> <span class="nv">caracteristica</span> <span class="ss">&#39;fiero</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;¡Es un tigre!&#34;</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;!No es feroz!&#34;</span><span class="p">)))</span>
@@ -1294,18 +1293,18 @@ Multiplica NUMERO por siete.
 
 <span class="p">(</span><span class="nv">tipo-de-animal</span> <span class="ss">&#39;cebra</span><span class="p">)</span>
 </code></pre>
-<p>Al evalar <code>(tipo-de-animal &#39;fiero)</code>, verás el siguiente mensaje en el área de eco: <code>&#34;¡Es un tigre!&#34;</code>; pero cuando evalues <code>(tipo-de-animal &#39;cebra)</code>, verás <code>&#34;¡No es feroz!&#34;</code>.</p>
-<p>(Por supuesto, si <code>característica</code> fuera <code>muy feroz</code>, se imprimiria el mensaje <code>&#34;¡No es feroz!&#34;</code>; ¡y sería un error!  Cuando escribas código, necesitas tener en cuenta la posibilidad de que algun argumento como este será puesto a prueba por <code>if</code> y acorde a ello escribir tu programa.</p>
+<p>Cuando evalues <code>(tipo-de-animal &#39;fiero)</code>, verás el siguiente mensaje en el área de eco: <code>&#34;¡Es un tigre!&#34;</code>; cuando evalues <code>(tipo-de-animal &#39;cebra)</code>, verás <code>&#34;¡No es feroz!&#34;</code>.</p>
+<p>(Por supuesto, si <code>característica</code> fuera <code>muy-feroz</code>, se imprimiria el mensaje <code>&#34;¡No es feroz!&#34;</code>; ¡y sería un error!  Cuando escribas código, debes tener en cuenta la posibilidad de que algun argumento como este sea probado por <code>if</code> y acorde a ello escribir tu programa.</p>
 </div>
 <h3 id="verdad-y-falsedad-en-emacs-lisp" >Verdad y Falsedad en Emacs Lisp</h3>
 <div class="hBody-3" >
-<p>Hay un aspecto importante para la prueba verdadero en una expresión <code>if</code>. Hasta ahora, hemos hablado de ‘verdadero’ y ‘falso’ como valores de predicados como si fueran nuevos tipos de objetos Emacs Lisp. De hecho, solo nuestro viejo amigo <code>nil</code> es ‘falso’. Cualquier otra cosa––cualquiera en absoluto––es ‘verdadero’.</p>
-<p>La expresión que prueba si es verdadero se interpreta como <dfn>true</dfn> (verdadero) si el resultado de la evaluacion es no <code>nil</code>. En otras palabras, el resultado de la prueba se considera verdadero si el valor devuelto es un número como 47, una cadena como <code>&#34;hola&#34;</code>, o un símbolo (distinto a <code>nil</code>) como <code>flores</code>, o una lista (siempre y cuando no este vacía) o incluso ¡un búfer!</p>
+<p>Hay un aspecto importante para probar la verdad en una expresión <code>if</code>. Hasta ahora, hemos hablado de ‘verdadero’ y ‘falso’ como valores de predicados como si fueran nuevos tipos de objetos Emacs Lisp. De hecho, solo nuestro viejo amigo <code>nil</code> es ‘falso’. Cualquier otra cosa––cualquiera en absoluto––es ‘verdadero’.</p>
+<p>La expresión que prueba si algo es verdadero se interpreta como <dfn>true</dfn> (<i>verdadero</i>) si el resultado de la evaluacion es no <code>nil</code>. En otras palabras, el resultado de la prueba se considera verdadero si el valor devuelto es un número como 47, una cadena como <code>&#34;hola&#34;</code>, o un símbolo (distinto de <code>nil</code>) como <code>flores</code>, o una lista (siempre y cuando no este vacía) o incluso ¡un búfer!</p>
 <p>Antes de ilustrar una prueba para verdadero, necesitamos una explicación de <code>nil</code>.</p>
 <p>En Emacs Lisp, el símbolo <code>nil</code> tiene dos significados. En primer lugar, significa que la lista está vacía. En segundo lugar, significa falso y es el valor devuelto cuando una prueba-verdadero-o-falso obtiene falso. <code>nil</code> puede escribirse como una lista vacia, <code>()</code>, o como <code>nil</code>. En lo referente al interprete Lisp <code>()</code> y <code>nil</code> son lo mismo. Los humanos, sin embargo, tienden a usar <code>nil</code> para falso y <code>()</code> para lista vacía.</p>
-<p>En Emacs Lisp, cualquier valor que no sea <code>nil</code>––no es una lista vacía––se considera verdadero. Esto significa que si una evaluación devuelve algo que no es una lista vacía, una expresión <code>if</code> pondra la prueba a verdadero. Por ejemplo, si un número se coloca en el lugar de la prueba, se evaluara y devolverá su valor, ya que eso es lo que hacen los números cuando se evalúan. En esta condicion, la expresión <code>if</code> devuelve verdadero. La expresión devuelve falso solo cuando <code>nil</code>, o una lista vacía, son devueltas al evaluar la expresión.</p>
+<p>En Emacs Lisp, cualquier valor que no sea <code>nil</code>––si no es una lista vacía––se considera verdadero. Esto significa que si una evaluación devuelve algo que no es una lista vacía, una expresión <code>if</code> probara ser verdadera. Por ejemplo, si un número se coloca en el lugar de la prueba, se evaluara y devolverá su valor, ya que eso es lo que hacen los números cuando se evalúan. En esta condicion, la expresión <code>if</code> pasara su prueba como verdadero. La expresión pasara su prueba como falsa solo cuando <code>nil</code>, o una lista vacía, son devueltas al evaluar la expresión.</p>
 <p>Puedes ver esto evaluando las dos expresiones en los ejemplos siguientes.</p>
-<p>En el primer ejemplo, el número 4 se evalua como la prueba en la expresión <code>if</code> y devuelve el numero en si; en consecuencia, se evalua y devuelve la parte-then de la expresión: aparece ‘verdadero’ en el área de eco. En el segundo ejemplo, <code>nil</code> indica falso; en consecuencia, se evalua y devuelve la parte-else de la expresión: aparece ‘falso’ en el área de eco.</p>
+<p>En el primer ejemplo, el número 4 se evalua como la prueba en la expresión <code>if</code> y se devuelve a si mismo; en consecuencia, se evalua y devuelve la parte-then de la expresión: aparece ‘verdadero’ en el área de eco. En el segundo ejemplo, <code>nil</code> indica falso; en consecuencia, se evalua y devuelve la parte-else de la expresión: aparece ‘falso’ en el área de eco.</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="mi">4</span>
     <span class="ss">&#39;verdadero</span>
   <span class="ss">&#39;falso</span><span class="p">)</span>
@@ -1324,14 +1323,14 @@ Multiplica NUMERO por siete.
 <h3 id="save-excursion" ><code>save-excursion</code></h3>
 <div class="hBody-3" >
 <p>La función <code>save-excursion</code> es la cuarta y última forma especial que discutiremos en este capítulo.</p>
-<p>En los programas Emacs Lisp utilizados para la edición, la función <code>save-excursion</code> es muy común. Guarda la posición del punto y marca, ejecuta el cuerpo de la función, y luego restaura el punto y marca a sus posiciones previas si sus posiciones fueron cambiadas. Su objetivo principal es impedir que el usuario se sorprenda y perturbe por el movimiento inesperado del punto o marca.</p>
-<p>Sin embargo, antes de hablar de <code>save-excursion</code>, puede ser útil examinar primero que son el punto y la marca en GNU Emacs. <dfn>Punto</dfn> es la posición actual del cursor. Donde sea que se encuentre el cursor, estara el punto. De forma más precisa, en los terminales donde el cursor aparece sobre un carácter, el punto está inmediatamente antes del carácter. En Emacs Lisp, el punto es un numero entero. El primer carácter en un búfer es el número uno, el segundo es el número dos, y así sucesivamente. La función <code>point</code> devuelve la posición actual del cursor como un número. Cada búfer tiene su propio valor para el punto.</p>
-<p>La <dfn>marca</dfn> es otra posición en el búfer; su valor se puede establecer con un comando como <kbd>C-SPC</kbd> (<code>set-mark-command</code>). Si una marca se ha establecido, puede utilizar el comando <kbd>C-x C-x</kbd> (<code>exchange-point-and-mark</code>) para hacer que el cursor salte a la marca y establecer la marca como la posición anterior del punto. Además, si se establece otra marca, la posición de la marca anterior se guarda en el anillo de marcas. De este modo puede guardar varias posiciones de la marca. Se puede mover el cursor a una marca guardada presionando <kbd>C-u C-SPC</kbd> una o más veces.</p>
-<p>La parte del búfer entre el punto y la marca se llamada <dfn>la región</dfn>. Numerosos comandos trabajan en la región, incluyendo <code>center-region</code>, <code>count-lines-region</code>, <code>kill-region</code> y <code>print-region</code>.</p>
-<p>La forma especial <code>save-excursion</code> guarda la ubicacion del punto y la marca y restaura estas posiciones después de que el interprete Lisp evalua el código dentro del cuerpo de la forma especial. De este modo, si el punto se encontraba al inicio de un trozo de texto y algún código desplazo el punto al final del búfer, <code>save-excursion</code> volvera a poner el punto donde estaba antes, luego que las expresiones en el cuerpo de la funcion sean evaluadas.</p>
-<p>En Emacs, con frecuencia una función mueve el punto como parte de su funcionamiento interno a pesar de que un usuario no espere esto. Por ejemplo, <code>count-lines-region</code> mueve el punto. Para evitar que el usuario sea molestado por saltos inesperados y (desde el punto de vista del usuario) innecesarios, <code>save-excursion</code> se utiliza a menudo para conservar el punto y la marca en la posición esperada por el usuario. El uso de <code>save-excursion</code> es bueno para mantener el orden.</p>
-<p>Para asegurarse que la casa se mantiene limpia, <code>save-excursion</code> restaura los valores del punto y la marca incluso si algo va mal en el código interno (o, para ser más preciso y usar el lenguaje tecnico apropiado, “en caso de salida anormal”). Esta funcionalidad es muy útil.</p>
-<p>Además de registrar los valores del punto y marca, <code>save-excursion</code> registra el buffer actual, y lo restaura. Esto significa que puedes escribir código que cambie de bufer y <code>save-excursion</code> debe volver al bufer original. Asi es como se utiliza <code>save-excursion</code> en <code>append-to-buffer</code>. (Consulta la Seccion <a href="#la-definición-de-append-to-buffer" >La Definición de <code>append-to-buffer</code></a>.)</p>
+<p>En los programas Emacs Lisp utilizados para la edición, la función <code>save-excursion</code> es muy común. Guarda la posición del punto y marca, ejecuta el cuerpo de la función, y luego restaura el punto y marca a sus posiciones previas si sus posiciones fueron cambiadas. Su proposito principal es impedir que el usuario se sorprenda y perturbe por el movimiento inesperado del punto o marca.</p>
+<p>Sin embargo, antes de hablar de <code>save-excursion</code>, puede ser útil examinar primero que son el punto y la marca en GNU Emacs. <dfn>Punto</dfn> es la posición actual del cursor. Donde sea que se encuentre el cursor, estara el punto. De forma más precisa, en los terminales donde el cursor aparece sobre un carácter, el punto se encuentra inmediatamente antes del carácter. En Emacs Lisp, el punto es un numero entero. El primer carácter en un búfer es el número uno, el segundo es el número dos, y así sucesivamente. La función <code>point</code> devuelve la posición actual del cursor como un número. Cada búfer tiene su propio valor para el punto.</p>
+<p>La <dfn>marca</dfn> es otra posición en el búfer; su valor se puede establecer con un comando como <kbd>C-SPC</kbd> (<code>set-mark-command</code>). Si se ha establecido una marca, puedes utilizar el comando <kbd>C-x C-x</kbd> (<code>exchange-point-and-mark</code>) para hacer que el cursor salte a la marca y establecer la marca como la posición anterior del punto. Además, si se establece otra marca, la posición de la marca anterior se guarda en el anillo de marcas. Muchas posiciones de marca se pueden guardar de esta manera. Se puede mover el cursor a una marca guardada presionando <kbd>C-u C-SPC</kbd> una o más veces.</p>
+<p>La parte del búfer entre el punto y la marca se denomina <dfn>la región</dfn>. Numerosos comandos trabajan en la región, incluyendo <code>center-region</code>, <code>count-lines-region</code>, <code>kill-region</code> y <code>print-region</code>.</p>
+<p>La forma especial <code>save-excursion</code> guarda las ubicaciones del punto y la marca y restaura estas posiciones después de que el interprete Lisp evalua el código dentro del cuerpo de la forma especial. De este modo, si el punto se encontraba al inicio de un texto y algún código moviera el punto al final del búfer, <code>save-excursion</code> volvera a poner el punto donde estaba antes, luego que las expresiones en el cuerpo de la funcion fueran evaluadas.</p>
+<p>En Emacs, una función se mueve con frecuencia de punto a otro como parte de su funcionamiento interno, aunque el usuario no lo espere. Por ejemplo, <code>count-lines-region</code> mueve el punto. Para evitar que el usuario sea molestado por saltos inesperados y (desde el punto de vista del usuario) innecesarios, <code>save-excursion</code> se utiliza a menudo para conservar el punto y la marca en la posición esperada por el usuario. El uso de <code>save-excursion</code> es bueno para mantener el orden.</p>
+<p>Para asegurarse que la casa se mantiene limpia, <code>save-excursion</code> restaura los valores del punto y la marca incluso si algo va mal con el código en su cuerpo (o, para ser más preciso y usar el lenguaje tecnico apropiado, “en caso de salida anormal”). Esta caracteristica es muy útil.</p>
+<p>Además de registrar los valores del punto y marca, <code>save-excursion</code> mantiene un registro del buffer actual, y tambien lo restaura. Esto significa que puedes escribir código que cambie de bufer y <code>save-excursion</code> lo devuelva al bufer original. Asi es como se utiliza <code>save-excursion</code> en <code>append-to-buffer</code>.  (Consulta la Seccion <a href="#la-definición-de-append-to-buffer" >La Definición de <code>append-to-buffer</code></a>.)</p>
 </div>
 <h4 id="plantilla-para-una-expresión-save-excursion" >Plantilla para una Expresión <code>save-excursion</code></h4>
 <div class="hBody-4" >
@@ -1339,7 +1338,7 @@ Multiplica NUMERO por siete.
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">save-excursion</span>
   <span class="nv">cuerpo</span><span class="err">…</span><span class="p">)</span>
 </code></pre>
-<p>El cuerpo de la función es una o más expresiones que serán evaluadas de forma secuencial por el intérprete Lisp. Si hay más de una expresión en el cuerpo, el valor de la última será devuelto como el valor de la función <code>save-excursion</code>. Las otras expresiones en el cuerpo solo se evaluan por sus efectos secundarios; y <code>save-excursion</code> en sí, solo se utiliza por su efecto secundario (que es restaurar las posiciones del punto y la marca).</p>
+<p>El cuerpo de la función es una o más expresiones que serán evaluadas de forma secuencial por el intérprete Lisp. Si hay más de una expresión en el cuerpo, el valor de la última será devuelto como el valor de la función <code>save-excursion</code>. Las otras expresiones en el cuerpo solo se evaluan por sus efectos secundarios; y <code>save-excursion</code> en misma solo se utiliza por su efecto secundario (que es restaurar las posiciones del punto y la marca).</p>
 <p>La siguiente plantilla explica <code>save-excursion</code>, con más detalle:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">save-excursion</span>
   <span class="nv">primera-expresion-en-el-cuerpo</span>
@@ -1349,24 +1348,24 @@ Multiplica NUMERO por siete.
   <span class="nv">ultima-expresion-en-el-cuerpo</span><span class="p">)</span>
 </code></pre>
 <p>Una expresión, por supuesto, puede ser un símbolo por sí mismo o una lista.</p>
-<p>En el código Emacs Lisp, una expresión <code>save-excursion</code> a menudo ocurre dentro del cuerpo de una expresión <code>let</code>. Se ve asi:</p>
+<p>En el código Emacs Lisp, una expresión <code>save-excursion</code> a menudo ocurre dentro del cuerpo de una expresión <code>let</code>. Tiene un aspecto algo asi:</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="nv">varlist</span>
   <span class="p">(</span><span class="nb">save-excursion</span>
     <span class="nv">cuerpo</span><span class="err">…</span><span class="p">))</span>
 </code></pre>
 </div>
-<h3 id="repaso:-cómo-escribir-definiciones-de-funciones" >Repaso</h3>
+<h3 id="repaso:-cómo-escribir-definiciones-de-funcion" >Repaso</h3>
 <div class="hBody-3" >
 <p>En los últimos capítulos se han introducido un buen número de funciones y formas especiales. A continuacion se describen brevemente, junto con algunas funciones similares que aun no se han mencionado.</p>
 <dl>
 <dt><code>eval-last-sexp</code></dt>
 <dd>
-<p>Evalúar la última expresión simbólica antes de la posición actual del punto. El valor se imprime en el área de eco a menos que la función se invoque con un argumento; en este caso, la salida se imprime en el búfer actual. Este comando normalmente esta asociado a <kbd>C-x C-e</kbd>.</p>
+<p>Evalúa la última expresión simbólica antes de la posición actual del punto. El valor se imprime en el área de eco a menos que la función se invoque con un argumento; en este caso, la salida se imprime en el búfer actual. Este comando normalmente esta ligado a <kbd>C-x C-e</kbd>.</p>
 </dd>
 <dt><code>defun</code></dt>
 <dd>
 <p>Define una función. Esta forma especial consta de hasta cinco partes: el nombre, una plantilla para los argumentos que se pasan a la función, la documentacion, una declaración interactiva opcional, y el cuerpo de la definición.</p>
-<p>Por ejemplo, en las primeras versiones de Emacs, la definición de la función <code>back-to-indentation</code> era como sigue. (Eso es ligeramente más complejo ahora que se busca el primer caracter que no es espacio en lugar del primer caracter visible.)</p>
+<p>Por ejemplo, en las primeras versiones de Emacs, la definición de la función <code>back-to-indentation</code> era la siguiente. (Es ligeramente más compleja ahora que busca el primer caracter que no es espacio en lugar del primer caracter visible.)</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">defun</span> <span class="nv">back-to-indentation</span> <span class="p">()</span>
   <span class="s">&#34;Mueve el punto al primer caracter visible de la linea.&#34;</span>
   <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
@@ -1378,51 +1377,47 @@ Multiplica NUMERO por siete.
 <dd>
 <p>Anuncia al intérprete que la función se puede usar de forma interactiva. Esta forma especial puede ir seguida de una cadena con una o más partes que pasan la información a los argumentos de la función, de forma secuencial. Estas partes pueden también decir al intérprete que solicite información. Las partes de la cadena estan separadas por saltos de linea, ‘\n’.</p>
 <p>Los codigos de caractere comúnes son:</p>
-<dl>
-<dt><code>b</code></dt>
-<dd>
-<p>El nombre de un búfer existente.</p>
-</dd>
-<dt><code>f</code></dt>
-<dd>
-<p>El nombre de un fichero existente</p>
-</dd>
-<dt><code>p</code></dt>
-<dd>
-<p>El argumento prefijo numérico. (Tenga en cuenta que esta ‘p’ es minúscula.)</p>
-</dd>
-<dt><code>r</code></dt>
-<dd>
-<p>Punto y marca, como dos argumentos numéricos, el más pequeño primero. Este es el unico codigo de una letra que especifica dos argumentos sucesivos en lugar de uno.</p>
-</dd>
-</dl>
+<ul>
+<li>
+<p><code>b</code>: El nombre de un búfer existente.</p>
+</li>
+<li>
+<p><code>f</code>: El nombre de un fichero existente</p>
+</li>
+<li>
+<p><code>p</code>: El argumento prefijo numérico. (Observa que esta ‘p’ es minúscula.)</p>
+</li>
+<li>
+<p><code>r</code>: El punto y la marca, como dos argumentos numéricos, el más pequeño primero. Este es el unico codigo de una letra que especifica dos argumentos sucesivos en lugar de uno.</p>
+</li>
+</ul>
 <p>Consulta la Seccion <a href="https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive-Codes" >Codigo de caracteres para ‘interactive’</a> en <em>El Manual de Referencia de GNU Emacs Lisp</em>, para obtener una lista completa de los codigos de caracteres.</p>
 </dd>
 <dt><code>let</code></dt>
 <dd>
-<p>Declara una lista de variables para utilizarla dentro del cuerpo de <code>let</code> y darle a cada variable un valor inicial, ya sea <code>nil</code> o un valor específico; luego evaluar el resto de las expresiones en el cuerpo del <code>let</code> y devuelve el valor de la última expresion. Dentro del cuerpo del <code>let</code>, el intérprete Lisp no ve los valores de variables con el mismos nombre fuera de <code>let</code>.</p>
+<p>Declara una lista de variables para utilizarla dentro del cuerpo de <code>let</code> y darle a cada variable un valor inicial, ya sea <code>nil</code> o un valor específicado; luego evalua el resto de las expresiones en el cuerpo del <code>let</code> y devuelve el valor de la última expresion. Dentro del cuerpo del <code>let</code>, el intérprete Lisp no ve los valores de las variables con el mismo nombre declaradas fuera de <code>let</code>.</p>
 <p>Por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">foo</span> <span class="p">(</span><span class="nf">buffer-name</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">bar</span> <span class="p">(</span><span class="nf">buffer-size</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">message</span>
-   <span class="s">&#34;Este buffer es %s y tiene %d caracteres.&#34;</span>
-   <span class="nv">foo</span> <span class="nv">bar</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Este buffer es %s y tiene %d caracteres.&#34;</span>
+           <span class="nv">foo</span> <span class="nv">bar</span><span class="p">))</span>
 </code></pre>
 </dd>
 <dt><code>save-excursion</code></dt>
 <dd>
-<p>Registra los valores de punto, marca y el búfer actual antes de evaluar el cuerpo de esta forma especial. Restaura los valores de punto, marca y el búfer luego de esto.</p>
+<p>Registra los valores de punto, marca y del búfer actual antes de evaluar el cuerpo de esta forma especial. Tras evaluar su cuerpo, restaura los valores de punto, marca y búfer.</p>
 <p>Por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Estamos %d caracteres dentro de este buffer.&#34;</span>
          <span class="p">(</span><span class="nf">-</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span>
             <span class="p">(</span><span class="nb">save-excursion</span>
-              <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span> <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
+              <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
+              <span class="p">(</span><span class="nf">point</span><span class="p">))))</span>
 </code></pre>
 </dd>
 <dt><code>if</code></dt>
 <dd>
 <p>Evalúa el primer argumento de la función; si es verdadero, evalúa el segundo argumento; de otra forma evalúa el tercer argumento, si lo hay.</p>
-<p>La forma especial <code>if</code> se llamada <dfn>condicional</dfn>. Hay otros condicionales en Emacs Lisp, pero <code>if</code> es quizás el más comúnmente usado.</p>
+<p>La forma especial <code>if</code> se llamada <dfn>condicional</dfn>. Hay otros condicionales en Emacs Lisp, pero <code>if</code> es quizás el más utilizado.</p>
 <p>Por ejemplo,</p>
 <pre class="code" ><code class="chroma" ><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">=</span> <span class="mi">24</span> <span class="nv">emacs-major-version</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Esta es la version 24 de Emacs&#34;</span><span class="p">)</span>
@@ -1431,7 +1426,7 @@ Multiplica NUMERO por siete.
 </dd>
 <dt><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></dt>
 <dd>
-<p>La función <code>&lt;</code> prueba si su primer argumento es menor que su segundo argumento. <code>&gt;</code>, prueba si el primer argumento es mayor que el segundo. Del mismo modo, <code>&lt;=</code> prueba si el primer argumento es menor o igual al segundo y <code>&gt;=</code> si el primer argumento es mayor o igual al segundo. En todos los casos, ambos argumentos deben ser números o marcadores (los marcadores indican posiciones en búfers).</p>
+<p>La función <code>&lt;</code> prueba si su primer argumento es menor que el segundo. <code>&gt;</code>, prueba si el primer argumento es mayor que el segundo. Del mismo modo, <code>&lt;=</code> prueba si el primer argumento es menor o igual al segundo y <code>&gt;=</code> si el primer argumento es mayor o igual al segundo. En todos los casos, ambos argumentos deben ser números o marcadores (los marcadores indican posiciones en búfers).</p>
 </dd>
 <dt><code>=</code></dt>
 <dd>
@@ -1439,22 +1434,22 @@ Multiplica NUMERO por siete.
 </dd>
 <dt><code>equal</code>, <code>eq</code></dt>
 <dd>
-<p>Prueba si dos objetos son el mismo. <code>equal</code> utiliza un signicado de la palabra ‘mismo’ y <code>eq</code> utiliza otro: <code>equal</code> devuelve verdadero si los dos objetos tienen una estructura y contenidos similares, por ejemplo, dos copias del mismo libro. Por otro lado, <code>eq</code>, devuelve verdadero si ambos argumentos son realmente el mismo objeto.</p>
+<p>Prueban si dos objetos son el mismo. <code>equal</code> utiliza un signicado de la palabra ‘mismo’ y <code>eq</code> utiliza otro: <code>equal</code> devuelve verdadero si los dos objetos tienen una estructura y contenidos similares, por ejemplo, dos copias del mismo libro. Por otro lado, <code>eq</code>, devuelve verdadero si ambos argumentos son realmente el mismo objeto.</p>
 </dd>
 <dt><code>string&lt;</code>, <code>string-lessp</code>, <code>string=</code>, <code>string-equal</code></dt>
 <dd>
 <p>La función <code>string-lessp</code> prueba si su primer argumento es menor que el segundo. Un nombre alternativo mas corto para la misma función (un <code>defalias</code>) es <code>string&lt;</code>.</p>
 <p>Los argumentos para <code>string-lessp</code> deben ser cadenas o símbolos; la ordenación es lexicográfica, por lo que mayusculas o minusculas son significativas. Los nombres impresos de símbolos se utilizan en lugar de los símbolos mismos.</p>
-<p>Una cadena vacía, ‘&#34;&#34;’, una cadena sin caracteres en ella, es más pequeña que cualquier cadena de caracteres.</p>
-<p><code>string-equal</code> proporciona la prueba correpondiente para la igualdad. Su nombre alternativo es <code>string=</code>. No hay funciones de prueba que correspondan a <code>&gt;</code>, <code>&gt;=</code> o <code>&lt;=</code>.</p>
+<p>Una cadena vacía, ‘<code>&#34;&#34;</code>’, una cadena sin caracteres, es más pequeña que cualquier cadena de caracteres.</p>
+<p><code>string-equal</code> proporciona la prueba correpondiente para la igualdad. Su nombre alternativo es <code>string=</code>. No hay funciones de prueba de cadenas que correspondan a <code>&gt;</code>, <code>&gt;=</code> o <code>&lt;=</code>.</p>
 </dd>
 <dt><code>message</code></dt>
 <dd>
-<p>Imprime un mensaje en el área de eco. El primer argumento es una cadena que puede contener, ‘%s’, ‘%d’, o ‘%c’ para imprimir el valor de los argumentos que siguen a la cadena. El argumento utilizado por ‘%s’ debe ser una cadena o un simbolo, el argumeto utilizado por ‘%d’ debe ser un número. El argumento usado por ‘%c’ debe ser un codigo númerico <em>ASCII</em>; se imprimira como el caracter con este código <em>ASCII</em>. (No se han mencionado otras secuencias <q>porcentuales</q> <code>%-</code>).</p>
+<p>Imprime un mensaje en el área de eco. El primer argumento es una cadena que puede contener, ‘<code>%s</code>’, ‘<code>%d</code>’, o ‘<code>%c</code>’ para imprimir el valor de los argumentos que siguen a la cadena. El argumento utilizado por ‘<code>%s</code>’ debe ser una cadena o un simbolo, el argumeto utilizado por ‘<code>%d</code>’ debe ser un número. El argumento usado por ‘<code>%c</code>’ debe ser un codigo númerico <span class="acronym" >ASCII</span>; se imprimira como el caracter con ese código <span class="acronym" >ASCII</span>. (No se han mencionado otras secuencias <q>porcentuales</q> <code>%-</code>).</p>
 </dd>
 <dt><code>setq</code>, <code>set</code></dt>
 <dd>
-<p>La función <code>setq</code> asigna al valor de su primer argumento el valor del segundo argumento. El primer argumento se cita automáticamente por <code>setq</code>. Hace lo mismo para los pares sucesisvos de argumentos. Otra función, <code>set</code>, toma solo dos argumentos y evalúa ambos antes de asignar el valor devuelto por su primer argumento al valor devuelto por el segundo argumento.</p>
+<p>La función <code>setq</code> asigna al valor de su primer argumento el valor del segundo argumento. El primer argumento se cita automáticamente por <code>setq</code>. Hace lo mismo para los pares sucesisvos de argumentos. La función, <code>set</code>, toma solo dos argumentos y evalúa ambos antes de asignar el valor devuelto por su primer argumento al valor devuelto por el segundo argumento.</p>
 </dd>
 <dt><code>buffer-name</code></dt>
 <dd>
@@ -1478,7 +1473,7 @@ Multiplica NUMERO por siete.
 </dd>
 <dt><code>set-buffer</code></dt>
 <dd>
-<p>Cambiar la atención de Emacs a un búfer en el que se ejecutaran programas. No altera lo que la ventana está mostrando.</p>
+<p>Cambiar la atención de Emacs a un búfer en el que se ejecutaran los programas. No altera lo que muestra la ventana.</p>
 </dd>
 <dt><code>buffer-size</code></dt>
 <dd>
@@ -1509,7 +1504,7 @@ Multiplica NUMERO por siete.
 </li>
 </ul>
 </div>
-<h2 id="algunas-funciones-relacionadas-al-bufer" >Algunas funciones relacionadas al bufer</h2>
+<h2 id="algunas-funciones-relacionadas-al-búfer" >Algunas funciones relacionadas al búfer</h2>
 <div class="hBody-2" >
 <p>En este capítulo estudiamos en detalle varias de las funciones usadas en GNU Emacs. Esto se denomina un “recorrido” (visita o demostracion de un area o tarea). Estas funciones se utilizan como ejemplos de código Lisp, pero no son ejemplos imaginarios; con excepción del primero, con la definición de función simplificada, estas funciones muestran el código real usado en GNU Emacs. Se puede aprender mucho de estas definiciones. Las funciones descritas aquí están todas relacionadas a búfers. Mas tarde, estudiaremos otras funciones.</p>
 </div>
@@ -7846,7 +7841,7 @@ Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
 <div class="about" >
 <div class="about-dt" ><span class="defnote" id="5" >5</span></div>
 <div class="about-dd" >
-<p>En realidad, por defecto, si el búfer desde el que acabas de cambiar es visible por tí en otra ventana, <code>other-buffer</code> elegirá el búfer más reciente que no puedas ver; esta es una sutileza que a menudo olvido.</p>
+<p>De hecho, por defecto, si el búfer desde el que acabas de cambiar es visible por tí en otra ventana, <code>other-buffer</code> elegirá el búfer más reciente que no puedas ver; esta es una sutileza que a menudo olvido.</p>
 </div>
 </div>
 <div class="about" >
@@ -7867,7 +7862,7 @@ Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
 <div class="about" >
 <div class="about-dt" ><span class="defnote" id="8" >8</span></div>
 <div class="about-dd" >
-<p>Segun Jared Diamond en <em>Guns, Germs, and Steel</em>, “… las cebras se vuelven increiblemente peligrosas a medida que envejecen” pero la afirmacion aquí es que no llegan a ser feroces como un tigre. (1997, W. W. Norton and Co., ISBN 0-393-03894-2, pagina 171)</p>
+<p>Segun Jared Diamond en <em>Guns, Germs, and Steel</em>, “… las cebras se vuelven increiblemente peligrosas a medida que envejecen” pero la afirmacion aquí es que no se vuelven feroces como un tigre. (1997, W. W. Norton and Co., ISBN 0-393-03894-2, pagina 171)</p>
 </div>
 </div>
 <div class="about" >

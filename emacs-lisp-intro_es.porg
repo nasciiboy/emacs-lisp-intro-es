@@ -1206,7 +1206,7 @@ and promoting software freedom.”
    ‘bucle infinito’. Estas acciones son menos comunes; y podemos
    ignorarlas). Con mas frecuencia, el intérprete devuelve un valor.
 
-#    At the same time the interpreter returns a value, it may do something else      ¤
+#    At the same time the interpreter returns a value, it may do something else
 #    as well, such as move a cursor or copy a file; this other kind of action
 #    is called a @:{side effect}. Actions that we humans think are important,
 #    such as printing results, are often “side effects” to the Lisp
@@ -1490,8 +1490,8 @@ and promoting software freedom.”
       (+ 2 2)
     < src..
 
-#     In GNU Emacs 26, you will create a @f{*Backtrace*} buffer that says:
-    En GNU Emacs 26, se creará un buffer @f{*Backtrace*} que dice:
+#     In GNU Emacs 22, you will create a @f{*Backtrace*} buffer that says:
+    En GNU Emacs 22, se creará un buffer @f{*Backtrace*} que dice:
 
 #     ..example >
 #       ---------- Buffer: *Backtrace* ----------
@@ -2462,8 +2462,8 @@ and promoting software freedom.”
 #   those. In this section, we will evaluate a few of these. In another
 #   section, we will study the code of several other buffer-related functions,
 #   to see how they were written.
-  Antes de aprender como escribir una definición de función en Emacs Lisp, es
-  útil pasar un poco de tiempo evaluando varias expresiones que ya han sido
+  Antes de aprender a escribir una definición de función en Emacs Lisp, es
+  útil dedicar un poco de tiempo a evaluar varias expresiones que ya han sido
   escritas. Estas expresiones serán listas con funciones como su primer (y con
   frecuencia único) elemento. Dado que algunas de las funciones asociadas con
   búfers son a la vez simples e interesantes, empezaremos por ellas. En esta
@@ -2475,8 +2475,8 @@ and promoting software freedom.”
 #   to move the cursor or to scroll the screen, @i{you are evaluating an
 #   expression,} the first element of which is a function.  @i{This is how
 #   Emacs works.}
-  @i{Siempre que proporciona un comando de edición} a Emacs Lisp, como el
-  comando para mover el cursor o para desplazar por la pantalla, @i{se está
+  @i{Siempre que se le da un comando de edición} a Emacs Lisp, como el
+  comando para mover el cursor o para desplazarse por la pantalla, @i{se está
   evaluando una expresión}, cuyo primer elemento es una función. @i{Así es cómo
   funciona Emacs}.
 
@@ -2489,13 +2489,13 @@ and promoting software freedom.”
 #   illustrated in the chapter on how to write function definitions. See
 #   Section @l{#Make a Function Interactive}.
   Al presionar las teclas, haces que el interprete Lisp evalue una expresion y
-  asi es como obtienes tus resultados. Incluso escribir texto plano implica
+  asi es como obtienes resultados. Incluso escribir texto plano implica
   evalúar una función de Emacs Lisp, en este caso, se utiliza
-  @c{self-insert-command}, que simplemente inserta el caracter que escribiste.
+  @c{self-insert-command}, que simplemente inserta el caracter que has escrito.
   Las funciones que se evalúan presionando atajos de teclado se llaman funciones
   @:{interactivas}, o @:{comandos}; la forma de hacer que una funcion sea
   interactiva se ilustrara en el capítulo sobre cómo escribir definiciones de
-  funciones. Consulta la Seccion @l{#Crear una Función Interactiva}.
+  funcion. Consulta la Seccion @l{#Crear una Función Interactiva}.
 
 #   In addition to typing keyboard commands, we have seen a second way to
 #   evaluate an expression: by positioning the cursor after a list and typing
@@ -2505,14 +2505,14 @@ and promoting software freedom.”
   Además de presionar comandos de teclado, hemos visto una segunda manera de
   evaluar una expresión: colocar el cursor después de una lista y presionar
   @k{C-x C-e}. Esto es lo que haremos en el resto de esta sección. Hay otras
-  maneras de evaluar una expresión; que serán descritas a medida que llegemos a
+  maneras de evaluar una expresión; estas serán descritas a medida que llegemos a
   ellas.
 
 #   Besides being used for practicing evaluation, the functions shown in the
 #   next few sections are important in their own right. A study of these
 #   functions makes clear the distinction between buffers and files, how to
 #   switch to a buffer, and how to determine a location within it.
-  Ademas de utilizarce para prácticar la evaluación, las funciones que se
+  Ademas de utilizarlas para prácticar la evaluación, las funciones que se
   muestran en las siguientes secciones son importantes por derecho propio. Un
   estudio de estas funciones deja claro la distinción entre búfers y ficheros,
   cómo cambiar a un búfer, y como determinar una ubicación dentro de el.
@@ -2531,8 +2531,8 @@ and promoting software freedom.”
    Las dos funciones, @c{buffer-name} y @c{buffer-file-name}, muestran la
    diferencia entre un fichero y un búfer. Cuando se evalúa la siguiente
    expresión, @c{(buffer-name)}, el nombre del buffer aparece en el area eco.
-   Al evaluar @c{(buffer-file-name)}, el nombre del fichero al que se
-   relaciona el búfer aparece en el área de eco. Por lo general, el nombre
+   Al evaluar @c{(buffer-file-name)}, el nombre del fichero al que hace
+   referencia el búfer aparece en el área de eco. Por lo general, el nombre
    devuelto por @c{(buffer-name)} es el mismo que el nombre del fichero al
    que hace referencia, y el nombre devuelto por @c{(buffer-file-name)} es la
    ruta completa del fichero.
@@ -2548,18 +2548,18 @@ and promoting software freedom.”
 #    saved permanently.
    Un fichero y un búfer son dos entidades diferentes. Un fichero es la
    información grabada de manera permanente en el ordenador (a menos que se
-   elimine). Un búfer, por otro lado, es la información dentro de Emacs que
-   desaparecerá al final de la sesión de edición (o cuando matas el búfer).
+   elimine). Un búfer, por otro lado, es información dentro de Emacs que
+   desaparecerá al final de la sesión de edición (o cuando mates el búfer).
    Por lo general, un búfer contiene información que se ha copiado
    desde un fichero; decimos que el búfer está @:{visitando} ese fichero.
-   Esta copia es en la que se trabaja y modifica. Los cambios al búfer no
-   cambian el fichero, hasta ser guardados. Al guardar el búfer, el búfer
+   Esta copia es en la que se trabaja y modifica. Los cambios en el búfer no
+   modifican el fichero, hasta guardar el búfer. Al guardar el búfer, el búfer
    se copia en el fichero y por lo tanto se guarda de forma permanente.
 
 #    If you are reading this in Info inside of GNU Emacs, you can evaluate each
 #    of the following expressions by positioning the cursor after it and typing
 #    @k{C-x C-e}.
-   Si está leyendo esto dentro de GNU Emacs, puede evaluar cada una de las
+   Si está leyendo esto dentro de GNU Emacs, puedes evaluar cada una de las
    siguientes expresiones colocando el cursor después de estas y pulsando @k{C-x
    C-e}.
 
@@ -2586,8 +2586,7 @@ and promoting software freedom.”
 #    @c{"/gnu/work/intro/introduction.texinfo"}.
    Por otro lado, mientras escribo este documento, el valor devuelto por la
    evaluación de @c{(buffer-name)} es @c{"introduction.texinfo"}, y el valor
-   devuelto por la evaluación de @c{(buffer-file-name)} es
-   @c{"/gnu/work/intro/introduction.texinfo"}.
+   evaluando @c{(buffer-file-name)} es @c{"/gnu/work/intro/introduction.texinfo"}.
 
 #    The former is the name of the buffer and the latter is the name of the
 #    file. In Info, the buffer name is @f{"*info*"}. Info does not point to
@@ -2625,14 +2624,14 @@ and promoting software freedom.”
 #    clear from context what people mean. When dealing with computer programs,
 #    however, it is important to keep the distinction in mind, since the
 #    computer is not as smart as a person.
-   A pesar de la distinción entre ficheros y búfers, con frecuencia
-   encontrara personas referirse a un fichero cuando quieren un búfer y
-   viceversa. De hecho, la mayoría de la gente dice, “Estoy editando un
-   fichero”, en lugar de decir, “Estoy editando un búfer que pronto voy a
-   guardar en un fichero”. Esto casi siempre queda claro a partir del
-   contexto de lo que la gente dice. No obstante, Al tratar con programas de
-   ordenador, es importante mantener la distinción en mente, ya que el
-   ordenador no es tan inteligente como una persona.
+   A pesar de la distinción entre ficheros y búfers, con frecuencia encontraras
+   personas referirse a un fichero cuando se refieren a un búfer y viceversa. De
+   hecho, la mayoría de la gente dice, “Estoy editando un fichero”, en lugar de
+   decir, “Estoy editando un búfer que pronto voy a guardar en un fichero”. Esto
+   casi siempre queda claro a partir del contexto de lo que la gente quiere
+   decir. No obstante, al tratar con programas de ordenador, es importante
+   tener en cuenta la distinción, ya que el ordenador no es tan inteligente
+   como una persona.
 
 #    The word ‘buffer’, by the way, comes from
 #    the meaning of the word as a cushion that deadens the force of a
@@ -2651,15 +2650,15 @@ and promoting software freedom.”
    cojín que amortigua la fuerza de una colisión. En los primeros ordenadores,
    un búfer amortiguaba la interacción entre los ficheros y la unidad central de
    procesamiento del ordenador. Los tambores o cintas que contenian un fichero y
-   la unidad de procesamiento eran piezas de equipamiento muy diferentes entre
-   si, que trabajaban a sus propias velocidades, por rafagas. El búfer hizo
-   posible que ambos trabajaran juntos de manera efectiva. Con el tiempo, el
-   búfer pasó de ser un intermediario, un lugar de almacenamiento temporal, a
-   ser el lugar donde se realiza el trabajo. Esta transformación se parace
-   bastante a la de un pequeño puerto que se convierte en una gran ciudad: una
-   vez fué simplemente el lugar donde la carga era depositada temporalmente
-   antes de ser cargada en los barcos; despues se convirtio en un centro
-   comercial y cultural por derecho propio.
+   la unidad de procesamiento eran equipos muy diferentes entre si, que
+   trabajaban a su propia velocidad, por rafagas. El búfer hizo posible que
+   ambos trabajaran juntos de manera efectiva. Con el tiempo, el búfer pasó de
+   ser un intermediario, un lugar de almacenamiento temporal, a ser el lugar
+   donde se realiza el trabajo. Esta transformación se parace bastante a la de
+   un pequeño puerto que se convierte en una gran ciudad: una vez fué
+   simplemente el lugar donde la carga se almacenaba temporalmente antes de ser
+   cargada en los barcos; despues se convirtio en un centro comercial y cultural
+   por derecho propio.
 
 #    Not all buffers are associated with files. For example, a @f{*scratch*}
 #    buffer does not visit any file. Similarly, a @f{*Help*} buffer is not
@@ -2675,11 +2674,11 @@ and promoting software freedom.”
 #    splash screen, visit a file, or press the spacebar to reach the
 #    @f{*scratch*} buffer.
    En los viejos tiempos, cuando se carecia de un fichero @f{~/.emacs} y se
-   iniciava una sesión Emacs escribiendo unicamente el comando @c{emacs}, sin
+   iniciaba una sesión Emacs escribiendo unicamente el comando @c{emacs}, sin
    nombrar ningun fichero, Emacs iniciaba con el búfer @f{*scratch*}
-   visible. Hoy en día, vera una pantalla de bienvenida. Puede seguir uno de
+   visible. Hoy en día, veras una pantalla de bienvenida. Puedes seguir uno de
    los comandos sugeridos en dicha pantalla, visitar un fichero, o presionar
-   la barra espaciadora para acceder al búfer @f{*scratch*}.
+   la barra de espacio para acceder al búfer @f{*scratch*}.
 
 #    If you switch to the @f{*scratch*} buffer, type @c{(buffer-name)},
 #    position the cursor after it, and then type @k{C-x C-e} to evaluate the
@@ -2731,7 +2730,7 @@ and promoting software freedom.”
 #    get is the buffer itself.
    La función @c{buffer-name} devuelve el @e{nombre} del búfer; para obtener
    el búfer @e{en sí}, se necesita una función diferente: la función
-   @c{current-buffer}. Si utiliza esta función en el código, lo que se
+   @c{current-buffer}. Si utilizas esta función en el código, lo que se
    obtiene es el búfer en sí.
 
 #    A name and the object or entity to which the name refers are different
@@ -2747,7 +2746,7 @@ and promoting software freedom.”
    diferentes entre si. Tu no eres tu nombre, eres una persona a la que se
    refieren los demas por tu nombre. Si pides hablar con Jorge y alguien te
    entrega una tarjeta con las letras @'{J}, @'{o}, @'{r}, @'{g}, y @'{e}
-   estritas, podrias divertirte, pero no estarías satisfecho. No quieres
+   escritas, podrias divertirte, pero no estarías satisfecho. No quieres
    hablar con el nombre, sino con la persona a la que se refiere el
    nombre. Un búfer es similar: el nombre del búfer scratch es
    @f{*scratch*}, pero el nombre no es el búfer. Para obtener un búfer en
@@ -2764,7 +2763,7 @@ and promoting software freedom.”
    una expresión por sí sola, como haremos aquí, lo que se ve es una
    representación impresa del nombre del búfer sin el contenido del búfer. Emacs
    funciona de esta forma por dos razones: el búfer puede contener miles de
-   líneas––demasiado largo para ser mostrado convenientemente; y, otro búfer
+   líneas––demasiado largo para mostrarse convenientemente; y, otro búfer
    puede tener el mismo contenido pero un nombre diferente, y es importante
    distinguir entre ellos.
 
@@ -2782,9 +2781,9 @@ and promoting software freedom.”
 #    @f{#<buffer *info*>} will appear in the echo area. The special format
 #    indicates that the buffer itself is being returned, rather than just its
 #    name.
-   Si evalúa esta expresión en Info de la manera habitual, aparecerá
-   @f{#<buffer *info*>} en el área de eco. El formato especial indica que el
-   búfer en sí está siendo devuelto, en lugar de solo su nombre.
+   Si evalúas esta expresión en Info de la manera habitual, aparecerá
+   @f{#<buffer *info*>} en el área de eco. El formato especial indica que se
+   está devuendo el búfer en sí, en lugar de solo su nombre.
 
 #    Incidentally, while you can type a number or symbol into a program, you
 #    cannot do that with the printed representation of a buffer: the only way
@@ -2798,7 +2797,7 @@ and promoting software freedom.”
 #    selected buffer other than the one you are in currently, not a printed
 #    representation of its name. If you have recently switched back and forth
 #    from the @f{*scratch*} buffer, @c{other-buffer} will return that buffer.
-   Un función relacionada es @c{other-buffer}. Esta devuelve el último bufer
+   Una función relacionada es @c{other-buffer}. Esta devuelve el último bufer
    seleccionado distinto al que te encuentras actualmente, no una
    representación impresa de su nombre. Si recientemente has ido y vuelto del
    búfer @f{*scratch*}, @c{other-buffer} devolverá ese búfer.
@@ -2817,8 +2816,7 @@ and promoting software freedom.”
 #    name of whatever other buffer you switched back from most
 #    recently@n{5}.
    Verás que @c{#<buffer *scratch*>} aparece en el área de eco, o el nombre de
-   cualquier otro búfer al que allas cambiado anteriormente a partir del más
-   reciente@n{5}
+   cualquier otro búfer al que allas cambiado anteriormente reciente@n{5}
 
 # ** Switching Buffers
 ** Cambiando búfers
@@ -2841,10 +2839,10 @@ and promoting software freedom.”
 #    different functions. For example, @k{C-f} calls @c{forward-char}, @k{M-e}
 #    calls @c{forward-sentence}, and so on.
    Pero primero, una breve introducción a la función @c{switch-to-buffer}.
-   Cuando cambias de ida y vuelta de Info al búfer @f{*scratch*} para evaluar
-   @c{(buffer-name)}, normalmente se presiona @k{C-x b} y luego se pasa
-   @f{*scratch*}@n{6} en el minibuffer cuando se le solicita el nombre del
-   buffer al que quieres cambiar. El atajo, @k{C-x b}, hace que el intérprete
+   Cuando cambiaste de ida y vuelta de Info al búfer @f{*scratch*} para evaluar
+   @c{(buffer-name)}, probablemente pulsaste @k{C-x b} y luego escribiste
+   @f{*scratch*}@n{6} en el minibuffer cuando se solicito el nombre del
+   buffer al que querias cambiar. El atajo, @k{C-x b}, hace que el intérprete
    Lisp evalúe la función interactiva @c{switch-to-buffer}. Como hemos dicho
    anteriormente, así es como funciona Emacs: diferentes atajos de teclado
    llaman o ejecutan diferentes funciones. Por ejemplo, @k{C-f} llama a
@@ -2853,7 +2851,7 @@ and promoting software freedom.”
 #    By writing @c{switch-to-buffer} in an expression, and giving it a buffer
 #    to switch to, we can switch buffers just the way @k{C-x b} does:
    Al escribir @c{switch-to-buffer} en una expresión, y darle un búfer al
-   que cambiar, podemos cambiar de búfer tal y como hace @k{C-x b}.
+   que cambiar, podemos cambiar de búfer tal y como lo hace @k{C-x b}.
 
 #    ..src > elisp
 #      (switch-to-buffer (other-buffer))
@@ -2894,9 +2892,9 @@ and promoting software freedom.”
 #    works on a buffer, that buffer does not need to be visible on the screen.
    En los ejemplos de las secciones siguentes, veras con más frecuencia la
    función @c{set-buffer} que @c{switch-to-buffer}. Esto se debe a la
-   diferencia entre programas de ordenador y los humanos: los humanos
+   diferencia entre los programas de ordenador y los seres humanos: los humanos
    tienen ojos y esperan ver el búfer en el que están trabajando en la
-   terminal de su ordenador. Esto es tan evidente, que se sobreentiende. Sin
+   terminal de su ordenador. Esto es tan evidente, que casi no hace falta decirlo. Sin
    embargo, los programas no tienen ojos. Cuando un programa de ordenador
    trabaja en un búfer, el búfer no necesita ser visible en la pantalla.
 
@@ -2907,10 +2905,10 @@ and promoting software freedom.”
 #    attention of the computer program to a different buffer. The buffer on
 #    the screen remains unchanged (of course, normally nothing happens there
 #    until the command finishes running).
-   @c{switch-to-buffer} está diseñado para los humanos y hace dos cosas
+   @c{switch-to-buffer} está diseñado para humanos y hace dos cosas
    diferentes: cambia el búfer a el que Emacs dirige la atención; y cambia
    el búfer mostrado en la ventana al nuevo búfer. @c{set-buffer}, por otro
-   lado, solo hace una cosa: cambia la atención del programa del ordenador a
+   lado, solo hace una cosa: cambia la atención del programa de ordenador a
    un búfer diferente. El búfer en la pantalla permanece sin cambios (por
    supuesto, normalmente no pasa nada hasta que el comando termina de
    ejecutarse).
@@ -2923,17 +2921,17 @@ and promoting software freedom.”
    Además, acabamos introduciendo otro termino tecnico, la palabra
    @:{llamada}. Cuando se evalúa una lista en la que el primer símbolo es una
    función, se llama a esa función. El uso del término viene de la
-   noción de la función como una entidad que puede algo hacer por ti cuando
-   la ‘llamas’––al igual que un fontanero es una entidad que puede arreglar
+   noción de la función como una entidad que puede algo hacer por ti si la
+   ‘llamas’––al igual que un fontanero es una entidad que puede arreglar
    una fuga si lo llamas.
 
 # ** Buffer Size and the Location of Point
-** Tamaño del búfer y la ubicación del punto
+** Tamaño del búfer y ubicación del punto
 
 #    Finally, let's look at several rather simple functions, @c{buffer-size},
 #    @c{point}, @c{point-min}, and @c{point-max}. These give information about
 #    the size of a buffer and the location of point within it.
-   Por último, vamos a ver varias funciones bastante sencillas, @c{buffer-size},
+   Finalmente, veamos algunas funciones bastante simples, como @c{buffer-size},
    @c{point}, @c{point-min}, y @c{point-max}. Estas proporcionan información
    sobre el tamaño de un búfer y la ubicación del punto dentro de el.
 
@@ -2959,7 +2957,7 @@ and promoting software freedom.”
 #    expression @c{(point)} returns a number that tells you where the cursor is
 #    located as a count of the number of characters from the beginning of the
 #    buffer up to point.
-   En Emacs, la posición actual del cursor se denomina @:{punto}. La
+   En Emacs, la posición actual del cursor se llama @:{punto}. La
    expresión @c{(point)} devuelve un número que indica donde esta situado el
    cursor como un conteo del número de caracteres desde el principio del
    búfer hasta el punto.
@@ -3011,11 +3009,11 @@ and promoting software freedom.”
 #    Widening}.)  Likewise, the function @c{point-max} returns the value of the
 #    maximum permissible value of point in the current buffer.
    La función @c{point-min} es similar a @c{point}, pero devuelve el valor
-   mínimo permisible del punto en el búfer actual. Este es el numero 1 a menos
+   mínimo permitido del punto en el búfer actual. Este es el numero 1 a menos
    que @:{narrowing} esté en efecto. (Narrowing @%i{Reduccion} es un mecanismo
-   mediante el cual puedes restringirte a ti mismo, o un programa, a operar solo
+   mediante el cual puedes restringirte a ti mismo, o a un programa, a operar solo
    en un parte de un búfer. Consulta la Sección @l{#Reducir y Extender}.)  Del mismo
-   modo, la función @c{point-max} devuelve el valor máximo permisible del punto
+   modo, la función @c{point-max} devuelve el valor máximo permitido del punto
    en el búfer actual.
 
 # ** Exercise
@@ -3023,12 +3021,12 @@ and promoting software freedom.”
 
 #    Find a file with which you are working and move towards its middle.
 #    Find its buffer name, file name, length, and your position in the file.
-   Busca un fichero en el que trabarjar y avanza hasta la mitad. Encuentra el
+   Busca un fichero en el que trabarjar y avanza hasta su mitad. Encuentra el
    nombre de búfer, el nombre del fichero, su tamaño, y la posición en el
    fichero.
 
 # * How To Write Function Definitions
-* Cómo escribir definiciones de funciones
+* Cómo escribir definiciones de funcion
 
 #   When the Lisp interpreter evaluates a list, it looks to see whether the
 #   first symbol on the list has a function definition attached to it; or, put
@@ -3039,10 +3037,10 @@ and promoting software freedom.”
 #   refers to it.)
   Cuando el intérprete Lisp evalúa una lista, mira si el primer símbolo tiene
   una definición de funcion adjunta; o, dicho de otro modo, si el símbolo apunta
-  a una definición de función. Si lo hace, el ordenador lleva a cabo las
-  instrucciones que aparecen en la definición. Un símbolo que tiene una
+  a una definición de función. Si lo hace, el ordenador ejecuta las
+  instrucciones de la definición. Un símbolo que tiene una
   definición de función se llamada, simplemente, una función (aunque hablando
-  con propiedad, la definición es la función y el símbolo se refiere a ella.)
+  con propiedad, la definición es la función y el símbolo hace referencia a ella.)
 
 #   All functions are defined in terms of other functions, except for a few
 #   @:{primitive} functions that are written in the C programming language.
@@ -3054,10 +3052,10 @@ and promoting software freedom.”
 #   C so we can easily run GNU Emacs on any computer that has sufficient power
 #   and can run C.
   Todas las funciones se defininen en términos de otras funciones, a
-  excepción de algunas @:{primitivas} que estan escritas en el lenguaje de
-  programación C. Cuando escribas definiciones de funciones, debes
+  excepción de algunas funciones @:{primitivas} que estan escritas en el lenguaje de
+  programación C. Cuando escribas definiciones de funcion, debes
   escribirlas en Emacs Lisp y utilizar otras funciones como bloques de
-  construcción. Algunas de las funciones a utilizar estaran a su vez escritas
+  construcción. Algunas de las funciones que utilizaras estaran a su vez escritas
   en Emacs Lisp (quizás por tí) y otras serán primitivas escritas en C. Las
   funciones primitivas se usan exactamente igual que las escritas en Emacs
   Lisp y se comportan de igual forma. Están escritas en C para que podamos
@@ -3072,9 +3070,9 @@ and promoting software freedom.”
 #   in Emacs Lisp or C.
   Permíteme volver a enfatizar esto: cuando se escribe código en Emacs Lisp, no
   se distinge entre el uso de funciones escritas en C y el uso de funciones
-  escritas en Emacs Lisp. La diferencia es irrevelante. Mencioné la distinción
+  escritas en Emacs Lisp. La diferencia es irrevelante. Menciono la distinción
   solo porque es interesante conocerla. De hecho, a menos de que investigues, no
-  sabras si una función ya estrita esta en Emacs Lisp o en C.
+  sabras si una función ya escrita esta en Emacs Lisp o en C.
 
 # ** The @c{defun} Special Form
 ** La forma especial @c{defun}
@@ -3090,7 +3088,7 @@ and promoting software freedom.”
    denomina la @:{definición de función} y se crea evaluando una expresión Lisp
    que comienza con el símbolo @c{defun} (que es una abreviatura para @e{define
    function} @%i(definir función)). Debido a que @c{defun} no evalúa sus
-   argumentos en la manera habitual, se le llama una @:{forma especial}.
+   argumentos de la manera habitual, se le llama una @:{forma especial}.
 
 #    In subsequent sections, we will look at function definitions from the
 #    Emacs source code, such as @c{mark-whole-buffer}. In this section, we
@@ -3100,23 +3098,23 @@ and promoting software freedom.”
 #    are such a person, do not despair. Hardly any of the code we will study
 #    in the remainder of this introduction involves arithmetic or mathematics.
 #    The examples mostly involve text in one way or another.
-   En las siguientes secciones, vamos a ver las definiciones de función
-   partiendo del código fuente de Emacs, como @c{mark-whole-buffer}.
+   En las siguientes secciones, veremos algunas definiciones de función presentes
+   dentro del código fuente de Emacs, como @c{mark-whole-buffer}.
    En esta sección, describiremos una definición de función sencilla para que
    puedas ver su aspecto. Esta definición de función usa aritmética porque es
    un ejemplo simple. A algunas personas les disgustan los ejemplos que usan
-   aritmética; sin embargo, si usted es tal persona, no se desespere. Casi
+   aritmética; sin embargo, si eres una persona asi, no te desesperes. Casi
    ningun codigo a estudiar en el resto de esta introducción implica
-   aritmética o matemáticas. Los ejemplos involucran principalmente texto en
+   aritmética o matemáticas. Los ejemplos involucran principalmente texto de
    una forma u otra.
 
 #    A function definition has up to five parts following the word @c{defun}:
-   Una definición de función tiene un máximo de cinco partes despues de la
+   Una definición de función tiene hasta cinco partes despues de la
    palabra @c{defun}:
 
 #    1. The name of the symbol to which the function definition should be
 #       attached.
-   1. El nombre del símbolo al que debe vincularse la definición de función.
+   1. El nombre del símbolo al se debe vincular la definición de función.
 
 #    2. A list of the arguments that will be passed to the function. If no
 #       arguments will be passed to the function, this is an empty list,
@@ -3133,7 +3131,7 @@ and promoting software freedom.”
 #       use it by typing @k{M-x} and then the name of the function; or by
 #       typing an appropriate key or keychord.
    4. Opcionalmente, una expresión para hacer que la función sea interactiva, de
-      manera que puede utilizarla presionando @k{M-x} seguido del nombre de la
+      manera que se puede utilizarla presionando @k{M-x} seguido del nombre de la
       función; o pulsando una tecla o atajo de teclado.
 
 #    5. The code that instructs the computer what to do: the @:{body} of the
@@ -3155,7 +3153,7 @@ and promoting software freedom.”
    ..src > elisp
      (defun nombre-de-función (argumentos…)
        "documentación-opcional…"
-       (interactive argument-passing-info)     ; opcional
+       (interactive informacion-de-paso-de-argumentos)     ; opcional
        cuerpo…)
    < src..
 
@@ -3188,7 +3186,7 @@ and promoting software freedom.”
 #    @c{number}. When the function is used, the symbol will be bound to the
 #    value that is used as the argument to the function.
    El nombre de la función es seguido por una lista que contiene los
-   argumentos que se pasaran a la función. Esta lista se llama @:{lista de
+   argumentos que seran pasados a la función. Esta lista se llama @:{lista de
    argumentos}. En este ejemplo, la lista solo tiene un elemento, el símbolo
    @c{numero}. Cuando se utiliza la función, el símbolo sera asociado al
    valor que se utiliza como argumento de la función.
@@ -3227,13 +3225,13 @@ and promoting software freedom.”
    De hecho, puedes elegir cualquier nombre que desees para un símbolo en una
    lista de argumentos, incluso el nombre de un símbolo utilizado en alguna otra
    función: el nombre que utilices en una lista de argumentos es privado
-   para esta definición particular. En esta definición, el nombre hace
+   para esa definición particular. En esta definición, el nombre hace
    referenecia a una entidad diferente a cualquiera que utilice el mismo
-   nombre fuera de la definición de función. Supón que tu familia te apoda
+   nombre fuera de la definición de función. Supón que tu familia te apodan
    ‘Enano’; cuando tus familiares digan ‘Enano’, queren hacer referencia a
    ti. Pero fuera de tu familia, en una película, por ejemplo, el nombre
    ‘Enano’ se refiere a alguien más. Debido a que el nombre en una lista de
-   argumentos es privado para la definición de la función, se puede cambiar
+   argumentos es privado de la definición de la función, se puede cambiar
    el valor de un símbolo dentro del cuerpo de una función sin cambiar su
    valor fuera de la función. El efecto es similar al producido por la
    expresión @c{let}. (Consulta la sección @l{#@c(let)}.)
@@ -3253,10 +3251,10 @@ and promoting software freedom.”
    el nombre de una función. Por cierto, cuando escribas una cadena de
    documentación como esta, debes confeccionar la primera linea como una
    frace completa ya que algunos comandos, como @c{apropos}, solo imprimen
-   la primera línea de una cadena de documentación de varias líneas.
+   la primer línea de una cadena de documentación de varias líneas.
    Ademas, no debes indentar la segunda línea de la cadena de documentación,
    si tienes una, porque se ve extraño al utilizar @k{C-h f}
-   (@c{describe-function}). La cadena de documentación es opcional, pero es
+   @%c(describe-function). La cadena de documentación es opcional, pero es
    tan útil, que debería incluirse en casi cualquier función que escribas.
 
 #    The third line of the example consists of the body of the function
@@ -3265,12 +3263,12 @@ and promoting software freedom.”
 #    says to multiply the value of @c{number} by 7.  (In Emacs Lisp, @c{*} is
 #    the function for multiplication, just as @c{+} is the function for
 #    addition.)
-   La tercera línea del ejemplo consiste en el cuerpo de la definición de
+   La tercer línea del ejemplo consiste en el cuerpo de la definición de
    función. (La mayoría de las definiciones de funcion, claro esta, son más
-   extensas que esta.) En esta función, el cuerpo es la lista, @c{(* 7
+   extensas que esto.) En esta función, el cuerpo es la lista, @c{(* 7
    numero)}, que indica multiplicar el valor de @c{numero} por 7. (En Emacs
-   Lisp, @c{*} es la función para la multiplicación, al igual que @c{+} es la
-   función de suma.
+   Lisp, @c{*} es la función para multiplicar, al igual que @c{+} es la
+   función para sumar.
 
 #    When you use the @c{multiply-by-seven} function, the argument @c{number}
 #    evaluates to the actual number you want used. Here is an example that
@@ -3278,7 +3276,7 @@ and promoting software freedom.”
 #    yet!
    Cuando se utiliza la función @c{multiplicar-por-siete}, el argumento
    @c{numero} se evalúa al número que desees usar. He aquí un ejemplo que
-   muestra como utilizar @c{multiplicar-por-siete}; pero ¡no intentes evaluar
+   muestra como utilizar @c{multiplicar-por-siete}; ¡pero no trates de evaluar
    esto primero!.
 
 #    ..src > elisp
@@ -3296,12 +3294,12 @@ and promoting software freedom.”
 #    function definition so the computer can figure out where the argument list
 #    ends and the rest of the function definition begins.
    El símbolo @c{numero}, especificado en la definición de función en la
-   siguiente sección, se da o “une a” el valor 3 en el actual uso de la
-   función. Note que aunque @c{numero} estaba dentro de paréntesis en la
+   siguiente sección, se da o “une a” el valor 3 en el uso real de la
+   función. Observa que aunque @c{numero} estaba dentro de paréntesis en la
    definición de función, el argumento pasado a la función
    @c{multiplicar-por-siete} no está entre paréntesis. Los paréntesis se
    escriben en la definición de función para que el ordenador pueda averiguar
-   donde termina la lista de argumentos e inicia el resto de la definición de
+   donde termina la lista de argumentos y donde inicia el resto de la definición de
    función.
 
 #    If you evaluate this example, you are likely to get an error message.  (Go
@@ -3312,7 +3310,7 @@ and promoting software freedom.”
 #    the function. Installation is described in the next section.
    Si evalúas este ejemplo, es probable que obtengas un mensaje de error.
    (¡adelante, intentalo!) Esto se debe a que hemos escrito la definición de
-   función, pero aún no se ha comunicado al ordenador sobre la definición––no
+   función, pero aún no se ha comunicado al ordenador sobre la definición––aun no
    hemos instalado (o ‘cargado’) la definición de función en Emacs. Instalar
    una función es el proceso de comunicar al intérprete Lisp la definición de
    la función. La instalación se describe en la siguiente sección.
@@ -3335,7 +3333,7 @@ and promoting software freedom.”
    definición a continuación. Coloca el cursor después del último paréntesis
    de la definición de función y presiona @k{C-x C-e}. Al hacer esto,
    @c{multiplicar-por-siete} aparecerá en el área de eco. (Esto significa
-   que cuando una se evalua una definición de función, el valor devuelto es
+   que cuando se evalua una definición de función, el valor devuelto es
    el nombre de la función definida.) Al mismo tiempo, esta acción instala la
    definición de función.
 
@@ -3360,15 +3358,15 @@ and promoting software freedom.”
    Emacs. La función ahora es una parte de Emacs tanto como
    @c{forward-word} o cualquier otra función de edición que utilices.
    (@c{multiplicar-por-siete} permanecera instalado hasta que salgas de
-   Emacs. Para volver a cargar el código automáticamente cada vez que Emacs
-   inicie, revisa la sección @l{#Instalar Código Permanentemente}.)
+   Emacs. Para volver a cargar el código automáticamente cada vez que inicie
+   Emacs, revisa la sección @l{#Instalar Código Permanentemente}.)
 
 #    You can see the effect of installing @c{multiply-by-seven} by evaluating
 #    the following sample. Place the cursor after the following expression and
 #    type @k{C-x C-e}. The number 21 will appear in the echo area.
    Puedes ver el efecto de instalar @c{multiplicar-por-siete} evaluando el
    siguiente ejemplo. Coloca el cursor después de la siguiente expresión y
-   presiona @k{C-x C-e}. Aparacerá el número 21 en el área de eco.
+   presiona @k{C-x C-e}. El número 21 aparacerá en el área de eco.
 
 #    ..src > elisp
 #      (multiply-by-seven 3)
@@ -3383,24 +3381,23 @@ and promoting software freedom.”
 #    on your screen that says:
    Si lo deseas, puedes leer la documentación de la función presiona @k{C-h
    f} @%c(describe-function) y luego escribe el nombre de la función,
-   @c{multiplicar-por-siete}. Al hacer esto, una ventana @f{*Help*}
-   aparecerá en tu pantalla diciendo:
+   @c{multiplicar-por-siete}. Al hacer esto, aparecerá una ventana @f{*Help*}
+   en tu pantalla diciendo:
 
 #    ..example >
+   ..example >
 #      multiply-by-seven is a Lisp function.
 #      (multiply-by-seven NUMBER)
-#
-#      Multiply NUMBER by seven.
-#    < example..
-   ..example >
      multiplicar-por-siete is a Lisp function.
      (multiplicar-por-siete NUMERO)
 
+#      Multiply NUMBER by seven.
      Multiplica NUMERO por siete.
+#    < example..
    < example..
 
 #    (To return to a single window on your screen, type @k{C-x 1}.)
-   (Para volver a una unica ventana en la pantalla, presiona @k{C-x 1}.)
+   (Para volver a una sola ventana en tu pantalla, presiona @k{C-x 1}.)
 
 # *** Change a Function Definition
 *** Cambiar una definición de función
@@ -3409,10 +3406,10 @@ and promoting software freedom.”
 #     To install the new version in place of the old one, evaluate the function
 #     definition again. This is how you modify code in Emacs. It is very
 #     simple.
-    Si deseas modificar el código de @c{multiplicar-por-siete}, simplemente
-    vuelve a escribirlo. Para instalar la nueva versión en lugar de la anterior, evalúa
+    Si quieres modificar el código de @c{multiplicar-por-siete}, simplemente
+    reescribelo. Para instalar la nueva versión en lugar de la anterior, evalúa
     nuevamente la definición de la función. Esta, es la forma de modificar el
-    código en Emacs. Es muy simple,
+    código en Emacs. Es muy sencillo,
 
 #     As an example, you can change the @c{multiply-by-seven} function to add
 #     the number to itself seven times instead of multiplying the number by
@@ -3451,7 +3448,7 @@ and promoting software freedom.”
 #     See Section @l{#Beginning a @f{.emacs} File}, and Section
 #     @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments<>Comments} in @e{The GNU Emacs Lisp Reference Manual}, for
 #     more about comments.
-    Vé las Secciónes @l(#Empieza por un fichero @f{.emacs}) y
+    Consulta las Secciónes @l(#Empieza por un fichero @f{.emacs}) y
     @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Comments<>Comentarios} en @e(El Manual de Referencia de GNU
     Emacs Lisp), para más informacion sobre los comentarios.
 
@@ -3459,7 +3456,7 @@ and promoting software freedom.”
 #     evaluating it in the same way you evaluated the first function: place the
 #     cursor after the last parenthesis and type @k{C-x C-e}.
     Puedes instalar esta versión de @c{multiplicar-por-siete} evaluándo esta
-    del misma modo en que evaluaste la primer función: coloca el cursor
+    del mismo modo en que evaluaste la primer función: coloca el cursor
     después del último paréntesis y presiona @k{C-x C-e}.
 
 #     In summary, this is how you write code in Emacs Lisp: you write a
@@ -3490,7 +3487,7 @@ and promoting software freedom.”
 #    as moving forward by a word or line, and not for the value returned. If
 #    the returned value were displayed in the echo area each time you typed a
 #    key, it would be very distracting.
-   Cusionamente, cuando llamas a una función interactiva interactivamente, el
+   Cusionamente, cuando se llama a una función interactiva interactivamente, el
    valor devuelto no se muestra automáticamente en el área de eco. Esto se debe
    a que a menudo se llama a una función interactiva por sus efectos
    secundarios, como avanzar hacia adelante una palabra o una línea,
@@ -3501,7 +3498,7 @@ and promoting software freedom.”
 #    value in the echo area can be illustrated by creating an interactive
 #    version of @c{multiply-by-seven}.
    Tanto el uso de la forma especial @c{interactive} y la forma de mostrar
-   un valor en el área de eco pueden ilustrarse creando una versión
+   un valor en el área de eco se pueden ilustrar creando una versión
    interactiva de @c{multiplicar-por-siete}.
 
 #    Here is the code:
@@ -3525,12 +3522,11 @@ and promoting software freedom.”
 #    Then, you can use this code by typing @k{C-u} and a number and then typing
 #    @k{M-x multiply-by-seven} and pressing @k{RET}. The phrase @'{The result
 #    is …} followed by the product will appear in the echo area.
-   Para instalar este código coloca el cursor después del ultimo parentesis y
-   presiona @k{C-x C-e}. El nombre de la función aparecerá en el área de eco.
-   Despues, puedes utilizar este código al presionar @k{C-u} segudo de un
-   número, luego @k{M-x multiplicar-por-siete} y finalmente @k{RET}. La
-   frase @'{El resultado es …} seguida por el producto, aparecerá en el área
-   de eco.
+   Para instalar este código, coloca el cursor después del ultimo parentesis y
+   presiona @k{C-x C-e}. El nombre de la función aparecerá en el área de eco.  A
+   continuacion, puedes utilizar este código al presionar @k{C-u} segudo de un
+   número, luego @k{M-x multiplicar-por-siete} y finalmente @k{RET}. En el área
+   de eco aparecerá la frase @'{El resultado es …} seguida por el producto.
 
 #    Speaking more generally, you invoke a function like this in either of two
 #    ways:
@@ -3540,13 +3536,13 @@ and promoting software freedom.”
 #    1. By typing a prefix argument that contains the number to be passed, and
 #       then typing @k{M-x} and the name of the function, as with @k{C-u 3 M-x
 #       forward-sentence}; or,
-   1. Al escribir un argumento prefijo que contiene el número a pasar, y a
-      continuación presionar @k{M-x} y escribir el nombre de la función, como
-      ocurre con @k{C-u 3 M-x forward-sentence}; o,
+   1. Escribiendo un argumento prefijo que contenga el número a pasar, y luego
+      presionar @k{M-x} y el nombre de la función, como ocurre con
+      @k{C-u 3 M-x forward-sentence}; o,
 
 #    2. By typing whatever key or keychord the function is bound to, as with
 #       @k{C-u 3 M-e}.
-   2. Escribir cualquier tecla o atajo de teclado ligado a la función, como
+   2. Pulsando cualquier tecla o atajo de teclado ligado a la función, como
       ocurre con @k{C-u 3 M-e}.
 
 #    Both the examples just mentioned work identically to move point forward
@@ -3578,7 +3574,7 @@ and promoting software freedom.”
 #     You will recall that the function definition looks like this:
     Veamos es uso de la forma especial @c{interactive} y luego la función
     @c{message} en la versión interactiva de @c{multiplicar-por-siete}.
-    Recordaras que la definición de función tiene este aspecto:
+    Recordaras que la definición de función tiene el siguiente aspecto:
 
 #     ..src > elisp
 #       (defun multiply-by-seven (number)       ; Interactive version.
@@ -3639,28 +3635,28 @@ and promoting software freedom.”
 #     As we have seen, @c{message} is an Emacs Lisp function especially
 #     designed for sending a one line message to a user.  (See Section @l{#The
 #     @c{message} function}.)  In summary, the @c{message} function prints its
-#     first argument in the echo area as is, except for occurrences of @'{%d}
-#     or @'{%s} (and various other %-sequences which we have not mentioned).
+#     first argument in the echo area as is, except for occurrences of @'c{%d}
+#     or @'c{%s} (and various other %-sequences which we have not mentioned).
 #     When it sees a control sequence, the function looks to the second or
 #     subsequent arguments and prints the value of the argument in the location
 #     in the string where the control sequence is located.
     Como hemos visto, @c{message} es una función Emacs Lisp especialmente
     diseñada para enviar un mensaje de una línea al usuario. (Consulta la Seccion
     @l{#La función @c{message}}.) En resumen, la función @c{message} imprime su
-    primer argumento en el área de eco tal cual, excepto para las apariciones de
-    @'{%d}, o @'{%s} (y varias otras secuencias de control que no hemos
+    primer argumento en el área de eco tal cual, excepto para las ocurrencias de
+    @'c{%d}, o @'c{%s} (y varias otras secuencias de control que no hemos
     mencionado). Cuando aparece una secuencia de control, la función busca
-    el segundo o posteriores argumentos e imprime el valor del argumento en
+    el segundo argumento o los siguientes e imprime el valor del argumento en
     la ubicación donde se encuartra la secuencia de control.
 
 #     In the interactive @c{multiply-by-seven} function, the control string is
-#     @'{%d}, which requires a number, and the value returned by evaluating
+#     @'c{%d}, which requires a number, and the value returned by evaluating
 #     @c{(* 7 5)} is the number 35. Consequently, the number 35 is printed in
-#     place of the @'{%d} and the message is @'{The result is 35}.
+#     place of the @'c{%d} and the message is @'{The result is 35}.
     En la función interactiva @c{multiplicar-por-siete}, la cadena de
-    control es @'{%d}, que requiere un número, y el valor devuelto por la
+    control es @'c{%d}, que requiere un número, y el valor devuelto por la
     evaluación de @c{(* 7 5)} es el número 35. Por consiguiente, el número 35
-    se imprime en lugar de @'{%d} y el mensaje es @'{El resultado es 35}.
+    se imprime en lugar de @'c{%d} y el mensaje es @'{El resultado es 35}.
 
 #     (Note that when you call the function @c{multiply-by-seven}, the message
 #     is printed without quotes, but when you call @c{message}, the text is
@@ -3671,9 +3667,9 @@ and promoting software freedom.”
     (Observa que cuando llamas a la función @c{multiplicar-por-siete}, el
     mensaje se imprime sin comillas, pero cuando llamas a @c{message}, el
     texto se imprime entre comillas. Esto se debe a que el valor devuelto por
-    @c{message} aparece en el área de eco cuando evalúas una expresión cuyo
+    @c{message} aparece en el área de eco cuando se evalúa una expresión cuyo
     primer elemento es @c{message}; pero si se integra en una función,
-    @c{message} imprime el texto como un efecto secundario sin comillas.)
+    @c{message} imprime el texto como un efecto secundario sin las comillas.)
 
 # ** Different Options for @c{interactive}
 ** Diferentes opciones para @c{interactive}
@@ -3688,14 +3684,14 @@ and promoting software freedom.”
 #    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Code Characters for @c{interactive}} in @e{The
 #    GNU Emacs Lisp Reference Manual}.)
    En el ejemplo, @c{multiplicar-por-siete} utilizo @c{"p"} como el
-   argumento para @c{interactive}. Este argumento indica a Emacs que
-   interprete cualquer cosa que escriba despues de @k{C-u} o del comando
+   argumento para @c{interactive}. Este argumento le indica a Emacs que
+   interpretara cualquer cosa que escribas despues de @k{C-u} o del comando
    @k{META} como un numero que sera el argumento a pasar a la funcion. Emacs
    tiene más de veinte caracteres predefinidos para usar con @c{interactive}.
    En casi todos los casos, una de estas opciones te permitira pasar la
    información correcta de forma interactiva a una función. (Consulta la Seccion
    @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Codigo de Caracteres para @c{interactive}} en @e(El
-   Manual de Referencia GNU Emacs Lisp)).
+   Manual de Referencia de GNU Emacs Lisp)).
 
 #    Consider the function @c{zap-to-char}. Its interactive expression is
    Considera la función @c{zap-to-char}. Su expresión interactiva es
@@ -3717,17 +3713,17 @@ and promoting software freedom.”
 #    a prefix, then you delete all the text up to and including the specified
 #    character, but no more.
    La primer parte del argumento de @c{interactive} es @'{p}, con el que ya
-   estás familiarizado. Este argumento le indica a Emacs intepretar un
+   estás familiarizado. Este argumento le dice a Emacs que interprete un
    ‘prefijo’, como un número que se pasa a la función. Puedes especificar un
    prefijo presionando @k{C-u} seguido de un número o igualmente con @k{META}
    seguido por un número. El prefijo es un número de caracteres especifico. De
    este modo, si el prefijo es tres y el caracter especificado es @'{x},
    entonces se borrará todo el texto hasta e incluido el tercer @'{x}
    siguiente. Si no se establece un prefijo, entonces borras todo el texto hasta
-   e incluido el carácter establecido, pero no más.
+   e incluido el carácter especificado, pero no más.
 
 #    The @'{c} tells the function the name of the character to which to delete.
-   La @'{c} indica a la función el nombre del carácter que va a eliminar.
+   La @'{c} le dice a la función el nombre del carácter que va a eliminar.
 
 #    More formally, a function with two or more arguments can have information
 #    passed to each argument by adding parts to the string that follows
@@ -3738,8 +3734,8 @@ and promoting software freedom.”
 #    an @'{cZap to char: }. This causes Emacs to pass the value of the
 #    prefix argument (if there is one) and the character.
    Más formalmente, una función con dos o más argumentos puede tener
-   información que pasa a cada argumento añadiendo partes en la cadena que
-   a continuacion de @c{interactive}. Al hacer esto, la información se
+   información que pasa a cada argumento añadiendo partes a la cadena que
+   sigue a @c{interactive}. Al hacer esto, la información se
    pasa a cada argumento en el mismo orden que se especifica en la lista
    @c{interactive}. En la cadena, cada parte está separada de la siguente
    parte por un @'{\n}, que significa nueva línea. Por ejemplo, a @'{p} puede
@@ -3750,7 +3746,7 @@ and promoting software freedom.”
 #    @c{arg} and @c{char} are the symbols to which @c{interactive} binds the
 #    prefix argument and the specified character:
    En este caso, la definición de función se parece a la siguiente, donde
-   @c{arg} y @c{char} son los símbolos que @c{interactive} vincula el
+   @c{arg} y @c{char} son los símbolos que @c{interactive} vincula al
    argumento prefijo y el caracter especificado:
 
 #    ..src > elisp
@@ -3769,8 +3765,8 @@ and promoting software freedom.”
 #    (The space after the colon in the prompt makes it look better when you are
 #    prompted. See Section @l{#The Definition of @c{copy-to-buffer}}, for an
 #    example.)
-   (El espacio después de los dos puntos en el prompt hace que se vea
-   mejor. Consulta la Seccion @l{#La Definición de @c{copy-to-buffer}}, para un
+   (El espacio después de los dos puntos en el prompt hace que se vea mejor.
+   Consulta la Seccion @l{#La Definición de @c{copy-to-buffer}}, para ver un
    ejemplo.)
 
 #    When a function does not take arguments, @c{interactive} does not require
@@ -3782,15 +3778,15 @@ and promoting software freedom.”
 
 #    Alternatively, if the special letter-codes are not right for your
 #    application, you can pass your own arguments to @c{interactive} as a list.
-   Alternativamente, si los códigos especiales de letras no son adecuados
-   para su aplicación, puedes pasar tus propios argumentos a
+   Alternativamente, si los códigos de letras especiales no son adecuados
+   para tu aplicación, puedes pasar tus propios argumentos a
    @c{interactive} como una lista.
 
 #    See Section @l{#The Definition of @c{append-to-buffer}}, for an example.
 #    See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using Interactive<>Using @c{Interactive}} in the
 #    @e{The GNU Emacs Lisp Reference Manual}, for a more complete explanation
 #    about this technique.
-   Consulta la Seccion @l{#La Definición de @c{append-to-buffer}}, para un
+   Consulta la Seccion @l{#La Definición de @c{append-to-buffer}}, para ver un
    ejemplo. Consulta la Sección @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Using Interactive<>Usando
    @c{interactive}} en @e(El Manual de GNU Emacs Lisp), para una explicación más
    completa sobre esta técnica.
@@ -3804,8 +3800,8 @@ and promoting software freedom.”
 #    definition again.
    Cuando instalas una definición de función evaluandola, permanecera instalada
    hasta que salgas de Emacs. La proxima vez que inicies una nueva sesión de
-   Emacs, la función no sera instalada a menos que evalúes la definición de
-   nuevo.
+   Emacs, la función no sera instalada a menos que evalúes de nuevo la
+   definición.
 
 #    At some point, you may want to have code installed automatically whenever
 #    you start a new session of Emacs. There are several ways of doing this:
@@ -3818,11 +3814,11 @@ and promoting software freedom.”
 #      start Emacs, your @f{.emacs} file is automatically evaluated and all the
 #      function definitions within it are installed. See Section @l{#Your
 #      @f{.emacs} File}.
-   - Si tienes código solo para tu uso, puedes poner el código de la
-     definición de función en el fichero de inicialización @f{.emacs}. Cuando
-     se inicia Emacs, el fichero @f{.emacs} se evalúa automática y se
-     instalan todas sus definiciones de función. Vér la Sección @l{#Tu Fichero
-     @f{.emacs}}.
+   - Si tienes código solo para tu personal, puedes poner el código de la
+     definición de función en el fichero de inicialización @f{.emacs}. Cuando se
+     inicia Emacs, el fichero @f{.emacs} se evalúa automáticamente y se instalan
+     todas las definiciones de función que contiene. Consulta la Sección @l{#Tu
+     Fichero @f{.emacs}}.
 
 #    - Alternatively, you can put the function definitions that you want
 #      installed in one or more files of their own and use the @c{load}
@@ -3837,7 +3833,6 @@ and promoting software freedom.”
 #      put it in a file called @f{site-init.el} that is loaded when Emacs is
 #      built. This makes the code available to everyone who uses your machine.
 #      (See the @f{INSTALL} file that is part of the Emacs distribution.)
-
    - En Tercer lugar, si tienes código que todo tu sitio va a utilizar, es
      normal ponerlo en un fichero llamado @f{site-init.el} que se carga
      cuando se construye Emacs. Esto hace que el código este disponible para
@@ -3854,21 +3849,21 @@ and promoting software freedom.”
 #    be included in the next release of Emacs. In large part, this is how
 #    Emacs has grown over the past years, by donations.
    Finalmente, si tienes código que cualquier usuario de Emacs pueda querer,
-   puedes publicarlo en una red de informatica o enviar una copia a la Free
+   puedes publicarlo en una red de computadores o enviar una copia a la Free
    Software Foundation. (Al hacer esto, por favor licencia el código y su
    documentación bajo una licencia que permita a otras personas ejecutar,
-   copiar, estudiar, modificar, y redistribuir el código y te protege de
-   quien tome tu trabajo.) Si envias una copia de tu código a la Free
-   Software Foundation, y lo proteges apropiadamente de ti mismo y otros,
-   puede ser incluido en la siguiente version de Emacs. En gran parte, esta
-   es la forma como ha crecido Emacs a través de los años, a traves de donaciones.
+   copiar, estudiar, modificar, y redistribuir el código y te proteja de quien
+   tome tu trabajo.) Si envias una copia de tu código a la Free Software
+   Foundation, y te proteges apropiadamente a ti mismo y a los demas, puede ser
+   incluido en la siguiente version de Emacs. En gran parte, esta es la forma
+   como ha crecido Emacs a través de los años, gracias a las de donaciones.
 
 # ** @c{let}
 ** @c{let}
 
 #    The @c{let} expression is a special form in Lisp that you will need to use
 #    in most function definitions.
-   La expresión @c{let} es una forma especial en Lisp que tendras que
+   La expresión @c{let} es una forma especial de Lisp que tendras que
    utilizar en la mayoría de las definiciones de función.
 
 #    @c{let} is used to attach or bind a symbol to a value in such a way that
@@ -3896,10 +3891,10 @@ and promoting software freedom.”
 #    are not intended to refer to the same value. The @c{let} special form
 #    prevents this kind of confusion.
    Si tu amigo se refiere a su casa y tu crees que el se esta refiriendo a tu
-   casa, puedes tener cierta confusión. Lo mismo podría suceder en Lisp si
-   una variable que se usa dentro de una función tiene el mismo nombre
-   que una variable usada dentro de otra función, y las dos no tienen la
-   intencion de referirse al mismo valor. La forma especial @c{let} permite evitar
+   casa, puedes encontrarte en una situacion confusa. Lo mismo podría suceder en
+   Lisp si una variable que se usa dentro de una función tiene el mismo nombre
+   que una variable que se utiliza dentro de otra función, y no se pretende que
+   ambas se refieran al mismo valor. La forma especial @c{let} permite evitar
    este tipo de confusión.
 
 #    The @c{let} special form prevents confusion.  @c{let} creates a name for a
@@ -3911,7 +3906,7 @@ and promoting software freedom.”
    La forma especial @c{let} evita confusiones. @c{let} crea un nombre para
    una @:{variable local} que eclipsa cualquier uso del mismo nombre fuera de
    la expresión @c{let}. Esto es como entender que cuando tu anfitrion
-   se refiera a ‘la casa’, el quiere decir su casa, no la tuya. (Los símbolos
+   haga referencia a ‘la casa’, el quiere referirse a su casa, no la tuya. (Los símbolos
    usados en las listas de argumentos funcionan de la misma manera. Consulta la
    Sección @l{#La Forma Especial @c{defun}}.)
 
@@ -3920,7 +3915,7 @@ and promoting software freedom.”
 #    called within the @c{let} expression); the local variables have no effect
 #    outside the @c{let} expression.
    Las variable locales creadas por una expresión @c{let} retienen su valor
-   @e{solo} dentro de la expresión @c{let} (y dentro de expresiones
+   @e{solo} dentro de la expresión @c{let} (y dentro de las expresiones
    llamadas dentro de la expresión @c{let}); las variables locales no tiene
    efecto fuera de la expresión @c{let}.
 
@@ -3934,8 +3929,8 @@ and promoting software freedom.”
    Otra forma de persar sobre @c{let} es que es como un @c{setq} que es temporal
    y local. Los valores establecidos por @c{let} se deshacen automáticamente
    cuando @c{let} finaliza. La configuración solo afecta a las expresiones que
-   se encuentran dentro de los limites de la expresión @c{let}. En jerga
-   informatica, diríamos que “la union de un simbolo es visible solo en las
+   se encuentran dentro de los limites de la expresión @c{let}. En la jerga
+   informatica, diríamos que “la union de un simbolo solo es visible en las
    funciones llamadas en la forma @c{let}; en Emacs Lisp, el alcance es
    dinámico, no léxico.”
 
@@ -3956,7 +3951,7 @@ and promoting software freedom.”
    cuerpo del @c{let} y devuelve el valor de la última expresión en el cuerpo,
    como el valor de toda la expresión @c{let}. (‘Ejecutar’ es un término tecnico
    que significa evaluar una lista; proviene del significando de la palabra
-   ‘llevar a la practica’ (@e{Oxford English Dictionary}). Ya que evalúas una
+   ‘llevar a la practica’ (@e{Oxford English Dictionary}). Puesto que se evalua una
    expresión para realizar una acción, ‘ejecutar’ ha evolucionado como un
    sinónimo para ‘evaluar’.)
 
@@ -3971,13 +3966,13 @@ and promoting software freedom.”
 #     or more lists.
     Una expresión @c{let} es una lista de tres partes. La primer parte es el
     símbolo @c{let}. La segunda parte es una lista, llamada @:{varlist}
-    (lista de variables), cada uno de cuyos elementos es un símbolo por sí
+    @%i(lista de variables), cada uno de cuyos elementos es un símbolo por sí
     mismo o una lista de dos elementos, cuyo primer elemento es un símbolo. La
-    tercera parte de la expresión @c{let} es el cuerpo de @c{let}. El cuerpo
+    tercer parte de la expresión @c{let} es el cuerpo de @c{let}. El cuerpo
     normalmente consiste de una o más listas.
 
 #     A template for a @c{let} expression looks like this:
-    Una plantilla para una expresión @c{let} tiene el siguente aspecto:
+    Una plantilla de la expresión @c{let} se veria asi:
 
 #     ..src > elisp
 #       (let varlist body…)
@@ -3992,8 +3987,8 @@ and promoting software freedom.”
 #     two-element list is bound to the value that is returned when the Lisp
 #     interpreter evaluates the second element.
     Los símbolos de la lista de varibles @%c(varlist) son las variables a las
-    que la forma especial @c{let} da valores de inicio. Los símbolos por si
-    solos reciven el valor de inicio @c{nil}; y cada símbolo que sea el primer
+    que la forma especial @c{let} da valores de inicio. A los símbolos por si
+    mismos se les da el valor inicial @c{nil}; y cada símbolo que sea el primer
     elemento de una lista de dos elementos se vincula al valor que se devuelve
     cuando el interprete Lisp evalúa el segundo elemento.
 
@@ -4001,21 +3996,21 @@ and promoting software freedom.”
 #     case, in a @c{let} expression, Emacs binds the symbol @c{thread} to an
 #     initial value of @c{nil}, and binds the symbol @c{needles} to an initial
 #     value of 3.
-    Por lo tanto, una varlist podria verse asi: @c{(thread (needles 3))}. En
-    este caso, en una expresión @c{let}, Emacs une el símbolo @c{thread} a
-    un valor inicial de @c{nil}, y une el símbolo @c{needles} a un valor inicial
+    Por lo tanto, una varlist podria verse asi: @c{(hilo (agujas 3))}. En
+    este caso, en una expresión @c{let}, Emacs une el símbolo @c{hilo} a
+    un valor inicial de @c{nil}, y une el símbolo @c{agujas} a un valor inicial
     de 3.
 
 #     When you write a @c{let} expression, what you do is put the appropriate
 #     expressions in the slots of the @c{let} expression template.
     Cuando escribes una expresión @c{let}, lo que haces es poner las
-    expresiones apropiadas en los espacios de la plantilla de expresión
+    expresiones apropiadas en los espacios de la plantilla de la expresión
     @c{let}.
 
 #     If the varlist is composed of two-element lists, as is often the case,
 #     the template for the @c{let} expression looks like this:
     Si la varlist está compuesta de listas de 2 elementos, como suele ser el
-    caso, la plantilla de la expresión @c{let} es la sigiente:
+    caso, la plantilla de la expresión @c{let} se ve asi:
 
 #     ..src > elisp
 #       (let ((variable value)
@@ -4036,7 +4031,7 @@ and promoting software freedom.”
 #     The following expression creates and gives initial values to the two
 #     variables @c{zebra} and @c{tiger}. The body of the @c{let} expression is
 #     a list which calls the @c{message} function.
-    La siguiente expresión crea y da valores los iniciales a las dos variables
+    La siguiente expresión crea y da valores iniciales a las dos variables
     @c{cebra} y @c{tigre}. El cuerpo de la expresión @c{let} es una lista que
     llama a la función @c{message}.
 
@@ -4078,8 +4073,8 @@ and promoting software freedom.”
 #     You may evaluate the example in the usual fashion, by placing the cursor
 #     after the last parenthesis and typing @k{C-x C-e}. When you do this, the
 #     following will appear in the echo area:
-    Puedes evaluar el ejemplo de la forma habitual, coloca el cursor después
-    del último paréntesis y presiona @k{C-x C-e}. Al hacer esto, aparecerá lo
+    Puedes evaluar el ejemplo de la forma habitual, colocando el cursor después
+    del último paréntesis y presionando @k{C-x C-e}. Al hacer esto, aparecerá lo
     siguiente en el área de eco:
 
 #     ..src > elisp
@@ -4105,7 +4100,7 @@ and promoting software freedom.”
 #     initial values, they will automatically be bound to an initial value of
 #     @c{nil}, as in the following expression:
     Si no se unen las variables en una sentencia @c{let} con valores
-    de inicio específicos, automáticamente seran unidos a un valor de inicio
+    de inicio específicos, automáticamente seran enlazados a un valor de inicio
     @c{nil}, como en la siguiente expresión:
 
 #     ..src > elisp
@@ -4113,18 +4108,16 @@ and promoting software freedom.”
 #             pine
 #             fir
 #             (oak 'some))
-#         (message
-#          "Here are %d variables with %s, %s, and %s value."
-#          birch pine fir oak))
+#         (message "Here are %d variables with %s, %s, and %s value."
+#                  birch pine fir oak))
 #     < src..
     ..src > elisp
       (let ((abedul 3)
             pino
             abeto
             (roble 'algunos))
-        (message
-         "Aquí están %d variables con %s, %s, y el valor %s."
-         abedul pino abeto roble))
+        (message "Aquí están %d variables con %s, %s, y el valor %s."
+                 abedul pino abeto roble))
     < src..
 
 #     Here, the varlist is @c{((birch 3) pine fir (oak 'some))}.
@@ -4156,18 +4149,17 @@ and promoting software freedom.”
 #     Similarly, @c{birch} is bound to the number 3 and so is in a list with
 #     that number.  (Since a number evaluates to itself, the number does not
 #     need to be quoted. Also, the number is printed in the message using a
-#     @'{%d} rather than a @'{%s}.)  The four variables as a group are put into
+#     @'c{%d} rather than a @'c{%s}.)  The four variables as a group are put into
 #     a list to delimit them from the body of the @c{let}.
-    Observe que en la primera parte de @c{let}, las variables @c{pino} y
+    Observa que en la primer parte de @c{let}, las variables @c{pino} y
     @c{abeto} son unicamente átomos que no están rodeados por paréntesis;
-    esto es porque estan siendo unidos a @c{nil}, la lista vacía. Pero
+    esto es porque estan siendo ligados a @c{nil}, la lista vacía. Pero
     @c{roble} su une a @c{algunos} por que es parte de la lista @c{(roble
     'algunos)}. De manera similar, @c{abedul} se une al número 3 en una lista
-    con este número. (Ya que un número se evalúa a sí mismo, el número no
-    necesita ser citado. Ademas, el número se imprime en el mensaje
-    utilizando un @'{%d} en lugar de un @'{%s}.) Las cuatro variables como
-    grupo son puestas dentro de una lista para delimitarla del cuerpo de
-    @c{let}.
+    con este número. (Ya que un número se evalúa a sí mismo, no es necesario
+    citar el numero. Ademas, el número se imprime en el mensaje
+    utilizando un @'c{%d} en lugar de un @'c{%s}.) Las cuatro variables como
+    grupo se ponen en una lista para delimitarlas del cuerpo de @c{let}.
 
 # ** The @c{if} Special Form
 ** La forma especial @c{if}
@@ -4182,7 +4174,7 @@ and promoting software freedom.”
    Esta forma se utiliza para indicar al ordenador que tome decisiones.
    Puedes escribir definiciones de función sin necesidad de utilizar @c{if},
    pero se usa con bastante frecuencia, y es lo suficientemente importante
-   como para incluirse aquí. Se utiliza, por ejemplo, en el código de la
+   como para incluirla aquí. Se utiliza, por ejemplo, en el código de la
    función @c{beginning-of-buffer}.
 
 #    The basic idea behind an @c{if}, is that “@e{if} a test is true, @e{then}
@@ -4190,20 +4182,20 @@ and promoting software freedom.”
 #    not evaluated. For example, you might make a decision such as, “if it is
 #    warm and sunny, then go to the beach!”
    La idea básica detras de @c{if}, es que “@e{si} @%i(if) una prueba es verdadera
-   @e{entonces} se evalua la expresión”. Si la prueba no es verdadera, la
-   expresión no se evalua. Por ejemplo, podría tomar una decisión como, “si
-   hace sol y calor, ve a la playa!”
+   @e{entonces} @%i(then) se evalua la expresión”. Si la prueba no es verdadera, la
+   expresión no se evalua. Por ejemplo, podrías tomar una decisión como, “si
+   hace sol y calor, entonces ve a la playa!”
 
 #    An @c{if} expression written in Lisp does not use the word ‘then’; the
 #    test and the action are the second and third elements of the list whose
 #    first element is @c{if}. Nonetheless, the test part of an @c{if}
 #    expression is often called the @:{if-part} and the second argument is
 #    often called the @:{then-part}.
-   Al escribir una expresión @c{if} en Lisp no se utiliza la palabra ‘then’;
+   Al escribir una expresión @c{if} en Lisp no se utiliza la palabra ‘entonces’;
    la prueba y la acción son los elementos segundo y tercero de la lista cuyo
    primer elemento es @c{if}. No obstante, la parte de la prueba en una
-   expresión @c{if} a menudo se llamada @:{parte-si} (if-part) y el segundo
-   argumento a menudo se llamada @:{parte-entonces} (then-part).
+   expresión @c{if} a menudo se llamada @:{parte-si} @%i(if-part) y el segundo
+   argumento a menudo se llamada @:{parte-entonces} @%i(then-part).
 
 #    Also, when an @c{if} expression is written, the true-or-false-test is
 #    usually written on the same line as the symbol @c{if}, but the action to
@@ -4221,7 +4213,7 @@ and promoting software freedom.”
 #    < src..
    ..src > elisp
      (if prueba-verdadero-o-falso
-         accion-a-realizar-si-el-test-es-cierto)
+         accion-a-realizar-si-la-prueba-es-verdadera)
    < src..
 
 #    The true-or-false-test will be an expression that is evaluated by the Lisp
@@ -4233,7 +4225,7 @@ and promoting software freedom.”
 #    whether the number 5 is greater than the number 4. Since it is, the
 #    message @'{5 is greater than 4!} will be printed.
    Aquí hay un ejemplo que puedes evaluar. La prueba consiste en si el número
-   5 es mayor que el número 4. Ya que es asi, se imprime el mensaje @'{¡5 es
+   5 es mayor que el número 4. Puesto que es asi, se imprime el mensaje @'{¡5 es
    mayor que 4!}.
 
 #    ..src > elisp
@@ -4256,7 +4248,7 @@ and promoting software freedom.”
 #    is not known ahead of time.  (If the value were known ahead of time, we
 #    would not need to run the test!)
    Por supuesto, en un caso real, la prueba en una expresión @c{if} no será
-   siempre la misma, como en la expresión @c{(> 5 4)}. En su lugar, al menos
+   fija eternamente, como en la expresión @c{(> 5 4)}. En su lugar, al menos
    una de las variables utilizadas en la prueba estara unida a un valor de
    antemano desconocido. (Si el valor se conociera de antemano, ¡no necesitariamos
    realizar la prueba!)
@@ -4293,8 +4285,8 @@ and promoting software freedom.”
 #    definition in the usual way to install it in Emacs, and then you can
 #    evaluate the following two expressions to see the results:
    Si estás leyendo esto dentro de GNU Emacs, puedes evaluar la definición de
-   función de la forma habitual para instalarlo en Emacs, y luego puedes
-   evaluar las dos expresiones siguientes para ver los resultados:
+   función de la forma habitual para instalarla en Emacs, y luego puedes
+   evaluar las siguientes dos expresiones para ver los resultados:
 
 #    ..src > elisp
    ..src > elisp
@@ -4311,24 +4303,24 @@ and promoting software freedom.”
 #    evaluate @c{(type-of-animal 'zebra)} you will see @c{nil} printed in the
 #    echo area.
    Al evaluar @c{(tipo-de-animal 'fiero)}, veras el siguiente mensaje impreso
-   en el área eco: @c{"¡Es un tigre!"}; y cuando se evalúa @c{(tipo-de-animal
+   en el área de eco: @c{"¡Es un tigre!"}; y cuando se evalúa @c{(tipo-de-animal
    'cebra)} verás @c{nil} impreso en el área de eco.
 
 # *** The @c{type-of-animal} Function in Detail
 *** La función @c{tipo-de-animal} en detalle
 
 #     Let's look at the @c{type-of-animal} function in detail.
-    Veamos la función @c{tipo-de-animal} en detalle.
+    Veamos en detalle la función @c{tipo-de-animal}.
 
 #     The function definition for @c{type-of-animal} was written by filling the
 #     slots of two templates, one for a function definition as a whole, and a
 #     second for an @c{if} expression.
     La definición de función @c{tipo-de-animal} se escribio llenando los
-    espacios de dos plantillas, la primera para la definición de función como
-    un todo, y la segunda para una expresión @c{if}.
+    espacios de dos plantillas, una para la definición de función como
+    un todo, y otra para una expresión @c{if}.
 
 #     The template for every function that is not interactive is:
-    La plantilla para cada función no interactiva es:
+    La plantilla para toda función no interactiva es:
 
 #     ..src > elisp
 #       (defun name-of-function (argument-list)
@@ -4342,7 +4334,7 @@ and promoting software freedom.”
     < src..
 
 #     The parts of the function that match this template look like this:
-    Las partes de la función que coinciden con esta plantilla tienen este aspecto:
+    Las partes de la función que coinciden con esta plantilla tienen el siguiente aspecto:
 
 #     ..src > elisp
 #       (defun type-of-animal (characteristic)
@@ -4354,8 +4346,8 @@ and promoting software freedom.”
     ..src > elisp
       (defun tipo-de-animal (caracteristica)
         "Imprime el mensaje en el área de eco dependiendo de CARACTERISTICA.
-           Si la CARACTERISTICA es el símbolo ‘fiero’,
-           entonces advierte que es un tigre."
+      Si la CARACTERISTICA es el símbolo ‘fiero’,
+      entonces advierte que es un tigre."
         cuerpo: la expresion if)
     < src..
 
@@ -4365,7 +4357,7 @@ and promoting software freedom.”
 #     is a good habit to write documentation string for every function
 #     definition. The body of the function definition consists of the @c{if}
 #     expression.
-    El nombre de función es @c{tipo-de-animal}; se pasa al valor de un
+    El nombre de función es @c{tipo-de-animal}; se le pasa el valor de un
     argumento. A la lista de argumentos le sigue una cadena de documentación
     multilínea. La cadena de documentación se incluiye en el ejemplo porque
     es un buen hábito escribir un cadena de documentación para cada
@@ -4373,7 +4365,7 @@ and promoting software freedom.”
     la expresión @c{if}.
 
 #     The template for an @c{if} expression looks like this:
-    La plantilla para una expresión @c{if} se ve así:
+    La plantilla de una expresión @c{if} se ve así:
 
 #     ..src > elisp
 #       (if true-or-false-test
@@ -4386,7 +4378,7 @@ and promoting software freedom.”
 
 #     In the @c{type-of-animal} function, the code for the @c{if} looks like
 #     this:
-    En la función @c{tipo-de-animal}, el código para @c{if} se ve así:
+    En la función @c{tipo-de-animal}, el código para el @c{if} se ve así:
 
 #     ..src > elisp
 #       (if (equal characteristic 'fierce)
@@ -4448,10 +4440,10 @@ and promoting software freedom.”
 #    decision “if it is warm and sunny, then go to the beach, else read a
 #    book!”.
    Una expresión @c{if} puede tener un tercer argumento opcional, llamado
-   @:{else-part} (parte-de-otro-modo), en caso de que la
+   @:(parte-de-otro-modo) @%i{else-part}, en caso de que la
    prueba-verdadero-o-falso devuelva falso. Cuando esto sucede, el segundo
    argumento o parte-entonces de la expresión @c{if} global @e{no} se evalúa, pero
-   el tercer argumento o parte-de-otro-modo @e{se} evalúa. Podría pensar en
+   el tercer argumento o parte-de-otro-modo @e{se} evalúa. Podrías pensar en
    esto como la alternativa del día nublado para la decisión “si es cálido y
    soleado, entonces ir a la playa!, de otro modo leer un libro!”
 
@@ -4459,10 +4451,10 @@ and promoting software freedom.”
 #    @c{if} expression comes after the then-part. In the written Lisp, the
 #    else-part is usually written to start on a line of its own and is indented
 #    less than the then-part:
-   La palabra “else” (de otro modo) no se escribe en el código Lisp; la
+   La palabra “else” @%i(de otro modo) no se escribe en el código Lisp; la
    parte-de-otro-modo de una expresión @c{if} viene después de la
    parte-entonces. En Lisp, la parte-de-otro-modo suele escribirse al inicio
-   de una nueva linea y se indenta menos que la parte-entonces:
+   de una nueva linea y tiene menos indentacion que la parte-entonces:
 
 #    ..src > elisp
 #      (if true-or-false-test
@@ -4477,8 +4469,8 @@ and promoting software freedom.”
 
 #    For example, the following @c{if} expression prints the message @'{4 is
 #    not greater than 5!} when you evaluate it in the usual way:
-   Por ejemplo, la siguiente expresión @c{if} imprime el mensaje @'{¡4 no es
-   mayor que 5!} al evaluarse en la forma habitual:
+   Por ejemplo, evaluar la siguiente expresión @c{if} imprime el mensaje @'{¡4 no es
+   mayor que 5!}:
 
 #    ..src > elisp
 #      (if (> 4 5)                               ; if-part
@@ -4495,23 +4487,25 @@ and promoting software freedom.”
 #    the then-part from the else-part.  (GNU Emacs has several commands that
 #    automatically indent @c{if} expressions correctly. See Section @l{#GNU
 #    Emacs Helps You Type Lists}.)
-   Tenga en cuenta que los diferentes niveles de indentación hacen fácil
-   distinguir la parte-entonces de la parte-de-otro-modo. (GNU Emacs tiene
+   Observa que los diferentes niveles de indentación hacen fácil distinguir la
+   parte-entonces (por brevedad, y mezclando ingles con español, apartir de
+   ahora @%i(parte-then)) de la parte-de-otro-modo (por brevedad, y mezclando
+   ingles con español, apartir de ahora @%i(parte-else)). (GNU Emacs tiene
    varios comandos que indentan expresiones @c{if} automáticamente. Consulta la
    Seccion @l{#GNU Emacs te ayuda a escribir listas}.)
 
 #    We can extend the @c{type-of-animal} function to include an else-part by
 #    simply incorporating an additional part to the @c{if} expression.
    Podemos ampliar la función @c{tipo-de-animal} para incluir una parte-else
-   simplemente incorporando una parte adicional para la expresión @c{if}.
+   simplemente incorporando una parte adicional a la expresión @c{if}.
 
 #    You can see the consequences of doing this if you evaluate the following
 #    version of the @c{type-of-animal} function definition to install it and
 #    then evaluate the two subsequent expressions to pass different arguments
 #    to the function.
    Puedes ver las consecuencias de hacer esto si evalúas la siguiente versión de
-   la definición de función @c{tipo-de-animal} y luego evaluas las dos
-   expresiones siguientes que pasan diferentes argumentos a la función.
+   la función @c{tipo-de-animal} y luego evaluas las dos expresiones siguientes
+   que pasan argumentos diferentes a la función.
 
 #    ..src > elisp
    ..src > elisp
@@ -4524,10 +4518,10 @@ and promoting software freedom.”
 #            (message "It's a tiger!")
 #          (message "It's not fierce!")))
      (defun tipo-de-animal (caracteristica)
-       "Imprime el mensaje en el área de eco dependiendo de CARACTERISTICA.
+       "Imprime un mensaje en el área de eco dependiendo de la CARACTERISTICA.
      Si la CARACTERISTICA es el símbolo ‘fiero’,
      entonces advierte que es un tigre.
-     de otro modo decir que no es fiero"
+     de otro modo dice que no es fiero"
        (if (equal caracteristica 'fiero)
            (message "¡Es un tigre!")
          (message "!No es feroz!")))
@@ -4543,8 +4537,8 @@ and promoting software freedom.”
 #    When you evaluate @c{(type-of-animal 'fierce)}, you will see the following
 #    message printed in the echo area: @c{"It's a tiger!"}; but when you
 #    evaluate @c{(type-of-animal 'zebra)}, you will see @c{"It's not fierce!"}.
-   Al evalar @c{(tipo-de-animal 'fiero)}, verás el siguiente mensaje en el
-   área de eco: @c{"¡Es un tigre!"}; pero cuando evalues @c{(tipo-de-animal
+   Cuando evalues @c{(tipo-de-animal 'fiero)}, verás el siguiente mensaje en el
+   área de eco: @c{"¡Es un tigre!"}; cuando evalues @c{(tipo-de-animal
    'cebra)}, verás @c{"¡No es feroz!"}.
 
 #    (Of course, if the @c{characteristic} were @c{ferocious}, the message
@@ -4552,10 +4546,10 @@ and promoting software freedom.”
 #    you write code, you need to take into account the possibility that some
 #    such argument will be tested by the @c{if} and write your program
 #    accordingly.)
-   (Por supuesto, si @c{característica} fuera @c{muy feroz}, se imprimiria el
+   (Por supuesto, si @c{característica} fuera @c{muy-feroz}, se imprimiria el
    mensaje @c{"¡No es feroz!"}; ¡y sería un error!  Cuando escribas código,
-   necesitas tener en cuenta la posibilidad de que algun argumento como este
-   será puesto a prueba por @c{if} y acorde a ello escribir tu programa.
+   debes tener en cuenta la posibilidad de que algun argumento como este
+   sea probado por @c{if} y acorde a ello escribir tu programa.
 
 # ** Truth and Falsehood in Emacs Lisp
 ** Verdad y Falsedad en Emacs Lisp
@@ -4564,7 +4558,7 @@ and promoting software freedom.”
 #    So far, we have spoken of ‘true’ and ‘false’ as values of predicates as if
 #    they were new kinds of Emacs Lisp objects. In fact, ‘false’ is just our
 #    old friend @c{nil}. Anything else––anything at all––is ‘true’.
-   Hay un aspecto importante para la prueba verdadero en una expresión
+   Hay un aspecto importante para probar la verdad en una expresión
    @c{if}. Hasta ahora, hemos hablado de ‘verdadero’ y ‘falso’ como valores
    de predicados como si fueran nuevos tipos de objetos Emacs Lisp. De hecho,
    solo nuestro viejo amigo @c{nil} es ‘falso’. Cualquier otra
@@ -4576,11 +4570,11 @@ and promoting software freedom.”
 #    number such as 47, a string such as @c{"hello"}, or a symbol (other than
 #    @c{nil}) such as @c{flowers}, or a list (so long as it is not empty), or
 #    even a buffer!
-   La expresión que prueba si es verdadero se interpreta como @:{true}
-   (verdadero) si el resultado de la evaluacion es no @c{nil}. En otras
+   La expresión que prueba si algo es verdadero se interpreta como @:{true}
+   @%i(verdadero) si el resultado de la evaluacion es no @c{nil}. En otras
    palabras, el resultado de la prueba se considera verdadero si el valor
    devuelto es un número como 47, una cadena como @c{"hola"}, o un símbolo
-   (distinto a @c{nil}) como @c{flores}, o una lista (siempre y cuando no
+   (distinto de @c{nil}) como @c{flores}, o una lista (siempre y cuando no
    este vacía) o incluso ¡un búfer!
 
 #    Before illustrating a test for truth, we need an explanation of @c{nil}.
@@ -4609,14 +4603,14 @@ and promoting software freedom.”
 #    conditional, the @c{if} expression will test true. The expression tests
 #    false only when @c{nil}, an empty list, is returned by evaluating the
 #    expression.
-   En Emacs Lisp, cualquier valor que no sea @c{nil}––no es una lista
-   vacía––se considera verdadero. Esto significa que si una evaluación
-   devuelve algo que no es una lista vacía, una expresión @c{if} pondra la
-   prueba a verdadero. Por ejemplo, si un número se coloca en el lugar de la
-   prueba, se evaluara y devolverá su valor, ya que eso es lo que hacen los
-   números cuando se evalúan. En esta condicion, la expresión @c{if}
-   devuelve verdadero. La expresión devuelve falso solo cuando @c{nil}, o una
-   lista vacía, son devueltas al evaluar la expresión.
+   En Emacs Lisp, cualquier valor que no sea @c{nil}––si no es una lista
+   vacía––se considera verdadero. Esto significa que si una evaluación devuelve
+   algo que no es una lista vacía, una expresión @c{if} probara ser
+   verdadera. Por ejemplo, si un número se coloca en el lugar de la prueba, se
+   evaluara y devolverá su valor, ya que eso es lo que hacen los números cuando
+   se evalúan. En esta condicion, la expresión @c{if} pasara su prueba como
+   verdadero. La expresión pasara su prueba como falsa solo cuando @c{nil}, o
+   una lista vacía, son devueltas al evaluar la expresión.
 
 #    You can see this by evaluating the two expressions in the following
 #    examples.
@@ -4629,7 +4623,7 @@ and promoting software freedom.”
 #    else-part of the expression is evaluated and returned: @'{false} appears
 #    in the echo area.
    En el primer ejemplo, el número 4 se evalua como la prueba en la expresión
-   @c{if} y devuelve el numero en si; en consecuencia, se evalua y devuelve
+   @c{if} y se devuelve a si mismo; en consecuencia, se evalua y devuelve
    la parte-then de la expresión: aparece @'{verdadero} en el área de eco. En el
    segundo ejemplo, @c{nil} indica falso; en consecuencia, se evalua y
    devuelve la parte-else de la expresión: aparece @'{falso} en el área de eco.
@@ -4695,7 +4689,7 @@ and promoting software freedom.”
    En los programas Emacs Lisp utilizados para la edición, la función
    @c{save-excursion} es muy común. Guarda la posición del punto y marca,
    ejecuta el cuerpo de la función, y luego restaura el punto y marca a sus
-   posiciones previas si sus posiciones fueron cambiadas. Su objetivo
+   posiciones previas si sus posiciones fueron cambiadas. Su proposito
    principal es impedir que el usuario se sorprenda y perturbe por el
    movimiento inesperado del punto o marca.
 
@@ -4712,7 +4706,7 @@ and promoting software freedom.”
    primero que son el punto y la marca en GNU Emacs. @:{Punto} es la posición
    actual del cursor. Donde sea que se encuentre el cursor, estara el punto. De
    forma más precisa, en los terminales donde el cursor aparece sobre un
-   carácter, el punto está inmediatamente antes del carácter. En Emacs Lisp, el
+   carácter, el punto se encuentra inmediatamente antes del carácter. En Emacs Lisp, el
    punto es un numero entero. El primer carácter en un búfer es el número uno,
    el segundo es el número dos, y así sucesivamente. La función @c{point}
    devuelve la posición actual del cursor como un número. Cada búfer tiene su
@@ -4721,25 +4715,24 @@ and promoting software freedom.”
 #    The @:{mark} is another position in the buffer; its value can be set
 #    with a command such as @k{C-SPC} @%c(set-mark-command). If a mark has
 #    been set, you can use the command @k{C-x C-x}
-#    (@c{exchange-point-and-mark}) to cause the cursor to jump to the mark
+#    @%c(exchange-point-and-mark) to cause the cursor to jump to the mark
 #    and set the mark to be the previous position of point. In addition, if
 #    you set another mark, the position of the previous mark is saved in the
 #    mark ring. Many mark positions can be saved this way. You can jump the
 #    cursor to a saved mark by typing @k{C-u C-SPC} one or more times.
    La @:{marca} es otra posición en el búfer; su valor se puede establecer con
-   un comando como @k{C-SPC} @%c(set-mark-command). Si una marca se ha
-   establecido, puede utilizar el comando @k{C-x C-x}
-   (@c{exchange-point-and-mark}) para hacer que el cursor salte a la marca y
-   establecer la marca como la posición anterior del punto. Además, si se
-   establece otra marca, la posición de la marca anterior se guarda en el anillo
-   de marcas. De este modo puede guardar varias posiciones de la marca. Se
-   puede mover el cursor a una marca guardada presionando @k{C-u C-SPC} una o
-   más veces.
+   un comando como @k{C-SPC} @%c(set-mark-command). Si se ha establecido una
+   marca, puedes utilizar el comando @k{C-x C-x} @%c(exchange-point-and-mark)
+   para hacer que el cursor salte a la marca y establecer la marca como la
+   posición anterior del punto. Además, si se establece otra marca, la posición
+   de la marca anterior se guarda en el anillo de marcas. Muchas posiciones de
+   marca se pueden guardar de esta manera. Se puede mover el cursor a una marca
+   guardada presionando @k{C-u C-SPC} una o más veces.
 
 #    The part of the buffer between point and mark is called @:{the region}.
 #    Numerous commands work on the region, including @c{center-region},
 #    @c{count-lines-region}, @c{kill-region}, and @c{print-region}.
-   La parte del búfer entre el punto y la marca se llamada @:{la región}.
+   La parte del búfer entre el punto y la marca se denomina @:{la región}.
    Numerosos comandos trabajan en la región, incluyendo @c{center-region},
    @c{count-lines-region}, @c{kill-region} y @c{print-region}.
 
@@ -4749,13 +4742,13 @@ and promoting software freedom.”
 #    beginning of a piece of text and some code moved point to the end of the
 #    buffer, the @c{save-excursion} would put point back to where it was
 #    before, after the expressions in the body of the function were evaluated.
-   La forma especial @c{save-excursion} guarda la ubicacion del punto y la
+   La forma especial @c{save-excursion} guarda las ubicaciones del punto y la
    marca y restaura estas posiciones después de que el interprete Lisp evalua el
    código dentro del cuerpo de la forma especial. De este modo, si el punto
-   se encontraba al inicio de un trozo de texto y algún código desplazo el
+   se encontraba al inicio de un texto y algún código moviera el
    punto al final del búfer, @c{save-excursion} volvera a poner el punto
    donde estaba antes, luego que las expresiones en el cuerpo de la funcion
-   sean evaluadas.
+   fueran evaluadas.
 
 #    In Emacs, a function frequently moves point as part of its internal
 #    workings even though a user would not expect this. For example,
@@ -4764,22 +4757,22 @@ and promoting software freedom.”
 #    view) unnecessary, @c{save-excursion} is often used to keep point and mark
 #    in the location expected by the user. The use of @c{save-excursion} is
 #    good housekeeping.
-   En Emacs, con frecuencia una función mueve el punto como parte de su
-   funcionamiento interno a pesar de que un usuario no espere esto. Por ejemplo,
-   @c{count-lines-region} mueve el punto. Para evitar que el usuario sea
-   molestado por saltos inesperados y (desde el punto de vista del usuario)
-   innecesarios, @c{save-excursion} se utiliza a menudo para conservar el punto y
-   la marca en la posición esperada por el usuario. El uso de @c{save-excursion}
-   es bueno para mantener el orden.
+   En Emacs, una función se mueve con frecuencia de punto a otro como parte de
+   su funcionamiento interno, aunque el usuario no lo espere. Por
+   ejemplo, @c{count-lines-region} mueve el punto. Para evitar que el usuario
+   sea molestado por saltos inesperados y (desde el punto de vista del usuario)
+   innecesarios, @c{save-excursion} se utiliza a menudo para conservar el punto
+   y la marca en la posición esperada por el usuario. El uso de
+   @c{save-excursion} es bueno para mantener el orden.
 
 #    To make sure the house stays clean, @c{save-excursion} restores the values
 #    of point and mark even if something goes wrong in the code inside of it
 #    (or, to be more precise and to use the proper jargon, “in case of abnormal
 #    exit”). This feature is very helpful.
    Para asegurarse que la casa se mantiene limpia, @c{save-excursion}
-   restaura los valores del punto y la marca incluso si algo va mal en el
-   código interno (o, para ser más preciso y usar el lenguaje tecnico
-   apropiado, “en caso de salida anormal”). Esta funcionalidad es muy útil.
+   restaura los valores del punto y la marca incluso si algo va mal con el
+   código en su cuerpo (o, para ser más preciso y usar el lenguaje tecnico
+   apropiado, “en caso de salida anormal”). Esta caracteristica es muy útil.
 
 #    In addition to recording the values of point and mark, @c{save-excursion}
 #    keeps track of the current buffer, and restores it, too. This means you
@@ -4788,10 +4781,11 @@ and promoting software freedom.”
 #    used in @c{append-to-buffer}.  (See Section @l{#The Definition of
 #    @c{append-to-buffer}}.)
    Además de registrar los valores del punto y marca, @c{save-excursion}
-   registra el buffer actual, y lo restaura. Esto significa que puedes escribir
-   código que cambie de bufer y @c{save-excursion} debe volver al bufer
-   original. Asi es como se utiliza @c{save-excursion} en @c{append-to-buffer}.
-   (Consulta la Seccion @l{#La Definición de @c{append-to-buffer}}.)
+   mantiene un registro del buffer actual, y tambien lo restaura. Esto significa que
+   puedes escribir código que cambie de bufer y @c{save-excursion} lo devuelva
+   al bufer original. Asi es como se utiliza @c{save-excursion} en
+   @c{append-to-buffer}.  (Consulta la Seccion @l{#La Definición de
+   @c{append-to-buffer}}.)
 
 # *** Template for a @c{save-excursion} Expression
 *** Plantilla para una Expresión @c{save-excursion}
@@ -4819,7 +4813,7 @@ and promoting software freedom.”
     forma secuencial por el intérprete Lisp. Si hay más de una expresión en
     el cuerpo, el valor de la última será devuelto como el valor de la
     función @c{save-excursion}. Las otras expresiones en el cuerpo solo se
-    evaluan por sus efectos secundarios; y @c{save-excursion} en sí, solo se
+    evaluan por sus efectos secundarios; y @c{save-excursion} en misma solo se
     utiliza por su efecto secundario (que es restaurar las posiciones del
     punto y la marca).
 
@@ -4851,7 +4845,7 @@ and promoting software freedom.”
 #     In Emacs Lisp code, a @c{save-excursion} expression often occurs within
 #     the body of a @c{let} expression. It looks like this:
     En el código Emacs Lisp, una expresión @c{save-excursion} a menudo ocurre
-    dentro del cuerpo de una expresión @c{let}. Se ve asi:
+    dentro del cuerpo de una expresión @c{let}. Tiene un aspecto algo asi:
 
 #     ..src > elisp
 #       (let varlist
@@ -4865,7 +4859,7 @@ and promoting software freedom.”
     < src..
 
 # ** Review: How To Write Function Definitions <> Review
-** Repaso: Cómo escribir definiciones de funciones <> Repaso
+** Repaso: Cómo escribir definiciones de funcion <> Repaso
 
 #    In the last few chapters we have introduced a fair number of functions and
 #    special forms. Here they are described in brief, along with a few similar
@@ -4881,10 +4875,10 @@ and promoting software freedom.”
 #      point. The value is printed in the echo area unless the function is
 #      invoked with an argument; in that case, the output is printed in the
 #      current buffer. This command is normally bound to @k{C-x C-e}.
-     Evalúar la última expresión simbólica antes de la posición actual del
+     Evalúa la última expresión simbólica antes de la posición actual del
      punto. El valor se imprime en el área de eco a menos que la función se
      invoque con un argumento; en este caso, la salida se imprime en el
-     búfer actual. Este comando normalmente esta asociado a @k{C-x C-e}.
+     búfer actual. Este comando normalmente esta ligado a @k{C-x C-e}.
 
 #    - @c(defun) ::
    - @c(defun) ::
@@ -4902,8 +4896,8 @@ and promoting software freedom.”
 #      as follows.  (It is slightly more complex now that it seeks the first
 #      non-whitespace character rather than the first visible character.)
      Por ejemplo, en las primeras versiones de Emacs, la definición de la
-     función @c(back-to-indentation) era como sigue. (Eso es ligeramente más
-     complejo ahora que se busca el primer caracter que no es espacio en lugar
+     función @c(back-to-indentation) era la siguiente. (Es ligeramente más
+     compleja ahora que busca el primer caracter que no es espacio en lugar
      del primer caracter visible.)
 
 #      ..src > elisp
@@ -4939,24 +4933,21 @@ and promoting software freedom.”
 #      Common code characters are:
      Los codigos de caractere comúnes son:
 
-#        - @c(b) :: The name of an existing buffer.
-     - @c(b) :: El nombre de un búfer existente.
+#      - @c(b): The name of an existing buffer.
+     - @c(b): El nombre de un búfer existente.
 
-#        - @c(f) :: The name of an existing file.
-     - @c(f) :: El nombre de un fichero existente
+#      - @c(f): The name of an existing file.
+     - @c(f): El nombre de un fichero existente
 
-#        - @c(p) :: The numeric prefix argument.  (Note that this ‘p’ is lower case.)
-     - @c(p) :: El argumento prefijo numérico. (Tenga en cuenta que esta ‘p’ es
-       minúscula.)
+#      - @c(p): The numeric prefix argument.  (Note that this ‘p’ is lower case.)
+     - @c(p): El argumento prefijo numérico. (Observa que esta ‘p’ es minúscula.)
 
-#        - @c(r) ::
-#          Point and the mark, as two numeric arguments, smallest first. This
-#          is the only code letter that specifies two successive arguments
-#          rather than one.
-     - @c(r) :: Punto y marca, como dos argumentos numéricos, el más pequeño
+#      - @c(r): Point and the mark, as two numeric arguments, smallest first. This
+#        is the only code letter that specifies two successive arguments
+#        rather than one.
+     - @c(r): El punto y la marca, como dos argumentos numéricos, el más pequeño
        primero. Este es el unico codigo de una letra que especifica dos
        argumentos sucesivos en lugar de uno.
-
 
 #      See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Code Characters for
 #      @'{interactive}} in @e{The GNU Emacs Lisp Reference Manual}, for a
@@ -4976,10 +4967,10 @@ and promoting software freedom.”
 #      of the same names that are bound outside of the @c{let}.
      Declara una lista de variables para utilizarla dentro del cuerpo de
      @c{let} y darle a cada variable un valor inicial, ya sea @c{nil} o un valor
-     específico; luego evaluar el resto de las expresiones en el cuerpo del
+     específicado; luego evalua el resto de las expresiones en el cuerpo del
      @c{let} y devuelve el valor de la última expresion. Dentro del cuerpo
-     del @c{let}, el intérprete Lisp no ve los valores de variables con el
-     mismos nombre fuera de @c{let}.
+     del @c{let}, el intérprete Lisp no ve los valores de las variables con el
+     mismo nombre declaradas fuera de @c{let}.
 
 #      For example,
      Por ejemplo,
@@ -4987,16 +4978,14 @@ and promoting software freedom.”
 #      ..src > elisp
 #        (let ((foo (buffer-name))
 #              (bar (buffer-size)))
-#          (message
-#           "This buffer is %s and has %d characters."
-#           foo bar))
+#          (message "This buffer is %s and has %d characters."
+#                   foo bar))
 #      < src..
      ..src > elisp
        (let ((foo (buffer-name))
              (bar (buffer-size)))
-         (message
-          "Este buffer es %s y tiene %d caracteres."
-          foo bar))
+         (message "Este buffer es %s y tiene %d caracteres."
+                  foo bar))
      < src..
 
 #    - @c(save-excursion) ::
@@ -5005,9 +4994,9 @@ and promoting software freedom.”
 #      Record the values of point and mark and the current buffer before
 #      evaluating the body of this special form. Restore the values of point
 #      and mark and buffer afterward.
-     Registra los valores de punto, marca y el búfer actual antes de evaluar el
-     cuerpo de esta forma especial. Restaura los valores de punto, marca y el
-     búfer luego de esto.
+     Registra los valores de punto, marca y del búfer actual antes de evaluar el
+     cuerpo de esta forma especial. Tras evaluar su cuerpo, restaura los valores
+     de punto, marca y búfer.
 
 #      For example,
      Por ejemplo,
@@ -5016,13 +5005,15 @@ and promoting software freedom.”
 #        (message "We are %d characters into this buffer."
 #                 (- (point)
 #                    (save-excursion
-#                      (goto-char (point-min)) (point))))
+#                      (goto-char (point-min))
+#                      (point))))
 #      < src..
      ..src > elisp
        (message "Estamos %d caracteres dentro de este buffer."
                 (- (point)
                    (save-excursion
-                     (goto-char (point-min)) (point))))
+                     (goto-char (point-min))
+                     (point))))
      < src..
 
 
@@ -5038,8 +5029,7 @@ and promoting software freedom.”
 #      conditionals in Emacs Lisp, but @c{if} is perhaps the most commonly
 #      used.
      La forma especial @c{if} se llamada @:{condicional}. Hay otros
-     condicionales en Emacs Lisp, pero @c{if} es quizás el más comúnmente
-     usado.
+     condicionales en Emacs Lisp, pero @c{if} es quizás el más utilizado.
 
 #      For example,
      Por ejemplo,
@@ -5065,12 +5055,12 @@ and promoting software freedom.”
 #      @c{>=} tests whether the first argument is greater than or equal to the
 #      second. In all cases, both arguments must be numbers or markers
 #      (markers indicate positions in buffers).
-     La función @c{<} prueba si su primer argumento es menor que su segundo
-     argumento. @c{>}, prueba si el primer argumento es mayor que el
-     segundo. Del mismo modo, @c{<=} prueba si el primer argumento es menor o
-     igual al segundo y @c{>=} si el primer argumento es mayor o igual al
-     segundo. En todos los casos, ambos argumentos deben ser números o
-     marcadores (los marcadores indican posiciones en búfers).
+     La función @c{<} prueba si su primer argumento es menor que el segundo.
+     @c{>}, prueba si el primer argumento es mayor que el segundo. Del mismo
+     modo, @c{<=} prueba si el primer argumento es menor o igual al segundo y
+     @c{>=} si el primer argumento es mayor o igual al segundo. En todos los
+     casos, ambos argumentos deben ser números o marcadores (los marcadores
+     indican posiciones en búfers).
 
 #    - @c(=) ::
    - @c(=) ::
@@ -5088,7 +5078,7 @@ and promoting software freedom.”
 #      two objects have a similar structure and contents, such as two copies of
 #      the same book. On the other hand, @c{eq}, returns true if both
 #      arguments are actually the same object.
-     Prueba si dos objetos son el mismo. @c{equal} utiliza un signicado de la
+     Prueban si dos objetos son el mismo. @c{equal} utiliza un signicado de la
      palabra ‘mismo’ y @c{eq} utiliza otro: @c{equal} devuelve verdadero si
      los dos objetos tienen una estructura y contenidos similares, por
      ejemplo, dos copias del mismo libro. Por otro lado, @c{eq}, devuelve
@@ -5112,35 +5102,35 @@ and promoting software freedom.”
      significativas. Los nombres impresos de símbolos se utilizan en lugar de
      los símbolos mismos.
 
-#      An empty string, @'{""}, a string with no characters in it, is smaller
+#      An empty string, @'c{""}, a string with no characters in it, is smaller
 #      than any string of characters.
-     Una cadena vacía, @'{""}, una cadena sin caracteres en ella, es más
-     pequeña que cualquier cadena de caracteres.
+     Una cadena vacía, @'c{""}, una cadena sin caracteres, es más pequeña que
+     cualquier cadena de caracteres.
 
 #      @c{string-equal} provides the corresponding test for equality. Its
 #      shorter, alternative name is @c{string=}. There are no string test
 #      functions that correspond to @c{>}, @c{>=}, or @c{<=}.
      @c{string-equal} proporciona la prueba correpondiente para la igualdad.
      Su nombre alternativo es @c{string=}. No hay funciones de prueba
-     que correspondan a @c{>}, @c{>=} o @c{<=}.
+     de cadenas que correspondan a @c{>}, @c{>=} o @c{<=}.
 
 #    - @c(message) ::
    - @c(message) ::
 
 #      Print a message in the echo area. The first argument is a string that
-#      can contain @'{%s}, @'{%d}, or @'{%c} to print the value of arguments
-#      that follow the string. The argument used by @'{%s} must be a string or
-#      a symbol; the argument used by @'{%d} must be a number. The argument
-#      used by @'{%c} must be an @eC{ascii} code number; it will be printed as
-#      the character with that @e{ASCII} code.  (Various other %-sequences
+#      can contain @'c{%s}, @'c{%d}, or @'c{%c} to print the value of arguments
+#      that follow the string. The argument used by @'c{%s} must be a string or
+#      a symbol; the argument used by @'c{%d} must be a number. The argument
+#      used by @'c{%c} must be an @A{ASCII} code number; it will be printed as
+#      the character with that @A{ASCII} code.  (Various other %-sequences
 #      have not been mentioned.)
      Imprime un mensaje en el área de eco. El primer argumento es una cadena
-     que puede contener, @'{%s}, @'{%d}, o @'{%c} para imprimir el valor de
+     que puede contener, @'c{%s}, @'c{%d}, o @'c{%c} para imprimir el valor de
      los argumentos que siguen a la cadena. El argumento utilizado por
-     @'{%s} debe ser una cadena o un simbolo, el argumeto utilizado por
-     @'{%d} debe ser un número. El argumento usado por @'{%c} debe ser un
-     codigo númerico @e{ASCII}; se imprimira como el caracter con este código
-     @e{ASCII}. (No se han mencionado otras secuencias @"(porcentuales) @c(%-)).
+     @'c{%s} debe ser una cadena o un simbolo, el argumeto utilizado por
+     @'c{%d} debe ser un número. El argumento usado por @'c{%c} debe ser un
+     codigo númerico @A{ASCII}; se imprimira como el caracter con ese código
+     @A{ASCII}. (No se han mencionado otras secuencias @"(porcentuales) @c(%-)).
 
 #    - @c(setq), @c(set) ::
    - @c(setq), @c(set) ::
@@ -5153,7 +5143,7 @@ and promoting software freedom.”
 #      returned by its second argument.
      La función @c{setq} asigna al valor de su primer argumento el valor del
      segundo argumento. El primer argumento se cita automáticamente por
-     @c{setq}. Hace lo mismo para los pares sucesisvos de argumentos. Otra
+     @c{setq}. Hace lo mismo para los pares sucesisvos de argumentos. La
      función, @c{set}, toma solo dos argumentos y evalúa ambos antes de
      asignar el valor devuelto por su primer argumento al valor devuelto por
      el segundo argumento.
@@ -5194,8 +5184,7 @@ and promoting software freedom.”
 #      Select a buffer for Emacs to be active in and display it in the current
 #      window so users can look at it. Usually bound to @k{C-x b}.
      Selecciona un búfer de Emacs para activarlo y mostralo en la ventana
-     actual para que los usuarios puedan verlo. Normalmente ligado a @k{C-x
-     b}.
+     actual para que los usuarios puedan verlo. Normalmente ligado a @k{C-x b}.
 
 #    - @c(set-buffer) ::
    - @c(set-buffer) ::
@@ -5203,7 +5192,7 @@ and promoting software freedom.”
 #      Switch Emacs's attention to a buffer on which programs will run. Don't
 #      alter what the window is showing.
      Cambiar la atención de Emacs a un búfer en el que se ejecutaran
-     programas. No altera lo que la ventana está mostrando.
+     los programas. No altera lo que muestra la ventana.
 
 #    - @c(buffer-size) ::
    - @c(buffer-size) ::
@@ -5252,7 +5241,7 @@ and promoting software freedom.”
      mensaje apropiado.
 
 # * A Few Buffer––Related Functions
-* Algunas funciones relacionadas al bufer
+* Algunas funciones relacionadas al búfer
 
 #   In this chapter we study in detail several of the functions used in GNU
 #   Emacs. This is called a “walk-through”. These functions are used as
@@ -28187,7 +28176,7 @@ and promoting software freedom.”
 #     is visible to you in another window, @c{other-buffer} will choose the
 #     most recent buffer that you cannot see; this is a subtlety that I often
 #     forget.
- :: @N{5} :: En realidad, por defecto, si el búfer desde el que acabas de
+ :: @N{5} :: De hecho, por defecto, si el búfer desde el que acabas de
     cambiar es visible por tí en otra ventana, @c{other-buffer} elegirá el
     búfer más reciente que no puedas ver; esta es una sutileza que a menudo
     olvido.
@@ -28237,7 +28226,7 @@ and promoting software freedom.”
 #     171)
  :: @N{8} :: Segun Jared Diamond en @e{Guns, Germs, and Steel}, “…
     las cebras se vuelven increiblemente peligrosas a medida que envejecen”
-    pero la afirmacion aquí es que no llegan a ser feroces como un tigre. (1997,
+    pero la afirmacion aquí es que no se vuelven feroces como un tigre. (1997,
     W. W. Norton and Co., ISBN 0-393-03894-2, pagina 171)
 
 #  :: @N{9} :: Actually, you can @c{cons} an element to an atom to produce a

@@ -663,7 +663,7 @@ promoting software freedom.”
    is called an ‘infinite loop’. These actions are less common; and we can
    ignore them.)  Most frequently, the interpreter returns a value.
 
-   At the same time the interpreter returns a value, it may do something else      ¤
+   At the same time the interpreter returns a value, it may do something else
    as well, such as move a cursor or copy a file; this other kind of action
    is called a @:{side effect}. Actions that we humans think are important,
    such as printing results, are often “side effects” to the Lisp
@@ -820,7 +820,7 @@ promoting software freedom.”
       (+ 2 2)
     < src..
 
-    In GNU Emacs 26, you will create a @f{*Backtrace*} buffer that says:
+    In GNU Emacs 22, you will create a @f{*Backtrace*} buffer that says:
 
     ..example >
       ---------- Buffer: *Backtrace* ----------
@@ -1881,7 +1881,6 @@ promoting software freedom.”
      Multiply NUMBER by seven.
    < example..
 
-
    (To return to a single window on your screen, type @k{C-x 1}.)
 
 *** Change a Function Definition
@@ -2017,16 +2016,16 @@ promoting software freedom.”
     As we have seen, @c{message} is an Emacs Lisp function especially
     designed for sending a one line message to a user.  (See Section @l{#The
     @c{message} function}.)  In summary, the @c{message} function prints its
-    first argument in the echo area as is, except for occurrences of @'{%d}
-    or @'{%s} (and various other %-sequences which we have not mentioned).
+    first argument in the echo area as is, except for occurrences of @'c{%d}
+    or @'c{%s} (and various other %-sequences which we have not mentioned).
     When it sees a control sequence, the function looks to the second or
     subsequent arguments and prints the value of the argument in the location
     in the string where the control sequence is located.
 
     In the interactive @c{multiply-by-seven} function, the control string is
-    @'{%d}, which requires a number, and the value returned by evaluating
+    @'c{%d}, which requires a number, and the value returned by evaluating
     @c{(* 7 5)} is the number 35. Consequently, the number 35 is printed in
-    place of the @'{%d} and the message is @'{The result is 35}.
+    place of the @'c{%d} and the message is @'{The result is 35}.
 
     (Note that when you call the function @c{multiply-by-seven}, the message
     is printed without quotes, but when you call @c{message}, the text is
@@ -2126,7 +2125,6 @@ promoting software freedom.”
      put it in a file called @f{site-init.el} that is loaded when Emacs is
      built. This makes the code available to everyone who uses your machine.
      (See the @f{INSTALL} file that is part of the Emacs distribution.)
-
 
    Finally, if you have code that everyone who uses Emacs may want, you can
    post it on a computer network or send a copy to the Free Software
@@ -2279,9 +2277,8 @@ promoting software freedom.”
             pine
             fir
             (oak 'some))
-        (message
-         "Here are %d variables with %s, %s, and %s value."
-         birch pine fir oak))
+        (message "Here are %d variables with %s, %s, and %s value."
+                 birch pine fir oak))
     < src..
 
     Here, the varlist is @c{((birch 3) pine fir (oak 'some))}.
@@ -2304,7 +2301,7 @@ promoting software freedom.”
     Similarly, @c{birch} is bound to the number 3 and so is in a list with
     that number.  (Since a number evaluates to itself, the number does not
     need to be quoted. Also, the number is printed in the message using a
-    @'{%d} rather than a @'{%s}.)  The four variables as a group are put into
+    @'c{%d} rather than a @'c{%s}.)  The four variables as a group are put into
     a list to delimit them from the body of the @c{let}.
 
 ** The @c{if} Special Form
@@ -2619,7 +2616,7 @@ promoting software freedom.”
    The @:{mark} is another position in the buffer; its value can be set
    with a command such as @k{C-SPC} @%c(set-mark-command). If a mark has
    been set, you can use the command @k{C-x C-x}
-   (@c{exchange-point-and-mark}) to cause the cursor to jump to the mark
+   @%c(exchange-point-and-mark) to cause the cursor to jump to the mark
    and set the mark to be the previous position of point. In addition, if
    you set another mark, the position of the previous mark is saved in the
    mark ring. Many mark positions can be saved this way. You can jump the
@@ -2738,17 +2735,15 @@ promoting software freedom.”
 
      Common code characters are:
 
-       - @c(b) :: The name of an existing buffer.
+     - @c(b): The name of an existing buffer.
 
-       - @c(f) :: The name of an existing file.
+     - @c(f): The name of an existing file.
 
-       - @c(p) :: The numeric prefix argument.  (Note that this ‘p’ is lower case.)
+     - @c(p): The numeric prefix argument.  (Note that this ‘p’ is lower case.)
 
-       - @c(r) ::
-         Point and the mark, as two numeric arguments, smallest first. This
-         is the only code letter that specifies two successive arguments
-         rather than one.
-
+     - @c(r): Point and the mark, as two numeric arguments, smallest first. This
+       is the only code letter that specifies two successive arguments
+       rather than one.
 
      See Section @l{https://www.gnu.org/software/emacs/manual/html_mono/elisp.html#Interactive Codes<>Code Characters for
      @'{interactive}} in @e{The GNU Emacs Lisp Reference Manual}, for a
@@ -2768,9 +2763,8 @@ promoting software freedom.”
      ..src > elisp
        (let ((foo (buffer-name))
              (bar (buffer-size)))
-         (message
-          "This buffer is %s and has %d characters."
-          foo bar))
+         (message "This buffer is %s and has %d characters."
+                  foo bar))
      < src..
 
    - @c(save-excursion) ::
@@ -2785,7 +2779,8 @@ promoting software freedom.”
        (message "We are %d characters into this buffer."
                 (- (point)
                    (save-excursion
-                     (goto-char (point-min)) (point))))
+                     (goto-char (point-min))
+                     (point))))
      < src..
 
 
@@ -2839,7 +2834,7 @@ promoting software freedom.”
      ordering is lexicographic, so case is significant. The print names of
      symbols are used instead of the symbols themselves.
 
-     An empty string, @'{""}, a string with no characters in it, is smaller
+     An empty string, @'c{""}, a string with no characters in it, is smaller
      than any string of characters.
 
      @c{string-equal} provides the corresponding test for equality. Its
@@ -2849,11 +2844,11 @@ promoting software freedom.”
    - @c(message) ::
 
      Print a message in the echo area. The first argument is a string that
-     can contain @'{%s}, @'{%d}, or @'{%c} to print the value of arguments
-     that follow the string. The argument used by @'{%s} must be a string or
-     a symbol; the argument used by @'{%d} must be a number. The argument
-     used by @'{%c} must be an @eC{ascii} code number; it will be printed as
-     the character with that @e{ASCII} code.  (Various other %-sequences
+     can contain @'c{%s}, @'c{%d}, or @'c{%c} to print the value of arguments
+     that follow the string. The argument used by @'c{%s} must be a string or
+     a symbol; the argument used by @'c{%d} must be a number. The argument
+     used by @'c{%c} must be an @A{ASCII} code number; it will be printed as
+     the character with that @A{ASCII} code.  (Various other %-sequences
      have not been mentioned.)
 
    - @c(setq), @c(set) ::
